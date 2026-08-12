@@ -1,0 +1,11 @@
+# Default calculation configuration for the JRE astronomical core (JRE-002).
+# Every request may override any of these values via CalculationConfig.
+# See docs/architecture/JRE-002-DATA-CONTRACT.md for the field contract.
+
+[astronomy]
+ayanamsa = "LAHIRI"          # LAHIRI | RAMAN | FAGAN_BRADLEY | (unset/null => tropical only)
+ephemeris_mode = "SWIEPH"    # SWIEPH (high precision, bundled .se1) | MOSEPH (Moshier fallback)
+position_type = "APPARENT"   # APPARENT | TRUE
+node_type = "MEAN"           # MEAN | TRUE  (Rahu/Ketu source)
+allow_fallback = true        # SWIEPH -> MOSEPH when data files are unavailable
+# ephemeris_path = "datasets/ephemeris"   # uncomment to pin the data directory explicitly
