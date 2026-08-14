@@ -54,6 +54,7 @@ EXPECTED_PUBLIC_API = {
     "RASHI_ORDER",
     "rashi_of",
     "degree_in_rashi",
+    "sign_lord_of",
     "NAKSHATRA_CATALOG_VERSION",
     "NAKSHATRA_ORDER",
     "nakshatra_of",

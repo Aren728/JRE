@@ -99,6 +99,7 @@ from .rashi import (
     RASHI_ORDER,
     degree_in_rashi,
     rashi_of,
+    sign_lord_of,
 )
 from .serialize import (
     birth_from_dict,
@@ -118,7 +119,7 @@ from .service import (
 )
 from .transit import ContinuousTransitEngine, iso_utc_to_jd, jd_to_iso_utc
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 __all__ = [
     # facade
@@ -144,6 +145,7 @@ __all__ = [
     "RASHI_ORDER",
     "rashi_of",
     "degree_in_rashi",
+    "sign_lord_of",
     "NAKSHATRA_CATALOG_VERSION",
     "NAKSHATRA_ORDER",
     "nakshatra_of",

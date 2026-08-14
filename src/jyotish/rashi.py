@@ -83,3 +83,14 @@ def rashi_span(rashi: RashiId) -> tuple[float, float]:
 def lord_of(rashi: RashiId) -> BodyId:
     """Classical lord of a rashi."""
     return RASHI_LORDS[_RASHI_INDEX[rashi]]
+
+
+def sign_lord_of(rashi: RashiId) -> BodyId:
+    """Public accessor for the classical rashi lord (additive, no behavior change).
+
+    Delegates to the pinned ``RASHI_LORDS`` catalog exactly like ``lord_of``;
+    exposed through the public API (``jyotish.__all__``) so consumers can
+    resolve sign lordship without importing this module. The public namespace
+    already exports a nakshatra ``lord_of``, hence the disambiguated name.
+    """
+    return lord_of(rashi)
