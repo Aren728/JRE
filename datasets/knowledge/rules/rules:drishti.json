@@ -1,0 +1,240 @@
+{
+  "catalog_id": "rules:drishti",
+  "catalog_version": "1.1.0",
+  "schema_version": "0.3.0",
+  "source_citation": "Re-authored per the VALIDATOR findings and the recovery reconciliation. Corrected citations verified against the actual edition texts: BPHS ch. 26 v. 2-5 (Planetary Aspects: quarter/half/three-quarter/full glances and the special aspects of Saturn, Jupiter and Mars) and Phaladīpikā ch. 2 v. 23 (same doctrine). The unsupported jataka-parijata.sextile.5 rule was removed (no sextile doctrine in the cited text).",
+  "checksum_sha256": "118015cc82ba6fcabd5e3bc9a601eb85b3877245ef65a6457e67455752bd43d6",
+  "entries": [
+    {
+      "rule_id": "bphs.mars-opposition.1",
+      "domain": "DRISHTI",
+      "summary": "Mars aspects Saturn by opposition — all planets cast their full 7th aspect",
+      "condition": {
+        "combiner": null,
+        "op": "IN",
+        "path": "pair(MARS, SATURN).aspects",
+        "value": [
+          "OPPOSITION"
+        ],
+        "children": []
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "When Mars and Saturn are in opposition, Mars casts its full 7th aspect; all planets aspect the 7th fully (BPHS ch. 26 v. 2-5).",
+        "structured": {
+          "aspecting_body": "MARS",
+          "aspect_kind": "OPPOSITION",
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "26",
+        "verse_start": "2",
+        "verse_end": "5",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "bphs.jupiter-aspect.2",
+      "domain": "DRISHTI",
+      "summary": "Jupiter casts full aspects on the 5th and 9th houses",
+      "condition": {
+        "combiner": "ALL",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "relative_house(VENUS, JUPITER)",
+            "value": [
+              5,
+              9
+            ],
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "pair(JUPITER, VENUS).aspect_strength",
+            "value": "FULL",
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Jupiter casts full aspects on the 5th and 9th houses from it (BPHS ch. 26 v. 2-5).",
+        "structured": {
+          "aspecting_body": "JUPITER",
+          "special_house_positions": [
+            5,
+            9
+          ],
+          "aspect_strength": "FULL",
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "26",
+        "verse_start": "2",
+        "verse_end": "5",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "bphs.saturn-aspect.3",
+      "domain": "DRISHTI",
+      "summary": "Saturn casts full aspects on the 3rd and 10th houses",
+      "condition": {
+        "combiner": "ALL",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "relative_house(MOON, SATURN)",
+            "value": [
+              3,
+              10
+            ],
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "pair(SATURN, MOON).aspect_strength",
+            "value": "FULL",
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Saturn casts full aspects on the 3rd and 10th houses from it (BPHS ch. 26 v. 2-5).",
+        "structured": {
+          "aspecting_body": "SATURN",
+          "special_house_positions": [
+            3,
+            10
+          ],
+          "aspect_strength": "FULL",
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "26",
+        "verse_start": "2",
+        "verse_end": "5",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "phaladeepika.aspect-strength.4",
+      "domain": "DRISHTI",
+      "summary": "All planets cast a quarter glance on the 3rd/10th, half on the 5th/9th, three-quarters on the 4th/8th and a full glance on the 7th",
+      "condition": {
+        "combiner": "ALL",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "relative_house(MOON, SUN)",
+            "value": [
+              3,
+              10
+            ],
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "pair(SUN, MOON).aspect_strength",
+            "value": "QUARTER",
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "All planets cast a quarter glance at the 3rd and 10th houses, half a glance at the 5th and 9th, three-quarters of a glance at the 4th and 8th and a full glance at the 7th (Phaladīpikā ch. 2 v. 23; cf. BPHS ch. 26 v. 2-5).",
+        "structured": {
+          "aspect_strength_positions": {
+            "QUARTER": [
+              3,
+              10
+            ],
+            "HALF": [
+              5,
+              9
+            ],
+            "THREE_QUARTER": [
+              4,
+              8
+            ],
+            "FULL": [
+              7
+            ]
+          },
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "phaladeepika",
+        "chapter": "2",
+        "verse_start": "23",
+        "verse_end": null,
+        "edition_id": "kapoor-2001",
+        "commentary": "The aspect-strength statement follows v. 23 in the Kapoor translation."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 3,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    }
+  ]
+}

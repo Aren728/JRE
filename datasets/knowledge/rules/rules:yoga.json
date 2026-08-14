@@ -1,0 +1,530 @@
+{
+  "catalog_id": "rules:yoga",
+  "catalog_version": "1.1.0",
+  "schema_version": "0.3.0",
+  "source_citation": "Re-authored per the VALIDATOR findings and the recovery reconciliation (docs/validation/JRE-004-VALIDATION-REPORT.md). Corrected citations verified against the actual edition texts: BPHS ch. 36 v. 3-4 (ed. santhanam-2001), Phaladīpikā ch. 6 Kesari/Sakata definitions (ed. kapoor-2001), Jātaka Pārijāta Adhyāya VII sloka 116 (ed. sastri-1932). bphs.budhaditya.2 and prasna-marga.moon-lagna.6 are INACTIVE (NEEDS-RESEARCH) pending committed reference excerpts. VALIDATOR re-check (2026-08-13): JP Gajakesari second form now also enforces the Moon not-debilitated limb ('without being depressed or obscured by the Sun', Adhyaya VII sloka 116); all other citations re-verified against the committed evidence excerpts.",
+  "checksum_sha256": "4f343a90a3e4970c523f677f696dc7ed14dfa3af9ca9ebf5e22043e4daf51cc8",
+  "entries": [
+    {
+      "rule_id": "bphs.gajakesari.1",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Gaja-Kesari yoga: Jupiter in a kendra from the ascendant or the Moon, conjunct or aspected by a benefic, not combust, not debilitated and not in an inimical sign",
+      "condition": {
+        "combiner": "ALL",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": "ANY",
+            "op": null,
+            "path": null,
+            "value": null,
+            "children": [
+              {
+                "combiner": null,
+                "op": "IN",
+                "path": "relative_house(JUPITER, LAGNA)",
+                "value": [
+                  1,
+                  4,
+                  7,
+                  10
+                ],
+                "children": []
+              },
+              {
+                "combiner": null,
+                "op": "IN",
+                "path": "relative_house(JUPITER, MOON)",
+                "value": [
+                  1,
+                  4,
+                  7,
+                  10
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "combiner": "ANY",
+            "op": null,
+            "path": null,
+            "value": null,
+            "children": [
+              {
+                "combiner": "ALL",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "pair(JUPITER, MOON).conjunction",
+                    "value": true,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "planet(MOON).nature",
+                    "value": "BENEFIC",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "combiner": "ALL",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "pair(JUPITER, VENUS).conjunction",
+                    "value": true,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "planet(VENUS).nature",
+                    "value": "BENEFIC",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "combiner": "ALL",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "EXISTS",
+                    "path": "pair(MOON, JUPITER).aspect_strength",
+                    "value": null,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "planet(MOON).nature",
+                    "value": "BENEFIC",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "combiner": "ALL",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "EXISTS",
+                    "path": "pair(VENUS, JUPITER).aspect_strength",
+                    "value": null,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EQ",
+                    "path": "planet(VENUS).nature",
+                    "value": "BENEFIC",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "planet(JUPITER).combusted",
+            "value": false,
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "planet(JUPITER).dignity",
+            "value": [
+              "EXALTED",
+              "MULATRIKONA",
+              "OWN",
+              "FRIEND",
+              "NEUTRAL"
+            ],
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Gaja-Kesari yoga is formed when Jupiter is in an angle from the ascendant or from the Moon, conjunct or aspected by (another) benefic, and free of debilitation, combustion and inimical sign (BPHS ch. 36 v. 3-4).",
+        "structured": {
+          "yoga_id": "GAJA_KESARI",
+          "classical_name": "Gaja-Kesari",
+          "formation": "jupiter_in_kendra_aspect_by_benefic"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "36",
+        "verse_start": "3",
+        "verse_end": "4",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [
+        "jataka-parijata.gajakesari.5"
+      ],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "bphs.budhaditya.2",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Budha-Aditya yoga: Sun and Mercury conjunct (NEEDS-RESEARCH — inactive)",
+      "condition": {
+        "combiner": null,
+        "op": "EQ",
+        "path": "pair(SUN, MERCURY).conjunction",
+        "value": true,
+        "children": []
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Budha-Aditya yoga is formed when the Sun and Mercury are conjunct (citation unverified; rule held INACTIVE pending research).",
+        "structured": {
+          "yoga_id": "BUDHA_ADITYA",
+          "classical_name": "Budha-Aditya",
+          "formation": "sun_mercury_conjunction",
+          "research_status": "NEEDS-RESEARCH"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "25",
+        "verse_start": "24",
+        "verse_end": null,
+        "edition_id": "santhanam-2001",
+        "commentary": "NEEDS-RESEARCH: no Sun-Mercury yoga by this name was found in the Santhanam BPHS text (ch. 25 is Effects of Non-Luminous Planets); the citation is unverified and the rule is inactive pending committed reference excerpts."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "INACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "phaladeepika.sakata.3",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Sakata yoga: Moon in the 12th, 8th or 6th house from Jupiter, cancelled when the Moon is in a kendra from the ascendant",
+      "condition": {
+        "combiner": null,
+        "op": "IN",
+        "path": "relative_house(MOON, JUPITER)",
+        "value": [
+          12,
+          8,
+          6
+        ],
+        "children": []
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Sakata yoga is caused when the Moon is in the 12th, 8th or 6th house from Jupiter; it is cancelled if the Moon is in a kendra from the ascendant (Phaladīpikā ch. 6).",
+        "structured": {
+          "yoga_id": "SAKATA",
+          "classical_name": "Sakata",
+          "formation": "moon_in_6_8_12_from_jupiter"
+        }
+      },
+      "provenance": {
+        "source_id": "phaladeepika",
+        "chapter": "6",
+        "verse_start": "14",
+        "verse_end": null,
+        "edition_id": "kapoor-2001",
+        "commentary": "The Kesari/Sakata definitions follow v. 14 in the notes of the Kapoor translation."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 3,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "jataka-parijata.gajakesari.5",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Gaja-Kesari yoga: Jupiter in a kendra from the Moon, or the Moon aspected by Venus, Jupiter and Mercury and not combust (Jātaka Pārijāta)",
+      "condition": {
+        "combiner": "ANY",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "relative_house(JUPITER, MOON)",
+            "value": [
+              1,
+              4,
+              7,
+              10
+            ],
+            "children": []
+          },
+          {
+            "combiner": "ALL",
+            "op": null,
+            "path": null,
+            "value": null,
+            "children": [
+              {
+                "combiner": "ANY",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "EXISTS",
+                    "path": "pair(VENUS, MOON).aspect_strength",
+                    "value": null,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EXISTS",
+                    "path": "pair(JUPITER, MOON).aspect_strength",
+                    "value": null,
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "EXISTS",
+                    "path": "pair(MERCURY, MOON).aspect_strength",
+                    "value": null,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "combiner": null,
+                "op": "EQ",
+                "path": "planet(MOON).combusted",
+                "value": false,
+                "children": []
+              },
+              {
+                "combiner": null,
+                "op": "NEQ",
+                "path": "planet(MOON).dignity",
+                "value": "DEBILITATED",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Gaja-Kesari (Gajakesari) is produced when Jupiter occupies a kendra from the Moon; again if the Moon is aspected by Venus, Jupiter and Mercury without being depressed or obscured by the Sun (Jātaka Pārijāta Adhyāya VII sloka 116).",
+        "structured": {
+          "yoga_id": "GAJA_KESARI",
+          "classical_name": "Gaja-Kesari",
+          "formation": "jupiter_in_kendra_from_moon_or_moon_aspect_by_benefics"
+        }
+      },
+      "provenance": {
+        "source_id": "jataka-parijata",
+        "chapter": "7",
+        "verse_start": "116",
+        "verse_end": null,
+        "edition_id": "sastri-1932",
+        "commentary": "Sloka numbering follows the V. Subrahmanya Sastri translation (Adhyāya VII, sloka 116)."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [
+        "bphs.gajakesari.1"
+      ],
+      "exception_for": [],
+      "authority_tier": 2,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "prasna-marga.moon-lagna.6",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Kerala prasna: a movable-sign Moon is the primary indicator (NEEDS-RESEARCH — inactive)",
+      "condition": {
+        "combiner": "ALL",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "IN",
+            "path": "lagna.rashi",
+            "value": [
+              "MESHA",
+              "KARKA",
+              "TULA",
+              "MAKARA"
+            ],
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "EXISTS",
+            "path": "planet(MOON).rashi",
+            "value": null,
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "In the Kerala prasna tradition the Moon's rashi in a movable-sign lagna is read as the primary indicator (citation unverified; rule held INACTIVE pending research).",
+        "structured": {
+          "tradition": "kerala",
+          "source_kind": "prasna",
+          "condition": "movable_lagna_with_moon",
+          "research_status": "NEEDS-RESEARCH"
+        }
+      },
+      "provenance": {
+        "source_id": "prasna-marga",
+        "chapter": "1",
+        "verse_start": "9",
+        "verse_end": null,
+        "edition_id": "raman-1990",
+        "commentary": "NEEDS-RESEARCH: Praśna Mārgam ch. 1 v. 9 concerns the divisions of astrology (Pramana/Phala), not a movable-sign Moon indicator; the citation is unverified and the rule is inactive pending committed reference excerpts."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 2,
+      "status": "INACTIVE",
+      "tradition_tags": [
+        "kerala"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "phaladeepika.kesari.7",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Kesari yoga: Moon in a kendra from Jupiter (Phaladīpikā)",
+      "condition": {
+        "combiner": null,
+        "op": "IN",
+        "path": "relative_house(MOON, JUPITER)",
+        "value": [
+          1,
+          4,
+          7,
+          10
+        ],
+        "children": []
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Kesari yoga is caused when the Moon is in a kendra position to Jupiter (Phaladīpikā ch. 6).",
+        "structured": {
+          "yoga_id": "KESARI",
+          "classical_name": "Kesari",
+          "formation": "moon_in_kendra_from_jupiter"
+        }
+      },
+      "provenance": {
+        "source_id": "phaladeepika",
+        "chapter": "6",
+        "verse_start": "14",
+        "verse_end": null,
+        "edition_id": "kapoor-2001",
+        "commentary": "The Kesari/Sakata definitions follow v. 14 in the notes of the Kapoor translation."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 3,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "phaladeepika.sakata-cancellation.8",
+      "domain": "YOGA_DEFINITION",
+      "summary": "Sakata cancellation: the Moon in a kendra from the ascendant cancels Sakata yoga (Phaladīpikā)",
+      "condition": {
+        "combiner": null,
+        "op": "IN",
+        "path": "relative_house(MOON, LAGNA)",
+        "value": [
+          1,
+          4,
+          7,
+          10
+        ],
+        "children": []
+      },
+      "conclusion": {
+        "kind": "CLASSIFICATION",
+        "statement": "Sakata yoga is cancelled if the Moon is in a kendra position from the ascendant (Phaladīpikā ch. 6).",
+        "structured": {
+          "yoga_id": "SAKATA_CANCELLED",
+          "classical_name": "Sakata (cancelled)",
+          "cancellation": "moon_in_kendra_from_lagna"
+        }
+      },
+      "provenance": {
+        "source_id": "phaladeepika",
+        "chapter": "6",
+        "verse_start": "14",
+        "verse_end": null,
+        "edition_id": "kapoor-2001",
+        "commentary": "The Kesari/Sakata definitions follow v. 14 in the notes of the Kapoor translation."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [
+        "phaladeepika.sakata.3"
+      ],
+      "authority_tier": 3,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    }
+  ]
+}

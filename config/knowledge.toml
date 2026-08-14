@@ -1,0 +1,34 @@
+# JRE-004 default configuration (Specialist spec §13).
+# Every default is explicit — no hidden defaults. Empty string pins mean
+# "unpinned" (loaded catalog versions are still echoed); non-empty pins
+# enforce exact-match at load (mismatch => CatalogIntegrityError).
+#
+# The credibility/weight coefficients and provenance-completeness levels are
+# versioned configuration (SPEC §10, supersession #7): tuning them never
+# affects rule *selection* (selection is condition matching + precedence).
+
+[knowledge]
+default_profile_id = "bphs-classical"
+default_conflict_policy = "FIRST_WINS"   # FIRST_WINS | REPORT_ALL
+source_catalog_version = ""              # e.g. "1.0.0" to pin
+rule_catalog_versions = {}               # e.g. { "rules:yoga" = "1.1.0" }
+profile_catalog_version = ""             # e.g. "1.0.0" to pin
+facts_catalog_version = ""               # e.g. "1.0.0" to pin (ADR-012)
+enforce_provenance = true
+verify_checksums = true
+max_rules_per_synthesis = 200
+
+# deterministic metadata coefficients (SPEC §10) — never selection inputs
+weight_authority_coeff = 1.0
+weight_specificity_coeff = 0.5
+weight_source_rank_coeff = 0.05
+credibility_authority_weight = 0.55
+credibility_provenance_weight = 0.30
+credibility_specificity_weight = 0.15
+
+# bibliographic completeness levels (SPEC §10.2)
+[knowledge.provenance_completeness]
+full = 1.0
+verse = 0.85
+chapter = 0.7
+source = 0.5

@@ -1,0 +1,86 @@
+{
+  "catalog_id": "profiles",
+  "catalog_version": "1.0.0",
+  "schema_version": "0.3.0",
+  "source_citation": "Tradition profiles per SPEC §14 (ADR-010); explicit source priority, no hidden defaults.",
+  "checksum_sha256": "26b9f59e8f81b0dd8d55195a871094300e3817260fdc047dcbff2e032806bc98",
+  "entries": [
+    {
+      "profile_id": "bphs-classical",
+      "name": "BPHS Classical",
+      "version": "1.0.0",
+      "description": "BPHS-centric Parashari synthesis; the explicit default profile.",
+      "included_sources": ["bphs", "brihat-jataka", "jataka-parijata", "phaladeepika"],
+      "source_priority": ["bphs", "brihat-jataka", "jataka-parijata", "phaladeepika"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": { "ayanamsa": "LAHIRI", "house_system": "WHOLE_SIGN" }
+    },
+    {
+      "profile_id": "brihat-jataka",
+      "name": "Bṛhat Jātaka",
+      "version": "1.0.0",
+      "description": "Varāhamihira-centric Parashari synthesis.",
+      "included_sources": ["brihat-jataka", "bphs", "jataka-parijata", "phaladeepika"],
+      "source_priority": ["brihat-jataka", "bphs", "jataka-parijata", "phaladeepika"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": {}
+    },
+    {
+      "profile_id": "jataka-parijata",
+      "name": "Jātaka Pārijāta",
+      "version": "1.0.0",
+      "description": "Jātaka Pārijāta-centric Parashari synthesis.",
+      "included_sources": ["jataka-parijata", "brihat-jataka", "phaladeepika", "bphs"],
+      "source_priority": ["jataka-parijata", "brihat-jataka", "phaladeepika", "bphs"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": {}
+    },
+    {
+      "profile_id": "phaladeepika",
+      "name": "Phaladīpikā",
+      "version": "1.0.0",
+      "description": "Phaladīpikā-centric Parashari synthesis.",
+      "included_sources": ["phaladeepika", "jataka-parijata", "brihat-jataka", "bphs"],
+      "source_priority": ["phaladeepika", "jataka-parijata", "brihat-jataka", "bphs"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": {}
+    },
+    {
+      "profile_id": "surya-siddhanta-vedanga",
+      "name": "Sūrya Siddhānta / Vedāṅga",
+      "version": "1.0.0",
+      "description": "Astronomy/chronology-oriented profile; single source, disagreements are reported together.",
+      "included_sources": ["surya-siddhanta"],
+      "source_priority": ["surya-siddhanta"],
+      "conflict_policy": "REPORT_ALL",
+      "domains": null,
+      "passthrough_config": { "position_type": "TRUE" }
+    },
+    {
+      "profile_id": "regional-kerala",
+      "name": "Kerala (Praśna)",
+      "version": "1.0.0",
+      "description": "Kerala lineage led by Praśna Mārgam, with Parashari support.",
+      "included_sources": ["prasna-marga", "bphs", "phaladeepika"],
+      "source_priority": ["prasna-marga", "bphs", "phaladeepika"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": { "ayanamsa": "RAMAN" }
+    },
+    {
+      "profile_id": "regional-north-indian",
+      "name": "North Indian (Sārāvalī)",
+      "version": "1.0.0",
+      "description": "North-Indian lineage led by Sārāvalī, with Parashari support.",
+      "included_sources": ["saravali", "bphs", "brihat-jataka"],
+      "source_priority": ["saravali", "bphs", "brihat-jataka"],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": { "house_system": "WHOLE_SIGN" }
+    }
+  ]
+}

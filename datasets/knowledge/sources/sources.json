@@ -1,0 +1,195 @@
+{
+  "catalog_id": "sources",
+  "catalog_version": "1.0.2",
+  "schema_version": "0.3.0",
+  "source_citation": "Canonical bibliographic registry (SPEC §4). Edition records are real published works; exact bibliographic details are confirmed by VALIDATOR. v1.0.1 corrected the Jātaka Pārijāta translator to V. Subrahmanya Sastri and the Phaladīpikā edition to Dr. G. S. Kapoor per VALIDATOR findings. v1.0.2 (VALIDATOR re-check 2026-08-13): the Phaladīpikā scan used for verification is undated and Ranjan printings are attested from 2004 onward, so the year is recorded as unknown rather than the unsupported '2001'.",
+  "checksum_sha256": "c8fcdb0b3ab6d4558cbc1e9093f257e92d73303b70d0bc1c79708197429659db",
+  "entries": [
+    {
+      "source_id": "bphs",
+      "canonical_name": "Bṛhat Parāśara Horā Śāstra",
+      "common_name": "BPHS",
+      "author": "Parāśara (attrib.)",
+      "period": "~600–800 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "parashari"
+      ],
+      "status": "CANONICAL",
+      "editions": [
+        {
+          "edition_id": "santhanam-2001",
+          "title": "Brihat Parashara Hora Shastra: A Complete Compilation of Vedic Astrology (Vols. 1–2)",
+          "translator": "R. Santhanam",
+          "publisher": "Ranjan Publications",
+          "year": "2001",
+          "language": "English",
+          "notes": "Widely used English translation; chapter/verse numbering follows this edition."
+        },
+        {
+          "edition_id": "sharma-1998",
+          "title": "Brihat Parasara Hora Sastra of Maharshi Parasara (Vols. 1–2)",
+          "translator": "Girish Chand Sharma",
+          "publisher": "Sagar Publications",
+          "year": "1998",
+          "language": "English",
+          "notes": "Alternate translation; chapter/verse numbering differs from Santhanam."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "brihat-jataka",
+      "canonical_name": "Bṛhat Jātaka",
+      "common_name": "Brihat Jataka",
+      "author": "Varāhamihira",
+      "period": "~505–587 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "parashari"
+      ],
+      "status": "CANONICAL",
+      "editions": [
+        {
+          "edition_id": "bhat-1995",
+          "title": "Brihat Jataka of Varahamihira",
+          "translator": "M. Ramakrishna Bhat",
+          "publisher": "Motilal Banarsidass",
+          "year": "1995",
+          "language": "English",
+          "notes": "Translation with Sanskrit text and commentary."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "jataka-parijata",
+      "canonical_name": "Jātaka Pārijāta",
+      "common_name": "Jataka Parijata",
+      "author": "Vaidyanātha Dīkṣita",
+      "period": "~1300–1400 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "parashari"
+      ],
+      "status": "CANONICAL",
+      "editions": [
+        {
+          "edition_id": "sastri-1932",
+          "title": "Jataka Parijata of Vaidyanatha Dikshita",
+          "translator": "V. Subrahmanya Sastri",
+          "publisher": null,
+          "year": "1932",
+          "language": "English",
+          "notes": "Standard English translation by V. Subrahmanya Sastri (first published 1932; the edition used for VALIDATOR verification); chapter/sloka numbering follows this edition."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "phaladeepika",
+      "canonical_name": "Phaladīpikā",
+      "common_name": "Phaladeepika",
+      "author": "Mantreśvara",
+      "period": "~1200–1300 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "parashari"
+      ],
+      "status": "CANONICAL",
+      "editions": [
+        {
+          "edition_id": "kapoor-2001",
+          "title": "Mantreswara's Phala Deepika",
+          "translator": "Dr. G. S. Kapoor",
+          "publisher": "Ranjan Publications",
+          "year": null,
+          "language": "English",
+          "notes": "English translation with commentary by Dr. G. S. Kapoor (Ranjan Publications); the panchanga.lv scan used for VALIDATOR verification is undated — Ranjan printings are attested from 2004 onward, so the publication year is recorded as unknown. Alternate translations exist (e.g. R. Santhanam)."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "surya-siddhanta",
+      "canonical_name": "Sūrya Siddhānta",
+      "common_name": "Surya Siddhanta",
+      "author": "(ancient, attrib.)",
+      "period": "~400–1000 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "vedanga"
+      ],
+      "status": "HISTORICAL",
+      "editions": [
+        {
+          "edition_id": "burgess-1860",
+          "title": "Translation of the Sūrya Siddhānta: A Text-book of Hindu Astronomy",
+          "translator": "Ebenezer Burgess",
+          "publisher": "Journal of the American Oriental Society",
+          "year": "1860",
+          "language": "English",
+          "notes": "The standard critical English translation."
+        },
+        {
+          "edition_id": "gangooly-1935",
+          "title": "Surya Siddhanta: A Textbook of Hindu Astronomy",
+          "translator": "Ebenezer Burgess (ed. Phanindralal Gangooly)",
+          "publisher": "University of Calcutta",
+          "year": "1935",
+          "language": "English",
+          "notes": "Reprinted edition with notes by P.C. Sengupta."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "prasna-marga",
+      "canonical_name": "Praśna Mārgam",
+      "common_name": "Prasna Marga",
+      "author": "Pānakkāttu Śaṅkaran Nampūtiri",
+      "period": "~1649 CE",
+      "language": "Sanskrit/Malayalam",
+      "lineage": [
+        "kerala"
+      ],
+      "status": "REGIONAL",
+      "editions": [
+        {
+          "edition_id": "raman-1990",
+          "title": "Prashna Marga (Parts 1 & 2)",
+          "translator": "B.V. Raman",
+          "publisher": "IBH Prakashana",
+          "year": "1990",
+          "language": "English",
+          "notes": "Standard English translation of the Kerala horary classic."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    },
+    {
+      "source_id": "saravali",
+      "canonical_name": "Sārāvalī",
+      "common_name": "Saravali",
+      "author": "Kalyāṇavarman",
+      "period": "~1200 CE",
+      "language": "Sanskrit",
+      "lineage": [
+        "north-indian"
+      ],
+      "status": "REGIONAL",
+      "editions": [
+        {
+          "edition_id": "santhanam-1999",
+          "title": "Saravali of Kalyana Varma",
+          "translator": "R. Santhanam",
+          "publisher": "Ranjan Publications",
+          "year": "1999",
+          "language": "English",
+          "notes": "North-Indian tradition compendium with translation."
+        }
+      ],
+      "catalog_version": "1.0.0"
+    }
+  ]
+}

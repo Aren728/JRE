@@ -1,0 +1,229 @@
+{
+  "catalog_id": "rules:karaka",
+  "catalog_version": "1.1.0",
+  "schema_version": "0.3.0",
+  "source_citation": "Re-authored per the VALIDATOR findings and the recovery reconciliation. Corrected citations verified against the actual edition texts: BPHS ch. 32 v. 31-34 (House Significance — the significator of each house, incl. Jupiter for the 5th/9th and Venus for the 7th) and BPHS ch. 20 v. 1-2 (Jupiter in the 9th house confers fortune). brihat-jataka.seventh-lord.4 and prasna-marga.chandra-venus.5 are INACTIVE (NEEDS-RESEARCH) pending committed reference excerpts. VALIDATOR re-check (2026-08-13): karaka.jupiter.1 conclusion completed to the full significator set (2nd/5th/9th/11th) per BPHS ch. 32 v. 31-34; bhava-9.3 conclusion scoped explicitly to the Jupiter-placement component per BPHS ch. 20 v. 1-2.",
+  "checksum_sha256": "89fc70b74590da3f922bc0d19177b629a382ac433efa26b2bd9e3ea2476d0b18",
+  "entries": [
+    {
+      "rule_id": "bphs.karaka.jupiter.1",
+      "domain": "KARAKA",
+      "summary": "Jupiter is the karaka of the 2nd, 5th, 9th and 11th houses",
+      "condition": {
+        "combiner": null,
+        "op": "EXISTS",
+        "path": "planet(JUPITER).rashi",
+        "value": null,
+        "children": []
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Jupiter is the karaka (significator) of the 2nd (wealth), 5th (progeny), 9th (fortune) and 11th (gains) houses (BPHS ch. 32 v. 31-34).",
+        "structured": {
+          "karaka": "JUPITER",
+          "significations": [
+            "wealth (2nd)",
+            "progeny (5th)",
+            "fortune (9th)",
+            "gains (11th)"
+          ],
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "32",
+        "verse_start": "31",
+        "verse_end": "34",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "bphs.karaka.venus.2",
+      "domain": "KARAKA",
+      "summary": "Venus is the karaka of the 7th house (wife, marriage)",
+      "condition": {
+        "combiner": null,
+        "op": "EXISTS",
+        "path": "planet(VENUS).rashi",
+        "value": null,
+        "children": []
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Venus is the karaka (significator) of the 7th house (wife, conjugal bliss) (BPHS ch. 32 v. 31-34).",
+        "structured": {
+          "karaka": "VENUS",
+          "significations": [
+            "marriage"
+          ],
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "32",
+        "verse_start": "31",
+        "verse_end": "34",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "bphs.bhava-9.3",
+      "domain": "BHAVA_MEANING",
+      "summary": "Jupiter occupying the 9th house is read for fortune",
+      "condition": {
+        "combiner": null,
+        "op": "IN",
+        "path": "bhava(9).occupants",
+        "value": [
+          "JUPITER"
+        ],
+        "children": []
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Should Jupiter be in the 9th house, fortune is indicated (BPHS ch. 20 v. 1-2; the verse's 'extremely fortunate' also requires the 9th lord in an angle and a strong ascendant lord).",
+        "structured": {
+          "bhava": 9,
+          "body": "JUPITER",
+          "note": "data only; interpretation belongs to future engines"
+        }
+      },
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "20",
+        "verse_start": "1",
+        "verse_end": "2",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 4,
+      "status": "ACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "brihat-jataka.seventh-lord.4",
+      "domain": "BHAVA_MEANING",
+      "summary": "Venus or Jupiter as 7th lord (NEEDS-RESEARCH — inactive)",
+      "condition": {
+        "combiner": "ANY",
+        "op": null,
+        "path": null,
+        "value": null,
+        "children": [
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "bhava(7).house_lord",
+            "value": "VENUS",
+            "children": []
+          },
+          {
+            "combiner": null,
+            "op": "EQ",
+            "path": "bhava(7).house_lord",
+            "value": "JUPITER",
+            "children": []
+          }
+        ]
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "The 7th lord's disposition is read for partnership (citation unverified; rule held INACTIVE pending research).",
+        "structured": {
+          "bhava": 7,
+          "lords": [
+            "VENUS",
+            "JUPITER"
+          ],
+          "note": "data only; interpretation belongs to future engines",
+          "research_status": "NEEDS-RESEARCH"
+        }
+      },
+      "provenance": {
+        "source_id": "brihat-jataka",
+        "chapter": "9",
+        "verse_start": "5",
+        "verse_end": null,
+        "edition_id": "bhat-1995",
+        "commentary": "NEEDS-RESEARCH: Bṛhat Jātaka ch. IX is Ashtakavarga, not the 7th lord; the claim was not located in the Sastri/Bhat editions and the rule is inactive pending committed reference excerpts."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 3,
+      "status": "INACTIVE",
+      "tradition_tags": [
+        "parashari"
+      ],
+      "rule_version": "1.0.0"
+    },
+    {
+      "rule_id": "prasna-marga.chandra-venus.5",
+      "domain": "KARAKA",
+      "summary": "Venus in the 7th from the Chandra lagna (NEEDS-RESEARCH — inactive)",
+      "condition": {
+        "combiner": null,
+        "op": "EQ",
+        "path": "relative_house(VENUS, MOON)",
+        "value": 7,
+        "children": []
+      },
+      "conclusion": {
+        "kind": "SIGNIFICATION",
+        "statement": "Venus in the 7th from the Chandra lagna is noted in the Kerala prasna tradition (citation unverified; rule held INACTIVE pending research).",
+        "structured": {
+          "reference": "MOON",
+          "bhava": 7,
+          "body": "VENUS",
+          "note": "data only; interpretation belongs to future engines",
+          "research_status": "NEEDS-RESEARCH"
+        }
+      },
+      "provenance": {
+        "source_id": "prasna-marga",
+        "chapter": "3",
+        "verse_start": "11",
+        "verse_end": null,
+        "edition_id": "raman-1990",
+        "commentary": "NEEDS-RESEARCH: Praśna Mārgam ch. 3 v. 11 concerns Lagna Sphuta/Kunda calculation, not Venus in the 7th from the Chandra lagna; the citation is unverified and the rule is inactive pending committed reference excerpts."
+      },
+      "supporting_refs": [],
+      "conflicts_with": [],
+      "exception_for": [],
+      "authority_tier": 2,
+      "status": "INACTIVE",
+      "tradition_tags": [
+        "kerala"
+      ],
+      "rule_version": "1.0.0"
+    }
+  ]
+}

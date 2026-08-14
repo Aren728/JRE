@@ -1,0 +1,292 @@
+{
+  "golden_version": "2.0.0",
+  "synthesis": {
+    "query": {
+      "domain": "YOGA_DEFINITION",
+      "profile_id": "bphs-classical",
+      "include_suppressed": false
+    },
+    "profile": {
+      "profile_id": "bphs-classical",
+      "name": "BPHS Classical",
+      "version": "1.0.0",
+      "description": "BPHS-centric Parashari synthesis; the explicit default profile.",
+      "included_sources": [
+        "bphs",
+        "brihat-jataka",
+        "jataka-parijata",
+        "phaladeepika"
+      ],
+      "source_priority": [
+        "bphs",
+        "brihat-jataka",
+        "jataka-parijata",
+        "phaladeepika"
+      ],
+      "conflict_policy": "FIRST_WINS",
+      "domains": null,
+      "passthrough_config": {
+        "ayanamsa": "LAHIRI",
+        "house_system": "WHOLE_SIGN"
+      }
+    },
+    "matched_rules": [
+      {
+        "rule": {
+          "rule_id": "bphs.gajakesari.1",
+          "domain": "YOGA_DEFINITION",
+          "summary": "Gaja-Kesari yoga: Jupiter in a kendra from the ascendant or the Moon, conjunct or aspected by a benefic, not combust, not debilitated and not in an inimical sign",
+          "condition": {
+            "combiner": "ALL",
+            "op": null,
+            "path": null,
+            "value": null,
+            "children": [
+              {
+                "combiner": "ANY",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": null,
+                    "op": "IN",
+                    "path": "relative_house(JUPITER, LAGNA)",
+                    "value": [
+                      1,
+                      4,
+                      7,
+                      10
+                    ],
+                    "children": []
+                  },
+                  {
+                    "combiner": null,
+                    "op": "IN",
+                    "path": "relative_house(JUPITER, MOON)",
+                    "value": [
+                      1,
+                      4,
+                      7,
+                      10
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "combiner": "ANY",
+                "op": null,
+                "path": null,
+                "value": null,
+                "children": [
+                  {
+                    "combiner": "ALL",
+                    "op": null,
+                    "path": null,
+                    "value": null,
+                    "children": [
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "pair(JUPITER, MOON).conjunction",
+                        "value": true,
+                        "children": []
+                      },
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "planet(MOON).nature",
+                        "value": "BENEFIC",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "combiner": "ALL",
+                    "op": null,
+                    "path": null,
+                    "value": null,
+                    "children": [
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "pair(JUPITER, VENUS).conjunction",
+                        "value": true,
+                        "children": []
+                      },
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "planet(VENUS).nature",
+                        "value": "BENEFIC",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "combiner": "ALL",
+                    "op": null,
+                    "path": null,
+                    "value": null,
+                    "children": [
+                      {
+                        "combiner": null,
+                        "op": "EXISTS",
+                        "path": "pair(MOON, JUPITER).aspect_strength",
+                        "value": null,
+                        "children": []
+                      },
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "planet(MOON).nature",
+                        "value": "BENEFIC",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "combiner": "ALL",
+                    "op": null,
+                    "path": null,
+                    "value": null,
+                    "children": [
+                      {
+                        "combiner": null,
+                        "op": "EXISTS",
+                        "path": "pair(VENUS, JUPITER).aspect_strength",
+                        "value": null,
+                        "children": []
+                      },
+                      {
+                        "combiner": null,
+                        "op": "EQ",
+                        "path": "planet(VENUS).nature",
+                        "value": "BENEFIC",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "combiner": null,
+                "op": "EQ",
+                "path": "planet(JUPITER).combusted",
+                "value": false,
+                "children": []
+              },
+              {
+                "combiner": null,
+                "op": "IN",
+                "path": "planet(JUPITER).dignity",
+                "value": [
+                  "EXALTED",
+                  "MULATRIKONA",
+                  "OWN",
+                  "FRIEND",
+                  "NEUTRAL"
+                ],
+                "children": []
+              }
+            ]
+          },
+          "conclusion": {
+            "kind": "CLASSIFICATION",
+            "statement": "Gaja-Kesari yoga is formed when Jupiter is in an angle from the ascendant or from the Moon, conjunct or aspected by (another) benefic, and free of debilitation, combustion and inimical sign (BPHS ch. 36 v. 3-4).",
+            "structured": {
+              "yoga_id": "GAJA_KESARI",
+              "classical_name": "Gaja-Kesari",
+              "formation": "jupiter_in_kendra_aspect_by_benefic"
+            }
+          },
+          "provenance": {
+            "source_id": "bphs",
+            "chapter": "36",
+            "verse_start": "3",
+            "verse_end": "4",
+            "edition_id": "santhanam-2001",
+            "commentary": null
+          },
+          "supporting_refs": [],
+          "conflicts_with": [
+            "jataka-parijata.gajakesari.5"
+          ],
+          "exception_for": [],
+          "authority_tier": 4,
+          "status": "ACTIVE",
+          "tradition_tags": [
+            "parashari"
+          ],
+          "rule_version": "1.0.0"
+        },
+        "precedence_key": [
+          0,
+          -12,
+          -4,
+          [
+            -1,
+            0,
+            0
+          ],
+          "bphs.gajakesari.1"
+        ],
+        "effective_weight": "0x1.4666666666666p+3",
+        "credibility": "0x1.c7ae147ae147bp-1",
+        "applicability": true,
+        "status_note": null
+      }
+    ],
+    "suppressed_rules": [],
+    "conflicts": [],
+    "provenance_index": {
+      "bphs.gajakesari.1": [
+        "BPHS ch.36 v.3-v.4 (tr. R. Santhanam 2001)"
+      ]
+    },
+    "config": {
+      "default_profile_id": "bphs-classical",
+      "default_conflict_policy": "FIRST_WINS",
+      "source_catalog_version": null,
+      "rule_catalog_versions": {},
+      "profile_catalog_version": null,
+      "facts_catalog_version": null,
+      "enforce_provenance": true,
+      "verify_checksums": true,
+      "max_rules_per_synthesis": 200,
+      "weight_authority_coeff": "0x1.0000000000000p+0",
+      "weight_specificity_coeff": "0x1.0000000000000p-1",
+      "weight_source_rank_coeff": "0x1.999999999999ap-5",
+      "credibility_authority_weight": "0x1.199999999999ap-1",
+      "credibility_provenance_weight": "0x1.3333333333333p-2",
+      "credibility_specificity_weight": "0x1.3333333333333p-3",
+      "provenance_completeness": {
+        "full": "0x1.0000000000000p+0",
+        "verse": "0x1.b333333333333p-1",
+        "chapter": "0x1.6666666666666p-1",
+        "source": "0x1.0000000000000p-1"
+      }
+    },
+    "search_metadata": {
+      "algorithm": "profile-precedence-order",
+      "catalogs": {
+        "fact_vocabulary": "1.1.0",
+        "sources": "1.0.2",
+        "profiles": "1.0.0",
+        "facts": "1.0.0",
+        "rules:drishti": "1.1.0",
+        "rules:karaka": "1.1.0",
+        "rules:yoga": "1.1.0"
+      },
+      "rules_evaluated": 5,
+      "rules_matched": 1,
+      "credibility_summary": {
+        "mean": "0x1.c7ae147ae147bp-1",
+        "min": "0x1.c7ae147ae147bp-1",
+        "max": "0x1.c7ae147ae147bp-1",
+        "n": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "catalog_id": "facts",
+  "catalog_version": "1.0.0",
+  "schema_version": "0.3.0",
+  "source_citation": "Classical tables authored from the committed short evidence excerpts (datasets/validation/knowledge/) per ADR-012. Editions: Santhanam BPHS (2001) ch. 3 v. 11, 49-50, 51-54, 55; ch. 4 v. 6-24; ch. 7 v. 28-29; ch. 26 v. 2-5. Natural friendship is derived from the BPHS ch. 3 v. 55 algorithm (moolatrikona lords + exaltation lord); Mercury is NEUTRAL per the ch. 3 v. 11 conditional.",
+  "checksum_sha256": "6668dc62fd730dfc79839f5cff02e5d4306e8a4840368e87898870586db52dc2",
+  "entries": [
+    {
+      "fact_id": "nature",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "3",
+        "verse_start": "11",
+        "verse_end": null,
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 3 v. 11: the Sun, Saturn, Mars, Rahu and Ketu are malefic; the rest (Moon, Jupiter, Venus) benefic; Mercury is a benefic unless it joins a malefic, encoded here as NEUTRAL.",
+      "values": {
+        "SUN": "MALEFIC",
+        "MOON": "BENEFIC",
+        "MARS": "MALEFIC",
+        "MERCURY": "NEUTRAL",
+        "JUPITER": "BENEFIC",
+        "VENUS": "BENEFIC",
+        "SATURN": "MALEFIC",
+        "RAHU": "MALEFIC",
+        "KETU": "MALEFIC"
+      }
+    },
+    {
+      "fact_id": "exaltation",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "3",
+        "verse_start": "49",
+        "verse_end": "50",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 3 v. 49-50: for the seven planets from the Sun on, exaltation signs are Aries, Taurus, Capricorn, Virgo, Cancer, Pisces, Libra.",
+      "values": {
+        "SUN": "MESHA",
+        "MOON": "VRISHABHA",
+        "MARS": "MAKARA",
+        "MERCURY": "KANYA",
+        "JUPITER": "KARKA",
+        "VENUS": "MEENA",
+        "SATURN": "TULA"
+      }
+    },
+    {
+      "fact_id": "debilitation",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "3",
+        "verse_start": "49",
+        "verse_end": "50",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 3 v. 49-50: each planet is debilitated in the seventh sign from its exaltation sign.",
+      "values": {
+        "SUN": "TULA",
+        "MOON": "VRISHCHIKA",
+        "MARS": "KARKA",
+        "MERCURY": "MEENA",
+        "JUPITER": "MAKARA",
+        "VENUS": "KANYA",
+        "SATURN": "MESHA"
+      }
+    },
+    {
+      "fact_id": "own_signs",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "4",
+        "verse_start": "6",
+        "verse_end": "24",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 4 (Zodiacal Signs Described) states each sign's ruler; the own-sign pairs follow (e.g. Leo ruled by the Sun, Cancer by the Moon).",
+      "values": {
+        "SUN": [
+          "SIMHA"
+        ],
+        "MOON": [
+          "KARKA"
+        ],
+        "MARS": [
+          "MESHA",
+          "VRISHCHIKA"
+        ],
+        "MERCURY": [
+          "MITHUNA",
+          "KANYA"
+        ],
+        "JUPITER": [
+          "DHANUSHA",
+          "MEENA"
+        ],
+        "VENUS": [
+          "VRISHABHA",
+          "TULA"
+        ],
+        "SATURN": [
+          "MAKARA",
+          "KUMBHA"
+        ]
+      }
+    },
+    {
+      "fact_id": "moolatrikona",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "3",
+        "verse_start": "51",
+        "verse_end": "54",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 3 v. 51-54: moolatrikona signs (Sun Leo, Moon Taurus, Mars Aries, Mercury Virgo, Jupiter Sagittarius, Venus Libra, Saturn Aquarius); degree zones within the sign are not modelled (whole-sign granularity).",
+      "values": {
+        "SUN": "SIMHA",
+        "MOON": "VRISHABHA",
+        "MARS": "MESHA",
+        "MERCURY": "KANYA",
+        "JUPITER": "DHANUSHA",
+        "VENUS": "TULA",
+        "SATURN": "KUMBHA"
+      }
+    },
+    {
+      "fact_id": "combustion_degrees",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "7",
+        "verse_start": "28",
+        "verse_end": "29",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 7 v. 28-29 with the combustion table in the notes (Divisional Consideration): Moon 12 deg, Mars 17 deg (8 deg retrograde), Mercury 14 deg (12 deg retrograde), Jupiter 11 deg, Venus 10 deg (8 deg retrograde), Saturn 16 deg. Rahu and Ketu are never combust.",
+      "values": {
+        "MOON": {
+          "direct": 12.0
+        },
+        "MARS": {
+          "direct": 17.0,
+          "retrograde": 8.0
+        },
+        "MERCURY": {
+          "direct": 14.0,
+          "retrograde": 12.0
+        },
+        "JUPITER": {
+          "direct": 11.0
+        },
+        "VENUS": {
+          "direct": 10.0,
+          "retrograde": 8.0
+        },
+        "SATURN": {
+          "direct": 16.0
+        }
+      }
+    },
+    {
+      "fact_id": "natural_friendship",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "3",
+        "verse_start": "55",
+        "verse_end": null,
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "Derived exactly from the BPHS ch. 3 v. 55 algorithm: the lords of the 2nd/4th/5th/8th/9th/12th from each planet's moolatrikona are friends, plus the lord of its exaltation sign; the lords of the 3rd/6th/7th/10th/11th are enemies; a planet on both lists is neutral (including exaltation-lord conflicts, per the Notes' worked example 'Saturn becomes equal to Mars'); the planet itself is never listed (the 1st/moolatrikona lord is excluded).",
+      "values": {
+        "SUN": {
+          "friends": [
+            "MOON",
+            "MARS",
+            "JUPITER"
+          ],
+          "enemies": [
+            "VENUS",
+            "SATURN"
+          ],
+          "neutral": [
+            "MERCURY"
+          ]
+        },
+        "MOON": {
+          "friends": [
+            "SUN",
+            "MERCURY"
+          ],
+          "enemies": [],
+          "neutral": [
+            "MARS",
+            "JUPITER",
+            "VENUS",
+            "SATURN"
+          ]
+        },
+        "MARS": {
+          "friends": [
+            "SUN",
+            "MOON",
+            "JUPITER"
+          ],
+          "enemies": [
+            "MERCURY"
+          ],
+          "neutral": [
+            "VENUS",
+            "SATURN"
+          ]
+        },
+        "MERCURY": {
+          "friends": [
+            "SUN",
+            "VENUS"
+          ],
+          "enemies": [
+            "MOON"
+          ],
+          "neutral": [
+            "MARS",
+            "JUPITER",
+            "SATURN"
+          ]
+        },
+        "JUPITER": {
+          "friends": [
+            "SUN",
+            "MOON",
+            "MARS"
+          ],
+          "enemies": [
+            "MERCURY",
+            "VENUS"
+          ],
+          "neutral": [
+            "SATURN"
+          ]
+        },
+        "VENUS": {
+          "friends": [
+            "MERCURY",
+            "SATURN"
+          ],
+          "enemies": [
+            "SUN",
+            "MOON"
+          ],
+          "neutral": [
+            "MARS",
+            "JUPITER"
+          ]
+        },
+        "SATURN": {
+          "friends": [
+            "MERCURY",
+            "VENUS"
+          ],
+          "enemies": [
+            "SUN",
+            "MOON",
+            "MARS"
+          ],
+          "neutral": [
+            "JUPITER"
+          ]
+        }
+      }
+    },
+    {
+      "fact_id": "rashi_lords",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "4",
+        "verse_start": "6",
+        "verse_end": "24",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 4 sign descriptions state each sign's ruler (Aries/Mars ... Pisces/Jupiter).",
+      "values": {
+        "MESHA": "MARS",
+        "VRISHABHA": "VENUS",
+        "MITHUNA": "MERCURY",
+        "KARKA": "MOON",
+        "SIMHA": "SUN",
+        "KANYA": "MERCURY",
+        "TULA": "VENUS",
+        "VRISHCHIKA": "MARS",
+        "DHANUSHA": "JUPITER",
+        "MAKARA": "SATURN",
+        "KUMBHA": "SATURN",
+        "MEENA": "JUPITER"
+      }
+    },
+    {
+      "fact_id": "aspect_strength_positions",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "26",
+        "verse_start": "2",
+        "verse_end": "5",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 26 v. 2-5 (also Phaladīpikā ch. 2 v. 23): aspects on the 3rd/10th are quarter, on the 5th/9th half, on the 4th/8th three-quarters and on the 7th full.",
+      "values": {
+        "QUARTER": [
+          3,
+          10
+        ],
+        "HALF": [
+          5,
+          9
+        ],
+        "THREE_QUARTER": [
+          4,
+          8
+        ],
+        "FULL": [
+          7
+        ]
+      }
+    },
+    {
+      "fact_id": "special_aspects",
+      "provenance": {
+        "source_id": "bphs",
+        "chapter": "26",
+        "verse_start": "2",
+        "verse_end": "5",
+        "edition_id": "santhanam-2001",
+        "commentary": null
+      },
+      "notes": "BPHS ch. 26 v. 2-5: Saturn casts full aspects on the 3rd and 10th, Jupiter on the 5th and 9th, Mars on the 4th and 8th.",
+      "values": {
+        "SATURN": [
+          3,
+          10
+        ],
+        "JUPITER": [
+          5,
+          9
+        ],
+        "MARS": [
+          4,
+          8
+        ]
+      }
+    }
+  ]
+}
