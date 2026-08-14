@@ -34,6 +34,8 @@ EXPECTED_PUBLIC_API = {
     "ZodiacMode",
     "load_config",
     # classification
+    "BodyId",
+    "RetrogradeState",
     "RashiId",
     "NakshatraId",
     "Pada",

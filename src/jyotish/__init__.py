@@ -21,6 +21,8 @@ This layer performs NO interpretation: no benefic/malefic, yogas, dashas,
 gochar judgements, or predictions. Those belong to future engines.
 """
 
+from astronomy.models import BodyId, RetrogradeState
+
 from .config import load_config
 from .eclipse import (
     SWISSEPH_ECLIPSE_PROVIDER_ID,
@@ -119,7 +121,7 @@ from .service import (
 )
 from .transit import ContinuousTransitEngine, iso_utc_to_jd, jd_to_iso_utc
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 __all__ = [
     # facade
@@ -133,6 +135,8 @@ __all__ = [
     "ZodiacMode",
     "load_config",
     # classification
+    "BodyId",
+    "RetrogradeState",
     "RashiId",
     "NakshatraId",
     "Pada",

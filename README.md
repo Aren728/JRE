@@ -32,10 +32,24 @@ JRE separates:
   [architecture](docs/architecture/JRE-004-KNOWLEDGE-RULES-CORE.md),
   [specialist spec](docs/architecture/JRE-004-SPECIALIST-SPEC.md))
 
+- JRE-005 — Bhava / House Engine (derived bhava/house computational
+  state): SPECIALIST-COMPLETE — implementation-ready contract v0.2.0
+  (six open questions resolved via
+  [ADR-017..021](docs/decisions/ADR-017-CUSP-PROXIMITY-ORB.md):
+  cusp-proximity orb, category sets, `HOUSE_OCCUPANCY` anchor frame with
+  sign-grid deferred, gochar scope, tradition passthrough, unplaced-body
+  no-silent-fallback); no implementation yet
+  ([queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md),
+  [architecture](docs/architecture/JRE-005-BHAVA-CORE.md),
+  [specialist spec](docs/architecture/JRE-005-SPECIALIST-SPEC.md),
+  [data contract](docs/architecture/JRE-005-DATA-CONTRACT.md),
+  [test plan](docs/architecture/JRE-005-TEST-PLAN.md))
+
 Future interpretation engines (Yoga, Dasha, Drishti, Gochar/Nakshatra
 interpretation, multi-layer synthesis, prediction/confidence) will be
-numbered at REQUEST time starting at JRE-005+ and consume JRE-004's
-`KnowledgeService.synthesize` output.
+numbered at REQUEST time starting at JRE-006+ and consume JRE-004's
+`KnowledgeService.synthesize` output and JRE-005's `HouseAnalysisResult`
+facts.
 
 ## Hardware Target
 

@@ -4,6 +4,126 @@ All notable changes to JRE are recorded here, per orchestration stage.
 
 ## Unreleased
 
+### JRE-003 — Additive Public API: `BodyId` / `RetrogradeState` exports (second JRE-005 blocker resolution)
+
+- Exposed the existing canonical types `BodyId` and `RetrogradeState`
+  through the public `jyotish` root (`__all__`) — an API-surface
+  correction only: the exported objects ARE `astronomy.models.BodyId` /
+  `astronomy.models.RetrogradeState` (identity verified), definitions,
+  enum values, and serialization unchanged. Enables JRE-005 to annotate
+  body-identity and retrograde fields without importing internals.
+- Bumped `jyotish.__version__` `0.3.1 → 0.3.2` (second additive patch).
+- Added focused tests `tests/unit/jyotish/test_public_types.py` (6
+  tests): attribute presence, `__all__` membership, canonical-type
+  identity, enum values, member sets. Public-surface allow-lists synced
+  in the JRE-003 static test and the JRE-004 isolation gate
+  (`tests/unit/knowledge/test_jyotish_unmodified.py` — the only
+  authorized JRE-004 change). No JRE-005 implementation added.
+
+### JRE-003 — Additive Public API: `jyotish.sign_lord_of` (JRE-005 blocker resolution)
+
+- Added `jyotish.sign_lord_of(rashi) -> BodyId` to the JRE-003 public API
+  (`__all__`): a disambiguated public accessor for the pinned rashi-lord
+  catalog, delegating exactly to the existing `jyotish.rashi.lord_of` /
+  `RASHI_LORDS` (no behavior change, no catalog change, no new
+  dependencies). The public namespace already exports the nakshatra
+  `lord_of`, hence the unambiguous name.
+- Bumped `jyotish.__version__` `0.3.0 → 0.3.1` (additive, backward-
+  compatible patch; the project `pyproject.toml` version is untouched per
+  convention). `RASHI_CATALOG_VERSION` unchanged (catalog data unchanged).
+- Added focused unit tests `tests/unit/jyotish/test_sign_lord.py` (8
+  tests): all 12 rashis resolve; values equal the `RASHI_LORDS` source of
+  truth; delegation to the existing `lord_of`; valid-string coercion;
+  invalid input keeps the existing `KeyError` convention; `__all__`
+  export present; determinism; classical spot checks. The public-surface
+  allow-list test was updated to include the new symbol.
+- Purpose: unblock JRE-005 CODING (sign-lordship echoes and the ownership
+  projection require the rashi-lord catalog through the public API). No
+  JRE-005 implementation was added.
+
+### JRE-005 — Bhava / House Engine (Specialist stage)
+
+- Pinned the implementation-ready contract v0.2.0 from the architect
+  baseline: resolved all six open questions with ADR-017..021 and
+  refined the four architecture documents in lockstep.
+- **Cusp-proximity orb** ([ADR-017](docs/decisions/ADR-017-CUSP-PROXIMITY-ORB.md)):
+  pinned `3.0°` default, one config value per analysis (system-
+  independent), wrap-aware shortest-arc math, inclusive boundary,
+  validation `0 < orb < 30.0`, documented as a modern computational
+  convention (no fabricated citation).
+- **House categories**: sorted membership sets in canonical enum order
+  with overlaps preserved (1 → KENDRA+TRIKONA, 6 → DUSTHANA+UPACHAYA,
+  10 → KENDRA+UPACHAYA); no primary label.
+- **Anchor frames** ([ADR-019](docs/decisions/ADR-019-ANCHOR-FRAMES-RELATIVE-HOUSE.md)):
+  pinned `HOUSE_OCCUPANCY` frame (cusp-anchored in cusp systems, never
+  silently whole-sign); `ASC ≡ LAGNA` JRE-004 pin; sign-grid anchoring
+  deferred and machine-testable (`SIGN_GRID_FRAME_SUPPORTED = False`,
+  `ChartEcho.sign_grid_frame_supported`, enum error).
+- **Gochar scope v0.2.0** ([ADR-021](docs/decisions/ADR-021-GOCHAR-DERIVED-FACTS-SCOPE.md)):
+  `TransitHouseFact` (frame TRANSIT) — echo of `TransitThroughHouses`
+  entries + natal-frame relative house; natal chart required; no transit
+  events/interpretation.
+- **Tradition passthrough** ([ADR-020](docs/decisions/ADR-020-TRADITION-PROFILE-PASSTHROUGH.md)):
+  `tradition_profile: str | None` validated passthrough, echo +
+  provenance only, no computation change in v0.2.0.
+- **Unplaced bodies** ([ADR-018](docs/decisions/ADR-018-UNPLACED-BODY-SEMANTICS.md)):
+  no silent fallback — `unplaced_body_behavior` (`RAISE` default →
+  `UnplacedBodyError`; explicit `WHOLE_SIGN_FALLBACK` labeled per body).
+- Pinned: complete `BhavaConfig` schema, all enums, error taxonomy,
+  house-number/system/whole-sign/cusp semantics, occupancy, lordship,
+  ownership, relative-house formula + reference semantics, aspect-to-
+  house geometric echo, provenance/`DerivationBlock`/`ChartEcho`,
+  catalog/version handling, serialization + JSON Schema, deterministic
+  ordering, config authority, validation, performance, isolation, and
+  the exact CODING handoff contract (spec §34).
+- Advanced [JRE-005 queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md)
+  to SPECIALIST-COMPLETE (CODING status reserved for CODING). No
+  implementation, no src/ changes; JRE-002/003/004 untouched.
+
+### JRE-005 — Bhava / House Engine (Architect stage)
+
+- Added [architecture and refined specification](docs/architecture/JRE-005-BHAVA-CORE.md)
+  v0.1.0: the derived bhava/house analytical layer consuming JRE-003
+  `NatalChart`/`TransitThroughHouses` outputs — module layout
+  (`src/bhava/`), the four-way layer split (JRE-002 astronomy / JRE-003
+  coordinate state / JRE-005 derived house state / JRE-004 rules),
+  house identity `(house_system, house_number)` semantics, whole-sign vs
+  cusp bhavas, multi-house-system views, occupancy, planet-to-house,
+  house/sign lordship, bhava-lord relationships, canonical relative-house
+  calculations, ownership tables, empty-house semantics, cusp/boundary
+  facts, retrograde/node echo, geometric aspect-to-house aggregation,
+  deterministic serialization, derived-fact provenance, error taxonomy,
+  `config/bhava.toml` authority, determinism/performance/isolation
+  requirements, and future compatibility (Dasha/Gochar/Drishti/Yoga/
+  Varga/Synthesis).
+- Added [data contract](docs/architecture/JRE-005-DATA-CONTRACT.md)
+  v0.1.0: `BhavaConfig`, `HouseAnalysisResult`/`HouseAnalysis`,
+  `DerivedHouseFact`, `PlanetHouseFact`, `HouseOwnershipFact`,
+  `RelativeHouseFact`, `AspectToHouseFact`, `DerivationBlock`, JSON
+  shapes + Schema, round-trip guarantees.
+- Added [specialist implementation spec draft](docs/architecture/JRE-005-SPECIALIST-SPEC.md)
+  v0.1.0 (baseline for the SPECIALIST stage): normative formulas
+  (absolute/relative house, categories as membership sets, lordship,
+  occupancy, cusp proximity, aspect aggregation, gochar frame), public
+  API, error taxonomy, config authority, derivation-id constants,
+  CODING handoff checklist, open questions.
+- Added [test strategy](docs/architecture/JRE-005-TEST-PLAN.md) v0.1.0:
+  24-point requirement matrix, cross-process determinism harness,
+  JRE-004 `relative_house` cross-layer equality test, static/isolation
+  gates, golden fixtures, independent-reference validation, performance
+  smoke.
+- Added [ADR-013](docs/decisions/ADR-013-BHAVA-LAYER-BOUNDARY.md)
+  (derived-fact layer consuming JRE-003, never recomputing it),
+  [ADR-014](docs/decisions/ADR-014-RELATIVE-HOUSE-CANONICAL.md)
+  (canonical JRE-004-compatible `relative_house` derivation),
+  [ADR-015](docs/decisions/ADR-015-MULTI-HOUSE-SYSTEM-VIEWS.md)
+  (per-system JRE-003 charts, never mixed), and
+  [ADR-016](docs/decisions/ADR-016-DERIVED-FACT-PROVENANCE.md)
+  (provenance on every derived fact).
+- Advanced [JRE-005 queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md)
+  from REQUESTED to ARCHITECT-COMPLETE (SPECIALIST/CODING statuses
+  reserved; no implementation, no tests, no src/ changes).
+
 ### JRE-004 — Classical Knowledge & Rule Engine (Recovery Defect Correction)
 
 - **Second VALIDATOR PASS** — the blocking `natural_friendship` defect

@@ -43,6 +43,8 @@ EXPECTED_PUBLIC_API = {
     "JyotishConfig",
     "ZodiacMode",
     "load_config",
+    "BodyId",
+    "RetrogradeState",
     "RashiId",
     "NakshatraId",
     "Pada",
