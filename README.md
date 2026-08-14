@@ -15,6 +15,28 @@ JRE separates:
 7. Inference
 8. Explanation
 
+## Orchestration status
+
+- JRE-002 — Astronomical Core: MERGED
+- JRE-003 — Jyotish Coordinate and State Layer: QA-COMPLETE
+- JRE-004 — Classical Knowledge & Rule Engine (layers 3 + 5):
+  VALIDATOR-COMPLETE (recovery, second pass) — the original FAIL (14/16
+  citations incorrect) was corrected via FACT_VOCABULARY v1.1.0 + a
+  derived-facts layer ([ADR-012](docs/decisions/ADR-012-FACT-VOCABULARY-DERIVED-FACTS.md)),
+  re-authored rule catalogs, committed validation evidence, and a second
+  correction of the `natural_friendship` table to the verified verse-55
+  reading
+  ([recovery validation report](docs/validation/JRE-004-RECOVERY-VALIDATION-REPORT.md);
+  original [validation report](docs/validation/JRE-004-VALIDATION-REPORT.md);
+  [queue item](orchestration/queue/JRE-004-CLASSICAL-KNOWLEDGE.md),
+  [architecture](docs/architecture/JRE-004-KNOWLEDGE-RULES-CORE.md),
+  [specialist spec](docs/architecture/JRE-004-SPECIALIST-SPEC.md))
+
+Future interpretation engines (Yoga, Dasha, Drishti, Gochar/Nakshatra
+interpretation, multi-layer synthesis, prediction/confidence) will be
+numbered at REQUEST time starting at JRE-005+ and consume JRE-004's
+`KnowledgeService.synthesize` output.
+
 ## Hardware Target
 
 Designed initially for low-resource systems:

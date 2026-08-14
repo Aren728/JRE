@@ -1,0 +1,31 @@
+# JRE-003 default configuration (Specialist spec §19).
+# Every default is explicit — no hidden defaults for materially significant
+# choices (requirement J). Values here are the authoritative defaults;
+# `JyotishConfig` is immutable and echoed in every result.
+
+[jyotish]
+zodiac_mode = "SIDEREAL"
+ayanamsa = "LAHIRI"
+house_system = "WHOLE_SIGN"
+node_model = "MEAN"
+position_type = "APPARENT"
+# provider_id and ephemeris_version default to null in JyotishConfig (use
+# the registry default and the pinned data version); TOML has no null type,
+# so they are simply omitted here.
+timezone = "UTC"
+coordinate_precision = 1
+conjunction_orb_deg = 8.0
+station_speed_epsilon = 1e-9
+transit_sample_step_hours = 6.0
+transit_tolerance_jd = 1e-4
+
+# Default orb table (versioned; ADR-004). CONJUNCTION must equal
+# conjunction_orb_deg (enforced at config load).
+[jyotish.aspect_orbs]
+CONJUNCTION = 8.0
+OPPOSITION = 8.0
+TRINE = 7.0
+SQUARE = 7.0
+SEXTILE = 5.0
+QUINCUNX = 4.0
+SEMISEXTILE = 2.0

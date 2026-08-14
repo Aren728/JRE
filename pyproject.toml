@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "jre"
 version = "0.3.0"
-description = "JRE — Jyotish Reasoning Engine: deterministic astronomical core (JRE-002)"
+description = "JRE — Jyotish Reasoning Engine: deterministic astronomical core (JRE-002) and Jyotish coordinate/state layer (JRE-003)"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "Proprietary (see docs; Swiss Ephemeris data licensing applies)" }
@@ -23,10 +23,23 @@ dev = [
 
 [tool.setuptools]
 package-dir = { "" = "src" }
-packages = ["astronomy", "astronomy.swisseph"]
+packages = [
+    "astronomy",
+    "astronomy.swisseph",
+    "jyotish",
+    "jyotish.swisseph",
+    "knowledge",
+]
 
 [tool.pytest.ini_options]
-testpaths = ["tests/unit/astronomy", "tests/integration/astronomy"]
+testpaths = [
+    "tests/unit/astronomy",
+    "tests/integration/astronomy",
+    "tests/unit/jyotish",
+    "tests/integration/jyotish",
+    "tests/unit/knowledge",
+    "tests/integration/knowledge",
+]
 addopts = "-q"
 # integration tests require pysweph + the bundled .se1 files (datasets/ephemeris)
 
@@ -41,10 +54,10 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy"]
+packages = ["astronomy", "jyotish", "knowledge"]
 strict = true
 
-# pysweph ships no type stubs; the adapter confines the untyped surface.
+# pysweph ships no type stubs; the adapters confine the untyped surface.
 [[tool.mypy.overrides]]
 module = ["swisseph"]
 ignore_missing_imports = true
