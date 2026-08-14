@@ -33,12 +33,13 @@ JRE separates:
   [specialist spec](docs/architecture/JRE-004-SPECIALIST-SPEC.md))
 
 - JRE-005 — Bhava / House Engine (derived bhava/house computational
-  state): SPECIALIST-COMPLETE — implementation-ready contract v0.2.0
-  (six open questions resolved via
-  [ADR-017..021](docs/decisions/ADR-017-CUSP-PROXIMITY-ORB.md):
-  cusp-proximity orb, category sets, `HOUSE_OCCUPANCY` anchor frame with
-  sign-grid deferred, gochar scope, tradition passthrough, unplaced-body
-  no-silent-fallback); no implementation yet
+  state): VALIDATOR-COMPLETE — `src/bhava/` implements the v0.2.0
+  contract (occupancy, planet-house, lordship/ownership,
+  relative-house, categories, cusp proximity, aspect echo,
+  transit-house facts, provenance, deterministic serialization) over
+  the JRE-003 public API only (ADR-013); 123 tests green, QA-PASS,
+  VALIDATOR-PASS (cross-layer `relative_house` oracle equality
+  verified)
   ([queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md),
   [architecture](docs/architecture/JRE-005-BHAVA-CORE.md),
   [specialist spec](docs/architecture/JRE-005-SPECIALIST-SPEC.md),

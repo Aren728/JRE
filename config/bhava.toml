@@ -1,0 +1,12 @@
+# JRE-005 Bhava / House engine configuration (SPEC §7/§28).
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). Missing file -> validated dataclass defaults.
+
+[bhava]
+cusp_proximity_orb_deg = 3.0
+house_systems = ["WHOLE_SIGN"]
+include_empty_houses = true
+unplaced_body_behavior = "RAISE"
+anchor_frame = "HOUSE_OCCUPANCY"
+derivation_version = "0.2.0"
+# tradition_profile is intentionally omitted (TOML has no null) -> None default.

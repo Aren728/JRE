@@ -4,6 +4,76 @@ All notable changes to JRE are recorded here, per orchestration stage.
 
 ## Unreleased
 
+### JRE-005 — Bhava / House Engine (QA + VALIDATOR stages)
+
+- **QA-PASS** (independent): contract/ADR-013..021 alignment, public-API
+  boundary audit (no forbidden imports, no `TYPE_CHECKING` bypass),
+  JRE-003 composition (no recomputation), 108-cell JRE-004
+  `relative_house` oracle equality across WHOLE_SIGN/PLACIDUS/KOCH,
+  multi-system isolation, transit/natal separation, unplaced-body RAISE
+  + labeled fallback (natal and transit), 1,213 complete
+  `DerivationBlock`s, exact serialization round-trip, in-process +
+  cross-process byte determinism, performance p95 ≈ 3.27 ms (budget
+  5 ms), interpretation boundary clean. Full suite 1049 passed, ruff /
+  mypy clean, JRE-002/003/004 byte-identical.
+- **VALIDATOR-PASS** (independent, challenged): 41-row requirement
+  matrix; 576-cell JRE-004 `relative_house` oracle equality across 4
+  different births × 4 house systems (0 mismatches); cusp-proximity
+  boundary/wrap-around probes; category overlaps; classical sign-lord
+  table (BPHS ch. 4); ownership partition; exact double serialization
+  round-trip; cross-process determinism; performance p95 ≈ 3.23 ms
+  (50 samples).
+- **Bounded documentation corrections** (only post-validator changes):
+  SPEC §13 `PlanetHouseFact` field list aligned with DATA-CONTRACT §4
+  (removed the `frame: NATAL` prose — no `frame` field on the model);
+  SPEC §4 module-layout comment `jyotish.models re-exports` →
+  `jyotish public API re-exports`. No implementation or serialized-model
+  change.
+- Advanced [JRE-005 queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md)
+  from CODING-COMPLETE to **VALIDATOR-COMPLETE** (QA-PASS, VALIDATOR-PASS).
+
+### JRE-005 — Bhava / House Engine (CODING stage)
+
+- Implemented the `bhava` package per specialist spec v0.2.0: pure data
+  models + enums (`models.py`), error taxonomy (`errors.py`), validated
+  `BhavaConfig` with TOML authority and no hidden defaults (`config.py` +
+  `config/bhava.toml`), pure derivations (`derive.py`: occupancy,
+  planet-house, house/sign lordship echoes, ownership, relative-house
+  `((house_of[B] − house_of[R]) mod 12) + 1` with LAGNA/ASC anchor
+  semantics, house categories with deterministic canonical ordering,
+  cusp-proximity orb (default 3.0°, wrap-aware, inclusive, validated
+  `0 < orb < 30`), geometric aspect-to-house echo, explicit unplaced-body
+  `RAISE` default with opt-in `WHOLE_SIGN_FALLBACK` provenance label,
+  transit-house facts), `BhavaService` facade (`analyze` /
+  `analyze_chart` / `analyze_transit`), deterministic serialization +
+  JSON Schema (`serialize.py`), and the `bhava.__version__ = "0.2.0"`
+  public surface.
+- Consumes ONLY the JRE-003 public API + stdlib (ADR-013) — including
+  the additive `jyotish.sign_lord_of` and `BodyId`/`RetrogradeState`
+  exports; never imports `jyotish.models`, `astronomy.*`, `knowledge.*`,
+  or `swisseph`; never recomputes positions/cusps/spans/lagna/geometry;
+  no interpretation vocabulary (static gate).
+- Added `config/bhava.toml`, pyproject build metadata (`bhava` package +
+  `tests/*/bhava` testpaths + mypy), JRE-005 golden fixtures
+  (`tests/fixtures/bhava/`), and the full test matrix: **123 tests**
+  (unit: models/config/errors/identity/occupancy/planet-house/lordship/
+  relative-house/cusps/aspects/gochar/serialize/provenance/determinism/
+  static/JRE-004-oracle; integration: real-chart synthesis, JRE-004
+  `relative_house` oracle equality, cross-process byte determinism,
+  golden, JSON Schema conformance, config echo, performance smoke).
+- Performance smoke: JRE-005 derivation p95 well under the 5 ms budget
+  (SPEC §30 excludes the delegated JRE-003 chart + pair-geometry
+  computations, computed once; SPEC §20 caller-supplied geometry path).
+- Gates: full suite green, ruff clean, mypy clean (strict, `src/bhava`
+  included), JRE-002/JRE-003/JRE-004 isolation confirmed (empty diffs
+  vs their commits).
+- Doc cleanup within stage: stale `lord_of` → `sign_lord_of` rashi/sign
+  lordship references in the JRE-005 docs; two non-normative
+  `jyotish.models` CORE references aligned with the public-API boundary.
+- Advanced [JRE-005 queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md)
+  from SPECIALIST-COMPLETE to **CODING-COMPLETE** (QA status reserved
+  for QA).
+
 ### JRE-003 — Additive Public API: `BodyId` / `RetrogradeState` exports (second JRE-005 blocker resolution)
 
 - Exposed the existing canonical types `BodyId` and `RetrogradeState`

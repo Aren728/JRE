@@ -1,0 +1,37 @@
+{
+  "requests": [
+    {
+      "id": "delhi-1990",
+      "birth": {
+        "date": "1990-06-15",
+        "time": "10:00:00",
+        "timezone": "Asia/Kolkata",
+        "latitude": 28.6139,
+        "longitude": 77.209
+      },
+      "house_systems": ["WHOLE_SIGN", "PLACIDUS"]
+    },
+    {
+      "id": "london-1985",
+      "birth": {
+        "date": "1985-11-02",
+        "time": "06:30:00",
+        "timezone": "Europe/London",
+        "latitude": 51.5074,
+        "longitude": -0.1278
+      },
+      "house_systems": ["WHOLE_SIGN"]
+    },
+    {
+      "id": "new-york-2001",
+      "birth": {
+        "date": "2001-03-21",
+        "time": "14:45:00",
+        "timezone": "America/New_York",
+        "latitude": 40.7128,
+        "longitude": -74.006
+      },
+      "house_systems": ["WHOLE_SIGN", "KOCH", "EQUAL"]
+    }
+  ]
+}
