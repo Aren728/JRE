@@ -1,0 +1,12 @@
+# JRE-007 default configuration (SPEC §5/§22).
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+# tradition_profile is intentionally omitted (TOML has no null) -> None default.
+
+[context]
+snapshot_version = "0.1.0"
+candidate_step_minutes = 60
+max_candidates = 24
+default_time_precision = "EXACT"
+house_system = "WHOLE_SIGN"
+version = "0.1.0"
