@@ -1,13 +1,5 @@
 """JSON serialization for the JRE-007 canonical-context layer (SPEC §21,
 DC §6-§8).
-
-Conventions: snake_case keys; enums as their string values (``Pada`` as
-its int); tuples as arrays; ``None`` as ``null``; floats via Python's
-round-trip repr (``-0.0 -> 0.0``). JSON Schema (draft 2020-12) is
-generated from the model dataclasses with ``additionalProperties=false``
-at every object level, enums constrained to the pinned string sets, and
-ISO-8601 UTC microsecond patterns on timestamp fields. Input parsers
-validate on construction with the typed error taxonomy (SPEC §7).
 """
 
 from __future__ import annotations
@@ -27,7 +19,8 @@ from .errors import InvalidContextConfigError, InvalidContextRequestError
 from .models import (
     TIME_PRECISION_VALUES,
     CanonicalFactSnapshot,
-    ContextCandidatesRequest,
+    CanonicalContext,
+    FactEnvelope,
     ContextConfig,
     ContextEclipseRequest,
     ContextInstantRequest,
@@ -71,8 +64,7 @@ def result_to_json(result: Any) -> str:
 
 
 def config_from_dict(data: dict[str, Any]) -> ContextConfig:
-    """Deserialize a ``ContextConfig`` from a JSON-shaped dict (missing key →
-    field default; unknown enum values → ``InvalidContextConfigError``)."""
+    """Deserialize a ``ContextConfig`` from a JSON-shaped dict."""
     return ContextConfig.from_dict(data)
 
 
@@ -192,29 +184,6 @@ def eclipse_request_from_dict(data: dict[str, Any]) -> ContextEclipseRequest:
     )
 
 
-def candidates_request_from_dict(data: dict[str, Any]) -> ContextCandidatesRequest:
-    """Validate/normalize a date-only candidate request dict (DC §5)."""
-    date = data.get("date")
-    timezone = data.get("timezone")
-    latitude = data.get("latitude")
-    longitude = data.get("longitude")
-    if not isinstance(date, str) or not isinstance(timezone, str):
-        raise InvalidContextRequestError(
-            f"date/timezone must be strings, got {date!r} / {timezone!r}"
-        )
-    if not isinstance(latitude, (int, float)) or isinstance(latitude, bool):
-        raise InvalidContextRequestError(f"latitude must be a number, got {latitude!r}")
-    if not isinstance(longitude, (int, float)) or isinstance(longitude, bool):
-        raise InvalidContextRequestError(f"longitude must be a number, got {longitude!r}")
-    return ContextCandidatesRequest(
-        date=date,
-        timezone=timezone,
-        latitude=float(latitude),
-        longitude=float(longitude),
-        config=_parse_config(data.get("config")),
-    )
-
-
 # --------------------------------------------------------------------------- #
 # JSON Schema (DC §6) — generated from the model dataclasses
 # --------------------------------------------------------------------------- #
@@ -225,7 +194,6 @@ def _type_schema(typ: Any) -> dict[str, Any]:
     origin = get_origin(typ)
     args = get_args(typ)
 
-    # Optional / union: null combined with the members.
     if origin is typing.Union or origin is types_union():
         has_null = any(arg is type(None) for arg in args)
         non_null = [arg for arg in args if arg is not type(None)]
@@ -286,9 +254,6 @@ def types_union() -> Any:
     return types.UnionType
 
 
-#: Pinned string-set constraints for ``ContextConfig`` fields that are typed
-#: ``str`` in the model but constrained by SPEC §5/§15 (DC §6: "enums
-#: constrained to the pinned string sets").
 _PINNED_ENUM_OVERRIDES: dict[str, dict[str, Any]] = {
     "default_time_precision": {
         "type": "string",
@@ -302,8 +267,7 @@ _PINNED_ENUM_OVERRIDES: dict[str, dict[str, Any]] = {
 
 
 def _dataclass_schema(cls: type) -> dict[str, Any]:
-    """Object schema for a dataclass: ``additionalProperties=false``,
-    required = all fields, per-field fragments (DC §6)."""
+    """Object schema for a dataclass: ``additionalProperties=false``."""
     hints = get_type_hints(cls)
     properties: dict[str, Any] = {}
     required: list[str] = []
@@ -329,11 +293,12 @@ def _dataclass_schema(cls: type) -> dict[str, Any]:
 SCHEMAS: dict[str, dict[str, Any]] = {
     "ContextConfig": _dataclass_schema(ContextConfig),
     "CanonicalFactSnapshot": _dataclass_schema(CanonicalFactSnapshot),
+    "CanonicalContext": _dataclass_schema(CanonicalContext),
+    "FactEnvelope": _dataclass_schema(FactEnvelope),
     "ContextInstantRequest": _dataclass_schema(ContextInstantRequest),
     "ContextNatalRequest": _dataclass_schema(ContextNatalRequest),
     "ContextIntervalRequest": _dataclass_schema(ContextIntervalRequest),
     "ContextEclipseRequest": _dataclass_schema(ContextEclipseRequest),
-    "ContextCandidatesRequest": _dataclass_schema(ContextCandidatesRequest),
 }
 
 
@@ -346,11 +311,7 @@ def schema_for(name: str) -> dict[str, Any]:
 
 
 def validate_schema(payload: Any, schema: dict[str, Any], path: str = "$") -> None:
-    """Recursively validate ``payload`` against a JSON-Schema dict; raises
-    ``InvalidContextRequestError`` on the first mismatch. Supports ``type``
-    (string/number/integer/boolean/object/array/null or lists), ``enum``,
-    ``pattern``, ``required``, ``properties``, ``additionalProperties``,
-    ``items``, and ``anyOf``."""
+    """Recursively validate ``payload`` against a JSON-Schema dict."""
     if "anyOf" in schema:
         for branch in schema["anyOf"]:
             try:

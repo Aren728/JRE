@@ -1,23 +1,5 @@
 """``ContextService`` — the deterministic JRE-007 canonical-context facade
 (SPEC §10-§12).
-
-JRE-007 composes the public ``jyotish`` / ``bhava`` / ``gochar`` APIs and
-never recomputes positions, cusps, lagna, geometry, aspects, event
-searches, eclipses, or house facts (SPEC §2.3, ADR-022/023). Each snapshot
-query delegates the lower-layer calls and assembles a
-``CanonicalFactSnapshot`` with chart identity, uncertainty metadata, and
-the six-stage provenance chain (SPEC §3/§15/§16).
-
-Methods:
-- ``snapshot_instant`` — GENERIC instant (no birth data anywhere).
-- ``snapshot_natal`` — INDIVIDUAL natal snapshot (chart + optional JRE-005
-  house analysis + optional JRE-006 gochar echo).
-- ``snapshot_interval`` — echoed event stream + sampled state series.
-- ``snapshot_eclipses`` — JRE-003 eclipse facts echo (ADR-006/027).
-- ``snapshot_candidates`` — date-only birth → bounded point-valued
-  candidate ``BirthData`` contexts (SPEC §15/§17).
-
-Delegated failures are wrapped in ``ContextComputationError`` (SPEC §7).
 """
 
 from __future__ import annotations
@@ -40,13 +22,11 @@ from .config import load_config
 from .derive import (
     assemble_snapshot,
     canonical_bodies,
-    expand_candidates,
 )
 from .errors import ContextComputationError, InvalidContextRequestError
 from .models import (
     TIME_PRECISION_VALUES,
     CanonicalFactSnapshot,
-    ContextCandidatesRequest,
     ContextConfig,
     ContextEclipseRequest,
     ContextInstantRequest,
@@ -60,17 +40,14 @@ T = TypeVar("T")
 
 
 def _jyotish_config(house_system: str) -> JyotishConfig:
-    """JRE-003 config for the pinned house system; all other JRE-003
-    settings keep their TOML defaults (SPEC §5 house_system passthrough)."""
+    """JRE-003 config for the pinned house system."""
     return dataclasses.replace(
         JyotishConfig(), house_system=HouseSystem(house_system)
     )
 
 
 def _bhava_config(cfg: ContextConfig) -> BhavaConfig:
-    """JRE-005 config for the snapshot: the chart's house system must be in
-    ``house_systems`` (JRE-005 ``_validate_chart``), and the tradition
-    profile is a validated passthrough echo (SPEC §5, ADR-020)."""
+    """JRE-005 config for the snapshot."""
     return BhavaConfig(
         house_systems=(HouseSystem(_house_system(cfg)),),
         tradition_profile=cfg.tradition_profile,
@@ -78,8 +55,7 @@ def _bhava_config(cfg: ContextConfig) -> BhavaConfig:
 
 
 def _house_system(cfg: ContextConfig) -> str:
-    """JRE-007's house-system passthrough (SPEC §5 — mirrors the
-    JRE-005/006 config pattern). Validated at config construction."""
+    """JRE-007's house-system passthrough."""
     return cfg.house_system
 
 
@@ -179,8 +155,7 @@ class ContextService:
         config: ContextConfig | None = None,
     ) -> CanonicalFactSnapshot:
         """INDIVIDUAL natal snapshot: chart echo + optional JRE-005 house
-        analysis (SPEC §11). Birth data is request input only, echoed as
-        ``birth_snapshot``; time precision defaults to the config default."""
+        analysis (SPEC §11)."""
         cfg = _effective_config(self._default_config, request.config, config)
         precision = _effective_precision(request.time_precision, cfg)
         jyotish_cfg = _jyotish_config(_house_system(cfg))
@@ -285,39 +260,6 @@ class ContextService:
             bhava_config=_bhava_config(cfg),
             context_config=cfg,
             algorithm="assemble-eclipses-v1",
-        )
-
-    # ------------------------------------------------------------------ #
-    # Date-only births → candidate contexts (SPEC §15/§17)
-    # ------------------------------------------------------------------ #
-
-    def snapshot_candidates(
-        self,
-        request: ContextCandidatesRequest,
-        config: ContextConfig | None = None,
-    ) -> CanonicalFactSnapshot:
-        """Date-only birth → bounded point-valued candidate ``BirthData``
-        contexts. No chart is fabricated: each candidate is a full
-        point-valued ``BirthData`` and computing charts for them is the
-        future rectification/uncertainty engine's job (SPEC §15/§17)."""
-        cfg = _effective_config(self._default_config, request.config, config)
-        candidates = expand_candidates(
-            date=request.date,
-            timezone=request.timezone,
-            latitude=request.latitude,
-            longitude=request.longitude,
-            step_minutes=cfg.candidate_step_minutes,
-            max_candidates=cfg.max_candidates,
-        )
-        return assemble_snapshot(
-            birth=None,
-            time_precision="DATE_ONLY",
-            planet_states=(),
-            candidates=candidates,
-            jyotish_config=_jyotish_config(_house_system(cfg)),
-            bhava_config=_bhava_config(cfg),
-            context_config=cfg,
-            algorithm="assemble-candidates-v1",
         )
 
     # ------------------------------------------------------------------ #

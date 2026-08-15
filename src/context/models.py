@@ -1,46 +1,42 @@
 """JRE-007 Canonical Context models (SPEC §9, DATA-CONTRACT §4-§5).
 
-JRE-007 defines **zero new enums** (SPEC §6): every enum it exposes is
+JRE-007 defines **zero new enums** (SPEC §6) except for context-specific
+lifecycle/capability states: every astronomical enum it exposes is
 reused by import from the ``jyotish`` / ``bhava`` / ``gochar`` public
 roots. Result models *contain* echoed lower-layer values verbatim and
 never re-declare them. ``ContextConfig`` is immutable and validated at
 construction; ``config/context.toml`` is the single source of defaults.
-
-Canonical Fact Snapshot sections (SPEC §3): identity (``chart_identity``),
-birth echo (``birth_snapshot``/``birth_time_known``/``time_precision``),
-jyotish echo (``planet_states``, ``pair_geometry``, ``bhavas``, ``lagna``,
-``transit_events``, ``state_samples``, ``eclipses``), bhava echo
-(``house_analysis``), gochar echo (``gochar`` — FactFrame preserved,
-ADR-021/025), candidate contexts (``candidates``), uncertainty metadata,
-config/catalog echoes, and the six-stage provenance chain (SPEC §16).
 """
 
 from __future__ import annotations
 
 import enum
+import hashlib
+import json
 from dataclasses import dataclass, field
 from typing import Any, cast
 
-from bhava import HouseAnalysis  # noqa: F401  (re-exported type reuse)
-from gochar import (  # noqa: F401  (re-exported type reuse)
+from bhava import HouseAnalysis
+from gochar import (
     GocharInstantResult,
     GocharIntervalResult,
     GocharNatalResult,
 )
 from jyotish import (
-    Bhava,  # noqa: F401
+    Bhava,
     BirthData,
-    BodyId,  # noqa: F401
-    EclipseEvent,  # noqa: F401
-    EclipseKind,  # noqa: F401
-    HouseSystem,  # noqa: F401
-    LagnaState,  # noqa: F401
-    PairGeometry,  # noqa: F401
-    PlanetState,  # noqa: F401
-    TransitEvent,  # noqa: F401
+    BodyId,
+    EclipseEvent,
+    EclipseKind,
+    HouseSystem,
+    LagnaState,
+    PairGeometry,
+    PlanetState,
+    TransitEvent,
+    NatalChart,
 )
 
-from .errors import InvalidContextConfigError
+from .errors import InvalidContextConfigError, InvalidContextRequestError
 
 #: Environment pin for golden fixtures (same policy as JRE-002/003/004/005/006).
 GOLDEN_VERSION = "0.1.0"
@@ -48,8 +44,7 @@ GOLDEN_VERSION = "0.1.0"
 #: Pinned package version (SPEC §4/§5).
 CONTEXT_VERSION = "0.1.0"
 
-#: Pinned time-precision strings (SPEC §15 — candidate contexts). Values
-#: beyond the pinned set are rejected at construction.
+#: Pinned time-precision strings.
 TIME_PRECISION_VALUES: tuple[str, ...] = ("EXACT", "HOUR_KNOWN", "DATE_ONLY", "UNKNOWN")
 
 #: Pinned provenance stage ids (SPEC §16 — the six-stage fact chain).
@@ -62,23 +57,35 @@ PROVENANCE_STAGES: tuple[str, ...] = (
     "FUTURE_INFERENCE",
 )
 
-#: Known snapshot sections used for missing-section detection (SPEC §15).
-SNAPSHOT_SECTIONS: tuple[str, ...] = (
-    "pair_geometry",
-    "bhavas",
-    "lagna",
-    "house_analysis",
-    "transit_events",
-    "state_samples",
-    "eclipses",
-    "gochar",
-)
 
-#: Candidate expansion bounds (SPEC §15 — config authority, bounded).
-MIN_CANDIDATE_STEP_MINUTES = 1
-MAX_CANDIDATE_STEP_MINUTES = 1440
-MIN_MAX_CANDIDATES = 1
-MAX_MAX_CANDIDATES = 288
+class CapabilityState(str, enum.Enum):
+    """The state of a capability in the manifest."""
+    AVAILABLE = "AVAILABLE"
+    NOT_REQUESTED = "NOT_REQUESTED"
+    UNAVAILABLE = "UNAVAILABLE"
+
+
+class FactKind(str, enum.Enum):
+    """The kind of fact contained in a FactEnvelope."""
+    PLANET_STATE = "PLANET_STATE"
+    PAIR_GEOMETRY = "PAIR_GEOMETRY"
+    HOUSE_ANALYSIS = "HOUSE_ANALYSIS"
+    TRANSIT_EVENT = "TRANSIT_EVENT"
+    ECLIPSE_EVENT = "ECLIPSE_EVENT"
+    LAGNA_STATE = "LAGNA_STATE"
+
+
+@dataclass(frozen=True)
+class CapabilityManifest:
+    """The manifest of requested and available capabilities."""
+    natal_chart: CapabilityState = CapabilityState.NOT_REQUESTED
+    pair_geometry: CapabilityState = CapabilityState.NOT_REQUESTED
+    eclipse_facts: CapabilityState = CapabilityState.NOT_REQUESTED
+    house_analysis: CapabilityState = CapabilityState.NOT_REQUESTED
+    gochar_instant: CapabilityState = CapabilityState.NOT_REQUESTED
+    gochar_natal: CapabilityState = CapabilityState.NOT_REQUESTED
+    gochar_interval: CapabilityState = CapabilityState.NOT_REQUESTED
+    knowledge_profile: CapabilityState = CapabilityState.NOT_REQUESTED
 
 
 # --------------------------------------------------------------------------- #
@@ -92,8 +99,6 @@ class ContextConfig:
     every default is declared in ``config/context.toml``."""
 
     snapshot_version: str = "0.1.0"
-    candidate_step_minutes: int = 60
-    max_candidates: int = 24
     default_time_precision: str = "EXACT"
     house_system: str = "WHOLE_SIGN"
     tradition_profile: str | None = None
@@ -107,17 +112,10 @@ class ContextConfig:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> ContextConfig:
-        """Deserialize from a JSON-shaped dict (missing key → field default;
-        explicit ``null`` → ``None`` where the type allows). Unknown enum
-        values raise ``InvalidContextConfigError`` (SPEC §5)."""
         config = cls(
             snapshot_version=_as_string(
                 data.get("snapshot_version"), "snapshot_version", "0.1.0"
             ),
-            candidate_step_minutes=_as_int(
-                data.get("candidate_step_minutes"), "candidate_step_minutes", 60
-            ),
-            max_candidates=_as_int(data.get("max_candidates"), "max_candidates", 24),
             default_time_precision=_as_string(
                 data.get("default_time_precision"), "default_time_precision", "EXACT"
             ),
@@ -131,34 +129,13 @@ class ContextConfig:
 
 
 # --------------------------------------------------------------------------- #
-# Uncertainty metadata (SPEC §15 — non-interval)
-# --------------------------------------------------------------------------- #
-
-
-@dataclass(frozen=True)
-class UncertaintyMetadata:
-    """Deterministic uncertainty surface: birth-time precision, candidate
-    count, and missing-section flags. No confidence scores, no intervals —
-    interval-valued computation belongs to future engines (SPEC §15)."""
-
-    birth_time_known: bool
-    time_precision: str
-    candidate_count: int
-    missing_sections: tuple[str, ...]
-
-
-# --------------------------------------------------------------------------- #
 # Provenance chain (SPEC §16 — six stages, never conflated)
 # --------------------------------------------------------------------------- #
 
 
 @dataclass(frozen=True)
 class ProvenanceStage:
-    """One stage of the canonical fact chain (SPEC §16). ``stage`` is a
-    pinned id; ``layer_id`` names the producing JRE layer when applicable
-    (e.g. ``JRE-003``); ``version``/``algorithm``/``catalog_versions`` are
-    echoed deterministically. ``FUTURE_INFERENCE`` is a reserved forward
-    slot — future engines append their own provenance there."""
+    """One stage of the canonical fact chain (SPEC §16)."""
 
     stage: str
     layer_id: str | None = None
@@ -169,8 +146,7 @@ class ProvenanceStage:
 
 @dataclass(frozen=True)
 class CanonicalProvenance:
-    """The complete answer to *"where did this fact come from?"* — the
-    ordered stage chain plus the aggregated source layers (SPEC §16)."""
+    """The complete answer to *"where did this fact come from?"*"""
 
     stages: tuple[ProvenanceStage, ...]
     source_layers: tuple[str, ...]
@@ -179,38 +155,51 @@ class CanonicalProvenance:
 
 
 # --------------------------------------------------------------------------- #
-# The canonical fact snapshot (SPEC §3)
+# Fact Envelope & Canonical Context
 # --------------------------------------------------------------------------- #
 
 
 @dataclass(frozen=True)
+class FactEnvelope:
+    """A single self-contained fact with its own identity and provenance."""
+
+    fact_id: str
+    kind: FactKind
+    capability: str
+    provenance: CanonicalProvenance
+    payload: Any
+
+
+@dataclass(frozen=True)
+class CanonicalContext:
+    """The top-level context container representing a deterministic state."""
+
+    context_id: str
+    analysis_request_id: str
+    purpose: str
+    birth_snapshot: BirthData | None
+    configuration: ContextConfig
+    chart_identity: str | None
+    tradition_profile_identity: str | None
+    requested_capabilities: CapabilityManifest
+    source_layers: tuple[str, ...]
+    version: str = CONTEXT_VERSION
+
+
+@dataclass(frozen=True)
 class CanonicalFactSnapshot:
-    """One deterministic, provenance-bearing envelope of canonical factual
-    state. Every section is an *echo* of an existing lower-layer public
-    output (SPEC §2) — JRE-007 computes nothing new. Natal sections
-    (``bhavas``/``lagna``/``house_analysis``) and transit sections
-    (``transit_events``/``state_samples``) are never merged; the ``gochar``
-    echo preserves its own ``FactFrame`` (ADR-021/025)."""
+    """One deterministic, provenance-bearing envelope of canonical factual state."""
 
     snapshot_version: str
-    chart_identity: str
-    birth_snapshot: BirthData | None
-    birth_time_known: bool
-    time_precision: str
-    planet_states: tuple[PlanetState, ...]
+    natal_chart: NatalChart | None
     pair_geometry: tuple[PairGeometry, ...] | None
-    bhavas: tuple[Bhava, ...] | None
-    lagna: LagnaState | None
-    house_analysis: HouseAnalysis | None
-    transit_events: tuple[TransitEvent, ...] | None
-    state_samples: tuple[PlanetState, ...] | None
+    house_analyses: tuple[HouseAnalysis, ...] | None
+    gochar_instant: GocharInstantResult | None
+    gochar_natal: GocharNatalResult | None
+    gochar_interval: GocharIntervalResult | None
     eclipses: tuple[EclipseEvent, ...] | None
-    gochar: GocharInstantResult | GocharNatalResult | GocharIntervalResult | None
-    candidates: tuple[BirthData, ...]
-    uncertainty: UncertaintyMetadata
-    config_echo: dict[str, Any]
-    catalog_versions: dict[str, str]
     provenance: CanonicalProvenance
+    version: str = CONTEXT_VERSION
 
 
 # --------------------------------------------------------------------------- #
@@ -220,8 +209,7 @@ class CanonicalFactSnapshot:
 
 @dataclass(frozen=True)
 class ContextInstantRequest:
-    """GENERIC instant snapshot query: ISO-UTC instant + bodies + optional
-    config. No birth data anywhere (SPEC §17)."""
+    """GENERIC instant snapshot query: ISO-UTC instant + bodies + optional config."""
 
     instant_utc_iso: str
     bodies: tuple[BodyId, ...]
@@ -230,8 +218,7 @@ class ContextInstantRequest:
 
 @dataclass(frozen=True)
 class ContextNatalRequest:
-    """INDIVIDUAL natal snapshot query: birth + optional house analysis and
-    config. ``time_precision`` defaults to the config default (SPEC §15)."""
+    """INDIVIDUAL natal snapshot query: birth + optional house analysis and config."""
 
     birth: BirthData
     config: ContextConfig | None = None
@@ -241,8 +228,7 @@ class ContextNatalRequest:
 
 @dataclass(frozen=True)
 class ContextIntervalRequest:
-    """Interval snapshot query: start/end ISO-UTC + bodies + optional
-    config (echoed event stream + sampled state series)."""
+    """Interval snapshot query: start/end ISO-UTC + bodies + optional config."""
 
     start_utc_iso: str
     end_utc_iso: str
@@ -252,24 +238,11 @@ class ContextIntervalRequest:
 
 @dataclass(frozen=True)
 class ContextEclipseRequest:
-    """Eclipse snapshot query: interval + optional kind (JRE-003 echo,
-    ADR-006/027 — no new eclipse calculation)."""
+    """Eclipse snapshot query: interval + optional kind."""
 
     start_utc_iso: str
     end_utc_iso: str
     kind: EclipseKind | None = None
-    config: ContextConfig | None = None
-
-
-@dataclass(frozen=True)
-class ContextCandidatesRequest:
-    """Date-only birth candidate query: expand a date into a bounded set of
-    point-valued ``BirthData`` candidates (SPEC §15/§17)."""
-
-    date: str
-    timezone: str
-    latitude: float
-    longitude: float
     config: ContextConfig | None = None
 
 
@@ -279,25 +252,10 @@ class ContextCandidatesRequest:
 
 
 def validate(config: ContextConfig) -> ContextConfig:
-    """Validate a ``ContextConfig``; raises ``InvalidContextConfigError``
-    with the offending value (SPEC §5)."""
+    """Validate a ``ContextConfig``; raises ``InvalidContextConfigError``."""
     if not isinstance(config.snapshot_version, str) or config.snapshot_version == "":
         raise InvalidContextConfigError(
             f"snapshot_version must be a non-empty string, got {config.snapshot_version!r}"
-        )
-    step = config.candidate_step_minutes
-    if not isinstance(step, int) or not (
-        MIN_CANDIDATE_STEP_MINUTES <= step <= MAX_CANDIDATE_STEP_MINUTES
-    ):
-        raise InvalidContextConfigError(
-            f"candidate_step_minutes must be an int in "
-            f"[{MIN_CANDIDATE_STEP_MINUTES}, {MAX_CANDIDATE_STEP_MINUTES}], got {step!r}"
-        )
-    limit = config.max_candidates
-    if not isinstance(limit, int) or not (MIN_MAX_CANDIDATES <= limit <= MAX_MAX_CANDIDATES):
-        raise InvalidContextConfigError(
-            f"max_candidates must be an int in [{MIN_MAX_CANDIDATES}, {MAX_MAX_CANDIDATES}], "
-            f"got {limit!r}"
         )
     if config.default_time_precision not in TIME_PRECISION_VALUES:
         raise InvalidContextConfigError(
@@ -325,13 +283,32 @@ def validate(config: ContextConfig) -> ContextConfig:
 
 
 # --------------------------------------------------------------------------- #
-# Generic serialization helpers (mirrors the JRE-003/JRE-005/006 conventions)
+# Deterministic Identity / Hashing
+# --------------------------------------------------------------------------- #
+
+
+def compute_deterministic_id(domain: str, data: Any) -> str:
+    """Compute a deterministic SHA-256 hash for a given domain and data payload."""
+    serialized = json.dumps(
+        _model_to_dict(data),
+        sort_keys=True,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    hasher = hashlib.sha256()
+    hasher.update(f"{domain}:".encode("utf-8"))
+    hasher.update(serialized.encode("utf-8"))
+    return hasher.hexdigest()
+
+
+# --------------------------------------------------------------------------- #
+# Generic serialization helpers
 # --------------------------------------------------------------------------- #
 
 
 def _model_to_dict(model: Any) -> Any:
     """Generic dataclass serializer (deterministic key order = declaration
-    order; enums → ``.value``; tuples → lists; ``-0.0`` → ``0.0``)."""
+    order; enums -> ``.value``; tuples -> lists; ``-0.0`` -> ``0.0``)."""
     if hasattr(model, "__dataclass_fields__"):
         return {key: _model_to_dict(value) for key, value in model.__dict__.items()}
     if isinstance(model, enum.Enum):
@@ -341,6 +318,8 @@ def _model_to_dict(model: Any) -> Any:
     if isinstance(model, dict):
         return {key: _model_to_dict(value) for key, value in model.items()}
     if isinstance(model, float):
+        if model != model or model in (float("inf"), float("-inf")):
+            raise ValueError("NaN and Infinity are not allowed in deterministic serialization")
         return 0.0 if model == 0.0 else model  # -0.0 -> 0.0
     return model
 
@@ -355,14 +334,6 @@ def _as_string(raw: Any, field: str, default: str) -> str:
         return default
     if not isinstance(raw, str) or raw == "":
         raise InvalidContextConfigError(f"{field} must be a non-empty string, got {raw!r}")
-    return raw
-
-
-def _as_int(raw: Any, field: str, default: int) -> int:
-    if raw is None:
-        return default
-    if isinstance(raw, bool) or not isinstance(raw, int):
-        raise InvalidContextConfigError(f"{field} must be an integer, got {raw!r}")
     return raw
 
 
