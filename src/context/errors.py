@@ -18,8 +18,7 @@ class InvalidContextConfigError(ContextError):
 
 class InvalidContextRequestError(ContextError):
     """Raised when a snapshot request is malformed (bad instant/interval,
-    empty bodies, unknown time-precision, invalid candidate bounds, a
-    ``DATE_ONLY`` precision without candidates, or a generic snapshot
+    empty bodies, unknown time-precision, or a generic snapshot
     carrying natal sections)."""
 
 
