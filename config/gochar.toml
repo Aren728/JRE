@@ -1,0 +1,12 @@
+# JRE-006 default configuration (SPEC §5/§22).
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+# tradition_profile is intentionally omitted (TOML has no null) -> None default.
+
+[gochar]
+reference_point = "LAGNA"
+house_system = "WHOLE_SIGN"
+sample_step_hours = 24.0
+aspect_echo = true
+natal_house_series = false
+version = "0.2.0"

@@ -30,6 +30,7 @@ packages = [
     "jyotish.swisseph",
     "knowledge",
     "bhava",
+    "gochar",
 ]
 
 [tool.pytest.ini_options]
@@ -42,6 +43,8 @@ testpaths = [
     "tests/integration/knowledge",
     "tests/unit/bhava",
     "tests/integration/bhava",
+    "tests/unit/gochar",
+    "tests/integration/gochar",
 ]
 addopts = "-q"
 # integration tests require pysweph + the bundled .se1 files (datasets/ephemeris)
@@ -57,7 +60,7 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy", "jyotish", "knowledge", "bhava"]
+packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar"]
 strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.

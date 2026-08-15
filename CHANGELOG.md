@@ -4,6 +4,65 @@ All notable changes to JRE are recorded here, per orchestration stage.
 
 ## Unreleased
 
+### JRE-006 — Gochar / Continuous Transit Engine (Specialist stage)
+
+- **SPECIALIST-COMPLETE — API READY FOR CODING.** Added
+  [specialist spec](docs/architecture/JRE-006-SPECIALIST-SPEC.md)
+  v0.2.0 (normative at CODING): zero new enums (reuses `jyotish` /
+  `bhava` types), 4-error taxonomy, field-level result/request models,
+  instant GENERIC / instant INDIVIDUAL / interval derivation paths,
+  inherited JRE-003 event + station semantics, deterministic ordering
+  `(jd, body, kind)` with ordinal identity, precision & time rules,
+  provenance (ADR-028), serialization + JSON Schema, performance
+  budgets (delegated computation excluded), static gates, CODING
+  handoff checklist.
+- **Specialist corrections to the architecture draft**: (1) interval
+  endpoint semantics corrected — empirically verified that an event
+  crossing exactly at `start_utc_iso` is included while one exactly at
+  `end_utc_iso` is not guaranteed (inherited JRE-003 detection
+  limitation; documented, not compensated); (2) applying/separating
+  pinned as instant **state** (echo of JRE-003 `ApplyingSeparating`),
+  aspect perfection **events** deferred to v0.2
+  ([ADR-029](docs/decisions/ADR-029-ASPECT-STATE-ECHO-EVENTS-DEFERRED.md)).
+- Public-API audit: 14/14 v0.1 dependencies AVAILABLE on the current
+  `jyotish`/`bhava` surfaces; **no JRE-002 additive API required**;
+  three capabilities remain deferred to v0.2 with additive JRE-003 API
+  proposals (ADR-026).
+- Finalized [data contract](docs/architecture/JRE-006-DATA-CONTRACT.md)
+  v0.2.0 and [test plan](docs/architecture/JRE-006-TEST-PLAN.md)
+  v0.2.0 (file-level matrix, boundary/endpoint tests, aspect-state and
+  deferral-assertion tests). No implementation; JRE-002/003/004/005
+  untouched.
+
+### JRE-006 — Gochar / Continuous Transit Engine (Architect stage)
+
+- **ARCHITECT-COMPLETE** — designed the deterministic gochar /
+  continuous transit state layer. JRE-006 is a composition layer that
+  consumes JRE-003 transit primitives (`planetary_state`/`position_at`,
+  `state_series`, `events_between`, `pair_geometry`, `chart`,
+  `transit_through_houses`, `TransitEvent`/`TransitReferencePoint`
+  echoes) and JRE-005 transit house facts (`derive_transit_analysis`)
+  and produces instant gochar state (GENERIC), transit-to-natal
+  relationship facts (INDIVIDUAL), and deterministic interval facts
+  (echoed event stream with re-asserted pinned ordering, sampled state
+  series, config-gated natal-frame house series) — with full
+  provenance, deterministic serialization, and TOML config authority.
+  Echo-don't-recompute discipline (ADR-023); no interpretation, no
+  eclipse detection (JRE-007 boundary, ADR-027).
+- Public-API readiness audit: all v0.1 requirements AVAILABLE on the
+  current `jyotish`/`bhava` public surfaces; three capabilities deferred
+  to v0.2 with minimal additive JRE-003 API proposals (generic
+  natal-free transit chart, cusp-based house-ingress events, continuous
+  aspect events) — ADR-026.
+- Deliverables: [architecture core](docs/architecture/JRE-006-GOCHAR-TRANSIT-ENGINE.md),
+  [data contract](docs/architecture/JRE-006-DATA-CONTRACT.md),
+  [test plan](docs/architecture/JRE-006-TEST-PLAN.md),
+  [ADR-022](docs/decisions/ADR-022-GOCHAR-LAYER-BOUNDARY.md) …
+  [ADR-028](docs/decisions/ADR-028-GOCHAR-PROVENANCE-ECHO.md),
+  [queue item](orchestration/queue/JRE-006-GOCHAR-TRANSIT-ENGINE.md).
+- **Verdict: ARCHITECTURE-COMPLETE — SPECIALIST REQUIRED.** No
+  implementation, no tests, no commits; JRE-002/003/004/005 untouched.
+
 ### JRE-005 — Bhava / House Engine (QA + VALIDATOR stages)
 
 - **QA-PASS** (independent): contract/ADR-013..021 alignment, public-API

@@ -1,0 +1,4099 @@
+{
+  "golden_version": "0.1.0",
+  "result": {
+    "instant_utc_iso": "2026-06-15T12:00:00.000000Z",
+    "birth_snapshot": {
+      "date": "1990-06-15",
+      "time": "10:00:00",
+      "timezone": "Asia/Kolkata",
+      "latitude": "0x1.c9d288ce703b0p+4",
+      "longitude": "0x1.34d604189374cp+6"
+    },
+    "transit_house_analysis": {
+      "birth_snapshot": {
+        "date": "1990-06-15",
+        "time": "10:00:00",
+        "timezone": "Asia/Kolkata",
+        "latitude": "0x1.c9d288ce703b0p+4",
+        "longitude": "0x1.34d604189374cp+6"
+      },
+      "config": {
+        "cusp_proximity_orb_deg": "0x1.8000000000000p+1",
+        "house_systems": [
+          "WHOLE_SIGN"
+        ],
+        "include_empty_houses": true,
+        "unplaced_body_behavior": "RAISE",
+        "tradition_profile": null,
+        "anchor_frame": "HOUSE_OCCUPANCY",
+        "derivation_version": "0.2.0"
+      },
+      "transit_instant_utc_iso": "2026-06-15T12:00:00Z",
+      "reference": "LAGNA",
+      "transit_facts": [
+        {
+          "frame": "TRANSIT",
+          "body": "SUN",
+          "natal_house_number": 12,
+          "natal_house_rashi": "MITHUNA",
+          "natal_house_lord": "MERCURY",
+          "natal_occupants": [
+            "SUN",
+            "JUPITER"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.47ca42cfe37d5p-4",
+              "within_orb": true,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.deb835bd301c8p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.df5c1ade980e4p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.67ae0d6f4c072p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.dfae0d6f4c072p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.2bd706b7a6039p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.47ca42cfe37d5p-4",
+              "distance_from_exact_deg": "0x1.67d706b7a6039p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.5e954af17c79fp+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.02d56a1d070c2p+3",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.30b55a8741c30p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.105aad43a0e18p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.885aad43a0e18p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.002d56a1d070cp+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.5e954af17c79fp+4",
+              "distance_from_exact_deg": "0x1.3c2d56a1d070cp+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 12,
+            "MOON": 5,
+            "SUN": 1,
+            "ASC": 12
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "MOON",
+          "natal_house_number": 12,
+          "natal_house_rashi": "MITHUNA",
+          "natal_house_lord": "MERCURY",
+          "natal_occupants": [
+            "SUN",
+            "JUPITER"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.c60bca2f199e0p+2",
+              "within_orb": true,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.6e7d0d7439988p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.a73e86ba1ccc4p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.4b9f435d0e662p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.c39f435d0e662p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.1dcfa1ae87331p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.c60bca2f199e0p+2",
+              "distance_from_exact_deg": "0x1.59cfa1ae87331p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.1013e0ad55912p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.9fd83ea554ddcp+3",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.57f60fa955377p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.23fb07d4aa9bcp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.9bfb07d4aa9bcp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.09fd83ea554dep+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.1013e0ad55912p+4",
+              "distance_from_exact_deg": "0x1.45fd83ea554dep+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 12,
+            "MOON": 5,
+            "SUN": 1,
+            "ASC": 12
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "MARS",
+          "natal_house_number": 10,
+          "natal_house_rashi": "MESHA",
+          "natal_house_lord": "MARS",
+          "natal_occupants": [
+            "VENUS"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.0d13d99b54ed3p+1",
+              "within_orb": true,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.be5d84cc95626p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.cf2ec2664ab13p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.5f97613325589p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.d797613325589p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.27cbb09992ac5p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.0d13d99b54ed3p+1",
+              "distance_from_exact_deg": "0x1.63cbb09992ac5p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 10,
+            "MOON": 3,
+            "SUN": 11,
+            "ASC": 10
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "MERCURY",
+          "natal_house_number": 12,
+          "natal_house_rashi": "MITHUNA",
+          "natal_house_lord": "MERCURY",
+          "natal_occupants": [
+            "SUN",
+            "JUPITER"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.897fbb68d8da5p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.5a01125c9c96cp+2",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.1b40224b9392ep+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.05a01125c9c97p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.7da01125c9c97p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.f5a01125c9c97p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.897fbb68d8da5p+4",
+              "distance_from_exact_deg": "0x1.36d00892e4e4bp+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.5cf9e15bfd5c5p+1",
+              "within_orb": true,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.b460c3d480547p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.ca3061ea402a4p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.5d1830f520152p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.d51830f520152p+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.268c187a900a9p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.5cf9e15bfd5c5p+1",
+              "distance_from_exact_deg": "0x1.628c187a900a9p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 12,
+            "MOON": 5,
+            "SUN": 1,
+            "ASC": 12
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "JUPITER",
+          "natal_house_number": 1,
+          "natal_house_rashi": "KARKA",
+          "natal_house_lord": "MOON",
+          "natal_occupants": [
+            "KETU"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.a9c42538fd69fp+3",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.0b1ded63814b0p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.758ef6b1c0a58p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.32c77b58e052cp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.aac77b58e052cp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.1163bdac70296p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.a9c42538fd69fp+3",
+              "distance_from_exact_deg": "0x1.4d63bdac70296p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 1,
+            "MOON": 6,
+            "SUN": 2,
+            "ASC": 1
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "VENUS",
+          "natal_house_number": 1,
+          "natal_house_rashi": "KARKA",
+          "natal_house_lord": "MOON",
+          "natal_occupants": [
+            "KETU"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.02cc815df16b4p+3",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.5e99bf51074a6p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.9f4cdfa883a53p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.47a66fd441d2ap+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.bfa66fd441d2ap+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.1bd337ea20e95p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.02cc815df16b4p+3",
+              "distance_from_exact_deg": "0x1.57d337ea20e95p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 1,
+            "MOON": 6,
+            "SUN": 2,
+            "ASC": 1
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "SATURN",
+          "natal_house_number": 9,
+          "natal_house_rashi": "MEENA",
+          "natal_house_lord": "JUPITER",
+          "natal_occupants": [
+            "MARS"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.05fd108156a58p+1",
+              "within_orb": true,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.bf405defd52b5p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.cfa02ef7ea95ap+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.5fd0177bf54adp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.d7d0177bf54adp+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.27e80bbdfaa57p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.05fd108156a58p+1",
+              "distance_from_exact_deg": "0x1.63e80bbdfaa57p+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 9,
+            "MOON": 2,
+            "SUN": 10,
+            "ASC": 9
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "RAHU",
+          "natal_house_number": 8,
+          "natal_house_rashi": "KUMBHA",
+          "natal_house_lord": "SATURN",
+          "natal_occupants": [
+            "MOON"
+          ],
+          "aspects_to_natal": [
+            {
+              "kind": "CONJUNCTION",
+              "exact_angle_deg": "0x0.0p+0",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.1841b3de7162ep+3",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "SEPARATING"
+            },
+            {
+              "kind": "SEMISEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+4",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.53df2610c74e9p+4",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+1",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SEXTILE",
+              "exact_angle_deg": "0x1.e000000000000p+5",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.99ef930863a74p+5",
+              "within_orb": false,
+              "orb_deg": "0x1.4000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "SQUARE",
+              "exact_angle_deg": "0x1.6800000000000p+6",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.44f7c98431d3ap+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "TRINE",
+              "exact_angle_deg": "0x1.e000000000000p+6",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.bcf7c98431d3ap+6",
+              "within_orb": false,
+              "orb_deg": "0x1.c000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "QUINCUNX",
+              "exact_angle_deg": "0x1.2c00000000000p+7",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.1a7be4c218e9dp+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+2",
+              "applying_separating": "APPLYING"
+            },
+            {
+              "kind": "OPPOSITION",
+              "exact_angle_deg": "0x1.6800000000000p+7",
+              "separation_deg": "0x1.1841b3de7162ep+3",
+              "distance_from_exact_deg": "0x1.567be4c218e9dp+7",
+              "within_orb": false,
+              "orb_deg": "0x1.0000000000000p+3",
+              "applying_separating": "APPLYING"
+            }
+          ],
+          "relative_house_by_reference": {
+            "LAGNA": 8,
+            "MOON": 1,
+            "SUN": 9,
+            "ASC": 8
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        },
+        {
+          "frame": "TRANSIT",
+          "body": "KETU",
+          "natal_house_number": 2,
+          "natal_house_rashi": "SIMHA",
+          "natal_house_lord": "SUN",
+          "natal_occupants": [],
+          "aspects_to_natal": [],
+          "relative_house_by_reference": {
+            "LAGNA": 2,
+            "MOON": 7,
+            "SUN": 3,
+            "ASC": 2
+          },
+          "echoed_from": "transit_through_houses.entries",
+          "derivation": {
+            "id": "PLANET_HOUSE_OCCUPANCY",
+            "derivation_version": "0.2.0",
+            "inputs": [
+              "transit_through_houses.entries",
+              "natal_chart.bhavas"
+            ],
+            "source_catalog_versions": {
+              "rashi": "1.0.0",
+              "nakshatra": "1.0.0"
+            },
+            "house_system": "WHOLE_SIGN"
+          }
+        }
+      ],
+      "chart_echo": {
+        "house_system": "WHOLE_SIGN",
+        "jyotish_config": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        },
+        "provider_metadata": [
+          {
+            "provider_id": "swisseph.pysweph",
+            "library_name": "pysweph",
+            "library_version": "2.10.3.6",
+            "ephemeris_version": "18"
+          },
+          {
+            "provider_id": "swisseph.pysweph.houses",
+            "library_name": "pysweph",
+            "library_version": "2.10.03",
+            "ephemeris_version": "18"
+          }
+        ],
+        "rashi_catalog_version": "1.0.0",
+        "nakshatra_catalog_version": "1.0.0",
+        "anchor_frame": "HOUSE_OCCUPANCY",
+        "sign_grid_frame_supported": false,
+        "cusp_proximity_orb_deg": "0x1.8000000000000p+1",
+        "unplaced_body_behavior": "RAISE",
+        "tradition_profile": null,
+        "derivation_version": "0.2.0",
+        "golden_version": "0.1.0"
+      },
+      "golden_version": "0.1.0"
+    },
+    "transit_to_natal_aspects": [
+      {
+        "first": "SUN",
+        "second": "SUN",
+        "separation_deg": "0x1.47ca42cfe37d5p-4",
+        "normalized_separation_deg": "0x1.67eb835be620fp+8",
+        "same_rashi": true,
+        "same_bhava": null,
+        "conjunction": true,
+        "conjunction_distance_deg": "0x1.47ca42cfe37d5p-4",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.47ca42cfe37d5p-4",
+            "within_orb": true,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.deb835bd301c8p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.df5c1ade980e4p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.67ae0d6f4c072p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.dfae0d6f4c072p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.2bd706b7a6039p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.47ca42cfe37d5p-4",
+            "distance_from_exact_deg": "0x1.67d706b7a6039p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "MOON",
+        "separation_deg": "0x1.9ac86731dc1d5p+6",
+        "normalized_separation_deg": "0x1.0149e15b2559cp+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.9ac86731dc1d5p+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.9ac86731dc1d5p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.22c86731dc1d5p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.5590ce63b83aap+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.9643398ee0ea8p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.14de63388f8acp+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.7a6f319c47c56p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.9ac86731dc1d5p+6",
+            "distance_from_exact_deg": "0x1.353798ce23e2bp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "MARS",
+        "separation_deg": "0x1.246b7b1768e6cp+6",
+        "normalized_separation_deg": "0x1.1ee7cd4ef3f0cp+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.246b7b1768e6cp+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.246b7b1768e6cp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.58d6f62ed1cd8p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.a35bd8bb47360p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.0e5213a25c650p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.772909d12e328p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.339484e897194p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.246b7b1768e6cp+6",
+            "distance_from_exact_deg": "0x1.ab9484e897194p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "MERCURY",
+        "separation_deg": "0x1.2d486df8eeee5p+4",
+        "normalized_separation_deg": "0x1.553edfbdf5a73p+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.2d486df8eeee5p+4",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.2d486df8eeee5p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.656f240e22236p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.495bc9038888ep+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.1cade481c4447p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.94ade481c4447p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.0656f240e2223p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.2d486df8eeee5p+4",
+            "distance_from_exact_deg": "0x1.4256f240e2223p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "JUPITER",
+        "separation_deg": "0x1.5e954af17c79fp+4",
+        "normalized_separation_deg": "0x1.5e923fef889f8p+4",
+        "same_rashi": true,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.5e954af17c79fp+4",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.5e954af17c79fp+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.02d56a1d070c2p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.30b55a8741c30p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.105aad43a0e18p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.885aad43a0e18p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.002d56a1d070cp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.5e954af17c79fp+4",
+            "distance_from_exact_deg": "0x1.3c2d56a1d070cp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "VENUS",
+        "separation_deg": "0x1.1c61586ae7829p+5",
+        "normalized_separation_deg": "0x1.447fc107ac3bap+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.1c61586ae7829p+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.1c61586ae7829p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.630ac3573c148p+2",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.873d4f2a30faep+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.b39ea795187d7p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.51cf53ca8c3ecp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.c9cf53ca8c3ecp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.1c61586ae7829p+5",
+            "distance_from_exact_deg": "0x1.20e7a9e5461f6p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "SATURN",
+        "separation_deg": "0x1.2bb8acb630fafp+7",
+        "normalized_separation_deg": "0x1.a447383ee3b95p+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.2bb8acb630fafp+7",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.2bb8acb630fafp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.df71596c61f5ep+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.6771596c61f5ep+6",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.dee2b2d8c3ebcp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.ddc565b187d78p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.1d4d273c14400p-3",
+            "within_orb": true,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.2bb8acb630fafp+7",
+            "distance_from_exact_deg": "0x1.e23a9a4e78288p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "RAHU",
+        "separation_deg": "0x1.0c64b21be409ap+7",
+        "normalized_separation_deg": "0x1.c39b4de41a985p+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.0c64b21be409ap+7",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.0c64b21be409ap+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.a0c96437c8134p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.28c96437c8134p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.6192c86f90268p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.c64b21be409a0p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.f9b4de41bf660p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.0c64b21be409ap+7",
+            "distance_from_exact_deg": "0x1.6e6d37906fd98p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "SUN",
+        "second": "KETU",
+        "separation_deg": "0x1.6e6d37906fd9fp+5",
+        "normalized_separation_deg": "0x1.6e6d37906a614p+5",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.6e6d37906fd9fp+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.6e6d37906fd9fp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.f9b4de41bf67cp+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.c64b21be40984p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.6192c86f90261p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.28c96437c8130p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.a0c96437c8130p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.6e6d37906fd9fp+5",
+            "distance_from_exact_deg": "0x1.0c64b21be4098p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "SUN",
+        "separation_deg": "0x1.c60bca2f199e0p+2",
+        "normalized_separation_deg": "0x1.627bc6da854cbp+8",
+        "same_rashi": true,
+        "same_bhava": null,
+        "conjunction": true,
+        "conjunction_distance_deg": "0x1.c60bca2f199e0p+2",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.c60bca2f199e0p+2",
+            "within_orb": true,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.6e7d0d7439988p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.a73e86ba1ccc4p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.4b9f435d0e662p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.c39f435d0e662p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.1dcfa1ae87331p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.c60bca2f199e0p+2",
+            "distance_from_exact_deg": "0x1.59cfa1ae87331p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "MOON",
+        "separation_deg": "0x1.af59095aa0aacp+6",
+        "normalized_separation_deg": "0x1.f7b449b3890b2p+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.af59095aa0aacp+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.af59095aa0aacp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.3759095aa0aacp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.7eb212b541558p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.1d64256a82ab0p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.8537b52afaaa0p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.514ded4abeaa8p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.af59095aa0aacp+6",
+            "distance_from_exact_deg": "0x1.20a6f6a55f554p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "MARS",
+        "separation_deg": "0x1.3aec5dd0146bep+6",
+        "normalized_separation_deg": "0x1.197810cd931c9p+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.3aec5dd0146bep+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.3aec5dd0146bep+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.85d8bba028d7cp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.2bb1774051af8p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.689d117f5ca10p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.4a27445fd7284p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.1d13a22feb942p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.3aec5dd0146bep+6",
+            "distance_from_exact_deg": "0x1.9513a22feb942p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "MERCURY",
+        "separation_deg": "0x1.8f37f49258184p+4",
+        "normalized_separation_deg": "0x1.4fcf233c94d2fp+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.8f37f49258184p+4",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.8f37f49258184p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.43202db69f9f0p+2",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.186405b6d3f3ep+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.043202db69f9fp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.7c3202db69f9fp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.f43202db69f9fp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.8f37f49258184p+4",
+            "distance_from_exact_deg": "0x1.3619016db4fd0p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "JUPITER",
+        "separation_deg": "0x1.1013e0ad55912p+4",
+        "normalized_separation_deg": "0x1.079677d97b5bcp+4",
+        "same_rashi": true,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.1013e0ad55912p+4",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.1013e0ad55912p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.9fd83ea554ddcp+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.57f60fa955377p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.23fb07d4aa9bcp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.9bfb07d4aa9bcp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.09fd83ea554dep+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.1013e0ad55912p+4",
+            "distance_from_exact_deg": "0x1.45fd83ea554dep+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "VENUS",
+        "separation_deg": "0x1.4b3fc8641900cp+5",
+        "normalized_separation_deg": "0x1.3f1004864b676p+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.4b3fc8641900cp+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.4b3fc8641900cp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.6cff219064030p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.29806f37cdfe8p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.84c0379be6ff4p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.3a601bcdf37fap+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.b2601bcdf37fap+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.4b3fc8641900cp+5",
+            "distance_from_exact_deg": "0x1.15300de6f9bfdp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "SATURN",
+        "separation_deg": "0x1.35ccb061e7634p+7",
+        "normalized_separation_deg": "0x1.9967bf3c2210ep+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.35ccb061e7634p+7",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.35ccb061e7634p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.f39960c3cec68p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.7b9960c3cec68p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.039960c3cec68p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.1732c1879d8d0p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.39960c3cec680p+2",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.35ccb061e7634p+7",
+            "distance_from_exact_deg": "0x1.919a7cf0c4e60p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "RAHU",
+        "separation_deg": "0x1.16db842d1170bp+7",
+        "normalized_separation_deg": "0x1.b8bbd4e158efep+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.16db842d1170bp+7",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.16db842d1170bp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.b5b7085a22e16p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.3db7085a22e16p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.8b6e10b445c2cp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.36dc21688b858p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.5247bd2ee8f50p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.16db842d1170bp+7",
+            "distance_from_exact_deg": "0x1.4491ef4bba3d4p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MOON",
+        "second": "KETU",
+        "separation_deg": "0x1.4491ef4bba3d4p+5",
+        "normalized_separation_deg": "0x1.42ef538563bf6p+5",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.4491ef4bba3d4p+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.4491ef4bba3d4p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.5247bd2ee8f50p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.36dc21688b858p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.8b6e10b445c2cp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.3db7085a22e16p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.b5b7085a22e16p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.4491ef4bba3d4p+5",
+            "distance_from_exact_deg": "0x1.16db842d1170bp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "SUN",
+        "separation_deg": "0x1.0f68b236da0b2p+5",
+        "normalized_separation_deg": "0x1.0f62ab5b8fbfep+5",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.0f68b236da0b2p+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.0f68b236da0b2p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.f68b236da0b20p+1",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.a12e9b924be9cp+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.c0974dc925f4ep+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.584ba6e492fa7p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.d04ba6e492fa7p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.0f68b236da0b2p+5",
+            "distance_from_exact_deg": "0x1.2425d372497d4p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "MOON",
+        "separation_deg": "0x1.130b83ea8ea46p+6",
+        "normalized_separation_deg": "0x1.234ab36ab130dp+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.130b83ea8ea46p+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.130b83ea8ea46p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.361707d51d48cp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.185c1f5475230p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.53d1f055c56e8p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.99e8f82ae2b74p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.44f47c15715bap+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.130b83ea8ea46p+6",
+            "distance_from_exact_deg": "0x1.bcf47c15715bap+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "MARS",
+        "separation_deg": "0x1.38e10347be40fp+5",
+        "normalized_separation_deg": "0x1.40e89f5e7fc7dp+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.38e10347be40fp+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.38e10347be40fp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.23840d1ef903cp+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.4e3df970837e2p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.971efcb841bf1p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.438f7e5c20df8p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.bb8f7e5c20df8p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.38e10347be40fp+5",
+            "distance_from_exact_deg": "0x1.19c7bf2e106fcp+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "MERCURY",
+        "separation_deg": "0x1.e97ae6920e1c4p+3",
+        "normalized_separation_deg": "0x1.e7f639b02fc76p+3",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.e97ae6920e1c4p+3",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.e97ae6920e1c4p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.d685196df1e3cp+3",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.65a1465b7c78fp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.2ad0a32dbe3c8p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.a2d0a32dbe3c8p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.0d685196df1e4p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.e97ae6920e1c4p+3",
+            "distance_from_exact_deg": "0x1.49685196df1e4p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "JUPITER",
+        "separation_deg": "0x1.bf56a69aa4934p+5",
+        "normalized_separation_deg": "0x1.bf4fb07423082p+5",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.bf56a69aa4934p+5",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.bf56a69aa4934p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.9ead4d3549268p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.054acb2adb660p+2",
+            "within_orb": true,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.10a959655b6ccp+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.0054acb2adb66p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.7854acb2adb66p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.bf56a69aa4934p+5",
+            "distance_from_exact_deg": "0x1.f054acb2adb66p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "VENUS",
+        "separation_deg": "0x1.0d13d99b54ed3p+1",
+        "normalized_separation_deg": "0x1.668093173812ap+8",
+        "same_rashi": true,
+        "same_bhava": null,
+        "conjunction": true,
+        "conjunction_distance_deg": "0x1.0d13d99b54ed3p+1",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.0d13d99b54ed3p+1",
+            "within_orb": true,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.be5d84cc95626p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.cf2ec2664ab13p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.5f97613325589p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.d797613325589p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.27cbb09992ac5p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.0d13d99b54ed3p+1",
+            "distance_from_exact_deg": "0x1.63cbb09992ac5p+7",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "SATURN",
+        "separation_deg": "0x1.cf6e57fc3380cp+6",
+        "normalized_separation_deg": "0x1.e848dc5dfb676p+7",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.cf6e57fc3380cp+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.cf6e57fc3380cp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.576e57fc3380cp+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.bedcaff867018p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.9db95ff0ce030p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.091a803cc7f40p+2",
+            "within_orb": true,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.1123500798fe8p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.cf6e57fc3380cp+6",
+            "distance_from_exact_deg": "0x1.0091a803cc7f4p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "RAHU",
+        "separation_deg": "0x1.90c5bebb6e639p+6",
+        "normalized_separation_deg": "0x1.03ce790199233p+8",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.90c5bebb6e639p+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.90c5bebb6e639p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.18c5bebb6e639p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.418b7d76dcc72p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.462df5db731c8p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.3ce905124671cp+4",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.8e7482892338ep+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.90c5bebb6e639p+6",
+            "distance_from_exact_deg": "0x1.3f3a4144919c7p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      },
+      {
+        "first": "MARS",
+        "second": "KETU",
+        "separation_deg": "0x1.3f3a4144919c8p+6",
+        "normalized_separation_deg": "0x1.3f39e406648cdp+6",
+        "same_rashi": false,
+        "same_bhava": null,
+        "conjunction": false,
+        "conjunction_distance_deg": "0x1.3f3a4144919c8p+6",
+        "aspects": [
+          {
+            "kind": "CONJUNCTION",
+            "exact_angle_deg": "0x0.0p+0",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.3f3a4144919c8p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEMISEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+4",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.8e74828923390p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+1",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SEXTILE",
+            "exact_angle_deg": "0x1.e000000000000p+5",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.3ce9051246720p+4",
+            "within_orb": false,
+            "orb_deg": "0x1.4000000000000p+2",
+            "applying_separating": "APPLYING"
+          },
+          {
+            "kind": "SQUARE",
+            "exact_angle_deg": "0x1.6800000000000p+6",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.462df5db731c0p+3",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "TRINE",
+            "exact_angle_deg": "0x1.e000000000000p+6",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.418b7d76dcc70p+5",
+            "within_orb": false,
+            "orb_deg": "0x1.c000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "QUINCUNX",
+            "exact_angle_deg": "0x1.2c00000000000p+7",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.18c5bebb6e638p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+2",
+            "applying_separating": "SEPARATING"
+          },
+          {
+            "kind": "OPPOSITION",
+            "exact_angle_deg": "0x1.6800000000000p+7",
+            "separation_deg": "0x1.3f3a4144919c8p+6",
+            "distance_from_exact_deg": "0x1.90c5bebb6e638p+6",
+            "within_orb": false,
+            "orb_deg": "0x1.0000000000000p+3",
+            "applying_separating": "SEPARATING"
+          }
+        ],
+        "orb_config": {
+          "conjunction": "0x1.0000000000000p+3",
+          "aspects": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          }
+        },
+        "config_snapshot": {
+          "zodiac_mode": "SIDEREAL",
+          "ayanamsa": "LAHIRI",
+          "house_system": "WHOLE_SIGN",
+          "node_model": "MEAN",
+          "position_type": "APPARENT",
+          "provider_id": null,
+          "ephemeris_version": null,
+          "timezone": "UTC",
+          "coordinate_precision": 1,
+          "conjunction_orb_deg": "0x1.0000000000000p+3",
+          "aspect_orbs_deg": {
+            "CONJUNCTION": "0x1.0000000000000p+3",
+            "OPPOSITION": "0x1.0000000000000p+3",
+            "TRINE": "0x1.c000000000000p+2",
+            "SQUARE": "0x1.c000000000000p+2",
+            "SEXTILE": "0x1.4000000000000p+2",
+            "QUINCUNX": "0x1.0000000000000p+2",
+            "SEMISEXTILE": "0x1.0000000000000p+1"
+          },
+          "station_speed_epsilon": "0x1.12e0be826d695p-30",
+          "transit_sample_step_hours": "0x1.8000000000000p+2",
+          "transit_tolerance_jd": "0x1.a36e2eb1c432dp-14"
+        }
+      }
+    ],
+    "reference_point": "LAGNA",
+    "provenance": {
+      "derivation_id": "gochar.natal.v1",
+      "derivation_version": "0.2.0",
+      "source_layers": [
+        "JRE-002",
+        "JRE-003",
+        "JRE-005"
+      ],
+      "jyotish_version": "0.3.2",
+      "bhava_version": "0.2.0",
+      "gochar_version": "0.2.0",
+      "ephemeris_version": "18",
+      "catalog_versions": {
+        "rashi": "1.0.0",
+        "nakshatra": "1.0.0"
+      },
+      "input_echo": {
+        "instant_utc_iso": "2026-06-15T12:00:00.000000Z",
+        "bodies": [
+          "SUN",
+          "MOON",
+          "MARS"
+        ],
+        "reference_point": "LAGNA",
+        "house_system": "WHOLE_SIGN",
+        "sample_step_hours": "0x1.8000000000000p+4",
+        "aspect_echo": true
+      },
+      "algorithm": "derive-transit-houses-jre005+echo-jre003-pair-geometry"
+    }
+  }
+}

@@ -46,11 +46,29 @@ JRE separates:
   [data contract](docs/architecture/JRE-005-DATA-CONTRACT.md),
   [test plan](docs/architecture/JRE-005-TEST-PLAN.md))
 
-Future interpretation engines (Yoga, Dasha, Drishti, Gochar/Nakshatra
-interpretation, multi-layer synthesis, prediction/confidence) will be
-numbered at REQUEST time starting at JRE-006+ and consume JRE-004's
-`KnowledgeService.synthesize` output and JRE-005's `HouseAnalysisResult`
-facts.
+- JRE-006 — Gochar / Continuous Transit Engine (continuous transit
+  state layer): SPECIALIST-COMPLETE — implementation-ready v0.2.0
+  contract over JRE-003 transit primitives and JRE-005 house facts
+  (instant gochar state, transit-to-natal relationships, deterministic
+  interval event/state facts, echo-don't-recompute, full provenance,
+  endpoint-semantics correction, aspect-state echo); 14/14 public-API
+  dependencies AVAILABLE, no JRE-002 additive API required; three
+  capabilities deferred to v0.2 with additive JRE-003 API proposals
+  (ADR-026)
+  ([queue item](orchestration/queue/JRE-006-GOCHAR-TRANSIT-ENGINE.md),
+  [specialist spec](docs/architecture/JRE-006-SPECIALIST-SPEC.md),
+  [architecture](docs/architecture/JRE-006-GOCHAR-TRANSIT-ENGINE.md),
+  [data contract](docs/architecture/JRE-006-DATA-CONTRACT.md),
+  [test plan](docs/architecture/JRE-006-TEST-PLAN.md),
+  [ADR-022](docs/decisions/ADR-022-GOCHAR-LAYER-BOUNDARY.md) …
+  [ADR-029](docs/decisions/ADR-029-ASPECT-STATE-ECHO-EVENTS-DEFERRED.md))
+
+Future layers: JRE-007 Eclipse Engine (eclipse detection; ADR-027),
+then interpretation engines (Yoga, Dasha, Drishti, Nakshatra
+interpretation, multi-layer synthesis, prediction/confidence) numbered
+at REQUEST time starting at JRE-008+, consuming JRE-004's
+`KnowledgeService.synthesize` output, JRE-005's `HouseAnalysisResult`
+facts, and JRE-006's gochar/transit facts.
 
 ## Hardware Target
 
