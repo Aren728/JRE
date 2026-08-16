@@ -6,6 +6,13 @@ reused by import from the ``jyotish`` / ``bhava`` / ``gochar`` public
 roots. Result models *contain* echoed lower-layer values verbatim and
 never re-declare them. ``ContextConfig`` is immutable and validated at
 construction; ``config/context.toml`` is the single source of defaults.
+
+V1 capability contract (SPEC §9.5 / DC §5): ``ContextRequest`` is the
+canonical request boundary — a frozen capability id, a requested minimum
+capability version, the correlation id, and the optional programmatic
+config. The capability-specific request models are thin compatibility
+wrappers over it (fixed ``capability``) and cannot alter the canonical
+public contract.
 """
 
 from __future__ import annotations
@@ -13,7 +20,10 @@ from __future__ import annotations
 import enum
 import hashlib
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass, field
+from enum import StrEnum
+from types import MappingProxyType
 from typing import Any, cast
 
 from bhava import HouseAnalysis
@@ -23,17 +33,16 @@ from gochar import (
     GocharNatalResult,
 )
 from jyotish import (
-    Bhava,
     BirthData,
     BodyId,
     EclipseEvent,
     EclipseKind,
     HouseSystem,
     LagnaState,
+    NatalChart,
     PairGeometry,
     PlanetState,
     TransitEvent,
-    NatalChart,
 )
 
 from .errors import InvalidContextConfigError, InvalidContextRequestError
@@ -58,14 +67,14 @@ PROVENANCE_STAGES: tuple[str, ...] = (
 )
 
 
-class CapabilityState(str, enum.Enum):
-    """The state of a capability in the manifest."""
+class CapabilityState(StrEnum):
+    """The state of a capability in the manifest (frozen V1 lifecycle)."""
     AVAILABLE = "AVAILABLE"
     NOT_REQUESTED = "NOT_REQUESTED"
     UNAVAILABLE = "UNAVAILABLE"
 
 
-class FactKind(str, enum.Enum):
+class FactKind(StrEnum):
     """The kind of fact contained in a FactEnvelope."""
     PLANET_STATE = "PLANET_STATE"
     PAIR_GEOMETRY = "PAIR_GEOMETRY"
@@ -73,6 +82,19 @@ class FactKind(str, enum.Enum):
     TRANSIT_EVENT = "TRANSIT_EVENT"
     ECLIPSE_EVENT = "ECLIPSE_EVENT"
     LAGNA_STATE = "LAGNA_STATE"
+
+
+#: Narrowest typed ``FactEnvelope`` payload (SPEC §9 / DC §4): exactly the
+#: six ``FactKind``-mapped lower-layer fact types. Lower-layer payloads stay
+#: source-owned and opaque — JRE-007 never re-declares their schemas.
+FactPayload = (
+    PlanetState
+    | PairGeometry
+    | HouseAnalysis
+    | TransitEvent
+    | EclipseEvent
+    | LagnaState
+)
 
 
 @dataclass(frozen=True)
@@ -86,6 +108,51 @@ class CapabilityManifest:
     gochar_natal: CapabilityState = CapabilityState.NOT_REQUESTED
     gochar_interval: CapabilityState = CapabilityState.NOT_REQUESTED
     knowledge_profile: CapabilityState = CapabilityState.NOT_REQUESTED
+
+
+# --------------------------------------------------------------------------- #
+# Capability contract (SPEC §9.5 / DC §5 — frozen V1 list)
+# --------------------------------------------------------------------------- #
+
+#: The capability version this V1 layer provides (pinned to the layer version).
+CAPABILITY_VERSION = "0.1.0"
+
+#: Frozen V1 capability ids served by the canonical request boundary.
+CAPABILITY_IDS: tuple[str, ...] = ("instant", "natal", "interval", "eclipse")
+
+
+@dataclass(frozen=True)
+class CapabilityDescriptor:
+    """Frozen identity + version + required inputs of one V1 capability.
+
+    ``requires`` names the request inputs a capability needs before it can
+    be served — the deterministic constraint surface (``check_capability``).
+    """
+
+    id: str
+    version: str
+    requires: tuple[str, ...] = ()
+
+
+#: Frozen capability registry (immutable view — deterministic constraints).
+CAPABILITIES: Mapping[str, CapabilityDescriptor] = MappingProxyType(
+    {
+        "instant": CapabilityDescriptor(
+            id="instant", version=CAPABILITY_VERSION, requires=("instant_utc_iso", "bodies")
+        ),
+        "natal": CapabilityDescriptor(
+            id="natal", version=CAPABILITY_VERSION, requires=("birth",)
+        ),
+        "interval": CapabilityDescriptor(
+            id="interval",
+            version=CAPABILITY_VERSION,
+            requires=("start_utc_iso", "end_utc_iso", "bodies"),
+        ),
+        "eclipse": CapabilityDescriptor(
+            id="eclipse", version=CAPABILITY_VERSION, requires=("start_utc_iso", "end_utc_iso")
+        ),
+    }
+)
 
 
 # --------------------------------------------------------------------------- #
@@ -161,13 +228,17 @@ class CanonicalProvenance:
 
 @dataclass(frozen=True)
 class FactEnvelope:
-    """A single self-contained fact with its own identity and provenance."""
+    """A single self-contained fact with its own identity and provenance.
+
+    ``payload`` is typed to the six frozen ``FactKind``-mapped lower-layer
+    fact types (``FactPayload``) — never an unconstrained ``Any``.
+    """
 
     fact_id: str
     kind: FactKind
     capability: str
     provenance: CanonicalProvenance
-    payload: Any
+    payload: FactPayload
 
 
 @dataclass(frozen=True)
@@ -192,8 +263,11 @@ class CanonicalFactSnapshot:
 
     snapshot_version: str
     natal_chart: NatalChart | None
+    planet_states: tuple[PlanetState, ...] | None
     pair_geometry: tuple[PairGeometry, ...] | None
     house_analyses: tuple[HouseAnalysis, ...] | None
+    transit_events: tuple[TransitEvent, ...] | None
+    state_samples: tuple[PlanetState, ...] | None
     gochar_instant: GocharInstantResult | None
     gochar_natal: GocharNatalResult | None
     gochar_interval: GocharIntervalResult | None
@@ -203,47 +277,126 @@ class CanonicalFactSnapshot:
 
 
 # --------------------------------------------------------------------------- #
-# Request models (SPEC §9.5 — snapshot queries)
+# Request models (SPEC §9.5 — the canonical request contract)
 # --------------------------------------------------------------------------- #
 
 
 @dataclass(frozen=True)
-class ContextInstantRequest:
-    """GENERIC instant snapshot query: ISO-UTC instant + bodies + optional config."""
+class ContextRequest:
+    """The canonical JRE-007 request boundary (SPEC §9.5 / DC §5).
+
+    Every snapshot query is one ``ContextRequest``: ``capability`` names a
+    frozen V1 capability id, ``capability_version`` is the requested
+    minimum capability version (compatibility is checked by
+    ``check_capability``), ``analysis_request_id`` correlates the request
+    with its ``CanonicalContext``, and ``config`` carries the optional
+    programmatic override. The capability-specific request models are thin
+    compatibility wrappers over this canonical model (fixed
+    ``capability``) and cannot alter the canonical public contract.
+    """
+
+    capability: str
+    capability_version: str = CAPABILITY_VERSION
+    config: ContextConfig | None = None
+    analysis_request_id: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.capability not in CAPABILITY_IDS:
+            raise InvalidContextRequestError(
+                f"capability must be one of {CAPABILITY_IDS}, got {self.capability!r}"
+            )
+        if not isinstance(self.capability_version, str) or self.capability_version == "":
+            raise InvalidContextRequestError(
+                f"capability_version must be a non-empty string, got {self.capability_version!r}"
+            )
+
+
+@dataclass(frozen=True, kw_only=True)
+class ContextInstantRequest(ContextRequest):
+    """GENERIC instant snapshot query (capability ``instant``): ISO-UTC
+    instant + bodies + optional config."""
 
     instant_utc_iso: str
     bodies: tuple[BodyId, ...]
-    config: ContextConfig | None = None
+    capability: str = "instant"
 
 
-@dataclass(frozen=True)
-class ContextNatalRequest:
-    """INDIVIDUAL natal snapshot query: birth + optional house analysis and config."""
+@dataclass(frozen=True, kw_only=True)
+class ContextNatalRequest(ContextRequest):
+    """INDIVIDUAL natal snapshot query (capability ``natal``): birth +
+    optional house analysis and config."""
 
     birth: BirthData
-    config: ContextConfig | None = None
     include_house_analysis: bool = True
     time_precision: str | None = None
+    capability: str = "natal"
 
 
-@dataclass(frozen=True)
-class ContextIntervalRequest:
-    """Interval snapshot query: start/end ISO-UTC + bodies + optional config."""
+@dataclass(frozen=True, kw_only=True)
+class ContextIntervalRequest(ContextRequest):
+    """Interval snapshot query (capability ``interval``): start/end ISO-UTC
+    + bodies + optional config."""
 
     start_utc_iso: str
     end_utc_iso: str
     bodies: tuple[BodyId, ...]
-    config: ContextConfig | None = None
+    capability: str = "interval"
 
 
-@dataclass(frozen=True)
-class ContextEclipseRequest:
-    """Eclipse snapshot query: interval + optional kind."""
+@dataclass(frozen=True, kw_only=True)
+class ContextEclipseRequest(ContextRequest):
+    """Eclipse snapshot query (capability ``eclipse``): interval + optional
+    kind (JRE-003 echo, ADR-006/027 — no new eclipse calculation)."""
 
     start_utc_iso: str
     end_utc_iso: str
     kind: EclipseKind | None = None
-    config: ContextConfig | None = None
+    capability: str = "eclipse"
+
+
+# --------------------------------------------------------------------------- #
+# Capability compatibility (SPEC §9.5 — deterministic constraints)
+# --------------------------------------------------------------------------- #
+
+
+def _version_tuple(version: str) -> tuple[int, ...]:
+    """Parse ``MAJOR.MINOR.PATCH``-style versions for deterministic comparison."""
+    parts = version.split(".")
+    out: list[int] = []
+    for part in parts:
+        try:
+            out.append(int(part))
+        except ValueError as exc:
+            raise InvalidContextRequestError(
+                f"invalid capability version {version!r} (expected dotted integers)"
+            ) from exc
+    return tuple(out)
+
+
+def check_capability(request: ContextRequest) -> None:
+    """Validate the canonical request's capability contract: frozen V1
+    capability identity, requested-minimum/version compatibility, and the
+    descriptor's required inputs. Deterministic — raises
+    ``InvalidContextRequestError`` with a reason for every violation."""
+    descriptor = CAPABILITIES.get(request.capability)
+    if descriptor is None:
+        raise InvalidContextRequestError(
+            f"unknown capability {request.capability!r}; "
+            f"frozen V1 capability ids: {list(CAPABILITIES)}"
+        )
+    if _version_tuple(request.capability_version) > _version_tuple(descriptor.version):
+        raise InvalidContextRequestError(
+            f"capability {request.capability!r}: requested minimum version "
+            f"{request.capability_version!r} exceeds provided {descriptor.version!r}"
+        )
+    missing = [
+        name for name in descriptor.requires if getattr(request, name, None) is None
+    ]
+    if missing:
+        raise InvalidContextRequestError(
+            f"capability {request.capability!r} requires inputs "
+            f"{descriptor.requires}; missing: {missing}"
+        )
 
 
 # --------------------------------------------------------------------------- #
@@ -296,7 +449,7 @@ def compute_deterministic_id(domain: str, data: Any) -> str:
         separators=(",", ":"),
     )
     hasher = hashlib.sha256()
-    hasher.update(f"{domain}:".encode("utf-8"))
+    hasher.update(f"{domain}:".encode())
     hasher.update(serialized.encode("utf-8"))
     return hasher.hexdigest()
 

@@ -8,6 +8,7 @@ import enum
 import json
 import re
 import typing
+from collections.abc import Callable
 from dataclasses import fields, is_dataclass
 from typing import Any, get_args, get_origin, get_type_hints
 
@@ -17,15 +18,19 @@ from jyotish import HouseSystem
 from .derive import civil_split
 from .errors import InvalidContextConfigError, InvalidContextRequestError
 from .models import (
+    CAPABILITY_IDS,
+    CAPABILITY_VERSION,
     TIME_PRECISION_VALUES,
-    CanonicalFactSnapshot,
     CanonicalContext,
-    FactEnvelope,
+    CanonicalFactSnapshot,
+    CapabilityDescriptor,
     ContextConfig,
     ContextEclipseRequest,
     ContextInstantRequest,
     ContextIntervalRequest,
     ContextNatalRequest,
+    ContextRequest,
+    FactEnvelope,
     to_dict_value,
 )
 
@@ -100,6 +105,37 @@ def _parse_config(raw: Any) -> ContextConfig | None:
     return ContextConfig.from_dict(raw)
 
 
+def _request_capability(data: dict[str, Any], kind: str) -> str:
+    """The frozen capability id for a request dict: the kind's own id, or an
+    explicit matching value (a mismatched id is a contract violation)."""
+    raw = data.get("capability", kind)
+    if raw != kind:
+        raise InvalidContextRequestError(
+            f"capability {raw!r} does not match the {kind} request model"
+        )
+    return kind
+
+
+def _request_capability_version(data: dict[str, Any]) -> str:
+    """The requested minimum capability version (defaults to the V1 pin)."""
+    raw = data.get("capability_version", CAPABILITY_VERSION)
+    if not isinstance(raw, str) or raw == "":
+        raise InvalidContextRequestError(
+            f"capability_version must be a non-empty string, got {raw!r}"
+        )
+    return raw
+
+
+def _request_analysis_id(data: dict[str, Any]) -> str | None:
+    """The optional request correlation id."""
+    raw = data.get("analysis_request_id")
+    if raw is not None and not isinstance(raw, str):
+        raise InvalidContextRequestError(
+            f"analysis_request_id must be a string or null, got {raw!r}"
+        )
+    return raw
+
+
 def instant_request_from_dict(data: dict[str, Any]) -> ContextInstantRequest:
     """Validate/normalize a GENERIC instant snapshot request dict (DC §5)."""
     instant = data.get("instant_utc_iso")
@@ -110,7 +146,12 @@ def instant_request_from_dict(data: dict[str, Any]) -> ContextInstantRequest:
     civil_split(instant)  # validates ISO-UTC + time component (SPEC §8)
     bodies = _parse_bodies(data.get("bodies"))
     return ContextInstantRequest(
-        instant_utc_iso=instant, bodies=bodies, config=_parse_config(data.get("config"))
+        instant_utc_iso=instant,
+        bodies=bodies,
+        config=_parse_config(data.get("config")),
+        capability=_request_capability(data, "instant"),
+        capability_version=_request_capability_version(data),
+        analysis_request_id=_request_analysis_id(data),
     )
 
 
@@ -135,6 +176,9 @@ def natal_request_from_dict(data: dict[str, Any]) -> ContextNatalRequest:
         config=_parse_config(data.get("config")),
         include_house_analysis=include_house_analysis,
         time_precision=time_precision,
+        capability=_request_capability(data, "natal"),
+        capability_version=_request_capability_version(data),
+        analysis_request_id=_request_analysis_id(data),
     )
 
 
@@ -154,6 +198,9 @@ def interval_request_from_dict(data: dict[str, Any]) -> ContextIntervalRequest:
         end_utc_iso=end,
         bodies=bodies,
         config=_parse_config(data.get("config")),
+        capability=_request_capability(data, "interval"),
+        capability_version=_request_capability_version(data),
+        analysis_request_id=_request_analysis_id(data),
     )
 
 
@@ -181,7 +228,32 @@ def eclipse_request_from_dict(data: dict[str, Any]) -> ContextEclipseRequest:
         end_utc_iso=end,
         kind=kind,
         config=_parse_config(data.get("config")),
+        capability=_request_capability(data, "eclipse"),
+        capability_version=_request_capability_version(data),
+        analysis_request_id=_request_analysis_id(data),
     )
+
+
+def context_request_from_dict(data: dict[str, Any]) -> ContextRequest:
+    """Validate/normalize a canonical request dict (DC §5): a frozen V1
+    capability id plus that capability's own inputs. The capability-specific
+    parsers remain as compatibility wrappers over this canonical boundary."""
+    capability = data.get("capability")
+    if not isinstance(capability, str) or capability not in CAPABILITY_IDS:
+        raise InvalidContextRequestError(
+            f"capability must be one of {CAPABILITY_IDS}, got {capability!r}"
+        )
+    _request_capability_version(data)  # validates the version shape
+    parser = _CAPABILITY_PARSERS[capability]
+    return parser(data)
+
+
+_CAPABILITY_PARSERS: dict[str, Callable[[dict[str, Any]], ContextRequest]] = {
+    "instant": instant_request_from_dict,
+    "natal": natal_request_from_dict,
+    "interval": interval_request_from_dict,
+    "eclipse": eclipse_request_from_dict,
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -295,6 +367,8 @@ SCHEMAS: dict[str, dict[str, Any]] = {
     "CanonicalFactSnapshot": _dataclass_schema(CanonicalFactSnapshot),
     "CanonicalContext": _dataclass_schema(CanonicalContext),
     "FactEnvelope": _dataclass_schema(FactEnvelope),
+    "CapabilityDescriptor": _dataclass_schema(CapabilityDescriptor),
+    "ContextRequest": _dataclass_schema(ContextRequest),
     "ContextInstantRequest": _dataclass_schema(ContextInstantRequest),
     "ContextNatalRequest": _dataclass_schema(ContextNatalRequest),
     "ContextIntervalRequest": _dataclass_schema(ContextIntervalRequest),

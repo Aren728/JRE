@@ -32,6 +32,8 @@ from .models import (
     ContextInstantRequest,
     ContextIntervalRequest,
     ContextNatalRequest,
+    ContextRequest,
+    check_capability,
     validate,
 )
 
@@ -111,6 +113,35 @@ class ContextService:
         self._default_config = load_config() if config is None else validate(config)
 
     # ------------------------------------------------------------------ #
+    # Canonical request boundary (SPEC §9.5 — capability dispatch)
+    # ------------------------------------------------------------------ #
+
+    def snapshot(
+        self,
+        request: ContextRequest,
+        config: ContextConfig | None = None,
+    ) -> CanonicalFactSnapshot:
+        """Canonical entry point: serve any frozen V1 capability request.
+        The capability contract is validated first (``check_capability``),
+        then the request is dispatched to its capability implementation.
+        The capability-specific wrappers (``snapshot_*``) remain for
+        compatibility and validate the same contract."""
+        check_capability(request)
+        if isinstance(request, ContextInstantRequest):
+            return self.snapshot_instant(request, config)
+        if isinstance(request, ContextNatalRequest):
+            return self.snapshot_natal(request, config)
+        if isinstance(request, ContextIntervalRequest):
+            return self.snapshot_interval(request, config)
+        if isinstance(request, ContextEclipseRequest):
+            return self.snapshot_eclipses(request, config)
+        raise InvalidContextRequestError(
+            f"capability {request.capability!r} has no concrete capability "
+            "request model (ContextRequest is the canonical contract; use a "
+            "capability-specific request)"
+        )
+
+    # ------------------------------------------------------------------ #
     # GENERIC instant
     # ------------------------------------------------------------------ #
 
@@ -121,6 +152,7 @@ class ContextService:
     ) -> CanonicalFactSnapshot:
         """GENERIC instant snapshot: planet states + pair geometry, no birth
         data anywhere (SPEC §10/§17)."""
+        check_capability(request)
         cfg = _effective_config(self._default_config, request.config, config)
         jyotish_cfg = _jyotish_config(_house_system(cfg))
         bodies = _parse_bodies(request.bodies)
@@ -154,8 +186,10 @@ class ContextService:
         request: ContextNatalRequest,
         config: ContextConfig | None = None,
     ) -> CanonicalFactSnapshot:
-        """INDIVIDUAL natal snapshot: chart echo + optional JRE-005 house
-        analysis (SPEC §11)."""
+        """INDIVIDUAL natal snapshot: JRE-003 chart echo (verbatim,
+        provider metadata preserved) + optional JRE-005 house analysis
+        (SPEC §11)."""
+        check_capability(request)
         cfg = _effective_config(self._default_config, request.config, config)
         precision = _effective_precision(request.time_precision, cfg)
         jyotish_cfg = _jyotish_config(_house_system(cfg))
@@ -177,9 +211,8 @@ class ContextService:
             birth=request.birth,
             time_precision=precision,
             planet_states=chart.planet_states,
+            natal_chart=chart,
             pair_geometry=pair_geometry,
-            bhavas=chart.bhavas,
-            lagna=chart.lagna,
             house_analysis=house_analysis,
             jyotish_config=jyotish_cfg,
             bhava_config=bhava_cfg,
@@ -198,6 +231,7 @@ class ContextService:
     ) -> CanonicalFactSnapshot:
         """Interval snapshot: echoed event stream + sampled state series
         (SPEC §12)."""
+        check_capability(request)
         cfg = _effective_config(self._default_config, request.config, config)
         _validate_interval(request.start_utc_iso, request.end_utc_iso)
         bodies = _parse_bodies(request.bodies)
@@ -241,6 +275,7 @@ class ContextService:
         config: ContextConfig | None = None,
     ) -> CanonicalFactSnapshot:
         """Eclipse snapshot: JRE-003 eclipse facts echoed (ADR-006/027)."""
+        check_capability(request)
         cfg = _effective_config(self._default_config, request.config, config)
         _validate_interval(request.start_utc_iso, request.end_utc_iso)
         jyotish_cfg = _jyotish_config(_house_system(cfg))
