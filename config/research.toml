@@ -1,0 +1,10 @@
+# JRE-009 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[research]
+catalog_version = "0.1.0"
+version = "0.1.0"
+default_source_dir = "data/research_sources/"
+default_output_dir = "data/research_reports/"
+supported_extensions = [".md", ".txt"]

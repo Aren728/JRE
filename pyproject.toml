@@ -33,6 +33,7 @@ packages = [
     "gochar",
     "context",
     "varga",
+    "research",
 ]
 
 [tool.pytest.ini_options]
@@ -51,6 +52,8 @@ testpaths = [
     "tests/integration/context",
     "tests/unit/varga",
     "tests/integration/varga",
+    "tests/unit/research",
+    "tests/integration/research",
 ]
 addopts = "-q"
 pythonpath = ["."]
@@ -67,7 +70,7 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga"]
+packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research"]
 strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.
