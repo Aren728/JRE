@@ -1,0 +1,12 @@
+# JRE-008 default configuration (normative specification §18).
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+# default_ayanamsa echoes the JRE-003 default ayanamsa (LAHIRI) as an
+# opaque string — never an astronomy import, never recalculated.
+
+[varga]
+catalog_version = "0.1.0"
+version = "0.1.0"
+default_boundary_convention = "HALF_OPEN_LOW"
+default_zodiac_mode = "SIDEREAL"
+default_ayanamsa = "LAHIRI"
