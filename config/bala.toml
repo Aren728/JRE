@@ -1,0 +1,31 @@
+# JRE-011 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[bala]
+version = "0.1.0"
+max_depth = 1
+
+# Minimum required Shadbala in Rupas (1 Rupa = 60 Virupas).
+[bala.minimum_rupas]
+SUN = 5.0
+MOON = 6.0
+MARS = 5.0
+MERCURY = 7.0
+JUPITER = 6.5
+VENUS = 5.5
+SATURN = 5.0
+RAHU = 5.0
+KETU = 5.0
+
+# Naisargika Bala (Natural Strength) in Virupas — fixed per planet.
+[bala.naisargika_virupas]
+SUN = 60.0
+MOON = 51.43
+VENUS = 42.86
+MARS = 34.29
+JUPITER = 25.71
+MERCURY = 17.14
+SATURN = 8.57
+RAHU = 4.29
+KETU = 4.29
