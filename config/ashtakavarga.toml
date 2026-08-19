@@ -1,0 +1,24 @@
+# JRE-016 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[ashtakavarga]
+version = "0.1.0"
+
+# Classical bindu rules: which houses (from the planet's own rashi)
+# receive 4 bindus from each planet.
+[ashtakavarga.bindu_rules]
+# Sun: 1st, 2nd, 4th, 7th, 8th, 9th, 10th, 11th
+SUN = [1, 2, 4, 7, 8, 9, 10, 11]
+# Moon: 1st, 3rd, 6th, 7th, 8th, 10th, 11th, 12th
+MOON = [1, 3, 6, 7, 8, 10, 11, 12]
+# Mars: 1st, 2nd, 4th, 7th, 8th, 10th, 11th
+MARS = [1, 2, 4, 7, 8, 10, 11]
+# Mercury: 1st, 2nd, 4th, 6th, 8th, 9th, 10th, 11th
+MERCURY = [1, 2, 4, 6, 8, 9, 10, 11]
+# Jupiter: 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th
+JUPITER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+# Venus: 1st, 2nd, 3rd, 4th, 5th, 7th, 8th, 9th, 10th, 11th
+VENUS = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]
+# Saturn: 1st, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th
+SATURN = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11]
