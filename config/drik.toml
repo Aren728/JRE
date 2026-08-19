@@ -1,0 +1,25 @@
+# JRE-012 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[drik]
+version = "0.1.0"
+
+# Default orb for aspect detection in degrees.
+# In classical Jyotish, aspects are sign-based (full sign = 30 degrees),
+# but a tighter orb is often used for precision.
+default_orb_deg = 6.0
+
+# Aspect rules: planet -> list of house offsets (in signs, 1-indexed).
+# House 7 is the standard aspect for all planets.
+# Special aspects are Mars (4,8), Jupiter (5,9), Saturn (3,10).
+[drik.aspect_houses]
+SUN = [7]
+MOON = [7]
+MARS = [4, 7, 8]
+MERCURY = [7]
+JUPITER = [5, 7, 9]
+VENUS = [7]
+SATURN = [3, 7, 10]
+RAHU = [7]
+KETU = [7]
