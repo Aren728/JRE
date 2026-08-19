@@ -1,0 +1,36 @@
+# JRE-014 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[karaka]
+version = "0.1.0"
+chara_planet_count = 7
+
+# Naisargika (Natural) Karakas — classical natural significators.
+# Planet -> category it naturally signifies.
+[karaka.naisargika]
+SUN = "ATMA"
+MOON = "MANAS"
+MARS = "BHRATRU"
+MERCURY = "VAK"
+JUPITER = "PUTRA"
+VENUS = "DARA"
+SATURN = "SHATRU"
+
+# Sthira (Permanent) Karakas — fixed house-based significators.
+# Category -> planet that permanently signifies it.
+[karaka.sthira]
+ATMA = "SUN"
+MANAS = "MOON"
+PUTRA = "JUPITER"
+DHANA = "JUPITER"
+DARA = "VENUS"
+SANTANA = "JUPITER"
+BHRATRU = "MARS"
+MATRU = "MOON"
+SHATRU = "SATURN"
+VYAYA = "SATURN"
+AYUR = "SATURN"
+RIKTA = "SATURN"
+LABHA = "SATURN"
+BANDHU = "SUN"
