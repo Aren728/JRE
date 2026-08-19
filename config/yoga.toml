@@ -1,0 +1,42 @@
+# JRE-013 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[yoga]
+version = "0.1.0"
+
+# Minimum Shadbala ratio for a planet to participate in a yoga.
+# If any involved planet falls below this threshold, the yoga is
+# marked as "weakened" (still present, but with reduced strength).
+min_bala_ratio = 0.5
+
+# Classical yogas to evaluate (V1 subset).
+[yoga.rules]
+
+# Gajakesari Yoga: Jupiter in Kendra (1,4,7,10) from Moon.
+# One of the most widely recognized classical yogas.
+[yoga.rules.GAJAKESARI]
+description = "Jupiter in Kendra from Moon"
+planets_required = ["JUPITER", "MOON"]
+rule_type = "KENDRA_FROM"
+
+# Raja Yoga: Lord of a Kendra (1,4,7,10) and Lord of a Trikona
+# (1,5,9) are in conjunction, mutual aspect, or sign exchange.
+[yoga.rules.RAJA_YOGA]
+description = "Kendra lord and Trikona lord connected"
+planets_required = []  # Evaluated dynamically from house ownership
+rule_type = "KENDRA_TRIKONA_CONNECTION"
+
+# Dhana Yoga: Lord of the 2nd house and Lord of the 11th house
+# are in conjunction, mutual aspect, or sign exchange.
+[yoga.rules.DHANA_YOGA]
+description = "2nd lord and 11th lord connected"
+planets_required = []  # Evaluated dynamically
+rule_type = "DHANA_CONNECTION"
+
+# Viparita Raja Yoga: Lords of 6th, 8th, or 12th occupy another
+# dusthana lord's sign, or are conjunct/aspecting.
+[yoga.rules.VIPARITA_RAJA_YOGA]
+description = "Dusthana lords exchange or conjoin"
+planets_required = []  # Evaluated dynamically
+rule_type = "VIPARITA_CONNECTION"
