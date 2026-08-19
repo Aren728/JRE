@@ -1,0 +1,84 @@
+# JRE-015 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[avastha]
+version = "0.1.0"
+
+# Jagradadi states: degree ranges within a rashi (0-30 degrees).
+# Each state covers a contiguous range and has a strength multiplier.
+[avastha.jagradadi]
+# Jagrat (Awake): 0 - 6 degrees
+# Swapna (Dream): 6 - 18 degrees
+# Sushupti (Deep Sleep): 18 - 30 degrees
+jagrat_start = 0.0
+jagrat_end = 6.0
+swapna_start = 6.0
+swapna_end = 18.0
+sushupti_start = 18.0
+sushupti_end = 30.0
+
+[avastha.jagradadi_multipliers]
+JAGRAT = 1.0
+SWAPNA = 0.75
+SUSHUPTI = 0.5
+
+# Deeptadi states: rashi-to-state mapping based on dignity.
+# Each state has a strength multiplier.
+[avastha.deeptadi_multipliers]
+DEEPTA = 1.0
+SWASTHA = 0.875
+PRASANTA = 0.75
+DEENA = 0.5
+KSHUDHITA = 0.375
+KSHOBHITA = 0.25
+
+# Exaltation signs for classical planets (used for Deepta state).
+[avastha.exaltation_signs]
+SUN = "MESHA"
+MOON = "VRISHABHA"
+MARS = "MAKARA"
+MERCURY = "KANYA"
+JUPITER = "KARKA"
+VENUS = "MEENA"
+SATURN = "TULA"
+
+# Debilitation signs (opposite of exaltation).
+[avastha.debilitation_signs]
+SUN = "TULA"
+MOON = "VRISHCHIKA"
+MARS = "KARKA"
+MERCURY = "MEENA"
+JUPITER = "MAKARA"
+VENUS = "KANYA"
+SATURN = "MESHA"
+
+# Own signs for each planet.
+[avastha.own_signs]
+SUN = "SIMHA"
+MOON = "KARKA"
+MARS = ["MESHA", "VRISHCHIKA"]
+MERCURY = ["MITHUNA", "KANYA"]
+JUPITER = ["DHANUSHA", "MEENA"]
+VENUS = ["VRISHABHA", "TULA"]
+SATURN = ["MAKARA", "KUMBHA"]
+
+# Friendly signs for each planet.
+[avastha.friendly_signs]
+SUN = ["MESHA", "VRISHABHA", "DHANUSHA"]
+MOON = ["MESHA", "VRISHABHA"]
+MARS = ["MESHA", "VRISHABHA", "DHANUSHA"]
+MERCURY = ["VRISHABHA", "KANYA"]
+JUPITER = ["MESHA", "VRISHABHA", "KARKA"]
+VENUS = ["MITHUNA", "KANYA"]
+SATURN = ["MITHUNA", "KANYA"]
+
+# Enemy signs for each planet.
+[avastha.enemy_signs]
+SUN = ["TULA", "VRISHABHA"]
+MOON = ["TULA"]
+MARS = ["TULA", "KARKA"]
+MERCURY = ["KARKA", "SIMHA"]
+JUPITER = ["MITHUNA", "KANYA"]
+VENUS = ["MESHA", "VRISHCHIKA"]
+SATURN = ["MESHA", "VRISHABHA"]
