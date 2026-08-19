@@ -1,0 +1,26 @@
+# JRE-017 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[tajika]
+version = "0.1.0"
+
+# Enabled Sahams (all classical Sahams enabled by default).
+enabled_sahams = [
+    "PUNYA", "VIDYA", "ARTHA", "KARMA", "PUTRA",
+    "GNA", "SAMPAT", "RAJA", "DEHA", "JEEVA",
+]
+
+# Classical Saham formulas: Lagna + PlanetA - PlanetB
+# Each entry = [planet_a, planet_b]
+[tajika.saham_formulas]
+PUNYA  = ["JUPITER", "SUN"]     # Punya = Lagna + Jupiter - Sun
+VIDYA  = ["JUPITER", "MOON"]    # Vidya = Lagna + Jupiter - Moon
+ARTHA  = ["JUPITER", "MARS"]    # Artha = Lagna + Jupiter - Mars
+KARMA  = ["JUPITER", "MERCURY"] # Karma = Lagna + Jupiter - Mercury
+PUTRA  = ["JUPITER", "JUPITER"] # Putra = Lagna + Jupiter - Jupiter
+GNA    = ["JUPITER", "VENUS"]   # Gna = Lagna + Jupiter - Venus
+SAMPAT = ["JUPITER", "SATURN"]  # Sampat = Lagna + Jupiter - Saturn
+RAJA   = ["SUN", "MOON"]        # Raja = Lagna + Sun - Moon
+DEHA   = ["SUN", "MARS"]        # Deha = Lagna + Sun - Mars
+JEEVA  = ["MOON", "SUN"]        # Jeeva = Lagna + Moon - Sun
