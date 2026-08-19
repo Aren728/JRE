@@ -1,0 +1,20 @@
+# JRE-010 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[dasha]
+version = "0.1.0"
+default_system = "VIMSHOTTARI"
+max_depth = 3
+
+# Vimshottari period lengths in years (sum = 120).
+[dasha.vimshottari_years]
+KETU = 7
+VENUS = 20
+SUN = 6
+MOON = 10
+MARS = 7
+RAHU = 18
+JUPITER = 16
+SATURN = 19
+MERCURY = 17
