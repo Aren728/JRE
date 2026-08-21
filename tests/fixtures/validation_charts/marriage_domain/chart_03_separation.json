@@ -1,0 +1,85 @@
+{
+  "chart_id": "marriage_03_separation",
+  "description": "Chart with separation indicators. Married 2012, separated 2018, divorced 2020.",
+  "birth_data": {
+    "date": "1982-08-10",
+    "time": "06:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-04-20T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "description": "Married"
+    },
+    {
+      "event_date_utc": "2018-09-01T00:00:00Z",
+      "event_type": "SEPARATION",
+      "description": "Separated from spouse"
+    },
+    {
+      "event_date_utc": "2020-03-15T00:00:00Z",
+      "event_type": "DIVORCE",
+      "description": "Divorced"
+    }
+  ],
+  "natal_facts": {
+    "7th_lord_in_kendra_or_trikona": false,
+    "7th_lord_house": 6,
+    "venus_bala": 3.5,
+    "venus_dignity_high": false,
+    "venus_debilitated": true,
+    "jupiter_aspects_7th": false,
+    "saturn_aspects_7th_lord": false,
+    "mars_manglik": true,
+    "mars_in_7th": true,
+    "mars_saturn_7th_connection": true,
+    "7th_lord_combust": true,
+    "venus_mars_connection": false,
+    "malefic_aspects_venus": true,
+    "benefic_aspects_7th": false,
+    "rahu_ketu_split_7th_lord": true
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2023-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2018-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "SEPARATION": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MARITAL_CONFLICT": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MARRIAGE_FORMATION": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MARITAL_HARMONY": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "chart_id": "marriage_05_remarriage",
+  "description": "Chart with remarriage after divorce indicators. Rahu-Ketu axis on 1/7. First marriage 2010, divorced 2015, remarried 2018.",
+  "birth_data": {
+    "date": "1987-07-25",
+    "time": "16:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2010-12-10T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "description": "First marriage"
+    },
+    {
+      "event_date_utc": "2015-06-01T00:00:00Z",
+      "event_type": "DIVORCE",
+      "description": "Divorced after 5 years"
+    },
+    {
+      "event_date_utc": "2018-09-15T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "description": "Remarried"
+    }
+  ],
+  "natal_facts": {
+    "7th_lord_in_kendra_or_trikona": true,
+    "venus_bala": 5.5,
+    "venus_dignity_high": false,
+    "jupiter_aspects_7th": false,
+    "saturn_aspects_7th_lord": false,
+    "mars_manglik": false,
+    "7th_lord_combust": false,
+    "venus_mars_connection": false,
+    "rahu_ketu_axis_1_7": true,
+    "7th_lord_dual_indication": true,
+    "venus_d9_debilitated": true,
+    "7th_lord_in_6th": true,
+    "benefic_aspects_7th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2026-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2018-06-01T00:00:00Z",
+      "activation_end_utc": "2019-07-01T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "REMARRIAGE_AFTER_DIVORCE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "MARRIAGE_FORMATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "SEPARATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "MARITAL_HARMONY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    }
+  }
+}

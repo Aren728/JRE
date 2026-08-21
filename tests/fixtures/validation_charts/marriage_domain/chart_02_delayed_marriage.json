@@ -1,0 +1,72 @@
+{
+  "chart_id": "marriage_02_delayed",
+  "description": "Chart with delayed marriage due to Saturn aspects. Married at 32 in Saturn Mahadasha.",
+  "birth_data": {
+    "date": "1985-03-20",
+    "time": "14:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2017-06-15T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "description": "Married late in Saturn Mahadasha"
+    }
+  ],
+  "natal_facts": {
+    "7th_lord_in_kendra_or_trikona": false,
+    "7th_lord_house": 8,
+    "venus_bala": 4.0,
+    "venus_dignity_high": false,
+    "jupiter_aspects_7th": false,
+    "saturn_aspects_7th_lord": true,
+    "mars_manglik": false,
+    "7th_lord_combust": false,
+    "venus_mars_connection": false,
+    "saturn_in_7th": true,
+    "benefic_aspects_7th": false,
+    "rahu_in_7th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2017-01-01T00:00:00Z",
+      "activation_end_utc": "2017-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "DELAYED_MARRIAGE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "LATE_MARRIAGE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "MARRIAGE_FORMATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    },
+    "MARITAL_HARMONY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "WEAK"
+    }
+  }
+}

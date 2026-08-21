@@ -1,0 +1,298 @@
+[wealth]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Wealth Rules ──
+# Each rule maps JRE facts to a WealthOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Wealth Accumulation ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-ACC-001"
+description = "2nd lord in 11th — wealth accumulation through earned income"
+condition_facts = ["2nd_lord_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 5"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-ACC-002"
+description = "Jupiter strong with 2nd/11th connection — sustained wealth accumulation"
+condition_facts = ["jupiter_strong=true", "jupiter_2nd_or_11th_connection=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 8"
+
+# ── Sudden Financial Loss ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-LOSS-001"
+description = "Saturn afflicting 2nd lord without benefic — sudden financial loss"
+condition_facts = ["saturn_afflicts_2nd_lord=true", "benefic_protection_2nd=false"]
+outcome = "SUDDEN_FINANCIAL_LOSS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 12"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-LOSS-002"
+description = "2nd lord debilitated with Ketu — unexpected financial setback"
+condition_facts = ["2nd_lord_debilitated=true", "ketu_2nd_connection=true"]
+outcome = "SUDDEN_FINANCIAL_LOSS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 15"
+
+# ── Inheritance ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-INT-001"
+description = "8th lord strong with 4th connection — inheritance received"
+condition_facts = ["8th_lord_strong=true", "8th_4th_connection=true"]
+outcome = "INHERITANCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 20"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-INT-002"
+description = "Jupiter in 8th with benefic aspects — inheritance through father's line"
+condition_facts = ["jupiter_in_8th=true", "benefic_aspects_8th=true"]
+outcome = "INHERITANCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 22"
+
+# ── Debt Burden ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-DEBT-001"
+description = "Saturn in 2nd with malefic conjunction — debt burden"
+condition_facts = ["saturn_in_2nd=true", "malefic_conjunction_2nd=true"]
+outcome = "DEBT_BURDEN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 25"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-DEBT-002"
+description = "6th lord connected to 2nd with Rahu — chronic debt"
+condition_facts = ["6th_lord_connected_to_2nd=true", "rahu_2nd_connection=true"]
+outcome = "DEBT_BURDEN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 28"
+
+# ── Multiple Income Streams ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-MULT-001"
+description = "11th lord strong with Mercury/Jupiter — multiple income sources"
+condition_facts = ["11th_lord_strong=true", "mercury_jupiter_11th_connection=true"]
+outcome = "MULTIPLE_INCOME_STREAMS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 30"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-MULT-002"
+description = "Multiple planets in 2nd house — diversified wealth"
+condition_facts = ["multiple_planets_2nd=true"]
+outcome = "MULTIPLE_INCOME_STREAMS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 32"
+
+# ── Wealth Through Spouse ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-SPOUSE-001"
+description = "Venus strong in 7th with Jupiter aspect — wealth through spouse"
+condition_facts = ["venus_strong=true", "venus_in_7th=true", "jupiter_aspecting_7th=true"]
+outcome = "WEALTH_THROUGH_SPOUSE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 35"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-SPOUSE-002"
+description = "7th lord in 2nd — spouse brings financial resources"
+condition_facts = ["7th_lord_in_2nd=true"]
+outcome = "WEALTH_THROUGH_SPOUSE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 38"
+
+# ── Charitable Disposition ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-CHAR-001"
+description = "Jupiter in 12th with Ketu — charitable disposition, wealth given away"
+condition_facts = ["jupiter_in_12th=true", "ketu_12th_connection=true"]
+outcome = "CHARITABLE_DISPOSITION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 40"
+
+# ── Financial Stability ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-STAB-001"
+description = "2nd lord in Kendra or Trikona — financial stability"
+condition_facts = ["2nd_lord_in_kendra_or_trikona=true"]
+outcome = "FINANCIAL_STABILITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 42"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-STAB-002"
+description = "Venus strong in 2nd — financial comfort and stability"
+condition_facts = ["venus_strong=true", "venus_in_2nd=true"]
+outcome = "FINANCIAL_STABILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 45"
+
+# ── Speculative Gains ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-SPEC-001"
+description = "Rahu strong in 5th with Jupiter — speculative gains"
+condition_facts = ["rahu_strong=true", "rahu_in_5th=true", "jupiter_strong=true"]
+outcome = "SPECULATIVE_GAINS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 48"
+
+# ── Property Wealth ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PROP-001"
+description = "4th lord strong with Mars — property wealth"
+condition_facts = ["4th_lord_strong=true", "mars_4th_connection=true"]
+outcome = "PROPERTY_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 50"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PROP-002"
+description = "Saturn in 4th with benefic — real estate accumulation"
+condition_facts = ["saturn_in_4th=true", "benefic_aspects_4th=true"]
+outcome = "PROPERTY_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 52"
+
+# ── Business Wealth ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-BIZ-001"
+description = "Mercury strong with 7th/10th connection — business wealth"
+condition_facts = ["mercury_strong=true", "mercury_7th_or_10th_connection=true"]
+outcome = "BUSINESS_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 55"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-BIZ-002"
+description = "2nd lord strong with 7th lord — partnership business wealth"
+condition_facts = ["2nd_lord_strong=true", "2nd_7th_connection=true"]
+outcome = "BUSINESS_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 58"
+
+# ── Earning Difficulty ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-EARN-001"
+description = "2nd lord combust with malefic — earning difficulty"
+condition_facts = ["2nd_lord_combust=true", "malefic_aspects_2nd=true"]
+outcome = "EARNING_DIFFICULTY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 60"
+
+# ── Financial Recovery ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-REC-001"
+description = "Jupiter aspecting debilitated 2nd lord — financial recovery"
+condition_facts = ["2nd_lord_debilitated=true", "jupiter_aspecting_2nd=true"]
+outcome = "FINANCIAL_RECOVERY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 62"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-REC-002"
+description = "Saturn in 2nd with Jupiter aspect — delayed but eventual recovery"
+condition_facts = ["saturn_in_2nd=true", "jupiter_aspecting_2nd=true"]
+outcome = "FINANCIAL_RECOVERY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 65"
+
+# ── Unexpected Windfall ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-WIND-001"
+description = "Jupiter in 8th with Rahu — unexpected windfall"
+condition_facts = ["jupiter_in_8th=true", "rahu_8th_connection=true"]
+outcome = "UNEXPECTED_WINDFALL"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 68"
+
+# ── Mitigation Rules ──
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-MIT-001"
+description = "Jupiter aspect mitigates Saturn debt burden"
+condition_facts = ["saturn_in_2nd=true", "jupiter_aspecting_2nd=true"]
+outcome = "DEBT_BURDEN"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 100"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-MIT-002"
+description = "Venus mitigates Saturn financial loss"
+condition_facts = ["saturn_afflicts_2nd_lord=true", "venus_aspecting_2nd=true"]
+outcome = "SUDDEN_FINANCIAL_LOSS"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 102"

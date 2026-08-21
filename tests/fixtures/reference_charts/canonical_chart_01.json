@@ -1,0 +1,37 @@
+{
+  "chart_id": "canonical_chart_01",
+  "description": "Reference chart for JRE-023 end-to-end pipeline validation",
+  "birth_data": {
+    "date": "1990-06-15",
+    "time": "10:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "house_system": "WHOLE_SIGN",
+  "planets": [
+    {"body": "SUN", "longitude": 89.5, "latitude": 0.0, "speed": 0.957, "retrograde": "DIRECT"},
+    {"body": "MOON", "longitude": 45.3, "latitude": 1.2, "speed": 12.5, "retrograde": "DIRECT"},
+    {"body": "MARS", "longitude": 170.2, "latitude": -0.5, "speed": 0.52, "retrograde": "DIRECT"},
+    {"body": "MERCURY", "longitude": 95.0, "latitude": 0.8, "speed": 1.2, "retrograde": "DIRECT"},
+    {"body": "JUPITER", "longitude": 200.5, "latitude": 0.3, "speed": 0.083, "retrograde": "DIRECT"},
+    {"body": "VENUS", "longitude": 55.8, "latitude": -0.2, "speed": 1.1, "retrograde": "DIRECT"},
+    {"body": "SATURN", "longitude": 250.0, "latitude": 0.1, "speed": -0.05, "retrograde": "RETROGRADE"},
+    {"body": "RAHU", "longitude": 120.0, "latitude": 0.0, "speed": -0.053, "retrograde": "RETROGRADE"},
+    {"body": "KETU", "longitude": 300.0, "latitude": 0.0, "speed": -0.053, "retrograde": "RETROGRADE"}
+  ],
+  "lagna_longitude": 85.0,
+  "ground_truth": {
+    "lagna_rashi": "CANCER",
+    "sun_rashi": "CANCER",
+    "moon_rashi": "TAURUS",
+    "mars_rashi": "LIBRA",
+    "mercury_rashi": "CANCER",
+    "jupiter_rashi": "SCORPIO",
+    "venus_rashi": "GEMINI",
+    "saturn_rashi": "SCORPIO",
+    "rahu_rashi": "CANCER",
+    "ketu_rashi": "CAPRICORN",
+    "expected_sha256_prefix": "e2e_pipeline_canonical_chart_01"
+  }
+}

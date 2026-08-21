@@ -1,0 +1,317 @@
+[marriage]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Marriage Rules ──
+# Each rule maps JRE facts to a MarriageOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+#
+# Condition formats:
+#   fact_name          – truthy check
+#   fact_name=value    – equality
+#   fact_name>value    – greater-than
+#   fact_name<value    – less-than
+#   fact_name>=value   – greater-or-equal
+#   fact_name<=value   – less-or-equal
+#   fact_name in (v1,v2) – membership
+
+# ── Marriage Formation ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-FORM-001"
+description = "7th lord in Kendra or Trikona indicates timely marriage formation"
+condition_facts = ["7th_lord_in_kendra_or_trikona=true"]
+outcome = "MARRIAGE_FORMATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 12"
+
+[[marriage.rules]]
+rule_id = "R-MARR-FORM-002"
+description = "Venus in strong dignity (bala > 6.0) supports marriage formation"
+condition_facts = ["venus_bala>6.0"]
+outcome = "MARRIAGE_FORMATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 15"
+
+[[marriage.rules]]
+rule_id = "R-MARR-FORM-003"
+description = "Jupiter aspects 7th house or 7th lord — marriage blessed"
+condition_facts = ["jupiter_aspects_7th=true"]
+outcome = "MARRIAGE_FORMATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 16, Verse 5"
+
+# ── Delayed Marriage ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-DELAY-001"
+description = "Saturn aspects 7th lord — marriage delayed"
+condition_facts = ["saturn_aspects_7th_lord=true"]
+outcome = "DELAYED_MARRIAGE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 18"
+
+[[marriage.rules]]
+rule_id = "R-MARR-DELAY-002"
+description = "7th lord in 6th, 8th, or 12th house — delayed marriage"
+condition_facts = ["7th_lord_house in (6,8,12)"]
+outcome = "DELAYED_MARRIAGE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 20"
+
+[[marriage.rules]]
+rule_id = "R-MARR-DELAY-003"
+description = "Mars in 1st, 4th, 7th, 8th, or 12th (Manglik) — delayed unless matched"
+condition_facts = ["mars_manglik=true", "partner_manglik=false"]
+outcome = "DELAYED_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 22"
+
+# ── Late Marriage ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-LATE-001"
+description = "Saturn in 7th house with no benefic aspect — late marriage"
+condition_facts = ["saturn_in_7th=true", "benefic_aspects_7th=false"]
+outcome = "LATE_MARRIAGE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 25"
+
+[[marriage.rules]]
+rule_id = "R-MARR-LATE-002"
+description = "Rahu in 7th with Saturn aspect — very late marriage"
+condition_facts = ["rahu_in_7th=true", "saturn_aspects_7th=true"]
+outcome = "LATE_MARRIAGE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 26"
+
+# ── Marriage Avoidance ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-AVOID-001"
+description = "Multiple indicators of detachment — marriage avoidance likelihood"
+condition_facts = ["7th_lord_combust=true", "venus_weak=true"]
+outcome = "MARRIAGE_AVOIDANCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 30"
+
+# ── Love Marriage ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-LOVE-001"
+description = "Venus-Mars conjunction or aspect — love marriage indicator"
+condition_facts = ["venus_mars_connection=true"]
+outcome = "LOVE_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 35"
+
+[[marriage.rules]]
+rule_id = "R-MARR-LOVE-002"
+description = "Rahu in 7th with Venus — unconventional/love marriage"
+condition_facts = ["rahu_in_7th=true", "venus_in_7th_or_aspect=true"]
+outcome = "LOVE_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 36"
+
+# ── Arranged Marriage ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-ARRANGE-001"
+description = "Jupiter strong and aspecting 7th — arranged marriage via family"
+condition_facts = ["jupiter_strong=true", "jupiter_aspects_7th=true"]
+outcome = "ARRANGED_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 40"
+
+# ── Cross-Cultural Marriage ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-CROSS-001"
+description = "Rahu-Ketu axis on 1/7 with foreign karaka — cross-cultural marriage"
+condition_facts = ["rahu_ketu_axis_1_7=true", "foreign_connection=true"]
+outcome = "CROSS_CULTURAL_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 45"
+
+# ── Marital Harmony ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-HARM-001"
+description = "Venus in own sign or exaltation with Jupiter aspect — harmony"
+condition_facts = ["venus_dignity_high=true", "jupiter_aspects_venus=true"]
+outcome = "MARITAL_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 16, Verse 10"
+
+[[marriage.rules]]
+rule_id = "R-MARR-HARM-002"
+description = "7th lord in 7th with benefic aspect — harmonious partnership"
+condition_facts = ["7th_lord_in_7th=true", "benefic_aspects_7th=true"]
+outcome = "MARITAL_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 50"
+
+# ── Marital Conflict ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-CONF-001"
+description = "Mars-Saturn conjunction or mutual aspect in 7th — conflict"
+condition_facts = ["mars_saturn_7th_connection=true"]
+outcome = "MARITAL_CONFLICT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 55"
+
+[[marriage.rules]]
+rule_id = "R-MARR-CONF-002"
+description = "Debilitated Venus with malefic aspect — marital discord"
+condition_facts = ["venus_debilitated=true", "malefic_aspects_venus=true"]
+outcome = "MARITAL_CONFLICT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 16, Verse 15"
+
+# ── Separation ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-SEP-001"
+description = "7th lord combust with Mars in 7th — separation likelihood"
+condition_facts = ["7th_lord_combust=true", "mars_in_7th=true"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 60"
+
+[[marriage.rules]]
+rule_id = "R-MARR-SEP-002"
+description = "Rahu-Ketu splitting 7th lord with malefic — separation risk"
+condition_facts = ["rahu_ketu_split_7th_lord=true"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 62"
+
+# ── Remarriage After Divorce ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-REMDIV-001"
+description = "Rahu/Ketu axis on 1/7 with 7th lord repeated — remarriage after divorce"
+condition_facts = ["rahu_ketu_axis_1_7=true", "7th_lord_d双重_indication=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 65"
+
+[[marriage.rules]]
+rule_id = "R-MARR-REMDIV-002"
+description = "Venus debilitated in D9 with 7th lord in 6th — divorce then remarriage"
+condition_facts = ["venus_d9_debilitated=true", "7th_lord_in_6th=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 66"
+
+# ── Remarriage After Spouse Death ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-REMSPOUSE-001"
+description = "7th lord in 8th with Saturn aspect — spouse loss then remarriage"
+condition_facts = ["7th_lord_in_8th=true", "saturn_aspects_7th_lord=true"]
+outcome = "REMARRIAGE_AFTER_SPOUSE_DEATH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 70"
+
+[[marriage.rules]]
+rule_id = "R-MARR-REMSPOUSE-002"
+description = "8th lord in 7th with Mars — spouse longevity risk, remarriage possible"
+condition_facts = ["8th_lord_in_7th=true", "mars_connected_to_7th=true"]
+outcome = "REMARRIAGE_AFTER_SPOUSE_DEATH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 72"
+
+# ── Spouse Loss ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-SLOSS-001"
+description = "7th lord in 8th with no benefic protection — spouse loss risk"
+condition_facts = ["7th_lord_in_8th=true", "benefic_aspects_7th_lord=false"]
+outcome = "SPOUSE_LOSS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 75"
+
+# ── Multiple Simultaneous Spouses (rare, structural) ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-MULTI-001"
+description = "Multiple 7th lord indicators with strong Rahu — multiple partnerships"
+condition_facts = ["multiple_7th_indicators=true", "rahu_strong=true"]
+outcome = "MULTIPLE_SIMULTANEOUS_SPOUSES"
+direction = "SUPPORT"
+strength = "LOW"
+source_id = "BPHS"
+location = "Chapter 7, Verse 80"
+
+# ── Mitigation Rules ──
+
+[[marriage.rules]]
+rule_id = "R-MARR-MIT-001"
+description = "Jupiter aspect on 7th mitigates Saturn delay"
+condition_facts = ["saturn_aspects_7th_lord=true", "jupiter_aspects_7th=true"]
+outcome = "DELAYED_MARRIAGE"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 100"
+
+[[marriage.rules]]
+rule_id = "R-MARR-MIT-002"
+description = "Strong Venus mitigates Mars Manglik effect"
+condition_facts = ["mars_manglik=true", "venus_dignity_high=true"]
+outcome = "DELAYED_MARRIAGE"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 102"

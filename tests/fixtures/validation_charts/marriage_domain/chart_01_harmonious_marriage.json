@@ -1,0 +1,76 @@
+{
+  "chart_id": "marriage_01_harmonious",
+  "description": "Chart with strong marriage formation and harmony indicators. Married 2015, happy marriage.",
+  "birth_data": {
+    "date": "1988-05-15",
+    "time": "10:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-11-20T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "description": "Married in Venus Mahadasha"
+    },
+    {
+      "event_date_utc": "2020-01-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Marriage remains harmonious"
+    }
+  ],
+  "natal_facts": {
+    "7th_lord_in_kendra_or_trikona": true,
+    "venus_bala": 8.5,
+    "venus_dignity_high": true,
+    "jupiter_aspects_7th": true,
+    "jupiter_aspects_venus": true,
+    "7th_lord_in_7th": true,
+    "benefic_aspects_7th": true,
+    "saturn_aspects_7th_lord": false,
+    "mars_manglik": false,
+    "7th_lord_combust": false,
+    "venus_mars_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2032-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2015-07-01T00:00:00Z",
+      "activation_end_utc": "2016-08-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "MARRIAGE_FORMATION": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MARITAL_HARMONY": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "DELAYED_MARRIAGE": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SEPARATION": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
