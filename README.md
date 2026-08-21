@@ -81,3 +81,4 @@ Designed initially for low-resource systems:
 
 Heavy AI inference is not required for the core engine.
 # JRE
+# JRE
