@@ -1,0 +1,31 @@
+# JRE-021 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[rectification]
+version = "0.1.0"
+
+# Maximum allowed offset in seconds for a single method result.
+# Offsets beyond this threshold are considered unreliable.
+max_offset_seconds = 86400  # 24 hours
+
+# Confidence scoring weights for each rectification method.
+# Higher weight = more trusted method.
+[rectification.method_weights]
+TRANSIT_TO_ASCENDANT = 0.40
+DASHA_TO_EVENT = 0.35
+PROGRESSION_TO_ASCENDANT = 0.25
+
+# Tolerance thresholds (seconds) for each method.
+# Results within the tolerance are considered high-confidence.
+[rectification.method_tolerances]
+TRANSIT_TO_ASCENDANT = 3600      # 1 hour
+DASHA_TO_EVENT = 86400           # 24 hours (dashas are long)
+PROGRESSION_TO_ASCENDANT = 7200  # 2 hours
+
+# Evidence quality scoring: how much each factor contributes
+# to the confidence_score (0.0 to 1.0).
+[rectification.evidence_weights]
+event_type_match = 0.30       # event type aligns with method
+offset_within_tolerance = 0.40  # offset is within method tolerance
+multiple_events_corroborate = 0.30  # multiple events agree
