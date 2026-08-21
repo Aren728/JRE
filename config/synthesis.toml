@@ -1,0 +1,256 @@
+# JRE-022 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[synthesis]
+version = "0.1.0"
+
+# Score thresholds for mapping aggregate score to strength enum.
+# strength_thresholds: list of (lower_bound, strength_label) pairs.
+# Evaluated in order; first match wins.
+[synthesis.strength_thresholds]
+VERY_STRONG = 8.0
+STRONG = 6.0
+MODERATE = 4.0
+WEAK = 2.0
+VERY_WEAK = 0.0
+
+# Score range: minimum and maximum possible aggregate scores.
+[synthesis.score_range]
+min_score = 0.0
+max_score = 10.0
+
+# Classical rule matrix: each rule defines a condition and its score weight.
+# Rules are grouped by category.  Each rule has:
+#   condition_type — the type of structural condition to check
+#   condition_params — parameters for the condition (varies by type)
+#   weight — the score adjustment when the condition is met
+
+# ------------------------------------------------------------------ #
+# Condition types supported:
+#   YOGA_PRESENT         — check if a Yoga ID exists in the input
+#   YOGA_ABSENT          — check if a Yoga ID is absent
+#   BALA_ABOVE           — check if a Bala value exceeds a threshold
+#   BALA_BELOW           — check if a Bala value is below a threshold
+#   DASHA_LORD_IS        — check if the current Dasha lord matches
+#   PLANET_IN_HOUSE      — check if a planet occupies a house
+#   PLANET_ASPECTS_HOUSE — check if a planet aspects a house
+#   HOUSE_LORD_IN_HOUSE  — check if a house lord occupies another house
+#   ASHTAKAVARGA_ABOVE   — check if Ashtakavarga score exceeds threshold
+#   AVASTHA_STATE        — check if a planet is in a specific Avastha
+#   KARAKA_PRESENT       — check if a Karaka condition is met
+#   COMBINED_AND         — all sub-conditions must be met
+#   COMBINED_OR          — any sub-condition must be met
+# ------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------ #
+# CAREER rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.CAREER]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "RAJA_YOGA" }
+weight = 3.0
+
+[[synthesis.rules.CAREER]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "SUN", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 1.5
+
+[[synthesis.rules.CAREER]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "SUN", house = 10 }
+weight = 2.0
+
+[[synthesis.rules.CAREER]]
+condition_type = "DASHA_LORD_IS"
+condition_params = { planet = "SUN" }
+weight = 1.0
+
+[[synthesis.rules.CAREER]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 10 }
+weight = 1.5
+
+[[synthesis.rules.CAREER]]
+condition_type = "HOUSE_LORD_IN_HOUSE"
+condition_params = { from_house = 10, to_house = 1 }
+weight = 1.0
+
+# ------------------------------------------------------------------ #
+# WEALTH rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.WEALTH]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "GAJAKESARI_YOGA" }
+weight = 2.5
+
+[[synthesis.rules.WEALTH]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "JUPITER", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 2.0
+
+[[synthesis.rules.WEALTH]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "DHANA_YOGA" }
+weight = 2.5
+
+[[synthesis.rules.WEALTH]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 2 }
+weight = 1.5
+
+[[synthesis.rules.WEALTH]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 11 }
+weight = 1.0
+
+[[synthesis.rules.WEALTH]]
+condition_type = "ASHTAKAVARGA_ABOVE"
+condition_params = { house = 2, threshold = 28 }
+weight = 1.0
+
+# ------------------------------------------------------------------ #
+# MARRIAGE rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.MARRIAGE]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "VENUS", house = 7 }
+weight = 2.5
+
+[[synthesis.rules.MARRIAGE]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 7 }
+weight = 2.0
+
+[[synthesis.rules.MARRIAGE]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "KALASARA_YOGA" }
+weight = 1.5
+
+[[synthesis.rules.MARRIAGE]]
+condition_type = "HOUSE_LORD_IN_HOUSE"
+condition_params = { from_house = 7, to_house = 1 }
+weight = 1.5
+
+[[synthesis.rules.MARRIAGE]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "VENUS", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 1.5
+
+# ------------------------------------------------------------------ #
+# HEALTH rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.HEALTH]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "VIPARITA_RAJA_YOGA" }
+weight = 2.0
+
+[[synthesis.rules.HEALTH]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "SATURN", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 1.0
+
+[[synthesis.rules.HEALTH]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "MARS", house = 6 }
+weight = 1.5
+
+[[synthesis.rules.HEALTH]]
+condition_type = "AVASTHA_STATE"
+condition_params = { planet = "SUN", state = "DEEPTADI" }
+weight = 1.0
+
+# ------------------------------------------------------------------ #
+# EDUCATION rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.EDUCATION]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "GAJAKESARI_YOGA" }
+weight = 2.0
+
+[[synthesis.rules.EDUCATION]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 4 }
+weight = 2.0
+
+[[synthesis.rules.EDUCATION]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "JUPITER", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 1.5
+
+[[synthesis.rules.EDUCATION]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "MERCURY", house = 4 }
+weight = 1.5
+
+# ------------------------------------------------------------------ #
+# PROPERTY rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.PROPERTY]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 4 }
+weight = 2.5
+
+[[synthesis.rules.PROPERTY]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "VENUS", house = 4 }
+weight = 1.5
+
+[[synthesis.rules.PROPERTY]]
+condition_type = "HOUSE_LORD_IN_HOUSE"
+condition_params = { from_house = 4, to_house = 1 }
+weight = 1.5
+
+# ------------------------------------------------------------------ #
+# CHILDREN rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.CHILDREN]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 5 }
+weight = 2.5
+
+[[synthesis.rules.CHILDREN]]
+condition_type = "BALA_ABOVE"
+condition_params = { planet = "JUPITER", bala_type = "SHADBALA", threshold = 5.0 }
+weight = 2.0
+
+[[synthesis.rules.CHILDREN]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "PUTRA_YOGA" }
+weight = 1.5
+
+# ------------------------------------------------------------------ #
+# LITIGATION rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.LITIGATION]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "MARS", house = 6 }
+weight = 1.5
+
+[[synthesis.rules.LITIGATION]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "SATURN", house = 6 }
+weight = 1.0
+
+[[synthesis.rules.LITIGATION]]
+condition_type = "YOGA_PRESENT"
+condition_params = { yoga_id = "SHARAPA_YOGA" }
+weight = 2.0
+
+# ------------------------------------------------------------------ #
+# TRAVEL rules
+# ------------------------------------------------------------------ #
+[[synthesis.rules.TRAVEL]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "JUPITER", house = 12 }
+weight = 2.0
+
+[[synthesis.rules.TRAVEL]]
+condition_type = "PLANET_IN_HOUSE"
+condition_params = { planet = "RAHU", house = 12 }
+weight = 1.5
+
+[[synthesis.rules.TRAVEL]]
+condition_type = "HOUSE_LORD_IN_HOUSE"
+condition_params = { from_house = 12, to_house = 1 }
+weight = 1.0
