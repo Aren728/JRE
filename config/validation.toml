@@ -1,0 +1,47 @@
+[validation]
+version = "1.0"
+match_threshold = 0.5
+
+# ── Trigger Weights ──
+# Weights for different trigger types when computing match scores.
+# Higher weight = more important for validation.
+
+[validation.trigger_weights]
+Jupiter_Mahadasha = 1.5
+Saturn_Mahadasha = 1.5
+Venus_Yoga = 1.2
+Gajakesari_Yoga = 1.3
+Chandra_Mangala_Yoga = 1.1
+Budhaditya_Yoga = 1.0
+Sun_Moon_conjunction = 1.0
+7th_Lord_Yoga = 1.2
+10th_Lord_Yoga = 1.2
+2nd_Lord_Yoga = 1.0
+Mars_in_8th = 0.8
+Saturn_in_10th = 1.0
+Jupiter_in_1st = 1.1
+Moon_in_7th = 0.9
+Venus_in_7th = 1.2
+Rahu_transit_Ascendant = 1.0
+Saturn_transit_7th = 1.1
+Dasha_Lord_is_Venus = 1.3
+Dasha_Lord_is_Saturn = 1.2
+Dasha_Lord_is_Jupiter = 1.3
+
+# ── Source Reliability ──
+# Reliability scores for different engine sources (0.0 to 1.0).
+# Used to weight triggers from different engines.
+
+[validation.source_reliability]
+yoga = 0.95
+dasha = 0.90
+bala = 0.85
+ashtakavarga = 0.80
+avastha = 0.75
+karaka = 0.85
+drik = 0.90
+synthesis = 0.95
+bhava = 0.90
+jaimini = 0.80
+tajika = 0.75
+research = 0.70

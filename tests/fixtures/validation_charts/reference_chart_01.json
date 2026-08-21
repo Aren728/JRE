@@ -1,0 +1,74 @@
+{
+  "chart_id": "validation_chart_01",
+  "description": "Reference chart for validation system testing - career and marriage focused",
+  "birth_data": {
+    "date": "1985-03-20",
+    "time": "14:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "ground_truth": {
+    "lagna_rashi": "CANCER",
+    "moon_rashi": "PISCES",
+    "sun_rashi": "PISCES",
+    "jupiter_house": 7,
+    "venus_house": 11,
+    "saturn_house": 6,
+    "mars_house": 4,
+    "mercury_house": 9
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2010-06-15T00:00:00Z",
+      "event_type": "MARRIAGE",
+      "expected_triggers": [
+        "Venus_Yoga",
+        "7th_Lord_Yoga",
+        "Dasha_Lord_is_Venus",
+        "Venus_in_7th"
+      ],
+      "description": "Marriage during Venus Mahadasha"
+    },
+    {
+      "event_date_utc": "2012-09-01T00:00:00Z",
+      "event_type": "PROMOTION",
+      "expected_triggers": [
+        "10th_Lord_Yoga",
+        "Saturn_in_10th",
+        "Saturn_Mahadasha"
+      ],
+      "description": "Career promotion during Saturn period"
+    },
+    {
+      "event_date_utc": "2015-01-10T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "expected_triggers": [
+        "Jupiter_Mahadasha",
+        "Jupiter_in_1st",
+        "Gajakesari_Yoga"
+      ],
+      "description": "First child during Jupiter Mahadasha"
+    },
+    {
+      "event_date_utc": "2018-07-20T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "expected_triggers": [
+        "2nd_Lord_Yoga",
+        "Jupiter_Mahadasha",
+        "Jupiter_in_1st"
+      ],
+      "description": "Started business during Jupiter Mahadasha"
+    },
+    {
+      "event_date_utc": "2020-03-15T00:00:00Z",
+      "event_type": "HEALTH_CRISIS",
+      "expected_triggers": [
+        "Mars_in_8th",
+        "Saturn_Mahadasha",
+        "Rahu_transit_Ascendant"
+      ],
+      "description": "Health issue during Saturn-Rahu period"
+    }
+  ]
+}
