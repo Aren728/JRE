@@ -1,0 +1,288 @@
+[career]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Career Rules ──
+# Each rule maps JRE facts to a CareerOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Career Ascent ──
+
+[[career.rules]]
+rule_id = "R-CAREER-ASC-001"
+description = "10th lord in Kendra or Trikona — career ascent indicator"
+condition_facts = ["10th_lord_in_kendra_or_trikona=true"]
+outcome = "CAREER_ASCENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 5"
+
+[[career.rules]]
+rule_id = "R-CAREER-ASC-002"
+description = "Strong Sun with 10th house connection — leadership career"
+condition_facts = ["sun_strong=true", "sun_10th_connection=true"]
+outcome = "CAREER_ASCENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 8"
+
+# ── Professional Stagnation ──
+
+[[career.rules]]
+rule_id = "R-CAREER-STAG-001"
+description = "10th lord debilitated — professional stagnation"
+condition_facts = ["10th_lord_debilitated=true"]
+outcome = "PROFESSIONAL_STAGNATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 12"
+
+[[career.rules]]
+rule_id = "R-CAREER-STAG-002"
+description = "Saturn afflicting 10th lord without benefic aspect — stagnation"
+condition_facts = ["saturn_afflicts_10th_lord=true", "benefic_aspects_10th=false"]
+outcome = "PROFESSIONAL_STAGNATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 15"
+
+# ── Change of Profession ──
+
+[[career.rules]]
+rule_id = "R-CAREER-CHG-001"
+description = "Multiple planet changes in 10th house — profession change"
+condition_facts = ["multiple_planets_10th=true"]
+outcome = "CHANGE_OF_PROFESSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 18"
+
+[[career.rules]]
+rule_id = "R-CAREER-CHG-002"
+description = "Rahu in 10th with Saturn aspect — unconventional career change"
+condition_facts = ["rahu_in_10th=true", "saturn_aspecting_10th=true"]
+outcome = "CHANGE_OF_PROFESSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 20"
+
+# ── Authority Status ──
+
+[[career.rules]]
+rule_id = "R-CAREER-AUTH-001"
+description = "Sun in 10th with Saturn support — authority and status"
+condition_facts = ["sun_in_10th=true", "saturn_supports_10th=true"]
+outcome = "AUTHORITY_STATUS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 25"
+
+[[career.rules]]
+rule_id = "R-CAREER-AUTH-002"
+description = "Strong Mars with 10th lord connection — commanding authority"
+condition_facts = ["mars_strong=true", "mars_10th_connection=true"]
+outcome = "AUTHORITY_STATUS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 28"
+
+# ── Loss of Employment ──
+
+[[career.rules]]
+rule_id = "R-CAREER-LOSS-001"
+description = "10th lord combust with malefic conjunction — employment loss risk"
+condition_facts = ["10th_lord_combust=true", "malefic_conjunction_10th=true"]
+outcome = "LOSS_OF_EMPLOYMENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 30"
+
+[[career.rules]]
+rule_id = "R-CAREER-LOSS-002"
+description = "Saturn transiting 10th with no protection — job loss period"
+condition_facts = ["saturn_transit_10th=true", "benefic_protection=false"]
+outcome = "LOSS_OF_EMPLOYMENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 32"
+
+# ── Successful Business ──
+
+[[career.rules]]
+rule_id = "R-CAREER-BIZ-001"
+description = "Strong Mercury with Jupiter aspect — successful business"
+condition_facts = ["mercury_strong=true", "jupiter_aspecting_mercury=true"]
+outcome = "SUCCESSFUL_BUSINESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 35"
+
+[[career.rules]]
+rule_id = "R-CAREER-BIZ-002"
+description = "7th lord strong with 10th connection — business partnerships succeed"
+condition_facts = ["7th_lord_strong=true", "7th_10th_connection=true"]
+outcome = "SUCCESSFUL_BUSINESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 38"
+
+# ── Government Service ──
+
+[[career.rules]]
+rule_id = "R-CAREER-GOV-001"
+description = "Sun-Saturn axis on 10th — government service indicator"
+condition_facts = ["sun_10th_connection=true", "saturn_10th_connection=true"]
+outcome = "GOVERNMENT_SERVICE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 40"
+
+[[career.rules]]
+rule_id = "R-CAREER-GOV-002"
+description = "Saturn in 10th with Sun aspect — bureaucratic authority"
+condition_facts = ["saturn_in_10th=true", "sun_aspecting_10th=true"]
+outcome = "GOVERNMENT_SERVICE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 42"
+
+# ── Foreign Career ──
+
+[[career.rules]]
+rule_id = "R-CAREER-FORG-001"
+description = "Rahu in 10th with foreign karaka — foreign career"
+condition_facts = ["rahu_in_10th=true", "foreign_connection=true"]
+outcome = "FOREIGN_CAREER"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 45"
+
+[[career.rules]]
+rule_id = "R-CAREER-FORG-002"
+description = "12th lord connected to 10th — overseas employment"
+condition_facts = ["12th_lord_connected_to_10th=true"]
+outcome = "FOREIGN_CAREER"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 48"
+
+# ── Career Obstacles ──
+
+[[career.rules]]
+rule_id = "R-CAREER-OBS-001"
+description = "Saturn afflicting 10th lord with no benefic — career obstacles"
+condition_facts = ["saturn_afflicts_10th_lord=true", "benefic_aspects_10th=false"]
+outcome = "CAREER_OBSTACLES"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 50"
+
+[[career.rules]]
+rule_id = "R-CAREER-OBS-002"
+description = "Mars-Saturn conjunction in 10th — workplace conflicts"
+condition_facts = ["mars_saturn_10th_conjunction=true"]
+outcome = "CAREER_OBSTACLES"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 52"
+
+# ── Recognition & Awards ──
+
+[[career.rules]]
+rule_id = "R-CAREER-REC-001"
+description = "Sun in 10th with Jupiter aspect — recognition and awards"
+condition_facts = ["sun_in_10th=true", "jupiter_aspecting_10th=true"]
+outcome = "RECOGNITION_AWARDS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 55"
+
+# ── Financial Prosperity ──
+
+[[career.rules]]
+rule_id = "R-CAREER-FIN-001"
+description = "2nd lord strong with 10th connection — financial prosperity through career"
+condition_facts = ["2nd_lord_strong=true", "2nd_10th_connection=true"]
+outcome = "FINANCIAL_PROSPERITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 58"
+
+[[career.rules]]
+rule_id = "R-CAREER-FIN-002"
+description = "Jupiter in Kendra with 10th lord aspect — wealth through profession"
+condition_facts = ["jupiter_in_kendra=true", "jupiter_aspecting_10th_lord=true"]
+outcome = "FINANCIAL_PROSPERITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 60"
+
+# ── Career Transition ──
+
+[[career.rules]]
+rule_id = "R-CAREER-TRANS-001"
+description = "Ketu in 10th with Rahu in 4th — career transition indicator"
+condition_facts = ["ketu_in_10th=true", "rahu_in_4th=true"]
+outcome = "CAREER_TRANSITION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 62"
+
+# ── Entrepreneurship ──
+
+[[career.rules]]
+rule_id = "R-CAREER-ENT-001"
+description = "Mercury-Jupiter conjunction with 10th lord — entrepreneurship"
+condition_facts = ["mercury_jupiter_conjunction=true", "10th_lord_strong=true"]
+outcome = "ENTREPRENEURSHIP"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 10, Verse 65"
+
+# ── Creative Career ──
+
+[[career.rules]]
+rule_id = "R-CAREER-CRE-001"
+description = "Venus in 10th with artistic karaka — creative career"
+condition_facts = ["venus_in_10th=true", "artistic_karaka_strong=true"]
+outcome = "CREATIVE_CAREER"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 68"
+
+# ── Mitigation Rules ──
+
+[[career.rules]]
+rule_id = "R-CAREER-MIT-001"
+description = "Jupiter aspect mitigates Saturn career obstacles"
+condition_facts = ["saturn_afflicts_10th_lord=true", "jupiter_aspecting_10th=true"]
+outcome = "CAREER_OBSTACLES"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 10, Verse 100"
