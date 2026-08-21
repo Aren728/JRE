@@ -1,0 +1,21 @@
+# JRE-018 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[jaimini]
+version = "0.1.0"
+
+# Chara Dasha default period duration (years per sign).
+default_period_years = 7
+
+# Starting-sign rule: which house-lord from Lagna determines the
+# first Chara Dasha sign, keyed by Lagna nature.
+[jaimini.chara_dasha_start_sign]
+MOVABLE = 9   # Movable Lagna → sign of 9th lord from Lagna
+FIXED   = 10  # Fixed Lagna   → sign of 10th lord from Lagna
+DUAL    = 11  # Dual Lagna    → sign of 11th lord from Lagna
+
+# Argala (intervention) houses counted from the target sign.
+[jaimini.argala]
+intervening_houses  = [2, 4, 5, 11]
+obstructing_houses  = [12, 10, 9, 3]
