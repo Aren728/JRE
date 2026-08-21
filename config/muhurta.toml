@@ -1,0 +1,112 @@
+# JRE-020 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[muhurta]
+version = "0.1.0"
+
+# Inauspicious tithis (Rikta tithis — 4th, 9th, 14th of each fortnight)
+inauspicious_tithis = [
+    "SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "SHUKLA_CHATURDASHI",
+    "KRISHNA_PRATIPADA", "KRISHNA_SHASHTHI", "KRISHNA_EKADASHI",
+]
+
+# Inauspicious karanas
+inauspicious_karanas = ["VISHTI", "SHAKUNI"]
+
+# Inauspicious yogas
+inauspicious_yogas = [
+    "VISHKAMBHA", "ATIGANDA", "SHULA", "GANDA", "VYATIPATA", "VAIDHRITI",
+]
+
+# Category-specific structural rules.
+# Each category defines:
+#   required_nakshatras  — favorable nakshatras
+#   avoided_tithis       — tithis to avoid for this category
+#   avoided_karanas      — karanas to avoid
+#   avoided_yogas        — yogas to avoid
+#   avoided_vars         — weekdays to avoid
+#   preferred_vars       — favorable weekdays
+#   weight_required      — score weight for required nakshatra match
+#   weight_avoided       — score weight for avoided element penalty
+#   weight_preferred     — score weight for preferred element bonus
+
+[muhurta.categories.MARRIAGE]
+required_nakshatras = ["ROHINI", "MRIGASHIRA", "PUNARVASU", "HASTA", "SWATI", "SHRAVANA", "REVATI"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "SHUKLA_CHATURDASHI", "KRISHNA_PRATIPADA", "KRISHNA_SHASHTHI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI", "SHAKUNI"]
+avoided_yogas = ["SHULA", "GANDA", "VYATIPATA"]
+avoided_vars = ["SATURDAY"]
+preferred_vars = ["THURSDAY", "FRIDAY"]
+
+[muhurta.categories.TRAVEL]
+required_nakshatras = ["ASHWINI", "PUSHYA", "HASTA", "SHRAVANA", "REVATI"]
+avoided_tithis = ["SHUKLA_NAVAMI", "KRISHNA_SHASHTHI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["SHULA", "GANDA"]
+avoided_vars = ["TUESDAY"]
+preferred_vars = ["MONDAY", "THURSDAY"]
+
+[muhurta.categories.BUSINESS]
+required_nakshatras = ["ROHINI", "PUNARVASU", "HASTA", "CHITRA", "SWATI"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI", "SHAKUNI"]
+avoided_yogas = ["VYATIPATA", "VAIDHRITI"]
+avoided_vars = ["SATURDAY"]
+preferred_vars = ["THURSDAY", "FRIDAY"]
+
+[muhurta.categories.EDUCATION]
+required_nakshatras = ["PUNARVASU", "HASTA", "SWATI", "SHRAVANA"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["SHULA", "GANDA"]
+avoided_vars = ["TUESDAY"]
+preferred_vars = ["THURSDAY", "WEDNESDAY"]
+
+[muhurta.categories.HOUSEWARMING]
+required_nakshatras = ["ROHINI", "PUNARVASU", "HASTA", "SHRAVANA", "REVATI"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["VYATIPATA", "VAIDHRITI"]
+avoided_vars = ["SATURDAY"]
+preferred_vars = ["THURSDAY"]
+
+[muhurta.categories.VEHICLE_PURCHASE]
+required_nakshatras = ["ASHWINI", "ROHINI", "PUNARVASU", "HASTA"]
+avoided_tithis = ["SHUKLA_NAVAMI", "KRISHNA_SHASHTHI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["SHULA"]
+avoided_vars = ["TUESDAY"]
+preferred_vars = ["THURSDAY", "FRIDAY"]
+
+[muhurta.categories.MEDICAL]
+required_nakshatras = ["PUSHYA", "HASTA", "SHRAVANA"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["SHULA", "GANDA"]
+avoided_vars = ["TUESDAY"]
+preferred_vars = ["MONDAY", "THURSDAY"]
+
+[muhurta.categories.LITIGATION]
+required_nakshatras = ["ARDRA", "SWATI", "VISHAKHA", "JYESHTHA"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["VYATIPATA"]
+avoided_vars = ["SATURDAY"]
+preferred_vars = ["TUESDAY"]
+
+[muhurta.categories.COMMENCEMENT]
+required_nakshatras = ["ASHWINI", "PUNARVASU", "HASTA", "SHRAVANA", "REVATI"]
+avoided_tithis = ["SHUKLA_NAVAMI", "KRISHNA_SHASHTHI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI", "SHAKUNI"]
+avoided_yogas = ["SHULA", "GANDA", "VYATIPATA"]
+avoided_vars = ["SATURDAY"]
+preferred_vars = ["THURSDAY", "FRIDAY"]
+
+[muhurta.categories.GENERAL]
+required_nakshatras = ["ASHWINI", "PUNARVASU", "HASTA", "SHRAVANA", "REVATI"]
+avoided_tithis = ["SHUKLA_CHATURTHI", "SHUKLA_NAVAMI", "KRISHNA_EKADASHI"]
+avoided_karanas = ["VISHTI"]
+avoided_yogas = ["SHULA", "GANDA"]
+avoided_vars = []
+preferred_vars = ["THURSDAY"]
