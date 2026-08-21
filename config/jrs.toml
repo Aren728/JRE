@@ -1,0 +1,88 @@
+[jrs]
+version = "1.0"
+default_research_depth = "standard"
+
+# ── Routing Matrix ──
+# Each query category maps to:
+#   required_engines     – JRE modules to invoke
+#   research_topics      – topics for the Research Worker
+#   required_houses      – houses relevant to this category (advisory)
+
+[jrs.routing.CAREER]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka", "ashtakavarga",
+]
+research_topics = ["career_indicators", "saturn_in_10th", "mercury_dasha_effects"]
+required_houses = [10, 6]
+
+[jrs.routing.WEALTH]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka", "ashtakavarga",
+]
+research_topics = ["wealth_indicators", "jupiter_yoga", "2nd_11th_house_rules"]
+required_houses = [2, 11]
+
+[jrs.routing.MARRIAGE]
+required_engines = [
+    "bhava", "bala", "dasha", "drik", "yoga", "karaka", "avastha",
+]
+research_topics = ["marriage_indicators", "venus_yoga", "7th_house_analysis"]
+required_houses = [7, 2]
+
+[jrs.routing.HEALTH]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka", "avastha",
+]
+research_topics = ["health_indicators", "mars_saturn_analysis", "6th_8th_house_rules"]
+required_houses = [1, 6, 8]
+
+[jrs.routing.EDUCATION]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka", "ashtakavarga",
+]
+research_topics = ["education_indicators", "jupiter_mercury_analysis", "5th_house_rules"]
+required_houses = [4, 5, 9]
+
+[jrs.routing.PROPERTY]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka", "ashtakavarga",
+]
+research_topics = ["property_indicators", "moon_jupiter_analysis", "4th_house_rules"]
+required_houses = [4, 11]
+
+[jrs.routing.CHILDREN]
+required_engines = [
+    "bhava", "bala", "dasha", "drik", "yoga", "karaka",
+]
+research_topics = ["children_indicators", "5th_house_analysis", "jupiter_upapada"]
+required_houses = [5, 11]
+
+[jrs.routing.LITIGATION]
+required_engines = [
+    "bhava", "bala", "dasha", "drik", "yoga", "karaka",
+]
+research_topics = ["litigation_indicators", "mars_saturn_conflict", "6th_house_rules"]
+required_houses = [6, 12]
+
+[jrs.routing.TRAVEL]
+required_engines = [
+    "bhava", "dasha", "yoga", "karaka",
+]
+research_topics = ["travel_indicators", "9th_12th_house_analysis"]
+required_houses = [9, 12]
+
+[jrs.routing.GENERAL]
+required_engines = [
+    "bhava", "bala", "dasha", "yoga", "karaka",
+]
+research_topics = ["general_chart_analysis"]
+required_houses = [1]
+
+# ── Engine Selection Hints ──
+# Optional engines that may be triggered by specific context flags
+[jrs.engine_hints]
+tajika_if_annual = true
+jaimini_if_lagna_known = true
+rectification_if_events_provided = true
+muhurta_if_electional = true
+prashna_if_query_time_provided = true

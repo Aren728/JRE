@@ -47,6 +47,7 @@ packages = [
     "muhurta",
     "rectification",
     "synthesis",
+    "jrs",
 ]
 
 [tool.pytest.ini_options]
@@ -93,6 +94,8 @@ testpaths = [
     "tests/integration/rectification",
     "tests/unit/synthesis",
     "tests/integration/synthesis",
+    "tests/unit/jrs",
+    "tests/integration/jrs",
 ]
 addopts = "-q"
 pythonpath = ["."]
@@ -109,7 +112,7 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis"]
+packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis", "jrs"]
 strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.
