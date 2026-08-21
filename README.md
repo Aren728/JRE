@@ -80,3 +80,4 @@ Designed initially for low-resource systems:
 - Python 3.12
 
 Heavy AI inference is not required for the core engine.
+# JRE
