@@ -1,0 +1,71 @@
+{
+  "chart_id": "career_04_obstacles",
+  "description": "Chart with career obstacles. Saturn afflicting 10th lord, debilitated 10th lord. Multiple job changes.",
+  "birth_data": {
+    "date": "1982-08-10",
+    "time": "06:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-03-01T00:00:00Z",
+      "event_type": "LOSS_OF_EMPLOYMENT",
+      "description": "Lost job during restructuring"
+    },
+    {
+      "event_date_utc": "2019-06-01T00:00:00Z",
+      "event_type": "CAREER_START",
+      "description": "Started new position after gap"
+    }
+  ],
+  "natal_facts": {
+    "saturn_afflicts_10th_lord": true,
+    "benefic_aspects_10th": false,
+    "10th_lord_debilitated": true,
+    "mars_saturn_10th_conjunction": true,
+    "10th_lord_in_kendra_or_trikona": false,
+    "sun_strong": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2015-01-01T00:00:00Z",
+      "activation_end_utc": "2034-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2020-01-01T00:00:00Z",
+      "activation_end_utc": "2020-12-31T23:59:59Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "CAREER_OBSTACLES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "PROFESSIONAL_STAGNATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "LOSS_OF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "CAREER_ASCENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    }
+  }
+}

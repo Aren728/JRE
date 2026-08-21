@@ -1,0 +1,72 @@
+{
+  "chart_id": "career_02_business",
+  "description": "Chart with successful business indicators. Strong Mercury-Jupiter, 7th-10th connection. Started tech company 2015.",
+  "birth_data": {
+    "date": "1985-03-20",
+    "time": "14:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-06-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Started technology company"
+    },
+    {
+      "event_date_utc": "2020-01-01T00:00:00Z",
+      "event_type": "PROMOTION",
+      "description": "Company achieved profitability"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": true,
+    "jupiter_aspecting_mercury": true,
+    "7th_lord_strong": true,
+    "7th_10th_connection": true,
+    "10th_lord_in_kendra_or_trikona": true,
+    "saturn_in_10th": false,
+    "saturn_afflicts_10th_lord": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MERCURY",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2027-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2015-06-01T00:00:00Z",
+      "activation_end_utc": "2016-07-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SUCCESSFUL_BUSINESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "ENTREPRENEURSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CAREER_ASCENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "GOVERNMENT_SERVICE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "chart_id": "career_03_foreign",
+  "description": "Chart with foreign career indicators. Rahu in 10th with foreign connection. Moved to US 2016.",
+  "birth_data": {
+    "date": "1990-02-14",
+    "time": "22:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2016-09-01T00:00:00Z",
+      "event_type": "RELOCATION",
+      "description": "Relocated to United States for work"
+    }
+  ],
+  "natal_facts": {
+    "rahu_in_10th": true,
+    "foreign_connection": true,
+    "10th_lord_in_kendra_or_trikona": true,
+    "12th_lord_connected_to_10th": true,
+    "saturn_in_10th": false,
+    "saturn_afflicts_10th_lord": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2016-06-01T00:00:00Z",
+      "activation_end_utc": "2017-07-01T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "FOREIGN_CAREER": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CAREER_ASCENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHANGE_OF_PROFESSION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "GOVERNMENT_SERVICE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

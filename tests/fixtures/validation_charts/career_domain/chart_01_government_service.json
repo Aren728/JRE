@@ -1,0 +1,67 @@
+{
+  "chart_id": "career_01_government",
+  "description": "Chart with strong government service indicators. Sun-Saturn axis on 10th. Joined IAS 2018.",
+  "birth_data": {
+    "date": "1988-06-15",
+    "time": "09:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-08-01T00:00:00Z",
+      "event_type": "CAREER_START",
+      "description": "Joined Indian Administrative Service"
+    }
+  ],
+  "natal_facts": {
+    "sun_10th_connection": true,
+    "saturn_10th_connection": true,
+    "sun_strong": true,
+    "saturn_bala": 7.0,
+    "10th_lord_in_kendra_or_trikona": true,
+    "sun_in_10th": false,
+    "saturn_in_10th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2015-01-01T00:00:00Z",
+      "activation_end_utc": "2034-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2018-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "GOVERNMENT_SERVICE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "AUTHORITY_STATUS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CAREER_ASCENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LOSS_OF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
