@@ -1,0 +1,26 @@
+# JRE-019 default configuration.
+# TOML is authoritative; every default is declared here (no hidden
+# defaults). A config missing any declared field is a load error.
+
+[prashna]
+version = "0.1.0"
+
+# Default query category when none is specified.
+default_category = "GENERAL"
+
+# Classical house mappings for standard query categories.
+# primary_house = most important house for this query type.
+# secondary_house = supporting house for this query type.
+# House numbers are 1-12, counted from the Prashna Lagna.
+
+[prashna.house_mappings]
+WEALTH    = { primary = 2,  secondary = 11 }
+CAREER    = { primary = 10, secondary = 6 }
+MARRIAGE  = { primary = 7,  secondary = 2 }
+HEALTH    = { primary = 1,  secondary = 8 }
+EDUCATION = { primary = 4,  secondary = 9 }
+PROPERTY  = { primary = 4,  secondary = 11 }
+LITIGATION = { primary = 6,  secondary = 7 }
+TRAVEL    = { primary = 3,  secondary = 12 }
+CHILDREN  = { primary = 5,  secondary = 11 }
+GENERAL   = { primary = 1,  secondary = 7 }
