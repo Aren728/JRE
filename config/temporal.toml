@@ -1,0 +1,30 @@
+[temporal]
+version = "1.0"
+min_triggers_for_high = 3
+min_triggers_for_moderate = 2
+
+# ── Convergence Rules ──
+# Scores for specific trigger combinations.
+# Higher = stronger convergence when these types align.
+
+[temporal.convergence_rules]
+"DASHA+TRANSIT" = 0.9
+"DASHA+VARGA" = 0.8
+"TRANSIT+VARGA" = 0.7
+"DASHA+TRANSIT+VARGA" = 1.0
+"DASHA+ANTARDASHA" = 0.85
+"DASHA+ANTARDASHA+TRANSIT" = 0.95
+"TRANSIT+ASHTAKAVARGA" = 0.75
+"DASHA+ASHTAKAVARGA" = 0.8
+"ALL_TYPES" = 1.0
+
+# ── Activation Type Weights ──
+# Relative importance of each activation type (0.0 to 1.0).
+
+[temporal.activation_type_weights]
+DASHA = 1.0
+ANTARDASHA = 0.9
+TRANSIT = 0.8
+VARGA = 0.7
+ASHTAKAVARGA = 0.6
+CLASSICAL_AGE = 0.5

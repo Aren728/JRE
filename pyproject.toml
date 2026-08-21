@@ -99,6 +99,8 @@ testpaths = [
     "tests/integration/jrs",
     "tests/unit/jrs/evidence",
     "tests/integration/jrs/evidence",
+    "tests/unit/jrs/temporal",
+    "tests/integration/jrs/temporal",
     "tests/unit/validation",
     "tests/integration/validation",
 ]
