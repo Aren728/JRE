@@ -1,0 +1,91 @@
+{
+  "description": "Sample marriage evidence demonstrating support, contradiction, and mitigation links",
+  "sources": [
+    {
+      "source_id": "BPHS",
+      "name": "Brihat Parashara Hora Shastra",
+      "author": "Parashara",
+      "era": "Classical",
+      "reliability_weight": 1.0
+    },
+    {
+      "source_id": "Phaladeepika",
+      "name": "Phaladeepika",
+      "author": "Mantreshwara",
+      "era": "Classical",
+      "reliability_weight": 0.9
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "R-7L-COND-X",
+      "description": "7th lord in Kendra or Trikona indicates timely marriage",
+      "required_conditions": ["7th_lord_placed", "kendra_or_trikona"],
+      "outcome_taxonomy": "MARRIAGE_TIMELY"
+    },
+    {
+      "rule_id": "R-VENUS-YOGA",
+      "description": "Venus in strong dignity with 7th lord aspects indicates marriage harmony",
+      "required_conditions": ["venus_strong", "7th_lord_aspect"],
+      "outcome_taxonomy": "MARRIAGE_HARMONY"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-1042",
+      "outcome_taxonomy": "MARRIAGE_TIMELY",
+      "supporting_fact_type": "7TH_LORD_IN_KENDRA",
+      "rule_id": "R-7L-COND-X",
+      "source_id": "BPHS",
+      "location": "Chapter 7, Verse 12",
+      "direction": "SUPPORT",
+      "strength": "HIGH",
+      "timing_relevance": "Relevant during Venus Mahadasha",
+      "independence_group": "BPHS-7L",
+      "contradicted_by": ["E-1077"],
+      "mitigated_by": ["E-1085"]
+    },
+    {
+      "evidence_id": "E-1043",
+      "outcome_taxonomy": "MARRIAGE_TIMELY",
+      "supporting_fact_type": "VENUS_ASPECTS_7TH",
+      "rule_id": "R-VENUS-YOGA",
+      "source_id": "BPHS",
+      "location": "Chapter 7, Verse 15",
+      "direction": "SUPPORT",
+      "strength": "MODERATE",
+      "timing_relevance": "Relevant during Venus Mahadasha",
+      "independence_group": "BPHS-VEN",
+      "contradicted_by": [],
+      "mitigated_by": []
+    },
+    {
+      "evidence_id": "E-1077",
+      "outcome_taxonomy": "MARRIAGE_DELAYED",
+      "supporting_fact_type": "SATURN_ASPECTS_7TH_LORD",
+      "rule_id": "R-7L-COND-X",
+      "source_id": "Phaladeepika",
+      "location": "Chapter 16, Verse 8",
+      "direction": "CONTRADICT",
+      "strength": "MODERATE",
+      "timing_relevance": "Relevant during Saturn Mahadasha",
+      "independence_group": "PD-7L",
+      "contradicted_by": [],
+      "mitigated_by": ["E-1085"]
+    },
+    {
+      "evidence_id": "E-1085",
+      "outcome_taxonomy": "MARRIAGE_NEUTRAL",
+      "supporting_fact_type": "JUPITER_ASPECTS_7TH_LORD",
+      "rule_id": "R-VENUS-YOGA",
+      "source_id": "BPHS",
+      "location": "Chapter 7, Verse 20",
+      "direction": "MITIGATE",
+      "strength": "LOW",
+      "timing_relevance": "Relevant during Jupiter Mahadasha",
+      "independence_group": "BPHS-JUP",
+      "contradicted_by": [],
+      "mitigated_by": []
+    }
+  ]
+}
