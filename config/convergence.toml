@@ -1,0 +1,44 @@
+[convergence]
+version = "1.0"
+independence_penalty = 0.5
+
+# ── Assessment Status Thresholds ──
+
+convergent_min_windows = 1
+
+strongly_supported_min_independent = 3
+strongly_supported_min_supporting = 4
+supported_min_independent = 2
+supported_min_supporting = 2
+weakly_supported_min_supporting = 1
+
+strongly_contradicted_min_contradicting = 3
+contradicted_min_contradicting = 2
+
+high_confidence_min_weight = 0.8
+low_confidence_max_weight = 0.4
+
+# ── Source Weights ──
+# Reliability weights for classical sources (0.0 to 1.0).
+
+[convergence.source_weights]
+BPHS = 1.0
+Phaladeepika = 0.9
+Brihat_Jataka = 0.95
+Jataka_Parijata = 0.85
+Saravali = 0.8
+Uttara_Kalamrita = 0.85
+Laghu_Jataka = 0.8
+Chamatkara_Chintamani = 0.75
+Prashna_Marga = 0.9
+Muhurta_Martaanda = 0.8
+
+# ── Strength Weights ──
+# Weights for evidence strength levels.
+
+[convergence.strength_weights]
+VERY_HIGH = 1.0
+HIGH = 0.8
+MODERATE = 0.6
+LOW = 0.4
+VERY_LOW = 0.2
