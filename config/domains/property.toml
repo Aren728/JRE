@@ -1,0 +1,162 @@
+[property]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Property Rules ──
+# Each rule maps JRE facts to a PropertyOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Property Acquisition ──
+
+[[property.rules]]
+rule_id = "R-PROP-ACQ-001"
+description = "4th lord strong — property acquisition indicators"
+condition_facts = ["4th_lord_strong=true"]
+outcome = "PROPERTY_ACQUISITION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 2"
+
+[[property.rules]]
+rule_id = "R-PROP-ACQ-002"
+description = "Mars strong with 4th connection — property acquisition through effort"
+condition_facts = ["mars_strong=true", "mars_4th_connection=true"]
+outcome = "PROPERTY_ACQUISITION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 4"
+
+# ── Real Estate Wealth ──
+
+[[property.rules]]
+rule_id = "R-PROP-WEALTH-001"
+description = "Venus strong in 4th — real estate wealth"
+condition_facts = ["venus_strong=true", "venus_in_4th=true"]
+outcome = "REAL_ESTATE_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 8"
+
+[[property.rules]]
+rule_id = "R-PROP-WEALTH-002"
+description = "4th lord in kendra with benefic — real estate wealth"
+condition_facts = ["4th_lord_in_kendra=true", "benefic_aspects_4th=true"]
+outcome = "REAL_ESTATE_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 10"
+
+# ── Disputes Over Property ──
+
+[[property.rules]]
+rule_id = "R-PROP-DISP-001"
+description = "Mars afflicting 4th house — disputes over property"
+condition_facts = ["mars_afflicting_4th=true"]
+outcome = "DISPUTES_OVER_PROPERTY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 12"
+
+[[property.rules]]
+rule_id = "R-PROP-DISP-002"
+description = "Saturn in 4th with Rahu — property disputes"
+condition_facts = ["saturn_in_4th=true", "rahu_4th_connection=true"]
+outcome = "DISPUTES_OVER_PROPERTY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 15"
+
+# ── Loss Of Property ──
+
+[[property.rules]]
+rule_id = "R-PROP-LOSS-001"
+description = "4th lord debilitated — loss of property"
+condition_facts = ["4th_lord_debilitated=true"]
+outcome = "LOSS_OF_PROPERTY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 18"
+
+[[property.rules]]
+rule_id = "R-PROP-LOSS-002"
+description = "Saturn afflicting 4th lord without benefic — loss of property"
+condition_facts = ["saturn_afflicts_4th_lord=true", "benefic_protection_4th=false"]
+outcome = "LOSS_OF_PROPERTY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 20"
+
+# ── Multiple Properties ──
+
+[[property.rules]]
+rule_id = "R-PROP-MULT-001"
+description = "Multiple planets in 4th — multiple properties"
+condition_facts = ["multiple_planets_4th=true"]
+outcome = "MULTIPLE_PROPERTIES"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 25"
+
+[[property.rules]]
+rule_id = "R-PROP-MULT-002"
+description = "Jupiter strong with 4th connection — multiple properties through fortune"
+condition_facts = ["jupiter_strong=true", "jupiter_4th_connection=true"]
+outcome = "MULTIPLE_PROPERTIES"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 28"
+
+# ── Foreign Property ──
+
+[[property.rules]]
+rule_id = "R-PROP-FORG-001"
+description = "Rahu in 4th with 12th connection — foreign property"
+condition_facts = ["rahu_in_4th=true", "rahu_12th_connection=true"]
+outcome = "FOREIGN_PROPERTY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 30"
+
+[[property.rules]]
+rule_id = "R-PROP-FORG-002"
+description = "4th lord in 12th — foreign property"
+condition_facts = ["4th_lord_in_12th=true"]
+outcome = "FOREIGN_PROPERTY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[property.rules]]
+rule_id = "R-PROP-MIT-001"
+description = "Jupiter mitigates Mars property disputes"
+condition_facts = ["mars_afflicting_4th=true", "jupiter_aspecting_4th=true"]
+outcome = "DISPUTES_OVER_PROPERTY"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 100"
+
+[[property.rules]]
+rule_id = "R-PROP-MIT-002"
+description = "Venus mitigates Saturn property loss"
+condition_facts = ["saturn_afflicts_4th_lord=true", "venus_aspecting_4th=true"]
+outcome = "LOSS_OF_PROPERTY"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 102"
