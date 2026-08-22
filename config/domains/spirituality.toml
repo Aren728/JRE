@@ -1,0 +1,162 @@
+[spirituality]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Spirituality Rules ──
+# Each rule maps JRE facts to a SpiritualityOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Spiritual Awakening ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-AWK-001"
+description = "Ketu strong with Jupiter — spiritual awakening"
+condition_facts = ["ketu_strong=true", "jupiter_strong=true"]
+outcome = "SPIRITUAL_AWAKENING"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 2"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-AWK-002"
+description = "Jupiter aspecting Moon — spiritual awakening through devotion"
+condition_facts = ["jupiter_aspecting_moon=true"]
+outcome = "SPIRITUAL_AWAKENING"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 4"
+
+# ── Renunciation ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-REN-001"
+description = "Ketu in 1st with Saturn — renunciation tendencies"
+condition_facts = ["ketu_in_1st=true", "saturn_strong=true"]
+outcome = "RENUNCIATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 8"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-REN-002"
+description = "Rahu debilitated with Ketu strong — renunciation through loss"
+condition_facts = ["rahu_debilitated=true", "ketu_strong=true"]
+outcome = "RENUNCIATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 10"
+
+# ── Ascetic Tendencies ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-ASC-001"
+description = "Saturn in 8th with Ketu — ascetic tendencies"
+condition_facts = ["saturn_in_8th=true", "ketu_8th_connection=true"]
+outcome = "ASCETIC_TENDENCIES"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 12"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-ASC-002"
+description = "Mars in 12th with Saturn — ascetic through hardship"
+condition_facts = ["mars_in_12th=true", "saturn_12th_connection=true"]
+outcome = "ASCETIC_TENDENCIES"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 15"
+
+# ── Religious Devotion ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-DEV-001"
+description = "Jupiter strong in Kendra — religious devotion"
+condition_facts = ["jupiter_strong=true", "jupiter_in_kendra=true"]
+outcome = "RELIGIOUS_DEVOTION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 18"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-DEV-002"
+description = "Moon strong with Jupiter aspect — devotional nature"
+condition_facts = ["moon_strong=true", "jupiter_aspects_moon=true"]
+outcome = "RELIGIOUS_DEVOTION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 20"
+
+# ── Occult Interest ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-OCC-001"
+description = "Rahu in 12th with Ketu in 6th — occult interest"
+condition_facts = ["rahu_in_12th=true", "ketu_in_6th=true"]
+outcome = "OCCULT_INTEREST"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 25"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-OCC-002"
+description = "Mercury strong with Ketu — occult knowledge"
+condition_facts = ["mercury_strong=true", "ketu_mercury_connection=true"]
+outcome = "OCCULT_INTEREST"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 28"
+
+# ── Moksha Indicators ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-MOK-001"
+description = "12th lord in 4th with Jupiter — moksha indicators"
+condition_facts = ["12th_lord_in_4th=true", "jupiter_strong=true"]
+outcome = "MOKSHA_INDICATORS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 20, Verse 30"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-MOK-002"
+description = "Ketu in 12th with Jupiter strong — moksha path"
+condition_facts = ["ketu_in_12th=true", "jupiter_strong=true"]
+outcome = "MOKSHA_INDICATORS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-MIT-001"
+description = "Jupiter mitigates Saturn ascetic hardship"
+condition_facts = ["saturn_in_8th=true", "jupiter_aspects_8th=true"]
+outcome = "ASCETIC_TENDENCIES"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 100"
+
+[[spirituality.rules]]
+rule_id = "R-SPIR-MIT-002"
+description = "Venus mitigates Ketu renunciation"
+condition_facts = ["ketu_in_1st=true", "venus_aspects_1st=true"]
+outcome = "RENUNCIATION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 20, Verse 102"
