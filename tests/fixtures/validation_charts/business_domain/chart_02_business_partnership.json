@@ -1,0 +1,81 @@
+{
+  "chart_id": "business_02_partnership",
+  "description": "Chart with 7th lord in 10th — business partnership through profession. Joint venture partner 2012, expanded to 3 branches.",
+  "birth_data": {
+    "date": "1983-04-22",
+    "time": "14:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-08-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Formed business partnership"
+    },
+    {
+      "event_date_utc": "2017-12-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Expanded partnership to 3 branches"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": false,
+    "mercury_10th_connection": false,
+    "rahu_in_10th": false,
+    "7th_lord_in_10th": true,
+    "mercury_7th_connection": false,
+    "saturn_afflicts_10th_lord": false,
+    "benefic_protection_10th": true,
+    "10th_lord_debilitated": false,
+    "ketu_10th_connection": false,
+    "mars_strong": false,
+    "mars_in_3rd": false,
+    "saturn_in_3rd": false,
+    "jupiter_strong": false,
+    "jupiter_10th_connection": false,
+    "venus_strong": false,
+    "7th_10th_connection": false,
+    "4th_lord_strong": false,
+    "4th_10th_connection": false,
+    "saturn_in_4th": false,
+    "jupiter_aspects_10th": false,
+    "venus_aspects_10th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2012-06-01T00:00:00Z",
+      "activation_end_utc": "2012-12-01T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "BUSINESS_PARTNERSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUCCESSFUL_ENTREPRENEURSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SELF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

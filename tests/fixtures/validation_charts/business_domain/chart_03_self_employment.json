@@ -1,0 +1,81 @@
+{
+  "chart_id": "business_03_self_employment",
+  "description": "Chart with Mars strong in 3rd — self-employment drive. Left corporate job 2014, became independent consultant.",
+  "birth_data": {
+    "date": "1990-12-05",
+    "time": "11:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2014-09-01T00:00:00Z",
+      "event_type": "JOB_CHANGE",
+      "description": "Left corporate job for self-employment"
+    },
+    {
+      "event_date_utc": "2016-03-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Established independent consulting practice"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": false,
+    "mercury_10th_connection": false,
+    "rahu_in_10th": false,
+    "7th_lord_in_10th": false,
+    "mercury_7th_connection": false,
+    "saturn_afflicts_10th_lord": false,
+    "benefic_protection_10th": true,
+    "10th_lord_debilitated": false,
+    "ketu_10th_connection": false,
+    "mars_strong": true,
+    "mars_in_3rd": true,
+    "saturn_in_3rd": false,
+    "jupiter_strong": false,
+    "jupiter_10th_connection": false,
+    "venus_strong": false,
+    "7th_10th_connection": false,
+    "4th_lord_strong": false,
+    "4th_10th_connection": false,
+    "saturn_in_4th": false,
+    "jupiter_aspects_10th": false,
+    "venus_aspects_10th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2017-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2014-06-01T00:00:00Z",
+      "activation_end_utc": "2014-12-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SELF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUCCESSFUL_ENTREPRENEURSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "BUSINESS_PARTNERSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

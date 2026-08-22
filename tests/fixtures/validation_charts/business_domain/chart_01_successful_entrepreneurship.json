@@ -1,0 +1,81 @@
+{
+  "chart_id": "business_01_entrepreneurship",
+  "description": "Chart with Mercury strong + 10th connection — successful entrepreneurship. Founded tech startup 2015, profitable by 2018.",
+  "birth_data": {
+    "date": "1987-09-12",
+    "time": "09:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-03-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Founded technology startup"
+    },
+    {
+      "event_date_utc": "2018-06-15T00:00:00Z",
+      "event_type": "FINANCIAL_GAIN",
+      "description": "Startup became profitable"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": true,
+    "mercury_10th_connection": true,
+    "rahu_in_10th": false,
+    "7th_lord_in_10th": false,
+    "mercury_7th_connection": false,
+    "saturn_afflicts_10th_lord": false,
+    "benefic_protection_10th": true,
+    "10th_lord_debilitated": false,
+    "ketu_10th_connection": false,
+    "mars_strong": false,
+    "mars_in_3rd": false,
+    "saturn_in_3rd": false,
+    "jupiter_strong": false,
+    "jupiter_10th_connection": false,
+    "venus_strong": false,
+    "7th_10th_connection": false,
+    "4th_lord_strong": false,
+    "4th_10th_connection": false,
+    "saturn_in_4th": false,
+    "jupiter_aspects_10th": false,
+    "venus_aspects_10th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MERCURY",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2015-07-01T00:00:00Z",
+      "activation_end_utc": "2016-08-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SUCCESSFUL_ENTREPRENEURSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "BUSINESS_PARTNERSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SELF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

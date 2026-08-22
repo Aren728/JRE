@@ -1,0 +1,81 @@
+{
+  "chart_id": "business_04_failure",
+  "description": "Chart with Saturn afflicting 10th lord without benefic — business failure. Restaurant venture failed 2016, significant losses.",
+  "birth_data": {
+    "date": "1985-06-30",
+    "time": "16:20:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2014-01-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Opened restaurant business"
+    },
+    {
+      "event_date_utc": "2016-08-15T00:00:00Z",
+      "event_type": "BUSINESS_END",
+      "description": "Restaurant closed due to losses"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": false,
+    "mercury_10th_connection": false,
+    "rahu_in_10th": false,
+    "7th_lord_in_10th": false,
+    "mercury_7th_connection": false,
+    "saturn_afflicts_10th_lord": true,
+    "benefic_protection_10th": false,
+    "10th_lord_debilitated": false,
+    "ketu_10th_connection": false,
+    "mars_strong": false,
+    "mars_in_3rd": false,
+    "saturn_in_3rd": false,
+    "jupiter_strong": false,
+    "jupiter_10th_connection": false,
+    "venus_strong": false,
+    "7th_10th_connection": false,
+    "4th_lord_strong": false,
+    "4th_10th_connection": false,
+    "saturn_in_4th": false,
+    "jupiter_aspects_10th": false,
+    "venus_aspects_10th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2031-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2016-12-31T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "BUSINESS_FAILURE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUCCESSFUL_ENTREPRENEURSHIP": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SELF_EMPLOYMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
