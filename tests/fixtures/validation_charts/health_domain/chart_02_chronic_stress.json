@@ -1,0 +1,85 @@
+{
+  "chart_id": "health_02_chronic_stress",
+  "description": "Chart with Saturn in 6th + Rahu in 6th — chronic constitutional strain. Experienced prolonged workplace stress 2012-2018.",
+  "birth_data": {
+    "date": "1985-09-18",
+    "time": "22:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-04-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Began experiencing chronic workplace stress"
+    },
+    {
+      "event_date_utc": "2018-12-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Stress levels reduced after career change"
+    }
+  ],
+  "natal_facts": {
+    "1st_lord_strong": false,
+    "1st_lord_in_kendra": false,
+    "sun_strong": false,
+    "lagna_bala_high": false,
+    "1st_lord_debilitated": false,
+    "malefic_lagna": false,
+    "saturn_afflicting_1st_lord": false,
+    "benefic_protection_lagna": true,
+    "saturn_in_6th": true,
+    "rahu_in_6th": true,
+    "8th_lord_afflicted": false,
+    "malefic_8th": false,
+    "jupiter_aspecting_1st": false,
+    "venus_in_kendra": false,
+    "multiple_benefics_kendra": false,
+    "moon_with_rahu": false,
+    "moon_waning": false,
+    "6th_bindus_low": false,
+    "8th_bindus_low": false,
+    "1st_lord_own_sign": false,
+    "ashtakavarga_high": false,
+    "mars_strong": false,
+    "mars_lagna_connection": false,
+    "jupiter_aspecting_6th": false,
+    "venus_aspects_lagna": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2014-12-31T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "CHRONIC_STRESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGH_VITALITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "ENERGY_FLUCTUATIONS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

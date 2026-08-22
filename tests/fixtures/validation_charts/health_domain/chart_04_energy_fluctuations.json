@@ -1,0 +1,85 @@
+{
+  "chart_id": "health_04_fluctuations",
+  "description": "Chart with Moon conjunct Rahu + waning Moon — variable constitutional energy. Experienced energy highs and lows throughout life.",
+  "birth_data": {
+    "date": "1990-04-08",
+    "time": "16:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 26.8467,
+    "longitude": 80.9462
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2014-06-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Periods of high energy followed by fatigue"
+    },
+    {
+      "event_date_utc": "2018-11-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Continued pattern of energy variability"
+    }
+  ],
+  "natal_facts": {
+    "1st_lord_strong": false,
+    "1st_lord_in_kendra": false,
+    "sun_strong": false,
+    "lagna_bala_high": false,
+    "1st_lord_debilitated": false,
+    "malefic_lagna": false,
+    "saturn_afflicting_1st_lord": false,
+    "benefic_protection_lagna": true,
+    "saturn_in_6th": false,
+    "rahu_in_6th": false,
+    "8th_lord_afflicted": false,
+    "malefic_8th": false,
+    "jupiter_aspecting_1st": false,
+    "venus_in_kendra": false,
+    "multiple_benefics_kendra": false,
+    "moon_with_rahu": true,
+    "moon_waning": true,
+    "6th_bindus_low": false,
+    "8th_bindus_low": false,
+    "1st_lord_own_sign": false,
+    "ashtakavarga_high": false,
+    "mars_strong": false,
+    "mars_lagna_connection": false,
+    "jupiter_aspecting_6th": false,
+    "venus_aspects_lagna": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2026-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2014-03-01T00:00:00Z",
+      "activation_end_utc": "2015-09-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "ENERGY_FLUCTUATIONS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGH_VITALITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHRONIC_STRESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "chart_id": "health_01_high_vitality",
+  "description": "Chart with 1st lord strong in Kendra — high constitutional vitality. Active athlete, robust constitution throughout life.",
+  "birth_data": {
+    "date": "1992-06-10",
+    "time": "06:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-08-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Completed marathon, excellent physical fitness"
+    },
+    {
+      "event_date_utc": "2020-01-15T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Maintained high energy and vitality levels"
+    }
+  ],
+  "natal_facts": {
+    "1st_lord_strong": true,
+    "1st_lord_in_kendra": true,
+    "sun_strong": false,
+    "lagna_bala_high": false,
+    "1st_lord_debilitated": false,
+    "malefic_lagna": false,
+    "saturn_afflicting_1st_lord": false,
+    "benefic_protection_lagna": true,
+    "saturn_in_6th": false,
+    "rahu_in_6th": false,
+    "8th_lord_afflicted": false,
+    "malefic_8th": false,
+    "jupiter_aspecting_1st": false,
+    "venus_in_kendra": false,
+    "multiple_benefics_kendra": false,
+    "moon_with_rahu": false,
+    "moon_waning": false,
+    "6th_bindus_low": false,
+    "8th_bindus_low": false,
+    "1st_lord_own_sign": false,
+    "ashtakavarga_high": false,
+    "mars_strong": false,
+    "mars_lagna_connection": false,
+    "jupiter_aspecting_6th": false,
+    "venus_aspects_lagna": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2026-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2015-06-01T00:00:00Z",
+      "activation_end_utc": "2016-07-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "HIGH_VITALITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LOW_VITALITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "STRONG_RECOVERY_CAPACITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

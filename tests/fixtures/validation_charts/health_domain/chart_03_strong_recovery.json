@@ -1,0 +1,85 @@
+{
+  "chart_id": "health_03_recovery",
+  "description": "Chart with Jupiter aspecting 1st + 1st lord strong — strong recuperative capacity. Quick recovery from physical setbacks.",
+  "birth_data": {
+    "date": "1988-12-25",
+    "time": "09:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2016-03-01T00:00:00Z",
+      "event_type": "RECOVERY",
+      "description": "Recovered quickly from sports injury"
+    },
+    {
+      "event_date_utc": "2019-07-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Maintained strong physical resilience"
+    }
+  ],
+  "natal_facts": {
+    "1st_lord_strong": true,
+    "1st_lord_in_kendra": false,
+    "sun_strong": false,
+    "lagna_bala_high": false,
+    "1st_lord_debilitated": false,
+    "malefic_lagna": false,
+    "saturn_afflicting_1st_lord": false,
+    "benefic_protection_lagna": true,
+    "saturn_in_6th": false,
+    "rahu_in_6th": false,
+    "8th_lord_afflicted": false,
+    "malefic_8th": false,
+    "jupiter_aspecting_1st": true,
+    "venus_in_kendra": false,
+    "multiple_benefics_kendra": false,
+    "moon_with_rahu": false,
+    "moon_waning": false,
+    "6th_bindus_low": false,
+    "8th_bindus_low": false,
+    "1st_lord_own_sign": false,
+    "ashtakavarga_high": false,
+    "mars_strong": false,
+    "mars_lagna_connection": false,
+    "jupiter_aspecting_6th": false,
+    "venus_aspects_lagna": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2017-02-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "STRONG_RECOVERY_CAPACITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGH_VITALITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHRONIC_STRESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
