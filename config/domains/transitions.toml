@@ -1,0 +1,162 @@
+[transitions]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Transitions Rules ──
+# Each rule maps JRE facts to a TransitionOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Life Phase Shift ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-PHASE-001"
+description = "Saturn return at critical degree — life phase shift"
+condition_facts = ["saturn_return=true"]
+outcome = "LIFE_PHASE_SHIFT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 2"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-PHASE-002"
+description = "Jupiter-Ketu conjunction — life phase shift through wisdom"
+condition_facts = ["jupiter_ketu_conjunction=true"]
+outcome = "LIFE_PHASE_SHIFT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 4"
+
+# ── Sudden Upheaval ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-UPHEAV-001"
+description = "Rahu-Ketu axis activated by transit — sudden upheaval"
+condition_facts = ["rahu_ketu_axis=true", "rahu_ketu_transit_activation=true"]
+outcome = "SUDDEN_UPHEAVAL"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 8"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-UPHEAV-002"
+description = "Eclipse on natal planet — sudden upheaval"
+condition_facts = ["eclipse_effects=true"]
+outcome = "SUDDEN_UPHEAVAL"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 10"
+
+# ── Gradual Evolution ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-EVOL-001"
+description = "Saturn slow transit through Kendra — gradual evolution"
+condition_facts = ["saturn_slow_transit_kendra=true"]
+outcome = "GRADUAL_EVOLUTION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 12"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-EVOL-002"
+description = "Jupiter progressive transit — gradual evolution"
+condition_facts = ["jupiter_progressive_transit=true"]
+outcome = "GRADUAL_EVOLUTION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 15"
+
+# ── Crisis Recovery ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-CRISIS-001"
+description = "8th house activations with benefic aspect — crisis recovery"
+condition_facts = ["8th_house_activations=true", "benefic_aspects_8th=true"]
+outcome = "CRISIS_RECOVERY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 18"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-CRISIS-002"
+description = "Mars-Saturn conjunction with Jupiter aspect — crisis recovery"
+condition_facts = ["mars_saturn_conjunction=true", "jupiter_aspects_mars_saturn=true"]
+outcome = "CRISIS_RECOVERY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 20"
+
+# ── Spiritual Awakening ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-SPIRIT-001"
+description = "Ketu strong with Jupiter — spiritual awakening"
+condition_facts = ["ketu_strong=true", "jupiter_strong=true"]
+outcome = "SPIRITUAL_AWAKENING"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 25"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-SPIRIT-002"
+description = "Neptune-Uranus aspect with Ketu — spiritual awakening"
+condition_facts = ["neptune_uranus_aspect=true", "ketu_connection=true"]
+outcome = "SPIRITUAL_AWAKENING"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 28"
+
+# ── Status Change ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-STATUS-001"
+description = "10th lord activated by transit — status change"
+condition_facts = ["10th_lord_activated=true"]
+outcome = "STATUS_CHANGE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 19, Verse 30"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-STATUS-002"
+description = "Sun-Moon conjunction in Kendra — status change"
+condition_facts = ["sun_moon_conjunction_kendra=true"]
+outcome = "STATUS_CHANGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[transitions.rules]]
+rule_id = "R-TRNS-MIT-001"
+description = "Jupiter mitigates Rahu-Ketu upheaval"
+condition_facts = ["rahu_ketu_axis=true", "jupiter_aspects_rahu_ketu=true"]
+outcome = "SUDDEN_UPHEAVAL"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 100"
+
+[[transitions.rules]]
+rule_id = "R-TRNS-MIT-002"
+description = "Saturn mitigates eclipse upheaval"
+condition_facts = ["eclipse_effects=true", "saturn_aspects_eclipse_point=true"]
+outcome = "SUDDEN_UPHEAVAL"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 19, Verse 102"
