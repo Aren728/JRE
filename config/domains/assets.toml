@@ -1,0 +1,158 @@
+[business]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Vehicle Acquisition ──
+
+[[business.rules]]
+rule_id = "R-ASST-VEH-001"
+description = "4th lord strong with benefic — vehicle acquisition"
+condition_facts = ["4th_lord_strong=true", "benefic_aspects_4th=true"]
+outcome = "VEHICLE_ACQUISITION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 30, Verse 2"
+
+[[business.rules]]
+rule_id = "R-ASST-VEH-002"
+description = "Mercury strong with 4th connection — vehicle through trade"
+condition_facts = ["mercury_strong=true", "mercury_4th_connection=true"]
+outcome = "VEHICLE_ACQUISITION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 5"
+
+# ── Luxury Assets ──
+
+[[business.rules]]
+rule_id = "R-ASST-LUX-001"
+description = "Venus strong in 4th — luxury assets"
+condition_facts = ["venus_strong=true", "venus_in_4th=true"]
+outcome = "LUXURY_ASSETS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 30, Verse 8"
+
+[[business.rules]]
+rule_id = "R-ASST-LUX-002"
+description = "Jupiter-Venus conjunction in 4th — luxury through inheritance"
+condition_facts = ["jupiter_venus_conjunction_4th=true", "8th_lord_strong=true"]
+outcome = "LUXURY_ASSETS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 10"
+
+# ── Asset Loss ──
+
+[[business.rules]]
+rule_id = "R-ASST-LOS-001"
+description = "4th lord debilitated with malefic — asset loss"
+condition_facts = ["4th_lord_debilitated=true", "malefic_4th=true"]
+outcome = "ASSET_LOSS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 30, Verse 12"
+
+[[business.rules]]
+rule_id = "R-ASST-LOS-002"
+description = "Saturn afflicting 4th lord — loss through delay"
+condition_facts = ["saturn_afflicting_4th_lord=true", "benefic_protection_4th=false"]
+outcome = "ASSET_LOSS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 15"
+
+# ── Vehicle Accidents ──
+
+[[business.rules]]
+rule_id = "R-ASST-ACC-001"
+description = "Mars afflicting 4th with Saturn — vehicle accidents"
+condition_facts = ["mars_afflicting_4th=true", "saturn_in_4th=true"]
+outcome = "VEHICLE_ACCIDENTS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 30, Verse 18"
+
+[[business.rules]]
+rule_id = "R-ASST-ACC-002"
+description = "Rahu in 4th with Mars — sudden vehicle incident"
+condition_facts = ["rahu_in_4th=true", "mars_strong=true"]
+outcome = "VEHICLE_ACCIDENTS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 30, Verse 20"
+
+# ── Multiple Vehicles ──
+
+[[business.rules]]
+rule_id = "R-ASST-MUL-001"
+description = "4th lord strong with multiple benefic aspects — multiple vehicles"
+condition_facts = ["4th_lord_strong=true", "multiple_benefics_4th=true"]
+outcome = "MULTIPLE_VEHICLES"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 30, Verse 22"
+
+[[business.rules]]
+rule_id = "R-ASST-MUL-002"
+description = "Sun in 4th with Jupiter — government vehicles"
+condition_facts = ["sun_in_4th=true", "jupiter_strong=true"]
+outcome = "MULTIPLE_VEHICLES"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 25"
+
+# ── Real Estate Assets ──
+
+[[business.rules]]
+rule_id = "R-ASST-RE-001"
+description = "4th lord in Kendra with Venus — real estate wealth"
+condition_facts = ["4th_lord_in_kendra=true", "venus_strong=true"]
+outcome = "REAL_ESTATE_ASSETS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 30, Verse 28"
+
+[[business.rules]]
+rule_id = "R-ASST-RE-002"
+description = "Saturn in 4th with benefic — property accumulation"
+condition_facts = ["saturn_in_4th=true", "benefic_aspects_4th=true"]
+outcome = "REAL_ESTATE_ASSETS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 30"
+
+# ── Mitigation Rules ──
+
+[[business.rules]]
+rule_id = "R-ASST-MIT-001"
+description = "Jupiter mitigates Mars vehicle accident risk"
+condition_facts = ["mars_afflicting_4th=true", "jupiter_aspecting_4th=true"]
+outcome = "VEHICLE_ACCIDENTS"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 100"
+
+[[business.rules]]
+rule_id = "R-ASST-MIT-002"
+description = "Venus mitigates Saturn asset loss"
+condition_facts = ["saturn_afflicting_4th_lord=true", "venus_aspects_4th=true"]
+outcome = "ASSET_LOSS"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 30, Verse 102"
