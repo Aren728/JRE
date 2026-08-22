@@ -1,78 +1,76 @@
 # JRE — Jyotish Reasoning Engine
 
-A modular computational reasoning framework for Jyotisha.
+**JRS v1.0** — Deterministic astrological evidence framework with 8 validated domains, traceable CLI, and classical source citations.
+
+A modular computational reasoning framework for Jyotisha that separates astronomical calculations, astrological classification, knowledge representation, rule execution, and evidence aggregation into independent, testable layers.
+
+## Quick Start
+
+```bash
+# Install dependencies
+pip install -e ".[dev]"
+
+# Run the CLI
+python -m jrs.cli \
+  --birth-date "28-09-1979" \
+  --birth-time "18:24" \
+  --place "Mumbai, India" \
+  --query "career"
+
+# JSON output
+python -m jrs.cli \
+  --birth-date "28-09-1979" \
+  --birth-time "18:24" \
+  --place "Mumbai, India" \
+  --query "wealth" \
+  --json
+```
 
 ## Architecture
 
-JRE separates:
+JRE separates concerns into 8 layers:
 
-1. Astronomical calculations
-2. Astrological classification
-3. Knowledge representation
-4. Rule execution
-5. Dynamic state calculation
-6. Evidence aggregation
-7. Inference
-8. Explanation
+1. **Astronomical calculations** (JRE-002) — Swiss Ephemeris adapter
+2. **Astrological classification** (JRE-003) — Coordinate/state layer
+3. **Knowledge representation** (JRE-004) — Classical rules & fact vocabulary
+4. **Rule execution** — Condition evaluation engine
+5. **Dynamic state calculation** — Bhava, Gochar, Dasha engines
+6. **Evidence aggregation** — Domain rule catalogs → EvidenceRecords
+7. **Inference** — Temporal windows → Convergence assessment
+8. **Explanation** — Traceable reports with classical source citations
 
-## Orchestration status
+## Domains (JRS v1.0 — 8 Tier 1 Domains)
 
-- JRE-002 — Astronomical Core: MERGED
-- JRE-003 — Jyotish Coordinate and State Layer: QA-COMPLETE
-- JRE-004 — Classical Knowledge & Rule Engine (layers 3 + 5):
-  VALIDATOR-COMPLETE (recovery, second pass) — the original FAIL (14/16
-  citations incorrect) was corrected via FACT_VOCABULARY v1.1.0 + a
-  derived-facts layer ([ADR-012](docs/decisions/ADR-012-FACT-VOCABULARY-DERIVED-FACTS.md)),
-  re-authored rule catalogs, committed validation evidence, and a second
-  correction of the `natural_friendship` table to the verified verse-55
-  reading
-  ([recovery validation report](docs/validation/JRE-004-RECOVERY-VALIDATION-REPORT.md);
-  original [validation report](docs/validation/JRE-004-VALIDATION-REPORT.md);
-  [queue item](orchestration/queue/JRE-004-CLASSICAL-KNOWLEDGE.md),
-  [architecture](docs/architecture/JRE-004-KNOWLEDGE-RULES-CORE.md),
-  [specialist spec](docs/architecture/JRE-004-SPECIALIST-SPEC.md))
+| Domain | Outcomes | Status |
+|--------|----------|--------|
+| Marriage | MARRIAGE_FORMATION, MARITAL_HARMONY, DELAYED_MARRIAGE, SEPARATION | ✅ Validated |
+| Career | CAREER_ASCENT, GOVERNMENT_SERVICE, SUCCESSFUL_BUSINESS, ENTREPRENEURSHIP | ✅ Validated |
+| Wealth | WEALTH_ACCUMULATION, INHERITANCE, DEBT_BURDEN, BUSINESS_WEALTH, SPECULATIVE_GAINS | ✅ Validated |
+| Progeny | EASY_CONCEPTION, DELAYED_PROGENY, MULTIPLE_CHILDREN, CHALLENGES_WITH_CHILDREN | ✅ Validated |
+| Migration | FOREIGN_SETTLEMENT, SHORT_TERM_TRAVEL, MIGRATION_DELAY, VISA_OBSTACLES | ✅ Validated |
+| Education | HIGHER_EDUCATION, EDUCATION_DISRUPTION, FOREIGN_EDUCATION, RESEARCH_ACADEMIA | ✅ Validated |
+| Property | PROPERTY_ACQUISITION, REAL_ESTATE_WEALTH, DISPUTES_OVER_PROPERTY, FOREIGN_PROPERTY | ✅ Validated |
+| Transitions | LIFE_PHASE_SHIFT, SUDDEN_UPHEAVAL, GRADUAL_EVOLUTION, SPIRITUAL_AWAKENING | ✅ Validated |
 
-- JRE-005 — Bhava / House Engine (derived bhava/house computational
-  state): VALIDATOR-COMPLETE — `src/bhava/` implements the v0.2.0
-  contract (occupancy, planet-house, lordship/ownership,
-  relative-house, categories, cusp proximity, aspect echo,
-  transit-house facts, provenance, deterministic serialization) over
-  the JRE-003 public API only (ADR-013); 123 tests green, QA-PASS,
-  VALIDATOR-PASS (cross-layer `relative_house` oracle equality
-  verified)
-  ([queue item](orchestration/queue/JRE-005-BHAVA-ENGINE.md),
-  [architecture](docs/architecture/JRE-005-BHAVA-CORE.md),
-  [specialist spec](docs/architecture/JRE-005-SPECIALIST-SPEC.md),
-  [data contract](docs/architecture/JRE-005-DATA-CONTRACT.md),
-  [test plan](docs/architecture/JRE-005-TEST-PLAN.md))
+## Running Tests
 
-- JRE-006 — Gochar / Continuous Transit Engine (continuous transit
-  state layer): SPECIALIST-COMPLETE — implementation-ready v0.2.0
-  contract over JRE-003 transit primitives and JRE-005 house facts
-  (instant gochar state, transit-to-natal relationships, deterministic
-  interval event/state facts, echo-don't-recompute, full provenance,
-  endpoint-semantics correction, aspect-state echo); 14/14 public-API
-  dependencies AVAILABLE, no JRE-002 additive API required; three
-  capabilities deferred to v0.2 with additive JRE-003 API proposals
-  (ADR-026)
-  ([queue item](orchestration/queue/JRE-006-GOCHAR-TRANSIT-ENGINE.md),
-  [specialist spec](docs/architecture/JRE-006-SPECIALIST-SPEC.md),
-  [architecture](docs/architecture/JRE-006-GOCHAR-TRANSIT-ENGINE.md),
-  [data contract](docs/architecture/JRE-006-DATA-CONTRACT.md),
-  [test plan](docs/architecture/JRE-006-TEST-PLAN.md),
-  [ADR-022](docs/decisions/ADR-022-GOCHAR-LAYER-BOUNDARY.md) …
-  [ADR-029](docs/decisions/ADR-029-ASPECT-STATE-ECHO-EVENTS-DEFERRED.md))
+```bash
+# Unit tests
+pytest tests/unit/jrs/ -v
 
-Future layers: JRE-007 Eclipse Engine (eclipse detection; ADR-027),
-then interpretation engines (Yoga, Dasha, Drishti, Nakshatra
-interpretation, multi-layer synthesis, prediction/confidence) numbered
-at REQUEST time starting at JRE-008+, consuming JRE-004's
-`KnowledgeService.synthesize` output, JRE-005's `HouseAnalysisResult`
-facts, and JRE-006's gochar/transit facts.
+# Integration tests
+pytest tests/integration/jrs/ -v
+
+# Type checking
+mypy src/jrs/ --strict
+
+# Linting
+ruff check src/jrs/
+```
 
 ## Hardware Target
 
-Designed initially for low-resource systems:
+Designed for low-resource systems:
 
 - 2 CPU cores
 - ~4 GB RAM
@@ -80,7 +78,3 @@ Designed initially for low-resource systems:
 - Python 3.12
 
 Heavy AI inference is not required for the core engine.
-# JRE
-# JRE
-# JRE
-# JRE
