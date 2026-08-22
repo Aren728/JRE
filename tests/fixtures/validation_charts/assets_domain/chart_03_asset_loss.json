@@ -1,0 +1,82 @@
+{
+  "chart_id": "assets_03_loss",
+  "description": "Chart with 4th lord debilitated + malefic — asset loss. Lost property in flood 2014, insurance dispute.",
+  "birth_data": {
+    "date": "1988-01-28",
+    "time": "11:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2014-08-01T00:00:00Z",
+      "event_type": "FINANCIAL_LOSS",
+      "description": "Property damaged in natural disaster"
+    },
+    {
+      "event_date_utc": "2016-05-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Insurance claim partially settled"
+    }
+  ],
+  "natal_facts": {
+    "4th_lord_strong": false,
+    "benefic_aspects_4th": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false,
+    "venus_strong": false,
+    "venus_in_4th": false,
+    "jupiter_venus_conjunction_4th": false,
+    "8th_lord_strong": false,
+    "4th_lord_debilitated": true,
+    "malefic_4th": true,
+    "saturn_afflicting_4th_lord": false,
+    "benefic_protection_4th": false,
+    "mars_afflicting_4th": false,
+    "saturn_in_4th": false,
+    "rahu_in_4th": false,
+    "mars_strong": false,
+    "multiple_benefics_4th": false,
+    "sun_in_4th": false,
+    "jupiter_strong": false,
+    "4th_lord_in_kendra": false,
+    "jupiter_aspecting_4th": false,
+    "venus_aspects_4th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2031-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-06-01T00:00:00Z",
+      "activation_end_utc": "2015-12-31T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "ASSET_LOSS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "VEHICLE_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LUXURY_ASSETS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

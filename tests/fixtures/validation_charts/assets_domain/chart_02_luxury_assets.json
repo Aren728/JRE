@@ -1,0 +1,82 @@
+{
+  "chart_id": "assets_02_luxury",
+  "description": "Chart with Venus strong in 4th — luxury assets. Inherited property 2012, luxury lifestyle.",
+  "birth_data": {
+    "date": "1985-07-22",
+    "time": "14:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-09-01T00:00:00Z",
+      "event_type": "FINANCIAL_GAIN",
+      "description": "Inherited luxury property"
+    },
+    {
+      "event_date_utc": "2018-03-15T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Acquired additional luxury assets"
+    }
+  ],
+  "natal_facts": {
+    "4th_lord_strong": false,
+    "benefic_aspects_4th": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false,
+    "venus_strong": true,
+    "venus_in_4th": true,
+    "jupiter_venus_conjunction_4th": false,
+    "8th_lord_strong": false,
+    "4th_lord_debilitated": false,
+    "malefic_4th": false,
+    "saturn_afflicting_4th_lord": false,
+    "benefic_protection_4th": true,
+    "mars_afflicting_4th": false,
+    "saturn_in_4th": false,
+    "rahu_in_4th": false,
+    "mars_strong": false,
+    "multiple_benefics_4th": false,
+    "sun_in_4th": false,
+    "jupiter_strong": false,
+    "4th_lord_in_kendra": false,
+    "jupiter_aspecting_4th": false,
+    "venus_aspects_4th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2012-06-01T00:00:00Z",
+      "activation_end_utc": "2012-12-01T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "LUXURY_ASSETS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "VEHICLE_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "ASSET_LOSS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
