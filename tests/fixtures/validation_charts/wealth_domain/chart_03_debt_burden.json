@@ -1,0 +1,70 @@
+{
+  "chart_id": "wealth_03_debt_burden",
+  "description": "Chart with severe debt burden indicators. Saturn in 2nd with malefic conjunction, 6th lord connected to 2nd with Rahu, Saturn afflicting 2nd lord. Chronic debt issues throughout life.",
+  "birth_data": {
+    "date": "1978-12-03",
+    "time": "22:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 26.8467,
+    "longitude": 80.9462
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-04-01T00:00:00Z",
+      "event_type": "DEBT_BURDEN",
+      "description": "Accumulated significant debt from business losses"
+    },
+    {
+      "event_date_utc": "2017-08-01T00:00:00Z",
+      "event_type": "FINANCIAL_STRESS",
+      "description": "Chronic debt burden continued through Saturn transit"
+    }
+  ],
+  "natal_facts": {
+    "saturn_in_2nd": true,
+    "malefic_conjunction_2nd": true,
+    "6th_lord_connected_to_2nd": true,
+    "rahu_2nd_connection": true,
+    "saturn_afflicts_2nd_lord": true,
+    "benefic_protection_2nd": false,
+    "jupiter_aspecting_2nd": false,
+    "2nd_lord_debilitated": false,
+    "ketu_2nd_connection": false,
+    "venus_aspecting_2nd": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2027-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "DEBT_BURDEN": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUDDEN_FINANCIAL_LOSS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EARNING_DIFFICULTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

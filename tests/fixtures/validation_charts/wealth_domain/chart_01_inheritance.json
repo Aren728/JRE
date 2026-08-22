@@ -1,0 +1,65 @@
+{
+  "chart_id": "wealth_01_inheritance",
+  "description": "Chart with strong inheritance indicators. 8th lord strong with 4th connection, Jupiter in 8th with benefic aspects, 2nd lord well-placed. Received large inheritance in 2015.",
+  "birth_data": {
+    "date": "1980-04-12",
+    "time": "06:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-09-15T00:00:00Z",
+      "event_type": "INHERITANCE_RECEIVED",
+      "description": "Received large inheritance from paternal estate"
+    }
+  ],
+  "natal_facts": {
+    "8th_lord_strong": true,
+    "8th_4th_connection": true,
+    "jupiter_in_8th": true,
+    "benefic_aspects_8th": true,
+    "2nd_lord_in_11th": true,
+    "2nd_lord_in_kendra_or_trikona": true,
+    "jupiter_strong": false,
+    "jupiter_2nd_or_11th_connection": false,
+    "venus_strong": false,
+    "venus_in_2nd": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2028-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2015-10-31T23:59:59Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "INHERITANCE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "WEALTH_ACCUMULATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "FINANCIAL_STABILITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    }
+  }
+}

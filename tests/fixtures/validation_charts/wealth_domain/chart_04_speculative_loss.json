@@ -1,0 +1,72 @@
+{
+  "chart_id": "wealth_04_speculative_loss",
+  "description": "Chart with speculative gains followed by sudden loss. Rahu strong in 5th with Jupiter for speculation, Saturn afflicting 2nd lord for loss, 2nd lord debilitated with Ketu, combust 2nd lord with malefic for earning difficulty. Made risky investments 2017, lost everything 2019.",
+  "birth_data": {
+    "date": "1985-07-18",
+    "time": "15:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2017-01-15T00:00:00Z",
+      "event_type": "SPECULATIVE_GAIN",
+      "description": "Made significant gains from stock market speculation"
+    },
+    {
+      "event_date_utc": "2019-03-01T00:00:00Z",
+      "event_type": "SUDDEN_LOSS",
+      "description": "Lost all speculative gains and additional capital in market crash"
+    }
+  ],
+  "natal_facts": {
+    "rahu_strong": true,
+    "rahu_in_5th": true,
+    "jupiter_strong": true,
+    "saturn_afflicts_2nd_lord": true,
+    "benefic_protection_2nd": false,
+    "venus_aspecting_2nd": false,
+    "2nd_lord_debilitated": true,
+    "ketu_2nd_connection": true,
+    "2nd_lord_combust": true,
+    "malefic_aspects_2nd": true,
+    "saturn_in_2nd": false,
+    "malefic_conjunction_2nd": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2028-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2018-11-01T00:00:00Z",
+      "activation_end_utc": "2020-03-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "SPECULATIVE_GAINS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "SUDDEN_FINANCIAL_LOSS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "EARNING_DIFFICULTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    }
+  }
+}

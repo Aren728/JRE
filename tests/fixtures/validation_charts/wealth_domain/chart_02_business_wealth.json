@@ -1,0 +1,71 @@
+{
+  "chart_id": "wealth_02_business",
+  "description": "Chart with strong business wealth indicators. Mercury-Jupiter combination, 7th-10th connection, 2nd lord strong. Started successful trading business 2018.",
+  "birth_data": {
+    "date": "1982-09-25",
+    "time": "11:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-03-01T00:00:00Z",
+      "event_type": "BUSINESS_START",
+      "description": "Started successful trading business"
+    },
+    {
+      "event_date_utc": "2020-06-01T00:00:00Z",
+      "event_type": "WEALTH_MILESTONE",
+      "description": "Business reached significant profitability"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": true,
+    "mercury_7th_or_10th_connection": true,
+    "2nd_lord_strong": true,
+    "2nd_7th_connection": true,
+    "venus_strong": true,
+    "7th_lord_in_2nd": true,
+    "2nd_lord_in_kendra_or_trikona": true,
+    "saturn_in_2nd": false,
+    "malefic_conjunction_2nd": false,
+    "saturn_afflicts_2nd_lord": false,
+    "benefic_protection_2nd": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MERCURY",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2027-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2019-06-01T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "BUSINESS_WEALTH": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "WEALTH_THROUGH_SPOUSE": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    },
+    "FINANCIAL_STABILITY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "STRONG"
+    }
+  }
+}
