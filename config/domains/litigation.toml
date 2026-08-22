@@ -1,0 +1,158 @@
+[business]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Legal Victory ──
+
+[[business.rules]]
+rule_id = "R-LIT-VIC-001"
+description = "6th lord strong with benefic aspect — legal victory"
+condition_facts = ["6th_lord_strong=true", "benefic_aspects_6th=true"]
+outcome = "LEGAL_VICTORY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 2"
+
+[[business.rules]]
+rule_id = "R-LIT-VIC-002"
+description = "Mars in 6th with Jupiter aspect — victory through courage"
+condition_facts = ["mars_in_6th=true", "jupiter_aspecting_6th=true"]
+outcome = "LEGAL_VICTORY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 5"
+
+# ── Legal Defeat ──
+
+[[business.rules]]
+rule_id = "R-LIT-DEF-001"
+description = "6th lord debilitated with malefic — legal defeat"
+condition_facts = ["6th_lord_debilitated=true", "malefic_6th=true"]
+outcome = "LEGAL_DEFEAT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 8"
+
+[[business.rules]]
+rule_id = "R-LIT-DEF-002"
+description = "Saturn afflicting 6th lord — defeat through delay"
+condition_facts = ["saturn_afflicting_6th_lord=true", "benefic_protection_6th=false"]
+outcome = "LEGAL_DEFEAT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 10"
+
+# ── Prolonged Litigation ──
+
+[[business.rules]]
+rule_id = "R-LIT-PRO-001"
+description = "Saturn aspecting 7th with Rahu — prolonged litigation"
+condition_facts = ["saturn_aspecting_7th=true", "rahu_in_12th=true"]
+outcome = "PROLONGED_LITIGATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 26, Verse 15"
+
+[[business.rules]]
+rule_id = "R-LIT-PRO-002"
+description = "12th lord afflicted with Saturn — prolonged court battles"
+condition_facts = ["12th_lord_afflicted=true", "saturn_strong=true"]
+outcome = "PROLONGED_LITIGATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 26, Verse 18"
+
+# ── Settlement Out of Court ──
+
+[[business.rules]]
+rule_id = "R-LIT-SET-001"
+description = "Venus strong with 7th connection — settlement through diplomacy"
+condition_facts = ["venus_strong=true", "7th_lord_connection=true"]
+outcome = "SETTLEMENT_OUT_OF_COURT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 20"
+
+[[business.rules]]
+rule_id = "R-LIT-SET-002"
+description = "Mercury strong with 6th-7th connection — negotiated resolution"
+condition_facts = ["mercury_strong=true", "6th_7th_connection=true"]
+outcome = "SETTLEMENT_OUT_OF_COURT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 22"
+
+# ── False Accusation ──
+
+[[business.rules]]
+rule_id = "R-LIT-FAL-001"
+description = "Rahu afflicting 6th lord — false accusations"
+condition_facts = ["rahu_afflicting_6th_lord=true", "jupiter_weak=true"]
+outcome = "FALSE_ACCUSATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 25"
+
+[[business.rules]]
+rule_id = "R-LIT-FAL-002"
+description = "Ketu in 6th with Saturn — fabricated charges"
+condition_facts = ["ketu_in_6th=true", "saturn_in_6th=true"]
+outcome = "FALSE_ACCUSATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 28"
+
+# ── Criminal Litigation ──
+
+[[business.rules]]
+rule_id = "R-LIT-CRI-001"
+description = "Mars-Saturn conjunction in 6th — criminal litigation"
+condition_facts = ["mars_saturn_conjunction_6th=true", "12th_lord_afflicted=true"]
+outcome = "CRIMINAL_LITIGATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 26, Verse 30"
+
+[[business.rules]]
+rule_id = "R-LIT-CRI-002"
+description = "8th lord connected to 6th with malefic — criminal proceedings"
+condition_facts = ["8th_lord_connected_6th=true", "malefic_6th=true"]
+outcome = "CRIMINAL_LITIGATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[business.rules]]
+rule_id = "R-LIT-MIT-001"
+description = "Jupiter mitigates Saturn prolonged litigation"
+condition_facts = ["saturn_aspecting_7th=true", "jupiter_aspecting_7th=true"]
+outcome = "PROLONGED_LITIGATION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 100"
+
+[[business.rules]]
+rule_id = "R-LIT-MIT-002"
+description = "Venus mitigates Rahu false accusation"
+condition_facts = ["rahu_afflicting_6th_lord=true", "venus_aspecting_6th=true"]
+outcome = "FALSE_ACCUSATION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 26, Verse 102"
