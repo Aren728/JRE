@@ -1,0 +1,84 @@
+{
+  "chart_id": "litigation_02_prolonged",
+  "description": "Chart with Saturn aspecting 7th + Rahu in 12th — prolonged litigation. Court case dragged on for 8 years.",
+  "birth_data": {
+    "date": "1979-08-25",
+    "time": "17:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2010-03-01T00:00:00Z",
+      "event_type": "LEGAL_ISSUE",
+      "description": "Civil lawsuit filed"
+    },
+    {
+      "event_date_utc": "2018-09-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Case finally resolved after 8 years"
+    }
+  ],
+  "natal_facts": {
+    "6th_lord_strong": false,
+    "benefic_aspects_6th": false,
+    "mars_in_6th": false,
+    "jupiter_aspecting_6th": false,
+    "6th_lord_debilitated": false,
+    "malefic_6th": false,
+    "saturn_afflicting_6th_lord": false,
+    "benefic_protection_6th": true,
+    "saturn_aspecting_7th": true,
+    "rahu_in_12th": true,
+    "12th_lord_afflicted": false,
+    "saturn_strong": true,
+    "venus_strong": false,
+    "7th_lord_connection": false,
+    "mercury_strong": false,
+    "6th_7th_connection": false,
+    "rahu_afflicting_6th_lord": false,
+    "jupiter_weak": false,
+    "ketu_in_6th": false,
+    "saturn_in_6th": false,
+    "mars_saturn_conjunction_6th": false,
+    "8th_lord_connected_6th": false,
+    "jupiter_aspecting_7th": false,
+    "venus_aspecting_6th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2027-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2012-12-31T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "PROLONGED_LITIGATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LEGAL_VICTORY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SETTLEMENT_OUT_OF_COURT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

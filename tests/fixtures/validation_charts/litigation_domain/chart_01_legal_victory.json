@@ -1,0 +1,84 @@
+{
+  "chart_id": "litigation_01_victory",
+  "description": "Chart with 6th lord strong + benefic aspect — legal victory. Won property dispute case 2017.",
+  "birth_data": {
+    "date": "1984-02-18",
+    "time": "08:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 26.8467,
+    "longitude": 80.9462
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-06-01T00:00:00Z",
+      "event_type": "LEGAL_ISSUE",
+      "description": "Property dispute case filed"
+    },
+    {
+      "event_date_utc": "2017-11-15T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Won legal case in court"
+    }
+  ],
+  "natal_facts": {
+    "6th_lord_strong": true,
+    "benefic_aspects_6th": true,
+    "mars_in_6th": false,
+    "jupiter_aspecting_6th": false,
+    "6th_lord_debilitated": false,
+    "malefic_6th": false,
+    "saturn_afflicting_6th_lord": false,
+    "benefic_protection_6th": true,
+    "saturn_aspecting_7th": false,
+    "rahu_in_12th": false,
+    "12th_lord_afflicted": false,
+    "saturn_strong": false,
+    "venus_strong": false,
+    "7th_lord_connection": false,
+    "mercury_strong": false,
+    "6th_7th_connection": false,
+    "rahu_afflicting_6th_lord": false,
+    "jupiter_weak": false,
+    "ketu_in_6th": false,
+    "saturn_in_6th": false,
+    "mars_saturn_conjunction_6th": false,
+    "8th_lord_connected_6th": false,
+    "jupiter_aspecting_7th": false,
+    "venus_aspecting_6th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2017-06-01T00:00:00Z",
+      "activation_end_utc": "2018-07-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "LEGAL_VICTORY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "PROLONGED_LITIGATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SETTLEMENT_OUT_OF_COURT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

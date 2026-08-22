@@ -1,0 +1,84 @@
+{
+  "chart_id": "litigation_03_settlement",
+  "description": "Chart with Venus strong + 7th connection — settlement through diplomacy. Resolved business dispute out of court 2019.",
+  "birth_data": {
+    "date": "1988-11-03",
+    "time": "12:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-04-01T00:00:00Z",
+      "event_type": "LEGAL_ISSUE",
+      "description": "Business partnership dispute"
+    },
+    {
+      "event_date_utc": "2019-08-15T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Settled dispute out of court through mediation"
+    }
+  ],
+  "natal_facts": {
+    "6th_lord_strong": false,
+    "benefic_aspects_6th": false,
+    "mars_in_6th": false,
+    "jupiter_aspecting_6th": false,
+    "6th_lord_debilitated": false,
+    "malefic_6th": false,
+    "saturn_afflicting_6th_lord": false,
+    "benefic_protection_6th": true,
+    "saturn_aspecting_7th": false,
+    "rahu_in_12th": false,
+    "12th_lord_afflicted": false,
+    "saturn_strong": false,
+    "venus_strong": true,
+    "7th_lord_connection": true,
+    "mercury_strong": false,
+    "6th_7th_connection": false,
+    "rahu_afflicting_6th_lord": false,
+    "jupiter_weak": false,
+    "ketu_in_6th": false,
+    "saturn_in_6th": false,
+    "mars_saturn_conjunction_6th": false,
+    "8th_lord_connected_6th": false,
+    "jupiter_aspecting_7th": false,
+    "venus_aspecting_6th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2036-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "VENUS",
+      "activation_start_utc": "2019-06-01T00:00:00Z",
+      "activation_end_utc": "2019-12-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SETTLEMENT_OUT_OF_COURT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LEGAL_VICTORY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "PROLONGED_LITIGATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
