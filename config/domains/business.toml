@@ -1,0 +1,162 @@
+[business]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Business Rules ──
+# Each rule maps JRE facts to a BusinessOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Successful Entrepreneurship ──
+
+[[business.rules]]
+rule_id = "R-BIZ-ENTR-001"
+description = "Mercury strong with 10th connection — successful entrepreneurship"
+condition_facts = ["mercury_strong=true", "mercury_10th_connection=true"]
+outcome = "SUCCESSFUL_ENTREPRENEURSHIP"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 2"
+
+[[business.rules]]
+rule_id = "R-BIZ-ENTR-002"
+description = "Rahu in 10th with Mercury — innovative entrepreneurship"
+condition_facts = ["rahu_in_10th=true", "mercury_strong=true"]
+outcome = "SUCCESSFUL_ENTREPRENEURSHIP"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 4"
+
+# ── Business Partnership ──
+
+[[business.rules]]
+rule_id = "R-BIZ-PART-001"
+description = "7th lord in 10th — business partnership through profession"
+condition_facts = ["7th_lord_in_10th=true"]
+outcome = "BUSINESS_PARTNERSHIP"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 8"
+
+[[business.rules]]
+rule_id = "R-BIZ-PART-002"
+description = "Mercury strong with 7th connection — partnership through trade"
+condition_facts = ["mercury_strong=true", "mercury_7th_connection=true"]
+outcome = "BUSINESS_PARTNERSHIP"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 10"
+
+# ── Business Failure ──
+
+[[business.rules]]
+rule_id = "R-BIZ-FAIL-001"
+description = "Saturn afflicting 10th lord without benefic — business failure"
+condition_facts = ["saturn_afflicts_10th_lord=true", "benefic_protection_10th=false"]
+outcome = "BUSINESS_FAILURE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 12"
+
+[[business.rules]]
+rule_id = "R-BIZ-FAIL-002"
+description = "10th lord debilitated with Ketu — business setback"
+condition_facts = ["10th_lord_debilitated=true", "ketu_10th_connection=true"]
+outcome = "BUSINESS_FAILURE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 15"
+
+# ── Self Employment ──
+
+[[business.rules]]
+rule_id = "R-BIZ-SELF-001"
+description = "Mars strong in 3rd — self-employment drive"
+condition_facts = ["mars_strong=true", "mars_in_3rd=true"]
+outcome = "SELF_EMPLOYMENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 18"
+
+[[business.rules]]
+rule_id = "R-BIZ-SELF-002"
+description = "Saturn in 3rd with Mercury — self-employment through discipline"
+condition_facts = ["saturn_in_3rd=true", "mercury_strong=true"]
+outcome = "SELF_EMPLOYMENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 20"
+
+# ── Franchise/Agency ──
+
+[[business.rules]]
+rule_id = "R-BIZ-FRAN-001"
+description = "Jupiter strong with 10th connection — franchise/agency success"
+condition_facts = ["jupiter_strong=true", "jupiter_10th_connection=true"]
+outcome = "FRANCHISE_AGENCY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 25"
+
+[[business.rules]]
+rule_id = "R-BIZ-FRAN-002"
+description = "Venus strong with 7th-10th connection — franchise through partnerships"
+condition_facts = ["venus_strong=true", "7th_10th_connection=true"]
+outcome = "FRANCHISE_AGENCY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 28"
+
+# ── Family Business ──
+
+[[business.rules]]
+rule_id = "R-BIZ-FAM-001"
+description = "4th lord strong with 10th connection — family business"
+condition_facts = ["4th_lord_strong=true", "4th_10th_connection=true"]
+outcome = "FAMILY_BUSINESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 21, Verse 30"
+
+[[business.rules]]
+rule_id = "R-BIZ-FAM-002"
+description = "Saturn in 4th with Mercury — inherited business"
+condition_facts = ["saturn_in_4th=true", "mercury_strong=true"]
+outcome = "FAMILY_BUSINESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[business.rules]]
+rule_id = "R-BIZ-MIT-001"
+description = "Jupiter mitigates Saturn business failure"
+condition_facts = ["saturn_afflicts_10th_lord=true", "jupiter_aspects_10th=true"]
+outcome = "BUSINESS_FAILURE"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 100"
+
+[[business.rules]]
+rule_id = "R-BIZ-MIT-002"
+description = "Venus mitigates Ketu business setback"
+condition_facts = ["10th_lord_debilitated=true", "venus_aspects_10th=true"]
+outcome = "BUSINESS_FAILURE"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 21, Verse 102"
