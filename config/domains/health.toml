@@ -1,0 +1,158 @@
+[business]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── High Vitality ──
+
+[[business.rules]]
+rule_id = "R-HLTH-HV-001"
+description = "1st lord strong in Kendra — high constitutional vitality"
+condition_facts = ["1st_lord_strong=true", "1st_lord_in_kendra=true"]
+outcome = "HIGH_VITALITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 2"
+
+[[business.rules]]
+rule_id = "R-HLTH-HV-002"
+description = "Sun strong with Lagna Bala high — robust constitution"
+condition_facts = ["sun_strong=true", "lagna_bala_high=true"]
+outcome = "HIGH_VITALITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 5"
+
+# ── Low Vitality ──
+
+[[business.rules]]
+rule_id = "R-HLTH-LV-001"
+description = "1st lord debilitated with malefic — reduced vitality"
+condition_facts = ["1st_lord_debilitated=true", "malefic_lagna=true"]
+outcome = "LOW_VITALITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 8"
+
+[[business.rules]]
+rule_id = "R-HLTH-LV-002"
+description = "Saturn afflicting 1st lord — constitutional weakness"
+condition_facts = ["saturn_afflicting_1st_lord=true", "benefic_protection_lagna=false"]
+outcome = "LOW_VITALITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 10"
+
+# ── Chronic Stress ──
+
+[[business.rules]]
+rule_id = "R-HLTH-CS-001"
+description = "Saturn in 6th with Rahu — chronic constitutional strain"
+condition_facts = ["saturn_in_6th=true", "rahu_in_6th=true"]
+outcome = "CHRONIC_STRESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 3, Verse 15"
+
+[[business.rules]]
+rule_id = "R-HLTH-CS-002"
+description = "8th lord afflicted with malefic — persistent constitutional strain"
+condition_facts = ["8th_lord_afflicted=true", "malefic_8th=true"]
+outcome = "CHRONIC_STRESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 3, Verse 18"
+
+# ── Strong Recovery Capacity ──
+
+[[business.rules]]
+rule_id = "R-HLTH-SR-001"
+description = "Jupiter aspecting 1st — strong recuperative capacity"
+condition_facts = ["jupiter_aspecting_1st=true", "1st_lord_strong=true"]
+outcome = "STRONG_RECOVERY_CAPACITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 20"
+
+[[business.rules]]
+rule_id = "R-HLTH-SR-002"
+description = "Venus in Kendra with benefic — constitutional resilience"
+condition_facts = ["venus_in_kendra=true", "multiple_benefics_kendra=true"]
+outcome = "STRONG_RECOVERY_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 22"
+
+# ── Energy Fluctuations ──
+
+[[business.rules]]
+rule_id = "R-HLTH-EF-001"
+description = "Moon fluctuating with Rahu — variable constitutional energy"
+condition_facts = ["moon_with_rahu=true", "moon_waning=true"]
+outcome = "ENERGY_FLUCTUATIONS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 25"
+
+[[business.rules]]
+rule_id = "R-HLTH-EF-002"
+description = "6th and 8th house bindus low — fluctuating vitality patterns"
+condition_facts = ["6th_bindus_low=true", "8th_bindus_low=true"]
+outcome = "ENERGY_FLUCTUATIONS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 28"
+
+# ── Traditional Constitution Indicators ──
+
+[[business.rules]]
+rule_id = "R-HLTH-TC-001"
+description = "Lagna lord in own sign with Ashtakavarga high — strong traditional constitution"
+condition_facts = ["1st_lord_own_sign=true", "ashtakavarga_high=true"]
+outcome = "TRADITIONAL_CONSTITUTION_INDICATORS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 3, Verse 30"
+
+[[business.rules]]
+rule_id = "R-HLTH-TC-002"
+description = "Mars strong with Lagna connection — vigorous traditional constitution"
+condition_facts = ["mars_strong=true", "mars_lagna_connection=true"]
+outcome = "TRADITIONAL_CONSTITUTION_INDICATORS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[business.rules]]
+rule_id = "R-HLTH-MIT-001"
+description = "Jupiter mitigates Saturn chronic stress"
+condition_facts = ["saturn_in_6th=true", "jupiter_aspecting_6th=true"]
+outcome = "CHRONIC_STRESS"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 100"
+
+[[business.rules]]
+rule_id = "R-HLTH-MIT-002"
+description = "Venus mitigates low vitality indicators"
+condition_facts = ["1st_lord_debilitated=true", "venus_aspects_lagna=true"]
+outcome = "LOW_VITALITY"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 102"
