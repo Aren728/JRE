@@ -1,0 +1,106 @@
+[research]
+version = "1.0"
+
+# ── Classical Rule Citations ──
+# Each rule maps a rule_id to its classical source, location, claim,
+# evidence class, and modern normalization.
+
+[[research.rules]]
+rule_id = "R-BPHS-14-05"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 14, Verse 5"
+claim = "2nd lord in 11th house indicates wealth accumulation through earned income"
+evidence_class = "wealth_accumulation"
+modern_normalization = "2nd_lord_in_11th"
+domain = "wealth"
+
+[[research.rules]]
+rule_id = "R-BPHS-14-20"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 14, Verse 20"
+claim = "8th lord strong with 4th connection indicates inheritance received"
+evidence_class = "inheritance"
+modern_normalization = "8th_lord_strong, 8th_4th_connection"
+domain = "wealth"
+
+[[research.rules]]
+rule_id = "R-BPHS-16-02"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 16, Verse 2"
+claim = "Jupiter strong with 5th lord in kendra indicates easy conception"
+evidence_class = "easy_conception"
+modern_normalization = "jupiter_strong, 5th_lord_in_kendra"
+domain = "progeny"
+
+[[research.rules]]
+rule_id = "R-BPHS-16-08"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 16, Verse 8"
+claim = "Saturn in 5th house delays progeny"
+evidence_class = "delayed_progeny"
+modern_normalization = "saturn_in_5th"
+domain = "progeny"
+
+[[research.rules]]
+rule_id = "R-BPHS-15-02"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 15, Verse 2"
+claim = "Rahu in 12th house indicates foreign settlement"
+evidence_class = "foreign_settlement"
+modern_normalization = "rahu_in_12th"
+domain = "migration"
+
+[[research.rules]]
+rule_id = "R-BPHS-17-02"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 17, Verse 2"
+claim = "4th lord in kendra indicates higher education"
+evidence_class = "higher_education"
+modern_normalization = "4th_lord_in_kendra"
+domain = "education"
+
+[[research.rules]]
+rule_id = "R-BPHS-18-02"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 18, Verse 2"
+claim = "4th lord strong indicates property acquisition"
+evidence_class = "property_acquisition"
+modern_normalization = "4th_lord_strong"
+domain = "property"
+
+[[research.rules]]
+rule_id = "R-BPHS-19-02"
+source = "BPHS"
+source_full = "Brihat Parashara Hora Shastra"
+location = "Chapter 19, Verse 2"
+claim = "Saturn return at critical degree indicates life phase shift"
+evidence_class = "life_phase_shift"
+modern_normalization = "saturn_return"
+domain = "transitions"
+
+[[research.rules]]
+rule_id = "R-PHAL-14-10"
+source = "Phaladeepika"
+source_full = "Phaladeepika (Mantreshwara)"
+location = "Chapter 14, Verse 10"
+claim = "Venus strong in 7th with Jupiter aspect indicates wealth through spouse"
+evidence_class = "wealth_through_spouse"
+modern_normalization = "venus_strong, venus_in_7th, jupiter_aspecting_7th"
+domain = "wealth"
+
+[[research.rules]]
+rule_id = "R-BRIHAT-10-05"
+source = "Brihat_Jataka"
+source_full = "Brihat Jataka (Varahamihira)"
+location = "Chapter 10, Verse 5"
+claim = "Sun strong with 10th connection indicates government service"
+evidence_class = "government_service"
+modern_normalization = "sun_strong, sun_10th_connection"
+domain = "career"

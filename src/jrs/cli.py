@@ -33,6 +33,7 @@ from jrs.domains.property.service import PropertyDomainService
 from jrs.domains.transitions.service import TransitionsDomainService
 from jrs.domains.wealth.service import WealthDomainService
 from jrs.evidence.models import EvidenceRecord
+from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
@@ -173,6 +174,7 @@ def _format_text_report(
     place: str,
     query: str,
     facts: dict[str, Any],
+    domain_key: str = "",
 ) -> str:
     """Format the assessment as a structured traceable report."""
     dims = assessment.get("dimensions", {})
@@ -215,7 +217,17 @@ def _format_text_report(
 
     lines.append("")
     lines.append("Classical sources:")
-    lines.append("  • BPHS (Brihat Parashara Hora Shastra)")
+    try:
+        research_svc = ResearchService()
+        domain_citations = research_svc.get_citations_for_domain(domain_key)
+        if domain_citations:
+            for citation in domain_citations:
+                lines.append(f"  • {citation.source_full}, {citation.location}")
+                lines.append(f"    {citation.claim}")
+        else:
+            lines.append("  • BPHS (Brihat Parashara Hora Shastra)")
+    except Exception:
+        lines.append("  • BPHS (Brihat Parashara Hora Shastra)")
     lines.append("")
     lines.append("Timing:")
     lines.append("  Timing status: INACTIVE (no dasha/transit data provided)")
@@ -302,6 +314,26 @@ def main(argv: list[str] | None = None) -> int:
 
     # Format output
     if args.json_output:
+        # Resolve classical citations
+        classical_sources: list[dict[str, str]] = []
+        try:
+            research_svc = ResearchService()
+            domain_citations = research_svc.get_citations_for_domain(domain_key)
+            for c in domain_citations:
+                classical_sources.append({
+                    "rule_id": c.rule_id,
+                    "source": c.source_full,
+                    "location": c.location,
+                    "claim": c.claim,
+                })
+        except Exception:
+            classical_sources.append({
+                "rule_id": "default",
+                "source": "Brihat Parashara Hora Shastra",
+                "location": "General",
+                "claim": "Classical Jyotish principles",
+            })
+
         output = json.dumps({
             "birth_data": {
                 "date": args.birth_date,
@@ -312,10 +344,12 @@ def main(argv: list[str] | None = None) -> int:
             "domain": domain_key,
             "facts": facts,
             "assessment": assessment,
+            "classical_sources": classical_sources,
         }, indent=2, sort_keys=True)
     else:
         output = _format_text_report(
             assessment, args.birth_date, args.birth_time, args.place, query, facts,
+            domain_key=domain_key,
         )
 
     print(output)
