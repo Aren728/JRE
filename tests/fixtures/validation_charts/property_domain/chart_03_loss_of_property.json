@@ -1,0 +1,73 @@
+{
+  "chart_id": "prop_03_loss_of_property",
+  "description": "Chart with property loss indicators. 4th lord debilitated, Saturn afflicting 4th lord without benefic. Lost property due to fraud.",
+  "birth_data": {
+    "date": "1988-03-05",
+    "time": "11:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2020-07-01T00:00:00Z",
+      "event_type": "PROPERTY_LOSS",
+      "description": "Lost property due to legal fraud"
+    }
+  ],
+  "natal_facts": {
+    "4th_lord_debilitated": true,
+    "saturn_afflicts_4th_lord": true,
+    "benefic_protection_4th": false,
+    "4th_lord_strong": false,
+    "mars_strong": false,
+    "mars_4th_connection": false,
+    "mars_afflicting_4th": false,
+    "venus_strong": false,
+    "venus_in_4th": false,
+    "4th_lord_in_kendra": false,
+    "benefic_aspects_4th": false,
+    "saturn_in_4th": false,
+    "rahu_4th_connection": false,
+    "multiple_planets_4th": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false,
+    "rahu_in_4th": false,
+    "4th_lord_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2031-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2019-01-01T00:00:00Z",
+      "activation_end_utc": "2021-06-30T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "LOSS_OF_PROPERTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "PROPERTY_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "DISPUTES_OVER_PROPERTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

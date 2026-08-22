@@ -1,0 +1,74 @@
+{
+  "chart_id": "prop_01_property_acquisition",
+  "description": "Chart with strong property acquisition indicators. 4th lord strong, Mars strong with 4th connection. Bought first house at age 28.",
+  "birth_data": {
+    "date": "1990-06-12",
+    "time": "09:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-03-15T00:00:00Z",
+      "event_type": "PROPERTY_PURCHASE",
+      "description": "Purchased first residential property"
+    }
+  ],
+  "natal_facts": {
+    "4th_lord_strong": true,
+    "mars_strong": true,
+    "mars_4th_connection": true,
+    "venus_strong": false,
+    "venus_in_4th": false,
+    "4th_lord_in_kendra": false,
+    "benefic_aspects_4th": false,
+    "mars_afflicting_4th": false,
+    "saturn_in_4th": false,
+    "rahu_4th_connection": false,
+    "4th_lord_debilitated": false,
+    "saturn_afflicts_4th_lord": false,
+    "benefic_protection_4th": false,
+    "multiple_planets_4th": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false,
+    "rahu_in_4th": false,
+    "rahu_12th_connection": false,
+    "4th_lord_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2021-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2018-12-31T23:59:59Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "PROPERTY_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "REAL_ESTATE_WEALTH": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MULTIPLE_PROPERTIES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

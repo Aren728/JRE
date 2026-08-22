@@ -1,0 +1,78 @@
+{
+  "chart_id": "prop_02_disputes_over_property",
+  "description": "Chart with property dispute indicators. Mars afflicting 4th, Saturn in 4th with Rahu connection. Fought legal battle over inheritance.",
+  "birth_data": {
+    "date": "1985-11-28",
+    "time": "14:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2016-05-01T00:00:00Z",
+      "event_type": "PROPERTY_DISPUTE",
+      "description": "Legal dispute over ancestral property"
+    },
+    {
+      "event_date_utc": "2019-09-01T00:00:00Z",
+      "event_type": "DISPUTE_RESOLUTION",
+      "description": "Property dispute resolved in court"
+    }
+  ],
+  "natal_facts": {
+    "mars_afflicting_4th": true,
+    "saturn_in_4th": true,
+    "rahu_4th_connection": true,
+    "4th_lord_strong": false,
+    "mars_strong": false,
+    "mars_4th_connection": false,
+    "venus_strong": false,
+    "venus_in_4th": false,
+    "4th_lord_in_kendra": false,
+    "benefic_aspects_4th": false,
+    "4th_lord_debilitated": false,
+    "saturn_afflicts_4th_lord": false,
+    "benefic_protection_4th": false,
+    "multiple_planets_4th": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false,
+    "rahu_in_4th": false,
+    "4th_lord_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "DISPUTES_OVER_PROPERTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "PROPERTY_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LOSS_OF_PROPERTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

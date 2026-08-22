@@ -1,0 +1,73 @@
+{
+  "chart_id": "prop_04_foreign_property",
+  "description": "Chart with foreign property indicators. Rahu in 4th with 12th connection, 4th lord in 12th. Owns property in Dubai.",
+  "birth_data": {
+    "date": "1992-09-18",
+    "time": "16:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2021-04-01T00:00:00Z",
+      "event_type": "FOREIGN_PROPERTY_PURCHASE",
+      "description": "Purchased apartment in Dubai"
+    }
+  ],
+  "natal_facts": {
+    "rahu_in_4th": true,
+    "rahu_12th_connection": true,
+    "4th_lord_in_12th": true,
+    "4th_lord_strong": false,
+    "mars_strong": false,
+    "mars_4th_connection": false,
+    "mars_afflicting_4th": false,
+    "venus_strong": false,
+    "venus_in_4th": false,
+    "4th_lord_in_kendra": false,
+    "benefic_aspects_4th": false,
+    "saturn_in_4th": false,
+    "4th_lord_debilitated": false,
+    "saturn_afflicts_4th_lord": false,
+    "benefic_protection_4th": false,
+    "multiple_planets_4th": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2034-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2020-01-01T00:00:00Z",
+      "activation_end_utc": "2021-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "FOREIGN_PROPERTY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "PROPERTY_ACQUISITION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MULTIPLE_PROPERTIES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
