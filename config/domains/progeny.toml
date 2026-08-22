@@ -1,0 +1,216 @@
+[progeny]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Progeny Rules ──
+# Each rule maps JRE facts to a ProgenyOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Easy Conception ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-EASY-001"
+description = "Jupiter strong with 5th lord in kendra — easy conception"
+condition_facts = ["jupiter_strong=true", "5th_lord_in_kendra=true"]
+outcome = "EASY_CONCEPTION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 2"
+
+[[progeny.rules]]
+rule_id = "R-PROG-EASY-002"
+description = "Venus strong with Jupiter aspecting 5th — easy conception"
+condition_facts = ["venus_strong=true", "jupiter_aspecting_5th=true"]
+outcome = "EASY_CONCEPTION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 4"
+
+# ── Delayed Progeny ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-DELAY-001"
+description = "Saturn in 5th house — delayed progeny"
+condition_facts = ["saturn_in_5th=true"]
+outcome = "DELAYED_PROGENY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 8"
+
+[[progeny.rules]]
+rule_id = "R-PROG-DELAY-002"
+description = "Rahu in 5th with Saturn aspect — delayed progeny"
+condition_facts = ["rahu_in_5th=true", "saturn_aspecting_5th=true"]
+outcome = "DELAYED_PROGENY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 10"
+
+[[progeny.rules]]
+rule_id = "R-PROG-DELAY-003"
+description = "5th lord debilitated — delayed progeny"
+condition_facts = ["5th_lord_debilitated=true"]
+outcome = "DELAYED_PROGENY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 12"
+
+# ── Multiple Children ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-MULTI-001"
+description = "Jupiter strong with benefic aspects on 5th — multiple children"
+condition_facts = ["jupiter_strong=true", "benefic_aspects_5th=true"]
+outcome = "MULTIPLE_CHILDREN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 15"
+
+[[progeny.rules]]
+rule_id = "R-PROG-MULTI-002"
+description = "Multiple planets in 5th with Jupiter strong — multiple children"
+condition_facts = ["multiple_planets_5th=true", "jupiter_strong=true"]
+outcome = "MULTIPLE_CHILDREN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 18"
+
+# ── Challenges With Children ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-CHAL-001"
+description = "Malefic in 5th without benefic protection — challenges with children"
+condition_facts = ["malefic_in_5th=true", "benefic_protection_5th=false"]
+outcome = "CHALLENGES_WITH_CHILDREN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 20"
+
+[[progeny.rules]]
+rule_id = "R-PROG-CHAL-002"
+description = "6th lord connected to 5th — challenges with children"
+condition_facts = ["6th_lord_connected_to_5th=true"]
+outcome = "CHALLENGES_WITH_CHILDREN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 22"
+
+# ── Children Success ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-SUCC-001"
+description = "Jupiter strong with 5th lord in kendra or trikona — children success"
+condition_facts = ["jupiter_strong=true", "5th_lord_in_kendra_or_trikona=true"]
+outcome = "CHILDREN_SUCCESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 25"
+
+[[progeny.rules]]
+rule_id = "R-PROG-SUCC-002"
+description = "Mercury strong with 5th connection — children success through education"
+condition_facts = ["mercury_strong=true", "mercury_5th_connection=true"]
+outcome = "CHILDREN_SUCCESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 28"
+
+# ── Adoption Indicators ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-ADPT-001"
+description = "5th lord combust with Rahu — adoption indicators"
+condition_facts = ["5th_lord_combust=true", "rahu_5th_connection=true"]
+outcome = "ADOPTION_INDICATORS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 30"
+
+[[progeny.rules]]
+rule_id = "R-PROG-ADPT-002"
+description = "Jupiter debilitated in 5th with Ketu — adoption indicators"
+condition_facts = ["jupiter_debilitated_5th=true", "ketu_5th_connection=true"]
+outcome = "ADOPTION_INDICATORS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 32"
+
+# ── Miscarriage Risk ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-MISC-001"
+description = "Mars in 5th with malefic conjunction — miscarriage risk"
+condition_facts = ["mars_in_5th=true", "malefic_conjunction_5th=true"]
+outcome = "MISCARRIAGE_RISK"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 35"
+
+[[progeny.rules]]
+rule_id = "R-PROG-MISC-002"
+description = "Saturn afflicting 5th lord without benefic — miscarriage risk"
+condition_facts = ["saturn_afflicts_5th_lord=true", "benefic_protection_5th=false"]
+outcome = "MISCARRIAGE_RISK"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 38"
+
+# ── Children Education ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-EDUC-001"
+description = "Mercury strong with Jupiter aspecting 5th — children education"
+condition_facts = ["mercury_strong=true", "jupiter_aspecting_5th=true"]
+outcome = "CHILDREN_EDUCATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 16, Verse 40"
+
+[[progeny.rules]]
+rule_id = "R-PROG-EDUC-002"
+description = "5th lord strong with Mercury connection — children education"
+condition_facts = ["5th_lord_strong=true", "mercury_5th_connection=true"]
+outcome = "CHILDREN_EDUCATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 42"
+
+# ── Mitigation Rules ──
+
+[[progeny.rules]]
+rule_id = "R-PROG-MIT-001"
+description = "Jupiter aspect mitigates Saturn delay on progeny"
+condition_facts = ["saturn_in_5th=true", "jupiter_aspecting_5th=true"]
+outcome = "DELAYED_PROGENY"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 100"
+
+[[progeny.rules]]
+rule_id = "R-PROG-MIT-002"
+description = "Venus mitigates Mars miscarriage risk"
+condition_facts = ["mars_in_5th=true", "venus_aspecting_5th=true"]
+outcome = "MISCARRIAGE_RISK"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 16, Verse 102"
