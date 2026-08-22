@@ -1,0 +1,72 @@
+{
+  "chart_id": "migration_03_migration_delay",
+  "description": "Chart with migration delay indicators. Saturn in 12th house, 12th lord weak. Attempted emigration multiple times but faced delays.",
+  "birth_data": {
+    "date": "1985-02-28",
+    "time": "11:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-06-01T00:00:00Z",
+      "event_type": "VISA_APPLICATION",
+      "description": "Visa application rejected first time"
+    },
+    {
+      "event_date_utc": "2022-01-01T00:00:00Z",
+      "event_type": "EMIGRATION",
+      "description": "Finally emigrated after prolonged delay"
+    }
+  ],
+  "natal_facts": {
+    "saturn_in_12th": true,
+    "12th_lord_weak": true,
+    "saturn_aspecting_12th": false,
+    "rahu_in_12th": false,
+    "9th_lord_in_12th": false,
+    "rahu_12th_connection": false,
+    "12th_lord_strong": false,
+    "jupiter_12th_connection": false,
+    "saturn_afflicts_12th_lord": false,
+    "benefic_protection_12th": false,
+    "jupiter_aspecting_12th": false,
+    "malefic_conjunction_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "MIGRATION_DELAY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "FOREIGN_SETTLEMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "VISA_OBSTACLES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

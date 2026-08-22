@@ -1,0 +1,72 @@
+{
+  "chart_id": "migration_04_visa_obstacles",
+  "description": "Chart with visa obstacle indicators. Saturn afflicting 12th lord without benefic protection, 6th lord connected to 12th. Multiple visa rejections.",
+  "birth_data": {
+    "date": "1992-12-05",
+    "time": "16:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2020-04-01T00:00:00Z",
+      "event_type": "VISA_REJECTION",
+      "description": "Work visa rejected"
+    },
+    {
+      "event_date_utc": "2021-09-01T00:00:00Z",
+      "event_type": "VISA_REJECTION",
+      "description": "Student visa rejected"
+    }
+  ],
+  "natal_facts": {
+    "saturn_afflicts_12th_lord": true,
+    "benefic_protection_12th": false,
+    "6th_lord_connected_to_12th": true,
+    "saturn_in_12th": false,
+    "rahu_in_12th": false,
+    "9th_lord_in_12th": false,
+    "rahu_12th_connection": false,
+    "12th_lord_strong": false,
+    "jupiter_12th_connection": false,
+    "mercury_strong": false,
+    "mercury_12th_connection": false,
+    "venus_aspecting_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2015-01-01T00:00:00Z",
+      "activation_end_utc": "2034-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2020-01-01T00:00:00Z",
+      "activation_end_utc": "2022-06-30T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "VISA_OBSTACLES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "FOREIGN_SETTLEMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MIGRATION_DELAY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

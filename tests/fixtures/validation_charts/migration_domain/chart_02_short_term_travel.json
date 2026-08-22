@@ -1,0 +1,72 @@
+{
+  "chart_id": "migration_02_short_term_travel",
+  "description": "Chart with short term travel indicators. Mercury strong with 12th connection. Frequently travels abroad for work.",
+  "birth_data": {
+    "date": "1990-09-12",
+    "time": "14:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2019-03-01T00:00:00Z",
+      "event_type": "OVERSEAS_TRIP",
+      "description": "Business trip to Singapore"
+    },
+    {
+      "event_date_utc": "2020-11-01T00:00:00Z",
+      "event_type": "OVERSEAS_TRIP",
+      "description": "Conference attendance in London"
+    }
+  ],
+  "natal_facts": {
+    "mercury_strong": true,
+    "mercury_12th_connection": true,
+    "rahu_in_12th": false,
+    "9th_lord_in_12th": false,
+    "rahu_12th_connection": false,
+    "12th_lord_strong": false,
+    "jupiter_12th_connection": false,
+    "saturn_in_12th": false,
+    "saturn_afflicts_12th_lord": false,
+    "benefic_protection_12th": false,
+    "moon_in_12th": false,
+    "benefic_aspects_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MERCURY",
+      "activation_start_utc": "2015-01-01T00:00:00Z",
+      "activation_end_utc": "2032-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "MERCURY",
+      "activation_start_utc": "2019-01-01T00:00:00Z",
+      "activation_end_utc": "2019-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "SHORT_TERM_TRAVEL": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "FOREIGN_SETTLEMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CROSS_CULTURAL_SUCCESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

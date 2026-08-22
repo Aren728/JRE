@@ -1,0 +1,69 @@
+{
+  "chart_id": "migration_01_foreign_settlement",
+  "description": "Chart with strong foreign settlement indicators. Rahu in 12th, 9th lord in 12th with Rahu connection, 12th lord strong with Jupiter. Emigrated to USA 2016.",
+  "birth_data": {
+    "date": "1988-05-20",
+    "time": "08:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2016-08-01T00:00:00Z",
+      "event_type": "EMIGRATION",
+      "description": "Permanent relocation to USA for employment"
+    }
+  ],
+  "natal_facts": {
+    "rahu_in_12th": true,
+    "9th_lord_in_12th": true,
+    "rahu_12th_connection": true,
+    "12th_lord_strong": true,
+    "jupiter_12th_connection": true,
+    "jupiter_strong": true,
+    "venus_strong": true,
+    "9th_12th_connection": true,
+    "saturn_in_12th": false,
+    "saturn_aspecting_12th": false,
+    "saturn_afflicts_12th_lord": false,
+    "benefic_protection_12th": false,
+    "mercury_strong": false,
+    "mercury_12th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2032-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2017-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "FOREIGN_SETTLEMENT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CROSS_CULTURAL_SUCCESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SHORT_TERM_TRAVEL": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

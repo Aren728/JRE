@@ -1,0 +1,162 @@
+[education]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Education Rules ──
+# Each rule maps JRE facts to an EducationOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Higher Education ──
+
+[[education.rules]]
+rule_id = "R-EDU-HIGH-001"
+description = "4th lord in kendra — higher education indicators"
+condition_facts = ["4th_lord_in_kendra=true"]
+outcome = "HIGHER_EDUCATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 2"
+
+[[education.rules]]
+rule_id = "R-EDU-HIGH-002"
+description = "Jupiter strong with 4th connection — higher education through wisdom"
+condition_facts = ["jupiter_strong=true", "jupiter_4th_connection=true"]
+outcome = "HIGHER_EDUCATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 4"
+
+# ── Early Education Success ──
+
+[[education.rules]]
+rule_id = "R-EDU-EARLY-001"
+description = "Mercury strong with 4th lord — early education success"
+condition_facts = ["mercury_strong=true", "mercury_4th_connection=true"]
+outcome = "EARLY_EDUCATION_SUCCESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 8"
+
+[[education.rules]]
+rule_id = "R-EDU-EARLY-002"
+description = "4th lord strong with benefic aspects — early education success"
+condition_facts = ["4th_lord_strong=true", "benefic_aspects_4th=true"]
+outcome = "EARLY_EDUCATION_SUCCESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 10"
+
+# ── Education Disruption ──
+
+[[education.rules]]
+rule_id = "R-EDU-DISC-001"
+description = "Saturn in 4th house — education disruption"
+condition_facts = ["saturn_in_4th=true"]
+outcome = "EDUCATION_DISRUPTION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 12"
+
+[[education.rules]]
+rule_id = "R-EDU-DISC-002"
+description = "Rahu in 4th with malefic — education disruption"
+condition_facts = ["rahu_in_4th=true", "malefic_conjunction_4th=true"]
+outcome = "EDUCATION_DISRUPTION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 15"
+
+# ── Foreign Education ──
+
+[[education.rules]]
+rule_id = "R-EDU-FORG-001"
+description = "9th lord in 12th — foreign education"
+condition_facts = ["9th_lord_in_12th=true"]
+outcome = "FOREIGN_EDUCATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 18"
+
+[[education.rules]]
+rule_id = "R-EDU-FORG-002"
+description = "Rahu in 12th with 4th connection — foreign education"
+condition_facts = ["rahu_in_12th=true", "rahu_4th_connection=true"]
+outcome = "FOREIGN_EDUCATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 20"
+
+# ── Technical Skills ──
+
+[[education.rules]]
+rule_id = "R-EDU-TECH-001"
+description = "Mercury strong with Saturn aspect — technical skills"
+condition_facts = ["mercury_strong=true", "saturn_aspecting_mercury=true"]
+outcome = "TECHNICAL_SKILLS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 25"
+
+[[education.rules]]
+rule_id = "R-EDU-TECH-002"
+description = "Mercury strong in 4th — technical education"
+condition_facts = ["mercury_strong=true", "mercury_in_4th=true"]
+outcome = "TECHNICAL_SKILLS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 28"
+
+# ── Research Academia ──
+
+[[education.rules]]
+rule_id = "R-EDU-RES-001"
+description = "Ketu in 4th with Jupiter — research and academia"
+condition_facts = ["ketu_in_4th=true", "jupiter_strong=true"]
+outcome = "RESEARCH_ACADEMIA"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 17, Verse 30"
+
+[[education.rules]]
+rule_id = "R-EDU-RES-002"
+description = "Saturn strong with 9th connection — research and academia"
+condition_facts = ["saturn_strong=true", "saturn_9th_connection=true"]
+outcome = "RESEARCH_ACADEMIA"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[education.rules]]
+rule_id = "R-EDU-MIT-001"
+description = "Jupiter mitigates Saturn education disruption"
+condition_facts = ["saturn_in_4th=true", "jupiter_aspecting_4th=true"]
+outcome = "EDUCATION_DISRUPTION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 100"
+
+[[education.rules]]
+rule_id = "R-EDU-MIT-002"
+description = "Venus mitigates Rahu education disruption"
+condition_facts = ["rahu_in_4th=true", "venus_aspecting_4th=true"]
+outcome = "EDUCATION_DISRUPTION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 17, Verse 102"
