@@ -1,0 +1,75 @@
+{
+  "chart_id": "edu_04_research_academia",
+  "description": "Chart with research and academia indicators. Ketu in 4th with Jupiter strong, Saturn strong with 9th connection. Professor at IIT.",
+  "birth_data": {
+    "date": "1985-01-10",
+    "time": "15:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-06-01T00:00:00Z",
+      "event_type": "ACADEMIC_POSITION",
+      "description": "Appointed Assistant Professor at IIT"
+    },
+    {
+      "event_date_utc": "2020-01-01T00:00:00Z",
+      "event_type": "RESEARCH_PUBLICATION",
+      "description": "Published in Nature journal"
+    }
+  ],
+  "natal_facts": {
+    "ketu_in_4th": true,
+    "jupiter_strong": true,
+    "saturn_strong": true,
+    "saturn_9th_connection": true,
+    "4th_lord_in_kendra": false,
+    "jupiter_4th_connection": false,
+    "4th_lord_strong": false,
+    "saturn_in_4th": false,
+    "rahu_in_4th": false,
+    "malefic_conjunction_4th": false,
+    "9th_lord_in_12th": false,
+    "rahu_in_12th": false,
+    "rahu_4th_connection": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "RESEARCH_ACADEMIA": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGHER_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EDUCATION_DISRUPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

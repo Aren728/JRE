@@ -1,0 +1,70 @@
+{
+  "chart_id": "edu_01_higher_education",
+  "description": "Chart with strong higher education indicators. 4th lord in kendra, Jupiter strong with 4th connection. Completed PhD in physics.",
+  "birth_data": {
+    "date": "1990-04-18",
+    "time": "06:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-07-01T00:00:00Z",
+      "event_type": "DEGREE_COMPLETION",
+      "description": "Completed PhD in Physics"
+    }
+  ],
+  "natal_facts": {
+    "4th_lord_in_kendra": true,
+    "jupiter_strong": true,
+    "jupiter_4th_connection": true,
+    "4th_lord_strong": true,
+    "saturn_in_4th": false,
+    "rahu_in_4th": false,
+    "malefic_conjunction_4th": false,
+    "9th_lord_in_12th": false,
+    "rahu_in_12th": false,
+    "rahu_4th_connection": false,
+    "ketu_in_4th": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false,
+    "saturn_strong": false,
+    "saturn_9th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2028-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2017-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "HIGHER_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EARLY_EDUCATION_SUCCESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "RESEARCH_ACADEMIA": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

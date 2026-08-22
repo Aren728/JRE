@@ -1,0 +1,75 @@
+{
+  "chart_id": "edu_02_education_disruption",
+  "description": "Chart with education disruption indicators. Saturn in 4th, Rahu in 4th with malefic conjunction. Dropped out of college twice.",
+  "birth_data": {
+    "date": "1988-11-05",
+    "time": "22:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2008-09-01T00:00:00Z",
+      "event_type": "EDUCATION_GAP",
+      "description": "Dropped out of engineering college"
+    },
+    {
+      "event_date_utc": "2012-06-01T00:00:00Z",
+      "event_type": "EDUCATION_RESUMED",
+      "description": "Resumed education through distance learning"
+    }
+  ],
+  "natal_facts": {
+    "saturn_in_4th": true,
+    "rahu_in_4th": true,
+    "malefic_conjunction_4th": true,
+    "4th_lord_in_kendra": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false,
+    "4th_lord_strong": false,
+    "9th_lord_in_12th": false,
+    "rahu_in_12th": false,
+    "rahu_4th_connection": false,
+    "ketu_in_4th": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false,
+    "saturn_strong": false,
+    "saturn_9th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2006-01-01T00:00:00Z",
+      "activation_end_utc": "2025-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "EDUCATION_DISRUPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGHER_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "FOREIGN_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

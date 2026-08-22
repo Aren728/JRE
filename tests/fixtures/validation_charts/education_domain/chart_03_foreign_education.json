@@ -1,0 +1,75 @@
+{
+  "chart_id": "edu_03_foreign_education",
+  "description": "Chart with foreign education indicators. 9th lord in 12th, Rahu in 12th with 4th connection. Studied at Oxford.",
+  "birth_data": {
+    "date": "1992-07-22",
+    "time": "10:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2014-09-01T00:00:00Z",
+      "event_type": "FOREIGN_UNIVERSITY",
+      "description": "Admitted to University of Oxford"
+    },
+    {
+      "event_date_utc": "2016-07-01T00:00:00Z",
+      "event_type": "DEGREE_COMPLETION",
+      "description": "Completed Masters from Oxford"
+    }
+  ],
+  "natal_facts": {
+    "9th_lord_in_12th": true,
+    "rahu_in_12th": true,
+    "rahu_4th_connection": true,
+    "4th_lord_in_kendra": false,
+    "jupiter_strong": false,
+    "jupiter_4th_connection": false,
+    "4th_lord_strong": false,
+    "saturn_in_4th": false,
+    "rahu_in_4th": false,
+    "malefic_conjunction_4th": false,
+    "ketu_in_4th": false,
+    "mercury_strong": false,
+    "mercury_4th_connection": false,
+    "saturn_strong": false,
+    "saturn_9th_connection": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2028-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2015-12-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "FOREIGN_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "HIGHER_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EDUCATION_DISRUPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
