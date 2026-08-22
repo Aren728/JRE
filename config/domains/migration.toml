@@ -1,0 +1,172 @@
+[migration]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Migration Rules ──
+# Each rule maps JRE facts to a MigrationOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+
+# ── Foreign Settlement ──
+
+[[migration.rules]]
+rule_id = "R-MIG-FSET-001"
+description = "Rahu in 12th house — foreign settlement indicators"
+condition_facts = ["rahu_in_12th=true"]
+outcome = "FOREIGN_SETTLEMENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 2"
+
+[[migration.rules]]
+rule_id = "R-MIG-FSET-002"
+description = "9th lord in 12th with Rahu — permanent foreign settlement"
+condition_facts = ["9th_lord_in_12th=true", "rahu_12th_connection=true"]
+outcome = "FOREIGN_SETTLEMENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 4"
+
+[[migration.rules]]
+rule_id = "R-MIG-FSET-003"
+description = "12th lord strong with Jupiter connection — foreign settlement through fortune"
+condition_facts = ["12th_lord_strong=true", "jupiter_12th_connection=true"]
+outcome = "FOREIGN_SETTLEMENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 6"
+
+# ── Short Term Travel ──
+
+[[migration.rules]]
+rule_id = "R-MIG-STRVL-001"
+description = "Mercury strong with 12th connection — short term travel"
+condition_facts = ["mercury_strong=true", "mercury_12th_connection=true"]
+outcome = "SHORT_TERM_TRAVEL"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 10"
+
+[[migration.rules]]
+rule_id = "R-MIG-STRVL-002"
+description = "Moon in 12th with benefic — frequent short travel"
+condition_facts = ["moon_in_12th=true", "benefic_aspects_12th=true"]
+outcome = "SHORT_TERM_TRAVEL"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 12"
+
+# ── Migration Delay ──
+
+[[migration.rules]]
+rule_id = "R-MIG-DELAY-001"
+description = "Saturn in 12th house — delayed migration"
+condition_facts = ["saturn_in_12th=true"]
+outcome = "MIGRATION_DELAY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 15"
+
+[[migration.rules]]
+rule_id = "R-MIG-DELAY-002"
+description = "Saturn aspecting 12th lord — delayed migration"
+condition_facts = ["saturn_aspecting_12th=true", "12th_lord_weak=true"]
+outcome = "MIGRATION_DELAY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 18"
+
+# ── Return To Homeland ──
+
+[[migration.rules]]
+rule_id = "R-MIG-RETURN-001"
+description = "Saturn in 12th with malefic conjunction — return to homeland"
+condition_facts = ["saturn_in_12th=true", "malefic_conjunction_12th=true"]
+outcome = "RETURN_TO_HOMELAND"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 20"
+
+[[migration.rules]]
+rule_id = "R-MIG-RETURN-002"
+description = "12th lord debilitated with Ketu — return to homeland"
+condition_facts = ["12th_lord_debilitated=true", "ketu_12th_connection=true"]
+outcome = "RETURN_TO_HOMELAND"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 22"
+
+# ── Cross Cultural Success ──
+
+[[migration.rules]]
+rule_id = "R-MIG-XCULT-001"
+description = "Jupiter strong with 12th connection — cross cultural success"
+condition_facts = ["jupiter_strong=true", "jupiter_12th_connection=true"]
+outcome = "CROSS_CULTURAL_SUCCESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 25"
+
+[[migration.rules]]
+rule_id = "R-MIG-XCULT-002"
+description = "Venus strong with 9th-12th connection — cross cultural success"
+condition_facts = ["venus_strong=true", "9th_12th_connection=true"]
+outcome = "CROSS_CULTURAL_SUCCESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 28"
+
+# ── Visa Obstacles ──
+
+[[migration.rules]]
+rule_id = "R-MIG-VISA-001"
+description = "Saturn afflicting 12th lord without benefic — visa obstacles"
+condition_facts = ["saturn_afflicts_12th_lord=true", "benefic_protection_12th=false"]
+outcome = "VISA_OBSTACLES"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 15, Verse 30"
+
+[[migration.rules]]
+rule_id = "R-MIG-VISA-002"
+description = "6th lord connected to 12th — visa obstacles"
+condition_facts = ["6th_lord_connected_to_12th=true"]
+outcome = "VISA_OBSTACLES"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 32"
+
+# ── Mitigation Rules ──
+
+[[migration.rules]]
+rule_id = "R-MIG-MIT-001"
+description = "Jupiter mitigates Saturn migration delay"
+condition_facts = ["saturn_in_12th=true", "jupiter_aspecting_12th=true"]
+outcome = "MIGRATION_DELAY"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 100"
+
+[[migration.rules]]
+rule_id = "R-MIG-MIT-002"
+description = "Venus mitigates visa obstacles"
+condition_facts = ["saturn_afflicts_12th_lord=true", "venus_aspecting_12th=true"]
+outcome = "VISA_OBSTACLES"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 15, Verse 102"
