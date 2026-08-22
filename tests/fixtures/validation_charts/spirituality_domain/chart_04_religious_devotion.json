@@ -1,0 +1,79 @@
+{
+  "chart_id": "spirituality_04_devotion",
+  "description": "Chart with Jupiter strong in Kendra + Moon strong with Jupiter aspect — religious devotion. Temple priest family, devoted life.",
+  "birth_data": {
+    "date": "1980-01-12",
+    "time": "06:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 25.3176,
+    "longitude": 82.9739
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2005-08-15T00:00:00Z",
+      "event_type": "SPIRITUAL_EVENT",
+      "description": "Took religious vows"
+    },
+    {
+      "event_date_utc": "2015-12-25T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Active in religious community leadership"
+    }
+  ],
+  "natal_facts": {
+    "ketu_strong": false,
+    "jupiter_strong": true,
+    "jupiter_in_kendra": true,
+    "jupiter_aspecting_moon": false,
+    "ketu_in_1st": false,
+    "saturn_strong": false,
+    "rahu_debilitated": false,
+    "saturn_in_8th": false,
+    "ketu_8th_connection": false,
+    "mars_in_12th": false,
+    "saturn_12th_connection": false,
+    "moon_strong": true,
+    "jupiter_aspects_moon": true,
+    "rahu_in_12th": false,
+    "ketu_in_6th": false,
+    "mercury_strong": false,
+    "ketu_mercury_connection": false,
+    "12th_lord_in_4th": false,
+    "ketu_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2002-01-01T00:00:00Z",
+      "activation_end_utc": "2018-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2005-06-01T00:00:00Z",
+      "activation_end_utc": "2006-07-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "RELIGIOUS_DEVOTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SPIRITUAL_AWAKENING": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "ASCETIC_TENDENCIES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

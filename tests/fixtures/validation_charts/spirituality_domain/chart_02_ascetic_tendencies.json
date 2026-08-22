@@ -1,0 +1,79 @@
+{
+  "chart_id": "spirituality_02_ascetic",
+  "description": "Chart with Saturn in 8th + Ketu 8th connection + Mars in 12th — ascetic tendencies. Withdrew from worldly pursuits 2012.",
+  "birth_data": {
+    "date": "1978-11-05",
+    "time": "22:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2012-03-15T00:00:00Z",
+      "event_type": "SPIRITUAL_EVENT",
+      "description": "Withdrew from material pursuits, began ascetic lifestyle"
+    },
+    {
+      "event_date_utc": "2016-08-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Continued ascetic practices"
+    }
+  ],
+  "natal_facts": {
+    "ketu_strong": false,
+    "jupiter_strong": false,
+    "jupiter_in_kendra": false,
+    "jupiter_aspecting_moon": false,
+    "ketu_in_1st": false,
+    "saturn_strong": true,
+    "rahu_debilitated": false,
+    "saturn_in_8th": true,
+    "ketu_8th_connection": true,
+    "mars_in_12th": true,
+    "saturn_12th_connection": true,
+    "moon_strong": false,
+    "jupiter_aspects_moon": false,
+    "rahu_in_12th": false,
+    "ketu_in_6th": false,
+    "mercury_strong": false,
+    "ketu_mercury_connection": false,
+    "12th_lord_in_4th": false,
+    "ketu_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2014-12-31T00:00:00Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "ASCETIC_TENDENCIES": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SPIRITUAL_AWAKENING": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "RENUNCIATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

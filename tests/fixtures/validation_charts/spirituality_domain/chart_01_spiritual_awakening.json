@@ -1,0 +1,79 @@
+{
+  "chart_id": "spirituality_01_awakening",
+  "description": "Chart with strong Ketu + Jupiter — spiritual awakening indicators. Deep meditation practice from 2010.",
+  "birth_data": {
+    "date": "1985-03-20",
+    "time": "04:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2010-06-15T00:00:00Z",
+      "event_type": "SPIRITUAL_EVENT",
+      "description": "Began intensive meditation practice"
+    },
+    {
+      "event_date_utc": "2018-01-01T00:00:00Z",
+      "event_type": "SPIRITUAL_EVENT",
+      "description": "Spiritual awakening experience"
+    }
+  ],
+  "natal_facts": {
+    "ketu_strong": true,
+    "jupiter_strong": true,
+    "jupiter_in_kendra": true,
+    "jupiter_aspecting_moon": false,
+    "ketu_in_1st": false,
+    "saturn_strong": false,
+    "rahu_debilitated": false,
+    "saturn_in_8th": false,
+    "ketu_8th_connection": false,
+    "mars_in_12th": false,
+    "saturn_12th_connection": false,
+    "moon_strong": false,
+    "jupiter_aspects_moon": false,
+    "rahu_in_12th": false,
+    "ketu_in_6th": false,
+    "mercury_strong": false,
+    "ketu_mercury_connection": false,
+    "12th_lord_in_4th": false,
+    "ketu_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "KETU",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2015-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2010-06-01T00:00:00Z",
+      "activation_end_utc": "2011-07-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SPIRITUAL_AWAKENING": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "RENUNCIATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "RELIGIOUS_DEVOTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

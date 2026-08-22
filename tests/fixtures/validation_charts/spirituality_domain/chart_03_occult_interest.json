@@ -1,0 +1,79 @@
+{
+  "chart_id": "spirituality_03_occult",
+  "description": "Chart with Rahu in 12th + Ketu in 6th + Mercury strong — occult interest. Studied astrology and tantra from 2008.",
+  "birth_data": {
+    "date": "1992-07-14",
+    "time": "15:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 26.8467,
+    "longitude": 80.9462
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2008-09-01T00:00:00Z",
+      "event_type": "SPIRITUAL_EVENT",
+      "description": "Began studying astrology and occult sciences"
+    },
+    {
+      "event_date_utc": "2015-04-01T00:00:00Z",
+      "event_type": "OTHER",
+      "description": "Practicing tantra and occult rituals"
+    }
+  ],
+  "natal_facts": {
+    "ketu_strong": false,
+    "jupiter_strong": false,
+    "jupiter_in_kendra": false,
+    "jupiter_aspecting_moon": false,
+    "ketu_in_1st": false,
+    "saturn_strong": false,
+    "rahu_debilitated": false,
+    "saturn_in_8th": false,
+    "ketu_8th_connection": false,
+    "mars_in_12th": false,
+    "saturn_12th_connection": false,
+    "moon_strong": false,
+    "jupiter_aspects_moon": false,
+    "rahu_in_12th": true,
+    "ketu_in_6th": true,
+    "mercury_strong": true,
+    "ketu_mercury_connection": true,
+    "12th_lord_in_4th": false,
+    "ketu_in_12th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2005-01-01T00:00:00Z",
+      "activation_end_utc": "2023-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2008-06-01T00:00:00Z",
+      "activation_end_utc": "2010-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "OCCULT_INTEREST": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SPIRITUAL_AWAKENING": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "RENUNCIATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
