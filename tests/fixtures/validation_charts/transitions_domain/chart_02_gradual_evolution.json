@@ -1,0 +1,77 @@
+{
+  "chart_id": "trns_02_gradual_evolution",
+  "description": "Chart with gradual evolution indicators. Saturn slow transit through Kendra, Jupiter progressive transit. Slow but steady personal growth over decade.",
+  "birth_data": {
+    "date": "1985-02-20",
+    "time": "10:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-01-01T00:00:00Z",
+      "event_type": "CAREER_PROGRESS",
+      "description": "Gradual promotion from junior to senior over 5 years"
+    },
+    {
+      "event_date_utc": "2020-01-01T00:00:00Z",
+      "event_type": "PERSONAL_GROWTH",
+      "description": "Completed executive MBA while working"
+    }
+  ],
+  "natal_facts": {
+    "saturn_slow_transit_kendra": true,
+    "jupiter_progressive_transit": true,
+    "rahu_ketu_axis": false,
+    "rahu_ketu_transit_activation": false,
+    "eclipse_effects": false,
+    "saturn_return": false,
+    "jupiter_ketu_conjunction": false,
+    "8th_house_activations": false,
+    "benefic_aspects_8th": false,
+    "mars_saturn_conjunction": false,
+    "jupiter_aspects_mars_saturn": false,
+    "ketu_strong": false,
+    "jupiter_strong": false,
+    "neptune_uranus_aspect": false,
+    "ketu_connection": false,
+    "10th_lord_activated": false,
+    "sun_moon_conjunction_kendra": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "GRADUAL_EVOLUTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LIFE_PHASE_SHIFT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUDDEN_UPHEAVAL": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

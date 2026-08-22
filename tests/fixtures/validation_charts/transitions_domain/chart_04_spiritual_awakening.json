@@ -1,0 +1,77 @@
+{
+  "chart_id": "trns_04_spiritual_awakening",
+  "description": "Chart with spiritual awakening indicators. Ketu strong with Jupiter, Neptune-Uranus aspect with Ketu connection. Experienced profound spiritual transformation.",
+  "birth_data": {
+    "date": "1987-04-25",
+    "time": "21:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-08-15T00:00:00Z",
+      "event_type": "SPIRITUAL_TRANSFORMATION",
+      "description": "Profound spiritual awakening during meditation retreat"
+    },
+    {
+      "event_date_utc": "2021-01-01T00:00:00Z",
+      "event_type": "LIFE_PURPOSE",
+      "description": "Left corporate career to pursue spiritual teaching"
+    }
+  ],
+  "natal_facts": {
+    "ketu_strong": true,
+    "jupiter_strong": true,
+    "neptune_uranus_aspect": true,
+    "ketu_connection": true,
+    "rahu_ketu_axis": false,
+    "rahu_ketu_transit_activation": false,
+    "eclipse_effects": false,
+    "saturn_return": false,
+    "jupiter_ketu_conjunction": false,
+    "saturn_slow_transit_kendra": false,
+    "jupiter_progressive_transit": false,
+    "8th_house_activations": false,
+    "benefic_aspects_8th": false,
+    "mars_saturn_conjunction": false,
+    "jupiter_aspects_mars_saturn": false,
+    "10th_lord_activated": false,
+    "sun_moon_conjunction_kendra": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "KETU",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2023-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2019-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "SPIRITUAL_AWAKENING": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LIFE_PHASE_SHIFT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "GRADUAL_EVOLUTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

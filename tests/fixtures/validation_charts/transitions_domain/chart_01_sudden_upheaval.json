@@ -1,0 +1,72 @@
+{
+  "chart_id": "trns_01_sudden_upheaval",
+  "description": "Chart with sudden upheaval indicators. Rahu-Ketu axis activated by transit, eclipse effects on natal planets. Experienced sudden career change 2020.",
+  "birth_data": {
+    "date": "1988-07-14",
+    "time": "03:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2020-06-15T00:00:00Z",
+      "event_type": "SUDDEN_CAREER_CHANGE",
+      "description": "Unexpected job loss followed by complete career pivot"
+    }
+  ],
+  "natal_facts": {
+    "rahu_ketu_axis": true,
+    "rahu_ketu_transit_activation": true,
+    "eclipse_effects": true,
+    "saturn_return": false,
+    "jupiter_ketu_conjunction": false,
+    "saturn_slow_transit_kendra": false,
+    "jupiter_progressive_transit": false,
+    "8th_house_activations": false,
+    "benefic_aspects_8th": false,
+    "mars_saturn_conjunction": false,
+    "jupiter_aspects_mars_saturn": false,
+    "ketu_strong": false,
+    "jupiter_strong": false,
+    "neptune_uranus_aspect": false,
+    "ketu_connection": false,
+    "10th_lord_activated": false,
+    "sun_moon_conjunction_kendra": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2036-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "RAHU",
+      "activation_start_utc": "2020-01-01T00:00:00Z",
+      "activation_end_utc": "2021-06-30T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "SUDDEN_UPHEAVAL": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LIFE_PHASE_SHIFT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CRISIS_RECOVERY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

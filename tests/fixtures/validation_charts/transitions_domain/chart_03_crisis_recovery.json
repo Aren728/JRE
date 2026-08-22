@@ -1,0 +1,77 @@
+{
+  "chart_id": "trns_03_crisis_recovery",
+  "description": "Chart with crisis recovery indicators. 8th house activations with benefic aspects, Mars-Saturn conjunction with Jupiter aspect. Recovered from major health crisis.",
+  "birth_data": {
+    "date": "1990-11-08",
+    "time": "16:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2019-03-01T00:00:00Z",
+      "event_type": "HEALTH_CRISIS",
+      "description": "Major health scare requiring hospitalization"
+    },
+    {
+      "event_date_utc": "2020-09-01T00:00:00Z",
+      "event_type": "RECOVERY",
+      "description": "Full recovery and renewed life perspective"
+    }
+  ],
+  "natal_facts": {
+    "8th_house_activations": true,
+    "benefic_aspects_8th": true,
+    "mars_saturn_conjunction": true,
+    "jupiter_aspects_mars_saturn": true,
+    "rahu_ketu_axis": false,
+    "rahu_ketu_transit_activation": false,
+    "eclipse_effects": false,
+    "saturn_return": false,
+    "jupiter_ketu_conjunction": false,
+    "saturn_slow_transit_kendra": false,
+    "jupiter_progressive_transit": false,
+    "ketu_strong": false,
+    "jupiter_strong": false,
+    "neptune_uranus_aspect": false,
+    "ketu_connection": false,
+    "10th_lord_activated": false,
+    "sun_moon_conjunction_kendra": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2023-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2019-01-01T00:00:00Z",
+      "activation_end_utc": "2021-06-30T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "CRISIS_RECOVERY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "SUDDEN_UPHEAVAL": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "LIFE_PHASE_SHIFT": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
