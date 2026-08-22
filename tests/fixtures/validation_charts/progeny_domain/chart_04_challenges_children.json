@@ -1,0 +1,64 @@
+{
+  "chart_id": "progeny_04_challenges_children",
+  "description": "Chart with challenges with children. Malefic in 5th without benefic protection, 6th lord connected to 5th. Experienced child health issues.",
+  "birth_data": {
+    "date": "1990-01-30",
+    "time": "18:45:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2018-04-01T00:00:00Z",
+      "event_type": "CHILD_HEALTH_ISSUE",
+      "description": "Child required hospitalization"
+    }
+  ],
+  "natal_facts": {
+    "malefic_in_5th": true,
+    "benefic_protection_5th": false,
+    "6th_lord_connected_to_5th": true,
+    "saturn_in_5th": false,
+    "rahu_in_5th": false,
+    "jupiter_strong": false,
+    "jupiter_aspecting_5th": false,
+    "5th_lord_in_kendra": false,
+    "5th_lord_debilitated": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2012-01-01T00:00:00Z",
+      "activation_end_utc": "2031-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2017-11-01T00:00:00Z",
+      "activation_end_utc": "2020-03-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "CHALLENGES_WITH_CHILDREN": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EASY_CONCEPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHILDREN_SUCCESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "chart_id": "progeny_01_easy_conception",
+  "description": "Chart with strong easy conception indicators. Jupiter strong with 5th lord in kendra, Venus strong with Jupiter aspecting 5th. First child conceived easily 2016.",
+  "birth_data": {
+    "date": "1988-03-15",
+    "time": "07:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 28.6139,
+    "longitude": 77.2090
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2016-06-01T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "description": "First child born after easy conception"
+    }
+  ],
+  "natal_facts": {
+    "jupiter_strong": true,
+    "5th_lord_in_kendra": true,
+    "venus_strong": true,
+    "jupiter_aspecting_5th": true,
+    "saturn_in_5th": false,
+    "rahu_in_5th": false,
+    "saturn_aspecting_5th": false,
+    "5th_lord_debilitated": false,
+    "malefic_in_5th": false,
+    "benefic_protection_5th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2014-01-01T00:00:00Z",
+      "activation_end_utc": "2030-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2016-01-01T00:00:00Z",
+      "activation_end_utc": "2017-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "EASY_CONCEPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MULTIPLE_CHILDREN": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHILDREN_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

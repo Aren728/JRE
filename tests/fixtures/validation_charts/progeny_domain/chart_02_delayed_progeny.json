@@ -1,0 +1,64 @@
+{
+  "chart_id": "progeny_02_delayed_progeny",
+  "description": "Chart with delayed progeny indicators. Saturn in 5th house, 5th lord debilitated. First child born after 8 years of marriage.",
+  "birth_data": {
+    "date": "1985-11-22",
+    "time": "14:00:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2015-09-01T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "description": "First child born after prolonged delay"
+    }
+  ],
+  "natal_facts": {
+    "saturn_in_5th": true,
+    "5th_lord_debilitated": true,
+    "jupiter_strong": false,
+    "jupiter_aspecting_5th": false,
+    "rahu_in_5th": false,
+    "saturn_aspecting_5th": false,
+    "5th_lord_in_kendra": false,
+    "malefic_in_5th": false,
+    "benefic_protection_5th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2029-01-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "SATURN",
+      "activation_start_utc": "2014-11-01T00:00:00Z",
+      "activation_end_utc": "2017-10-31T23:59:59Z",
+      "strength": 0.8
+    }
+  ],
+  "expected_assessments": {
+    "DELAYED_PROGENY": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "EASY_CONCEPTION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "MULTIPLE_CHILDREN": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

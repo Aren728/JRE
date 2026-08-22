@@ -1,0 +1,76 @@
+{
+  "chart_id": "progeny_03_multiple_children",
+  "description": "Chart with multiple children indicators. Jupiter strong with benefic aspects on 5th, multiple planets in 5th. Has 3 children.",
+  "birth_data": {
+    "date": "1982-07-08",
+    "time": "10:15:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2010-03-01T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "description": "First child born"
+    },
+    {
+      "event_date_utc": "2013-06-01T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "description": "Second child born"
+    },
+    {
+      "event_date_utc": "2017-01-01T00:00:00Z",
+      "event_type": "CHILD_BIRTH",
+      "description": "Third child born"
+    }
+  ],
+  "natal_facts": {
+    "jupiter_strong": true,
+    "benefic_aspects_5th": true,
+    "multiple_planets_5th": true,
+    "5th_lord_in_kendra_or_trikona": true,
+    "5th_lord_strong": true,
+    "mercury_strong": true,
+    "mercury_5th_connection": true,
+    "saturn_in_5th": false,
+    "rahu_in_5th": false,
+    "malefic_in_5th": false,
+    "benefic_protection_5th": false
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2008-01-01T00:00:00Z",
+      "activation_end_utc": "2024-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2010-01-01T00:00:00Z",
+      "activation_end_utc": "2011-06-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "MULTIPLE_CHILDREN": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHILDREN_SUCCESS": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    },
+    "CHILDREN_EDUCATION": {
+      "assessment_status": "WEAKLY_SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}
