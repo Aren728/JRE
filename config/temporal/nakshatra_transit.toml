@@ -1,0 +1,303 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# RI-008 Phase 1: Nakshatra-Lord Transit Intelligence Rules
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# Source: RI-008_RESEARCH_REPORT.md
+# Scope: 14 findings classified as encodable via existing JRE facts
+#        (JRE-003, JRE-026, JRE-010).
+#
+# Each rule includes:
+#   - classification: CLASSICAL_PRIMARY | COMMENTARY_DEPENDENT | LATER_TRADITION
+#   - source: Text/Chapter/Verse reference
+#   - condition_facts: facts from JRE engines that must be satisfied
+#   - outcome: temporal modifier type
+#   - strength: evidence weight (0.0 to 1.0)
+#
+# NO new JRE engines created. Sarvatobhadra and Navatara Chakras are
+# explicitly deferred to Phase 2.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[nakshatra_transit]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Transit Planet → Nakshatra Activation Rules ──────────────────────────────
+# These rules map transit planet + Nakshatra lord relationships to
+# temporal modifiers (evidence weights or convergence adjustments).
+
+# ── CLASSICAL PRIMARY: House-based transit from Moon ──────────────────────────
+# These rules are explicitly stated in classical texts.
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-001"
+description = "Transit planet enters Moon's natal Nakshatra — mental/emotional activation"
+classification = "CLASSICAL_PRIMARY"
+condition_facts = ["transit_in_moon_nakshatra=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.8
+source = "Phaladeepika"
+location = "Chapter 26, Verse 1"
+evidence_weight = 0.8
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-002"
+description = "Transit planet in Abhijit Nakshatra — auspicious activation"
+classification = "CLASSICAL_PRIMARY"
+condition_facts = ["transit_in_abhijit_nakshatra=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.7
+source = "Phaladeepika"
+location = "Chapter 26 (Sarvatobhadra Chakra)"
+evidence_weight = 0.7
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-003"
+description = "Transit through Janma Nakshatra during active Antardasha — peak activation"
+classification = "CLASSICAL_PRIMARY"
+condition_facts = ["transit_in_moon_nakshatra=true", "antardasha_active=true"]
+outcome = "CONVERGENCE_BOOST"
+direction = "SUPPORT"
+strength = 0.9
+source = "BPHS"
+location = "Chapter 37 (Timing framework)"
+evidence_weight = 0.9
+
+# ── COMMENTARY-DEPENDENT: Nakshatra lord relationship rules ──────────────────
+# These rules derive from classical principles but are not explicitly
+# stated in primary texts. They are Commentary-Dependent.
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-004"
+description = "Transit in Nakshatra whose lord is friendly to transit planet — enhanced results"
+classification = "COMMENTARY_DEPENDENT"
+condition_facts = ["transit_nakshatra_lord_friendly=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.6
+source = "Later tradition (applied planet-planet friendship)"
+location = "Derived from BPHS planet relationship theory"
+evidence_weight = 0.6
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-005"
+description = "Transit in Nakshatra whose lord is enemy to transit planet — diminished results"
+classification = "COMMENTARY_DEPENDENT"
+condition_facts = ["transit_nakshatra_lord_enemy=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "OPPOSE"
+strength = 0.6
+source = "Later tradition (applied planet-planet enmity)"
+location = "Derived from BPHS planet relationship theory"
+evidence_weight = 0.4
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-006"
+description = "Transit in Nakshatra whose lord is conjunct benefic — positive modification"
+classification = "COMMENTARY_DEPENDENT"
+condition_facts = ["transit_nakshatra_lord_conjunct_benefic=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.5
+source = "Later tradition (conjunction theory applied to Nakshatra lord)"
+location = "Derived from BPHS conjunction effects"
+evidence_weight = 0.5
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-007"
+description = "Transit in Nakshatra whose lord is conjunct malefic — negative modification"
+classification = "COMMENTARY_DEPENDENT"
+condition_facts = ["transit_nakshatra_lord_conjunct_malefic=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "OPPOSE"
+strength = 0.5
+source = "Later tradition (conjunction theory applied to Nakshatra lord)"
+location = "Derived from BPHS conjunction effects"
+evidence_weight = 0.4
+
+# ── LATER TRADITION: Nakshatra lord condition rules ──────────────────────────
+# These rules are derived from classical principles but represent
+# later synthesis, not primary text statements.
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-008"
+description = "Nakshatra lord exalted — enhanced transit results"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_exalted=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.5
+source = "Later tradition (dignity theory applied to Nakshatra lord)"
+location = "Derived from BPHS Ch.36 planet strength"
+evidence_weight = 0.5
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-009"
+description = "Nakshatra lord debilitated — diminished transit results"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_debilitated=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "OPPOSE"
+strength = 0.5
+source = "Later tradition (dignity theory applied to Nakshatra lord)"
+location = "Derived from BPHS Ch.36 planet strength"
+evidence_weight = 0.4
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-010"
+description = "Nakshatra lord in Kendra or Trikona from Lagna — favorable transit"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_in_kendra_or_trikona=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.4
+source = "Later tradition (house placement applied to Nakshatra lord)"
+location = "Derived from BPHS house-based transit theory"
+evidence_weight = 0.4
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-011"
+description = "Nakshatra lord in 6th, 8th, or 12th from Lagna — unfavorable transit"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_in_dusthana=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "OPPOSE"
+strength = 0.4
+source = "Later tradition (house placement applied to Nakshatra lord)"
+location = "Derived from BPHS house-based transit theory"
+evidence_weight = 0.3
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-012"
+description = "Nakshatra lord retrograde — unexpected transit results"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_retrograde=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "SUPPORT"
+strength = 0.3
+source = "Later tradition (retrograde theory applied to Nakshatra lord)"
+location = "Derived from BPHS retrograde effects"
+evidence_weight = 0.3
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-013"
+description = "Nakshatra lord combust — weakened transit activation"
+classification = "LATER_TRADITION"
+condition_facts = ["nakshatra_lord_combust=true"]
+outcome = "TEMPORAL_MODIFIER"
+direction = "OPPOSE"
+strength = 0.3
+source = "Later tradition (combustion theory applied to Nakshatra lord)"
+location = "Derived from BPHS combustion effects"
+evidence_weight = 0.3
+
+# ── Dasha-Transit Convergence Rules ──────────────────────────────────────────
+
+[[nakshatra_transit.rules]]
+rule_id = "R-TRANSIT-014"
+description = "Dasha lord equals transit planet — maximum activation of Dasha lord significations"
+classification = "COMMENTARY_DEPENDENT"
+condition_facts = ["dasha_lord_equals_transit_planet=true"]
+outcome = "CONVERGENCE_BOOST"
+direction = "SUPPORT"
+strength = 0.8
+source = "Commentary-dependent (BPHS Ch.37 timing principle applied)"
+location = "Derived from BPHS three-stage timing model"
+evidence_weight = 0.8
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported)
+# The following configurations were identified in RI-008 but classified as
+# UNSUPPORTED or Modern Interpretation. They are listed here explicitly
+# to prevent future drift into the rule catalog.
+#
+# R-TRANSIT-EXCLUDED-001: "Saturn transit through your Nakshatra brings
+#   inevitable hardship and karmic lessons"
+#   Classification: UNSUPPORTED
+#   Reason: BPHS and Saravali describe Saturn transit effects from Moon
+#   sign, not from Nakshatra. The "inevitable hardship" framing is modern
+#   fatalism, not classical.
+#
+# R-TRANSIT-EXCLUDED-002: "Jupiter transit through your Nakshatra guarantees
+#   luck and abundance"
+#   Classification: UNSUPPORTED
+#   Reason: Phaladeepika Ch.26 describes Jupiter transit effects from Moon
+#   sign in specific houses. The "guarantee" framing is modern.
+#
+# R-TRANSIT-EXCLUDED-003: "Rahu transit through your Nakshatra activates
+#   past-life karma"
+#   Classification: UNSUPPORTED
+#   Reason: No classical text uses "past-life karma" language for transit
+#   effects. Rahu transit effects are described from Moon sign.
+#
+# R-TRANSIT-EXCLUDED-004: "Ketu transit through your Nakshatra brings
+#   spiritual awakening"
+#   Classification: UNSUPPORTED
+#   Reason: "Spiritual awakening" is modern New Age interpretation.
+#   Classical texts describe Ketu transit as similar to Sun.
+#
+# R-TRANSIT-EXCLUDED-005: "Mercury transit through your Nakshatra activates
+#   your communication gifts"
+#   Classification: UNSUPPORTED
+#   Reason: "Communication gifts" is modern psychological language.
+#   Mercury transit effects are described house-by-house from Moon.
+#
+# R-TRANSIT-EXCLUDED-006: "Your Nakshatra lord's transit determines your
+#   life purpose"
+#   Classification: UNSUPPORTED
+#   Reason: "Life purpose" is a modern coaching concept with no basis in
+#   classical Jyotish.
+#
+# R-TRANSIT-EXCLUDED-007: "Transit through your Janma Nakshatra pada
+#   activates specific chakras"
+#   Classification: UNSUPPORTED
+#   Reason: Chakra activation is a modern syncretic concept blending
+#   Jyotish with New Age energy work.
+#
+# R-TRANSIT-EXCLUDED-008: "Saturn's Sade Sati is worse when it transits
+#   your Nakshatra"
+#   Classification: UNSUPPORTED
+#   Reason: Sade Sati Nakshatra-level amplification is not in BPHS or
+#   Phaladeepika.
+#
+# R-TRANSIT-EXCLUDED-009: "Jupiter transit through your Atmakaraka Nakshatra
+#   liberates your soul"
+#   Classification: UNSUPPORTED
+#   Reason: "Soul liberation" through transit is modern spiritual astrology.
+#
+# R-TRANSIT-EXCLUDED-010: "Rahu-Ketu transit through your Dasha lord's
+#   Nakshatra triggers karmic debt repayment"
+#   Classification: UNSUPPORTED
+#   Reason: "Karmic debt repayment" is a modern Buddhist/Hindu hybrid
+#   concept not found in classical texts.
+#
+# R-TRANSIT-EXCLUDED-011: "Transit through your Nakshatra pada gives results
+#   within 7 days"
+#   Classification: UNSUPPORTED
+#   Reason: No classical text specifies exact timing for Nakshatra transit
+#   effects. Transit timing is Dasha-dependent.
+#
+# R-TRANSIT-EXCLUDED-012: "Transit effects peak when the planet crosses
+#   the exact Nakshatra boundary"
+#   Classification: UNSUPPORTED
+#   Reason: Classical texts describe transit effects as gradual, not
+#   boundary-triggered.
+#
+# R-TRANSIT-EXCLUDED-013: "Transit through your Nakshatra's 4th pada
+#   activates career matters"
+#   Classification: UNSUPPORTED
+#   Reason: Pada-specific life area mapping is modern.
+#
+# R-TRANSIT-EXCLUDED-014: "Multiple planets transiting your Nakshatra
+#   simultaneously creates a 'grand activation'"
+#   Classification: UNSUPPORTED
+#   Reason: "Grand activation" is modern terminology. Classical texts
+#   describe each planet's transit independently.
+#
+# R-TRANSIT-EXCLUDED-015: "Transit through your Nakshatra during Rahu Dasha
+#   gives foreign settlement"
+#   Classification: UNSUPPORTED
+#   Reason: Foreign settlement from transit is not a classical rule.
+# ══════════════════════════════════════════════════════════════════════════════
