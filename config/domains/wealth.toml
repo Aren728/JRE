@@ -296,3 +296,267 @@ direction = "MITIGATE"
 strength = "MODERATE"
 source_id = "BPHS"
 location = "Chapter 14, Verse 102"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Planetary Wealth Pathways (JRS-058)
+# Classical rules mapping planetary significations to wealth mechanisms.
+# Each rule encodes a specific causal pathway described in BPHS.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Jupiter Pathways ────────────────────────────────────────────────────────
+# Jupiter governs wisdom, teaching, dharma, and expansion.
+# Wealth through counsel, education, advisory, and 2nd/11th lordship.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-001"
+description = "Jupiter in 5th or 9th with strong disposition — wealth through wisdom and teaching"
+condition_facts = ["jupiter_strong=true", "jupiter_in_5th_or_9th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 70"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-002"
+description = "Jupiter as 2nd or 11th lord in kendra — wealth through dharmic counsel and advisory"
+condition_facts = ["jupiter_lord_of_2nd_or_11th=true", "jupiter_in_kendra=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 72"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-003"
+description = "Jupiter aspecting 11th house with benefic — financial stability through mentorship"
+condition_facts = ["jupiter_aspecting_11th=true", "jupiter_strong=true"]
+outcome = "FINANCIAL_STABILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 74"
+
+# ── Saturn Pathways ─────────────────────────────────────────────────────────
+# Saturn governs land, labor, discipline, and delayed results.
+# Wealth through real estate, service sector, and patient accumulation.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-004"
+description = "Saturn strong in 4th with Mars connection — wealth through land and real estate"
+condition_facts = ["saturn_strong=true", "saturn_in_4th=true", "mars_4th_connection=true"]
+outcome = "PROPERTY_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 76"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-005"
+description = "Saturn in 10th with benefic aspects — wealth through disciplined labor and service"
+condition_facts = ["saturn_in_10th=true", "saturn_strong=true", "benefic_aspects_10th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 78"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-006"
+description = "Saturn as 11th lord in 11th — delayed but substantial wealth accumulation"
+condition_facts = ["saturn_in_11th=true", "saturn_lord_of_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 80"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-007"
+description = "Saturn afflicting 2nd lord but with Jupiter aspect — eventual financial recovery"
+condition_facts = ["saturn_afflicts_2nd_lord=true", "jupiter_aspecting_2nd=true"]
+outcome = "FINANCIAL_RECOVERY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 82"
+
+# ── Rahu Pathways ───────────────────────────────────────────────────────────
+# Rahu governs foreign lands, speculation, technology, and unconventional means.
+# Wealth through foreign sources, trading, and innovative ventures.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-008"
+description = "Rahu in 12th with foreign sources — wealth through foreign lands and overseas ventures"
+condition_facts = ["rahu_in_12th=true", "rahu_foreign_sources=true"]
+outcome = "SPECULATIVE_GAINS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 84"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-009"
+description = "Rahu in 11th with Mercury as 11th lord — multiple income streams through technology and trade"
+condition_facts = ["rahu_in_11th=true", "11th_lord=MERCURY"]
+outcome = "MULTIPLE_INCOME_STREAMS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 86"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-010"
+description = "Rahu with Mercury in 7th — business wealth through unconventional partnerships"
+condition_facts = ["rahu_with_mercury_in_7th=true"]
+outcome = "BUSINESS_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 88"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-011"
+description = "Rahu in 5th with speculative disposition — speculative gains through unconventional methods"
+condition_facts = ["rahu_in_5th=true", "rahu_speculative=true"]
+outcome = "SPECULATIVE_GAINS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 90"
+
+# ── Ketu Pathways ───────────────────────────────────────────────────────────
+# Ketu governs sudden events, past-life karma, inheritance, and detachment.
+# Wealth through windfalls, inheritance, and charitable giving.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-012"
+description = "Ketu in 8th with Jupiter conjunction — sudden unexpected windfall"
+condition_facts = ["ketu_in_8th=true", "ketu_with_jupiter=true"]
+outcome = "UNEXPECTED_WINDFALL"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 92"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-013"
+description = "Ketu in 8th with strong 8th lord — inheritance from ancestral wealth"
+condition_facts = ["ketu_in_8th=true", "8th_lord_strong=true"]
+outcome = "INHERITANCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 94"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-014"
+description = "Ketu in 12th with detachment — charitable disposition and wealth renunciation"
+condition_facts = ["ketu_in_12th=true", "ketu_detachment=true"]
+outcome = "CHARITABLE_DISPOSITION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 96"
+
+# ── Mars Pathways ───────────────────────────────────────────────────────────
+# Mars governs engineering, military, courage, and aggressive enterprise.
+# Wealth through technical skill, manufacturing, and bold ventures.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-015"
+description = "Mars strong in 10th — wealth through engineering, military, or technical enterprise"
+condition_facts = ["mars_strong=true", "mars_in_10th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 98"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-016"
+description = "Mars as 3rd lord in 3rd — business wealth through courage and competitive enterprise"
+condition_facts = ["mars_in_3rd=true", "mars_lord_of_3rd=true"]
+outcome = "BUSINESS_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 100"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-017"
+description = "Mars strong in 4th — property wealth through aggressive acquisition"
+condition_facts = ["mars_strong=true", "mars_in_4th=true"]
+outcome = "PROPERTY_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 102"
+
+# ── Mercury Pathways ────────────────────────────────────────────────────────
+# Mercury governs trade, communication, intellect, and commerce.
+# Wealth through business acumen, writing, consulting, and trade.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-018"
+description = "Mercury strong in 7th with trade — business wealth through commerce and communication"
+condition_facts = ["mercury_strong=true", "mercury_in_7th=true", "mercury_trade=true"]
+outcome = "BUSINESS_WEALTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 104"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-019"
+description = "Mercury in 3rd with Jupiter — multiple income streams through writing and teaching"
+condition_facts = ["mercury_in_3rd=true", "jupiter_strong=true"]
+outcome = "MULTIPLE_INCOME_STREAMS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 106"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-020"
+description = "Mercury as 2nd lord strong — wealth accumulation through trade and analytical work"
+condition_facts = ["mercury_lord_of_2nd=true", "mercury_strong=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 108"
+
+# ── Moon Pathways ───────────────────────────────────────────────────────────
+# Moon governs public favor, liquids, emotion, and the mind.
+# Wealth through public reputation, hospitality, and maternal inheritance.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-021"
+description = "Moon strong in 10th — wealth through public favor and emotional connection"
+condition_facts = ["moon_strong=true", "moon_in_10th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 14, Verse 110"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-022"
+description = "Moon strong with 4th connection — property wealth through maternal lineage"
+condition_facts = ["moon_strong=true", "moon_4th_connection=true"]
+outcome = "PROPERTY_WEALTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 112"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-PW-023"
+description = "Moon in 4th with strong 4th lord — inheritance through maternal side"
+condition_facts = ["moon_in_4th=true", "4th_lord_strong=true"]
+outcome = "INHERITANCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 14, Verse 114"
