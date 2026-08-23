@@ -344,3 +344,318 @@ direction = "SUPPORT"
 strength = "MODERATE"
 source_id = "BPHS"
 location = "Chapter 2, Verse 38"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# RI-009 Phase 1: Avastha (Planetary State) Trait Modifiers
+# ══════════════════════════════════════════════════════════════════════════════
+# These rules encode how planetary dignity (exaltation, debilitation,
+# own sign) modifies the baseline temperament expressed through
+# the Hora, Vara, and Nakshatra rules above.
+#
+# Source: BPHS Chapter 36 (Avastha effects), RI-009_RESEARCH_REPORT.md
+# Classification: All rules below are CLASSICAL_PRIMARY (BPHS Ch.36)
+#
+# These are MODIFIER rules — they amplify or weaken traits already
+# indicated by other factors, not standalone trait generators.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Sun Avastha Modifiers ───────────────────────────────────────────────────
+# Sun governs authority, selfhood, and leadership.
+# Exaltation amplifies authoritative qualities; debilitation weakens them.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-001"
+description = "Sun in exaltation — amplified authoritative and commanding presence"
+condition_facts = ["sun_avastha=EXALTED"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-002"
+description = "Sun in debilitation — weakened leadership, dependent and timorous"
+condition_facts = ["sun_avastha=DEBILITATED"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-003"
+description = "Sun in own sign — confident and self-assured authority"
+condition_facts = ["sun_avastha=OWN_SIGN"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Moon Avastha Modifiers ──────────────────────────────────────────────────
+# Moon governs emotion, mind, and receptivity.
+# Exaltation brings emotional balance; debilitation brings instability.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-004"
+description = "Moon in exaltation — emotionally balanced, happy, charitable"
+condition_facts = ["moon_avastha=EXALTED"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-005"
+description = "Moon in debilitation — depressed, sorrowful, emotionally unstable"
+condition_facts = ["moon_avastha=DEBILITATED"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Mercury Avastha Modifiers ───────────────────────────────────────────────
+# Mercury governs intellect, communication, and scholarship.
+# Exaltation amplifies intellectual capacity; debilitation weakens it.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-006"
+description = "Mercury in exaltation — learned, eloquent, intellectually brilliant"
+condition_facts = ["mercury_avastha=EXALTED"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-007"
+description = "Mercury in debilitation — unlearned, inarticulate, intellectually weak"
+condition_facts = ["mercury_avastha=DEBILITATED"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Jupiter Avastha Modifiers ───────────────────────────────────────────────
+# Jupiter governs wisdom, dharma, and spiritual inclination.
+# Exaltation amplifies spiritual and dharmic qualities.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-008"
+description = "Jupiter in exaltation — wise, charitable, spiritually radiant"
+condition_facts = ["jupiter_avastha=EXALTED"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-009"
+description = "Jupiter in debilitation — unwise, uncharitable, spiritually dim"
+condition_facts = ["jupiter_avastha=DEBILITATED"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Venus Avastha Modifiers ─────────────────────────────────────────────────
+# Venus governs beauty, harmony, art, and adaptability.
+# Exaltation amplifies harmonious and adaptive qualities.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-010"
+description = "Venus in exaltation — handsome, poetic, artistically gifted, adaptable"
+condition_facts = ["venus_avastha=EXALTED"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-011"
+description = "Venus in debilitation — unartistic, dependent, rigid"
+condition_facts = ["venus_avastha=DEBILITATED"]
+outcome = "ADAPTABILITY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Mars Avastha Modifiers ──────────────────────────────────────────────────
+# Mars governs courage, energy, and assertive leadership.
+# Exaltation amplifies brave and commanding qualities.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-012"
+description = "Mars in exaltation — brave, powerful, commanding, victorious"
+condition_facts = ["mars_avastha=EXALTED"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-013"
+description = "Mars in debilitation — cowardly, weak, dependent, fearful"
+condition_facts = ["mars_avastha=DEBILITATED"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ── Saturn Avastha Modifiers ────────────────────────────────────────────────
+# Saturn governs discipline, endurance, and practical groundedness.
+# Exaltation amplifies disciplined and commanding qualities.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-014"
+description = "Saturn in exaltation — powerful, commanding, disciplined, righteous"
+condition_facts = ["saturn_avastha=EXALTED"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-AVA-015"
+description = "Saturn in debilitation — weak, dependent, indolent, sorrowful"
+condition_facts = ["saturn_avastha=DEBILITATED"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verse 1-5"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported/Physical)
+# The following terms and concepts were identified in RI-009 but classified as
+# UNSUPPORTED or Modern Interpretation. They are listed here explicitly
+# to prevent future drift into the rule catalog.
+#
+# R-TRAIT-EXCLUDED-001: "Introvert" / "Extrovert"
+#   Classification: UNSUPPORTED
+#   Reason: Modern Jungian psychology. Classical texts use "solitary"
+#   or "fond of company", not introvert/extrovert spectrum.
+#
+# R-TRAIT-EXCLUDED-002: "ADHD" / "Attention Deficit"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychiatric diagnosis. No classical text describes
+#   attention disorders.
+#
+# R-TRAIT-EXCLUDED-003: "Narcissist" / "Narcissistic"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. Classical texts describe "proud"
+#   or "self-important", not narcissism.
+#
+# R-TRAIT-EXCLUDED-004: "People pleaser"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-005: "Analytical thinker"
+#   Classification: UNSUPPORTED
+#   Reason: Modern cognitive psychology term. Classical texts use
+#   "learned" or "intelligent", not analytical thinker.
+#
+# R-TRAIT-EXCLUDED-006: "Empath" / "Highly Sensitive Person"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology terms. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-007: "Codependent"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-008: "Gaslighting" / "Gaslighter"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-009: "Trauma" / "Traumatized"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. Classical texts describe "sorrowful"
+#   or "afflicted", not trauma.
+#
+# R-TRAIT-EXCLUDED-010: "Manipulator"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-011: "Twin flame"
+#   Classification: UNSUPPORTED
+#   Reason: New Age concept. No classical text mentions twin flames.
+#
+# R-TRAIT-EXCLUDED-012: "Soul mate"
+#   Classification: UNSUPPORTED
+#   Reason: Modern romantic concept. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-013: "Karmic partner"
+#   Classification: UNSUPPORTED
+#   Reason: Modern spiritual concept. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-014: "Lightworker"
+#   Classification: UNSUPPORTED
+#   Reason: New Age concept. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-015: "Starseed"
+#   Classification: UNSUPPORTED
+#   Reason: New Age concept. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-016: "Entrepreneurial mindset"
+#   Classification: UNSUPPORTED
+#   Reason: Modern business term. Classical texts describe "wealthy"
+#   or "successful", not entrepreneurial.
+#
+# R-TRAIT-EXCLUDED-017: "Creative genius"
+#   Classification: UNSUPPORTED
+#   Reason: Modern art/psychology term. Classical texts use "poetic"
+#   or "skilled in arts".
+#
+# R-TRAIT-EXCLUDED-018: "Tech-savvy"
+#   Classification: UNSUPPORTED
+#   Reason: Modern technology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-019: "Social media influencer"
+#   Classification: UNSUPPORTED
+#   Reason: Modern social media term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-020: "Content creator"
+#   Classification: UNSUPPORTED
+#   Reason: Modern digital term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-021: "Toxic"
+#   Classification: UNSUPPORTED
+#   Reason: Modern slang for harmful behavior. Classical texts use
+#   "cruel" or "harsh".
+#
+# R-TRAIT-EXCLUDED-022: "Boundary issues"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-023: "Emotional intelligence"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. Classical texts use "wise" or
+#   "learned".
+#
+# R-TRAIT-EXCLUDED-024: "Imposter syndrome"
+#   Classification: UNSUPPORTED
+#   Reason: Modern psychology term. No classical equivalent.
+#
+# R-TRAIT-EXCLUDED-025: "Burnout"
+#   Classification: UNSUPPORTED
+#   Reason: Modern workplace term. Classical texts use "indolent"
+#   or "weary".
+#
+# PHYSICAL TRAITS EXCLUDED (RI-009 Phase 1 scope boundary):
+# Lagna physical features (BPHS Ch.3, Principle 1.1) are explicitly
+# excluded from this phase. Physical traits do not map to the existing
+# 6 TraitOutcomeTaxonomy categories and require a separate
+# PhysicalTraitOutcomeTaxonomy if needed in Phase 2.
+# ══════════════════════════════════════════════════════════════════════════════
