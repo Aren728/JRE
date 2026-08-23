@@ -115,6 +115,7 @@ testpaths = [
     "tests/integration/validation",
     "tests/unit/nakshatra_activation",
     "tests/unit/birth_signature",
+    "tests/calibration",
 ]
 addopts = "-q"
 pythonpath = ["."]
