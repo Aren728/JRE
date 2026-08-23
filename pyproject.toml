@@ -119,6 +119,7 @@ testpaths = [
     "tests/unit/nakshatra_activation",
     "tests/unit/birth_signature",
     "tests/unit/western",
+    "tests/unit/jrs/western",
     "tests/calibration",
 ]
 addopts = "-q"

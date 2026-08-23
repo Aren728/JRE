@@ -1,0 +1,471 @@
+# JRS-067: Western Astrology Interpretation Rules
+# Classical sources: Ptolemy (Tetrabiblos), William Lilly (Christian Astrology),
+# Abu Ma'shar (Introductorium Maius via Latin tradition).
+# NO modern pop-psychology interpretations.
+
+[western]
+version = "1.0"
+source_id = "PTOLEMY"
+default_strength = "MODERATE"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# HOUSE-BASED RULES (Classical house significations)
+# Source: Ptolemy Tetrabiblos II.3–II.12, Lilly CA H.1–H.12
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Sun in House ─────────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-SUN-H10"
+description = "Sun in 10th house — career prominence and public recognition (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["sun_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-SUN-H1"
+description = "Sun in 1st house — strong vital force and self-expression (Lilly CA H.1)"
+condition_facts = ["sun_house=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.1"
+
+[[western.rules]]
+rule_id = "W-SUN-H4"
+description = "Sun in 4th house — prominence through family inheritance or property (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["sun_house=4"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+# ── Moon in House ────────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-MOON-H7"
+description = "Moon in 7th house — public relationships and partnerships prominent (Lilly CA H.7)"
+condition_facts = ["moon_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.7"
+
+[[western.rules]]
+rule_id = "W-MOON-H4"
+description = "Moon in 4th house — domestic life and inner emotional foundation (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["moon_house=4"]
+outcome = "EMOTIONAL_TENSION"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-MOON-H11"
+description = "Moon in 11th house — gains through friends, hopes fulfilled (Lilly CA H.11)"
+condition_facts = ["moon_house=11"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology H.11"
+
+# ── Venus in House ───────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-VENUS-H7"
+description = "Venus in 7th house — strong relationship and marriage potential (Ptolemy Tetrabiblos II.5)"
+condition_facts = ["venus_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.5"
+
+[[western.rules]]
+rule_id = "W-VENUS-H2"
+description = "Venus in 2nd house — financial gain through art, beauty, or luxury (Lilly CA H.2)"
+condition_facts = ["venus_house=2"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.2"
+
+[[western.rules]]
+rule_id = "W-VENUS-H5"
+description = "Venus in 5th house — creative talent, romance, and speculation (Lilly CA H.5)"
+condition_facts = ["venus_house=5"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.5"
+
+# ── Mars in House ────────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-MARS-H10"
+description = "Mars in 10th house — assertive career drive, military or engineering (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["mars_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-MARS-H1"
+description = "Mars in 1st house — courageous, combative temperament (Lilly CA H.1)"
+condition_facts = ["mars_house=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.1"
+
+[[western.rules]]
+rule_id = "W-MARS-H7"
+description = "Mars in 7th house — discord in partnerships, legal conflicts (Ptolemy Tetrabiblos II.5)"
+condition_facts = ["mars_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.5"
+
+# ── Jupiter in House ─────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-JUPITER-H2"
+description = "Jupiter in 2nd house — financial prosperity and generosity (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["jupiter_house=2"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-JUPITER-H9"
+description = "Jupiter in 9th house — philosophical depth, higher learning, travel (Lilly CA H.9)"
+condition_facts = ["jupiter_house=9"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.9"
+
+[[western.rules]]
+rule_id = "W-JUPITER-H11"
+description = "Jupiter in 11th house — gains through friends, fortunate social connections (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["jupiter_house=11"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+# ── Saturn in House ──────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-SATURN-H10"
+description = "Saturn in 10th house — disciplined career, eventual authority through persistence (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["saturn_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-SATURN-H7"
+description = "Saturn in 7th house — delays or restrictions in partnerships (Lilly CA H.7)"
+condition_facts = ["saturn_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology H.7"
+
+[[western.rules]]
+rule_id = "W-SATURN-H12"
+description = "Saturn in 12th house — isolation, restrictions, spiritual discipline (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["saturn_house=12"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+# ── Mercury in House ─────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-MERCURY-H3"
+description = "Mercury in 3rd house — strong communication and intellectual capacity (Ptolemy Tetrabiblos II.4)"
+condition_facts = ["mercury_house=3"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.4"
+
+[[western.rules]]
+rule_id = "W-MERCURY-H10"
+description = "Mercury in 10th house — career in communication, writing, or commerce (Lilly CA H.10)"
+condition_facts = ["mercury_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology H.10"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ASPECT-BASED RULES (Classical Ptolemaic aspects)
+# Source: Ptolemy Tetrabiblos II.2, Lilly CA H.1
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Sun Aspects ──────────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-SUN-TRINE-JUPITER"
+description = "Sun trine Jupiter — natural benevolence and optimism (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_sun_trine_jupiter=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-SUN-SQUARE-SATURN"
+description = "Sun square Saturn — obstructed vitality, delays in authority (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_sun_square_saturn=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-SUN-CONJUNCT-MERCURY"
+description = "Sun conjunct Mercury — intellectual sharpness, communication skill (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_sun_conjunct_mercury=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+# ── Moon Aspects ─────────────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-MOON-SQUARE-SATURN"
+description = "Moon square Saturn — emotional restraint, melancholy (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_moon_square_saturn=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-MOON-TRINE-VENUS"
+description = "Moon trine Venus — harmonious emotions, artistic sensitivity (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_moon_trine_venus=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-MOON-OPPOSITION-MARS"
+description = "Moon opposite Mars — emotional volatility, conflicts (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_moon_opposite_mars=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+# ── Venus-Mars Aspects ───────────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-VENUS-TRINE-MARS"
+description = "Venus trine Mars — romantic magnetism, creative energy (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_venus_trine_mars=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-VENUS-SQUARE-SATURN"
+description = "Venus square Saturn — emotional restriction, delayed relationships (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_venus_square_saturn=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+# ── Jupiter-Saturn Aspects ───────────────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-JUPITER-TRINE-SATURN"
+description = "Jupiter trine Saturn — balanced expansion and restraint, constructive growth (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_jupiter_trine_saturn=true"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+[[western.rules]]
+rule_id = "W-JUPITER-OPP-SATURN"
+description = "Jupiter opposite Saturn — tension between expansion and restriction (Ptolemy Tetrabiblos II.2)"
+condition_facts = ["aspect_jupiter_opposite_saturn=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.2"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DIGNITY-BASED RULES (Essential dignity modifiers)
+# Source: Ptolemy Tetrabiblos I.18, Lilly CA Dignities
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "W-SUN-DOMICILE"
+description = "Sun in domicile (Leo) — strong self-expression and authority (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["sun_dignity=DOMICILE"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+[[western.rules]]
+rule_id = "W-SUN-EXALTATION"
+description = "Sun in exaltation (Aries) — heightened vitality and ambition (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["sun_dignity=EXALTATION"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+[[western.rules]]
+rule_id = "W-SUN-FALL"
+description = "Sun in fall (Libra) — diminished vitality, dependent nature (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["sun_dignity=FALL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+[[western.rules]]
+rule_id = "W-JUPITER-DOMICILE"
+description = "Jupiter in domicile (Sagittarius/Pisces) — strong philosophical and financial capacity (Lilly)"
+condition_facts = ["jupiter_dignity=DOMICILE"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Dignities"
+
+[[western.rules]]
+rule_id = "W-SATURN-EXALTATION"
+description = "Saturn in exaltation (Libra) — disciplined justice, constructive restraint (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["saturn_dignity=EXALTATION"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+[[western.rules]]
+rule_id = "W-SATURN-FALL"
+description = "Saturn in fall (Aries) — restricted initiative, frustrated ambition (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["saturn_dignity=FALL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+[[western.rules]]
+rule_id = "W-VENUS-DOMICILE"
+description = "Venus in domicile (Taurus/Libra) — strong relationship and aesthetic capacity (Lilly)"
+condition_facts = ["venus_dignity=DOMICILE"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Dignities"
+
+[[western.rules]]
+rule_id = "W-MARS-DOMICILE"
+description = "Mars in domicile (Aries/Scorpio) — strong executive drive and courage (Lilly)"
+condition_facts = ["mars_dignity=DOMICILE"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Dignities"
+
+[[western.rules]]
+rule_id = "W-MARS-EXALTATION"
+description = "Mars in exaltation (Capricorn) — directed and disciplined energy (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["mars_dignity=EXALTATION"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported)
+# The following concepts were identified during research but classified as
+# MODERN_INTERPRETATION or UNSUPPORTED.  They are listed here to prevent
+# future drift into the rule catalog.
+#
+# W-EXCLUDED-001: "Sun in 1st = narcissistic personality"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Pop-psychology overlay. Classical texts say "vital" or "commanding".
+#
+# W-EXCLUDED-002: "Venus in 7th = soulmate connection"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Romantic idealism. Classical texts say "marriage or partnership prominent".
+#
+# W-EXCLUDED-003: "Saturn return = inevitable hardship"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Pop-astrology doom framing. Classical texts say "maturity through effort".
+#
+# W-EXCLUDED-004: "Mars in 1st = toxic masculinity"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Modern gender politics overlay. Classical texts say "courageous".
+#
+# W-EXCLUDED-005: "Pluto aspects = transformation journey"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Neo-Plutonian modern interpretation. Not in classical sources.
+#
+# W-EXCLUDED-006: "Chiron = wound and healer archetype"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: 1977 discovery, no classical basis.
+#
+# W-EXCLUDED-007: "North Node = life purpose / karmic direction"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Modern spiritual overlay. Classical texts use mean/node for eclipse calculation.
+# ══════════════════════════════════════════════════════════════════════════════
