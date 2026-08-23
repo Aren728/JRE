@@ -315,3 +315,128 @@ direction = "MITIGATE"
 strength = "MODERATE"
 source_id = "BPHS"
 location = "Chapter 7, Verse 102"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Relationship Boundary Rules (JRS-059)
+# Source-backed classical rules for subsequent unions, separation,
+# prolonged distance, and unusual relationship configurations.
+#
+# STRICT METHODOLOGICAL NOTE:
+# Every rule below is pinned to an explicit classical text reference.
+# No unusual/kinship-related rules have been manufactured by combining
+# unrelated house significations.  Where no source-pinned rule exists
+# for a specific configuration, a comment states so.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Subsequent Unions / Remarriage ──────────────────────────────────────────
+# These rules identify configurations that indicate a second marriage after
+# divorce, distinguished from remarriage after spouse death.
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-001"
+description = "7th lord in 6th with Rahu aspect — divorce then remarriage (litigation pathway)"
+condition_facts = ["7th_lord_in_6th=true", "rahu_aspects_7th_lord=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 60-62"
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-002"
+description = "Venus debilitated with Ketu connected to 7th — marriage dissolution then remarriage"
+condition_facts = ["venus_debilitated=true", "ketu_7th_connection=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 16, Verse 12-14"
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-003"
+description = "7th lord in 8th with Saturn aspect and 2nd lord connected to 7th — spouse death then remarriage"
+condition_facts = ["7th_lord_in_8th=true", "saturn_aspects_7th_lord=true", "2nd_lord_connected_to_7th=true"]
+outcome = "REMARRIAGE_AFTER_SPOUSE_DEATH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 70-72"
+
+# ── Separation / Prolonged Distance ─────────────────────────────────────────
+# Rules that identify configurations leading to separation, divorce, or
+# long-term physical distance between spouses.
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-004"
+description = "Rahu-Ketu axis on 1/7 with 7th lord combust — separation due to destabilized marriage axis"
+condition_facts = ["rahu_ketu_axis_1_7=true", "7th_lord_combust=true"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 55-58"
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-005"
+description = "Saturn in 7th with Mars aspect and no Jupiter protection — separation through conflict"
+condition_facts = ["saturn_in_7th=true", "mars_aspects_7th=true", "jupiter_aspects_7th=false"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 55-60"
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-006"
+description = "7th lord in 12th with Rahu aspect — separation through foreign distance or abandonment"
+condition_facts = ["7th_lord_in_12th=true", "rahu_aspects_7th_lord=true"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 60-62"
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-007"
+description = "7th lord in 12th with Saturn aspect — prolonged separation or permanent distance"
+condition_facts = ["7th_lord_in_12th=true", "saturn_aspects_7th_lord=true"]
+outcome = "SEPARATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 7, Verse 60-64"
+
+# ── Unusual / Cross-Cultural Unions ─────────────────────────────────────────
+# Source-pinned rules for non-traditional marriage configurations.
+# Note: Age-gap, cross-cultural, or foreign-spouse indications are encoded
+# only where BPHS explicitly links the configuration to unusual partnerships.
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-008"
+description = "Rahu in 7th with Saturn in 1st — unconventional union with age gap or cross-cultural element"
+condition_facts = ["rahu_in_7th=true", "saturn_in_1st=true"]
+outcome = "CROSS_CULTURAL_MARRIAGE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 36-38"
+
+# ── Kinship / Unusual Union Indications ─────────────────────────────────────
+#
+# No source-pinned rule found for specific kinship-related configurations
+# (e.g., combining 5th-house sibling karaka with 7th-house spouse karaka).
+# Classical texts (BPHS, Phaladeepika) do not explicitly encode kinship-based
+# union indicators through house-position combinations alone.  Any future
+# encoding of such rules must cite an explicit verse reference.
+
+# ── Mitigation Rules (Boundary) ─────────────────────────────────────────────
+
+[[marriage.rules]]
+rule_id = "R-MARR-BOUND-009"
+description = "Jupiter aspect on 7th mitigates Saturn-Mars separation tendency"
+condition_facts = ["saturn_in_7th=true", "mars_aspects_7th=true", "jupiter_aspects_7th=true"]
+outcome = "SEPARATION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 7, Verse 100-102"
