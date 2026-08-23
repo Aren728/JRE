@@ -1,0 +1,346 @@
+[traits]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Traits Rules ──
+# Each rule maps JRE-027 BirthSignature facts to a TraitOutcomeTaxonomy.
+# condition_facts uses AND logic: all must be satisfied.
+#
+# Fact names correspond to BirthSignature fields:
+#   tithi, karana, yoga, weekday, hora, day_night_period,
+#   lagna, sun_rashi, moon_rashi, nakshatra, pada
+#
+# Condition formats:
+#   fact_name          – truthy check
+#   fact_name=value    – equality
+#   fact_name in (v1,v2) – membership
+
+# ── Intellectual Depth ──
+# Mercury-governed factors and knowledge-oriented yogas/nakshatras indicate
+# analytical and intellectual capacity.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-INT-001"
+description = "Mercury hora at birth — intellectual and analytical disposition"
+condition_facts = ["hora=MERCURY"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 10"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-INT-002"
+description = "Wednesday (Mercury day) birth — communication and analytical strength"
+condition_facts = ["weekday=WEDNESDAY"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 12"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-INT-003"
+description = "BRAHMA yoga at birth — exceptional intellectual and dharmic capacity"
+condition_facts = ["yoga=BRAHMA"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 8"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-INT-004"
+description = "SIDDHA yoga at birth — refined intellectual ability"
+condition_facts = ["yoga=SIDDHA"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 10"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-INT-005"
+description = "Punarvasu or Ashlesha nakshatra — mercurial intelligence"
+condition_facts = ["nakshatra in (PUNARVASU,ASHLESHA)"]
+outcome = "INTELLECTUAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 20"
+
+# ── Emotional Volatility ──
+# Moon-influenced factors and turbulent yogas indicate emotional intensity.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-EMV-001"
+description = "Moon hora at birth — heightened emotional sensitivity"
+condition_facts = ["hora=MOON"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 15"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-EMV-002"
+description = "SHULA yoga at birth — emotional turbulence and sharp reactions"
+condition_facts = ["yoga=SHULA"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 14"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-EMV-003"
+description = "GANDA yoga at birth — emotional obstacles and volatility"
+condition_facts = ["yoga=GANDA"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 16"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-EMV-004"
+description = "Krishna Ashtami birth — intense emotional undercurrents"
+condition_facts = ["tithi=KRISHNA_ASHTAMI"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 3, Verse 5"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-EMV-005"
+description = "Rohini or Shravana nakshatra — deep emotional responsiveness"
+condition_facts = ["nakshatra in (ROHINI,SHRAVANA)"]
+outcome = "EMOTIONAL_VOLATILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 25"
+
+# ── Practical Groundedness ──
+# Saturn and Earth-element indicators suggest practical, grounded nature.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-PRA-001"
+description = "Saturn hora at birth — practical and disciplined disposition"
+condition_facts = ["hora=SATURN"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 18"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-PRA-002"
+description = "Saturday (Saturn day) birth — methodical and grounded nature"
+condition_facts = ["weekday=SATURDAY"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 22"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-PRA-003"
+description = "VISHKAMBHA yoga at birth — steadfast and enduring character"
+condition_facts = ["yoga=VISHKAMBHA"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 4"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-PRA-004"
+description = "DHRTI yoga at birth — persistence and practical determination"
+condition_facts = ["yoga=DHRTI"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 12"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-PRA-005"
+description = "Krittika or Uttara Phalguni nakshatra — earthy practicality"
+condition_facts = ["nakshatra in (KRITTIKA,UTTARA_PHALGUNI)"]
+outcome = "PRACTICAL_GROUNDEDNESS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 28"
+
+# ── Spiritual Inclination ──
+# Jupiter, Moksha-karakas, and Dharmic yogas indicate spiritual orientation.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-001"
+description = "Jupiter hora at birth — dharmic and spiritual inclination"
+condition_facts = ["hora=JUPITER"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 20"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-002"
+description = "Thursday (Jupiter day) birth — spiritual and philosophical nature"
+condition_facts = ["weekday=THURSDAY"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 24"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-003"
+description = "SHIVA yoga at birth — spiritual depth and detachment"
+condition_facts = ["yoga=SHIVA"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 20"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-004"
+description = "SADHYA yoga at birth — spiritual aspiration and discipline"
+condition_facts = ["yoga=SADHYA"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 22"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-005"
+description = "Ashwini or Moola nakshatra — karmic and spiritual orientation"
+condition_facts = ["nakshatra in (ASHWINI,MOOLA)"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 30"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-SPI-006"
+description = "Night birth with Jupiter hora — contemplative spiritual nature"
+condition_facts = ["day_night_period=NIGHT", "hora=JUPITER"]
+outcome = "SPIRITUAL_INCLINATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 32"
+
+# ── Leadership Tendency ──
+# Sun, Mars, and regal yogas/nakshatras indicate leadership capacity.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-LEA-001"
+description = "Sun hora at birth — natural leadership and authority"
+condition_facts = ["hora=SUN"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 8"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-LEA-002"
+description = "Sunday (Sun day) birth — authoritative and commanding presence"
+condition_facts = ["weekday=SUNDAY"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 10"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-LEA-003"
+description = "INDRA yoga at birth — kingly leadership and command"
+condition_facts = ["yoga=INDRA"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 26"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-LEA-004"
+description = "Mars hora at birth — assertive leadership and courage"
+condition_facts = ["hora=MARS"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 14"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-LEA-005"
+description = "Magha or Purva Phalguni nakshatra — regal and commanding nature"
+condition_facts = ["nakshatra in (MAGHA,PURVA_PHALGUNI)"]
+outcome = "LEADERSHIP_TENDENCY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 2, Verse 35"
+
+# ── Adaptability ──
+# Mercury/Venus indicators and flexible yogas suggest adaptive nature.
+
+[[traits.rules]]
+rule_id = "R-TRAIT-ADA-001"
+description = "Venus hora at birth — harmonious and adaptable disposition"
+condition_facts = ["hora=VENUS"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 16"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-ADA-002"
+description = "SHOBHANA yoga at birth — graceful adaptability"
+condition_facts = ["yoga=SHOBHANA"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 6"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-ADA-003"
+description = "SIDDHI yoga at birth — skillful and versatile adaptation"
+condition_facts = ["yoga=SIDDHI"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "Phaladeepika"
+location = "Chapter 10, Verse 18"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-ADA-004"
+description = "Friday (Venus day) birth — social adaptability and charm"
+condition_facts = ["weekday=FRIDAY"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 18"
+
+[[traits.rules]]
+rule_id = "R-TRAIT-ADA-005"
+description = "Swati or Vishakha nakshatra — flexible and adaptive nature"
+condition_facts = ["nakshatra in (SWATI,VISHAKHA)"]
+outcome = "ADAPTABILITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 2, Verse 38"

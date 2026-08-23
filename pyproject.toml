@@ -104,6 +104,7 @@ testpaths = [
     "tests/unit/jrs/domains/marriage",
     "tests/unit/jrs/domains/career",
     "tests/unit/jrs/domains/wealth",
+    "tests/unit/jrs/domains/traits",
     "tests/unit/jrs/temporal",
     "tests/integration/jrs/temporal",
     "tests/unit/jrs/convergence",
