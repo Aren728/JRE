@@ -428,6 +428,162 @@ location = "Chapter 7, Verse 36-38"
 # Classical texts (BPHS, Phaladeepika) do not explicitly encode kinship-based
 # union indicators through house-position combinations alone.  Any future
 # encoding of such rules must cite an explicit verse reference.
+#
+# ══════════════════════════════════════════════════════════════════════════════
+# RI-007 Vetted Classical Primary Sequential Union Rules
+# Added from RI-007 controlled integration.
+# All rules below are sourced from Classical Primary findings in
+# RI-007_RESEARCH_REPORT.md Section B.1.
+# Source: BPHS Chapter 18 (Yuvati Bhava), explicit shloka references.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Sequential Union Indicators (BPHS Ch.18, V.5-6) ────────────────────────
+# These rules encode the classical indicators for multiple sequential
+# marriages ("many wives") as explicitly stated in BPHS Chapter 18.
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-001"
+description = "7th lord debilitated — acquire many wives (BPHS Ch.18, V.5)"
+condition_facts = ["7th_lord_debilitated=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 5"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-002"
+description = "7th lord combust — acquire many wives (BPHS Ch.18, V.5)"
+condition_facts = ["7th_lord_combust=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 5"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-003"
+description = "7th lord in Saturn or Venus sign with benefic aspect — many wives (BPHS Ch.18, V.6)"
+condition_facts = ["7th_lord_in_saturn_or_venus_sign=true", "benefic_aspects_7th_lord=true"]
+outcome = "REMARRIAGE_AFTER_DIVORCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 6"
+
+# ── Spouse Loss / Multiple Wife Indicators (BPHS Ch.18, V.19-21, 42) ────────
+# These rules encode the classical indicators for spouse loss and
+# multiple sequential marriages as explicitly stated in BPHS.
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-004"
+description = "Mars + Venus in 7th — 3 wives (BPHS Ch.18, V.19)"
+condition_facts = ["mars_in_7th=true", "venus_in_7th=true"]
+outcome = "REMARRIAGE_AFTER_SPOUSE_DEATH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 19"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-005"
+description = "Saturn in 7th with Lagna lord in 8th — 3 wives (BPHS Ch.18, V.20)"
+condition_facts = ["saturn_in_7th=true", "lagna_lord_in_8th=true"]
+outcome = "REMARRIAGE_AFTER_SPOUSE_DEATH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 20"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-006"
+description = "6th=Rahu, 7th=Mars, 8th=Saturn in order — wife will not live (BPHS Ch.18, V.42)"
+condition_facts = ["6th_lord=Rahu", "7th_house_planet=Mars", "8th_house_planet=Saturn"]
+outcome = "SPOUSE_LOSS"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 18, Verse 42"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-007"
+description = "Venus joining malefic in any house — loss of wife (BPHS Ch.18, V.3)"
+condition_facts = ["venus_with_malefic=true"]
+outcome = "SPOUSE_LOSS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verse 3"
+
+# ── Marital Discord Indicators (BPHS Ch.18, V.10-13) ────────────────────────
+# These rules encode classical indicators for marital discord.
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-008"
+description = "7th house occupied or owned by Saturn — spouse inconstant (BPHS Ch.18, V.10-13)"
+condition_facts = ["7th_house_owned_by_Saturn=true"]
+outcome = "MARITAL_CONFLICT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verses 10-13"
+
+[[marriage.rules]]
+rule_id = "R-MARR-RI007-009"
+description = "7th house occupied or owned by Mars — spouse inconstant (BPHS Ch.18, V.10-13)"
+condition_facts = ["7th_house_owned_by_Mars=true"]
+outcome = "MARITAL_CONFLICT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 18, Verses 10-13"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Unsupported)
+# The following configurations were identified in RI-007 but classified as
+# UNSUPPORTED or Modern Interpretation. They are listed here explicitly
+# to prevent future drift into the rule catalog.
+#
+# R-MARR-EXCLUDED-001: 5th house sibling karaka + 7th house spouse karaka
+#   → kinship-based union
+#   Classification: UNSUPPORTED - DO NOT IMPLEMENT
+#   Reason: 5th house signifies children, not siblings (3rd = siblings).
+#   No classical text encodes kinship-based marriage indicators.
+#
+# R-MARR-EXCLUDED-002: Rahu in 7th with 5th/9th connections
+#   → karmic relationship with relative
+#   Classification: UNSUPPORTED - DO NOT IMPLEMENT
+#   Reason: BPHS Ch.18, V.8 describes Rahu in 7th as indicating
+#   "base females" (social classification), not blood relation.
+#
+# R-MARR-EXCLUDED-003: Ketu in 7th with Saturn in 5th
+#   → past-life kinship union
+#   Classification: UNSUPPORTED - DO NOT IMPLEMENT
+#   Reason: Purely modern psychological interpretation.
+#   No classical text associates Ketu-7th with reincarnation-based marriage.
+#
+# R-MARR-EXCLUDED-004: Jupiter in 7th with 5th lord aspect
+#   → marriage within family/community
+#   Classification: UNSUPPORTED - DO NOT IMPLEMENT
+#   Reason: BPHS Ch.18, V.7 states Jupiter in 7th indicates
+#   "Wife of a Brahmin or a pregnant female" — social classification,
+#   not kinship indicator.
+#
+# R-MARR-EXCLUDED-005: 2nd house (family) connected to 7th (spouse)
+#   → family-arranged marriage with relative
+#   Classification: UNSUPPORTED - DO NOT IMPLEMENT
+#   Reason: No classical text states 2nd-7th lordship connections
+#   indicate marriage with relatives.
+#
+# R-MARR-EXCLUDED-006: "Soul-mate" / "twin-flame" / "karmic partner" claims
+#   Classification: UNSUPPORTED - Modern psychological interpretation
+#   Reason: No classical text uses these terms.
+#
+# R-MARR-EXCLUDED-007: Saturn in 7th = "mature, karmic partner"
+#   Classification: UNSUPPORTED - Modern psychological interpretation
+#   Reason: BPHS Ch.18, V.9 states Saturn in 7th indicates
+#   "sick and weak spouse" — not a positive karmic quality.
+# ══════════════════════════════════════════════════════════════════════════════
 
 # ── Mitigation Rules (Boundary) ─────────────────────────────────────────────
 

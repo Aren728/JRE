@@ -560,3 +560,209 @@ direction = "SUPPORT"
 strength = "MODERATE"
 source_id = "BPHS"
 location = "Chapter 14, Verse 114"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# RI-007 Vetted Classical Primary Wealth Rules
+# Added from RI-007 controlled integration.
+# All rules below are sourced from Classical Primary findings in
+# RI-007_RESEARCH_REPORT.md Section A.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Saravali Planet-Specific 11th House Gains (Saravali Ch. 34, V.58-66) ───
+# These rules encode the planet-specific wealth pathways described in
+# Saravali for planets placed in the 11th house (Labha Bhava).
+# Each planet in the 11th produces gains through its natural karakas.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-001"
+description = "Sun in 11th house — gains through authority, government, and royal favor (Saravali 34.58)"
+condition_facts = ["sun_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 58"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-002"
+description = "Moon in 11th house — gains through public favor, females, and hospitality (Saravali 34.59)"
+condition_facts = ["moon_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 59"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-003"
+description = "Mars in 11th house — gains through gold, coral, weapons, and engineering (Saravali 34.60)"
+condition_facts = ["mars_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 60"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-004"
+description = "Mercury in 11th house — gains through writing, trade, literature, and commerce (Saravali 34.61)"
+condition_facts = ["mercury_in_11th=true"]
+outcome = "MULTIPLE_INCOME_STREAMS"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 61"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-005"
+description = "Jupiter in 11th house — gains through counsel, advisory, and dharmic works (Saravali 34.62)"
+condition_facts = ["jupiter_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 62"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-006"
+description = "Venus in 11th house — gains through beauty, trade, pearls, and silver (Saravali 34.63)"
+condition_facts = ["venus_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 63"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-007"
+description = "Saturn in 11th house — gains through land, iron, lasting enterprises, and labor (Saravali 34.64)"
+condition_facts = ["saturn_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 64"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-008"
+description = "Rahu in 11th house — gains and accomplishments through unconventional means (Saravali 34.16)"
+condition_facts = ["rahu_in_11th=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Saravali"
+location = "Chapter 34, Verse 16"
+
+# ── BPHS Ch.13 2nd House Wealth Rules (BPHS Ch.13, V.3-10) ────────────────
+# These rules encode specific 2nd house wealth configurations from
+# the BPHS chapter on Dhana Bhava effects.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-009"
+description = "Jupiter in 2nd house — native becomes wealthy (BPHS Ch.13, V.3)"
+condition_facts = ["jupiter_in_2nd=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 13, Verse 3"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-010"
+description = "Jupiter as 2nd lord in own sign or exaltation — benefactor, renowned (BPHS Ch.13, V.10)"
+condition_facts = ["jupiter_lord_of_2nd=true", "jupiter_dignity_high=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 13, Verse 10"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-011"
+description = "Mercury as 2nd lord strong — wealth through trade and analytical work (BPHS Ch.13, V.10)"
+condition_facts = ["mercury_lord_of_2nd=true", "mercury_strong=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 13, Verse 10"
+
+# ── BPHS Ch.41 Dhana Yogas (BPHS Ch.41, V.2-15) ───────────────────────────
+# These rules encode the lagna-specific opulence yogas from BPHS Chapter 41.
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-012"
+description = "5th lord and 11th lord in own houses — exceedingly opulent (BPHS Ch.41, V.2-8)"
+condition_facts = ["5th_lord_in_own_house=true", "11th_lord_in_own_house=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 2-8"
+
+[[wealth.rules]]
+rule_id = "R-WEALTH-RI007-013"
+description = "Benefics in 2nd house without malefic aspect — Susubha yoga, wealth (Phaladeepika Ch.6, V.44)"
+condition_facts = ["benefics_in_2nd=true", "malefic_aspects_2nd=false"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "Phaladeepika"
+location = "Chapter 6, Verse 44"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported)
+# The following configurations were identified in RI-007 but classified as
+# Modern Interpretation, Later Tradition, or Commentary-Dependent.
+# They are listed here explicitly to prevent future drift into the rule catalog.
+#
+# R-WEALTH-EXCLUDED-001: Rahu in 12th with foreign sources → SPECULATIVE_GAINS
+#   Classification: Later Tradition
+#   Reason: BPHS does not explicitly link Rahu-12th to foreign wealth.
+#   Inferred from Rahu karaka for foreign lands + 12th house foreign residence.
+#
+# R-WEALTH-EXCLUDED-002: Rahu in 11th with Mercury as 11th lord → technology income
+#   Classification: Modern Interpretation
+#   Reason: No classical text links Rahu to technology.
+#   Rahu's association with innovation is modern, not classical.
+#
+# R-WEALTH-EXCLUDED-003: Rahu in 5th with speculative disposition → SPECULATIVE_GAINS
+#   Classification: Modern Interpretation
+#   Reason: No classical verse links Rahu-5th to speculative gains.
+#   BPHS Ch.18, V.33 mentions Rahu-5th/9th only for marriage timing.
+#
+# R-WEALTH-EXCLUDED-004: Ketu in 8th with Jupiter → sudden unexpected windfall
+#   Classification: Later Tradition
+#   Reason: BPHS Ch.18, V.42 links Ketu-6/7/8 to wife loss, not wealth.
+#   Windfall interpretation is modern.
+#
+# R-WEALTH-EXCLUDED-005: Ketu in 8th with strong 8th lord → inheritance
+#   Classification: Later Tradition
+#   Reason: 8th house = inheritance is classical, but Ketu-specific
+#   inheritance pathway is not in BPHS primary text.
+#
+# R-WEALTH-EXCLUDED-006: Ketu in 12th with detachment → charitable disposition
+#   Classification: Later Tradition
+#   Reason: Ketu-12th detachment is sound per classical karaka theory,
+#   but not explicitly stated in BPHS/Phaladeepika as a wealth rule.
+#
+# R-WEALTH-EXCLUDED-007: Venus-Mercury combination → exceptionally good for wealth
+#   Classification: Commentary-Dependent
+#   Reason: Mentioned in later commentators, not in BPHS or Phaladeepika.
+#
+# R-WEALTH-EXCLUDED-008: Ketu in 8th → cryptocurrency wealth
+#   Classification: UNSUPPORTED
+#   Reason: No classical text links Ketu to cryptocurrency.
+#
+# R-WEALTH-EXCLUDED-009: Rahu in 11th → AI/technology career success
+#   Classification: UNSUPPORTED
+#   Reason: No classical text links Rahu to artificial intelligence.
+#
+# R-WEALTH-EXCLUDED-010: Venus-Mercury → fashion industry success
+#   Classification: UNSUPPORTED
+#   Reason: No classical text links Venus-Mercury to fashion.
+#
+# R-WEALTH-EXCLUDED-011: Jupiter-Saturn conjunction → banking success
+#   Classification: UNSUPPORTED
+#   Reason: No classical text links Jupiter-Saturn to banking.
+# ══════════════════════════════════════════════════════════════════════════════
