@@ -114,6 +114,7 @@ testpaths = [
     "tests/unit/jrs/transitions",
     "tests/unit/jrs/rectification",
     "tests/unit/jrs/multisystem",
+    "tests/integration/jrs/multisystem",
     "tests/unit/validation",
     "tests/integration/validation",
     "tests/unit/nakshatra_activation",
