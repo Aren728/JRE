@@ -343,3 +343,205 @@ def compute_timing_overlap(
     claim was made by either side).
     """
     return ground_truth_timing == predicted_timing
+
+
+# ── Comparative Calibration Report ───────────────────────────────────────────
+
+
+class ComparativeCalibrationReport:
+    """Comparative report: Single-System vs Multi-System metrics.
+
+    Answers the question: Does multi-system convergence improve,
+    degrade, or maintain the F1 score compared to single-system?
+    """
+
+    def __init__(
+        self,
+        single_system_report: CalibrationReport,
+        multi_system_report: CalibrationReport,
+        comparison_mode: str = "vedic_only_vs_multi",
+    ) -> None:
+        self.single_system_report = single_system_report
+        self.multi_system_report = multi_system_report
+        self.comparison_mode = comparison_mode
+
+    @property
+    def f1_delta(self) -> float:
+        """Difference in F1: multi - single.
+
+        Positive means multi-system improved F1.
+        Negative means multi-system degraded F1.
+        """
+        return self.multi_system_report.f1_score - self.single_system_report.f1_score
+
+    @property
+    def precision_delta(self) -> float:
+        """Difference in Precision: multi - single."""
+        return (
+            self.multi_system_report.precision
+            - self.single_system_report.precision
+        )
+
+    @property
+    def recall_delta(self) -> float:
+        """Difference in Recall: multi - single."""
+        return (
+            self.multi_system_report.recall
+            - self.single_system_report.recall
+        )
+
+    @property
+    def timing_delta(self) -> float:
+        """Difference in Timing Overlap: multi - single."""
+        return (
+            self.multi_system_report.timing_overlap_score
+            - self.single_system_report.timing_overlap_score
+        )
+
+    @property
+    def convergence_verdict(self) -> str:
+        """String verdict on multi-system impact."""
+        if self.f1_delta > 0.001:
+            return "IMPROVED"
+        elif self.f1_delta < -0.001:
+            return "DEGRADED"
+        else:
+            return "MAINTAINED"
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "comparison_mode": self.comparison_mode,
+            "single_system": self.single_system_report.to_dict(),
+            "multi_system": self.multi_system_report.to_dict(),
+            "deltas": {
+                "precision": round(self.precision_delta, 4),
+                "recall": round(self.recall_delta, 4),
+                "f1_score": round(self.f1_delta, 4),
+                "timing_overlap": round(self.timing_delta, 4),
+            },
+            "convergence_verdict": self.convergence_verdict,
+        }
+
+    def to_markdown(self) -> str:
+        """Generate comparative Markdown report."""
+        lines: list[str] = []
+        lines.append("# Multi-System Empirical Calibration Report")
+        lines.append("")
+        lines.append(f"**Mode:** {self.comparison_mode}")
+        lines.append("")
+        lines.append("## Comparative Summary")
+        lines.append("")
+        lines.append(
+            "| Metric | Single-System | Multi-System | Delta |"
+        )
+        lines.append(
+            "|--------|--------------|-------------|-------|"
+        )
+        lines.append(
+            f"| Precision "
+            f"| {self.single_system_report.precision:.4f} "
+            f"| {self.multi_system_report.precision:.4f} "
+            f"| {self.precision_delta:+.4f} |"
+        )
+        lines.append(
+            f"| Recall "
+            f"| {self.single_system_report.recall:.4f} "
+            f"| {self.multi_system_report.recall:.4f} "
+            f"| {self.recall_delta:+.4f} |"
+        )
+        lines.append(
+            f"| F1 Score "
+            f"| {self.single_system_report.f1_score:.4f} "
+            f"| {self.multi_system_report.f1_score:.4f} "
+            f"| {self.f1_delta:+.4f} |"
+        )
+        lines.append(
+            f"| Timing Overlap "
+            f"| {self.single_system_report.timing_overlap_score:.4f} "
+            f"| {self.multi_system_report.timing_overlap_score:.4f} "
+            f"| {self.timing_delta:+.4f} |"
+        )
+        lines.append("")
+        lines.append(
+            f"**Convergence Verdict:** {self.convergence_verdict}"
+        )
+        lines.append("")
+
+        if self.f1_delta > 0.001:
+            lines.append(
+                "Multi-system convergence **improved** F1 by "
+                f"{self.f1_delta:+.4f}, demonstrating that "
+                "independence-adjusted cross-system evidence adds "
+                "measurable value."
+            )
+        elif self.f1_delta < -0.001:
+            lines.append(
+                "Multi-system convergence **degraded** F1 by "
+                f"{self.f1_delta:+.4f}. This may indicate that "
+                "the independence penalty is dampening valid "
+                "convergence, or that non-Vedic systems add noise "
+                "for these fixtures."
+            )
+        else:
+            lines.append(
+                "Multi-system convergence **maintained** F1 at "
+                "essentially the same level, suggesting the "
+                "independence penalty neither adds nor removes "
+                "significant value."
+            )
+        lines.append("")
+
+        # Domain-level comparison
+        single_domains = {
+            d.domain: d for d in self.single_system_report.domain_metrics
+        }
+        multi_domains = {
+            d.domain: d for d in self.multi_system_report.domain_metrics
+        }
+        all_domains = sorted(set(single_domains) | set(multi_domains))
+
+        if all_domains:
+            lines.append("## Domain-Level Comparison")
+            lines.append("")
+            lines.append(
+                "| Domain | Single F1 | Multi F1 | Delta | Verdict |"
+            )
+            lines.append(
+                "|--------|-----------|----------|-------|---------|"
+            )
+            for domain in all_domains:
+                s_dm = single_domains.get(domain)
+                m_dm = multi_domains.get(domain)
+                s_f1 = s_dm.f1_score if s_dm else 0.0
+                m_f1 = m_dm.f1_score if m_dm else 0.0
+                delta = m_f1 - s_f1
+                if delta > 0.001:
+                    verdict = "IMPROVED"
+                elif delta < -0.001:
+                    verdict = "DEGRADED"
+                else:
+                    verdict = "MAINTAINED"
+                lines.append(
+                    f"| {domain} "
+                    f"| {s_f1:.4f} "
+                    f"| {m_f1:.4f} "
+                    f"| {delta:+.4f} "
+                    f"| {verdict} |"
+                )
+            lines.append("")
+
+        lines.append("---")
+        lines.append("")
+        lines.append(
+            "*Report generated by JRS Multi-System Calibration Pipeline."
+        )
+        lines.append(
+            "Metrics measure implementation correctness against ground truth,"
+        )
+        lines.append(
+            "not empirical validity of astrology.*"
+        )
+        lines.append("")
+
+        return "\n".join(lines)

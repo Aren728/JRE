@@ -130,6 +130,9 @@ testpaths = [
 ]
 addopts = "-q"
 pythonpath = ["."]
+markers = [
+    "slow: marks tests as slow (full calibration runs across all domains)",
+]
 # integration tests require pysweph + the bundled .se1 files (datasets/ephemeris)
 
 [tool.ruff]
