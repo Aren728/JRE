@@ -33,8 +33,16 @@ from jrs.domains.property.service import PropertyDomainService
 from jrs.domains.transitions.service import TransitionsDomainService
 from jrs.domains.wealth.service import WealthDomainService
 from jrs.evidence.models import EvidenceRecord
+from jrs.multisystem.models import (
+    EvidenceProvenance,
+    SystemAssessment,
+    SystemType,
+    compute_convergence_score,
+)
+from jrs.multisystem.service import IndependenceAnalyzer
 from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
+from jrs.western.service import WesternDomainService
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
 
@@ -83,6 +91,68 @@ QUERY_DOMAIN_MAP: dict[str, str] = {
     "migration": "migration",
     "travel": "migration",
     "transitions": "transitions",
+}
+
+# Mapping from query to Western outcome taxonomy
+QUERY_WESTERN_OUTCOME_MAP: dict[str, str] = {
+    "career": "CAREER_PROMINENCE",
+    "wealth": "FINANCIAL_GAIN",
+    "marriage": "RELATIONSHIP_HARMONY",
+    "education": "INTELLECTUAL_CAPACITY",
+    "property": "FINANCIAL_GAIN",
+    "children": "CREATIVE_TALENT",
+    "migration": "SOCIAL_INFLUENCE",
+    "travel": "SOCIAL_INFLUENCE",
+    "transitions": "PHILOSOPHICAL_DEPTH",
+}
+
+# Default Western facts for demonstration (query → facts dict)
+_DEFAULT_WESTERN_FACTS: dict[str, dict[str, Any]] = {
+    "career": {
+        "sun_house": "10",
+        "mars_house": "10",
+        "sun_dignity": "DOMICILE",
+    },
+    "wealth": {
+        "jupiter_house": "2",
+        "venus_house": "2",
+        "jupiter_dignity": "DOMICILE",
+    },
+    "marriage": {
+        "venus_house": "7",
+        "moon_house": "7",
+        "venus_dignity": "DOMICILE",
+    },
+    "education": {
+        "mercury_house": "3",
+        "jupiter_house": "9",
+        "mercury_dignity": "DOMICILE",
+    },
+    "property": {
+        "moon_house": "4",
+        "mars_house": "4",
+        "mars_dignity": "DOMICILE",
+    },
+    "children": {
+        "jupiter_house": "5",
+        "venus_house": "5",
+        "venus_dignity": "DOMICILE",
+    },
+    "migration": {
+        "mars_house": "12",
+        "jupiter_house": "12",
+        "mars_dignity": "DOMICILE",
+    },
+    "travel": {
+        "mercury_house": "9",
+        "jupiter_house": "9",
+        "mercury_dignity": "DOMICILE",
+    },
+    "transitions": {
+        "saturn_house": "12",
+        "jupiter_house": "9",
+        "saturn_dignity": "DOMICILE",
+    },
 }
 
 
@@ -164,6 +234,196 @@ def _run_assessment(
     return assessment.to_dict()
 
 
+# ── Multi-System Pipelines ───────────────────────────────────────────────────
+
+
+def _run_vedic_system_assessment(
+    domain_key: str,
+    facts: dict[str, Any],
+    outcome_taxonomy: str,
+    event_windows: tuple[EventWindow, ...],
+) -> SystemAssessment:
+    """Run the Vedic pipeline and return a SystemAssessment.
+
+    Converts the Vedic DomainAssessment into a SystemAssessment
+    suitable for cross-system convergence analysis.
+    """
+    evidence_records = _evaluate_domain(domain_key, facts)
+    convergence_svc = ConvergenceService()
+    domain_assessment = convergence_svc.assess_domain(
+        outcome_taxonomy,
+        evidence_records=evidence_records,
+        event_windows=event_windows,
+    )
+
+    return SystemAssessment(
+        system_type=SystemType.VEDIC,
+        outcome_taxonomy=domain_assessment.outcome_taxonomy,
+        assessment_status=domain_assessment.assessment_status.value,
+        timing_status=domain_assessment.timing_status.value,
+        provenance=EvidenceProvenance(
+            system_type=SystemType.VEDIC,
+            source_tradition="BPHS",
+        ),
+    )
+
+
+def _run_western_system_assessment(
+    query: str,
+    outcome_taxonomy: str,
+) -> SystemAssessment:
+    """Run the Western pipeline and return a SystemAssessment.
+
+    Uses default Western facts for demonstration. In production,
+    these would be computed from a WesternChart via the JRE-066 engine.
+    """
+    western_facts = _DEFAULT_WESTERN_FACTS.get(query, {})
+    western_svc = WesternDomainService()
+
+    from jrs.western.models import evaluate_facts
+
+    if western_facts:
+        rules = western_svc.load_rules().rules
+        records = evaluate_facts(rules, western_facts)
+    else:
+        records = ()
+
+    if not records:
+        return SystemAssessment(
+            system_type=SystemType.WESTERN,
+            outcome_taxonomy="NO_MATCH",
+            assessment_status="NEUTRAL",
+            timing_status="INACTIVE",
+            provenance=EvidenceProvenance(
+                system_type=SystemType.WESTERN,
+                source_tradition="LILLY",
+            ),
+        )
+
+    # Aggregate by outcome taxonomy
+    outcome_support: dict[str, int] = {}
+    outcome_contradict: dict[str, int] = {}
+    for record in records:
+        outcome = record.outcome_taxonomy
+        if record.direction.value == "SUPPORT":
+            outcome_support[outcome] = outcome_support.get(outcome, 0) + 1
+        elif record.direction.value == "CONTRADICT":
+            outcome_contradict[outcome] = (
+                outcome_contradict.get(outcome, 0) + 1
+            )
+
+    all_outcomes = set(outcome_support.keys()) | set(
+        outcome_contradict.keys()
+    )
+    best_outcome = ""
+    best_score = -1
+    for outcome in all_outcomes:
+        score = outcome_support.get(outcome, 0) - outcome_contradict.get(
+            outcome, 0
+        )
+        if score > best_score:
+            best_score = score
+            best_outcome = outcome
+
+    net_support = outcome_support.get(best_outcome, 0)
+    net_contradict = outcome_contradict.get(best_outcome, 0)
+
+    if net_support >= 3 and net_contradict == 0:
+        status = "STRONGLY_SUPPORTED"
+    elif net_support >= 2 and net_contradict == 0:
+        status = "SUPPORTED"
+    elif net_support >= 1:
+        status = "WEAKLY_SUPPORTED"
+    elif net_contradict >= 2 or (net_contradict >= 1 and net_support == 0):
+        status = "CONTRADICTED"
+    else:
+        status = "NEUTRAL"
+
+    return SystemAssessment(
+        system_type=SystemType.WESTERN,
+        outcome_taxonomy=best_outcome,
+        assessment_status=status,
+        timing_status="INACTIVE",
+        provenance=EvidenceProvenance(
+            system_type=SystemType.WESTERN,
+            source_tradition="LILLY",
+        ),
+    )
+
+
+def _run_multi_system(
+    query: str,
+    domain_key: str,
+    facts: dict[str, Any],
+    outcome_taxonomy: str,
+    event_windows: tuple[EventWindow, ...],
+    systems: list[str],
+) -> tuple[SystemAssessment, ...]:
+    """Run the multi-system pipeline for the requested systems.
+
+    Returns a tuple of SystemAssessment objects, one per system.
+    """
+    assessments: list[SystemAssessment] = []
+
+    if "vedic" in systems:
+        assessments.append(
+            _run_vedic_system_assessment(
+                domain_key, facts, outcome_taxonomy, event_windows,
+            )
+        )
+
+    if "western" in systems:
+        assessments.append(
+            _run_western_system_assessment(query, outcome_taxonomy)
+        )
+
+    return tuple(assessments)
+
+
+def _build_cross_system_result(
+    assessments: tuple[SystemAssessment, ...],
+    event_cluster_id: str = "cli-default",
+) -> dict[str, Any]:
+    """Build cross-system convergence result from SystemAssessments.
+
+    Uses the IndependenceAnalyzer to compute independence and convergence.
+    Returns a serializable dict.
+    """
+    if len(assessments) < 2:
+        return {}
+
+    analyzer = IndependenceAnalyzer()
+
+    # Build provenance map
+    provenances: dict[SystemType, EvidenceProvenance] = {}
+    assessment_map: dict[str, SystemAssessment] = {}
+
+    for assessment in assessments:
+        st = assessment.system_type
+        key = st.value.lower()
+        assessment_map[key] = assessment
+        if assessment.provenance is not None:
+            provenances[st] = assessment.provenance
+
+    # Compute raw convergence
+    raw_convergence = compute_convergence_score(assessment_map)
+
+    # Compute independence-adjusted convergence
+    prov_list = list(provenances.values())
+    independence = analyzer.calculate_collective_independence(prov_list)
+    adjusted_convergence = raw_convergence * independence
+
+    return {
+        "raw_convergence": round(raw_convergence, 6),
+        "independence_score": round(independence, 6),
+        "adjusted_convergence": round(adjusted_convergence, 6),
+        "systems": [a.system_type.value for a in assessments],
+        "individual_assessments": {
+            a.system_type.value: a.to_dict() for a in assessments
+        },
+    }
+
+
 # ── Output Formatting ────────────────────────────────────────────────────────
 
 
@@ -175,6 +435,9 @@ def _format_text_report(
     query: str,
     facts: dict[str, Any],
     domain_key: str = "",
+    systems: list[str] | None = None,
+    system_assessments: tuple[SystemAssessment, ...] | None = None,
+    cross_system: dict[str, Any] | None = None,
 ) -> str:
     """Format the assessment as a structured traceable report."""
     dims = assessment.get("dimensions", {})
@@ -191,6 +454,15 @@ def _format_text_report(
         f"  Time:   {birth_time}",
         f"  Place:  {place}",
         "",
+    ]
+
+    # Systems requested
+    if systems:
+        lines.append("Systems:")
+        lines.append(f"  {', '.join(s.title() for s in systems)}")
+        lines.append("")
+
+    lines.extend([
         "Assessment:",
         f"  {assessment.get('assessment_status', 'N/A')}",
         "",
@@ -204,7 +476,7 @@ def _format_text_report(
         "Overall Evidence Strength:",
         f"  {assessment.get('overall_evidence_strength', 'N/A')}",
         "",
-    ]
+    ])
 
     # Key factors from evidence records
     lines.append("Key factors:")
@@ -229,14 +501,55 @@ def _format_text_report(
     except Exception:
         lines.append("  • BPHS (Brihat Parashara Hora Shastra)")
     lines.append("")
-    lines.append("Timing:")
-    lines.append("  Timing status: INACTIVE (no dasha/transit data provided)")
-    lines.append("")
-    lines.append("Limitations:")
-    lines.append("  • No specific transit data for exact event timing")
-    lines.append("  • Birth place resolved to approximate coordinates")
-    lines.append("")
-    lines.append("=" * 60)
+
+    # Multi-system individual assessments
+    if system_assessments and len(system_assessments) > 1:
+        lines.append("-" * 60)
+        lines.append("INDIVIDUAL SYSTEM ASSESSMENTS")
+        lines.append("-" * 60)
+        for sa in system_assessments:
+            lines.append("")
+            lines.append(f"  [{sa.system_type.value}]")
+            prov = sa.provenance
+            source_info = (
+                f"  Source: {prov.source_tradition}"
+                if prov
+                else "  Source: N/A"
+            )
+            lines.append(source_info)
+            lines.append(f"  Outcome: {sa.outcome_taxonomy}")
+            lines.append(f"  Status: {sa.assessment_status}")
+            lines.append(f"  Timing: {sa.timing_status}")
+        lines.append("")
+
+    # Cross-system convergence section
+    if cross_system and len(cross_system) > 0:
+        lines.append("-" * 60)
+        lines.append("CROSS-SYSTEM CONVERGENCE")
+        lines.append("-" * 60)
+        lines.append("")
+        raw = cross_system.get("raw_convergence", 0.0)
+        indep = cross_system.get("independence_score", 0.0)
+        adj = cross_system.get("adjusted_convergence", 0.0)
+        lines.append(f"  Raw convergence:          {raw:.4f}")
+        lines.append(f"  Independence score:       {indep:.4f}")
+        lines.append(f"  Adjusted convergence:     {adj:.4f}")
+        lines.append("")
+        lines.append("  Systems involved:")
+        for sys_name in cross_system.get("systems", []):
+            lines.append(f"    • {sys_name.upper()}")
+        lines.append("")
+
+    lines.extend([
+        "Timing:",
+        "  Timing status: INACTIVE (no dasha/transit data provided)",
+        "",
+        "Limitations:",
+        "  • No specific transit data for exact event timing",
+        "  • Birth place resolved to approximate coordinates",
+        "",
+        "=" * 60,
+    ])
 
     return "\n".join(lines)
 
@@ -277,6 +590,14 @@ def build_parser() -> argparse.ArgumentParser:
         dest="json_output",
         help="Output as JSON instead of text",
     )
+    parser.add_argument(
+        "--systems",
+        default="vedic",
+        help=(
+            "Comma-separated list of astrological systems to run "
+            "(e.g., vedic,western). Default: vedic"
+        ),
+    )
     return parser
 
 
@@ -293,6 +614,18 @@ def main(argv: list[str] | None = None) -> int:
     domain_key = QUERY_DOMAIN_MAP[query]
     outcome = QUERY_OUTCOME_MAP.get(query, query.upper())
 
+    # Parse systems
+    requested_systems = [s.strip().lower() for s in args.systems.split(",")]
+    valid_systems = {"vedic", "western"}
+    for sys_name in requested_systems:
+        if sys_name not in valid_systems:
+            print(
+                f"Error: Unknown system '{sys_name}'. "
+                f"Valid systems: {', '.join(sorted(valid_systems))}",
+                file=sys.stderr,
+            )
+            return 1
+
     # Default facts for demonstration (in production, these would come
     # from actual JRE engine outputs based on birth data)
     facts: dict[str, Any] = _default_facts_for_query(query)
@@ -300,21 +633,47 @@ def main(argv: list[str] | None = None) -> int:
     # Build event windows (empty — no dasha data in basic CLI mode)
     event_windows: tuple[EventWindow, ...] = ()
 
-    # Run assessment
+    is_multi = len(requested_systems) > 1
+
+    system_assessments: tuple[SystemAssessment, ...] = ()
+    cross_system: dict[str, Any] = {}
+    vedic_assessment: dict[str, Any] | None = None
+
     try:
-        assessment = _run_assessment(
-            domain_key=domain_key,
-            facts=facts,
-            outcome_taxonomy=outcome,
-            event_windows=event_windows,
-        )
+        if is_multi:
+            # Multi-system pipeline
+            system_assessments = _run_multi_system(
+                query=query,
+                domain_key=domain_key,
+                facts=facts,
+                outcome_taxonomy=outcome,
+                event_windows=event_windows,
+                systems=requested_systems,
+            )
+            cross_system = _build_cross_system_result(system_assessments)
+            for sa in system_assessments:
+                if sa.system_type is SystemType.VEDIC:
+                    vedic_assessment = _run_assessment(
+                        domain_key=domain_key,
+                        facts=facts,
+                        outcome_taxonomy=outcome,
+                        event_windows=event_windows,
+                    )
+                    break
+        else:
+            # Single-system pipeline (backward compatible)
+            vedic_assessment = _run_assessment(
+                domain_key=domain_key,
+                facts=facts,
+                outcome_taxonomy=outcome,
+                event_windows=event_windows,
+            )
     except Exception as exc:
         print(f"Error: Assessment failed: {exc}", file=sys.stderr)
         return 1
 
     # Format output
     if args.json_output:
-        # Resolve classical citations
         classical_sources: list[dict[str, str]] = []
         try:
             research_svc = ResearchService()
@@ -334,7 +693,7 @@ def main(argv: list[str] | None = None) -> int:
                 "claim": "Classical Jyotish principles",
             })
 
-        output = json.dumps({
+        output_data: dict[str, Any] = {
             "birth_data": {
                 "date": args.birth_date,
                 "time": args.birth_time,
@@ -342,14 +701,33 @@ def main(argv: list[str] | None = None) -> int:
             },
             "query": query,
             "domain": domain_key,
+            "systems": requested_systems,
             "facts": facts,
-            "assessment": assessment,
             "classical_sources": classical_sources,
-        }, indent=2, sort_keys=True)
+        }
+
+        if is_multi:
+            output_data["system_assessments"] = {
+                sa.system_type.value: sa.to_dict()
+                for sa in system_assessments
+            }
+            output_data["cross_system_convergence"] = cross_system
+        else:
+            output_data["assessment"] = vedic_assessment or {}
+
+        output = json.dumps(output_data, indent=2, sort_keys=True)
     else:
         output = _format_text_report(
-            assessment, args.birth_date, args.birth_time, args.place, query, facts,
+            vedic_assessment or {},
+            args.birth_date,
+            args.birth_time,
+            args.place,
+            query,
+            facts,
             domain_key=domain_key,
+            systems=requested_systems,
+            system_assessments=system_assessments,
+            cross_system=cross_system if is_multi else None,
         )
 
     print(output)
