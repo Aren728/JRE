@@ -1,0 +1,419 @@
+# JRS-071: Numerology Interpretation Rules
+# Classical sources: Pythagorean tradition, Cheiro (Lord of Numbers),
+# Dan Millman (The Life You Were Born to Live).
+# NO modern pop-psychology interpretations.
+
+[numerology]
+version = "1.0"
+source_id = "PYTHAGOREAN"
+default_strength = "MODERATE"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# LIFE PATH NUMBER RULES
+# Source: Pythagorean tradition, Cheiro Ch. 1
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Life Path 1: Leadership ─────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP1-CAREER"
+description = "Life Path 1 — natural leadership and independence in career (Cheiro Ch. 1)"
+condition_facts = ["life_path=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 1"
+
+[[numerology.rules]]
+rule_id = "N-LP1-FINANCIAL"
+description = "Life Path 1 — financial independence through self-reliance (Pythagorean tradition)"
+condition_facts = ["life_path=1"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 2: Partnership ────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP2-RELATIONSHIP"
+description = "Life Path 2 — harmony in partnerships and relationships (Cheiro Ch. 2)"
+condition_facts = ["life_path=2"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-LP2-SOCIAL"
+description = "Life Path 2 — social influence through cooperation (Pythagorean tradition)"
+condition_facts = ["life_path=2"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 3: Creativity ─────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP3-CREATIVE"
+description = "Life Path 3 — creative expression and artistic talent (Cheiro Ch. 3)"
+condition_facts = ["life_path=3"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-LP3-SOCIAL"
+description = "Life Path 3 — social charm and communication (Pythagorean tradition)"
+condition_facts = ["life_path=3"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 4: Stability ──────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP4-CAREER"
+description = "Life Path 4 — disciplined career through hard work (Cheiro Ch. 4)"
+condition_facts = ["life_path=4"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-LP4-FINANCIAL"
+description = "Life Path 4 — financial stability through methodical approach (Pythagorean tradition)"
+condition_facts = ["life_path=4"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 5: Freedom ────────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP5-FINANCIAL"
+description = "Life Path 5 — financial gain through versatility and change (Cheiro Ch. 5)"
+condition_facts = ["life_path=5"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 5"
+
+[[numerology.rules]]
+rule_id = "N-LP5-EMOTIONAL"
+description = "Life Path 5 — emotional restlessness from constant change (Pythagorean tradition)"
+condition_facts = ["life_path=5"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "LOW"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 6: Harmony ────────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP6-RELATIONSHIP"
+description = "Life Path 6 — relationship harmony through responsibility (Cheiro Ch. 6)"
+condition_facts = ["life_path=6"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 6"
+
+[[numerology.rules]]
+rule_id = "N-LP6-DOMESTIC"
+description = "Life Path 6 — domestic prominence through family dedication (Pythagorean tradition)"
+condition_facts = ["life_path=6"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 7: Wisdom ─────────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP7-PHILOSOPHICAL"
+description = "Life Path 7 — philosophical depth through introspection (Cheiro Ch. 7)"
+condition_facts = ["life_path=7"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 7"
+
+[[numerology.rules]]
+rule_id = "N-LP7-INTELLECTUAL"
+description = "Life Path 7 — intellectual capacity through analytical mind (Pythagorean tradition)"
+condition_facts = ["life_path=7"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 8: Power ──────────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP8-FINANCIAL"
+description = "Life Path 8 — financial abundance through material mastery (Cheiro Ch. 8)"
+condition_facts = ["life_path=8"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 8"
+
+[[numerology.rules]]
+rule_id = "N-LP8-CAREER"
+description = "Life Path 8 — career prominence through executive ability (Pythagorean tradition)"
+condition_facts = ["life_path=8"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Life Path 9: Humanitarian ───────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP9-SOCIAL"
+description = "Life Path 9 — social influence through humanitarian service (Cheiro Ch. 9)"
+condition_facts = ["life_path=9"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 9"
+
+[[numerology.rules]]
+rule_id = "N-LP9-PHILOSOPHICAL"
+description = "Life Path 9 — philosophical depth through universal compassion (Pythagorean tradition)"
+condition_facts = ["life_path=9"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PYTHAGOREAN"
+location = "Classical Pythagorean tradition"
+
+# ── Master Numbers ──────────────────────────────────────────────────────────
+
+[[numerology.rules]]
+rule_id = "N-LP11-INTUITIVE"
+description = "Life Path 11 — spiritual intuition and inspiration (Cheiro Master Numbers)"
+condition_facts = ["life_path=11"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers — Master Numbers"
+
+[[numerology.rules]]
+rule_id = "N-LP22-BUILDER"
+description = "Life Path 22 — master builder of large-scale enterprises (Cheiro Master Numbers)"
+condition_facts = ["life_path=22"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers — Master Numbers"
+
+[[numerology.rules]]
+rule_id = "N-LP33-TEACHER"
+description = "Life Path 33 — master teacher of spiritual wisdom (Cheiro Master Numbers)"
+condition_facts = ["life_path=33"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers — Master Numbers"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DESTINY NUMBER RULES
+# Source: Pythagorean tradition, Cheiro Ch. 2
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[numerology.rules]]
+rule_id = "N-DESTINY1-LEADER"
+description = "Destiny 1 — born to lead and innovate (Cheiro Ch. 2)"
+condition_facts = ["destiny=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-DESTINY3-CREATIVE"
+description = "Destiny 3 — born for creative expression (Cheiro Ch. 2)"
+condition_facts = ["destiny=3"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-DESTINY5-FREEDOM"
+description = "Destiny 5 — born for adventure and change (Cheiro Ch. 2)"
+condition_facts = ["destiny=5"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-DESTINY7-WISDOM"
+description = "Destiny 7 — born for spiritual seeking (Cheiro Ch. 2)"
+condition_facts = ["destiny=7"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-DESTINY8-POWER"
+description = "Destiny 8 — born for material success (Cheiro Ch. 2)"
+condition_facts = ["destiny=8"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+[[numerology.rules]]
+rule_id = "N-DESTINY9-HUMANITARIAN"
+description = "Destiny 9 — born for humanitarian service (Cheiro Ch. 2)"
+condition_facts = ["destiny=9"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 2"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PERSONAL YEAR RULES
+# Source: Pythagorean tradition, Dan Millman Ch. 3
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[numerology.rules]]
+rule_id = "N-PY1-NEW_STARTS"
+description = "Personal Year 1 — new beginnings and initiative (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=1"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY2-COOPERATION"
+description = "Personal Year 2 — cooperation and patience required (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=2"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY3-CREATIVITY"
+description = "Personal Year 3 — creative expansion and self-expression (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=3"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY4-STABILITY"
+description = "Personal Year 4 — foundation building and hard work (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=4"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY5-CHANGE"
+description = "Personal Year 5 — major life changes and freedom (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=5"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY6-HARMONY"
+description = "Personal Year 6 — family and relationship focus (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=6"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY7-INTROSPECTION"
+description = "Personal Year 7 — spiritual introspection and analysis (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=7"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY8-RESULTS"
+description = "Personal Year 8 — material rewards and consequences (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=8"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-PY9-COMPLETION"
+description = "Personal Year 9 — completion and release (Dan Millman Ch. 3)"
+condition_facts = ["personal_year=9"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "MILLMAN"
+location = "The Life You Were Born to Live Ch. 3"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported)
+# N-EXCLUDED-001: "Life Path = personality type"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Pop-psychology overlay. Classical texts describe life purpose.
+#
+# N-EXCLUDED-002: "Destiny = karmic debt"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Reincarnation overlay. Classical texts describe expression.
+#
+# N-EXCLUDED-003: "Master numbers = spiritual superiority"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Modern spiritual overlay. Classical texts describe heightened potential.
+# ══════════════════════════════════════════════════════════════════════════════

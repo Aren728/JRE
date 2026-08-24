@@ -52,6 +52,8 @@ packages = [
     "nakshatra_activation",
     "birth_signature",
     "western",
+    "numerology",
+    "jrs.numerology",
 ]
 
 [tool.pytest.ini_options]
@@ -121,6 +123,9 @@ testpaths = [
     "tests/unit/birth_signature",
     "tests/unit/western",
     "tests/unit/jrs/western",
+    "tests/unit/numerology",
+    "tests/unit/jrs/numerology",
+    "tests/integration/numerology",
     "tests/calibration",
 ]
 addopts = "-q"
@@ -138,7 +143,7 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis", "jrs", "validation", "nakshatra_activation", "birth_signature", "western"]
+packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis", "jrs", "validation", "nakshatra_activation", "birth_signature", "western", "numerology"]
 strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.

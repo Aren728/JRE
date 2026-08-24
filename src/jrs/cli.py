@@ -40,9 +40,11 @@ from jrs.multisystem.models import (
     compute_convergence_score,
 )
 from jrs.multisystem.service import IndependenceAnalyzer
+from jrs.numerology.service import NumerologyDomainService
 from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
 from jrs.western.service import WesternDomainService
+from western.service import WesternCalculationService
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
 
@@ -106,54 +108,7 @@ QUERY_WESTERN_OUTCOME_MAP: dict[str, str] = {
     "transitions": "PHILOSOPHICAL_DEPTH",
 }
 
-# Default Western facts for demonstration (query → facts dict)
-_DEFAULT_WESTERN_FACTS: dict[str, dict[str, Any]] = {
-    "career": {
-        "sun_house": "10",
-        "mars_house": "10",
-        "sun_dignity": "DOMICILE",
-    },
-    "wealth": {
-        "jupiter_house": "2",
-        "venus_house": "2",
-        "jupiter_dignity": "DOMICILE",
-    },
-    "marriage": {
-        "venus_house": "7",
-        "moon_house": "7",
-        "venus_dignity": "DOMICILE",
-    },
-    "education": {
-        "mercury_house": "3",
-        "jupiter_house": "9",
-        "mercury_dignity": "DOMICILE",
-    },
-    "property": {
-        "moon_house": "4",
-        "mars_house": "4",
-        "mars_dignity": "DOMICILE",
-    },
-    "children": {
-        "jupiter_house": "5",
-        "venus_house": "5",
-        "venus_dignity": "DOMICILE",
-    },
-    "migration": {
-        "mars_house": "12",
-        "jupiter_house": "12",
-        "mars_dignity": "DOMICILE",
-    },
-    "travel": {
-        "mercury_house": "9",
-        "jupiter_house": "9",
-        "mercury_dignity": "DOMICILE",
-    },
-    "transitions": {
-        "saturn_house": "12",
-        "jupiter_house": "9",
-        "saturn_dignity": "DOMICILE",
-    },
-}
+
 
 
 # ── Core Pipeline ────────────────────────────────────────────────────────────
@@ -271,84 +226,45 @@ def _run_vedic_system_assessment(
 def _run_western_system_assessment(
     query: str,
     outcome_taxonomy: str,
+    birth_date: str,
+    birth_time: str,
+    latitude: float,
+    longitude: float,
 ) -> SystemAssessment:
-    """Run the Western pipeline and return a SystemAssessment.
+    """Run the Western pipeline with real birth data.
 
-    Uses default Western facts for demonstration. In production,
-    these would be computed from a WesternChart via the JRE-066 engine.
+    Computes a WesternChart from the actual birth coordinates using
+    the WesternCalculationService (JRE-066), then evaluates it
+    through the WesternDomainService (JRS-067).
     """
-    western_facts = _DEFAULT_WESTERN_FACTS.get(query, {})
+    import datetime as dt
+
+    from western.models import WesternHouseSystem
+
+    # Parse birth date (DD-MM-YYYY) and time (HH:MM or HH:MM:SS)
+    date_parts = birth_date.split("-")
+    time_parts = birth_time.split(":")
+    parsed_date = dt.date(
+        int(date_parts[2]), int(date_parts[1]), int(date_parts[0])
+    )
+    parsed_time = dt.time(
+        int(time_parts[0]), int(time_parts[1]),
+        int(time_parts[2]) if len(time_parts) > 2 else 0,
+    )
+
+    # Calculate Western chart from real coordinates
+    western_calc = WesternCalculationService()
+    chart = western_calc.calculate(
+        birth_date=parsed_date,
+        birth_time=parsed_time,
+        latitude=latitude,
+        longitude=longitude,
+        house_system=WesternHouseSystem.PLACIDUS,
+    )
+
+    # Evaluate through WesternDomainService
     western_svc = WesternDomainService()
-
-    from jrs.western.models import evaluate_facts
-
-    if western_facts:
-        rules = western_svc.load_rules().rules
-        records = evaluate_facts(rules, western_facts)
-    else:
-        records = ()
-
-    if not records:
-        return SystemAssessment(
-            system_type=SystemType.WESTERN,
-            outcome_taxonomy="NO_MATCH",
-            assessment_status="NEUTRAL",
-            timing_status="INACTIVE",
-            provenance=EvidenceProvenance(
-                system_type=SystemType.WESTERN,
-                source_tradition="LILLY",
-            ),
-        )
-
-    # Aggregate by outcome taxonomy
-    outcome_support: dict[str, int] = {}
-    outcome_contradict: dict[str, int] = {}
-    for record in records:
-        outcome = record.outcome_taxonomy
-        if record.direction.value == "SUPPORT":
-            outcome_support[outcome] = outcome_support.get(outcome, 0) + 1
-        elif record.direction.value == "CONTRADICT":
-            outcome_contradict[outcome] = (
-                outcome_contradict.get(outcome, 0) + 1
-            )
-
-    all_outcomes = set(outcome_support.keys()) | set(
-        outcome_contradict.keys()
-    )
-    best_outcome = ""
-    best_score = -1
-    for outcome in all_outcomes:
-        score = outcome_support.get(outcome, 0) - outcome_contradict.get(
-            outcome, 0
-        )
-        if score > best_score:
-            best_score = score
-            best_outcome = outcome
-
-    net_support = outcome_support.get(best_outcome, 0)
-    net_contradict = outcome_contradict.get(best_outcome, 0)
-
-    if net_support >= 3 and net_contradict == 0:
-        status = "STRONGLY_SUPPORTED"
-    elif net_support >= 2 and net_contradict == 0:
-        status = "SUPPORTED"
-    elif net_support >= 1:
-        status = "WEAKLY_SUPPORTED"
-    elif net_contradict >= 2 or (net_contradict >= 1 and net_support == 0):
-        status = "CONTRADICTED"
-    else:
-        status = "NEUTRAL"
-
-    return SystemAssessment(
-        system_type=SystemType.WESTERN,
-        outcome_taxonomy=best_outcome,
-        assessment_status=status,
-        timing_status="INACTIVE",
-        provenance=EvidenceProvenance(
-            system_type=SystemType.WESTERN,
-            source_tradition="LILLY",
-        ),
-    )
+    return western_svc.assess_chart(chart)
 
 
 def _run_multi_system(
@@ -358,6 +274,11 @@ def _run_multi_system(
     outcome_taxonomy: str,
     event_windows: tuple[EventWindow, ...],
     systems: list[str],
+    birth_date: str = "",
+    birth_time: str = "",
+    latitude: float = 0.0,
+    longitude: float = 0.0,
+    birth_name: str = "",
 ) -> tuple[SystemAssessment, ...]:
     """Run the multi-system pipeline for the requested systems.
 
@@ -374,10 +295,53 @@ def _run_multi_system(
 
     if "western" in systems:
         assessments.append(
-            _run_western_system_assessment(query, outcome_taxonomy)
+            _run_western_system_assessment(
+                query=query,
+                outcome_taxonomy=outcome_taxonomy,
+                birth_date=birth_date,
+                birth_time=birth_time,
+                latitude=latitude,
+                longitude=longitude,
+            )
+        )
+
+    if "numerology" in systems:
+        assessments.append(
+            _run_numerology_system_assessment(
+                birth_date=birth_date,
+                birth_name=birth_name,
+            )
         )
 
     return tuple(assessments)
+
+
+def _run_numerology_system_assessment(
+    birth_date: str,
+    birth_name: str,
+) -> SystemAssessment:
+    """Run the Numerology pipeline and return a SystemAssessment.
+
+    Computes a NumerologyChart from the birth data, then evaluates
+    it through the NumerologyDomainService.
+    """
+
+    from numerology.service import NumerologyCalculationService
+
+    # Parse birth date (DD-MM-YYYY) to ISO format (YYYY-MM-DD)
+    date_parts = birth_date.split("-")
+    parsed_date = f"{date_parts[2]}-{date_parts[1]}-{date_parts[0]}"
+
+    # Calculate Numerology chart
+    num_calc = NumerologyCalculationService()
+    chart = num_calc.calculate(
+        birth_date=parsed_date,
+        birth_name=birth_name,
+    )
+
+    # Evaluate through NumerologyDomainService
+    num_svc = NumerologyDomainService()
+    return num_svc.assess_chart(chart)
 
 
 def _build_cross_system_result(
@@ -594,9 +558,26 @@ def build_parser() -> argparse.ArgumentParser:
         "--systems",
         default="vedic",
         help=(
-            "Comma-separated list of astrological systems to run "
-            "(e.g., vedic,western). Default: vedic"
+            "Comma-separated list of systems to run "
+            "(e.g., vedic,western,numerology). Default: vedic"
         ),
+    )
+    parser.add_argument(
+        "--latitude",
+        type=float,
+        default=19.076,
+        help="Birth latitude in degrees (default: 19.076 — Mumbai)",
+    )
+    parser.add_argument(
+        "--longitude",
+        type=float,
+        default=72.8777,
+        help="Birth longitude in degrees (default: 72.8777 — Mumbai)",
+    )
+    parser.add_argument(
+        "--birth-name",
+        default="John Adam Smith",
+        help="Full birth name for numerology (default: John Adam Smith)",
     )
     return parser
 
@@ -616,7 +597,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Parse systems
     requested_systems = [s.strip().lower() for s in args.systems.split(",")]
-    valid_systems = {"vedic", "western"}
+    valid_systems = {"vedic", "western", "numerology"}
     for sys_name in requested_systems:
         if sys_name not in valid_systems:
             print(
@@ -649,6 +630,11 @@ def main(argv: list[str] | None = None) -> int:
                 outcome_taxonomy=outcome,
                 event_windows=event_windows,
                 systems=requested_systems,
+                birth_date=args.birth_date,
+                birth_time=args.birth_time,
+                latitude=args.latitude,
+                longitude=args.longitude,
+                birth_name=args.birth_name,
             )
             cross_system = _build_cross_system_result(system_assessments)
             for sa in system_assessments:

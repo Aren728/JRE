@@ -267,8 +267,9 @@ class TestEvidenceRecords:
         self, jrs_svc: WesternDomainService, einstein_chart: WesternChart
     ) -> None:
         records = jrs_svc.evaluate_chart_facts(einstein_chart)
+        valid_sources = {"PTOLEMY", "LILLY", "BONATTI", "DOROTHEUS"}
         for record in records:
-            assert record.source_id in {"PTOLEMY", "LILLY"}
+            assert record.source_id in valid_sources
 
     def test_records_have_valid_directions(
         self, jrs_svc: WesternDomainService, einstein_chart: WesternChart

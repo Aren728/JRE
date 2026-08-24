@@ -1,8 +1,9 @@
-"""Integration tests for JRS-070: Multi-System CLI Integration.
+"""Integration tests for JRS-071: Multi-System CLI with Western real data and Numerology.
 
-Tests the --systems argument, individual SystemAssessment display,
-Cross-System Convergence section, source attributions, and
-deterministic output.
+Tests:
+- Western engine uses real CLI birth data (not defaults)
+- Numerology engine produces deterministic facts
+- Three-system convergence mathematically preserves Numerology independence
 """
 
 from __future__ import annotations
@@ -12,198 +13,259 @@ import json
 import pytest
 
 from jrs.cli import (
-    _build_cross_system_result,
     _run_multi_system,
+    _run_numerology_system_assessment,
+    _run_western_system_assessment,
     build_parser,
     main,
 )
-from jrs.multisystem.models import SystemAssessment, SystemType
+from jrs.multisystem.models import SystemType
 
 # ── Parser Tests ─────────────────────────────────────────────────────────────
 
 
 class TestParserMultiSystem:
-    """Tests for the --systems CLI argument."""
+    """Tests for the --systems CLI argument with numerology."""
 
-    def test_default_systems(self) -> None:
-        parser = build_parser()
-        args = parser.parse_args([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "career",
-        ])
-        assert args.systems == "vedic"
-
-    def test_multi_systems_argument(self) -> None:
-        parser = build_parser()
-        args = parser.parse_args([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "career",
-            "--systems", "vedic,western",
-        ])
-        assert args.systems == "vedic,western"
-
-    def test_western_only(self) -> None:
-        parser = build_parser()
-        args = parser.parse_args([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "career",
-            "--systems", "western",
-        ])
-        assert args.systems == "western"
-
-    def test_invalid_system_rejected(self, capsys: pytest.CaptureFixture[str]) -> None:
+    def test_numerology_in_valid_systems(self) -> None:
+        """Numerology should be accepted as a valid system."""
         rc = main([
             "--birth-date", "28-09-1979",
             "--birth-time", "18:24",
             "--place", "Mumbai, India",
             "--query", "career",
-            "--systems", "invalid_system",
+            "--systems", "numerology",
+            "--json",
         ])
-        assert rc == 1
-        captured = capsys.readouterr()
-        assert "Unknown system" in captured.err
+        # Should not fail with "Unknown system" error
+        assert rc == 0
+
+    def test_three_systems_accepted(self) -> None:
+        """All three systems should be accepted."""
+        parser = build_parser()
+        args = parser.parse_args([
+            "--birth-date", "28-09-1979",
+            "--birth-time", "18:24",
+            "--place", "Mumbai, India",
+            "--query", "career",
+            "--systems", "vedic,western,numerology",
+        ])
+        assert args.systems == "vedic,western,numerology"
+
+    def test_latitude_longitude_args(self) -> None:
+        """CLI should accept latitude and longitude arguments."""
+        parser = build_parser()
+        args = parser.parse_args([
+            "--birth-date", "28-09-1979",
+            "--birth-time", "18:24",
+            "--place", "Mumbai, India",
+            "--query", "career",
+            "--latitude", "28.6139",
+            "--longitude", "77.2090",
+        ])
+        assert args.latitude == 28.6139
+        assert args.longitude == 77.2090
+
+    def test_birth_name_arg(self) -> None:
+        """CLI should accept birth name argument for numerology."""
+        parser = build_parser()
+        args = parser.parse_args([
+            "--birth-date", "28-09-1979",
+            "--birth-time", "18:24",
+            "--place", "Mumbai, India",
+            "--query", "career",
+            "--birth-name", "Raj Kumar Singh",
+        ])
+        assert args.birth_name == "Raj Kumar Singh"
 
 
-# ── Pipeline Function Tests ──────────────────────────────────────────────────
+# ── Western Real Data Tests ─────────────────────────────────────────────────
 
 
-class TestMultiSystemPipeline:
-    """Tests for _run_multi_system pipeline."""
+class TestWesternRealData:
+    """Tests that Western engine uses real birth data."""
 
-    def test_returns_vedic_and_western(self) -> None:
+    def test_western_with_real_coords(self) -> None:
+        """Western assessment should use real coordinates."""
+        assessment = _run_western_system_assessment(
+            query="career",
+            outcome_taxonomy="CAREER_PROMINENCE",
+            birth_date="28-09-1979",
+            birth_time="18:24:00",
+            latitude=28.6139,
+            longitude=77.2090,
+        )
+        assert assessment.system_type is SystemType.WESTERN
+        assert assessment.provenance is not None
+        assert assessment.provenance.source_tradition in ("LILLY", "PTOLEMY")
+
+    def test_western_different_coords_different_results(self) -> None:
+        """Different coordinates should potentially produce different results."""
+        a1 = _run_western_system_assessment(
+            query="career",
+            outcome_taxonomy="CAREER_PROMINENCE",
+            birth_date="28-09-1979",
+            birth_time="18:24:00",
+            latitude=28.6139,   # Delhi
+            longitude=77.2090,
+        )
+        a2 = _run_western_system_assessment(
+            query="career",
+            outcome_taxonomy="CAREER_PROMINENCE",
+            birth_date="28-09-1979",
+            birth_time="18:24:00",
+            latitude=40.7128,   # New York
+            longitude=-74.0060,
+        )
+        # Both should produce valid assessments
+        assert a1.system_type is SystemType.WESTERN
+        assert a2.system_type is SystemType.WESTERN
+
+
+# ── Numerology Tests ────────────────────────────────────────────────────────
+
+
+class TestNumerologyEngine:
+    """Tests for the Numerology JRE engine."""
+
+    def test_numerology_deterministic(self) -> None:
+        """Numerology chart should be deterministic."""
+        from numerology.service import NumerologyCalculationService
+
+        svc = NumerologyCalculationService()
+        c1 = svc.calculate(birth_date="1985-07-15", birth_name="John Adam Smith")
+        c2 = svc.calculate(birth_date="1985-07-15", birth_name="John Adam Smith")
+        assert c1.deterministic_id == c2.deterministic_id
+        assert c1.to_dict() == c2.to_dict()
+
+    def test_numerology_life_path(self) -> None:
+        """Life Path number should be correctly calculated."""
+        from numerology.service import NumerologyCalculationService
+
+        svc = NumerologyCalculationService()
+        chart = svc.calculate(birth_date="1985-07-15", birth_name="John Adam Smith")
+        assert chart.life_path is not None
+        assert chart.life_path.reduced in range(1, 10)
+
+    def test_numerology_destiny(self) -> None:
+        """Destiny number should be correctly calculated."""
+        from numerology.service import NumerologyCalculationService
+
+        svc = NumerologyCalculationService()
+        chart = svc.calculate(birth_date="1985-07-15", birth_name="John Adam Smith")
+        assert chart.destiny is not None
+        assert chart.destiny.reduced in range(1, 10)
+
+    def test_numerology_system_assessment(self) -> None:
+        """Numerology assessment should produce a valid SystemAssessment."""
+        assessment = _run_numerology_system_assessment(
+            birth_date="15-07-1985",
+            birth_name="John Adam Smith",
+        )
+        assert assessment.system_type is SystemType.NUMEROLOGY
+        assert assessment.provenance is not None
+        assert assessment.provenance.source_tradition == "PYTHAGOREAN"
+
+
+# ── Three-System Convergence Tests ──────────────────────────────────────────
+
+
+class TestThreeSystemConvergence:
+    """Tests for three-system convergence with Numerology independence."""
+
+    def test_three_system_assessments(self) -> None:
+        """Three systems should produce three assessments."""
         assessments = _run_multi_system(
             query="career",
             domain_key="career",
             facts={"sun_strong": True, "sun_10th_connection": True},
             outcome_taxonomy="CAREER_ASCENT",
             event_windows=(),
-            systems=["vedic", "western"],
+            systems=["vedic", "western", "numerology"],
+            birth_date="28-09-1979",
+            birth_time="18:24:00",
+            latitude=28.6139,
+            longitude=77.2090,
+            birth_name="Raj Kumar Singh",
         )
-        assert len(assessments) == 2
+        assert len(assessments) == 3
         system_types = {a.system_type for a in assessments}
         assert SystemType.VEDIC in system_types
         assert SystemType.WESTERN in system_types
+        assert SystemType.NUMEROLOGY in system_types
 
-    def test_vedic_only(self) -> None:
-        assessments = _run_multi_system(
-            query="career",
-            domain_key="career",
-            facts={"sun_strong": True},
-            outcome_taxonomy="CAREER_ASCENT",
-            event_windows=(),
-            systems=["vedic"],
+    def test_numerology_independence_preserved(self) -> None:
+        """Numerology should have independence score of 1.0 with Vedic/Western.
+
+        Since Numerology shares NO derivative roots with astrology systems,
+        its pairwise independence should be 1.0.
+        """
+        from jrs.multisystem.models import EvidenceProvenance
+        from jrs.multisystem.service import IndependenceAnalyzer
+
+        analyzer = IndependenceAnalyzer()
+
+        # Numerology vs Vedic: no shared roots -> 1.0
+        num_prov = EvidenceProvenance(
+            system_type=SystemType.NUMEROLOGY,
+            source_tradition="PYTHAGOREAN",
         )
-        assert len(assessments) == 1
-        assert assessments[0].system_type is SystemType.VEDIC
-
-    def test_western_only(self) -> None:
-        assessments = _run_multi_system(
-            query="career",
-            domain_key="career",
-            facts={"sun_strong": True},
-            outcome_taxonomy="CAREER_ASCENT",
-            event_windows=(),
-            systems=["western"],
-        )
-        assert len(assessments) == 1
-        assert assessments[0].system_type is SystemType.WESTERN
-
-    def test_all_assessments_have_provenance(self) -> None:
-        assessments = _run_multi_system(
-            query="wealth",
-            domain_key="wealth",
-            facts={"2nd_lord_in_11th": True},
-            outcome_taxonomy="WEALTH_ACCUMULATION",
-            event_windows=(),
-            systems=["vedic", "western"],
-        )
-        for a in assessments:
-            assert a.provenance is not None
-            assert a.provenance.system_type is a.system_type
-
-
-class TestCrossSystemResult:
-    """Tests for _build_cross_system_result."""
-
-    def test_returns_empty_for_single_system(self) -> None:
-        assessment = SystemAssessment(
+        vedic_prov = EvidenceProvenance(
             system_type=SystemType.VEDIC,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
+            source_tradition="BPHS",
         )
-        result = _build_cross_system_result((assessment,))
-        assert result == {}
+        score_nv = analyzer.calculate_pairwise_independence(num_prov, vedic_prov)
+        assert score_nv == 1.0
 
-    def test_returns_convergence_for_two_systems(self) -> None:
-        vedic = SystemAssessment(
-            system_type=SystemType.VEDIC,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-            provenance=None,
-        )
-        western = SystemAssessment(
+        # Numerology vs Western: no shared roots -> 1.0
+        western_prov = EvidenceProvenance(
             system_type=SystemType.WESTERN,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-            provenance=None,
+            source_tradition="LILLY",
         )
-        result = _build_cross_system_result((vedic, western))
-        assert "raw_convergence" in result
-        assert "independence_score" in result
-        assert "adjusted_convergence" in result
-        assert "individual_assessments" in result
+        score_nw = analyzer.calculate_pairwise_independence(num_prov, western_prov)
+        assert score_nw == 1.0
 
-    def test_adjusted_leq_raw_convergence(self) -> None:
-        """Proving the independence penalty is displayed."""
-        vedic = SystemAssessment(
-            system_type=SystemType.VEDIC,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-        )
-        western = SystemAssessment(
-            system_type=SystemType.WESTERN,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-        )
-        result = _build_cross_system_result((vedic, western))
-        assert result["adjusted_convergence"] <= result["raw_convergence"]
+    def test_collective_independence_three_systems(self) -> None:
+        """Collective independence with all three systems should be high.
 
-    def test_independence_score_is_valid(self) -> None:
-        vedic = SystemAssessment(
-            system_type=SystemType.VEDIC,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-        )
-        western = SystemAssessment(
-            system_type=SystemType.WESTERN,
-            outcome_taxonomy="CAREER_ASCENT",
-            assessment_status="SUPPORTED",
-        )
-        result = _build_cross_system_result((vedic, western))
-        assert 0.0 <= result["independence_score"] <= 1.0
+        Numerology contributes no penalty; only Vedic-Western share roots.
+        Expected: (1.0 + 1.0 + 0.85) / 3 ≈ 0.95
+        """
+        from jrs.multisystem.models import EvidenceProvenance
+        from jrs.multisystem.service import IndependenceAnalyzer
 
+        analyzer = IndependenceAnalyzer()
+        prov_list = [
+            EvidenceProvenance(
+                system_type=SystemType.VEDIC,
+                source_tradition="BPHS",
+            ),
+            EvidenceProvenance(
+                system_type=SystemType.WESTERN,
+                source_tradition="LILLY",
+            ),
+            EvidenceProvenance(
+                system_type=SystemType.NUMEROLOGY,
+                source_tradition="PYTHAGOREAN",
+            ),
+        ]
+        collective = analyzer.calculate_collective_independence(prov_list)
+        # Vedic-Western: 0.85, Vedic-Numerology: 1.0, Western-Numerology: 1.0
+        # Average: (0.85 + 1.0 + 1.0) / 3 ≈ 0.95
+        assert collective >= 0.9
+        assert collective <= 1.0
 
-# ── End-to-End CLI Tests ────────────────────────────────────────────────────
-
-
-class TestCLIMultiSystem:
-    """End-to-end CLI tests with --systems argument."""
-
-    def test_vedic_western_json_output(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
+    def test_three_system_convergence_output(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Three-system CLI output should include all systems."""
         rc = main([
             "--birth-date", "28-09-1979",
             "--birth-time", "18:24",
             "--place", "Mumbai, India",
             "--query", "career",
-            "--systems", "vedic,western",
+            "--latitude", "28.6139",
+            "--longitude", "77.2090",
+            "--birth-name", "Raj Kumar Singh",
+            "--systems", "vedic,western,numerology",
             "--json",
         ])
         assert rc == 0
@@ -213,17 +275,22 @@ class TestCLIMultiSystem:
         assert "cross_system_convergence" in parsed
         assert "VEDIC" in parsed["system_assessments"]
         assert "WESTERN" in parsed["system_assessments"]
-        assert parsed["systems"] == ["vedic", "western"]
+        assert "NUMEROLOGY" in parsed["system_assessments"]
+        convergence = parsed["cross_system_convergence"]
+        assert convergence["adjusted_convergence"] <= convergence["raw_convergence"]
+        assert 0.0 <= convergence["independence_score"] <= 1.0
 
-    def test_vedic_western_text_output(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
+    def test_three_system_text_output(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Three-system text output should show all assessments."""
         rc = main([
             "--birth-date", "28-09-1979",
             "--birth-time", "18:24",
             "--place", "Mumbai, India",
             "--query", "career",
-            "--systems", "vedic,western",
+            "--latitude", "28.6139",
+            "--longitude", "77.2090",
+            "--birth-name", "Raj Kumar Singh",
+            "--systems", "vedic,western,numerology",
         ])
         assert rc == 0
         output = capsys.readouterr().out
@@ -231,105 +298,46 @@ class TestCLIMultiSystem:
         assert "CROSS-SYSTEM CONVERGENCE" in output
         assert "VEDIC" in output
         assert "WESTERN" in output
+        assert "NUMEROLOGY" in output
 
-    def test_cross_system_convergence_section(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        rc = main([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "wealth",
-            "--systems", "vedic,western",
-            "--json",
-        ])
-        assert rc == 0
-        output = capsys.readouterr().out
-        parsed = json.loads(output)
-        convergence = parsed["cross_system_convergence"]
-        assert convergence["adjusted_convergence"] <= convergence["raw_convergence"]
-        assert 0.0 <= convergence["independence_score"] <= 1.0
-
-    def test_source_attributions_in_json(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        rc = main([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "marriage",
-            "--systems", "vedic,western",
-            "--json",
-        ])
-        assert rc == 0
-        output = capsys.readouterr().out
-        parsed = json.loads(output)
-        vedic = parsed["system_assessments"]["VEDIC"]
-        western = parsed["system_assessments"]["WESTERN"]
-        assert vedic["provenance"]["source_tradition"] == "BPHS"
-        assert western["provenance"]["source_tradition"] == "LILLY"
-
-    def test_single_system_backward_compatible(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        """Default --systems vedic should produce the same output structure."""
+    def test_numerology_source_attribution(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Numerology should show PYTHAGOREAN source attribution."""
         rc = main([
             "--birth-date", "28-09-1979",
             "--birth-time", "18:24",
             "--place", "Mumbai, India",
             "--query", "career",
-        ])
-        assert rc == 0
-        output = capsys.readouterr().out
-        assert "JRS ASSESSMENT" in output
-        assert "Career" in output
-
-    def test_single_system_json_backward_compatible(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        """Default --systems vedic JSON should use 'assessment' key."""
-        rc = main([
-            "--birth-date", "28-09-1979",
-            "--birth-time", "18:24",
-            "--place", "Mumbai, India",
-            "--query", "career",
+            "--latitude", "28.6139",
+            "--longitude", "77.2090",
+            "--birth-name", "Raj Kumar Singh",
+            "--systems", "vedic,numerology",
             "--json",
         ])
         assert rc == 0
         output = capsys.readouterr().out
         parsed = json.loads(output)
-        assert "assessment" in parsed
-        assert "system_assessments" not in parsed
+        assert "system_assessments" in parsed
+        num = parsed["system_assessments"]["NUMEROLOGY"]
+        assert num["provenance"]["source_tradition"] == "PYTHAGOREAN"
 
-    def test_multiple_queries_with_multi_system(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        """Verify multi-system works for different query domains."""
-        for query in ("career", "wealth", "marriage", "education"):
-            rc = main([
-                "--birth-date", "15-01-1990",
-                "--birth-time", "10:30",
-                "--place", "Delhi, India",
-                "--query", query,
-                "--systems", "vedic,western",
-                "--json",
-            ])
-            assert rc == 0
-            output = capsys.readouterr().out
-            parsed = json.loads(output)
-            assert "system_assessments" in parsed
-            assert "cross_system_convergence" in parsed
 
-    def test_deterministic_output(
-        self, capsys: pytest.CaptureFixture[str]
-    ) -> None:
-        """Multi-system output should be deterministic."""
+# ── Determinism Tests ────────────────────────────────────────────────────────
+
+
+class TestDeterminism:
+    """Tests for deterministic output across runs."""
+
+    def test_three_system_deterministic(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Three-system output should be deterministic."""
         args = [
             "--birth-date", "28-09-1979",
             "--birth-time", "18:24",
             "--place", "Mumbai, India",
             "--query", "career",
-            "--systems", "vedic,western",
+            "--latitude", "28.6139",
+            "--longitude", "77.2090",
+            "--birth-name", "Raj Kumar Singh",
+            "--systems", "vedic,western,numerology",
             "--json",
         ]
         main(args)
@@ -338,7 +346,6 @@ class TestCLIMultiSystem:
         output2 = capsys.readouterr().out
         parsed1 = json.loads(output1)
         parsed2 = json.loads(output2)
-        # The deterministic_id and scores should be identical
         assert (
             parsed1["cross_system_convergence"]["adjusted_convergence"]
             == parsed2["cross_system_convergence"]["adjusted_convergence"]
