@@ -16,6 +16,7 @@ from .errors import WesternCalculationError, WesternInputError
 from .models import (
     HouseCusp,
     PlanetPosition,
+    Sect,
     WesternChart,
     WesternDignity,
     WesternHouseSystem,
@@ -144,6 +145,13 @@ class WesternCalculationService:
                 pp.planet, pp.longitude
             )
 
+        # Determine sect (diurnal or nocturnal)
+        sect = self._calculate_sect(
+            planet_positions=planet_positions,
+            ascendant=ascendant,
+            midheaven=midheaven,
+        )
+
         return WesternChart(
             birth_date=birth_date.isoformat(),
             birth_time=birth_time.isoformat(),
@@ -157,6 +165,7 @@ class WesternCalculationService:
             dignities=dignities,
             ascendant=ascendant,
             midheaven=midheaven,
+            sect=sect,
         )
 
     # ── Private helpers ──────────────────────────────────────────────────
@@ -318,3 +327,49 @@ class WesternCalculationService:
         ]
 
         return house_cusps, ascendant, midheaven
+
+    def _calculate_sect(
+        self,
+        planet_positions: list[PlanetPosition],
+        ascendant: float,
+        midheaven: float,
+    ) -> Sect:
+        """Determine diurnal or nocturnal sect.
+
+        The chart is DIURNAL if the Sun is above the horizon (between
+        Ascendant and Descendant going through the MC), NOCTURNAL
+        otherwise.
+
+        Algorithm (Lilly CA Ch. 21, Bonatti Tr. 5, Dorotheus C.I.4):
+          1. Compute offsets of MC and Sun relative to Ascendant.
+          2. The diurnal arc is the 180° semicircle containing the MC.
+          3. The Sun is above the horizon if it falls in this semicircle.
+
+        Returns:
+            Sect.DIURNAL or Sect.NOCTURNAL.
+        """
+        sun = next(
+            (pp for pp in planet_positions if pp.planet == WesternPlanet.SUN),
+            None,
+        )
+        if sun is None:
+            return Sect.DIURNAL  # Default if Sun is unavailable
+
+        asc = ascendant % 360.0
+        mc = midheaven % 360.0
+        sun_lon = sun.longitude % 360.0
+
+        # Normalize positions relative to Ascendant (Asc = 0)
+        sun_offset = (sun_lon - asc) % 360.0
+        mc_offset = (mc - asc) % 360.0
+
+        # The diurnal arc (above horizon) is the 180° semicircle
+        # containing the MC.  Determine which semicircle that is.
+        if mc_offset <= 180.0:
+            # MC is in the forward semicircle (0-180° from Asc)
+            # Diurnal = Sun offset < 180
+            return Sect.DIURNAL if sun_offset < 180.0 else Sect.NOCTURNAL
+        else:
+            # MC is in the backward semicircle (180-360° from Asc)
+            # Diurnal = Sun offset >= 180
+            return Sect.DIURNAL if sun_offset >= 180.0 else Sect.NOCTURNAL

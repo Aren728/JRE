@@ -52,6 +52,22 @@ class WesternDignity(StrEnum):
     PEREGRINE = "PEREGRINE"
 
 
+class Sect(StrEnum):
+    """Diurnal/Nocturnal sect — foundational to traditional dignity.
+
+    A chart is DIURNAL if the Sun is above the horizon (between
+    Ascendant and Descendant through the MC), NOCTURNAL otherwise.
+    Sect modifies planetary dignity: diurnal planets (Sun, Jupiter,
+    Saturn) are empowered in diurnal charts; nocturnal planets
+    (Moon, Venus, Mars) are empowered in nocturnal charts.
+
+    Source: Lilly CA Ch. 21, Bonatti Tr. 5, Dorotheus C.I.4.
+    """
+
+    DIURNAL = "DIURNAL"
+    NOCTURNAL = "NOCTURNAL"
+
+
 class WesternAspectType(Enum):
     """Major Ptolemaic aspect types with their orb."""
 
@@ -269,6 +285,7 @@ class WesternChart:
 
     ascendant: float  # tropical longitude of Ascendant
     midheaven: float  # tropical longitude of MC
+    sect: Sect = Sect.DIURNAL  # Diurnal or Nocturnal chart
 
     deterministic_id: str = field(default="")
 
@@ -293,6 +310,7 @@ class WesternChart:
             "dignities": {k.value: v.value for k, v in self.dignities.items()},
             "ascendant": round(self.ascendant, 6),
             "midheaven": round(self.midheaven, 6),
+            "sect": self.sect.value,
             "deterministic_id": self.deterministic_id,
         }
 

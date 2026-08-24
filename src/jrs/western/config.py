@@ -18,9 +18,14 @@ _DECLARED_FIELDS: frozenset[str] = frozenset({
     "rules",
 })
 
-_CONFIG_PATH = (
+_CONFIG_DIR = (
     Path(__file__).resolve().parent.parent.parent.parent.parent
-    / "config" / "western" / "basic_rules.toml"
+    / "config" / "western"
+)
+
+_DEFAULT_CONFIG_PATHS: tuple[Path, ...] = (
+    _CONFIG_DIR / "basic_rules.toml",
+    _CONFIG_DIR / "traditional_rules.toml",
 )
 
 
@@ -28,7 +33,8 @@ def load_western_config(path: Path | None = None) -> WesternConfig:
     """Load and validate Western domain configuration from a TOML file.
 
     Args:
-        path: Path to the TOML config file.
+        path: Path to the TOML config file.  Uses first default path
+            if None.
 
     Returns:
         A validated ``WesternConfig`` instance.
@@ -36,7 +42,7 @@ def load_western_config(path: Path | None = None) -> WesternConfig:
     Raises:
         InvalidWesternConfigError: If the config is invalid.
     """
-    config_path = path or _CONFIG_PATH
+    config_path = path or _DEFAULT_CONFIG_PATHS[0]
     if not config_path.exists():
         raise InvalidWesternConfigError(
             f"Western config not found: {config_path}",
@@ -71,19 +77,44 @@ def load_western_config(path: Path | None = None) -> WesternConfig:
     )
 
 
-def load_western_rules(path: Path | None = None) -> tuple[WesternRule, ...]:
-    """Load Western rules from the TOML config.
+def load_western_rules(
+    path: Path | None = None,
+    extra_paths: tuple[Path, ...] | None = None,
+) -> tuple[WesternRule, ...]:
+    """Load Western rules from TOML config files.
+
+    Loads rules from the primary path (or first default), then merges
+    rules from any additional paths.
 
     Args:
-        path: Path to the TOML config file.
+        path: Primary TOML config file path.  Uses first default path
+            if None.
+        extra_paths: Additional TOML config files to merge rules from.
+            If None, loads from all default paths (basic + traditional).
 
     Returns:
-        A tuple of WesternRule objects.
+        A merged tuple of WesternRule objects.
 
     Raises:
-        InvalidWesternConfigError: If the config or rules are invalid.
+        InvalidWesternConfigError: If any config or rules are invalid.
     """
-    config_path = path or _CONFIG_PATH
+    primary = path or _DEFAULT_CONFIG_PATHS[0]
+    if extra_paths is None:
+        extra_paths = tuple(
+            p for p in _DEFAULT_CONFIG_PATHS if p != primary
+        )
+
+    all_rules: list[WesternRule] = []
+    all_rules.extend(_load_rules_from_path(primary))
+    for extra in extra_paths:
+        if extra.exists():
+            all_rules.extend(_load_rules_from_path(extra))
+
+    return tuple(all_rules)
+
+
+def _load_rules_from_path(config_path: Path) -> tuple[WesternRule, ...]:
+    """Load rules from a single TOML config file."""
     if not config_path.exists():
         raise InvalidWesternConfigError(
             f"Western config not found: {config_path}",

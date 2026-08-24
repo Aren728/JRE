@@ -1,0 +1,485 @@
+# JRS-069: Traditional Western Doctrine Rules
+# Classical sources: Ptolemy (Tetrabiblos), William Lilly (Christian Astrology),
+# Abu Ma'shar (Introductorium Maius via Latin tradition), Dorotheus of Sidon,
+# Bonatti (Liber Astronomiae), Morinus.
+# NO modern pop-psychology interpretations.
+
+[western]
+version = "2.0"
+source_id = "LILLY"
+default_strength = "MODERATE"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECT RULES (Diurnal/Nocturnal modifications to planetary dignity)
+# Source: Lilly CA Ch. 21, Bonatti Tr. 5, Dorotheus C.I.4
+#
+# Sect classifies charts as diurnal (Sun above horizon) or nocturnal
+# (Sun below horizon).  Diurnal planets (Sun, Jupiter, Saturn) are
+# empowered in diurnal charts; nocturnal planets (Moon, Venus, Mars)
+# are empowered in nocturnal charts.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Diurnal sect: diurnal planets in diurnal charts ─────────────────────────
+
+[[western.rules]]
+rule_id = "W-SECT-SUN-DIURNAL"
+description = "Sun in diurnal chart — diurnal sect strengthens solar authority (Lilly CA Ch. 21)"
+condition_facts = ["chart_sect=DIURNAL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+[[western.rules]]
+rule_id = "W-SECT-JUPITER-DIURNAL"
+description = "Jupiter in diurnal chart — diurnal sect enhances Jupiter's benevolence (Lilly CA Ch. 21)"
+condition_facts = ["chart_sect=DIURNAL"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+[[western.rules]]
+rule_id = "W-SECT-SATURN-DIURNAL"
+description = "Saturn in diurnal chart — diurnal sect tempers Saturn's malefic nature (Lilly CA Ch. 21)"
+condition_facts = ["chart_sect=DIURNAL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+# ── Nocturnal sect: nocturnal planets in nocturnal charts ───────────────────
+
+[[western.rules]]
+rule_id = "W-SECT-MOON-NOCTURNAL"
+description = "Moon in nocturnal chart — nocturnal sect strengthens lunar sensitivity (Bonatti Tr. 5)"
+condition_facts = ["chart_sect=NOCTURNAL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BONATTI"
+location = "Liber Astronomiae Tr. 5"
+
+[[western.rules]]
+rule_id = "W-SECT-VENUS-NOCTURNAL"
+description = "Venus in nocturnal chart — nocturnal sect enhances Venus's harmony (Bonatti Tr. 5)"
+condition_facts = ["chart_sect=NOCTURNAL"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BONATTI"
+location = "Liber Astronomiae Tr. 5"
+
+[[western.rules]]
+rule_id = "W-SECT-MARS-NOCTURNAL"
+description = "Mars in nocturnal chart — nocturnal sect tempers Mars's malefic nature (Dorotheus C.I.4)"
+condition_facts = ["chart_sect=NOCTURNAL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.4"
+
+# ── Sect discord: diurnal planet in nocturnal chart ─────────────────────────
+
+[[western.rules]]
+rule_id = "W-SECT-SUN-NOCTURNAL"
+description = "Sun in nocturnal chart — contrary sect weakens solar expression (Lilly CA Ch. 21)"
+condition_facts = ["chart_sect=NOCTURNAL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+[[western.rules]]
+rule_id = "W-SECT-MARS-DIURNAL"
+description = "Mars in diurnal chart — contrary sect amplifies Martian aggression (Dorotheus C.I.4)"
+condition_facts = ["chart_sect=DIURNAL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.4"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PLANETARY JOYS (Classical house assignments)
+# Source: Ptolemy Tetrabiblos III.13, Lilly CA Ch. 21
+#
+# Each classical planet has a preferred house placement (its "joy"):
+#   Sun = 9th, Moon = 3rd, Mercury = 1st, Venus = 5th,
+#   Mars = 6th, Jupiter = 11th, Saturn = 12th
+# When a planet occupies its joy house, it operates with greater
+# facility and natural expression.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "W-JOY-SUN-9"
+description = "Sun in 9th house — solar joy, natural authority in philosophy and law (Ptolemy Tetrabiblos III.13)"
+condition_facts = ["sun_joy=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.13"
+
+[[western.rules]]
+rule_id = "W-JOY-MOON-3"
+description = "Moon in 3rd house — lunar joy, natural rhythm in communication (Ptolemy Tetrabiblos III.13)"
+condition_facts = ["moon_joy=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.13"
+
+[[western.rules]]
+rule_id = "W-JOY-MERCURY-1"
+description = "Mercury in 1st house — mercurial joy, natural aptitude for intellectual expression (Ptolemy Tetrabiblos III.13)"
+condition_facts = ["mercury_joy=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.13"
+
+[[western.rules]]
+rule_id = "W-JOY-VENUS-5"
+description = "Venus in 5th house — venereal joy, natural talent for art and romance (Lilly CA Ch. 21)"
+condition_facts = ["venus_joy=true"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+[[western.rules]]
+rule_id = "W-JOY-MARS-6"
+description = "Mars in 6th house — martial joy, natural aptitude for disciplined labor (Ptolemy Tetrabiblos III.13)"
+condition_facts = ["mars_joy=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.13"
+
+[[western.rules]]
+rule_id = "W-JOY-JUPITER-11"
+description = "Jupiter in 11th house — jovial joy, natural prosperity through social connections (Lilly CA Ch. 21)"
+condition_facts = ["jupiter_joy=true"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21"
+
+[[western.rules]]
+rule_id = "W-JOY-SATURN-12"
+description = "Saturn in 12th house — saturnine joy, natural aptitude for solitude and contemplation (Ptolemy Tetrabiblos III.13)"
+condition_facts = ["saturn_joy=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.13"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EGYPTIAN TERMS/BOUNDS (Degree-level rulership within signs)
+# Source: Dorotheus of Sidon C.I.14, Lilly CA Ch. 32
+#
+# Each 30° sign is divided into 5 bounds of unequal length, each
+# ruled by a different planet.  When a planet occupies a bound ruled
+# by a benefic (Jupiter, Venus), it receives additional essential
+# dignity.  When in a malefic's bound (Saturn, Mars), it loses power.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "W-TERM-JUPITER"
+description = "Planet in Jupiter-ruled term — additional essential dignity from jovial bound (Dorotheus C.I.14)"
+condition_facts = ["term_ruler=JUPITER"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.14"
+
+[[western.rules]]
+rule_id = "W-TERM-VENUS"
+description = "Planet in Venus-ruled term — additional essential dignity from venereal bound (Dorotheus C.I.14)"
+condition_facts = ["term_ruler=VENUS"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.14"
+
+[[western.rules]]
+rule_id = "W-TERM-SATURN"
+description = "Planet in Saturn-ruled term — essential debility from saturnine bound (Lilly CA Ch. 32)"
+condition_facts = ["term_ruler=SATURN"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "LOW"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 32"
+
+[[western.rules]]
+rule_id = "W-TERM-MARS"
+description = "Planet in Mars-ruled term — essential debility from martial bound (Lilly CA Ch. 32)"
+condition_facts = ["term_ruler=MARS"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "LOW"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 32"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MUTUAL RECEPTIONS (Planets swapping dignities)
+# Source: Lilly CA Ch. 26, Dorotheus C.I.14, Bonatti Tr. 14
+#
+# A mutual reception by domicile occurs when two planets are each
+# placed in the other's domicile sign.  This creates a cooperative
+# bond that mitigates detriment/fall and enhances mutual support.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-VENUS-MARS"
+description = "Mutual reception Venus-Mars — cooperative bond between harmony and drive (Lilly CA Ch. 26)"
+condition_facts = ["mutual_reception_venus_mars=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 26"
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-MERCURY-VENUS"
+description = "Mutual reception Mercury-VenUs — cooperative bond between intellect and aesthetics (Dorotheus C.I.14)"
+condition_facts = ["mutual_reception_mercury_venus=true"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.14"
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-MERCURY-JUPITER"
+description = "Mutual reception Mercury-Jupiter — cooperative bond between intellect and expansion (Bonatti Tr. 14)"
+condition_facts = ["mutual_reception_mercury_jupiter=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BONATTI"
+location = "Liber Astronomiae Tr. 14"
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-JUPITER-SATURN"
+description = "Mutual reception Jupiter-Saturn — cooperative bond between growth and structure (Lilly CA Ch. 26)"
+condition_facts = ["mutual_reception_jupiter_saturn=true"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 26"
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-VENUS-SATURN"
+description = "Mutual reception Venus-Saturn — cooperative bond between harmony and discipline (Dorotheus C.I.14)"
+condition_facts = ["mutual_reception_saturn_venus=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.14"
+
+[[western.rules]]
+rule_id = "W-MUTUAL-RECEPTION-MARS-SATURN"
+description = "Mutual reception Mars-Saturn — cooperative bond between drive and restraint, mitigates malefics (Lilly CA Ch. 26)"
+condition_facts = ["mutual_reception_mars_saturn=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "MITIGATE"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 26"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ACCIDENTAL DIGNITIES (House placement, cazimi, combust, under the beams)
+# Source: Lilly CA Ch. 22, Ptolemy Tetrabiblos II.9, Bonatti Tr. 18
+#
+# Accidental dignities arise from a planet's position in the chart
+# (house, speed, direction) rather than its sign placement.  Key
+# factors: cazimi (heart of the Sun), combustion (too close to Sun),
+# and under the beams (invisible by solar glare).
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Cazimi (in the heart of the Sun) ───────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-CAZIMI-VENUS"
+description = "Venus cazimi — Venus in the heart of the Sun, greatly strengthened (Lilly CA Ch. 22)"
+condition_facts = ["venus_cazimi=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-CAZIMI-MERCURY"
+description = "Mercury cazimi — Mercury in the heart of the Sun, greatly strengthened (Lilly CA Ch. 22)"
+condition_facts = ["mercury_cazimi=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-CAZIMI-MARS"
+description = "Mars cazimi — Mars in the heart of the Sun, temporarily empowered (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["mars_cazimi=true"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+
+[[western.rules]]
+rule_id = "W-CAZIMI-JUPITER"
+description = "Jupiter cazimi — Jupiter in the heart of the Sun, greatly strengthened (Lilly CA Ch. 22)"
+condition_facts = ["jupiter_cazimi=true"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-CAZIMI-SATURN"
+description = "Saturn cazimi — Saturn in the heart of the Sun, temporarily empowered (Lilly CA Ch. 22)"
+condition_facts = ["saturn_cazimi=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+# ── Combust (too close to the Sun) ──────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "W-COMBUST-VENUS"
+description = "Venus combust — Venus consumed by solar rays, weakened in expression (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["venus_combust=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+
+[[western.rules]]
+rule_id = "W-COMBUST-MERCURY"
+description = "Mercury combust — Mercury consumed by solar rays, communication impaired (Lilly CA Ch. 22)"
+condition_facts = ["mercury_combust=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-COMBUST-MARS"
+description = "Mars combust — Mars consumed by solar rays, aggressive energy impaired (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["mars_combust=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+
+[[western.rules]]
+rule_id = "W-COMBUST-JUPITER"
+description = "Jupiter combust — Jupiter consumed by solar rays, benevolence impaired (Lilly CA Ch. 22)"
+condition_facts = ["jupiter_combust=true"]
+outcome = "FINANCIAL_GAIN"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-COMBUST-SATURN"
+description = "Saturn combust — Saturn consumed by solar rays, restraint impaired (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["saturn_combust=true"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+
+# ── Under the Beams (invisible by solar glare) ─────────────────────────────
+
+[[western.rules]]
+rule_id = "W-BEAMS-MOON"
+description = "Moon under the beams — Moon hidden by solar glare, emotional visibility reduced (Bonatti Tr. 18)"
+condition_facts = ["moon_under_beams=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BONATTI"
+location = "Liber Astronomiae Tr. 18"
+
+[[western.rules]]
+rule_id = "W-BEAMS-VENUS"
+description = "Venus under the beams — Venus hidden by solar glare, relational clarity impaired (Lilly CA Ch. 22)"
+condition_facts = ["venus_under_beams=true"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+
+[[western.rules]]
+rule_id = "W-BEAMS-MERCURY"
+description = "Mercury under the beams — Mercury hidden by solar glare, communication obscured (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["mercury_under_beams=true"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "CONTRADICT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+
+[[western.rules]]
+rule_id = "W-BEAMS-MARS"
+description = "Mars under the beams — Mars hidden by solar glare, aggressive clarity impaired (Bonatti Tr. 18)"
+condition_facts = ["mars_under_beams=true"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BONATTI"
+location = "Liber Astronomiae Tr. 18"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUDED (Modern/Unsupported)
+# W-EXCLUDED-T001: "Sect = personality type"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Sect determines planetary strength, not personality traits.
+#
+# W-EXCLUDED-T002: "Planetary joys = karmic gifts"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Neo-spiritual overlay. Classical texts describe natural aptitude.
+#
+# W-EXCLUDED-T003: "Terms = past-life memories"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Reincarnation overlay. Terms indicate degree-level dignity.
+#
+# W-EXCLUDED-T004: "Mutual receptions = soul connections"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Romantic overlay. Classical texts describe cooperative planetary bonds.
+#
+# W-EXCLUDED-T005: "Cazimi = spiritual enlightenment"
+#   Classification: MODERN_INTERPRETATION
+#   Reason: Mystical overlay. Cazimi means 'in the heart of' — enhanced power.
+# ══════════════════════════════════════════════════════════════════════════════
