@@ -45,3 +45,29 @@ class TestRelationshipGraphService:
         sun_mars = [r for r in dispositor_rels if r.planet_a == "SUN" and r.planet_b == "MARS"]
         assert len(sun_mars) == 1
         assert sun_mars[0].relationship_type == RelationshipType.DISPOSITOR
+
+    def test_transit_activation(self) -> None:
+        """Test A: Mock natal facts (Sun in Aries) + Mock transit facts (Saturn in Libra) -> TRANSIT_ASPECT."""
+        service = RelationshipGraphService()
+        natal_facts = {
+            "planets": {
+                "SUN": {"rashi": "MESHA", "longitude": 15.5},
+                "MOON": {"rashi": "MESHA", "longitude": 20.1},  # Natal conjunction with Sun
+            }
+        }
+        transit_facts = {
+            "planets": {
+                "SATURN": {"rashi": "TULA", "longitude": 195.0},  # Libra aspects Aries (7th)
+            }
+        }
+        
+        rels = service.extract_relationships(natal_facts, transit_facts)
+        
+        # Should have natal conjunction, two transit aspects, and active natal conjunction
+        transit_aspects = [r for r in rels if r.relationship_type == RelationshipType.TRANSIT_ASPECT]
+        assert len(transit_aspects) == 2  # Saturn aspects both Sun and Moon
+        
+        # Check that the natal conjunction is marked as active
+        natal_conjs = [r for r in rels if r.relationship_type == RelationshipType.CONJUNCTION]
+        assert len(natal_conjs) == 1
+        assert natal_conjs[0].is_active is True

@@ -33,19 +33,14 @@ _RASHI_ORDER = [
 class RelationshipGraphService:
     """Deterministic service for extracting multi-planet relationships from JRE facts."""
 
-    def extract_relationships(self, jre_facts: dict[str, Any]) -> list[PlanetRelationship]:
+    def extract_relationships(
+        self, jre_facts: dict[str, Any], transit_facts: dict[str, Any] | None = None
+    ) -> list[PlanetRelationship]:
         """Extract basic relationships from JRE facts.
 
         Args:
             jre_facts: Dictionary containing planet data from JRE engines.
-                       Expected structure:
-                       {
-                           "planets": {
-                               "SUN": {"rashi": "MESHA", "longitude": 15.5, ...},
-                               "MOON": {"rashi": "MESHA", "longitude": 20.1, ...},
-                               ...
-                           }
-                       }
+            transit_facts: Optional dictionary containing transit planet data.
 
         Returns:
             List of PlanetRelationship objects representing detected connections.
@@ -117,6 +112,85 @@ class RelationshipGraphService:
                     )
                     relationships.append(rel)
                     seen.add(key)
+
+        # 4. Detect Transit Activation
+        if transit_facts:
+            transit_planets = transit_facts.get("planets", {})
+            active_natal_pairs: set[tuple[str, str]] = set()
+
+            for t_name, t_data in transit_planets.items():
+                t_rashi_idx = _rashi_to_index(t_data.get("rashi", ""))
+                if t_rashi_idx is None:
+                    continue
+
+                # Check Transit Conjunctions
+                for n_name, n_data in planets.items():
+                    if t_data.get("rashi") == n_data.get("rashi"):
+                        key = (t_name, n_name, RelationshipType.TRANSIT_CONJUNCTION)
+                        if key not in seen:
+                            rel = PlanetRelationship(
+                                planet_a=t_name,
+                                planet_b=n_name,
+                                relationship_type=RelationshipType.TRANSIT_CONJUNCTION,
+                                is_active=True,
+                            )
+                            relationships.append(rel)
+                            seen.add(key)
+                            active_natal_pairs.add((t_name, n_name))
+
+                # Check Transit Aspects
+                t_aspects = _STANDARD_ASPECTS.get(t_name, [7])
+                for offset in t_aspects:
+                    target_idx = (t_rashi_idx + offset - 1) % 12
+                    target_rashi = _RASHI_ORDER[target_idx]
+                    for n_name, n_data in planets.items():
+                        if t_name == n_name:
+                            continue
+                        if n_data.get("rashi") == target_rashi:
+                            key = (t_name, n_name, RelationshipType.TRANSIT_ASPECT)
+                            if key not in seen:
+                                rel = PlanetRelationship(
+                                    planet_a=t_name,
+                                    planet_b=n_name,
+                                    relationship_type=RelationshipType.TRANSIT_ASPECT,
+                                    is_active=True,
+                                )
+                                relationships.append(rel)
+                                seen.add(key)
+                                active_natal_pairs.add((t_name, n_name))
+
+            # Mark natal relationships as active if a transit planet is involved
+            updated_rels: list[PlanetRelationship] = []
+            # Collect all natal planets that are activated by transit
+            activated_natal_planets: set[str] = set()
+            for rel in relationships:
+                if rel.relationship_type in (
+                    RelationshipType.TRANSIT_ASPECT, RelationshipType.TRANSIT_CONJUNCTION
+                ):
+                    activated_natal_planets.add(rel.planet_b)
+
+            for rel in relationships:
+                if (
+                    rel.relationship_type
+                    in (RelationshipType.ASPECT, RelationshipType.CONJUNCTION, RelationshipType.DISPOSITOR)
+                    and (
+                        rel.planet_a in activated_natal_planets
+                        or rel.planet_b in activated_natal_planets
+                    )
+                ):
+                    # Create a new instance with is_active=True (frozen dataclass)
+                    updated_rel = PlanetRelationship(
+                        planet_a=rel.planet_a,
+                        planet_b=rel.planet_b,
+                        relationship_type=rel.relationship_type,
+                        strength_modifier=rel.strength_modifier,
+                        is_active=True,
+                    )
+                    updated_rels.append(updated_rel)
+                else:
+                    updated_rels.append(rel)
+
+            return updated_rels
 
         return relationships
 

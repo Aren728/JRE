@@ -13,6 +13,8 @@ class RelationshipType(StrEnum):
     ASPECT = "ASPECT"
     CONJUNCTION = "CONJUNCTION"
     DISPOSITOR = "DISPOSITOR"
+    TRANSIT_ASPECT = "TRANSIT_ASPECT"
+    TRANSIT_CONJUNCTION = "TRANSIT_CONJUNCTION"
 
 
 @dataclass(frozen=True)
@@ -22,6 +24,7 @@ class PlanetRelationship:
     planet_b: str
     relationship_type: RelationshipType
     strength_modifier: str = ""  # e.g., "exalted", "debilitated"
+    is_active: bool = False  # True if activated by transit
 
     def to_dict(self) -> dict[str, Any]:
         return cast(dict[str, Any], {
@@ -29,4 +32,5 @@ class PlanetRelationship:
             "planet_b": self.planet_b,
             "relationship_type": self.relationship_type.value,
             "strength_modifier": self.strength_modifier,
+            "is_active": self.is_active,
         })
