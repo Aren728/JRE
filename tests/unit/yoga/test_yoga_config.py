@@ -17,7 +17,7 @@ class TestLoadConfig:
 
     def test_enabled_yogas_loaded(self) -> None:
         config = load_config()
-        assert len(config.enabled_yogas) == 4
+        assert len(config.enabled_yogas) == 6
 
     def test_missing_file(self) -> None:
         with pytest.raises(InvalidYogaConfigError):
@@ -38,7 +38,7 @@ class TestYogaConfigFromDict:
     def test_from_dict_defaults(self) -> None:
         config = YogaConfig.from_dict({})
         assert config.version == "0.1.0"
-        assert len(config.enabled_yogas) == 4
+        assert len(config.enabled_yogas) == 6
 
 
 class TestValidate:

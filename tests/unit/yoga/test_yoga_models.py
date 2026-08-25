@@ -145,7 +145,7 @@ class TestYogaConfig:
         config = YogaConfig()
         assert config.version == "0.1.0"
         assert config.min_bala_ratio == 0.5
-        assert len(config.enabled_yogas) == 4
+        assert len(config.enabled_yogas) == 6
 
     def test_from_dict(self) -> None:
         data = {

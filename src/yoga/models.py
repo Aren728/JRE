@@ -94,6 +94,8 @@ class YogaId(StrEnum):
     RAJA_YOGA = "RAJA_YOGA"
     DHANA_YOGA = "DHANA_YOGA"
     VIPARITA_RAJA_YOGA = "VIPARITA_RAJA_YOGA"
+    PANCHA_MAHAPURUSHA_YOGA = "PANCHA_MAHAPURUSHA_YOGA"
+    KENDRADHIPATI_DOSHA = "KENDRADHIPATI_DOSHA"
 
 
 class YogaRuleType(StrEnum):
@@ -112,6 +114,41 @@ class ConnectionType(StrEnum):
     ASPECT = "ASPECT"
     EXCHANGE = "EXCHANGE"
     NONE = "NONE"
+
+
+class ParivartanaType(StrEnum):
+    """Classification of sign exchanges (BPHS Ch.26)."""
+
+    MAHA = "MAHA"          # Kendra-Trikona exchange
+    KAHALA = "KAHALA"      # Exchange between functional-positive houses (2/5/9/11)
+    DAINYA = "DAINYA"      # Exchange involving Dusthana lords (6/8/12)
+    NONE = "NONE"          # Not an exchange or unclassifiable
+
+
+# --------------------------------------------------------------------------- #
+# Dignity strength weights (BPHS Ch.3)
+# --------------------------------------------------------------------------- #
+
+#: Classical dignity strength weights for yoga evaluation.
+#: Higher value = stronger planet contribution to yoga.
+DIGNITY_STRENGTH: dict[str, float] = {
+    "EXALTED": 1.0,
+    "MULATRIKONA": 0.9,
+    "OWN": 0.8,
+    "FRIEND": 0.6,
+    "NEUTRAL": 0.5,
+    "ENEMY": 0.3,
+    "DEBILITATED": 0.1,
+}
+
+#: Connection type strength hierarchy (COMMENTARY_DEPENDENT).
+#: Conjunction/Exchange > Mutual Aspect > One-way Aspect.
+CONNECTION_STRENGTH: dict[ConnectionType, float] = {
+    ConnectionType.CONJUNCTION: 1.0,
+    ConnectionType.EXCHANGE: 1.0,
+    ConnectionType.ASPECT: 0.7,
+    ConnectionType.NONE: 0.0,
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -141,6 +178,8 @@ class YogaResult:
     strength_modifier: float
     evidence: tuple[str, ...]
     conditions: tuple[YogaCondition, ...] = ()
+    is_cancelled: bool = False
+    cancellation_reasons: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         return cast(dict[str, Any], _model_to_dict(self))
