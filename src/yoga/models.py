@@ -126,6 +126,14 @@ class ParivartanaType(StrEnum):
     NONE = "NONE"          # Not an exchange or unclassifiable
 
 
+class YogaStrength(StrEnum):
+    """Strength classification for a formed yoga based on D9 confirmation."""
+
+    WEAK = "WEAK"
+    MODERATE = "MODERATE"
+    STRONG = "STRONG"
+
+
 # --------------------------------------------------------------------------- #
 # Dignity strength weights (BPHS Ch.3)
 # --------------------------------------------------------------------------- #
@@ -181,6 +189,7 @@ class YogaResult:
     conditions: tuple[YogaCondition, ...] = ()
     is_cancelled: bool = False
     cancellation_reasons: tuple[str, ...] = ()
+    strength: YogaStrength = YogaStrength.WEAK
 
     def to_dict(self) -> dict[str, Any]:
         return cast(dict[str, Any], _model_to_dict(self))

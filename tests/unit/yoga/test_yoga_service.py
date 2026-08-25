@@ -11,6 +11,7 @@ from yoga.models import (
     YogaId,
     YogaReport,
     YogaResult,
+    YogaStrength,
 )
 from yoga.service import YogaService
 from tests.unit.yoga.conftest import (
@@ -234,3 +235,37 @@ class TestValidation:
         from yoga.errors import InvalidYogaRequestError
         with pytest.raises(InvalidYogaRequestError):
             service.identify_yogas(planet_states=[make_planet_state(BodyId.SUN, 0.0)])  # type: ignore[arg-type]
+
+
+class TestVargaConfirmation:
+    def test_gajakesari_d9_dusthana_moderate(self) -> None:
+        """Gajakesari formed, Jupiter in 6th in D9 → strength == MODERATE."""
+        service = YogaService()
+        # Lagna = Aries (0°), Moon at 0° (Aries), Jupiter at 18° (Aries)
+        # Jupiter 1st from Moon → Kendra → yoga formed
+        # Jupiter navamsa: int(18*9/30)%12 = 5 → Virgo (house 6 from D9 lagna)
+        states = (
+            make_planet_state(BodyId.MOON, 0.0),
+            make_planet_state(BodyId.JUPITER, 18.0),
+        )
+        result = service.identify_yogas(states, lagna_sign=RashiId.MESHA)
+        gaja = result.result_for(YogaId.GAJAKESARI_YOGA)
+        assert gaja is not None
+        assert gaja.is_present is True
+        assert gaja.strength == YogaStrength.MODERATE
+
+    def test_gajakesari_d9_kendra_strong(self) -> None:
+        """Gajakesari formed, Jupiter in 4th in D9 → strength == STRONG."""
+        service = YogaService()
+        # Lagna = Aries (0°), Moon at 0° (Aries), Jupiter at 90° (Cancer)
+        # Jupiter 4th from Moon → Kendra → yoga formed
+        # Jupiter navamsa: int(90*9/30)%12 = 3 → Cancer (house 4 from D9 lagna)
+        states = (
+            make_planet_state(BodyId.MOON, 0.0),
+            make_planet_state(BodyId.JUPITER, 90.0),
+        )
+        result = service.identify_yogas(states, lagna_sign=RashiId.MESHA)
+        gaja = result.result_for(YogaId.GAJAKESARI_YOGA)
+        assert gaja is not None
+        assert gaja.is_present is True
+        assert gaja.strength == YogaStrength.STRONG

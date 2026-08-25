@@ -35,6 +35,7 @@ from .models import (
     YogaId,
     YogaReport,
     YogaResult,
+    YogaStrength,
     house_from_lagna,
     rashi_number,
 )
@@ -212,12 +213,16 @@ class YogaService:
                 details=f"Jupiter {offset} signs from Moon",
             ),
         )
+        d9_strength = self._check_d9_strength(
+            [BodyId.JUPITER], state_map, lagna_num
+        )
         raw_result = YogaResult(
             yoga_id=YogaId.GAJAKESARI_YOGA,
             is_present=True,
             strength_modifier=strength,
             evidence=evidence,
             conditions=conditions,
+            strength=d9_strength,
         )
         return self._apply_cancellation(raw_result, state_map, lagna_num)
 
@@ -269,12 +274,16 @@ class YogaService:
                             details=f"{k_lord.value} --{conn.value}--> {t_lord.value}",
                         ),
                     )
+                    d9_strength = self._check_d9_strength(
+                        [k_lord, t_lord], state_map, lagna_num
+                    )
                     raw_result = YogaResult(
                         yoga_id=YogaId.RAJA_YOGA,
                         is_present=True,
                         strength_modifier=strength,
                         evidence=evidence,
                         conditions=conditions,
+                        strength=d9_strength,
                     )
                     return self._apply_cancellation(raw_result, state_map, lagna_num)
 
@@ -693,6 +702,45 @@ class YogaService:
     # Helpers
     # ------------------------------------------------------------------ #
 
+    def _compute_navamsa_rashi_index(self, longitude: float) -> int:
+        """Compute navamsa rashi index (0-11) from sidereal longitude."""
+        return int(longitude * 9 / 30) % 12
+
+    def _check_d9_strength(
+        self,
+        planets: list[BodyId],
+        state_map: dict[BodyId, PlanetState],
+        lagna_num: int | None,
+    ) -> YogaStrength:
+        """Check D9 (Navamsa) strength for yoga-forming planets.
+
+        If any yoga-forming planet is in Kendra or Trikona in D9 → STRONG.
+        Otherwise → MODERATE.
+        """
+        if lagna_num is None:
+            return YogaStrength.MODERATE
+
+        # Compute D9 lagna (navamsa of lagna at 0° of sign)
+        lagna_longitude = (lagna_num - 1) * 30.0
+        d9_lagna_index = self._compute_navamsa_rashi_index(lagna_longitude)
+        d9_lagna_num = d9_lagna_index + 1
+
+        for planet in planets:
+            state = state_map.get(planet)
+            if state is None:
+                continue
+
+            planet_navamsa_index = self._compute_navamsa_rashi_index(
+                state.longitude_used
+            )
+            planet_navamsa_num = planet_navamsa_index + 1
+
+            house = house_from_lagna(d9_lagna_num, planet_navamsa_num)
+            if house in KENDRA_HOUSES or house in TRIKONA_HOUSES:
+                return YogaStrength.STRONG
+
+        return YogaStrength.MODERATE
+
     def _absent(self, yoga_id: YogaId, reason: str) -> YogaResult:
         """Create a YogaResult for an absent yoga."""
         return YogaResult(
@@ -794,6 +842,7 @@ class YogaService:
             conditions=result.conditions,
             is_cancelled=True,
             cancellation_reasons=reasons,
+            strength=result.strength,
         )
 
     def _compute_strength(
