@@ -555,6 +555,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output as JSON instead of text",
     )
     parser.add_argument(
+        "--format",
+        choices=["text", "json"],
+        default=None,
+        help="Output format: text (default) or json",
+    )
+    parser.add_argument(
         "--systems",
         default="vedic",
         help=(
@@ -594,6 +600,11 @@ def main(argv: list[str] | None = None) -> int:
     query = args.query
     domain_key = QUERY_DOMAIN_MAP[query]
     outcome = QUERY_OUTCOME_MAP.get(query, query.upper())
+
+    # Resolve output format (--format takes precedence over --json)
+    json_output = args.json_output
+    if args.format is not None:
+        json_output = args.format == "json"
 
     # Parse systems
     requested_systems = [s.strip().lower() for s in args.systems.split(",")]
@@ -659,7 +670,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     # Format output
-    if args.json_output:
+    if json_output:
         classical_sources: list[dict[str, str]] = []
         try:
             research_svc = ResearchService()

@@ -14,7 +14,9 @@ from .models import (
     LifePathType,
     NumerologyChart,
     NumerologySystem,
+    PersonalityNumber,
     PersonalYearNumber,
+    SoulUrgeNumber,
     reduce_to_single_digit,
 )
 
@@ -77,6 +79,12 @@ class NumerologyCalculationService:
         # Calculate Destiny Number from birth name
         destiny = self._calculate_destiny(birth_name)
 
+        # Calculate Soul Urge Number from vowels in name
+        soul_urge = self._calculate_soul_urge(birth_name)
+
+        # Calculate Personality Number from consonants in name
+        personality = self._calculate_personality(birth_name)
+
         # Calculate Personal Year Number
         year = target_year or int(birth_date[:4])
         personal_year = self._calculate_personal_year(birth_date, year)
@@ -87,6 +95,8 @@ class NumerologyCalculationService:
             system=system,
             life_path=life_path,
             destiny=destiny,
+            soul_urge=soul_urge,
+            personality=personality,
             personal_year=personal_year,
         )
 
@@ -205,4 +215,77 @@ class NumerologyCalculationService:
             target_year=target_year,
             raw_sum=raw_sum,
             reduced=final,
+        )
+
+    def _calculate_soul_urge(self, full_name: str) -> SoulUrgeNumber:
+        """Calculate Soul Urge/Heart's Desire Number from vowels.
+
+        Algorithm:
+            1. Extract only vowels (A, E, I, O, U) from the full name.
+            2. Convert each vowel to its Pythagorean value.
+            3. Sum all values.
+            4. Reduce to a single digit (or master number).
+
+        Source: Pythagorean tradition, Cheiro Ch. 3.
+        """
+        vowels = "AEIOU"
+        vowel_values: dict[str, int] = {}
+        raw_sum = 0
+
+        pyth_map = {
+            "A": 1, "E": 5, "I": 9, "O": 6, "U": 3,
+        }
+
+        for ch in full_name.upper():
+            if ch in vowels:
+                val = pyth_map.get(ch)
+                if val is not None:
+                    vowel_values[ch] = val
+                    raw_sum += val
+
+        reduced = reduce_to_single_digit(raw_sum)
+
+        return SoulUrgeNumber(
+            full_name=full_name,
+            raw_sum=raw_sum,
+            reduced=reduced,
+            vowel_values=vowel_values,
+        )
+
+    def _calculate_personality(self, full_name: str) -> PersonalityNumber:
+        """Calculate Personality Number from consonants.
+
+        Algorithm:
+            1. Extract only consonants from the full name.
+            2. Convert each consonant to its Pythagorean value.
+            3. Sum all values.
+            4. Reduce to a single digit (or master number).
+
+        Source: Pythagorean tradition, Cheiro Ch. 4.
+        """
+        vowels = "AEIOU"
+        consonant_values: dict[str, int] = {}
+        raw_sum = 0
+
+        pyth_map = {
+            "B": 2, "C": 3, "D": 4, "F": 6, "G": 7, "H": 8,
+            "J": 1, "K": 2, "L": 3, "M": 4, "N": 5, "P": 7,
+            "Q": 8, "R": 9, "S": 1, "T": 2, "V": 4, "W": 5,
+            "X": 6, "Y": 7, "Z": 8,
+        }
+
+        for ch in full_name.upper():
+            if ch.isalpha() and ch not in vowels:
+                val = pyth_map.get(ch)
+                if val is not None:
+                    consonant_values[ch] = val
+                    raw_sum += val
+
+        reduced = reduce_to_single_digit(raw_sum)
+
+        return PersonalityNumber(
+            full_name=full_name,
+            raw_sum=raw_sum,
+            reduced=reduced,
+            consonant_values=consonant_values,
         )

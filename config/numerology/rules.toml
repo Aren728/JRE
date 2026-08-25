@@ -404,6 +404,196 @@ source_id = "MILLMAN"
 location = "The Life You Were Born to Live Ch. 3"
 
 # ══════════════════════════════════════════════════════════════════════════════
+# SOUL URGE NUMBER RULES
+# Source: Pythagorean tradition, Cheiro Ch. 3
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[numerology.rules]]
+rule_id = "N-SU1-INNER_LEADER"
+description = "Soul Urge 1 — inner desire for leadership and independence (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU2-INNER_PEACE"
+description = "Soul Urge 2 — inner desire for harmony and cooperation (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=2"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU3-INNER_CREATIVITY"
+description = "Soul Urge 3 — inner desire for creative expression (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=3"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU4-INNER_STABILITY"
+description = "Soul Urge 4 — inner desire for order and stability (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=4"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU5-INNER_FREEDOM"
+description = "Soul Urge 5 — inner desire for freedom and adventure (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=5"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU6-INNER_FAMILY"
+description = "Soul Urge 6 — inner desire for family and service (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=6"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU7-INNER_WISDOM"
+description = "Soul Urge 7 — inner desire for spiritual knowledge (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=7"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU8-INNER_POWER"
+description = "Soul Urge 8 — inner desire for material success (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=8"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+[[numerology.rules]]
+rule_id = "N-SU9-INNER_HUMANITARIAN"
+description = "Soul Urge 9 — inner desire for humanitarian service (Cheiro Ch. 3)"
+condition_facts = ["soul_urge=9"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 3"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PERSONALITY NUMBER RULES
+# Source: Pythagorean tradition, Cheiro Ch. 4
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[numerology.rules]]
+rule_id = "N-PER1-OUTWARD_LEADER"
+description = "Personality 1 — outward projection of confidence and independence (Cheiro Ch. 4)"
+condition_facts = ["personality=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER2-OUTWARD_DIPLOMACY"
+description = "Personality 2 — outward projection of tact and cooperation (Cheiro Ch. 4)"
+condition_facts = ["personality=2"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER3-OUTWARD_CHARM"
+description = "Personality 3 — outward projection of charm and optimism (Cheiro Ch. 4)"
+condition_facts = ["personality=3"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER4-OUTWARD_RELIABILITY"
+description = "Personality 4 — outward projection of dependability (Cheiro Ch. 4)"
+condition_facts = ["personality=4"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER5-OUTWARD_ENERGY"
+description = "Personality 5 — outward projection of energy and versatility (Cheiro Ch. 4)"
+condition_facts = ["personality=5"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER6-OUTWARD_WARMTH"
+description = "Personality 6 — outward projection of warmth and responsibility (Cheiro Ch. 4)"
+condition_facts = ["personality=6"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER7-OUTWARD_MYSTERY"
+description = "Personality 7 — outward projection of mystery and depth (Cheiro Ch. 4)"
+condition_facts = ["personality=7"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER8-OUTWARD_AUTHORITY"
+description = "Personality 8 — outward projection of authority and material focus (Cheiro Ch. 4)"
+condition_facts = ["personality=8"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+[[numerology.rules]]
+rule_id = "N-PER9-OUTWARD_COMPASSION"
+description = "Personality 9 — outward projection of compassion and idealism (Cheiro Ch. 4)"
+condition_facts = ["personality=9"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "CHEIRO"
+location = "Lord of Numbers Ch. 4"
+
+# ══════════════════════════════════════════════════════════════════════════════
 # EXCLUDED (Modern/Unsupported)
 # N-EXCLUDED-001: "Life Path = personality type"
 #   Classification: MODERN_INTERPRETATION

@@ -132,6 +132,16 @@ def extract_facts_from_chart(chart: NumerologyChart) -> dict[str, Any]:
         facts["destiny"] = str(chart.destiny.reduced)
         facts["destiny_raw_sum"] = str(chart.destiny.raw_sum)
 
+    # Soul Urge facts
+    if chart.soul_urge is not None:
+        facts["soul_urge"] = str(chart.soul_urge.reduced)
+        facts["soul_urge_raw_sum"] = str(chart.soul_urge.raw_sum)
+
+    # Personality facts
+    if chart.personality is not None:
+        facts["personality"] = str(chart.personality.reduced)
+        facts["personality_raw_sum"] = str(chart.personality.raw_sum)
+
     # Personal Year facts
     if chart.personal_year is not None:
         facts["personal_year"] = str(chart.personal_year.reduced)

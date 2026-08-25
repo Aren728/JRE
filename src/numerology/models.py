@@ -176,6 +176,56 @@ class PersonalYearNumber:
 
 
 @dataclass(frozen=True)
+class SoulUrgeNumber:
+    """Soul Urge/Heart's Desire Number — calculated from vowels in full name.
+
+    Derived from the sum of Pythagorean values of vowels (A, E, I, O, U)
+    in the full birth name, reduced to a single digit (or master number).
+
+    Source: Pythagorean tradition, Cheiro Ch. 3.
+    """
+
+    full_name: str
+    raw_sum: int
+    reduced: int
+    vowel_values: dict[str, int]  # Vowel -> Pythagorean value
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "full_name": self.full_name,
+            "raw_sum": self.raw_sum,
+            "reduced": self.reduced,
+            "vowel_values": self.vowel_values,
+        }
+
+
+@dataclass(frozen=True)
+class PersonalityNumber:
+    """Personality Number — calculated from consonants in full name.
+
+    Derived from the sum of Pythagorean values of consonants
+    in the full birth name, reduced to a single digit (or master number).
+
+    Source: Pythagorean tradition, Cheiro Ch. 4.
+    """
+
+    full_name: str
+    raw_sum: int
+    reduced: int
+    consonant_values: dict[str, int]  # Consonant -> Pythagorean value
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "full_name": self.full_name,
+            "raw_sum": self.raw_sum,
+            "reduced": self.reduced,
+            "consonant_values": self.consonant_values,
+        }
+
+
+@dataclass(frozen=True)
 class NumerologyChart:
     """Complete numerology chart — pure deterministic facts.
 
@@ -189,6 +239,8 @@ class NumerologyChart:
 
     life_path: LifePathNumber | None = None
     destiny: DestinyNumber | None = None
+    soul_urge: SoulUrgeNumber | None = None
+    personality: PersonalityNumber | None = None
     personal_year: PersonalYearNumber | None = None
 
     deterministic_id: str = field(default="")
@@ -207,6 +259,10 @@ class NumerologyChart:
             "system": self.system.value,
             "life_path": self.life_path.to_dict() if self.life_path else None,
             "destiny": self.destiny.to_dict() if self.destiny else None,
+            "soul_urge": self.soul_urge.to_dict() if self.soul_urge else None,
+            "personality": (
+                self.personality.to_dict() if self.personality else None
+            ),
             "personal_year": (
                 self.personal_year.to_dict() if self.personal_year else None
             ),
