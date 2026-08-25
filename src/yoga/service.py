@@ -169,6 +169,8 @@ class YogaService:
             return self._eval_pancha_mahapurusha(state_map, lagna_num)
         if yoga_id == YogaId.KENDRADHIPATI_DOSHA:
             return self._eval_kendradhipati_dosha(state_map, lagna_num)
+        if yoga_id == YogaId.NEECHA_BHANGA_YOGA:
+            return self._eval_neecha_bhanga(state_map, lagna_num, bala_report)
         # Unknown yoga — not present
         return self._absent(yoga_id, "Unknown yoga rule; not evaluated.")
 
@@ -535,6 +537,151 @@ class YogaService:
         )
         raw_result = YogaResult(
             yoga_id=YogaId.KENDRADHIPATI_DOSHA,
+            is_present=True,
+            strength_modifier=strength,
+            evidence=evidence,
+            conditions=conditions,
+        )
+        return self._apply_cancellation(raw_result, state_map, lagna_num)
+
+    def _eval_neecha_bhanga(
+        self,
+        state_map: dict[BodyId, PlanetState],
+        lagna_num: int | None,
+        bala_report: ShadbalaReport | None,
+    ) -> YogaResult:
+        """Neecha Bhanga Yoga: debilitation cancelled.
+
+        A debilitated planet triggers this yoga if ANY of:
+        1. Lord of the debilitation sign is in Kendra from Lagna or Moon.
+        2. The debilitated planet itself is in Kendra from Lagna or Moon.
+        3. The planet exalted in that sign is in Kendra from Lagna or Moon.
+        """
+        _DEBILITATION: dict[BodyId, int] = {
+            BodyId.SUN: 7,       # Libra
+            BodyId.MOON: 8,      # Scorpio
+            BodyId.MARS: 4,      # Cancer
+            BodyId.MERCURY: 12,  # Pisces
+            BodyId.JUPITER: 10,  # Capricorn
+            BodyId.VENUS: 6,     # Virgo
+            BodyId.SATURN: 1,    # Aries
+        }
+        _EXALTED_IN_SIGN: dict[int, BodyId] = {
+            1: BodyId.SUN,       # Aries
+            2: BodyId.MOON,      # Taurus
+            4: BodyId.JUPITER,   # Cancer
+            6: BodyId.MERCURY,   # Virgo
+            7: BodyId.SATURN,    # Libra
+            10: BodyId.MARS,     # Capricorn
+            12: BodyId.VENUS,    # Pisces
+        }
+
+        moon = state_map.get(BodyId.MOON)
+        moon_num = rashi_number(moon.rashi) if moon is not None else None
+
+        ref_signs: list[int] = []
+        if lagna_num is not None:
+            ref_signs.append(lagna_num)
+        if moon_num is not None and moon_num != lagna_num:
+            ref_signs.append(moon_num)
+        if not ref_signs:
+            return self._absent(
+                YogaId.NEECHA_BHANGA_YOGA, "Neither Lagna nor Moon available"
+            )
+
+        debilitated_planets: list[BodyId] = []
+        evidence_parts: list[str] = []
+
+        for planet, deb_sign in _DEBILITATION.items():
+            state = state_map.get(planet)
+            if state is None:
+                continue
+            if rashi_number(state.rashi) != deb_sign:
+                continue
+
+            planet_sign = rashi_number(state.rashi)
+            found = False
+
+            for ref in ref_signs:
+                if found:
+                    break
+                ref_label = "Lagna" if ref == lagna_num else "Moon"
+
+                # Condition 1: Lord of debilitation sign in Kendra from ref
+                deb_lord = SIGN_LORDS.get(deb_sign)
+                if deb_lord is not None:
+                    deb_lord_state = state_map.get(deb_lord)
+                    if deb_lord_state is not None:
+                        lord_offset = (
+                            rashi_number(deb_lord_state.rashi) - ref
+                        ) % 12 + 1
+                        if lord_offset in KENDRA_HOUSES:
+                            debilitated_planets.append(planet)
+                            evidence_parts.append(
+                                f"{planet.value} debilitated in "
+                                f"{state.rashi.value}; lord "
+                                f"{deb_lord.value} in "
+                                f"{deb_lord_state.rashi.value} "
+                                f"({lord_offset}th from "
+                                f"{ref_label} — Kendra)"
+                            )
+                            found = True
+                            break
+
+                # Condition 2: Debilitated planet in Kendra from ref
+                planet_offset = (planet_sign - ref) % 12 + 1
+                if planet_offset in KENDRA_HOUSES:
+                    debilitated_planets.append(planet)
+                    evidence_parts.append(
+                        f"{planet.value} debilitated in "
+                        f"{state.rashi.value} ({planet_offset}th from "
+                        f"{ref_label} — Kendra)"
+                    )
+                    found = True
+                    break
+
+                # Condition 3: Planet exalted in that sign in Kendra from ref
+                exalted_planet = _EXALTED_IN_SIGN.get(deb_sign)
+                if exalted_planet is not None:
+                    ex_state = state_map.get(exalted_planet)
+                    if ex_state is not None:
+                        ex_offset = (
+                            rashi_number(ex_state.rashi) - ref
+                        ) % 12 + 1
+                        if ex_offset in KENDRA_HOUSES:
+                            debilitated_planets.append(planet)
+                            evidence_parts.append(
+                                f"{planet.value} debilitated in "
+                                f"{state.rashi.value}; "
+                                f"{exalted_planet.value} (exalted in "
+                                f"{state.rashi.value}) in "
+                                f"{ex_state.rashi.value} "
+                                f"({ex_offset}th from "
+                                f"{ref_label} — Kendra)"
+                            )
+                            found = True
+                            break
+
+        if not debilitated_planets:
+            return self._absent(
+                YogaId.NEECHA_BHANGA_YOGA,
+                "No debilitated planet has Neecha Bhanga",
+            )
+
+        strength = self._compute_strength(
+            debilitated_planets, state_map, bala_report, lagna_num
+        )
+        evidence = tuple(evidence_parts)
+        conditions = (
+            YogaCondition(
+                condition_type="NEECHA_BHANGA",
+                planets_involved=tuple(debilitated_planets),
+                houses_involved=(),
+                details="; ".join(evidence_parts),
+            ),
+        )
+        raw_result = YogaResult(
+            yoga_id=YogaId.NEECHA_BHANGA_YOGA,
             is_present=True,
             strength_modifier=strength,
             evidence=evidence,

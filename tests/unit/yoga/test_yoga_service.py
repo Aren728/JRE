@@ -24,6 +24,53 @@ from tests.unit.yoga.conftest import (
 )
 
 
+class TestNeechaBhangaYoga:
+    def test_absent_when_no_kendra_connections(self) -> None:
+        """Debilitated planet with NO Kendra connections = False.
+
+        Jupiter debilitated in Capricorn (sign 10).
+        Lagna = Gemini (sign 3), Moon = Gemini (sign 3).
+        - Jupiter from ref(3): house 8 (not Kendra)
+        - Saturn (lord of Capricorn) in Leo (sign 5): house 3 (not Kendra)
+        - Mars (exalted in Capricorn) in Leo (sign 5): house 3 (not Kendra)
+        """
+        service = YogaService()
+        states = (
+            make_planet_state(BodyId.SUN, 60.0),       # Gemini
+            make_planet_state(BodyId.MOON, 65.0),      # Gemini
+            make_planet_state(BodyId.JUPITER, 270.0),  # Capricorn (deb.)
+            make_planet_state(BodyId.SATURN, 120.0),   # Leo (lord of Cap.)
+            make_planet_state(BodyId.MARS, 125.0),     # Leo (exalt. in Cap.)
+        )
+        result = service.identify_yogas(
+            states, lagna_sign=RashiId.MITHUNA
+        )
+        neecha = result.result_for(YogaId.NEECHA_BHANGA_YOGA)
+        assert neecha is not None
+        assert neecha.is_present is False
+
+    def test_present_when_debilitation_lord_in_kendra(self) -> None:
+        """Debilitated planet with debilitation lord in 1st house = True.
+
+        Saturn debilitated in Aries (sign 1).
+        Lagna = Taurus (sign 2), Moon = Taurus (sign 2).
+        - Mars (lord of Aries) in Taurus (sign 2): house 1 (Kendra!)
+        """
+        service = YogaService()
+        states = (
+            make_planet_state(BodyId.SUN, 10.0),      # Aries
+            make_planet_state(BodyId.MOON, 40.0),     # Taurus
+            make_planet_state(BodyId.MARS, 45.0),     # Taurus (lord of Aries)
+            make_planet_state(BodyId.SATURN, 15.0),   # Aries (debilitated)
+        )
+        result = service.identify_yogas(
+            states, lagna_sign=RashiId.VRISHABHA
+        )
+        neecha = result.result_for(YogaId.NEECHA_BHANGA_YOGA)
+        assert neecha is not None
+        assert neecha.is_present is True
+
+
 class TestYogaServiceInit:
     def test_default_config(self) -> None:
         service = YogaService()
