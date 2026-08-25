@@ -26,6 +26,7 @@ _CONFIG_DIR = (
 _DEFAULT_CONFIG_PATHS: tuple[Path, ...] = (
     _CONFIG_DIR / "basic_rules.toml",
     _CONFIG_DIR / "traditional_rules.toml",
+    _CONFIG_DIR / "classical_corpus.toml",
 )
 
 

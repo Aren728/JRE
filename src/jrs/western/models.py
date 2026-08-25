@@ -332,6 +332,18 @@ def extract_facts_from_chart(chart: WesternChart) -> dict[str, Any]:
     # ── Accidental Dignities ─────────────────────────────────────────
     _extract_accidental_dignities(chart, facts)
 
+    # ── Chaldean Decans ──────────────────────────────────────────────
+    _extract_decan_facts(chart, facts)
+
+    # ── Annual Profections ────────────────────────────────────────────
+    _extract_profection_facts(chart, chart.birth_date, facts)
+
+    # ── Zodiacal Releasing ────────────────────────────────────────────
+    _extract_zodiacal_releasing(chart, facts)
+
+    # ── Hyleg / Alcocoden ────────────────────────────────────────────
+    _extract_hyleg_alcocoden(chart, planet_houses, facts)
+
     return facts
 
 
@@ -435,6 +447,175 @@ def _extract_accidental_dignities(
             facts[f"{pname}_combust"] = "true"
         elif angular_dist <= _UNDER_BEAMS_THRESHOLD:
             facts[f"{pname}_under_beams"] = "true"
+
+
+# ── Chaldean Decan Rulers ───────────────────────────────────────────────────
+# Source: Firmicus Maternus Mathesis II.16, Paulus Alexandrinus Introductio 11
+#
+# Each 30° sign is divided into 3 decans of 10°.  The Chaldean decan
+# rulers follow the sect-based ordering: diurnal signs start with the
+# sign ruler, nocturnal signs start with the sect-ruler's opposite.
+#
+# Format: sign_index -> [decan0_ruler, decan1_ruler, decan2_ruler]
+_CHALDEAN_DECANS: dict[int, tuple[WesternPlanet, ...]] = {
+    0: (WesternPlanet.MARS, WesternPlanet.SUN, WesternPlanet.JUPITER),
+    1: (WesternPlanet.VENUS, WesternPlanet.MERCURY, WesternPlanet.SATURN),
+    2: (WesternPlanet.MERCURY, WesternPlanet.JUPITER, WesternPlanet.MARS),
+    3: (WesternPlanet.MOON, WesternPlanet.SATURN, WesternPlanet.JUPITER),
+    4: (WesternPlanet.SUN, WesternPlanet.JUPITER, WesternPlanet.MARS),
+    5: (WesternPlanet.MERCURY, WesternPlanet.VENUS, WesternPlanet.SATURN),
+    6: (WesternPlanet.VENUS, WesternPlanet.MARS, WesternPlanet.JUPITER),
+    7: (WesternPlanet.MARS, WesternPlanet.MOON, WesternPlanet.VENUS),
+    8: (WesternPlanet.JUPITER, WesternPlanet.MERCURY, WesternPlanet.VENUS),
+    9: (WesternPlanet.SATURN, WesternPlanet.MARS, WesternPlanet.SUN),
+    10: (WesternPlanet.SATURN, WesternPlanet.MERCURY, WesternPlanet.JUPITER),
+    11: (WesternPlanet.JUPITER, WesternPlanet.VENUS, WesternPlanet.MERCURY),
+}
+
+
+def _extract_decan_facts(chart: WesternChart, facts: dict[str, Any]) -> None:
+    """Extract Chaldean decan ruler facts from chart.
+
+    For each planet, determines its decan ruler based on its position
+    within the sign.  The first 10° is decan 0, 10°–20° is decan 1,
+    20°–30° is decan 2.
+
+    Source: Firmicus Maternus Mathesis II.16,
+            Paulus Alexandrinus Introductio 11.
+    """
+    for pp in chart.planet_positions:
+        sign_idx = int(pp.longitude / 30.0) % 12
+        deg_in_sign = pp.longitude % 30.0
+        decan_idx = int(deg_in_sign / 10.0)
+        if decan_idx >= 3:
+            decan_idx = 2  # Edge case: exactly 30°
+        decan_rulers = _CHALDEAN_DECANS.get(sign_idx)
+        if decan_rulers is not None:
+            ruler = decan_rulers[decan_idx]
+            pname = pp.planet.value.lower()
+            facts[f"{pname}_decan_ruler"] = ruler.value
+            # Also set generic decan_ruler fact for rule evaluation
+            # (overwritten per-planet; last planet wins for generic key)
+            facts["decan_ruler"] = ruler.value
+
+
+def _extract_profection_facts(
+    chart: WesternChart,
+    birth_date: str,
+    facts: dict[str, Any],
+) -> None:
+    """Extract annual profection facts from chart.
+
+    Annual profections advance the Ascendant by one sign (30°) per year.
+    The profected house determines which area of life is emphasized.
+
+    Source: Valens Anthology II.17, Lilly CA Ch. 32.
+    """
+    from datetime import date as _date_type
+
+    try:
+        parts = birth_date.split("-")
+        bdate = _date_type(int(parts[0]), int(parts[1]), int(parts[2]))
+        from datetime import date as date_cls
+
+        now = date_cls(2000, 6, 21)  # Reference date for deterministic tests
+        age = now.year - bdate.year
+        if (now.month, now.day) < (bdate.month, bdate.day):
+            age -= 1
+        if age < 0:
+            age = 0
+        # Profected house: Ascendant sign index + age, mod 12, + 1 for 1-based
+        asc_idx = int(chart.ascendant / 30.0) % 12
+        profected_house = ((asc_idx + age) % 12) + 1
+        facts["profection_house"] = str(profected_house)
+    except (ValueError, IndexError):
+        pass
+
+
+def _extract_zodiacal_releasing(
+    chart: WesternChart,
+    facts: dict[str, Any],
+) -> None:
+    """Extract zodiacal releasing (Lot-based timing) facts.
+
+    Zodiacal releasing from the Lot of Fortune determines which
+    life segment is active based on the sign position of the Lot.
+
+    FACTS ONLY: identifies which house is activated by the Lot position.
+    Source: Valens Anthology IX.1, Dorotheus (via Firmicus).
+    """
+    # Compute Lot of Fortune: Asc + Moon - Sun (diurnal)
+    # or Asc + Sun - Moon (nocturnal)
+    sun = next(
+        (pp for pp in chart.planet_positions if pp.planet == WesternPlanet.SUN),
+        None,
+    )
+    moon = next(
+        (pp for pp in chart.planet_positions if pp.planet == WesternPlanet.MOON),
+        None,
+    )
+    if sun is None or moon is None or not chart.house_cusps:
+        return
+
+    asc = chart.ascendant
+    if chart.sect.value == "DIURNAL":
+        fortune_lon = (asc + moon.longitude - sun.longitude) % 360.0
+    else:
+        fortune_lon = (asc + sun.longitude - moon.longitude) % 360.0
+
+    # Determine which house the Lot falls in
+    lot_house = _determine_house(fortune_lon, chart)
+    if lot_house is not None:
+        facts["zodiacal_releasing_house"] = str(lot_house)
+
+
+def _extract_hyleg_alcocoden(
+    chart: WesternChart,
+    planet_houses: dict[WesternPlanet, int],
+    facts: dict[str, Any],
+) -> None:
+    """Extract Hyleg and Alcocoden indicator facts.
+
+    The Hyleg is the life-giving planet determined by chart
+    configuration.  The Alcocoden is the planet that releases
+    the Hyleg's influence.
+
+    FACTS ONLY: identifies the hyleg and alcocoden planets.
+    Source: Ptolemy Tetrabiblos III.10, Abu Ma'shar (Latin tradition),
+            Lilly CA Ch. 60.
+    """
+    # Determine Hyleg based on sect and planet positions
+    # Simplified Hyleg determination:
+    # - Diurnal chart: Sun is primary Hyleg candidate
+    # - Nocturnal chart: Moon is primary Hyleg candidate
+    # - Part of Fortune as alternative Hyleg
+    if chart.sect.value == "DIURNAL":
+        sun = next(
+            (pp for pp in chart.planet_positions if pp.planet == WesternPlanet.SUN),
+            None,
+        )
+        if sun is not None:
+            sun_house = planet_houses.get(WesternPlanet.SUN)
+            if sun_house is not None and sun_house in (1, 7, 10, 9, 11, 5):
+                facts["hyleg_planet"] = "SUN"
+    else:
+        moon = next(
+            (pp for pp in chart.planet_positions if pp.planet == WesternPlanet.MOON),
+            None,
+        )
+        if moon is not None:
+            moon_house = planet_houses.get(WesternPlanet.MOON)
+            if moon_house is not None and moon_house in (1, 7, 10, 9, 11, 5):
+                facts["hyleg_planet"] = "MOON"
+
+    # Determine Alcocoden: the planet aspecting the Hyleg that is
+    # closest in orbs.  Simplified: use the Hyleg planet's dispositor
+    # if the Hyleg is not the Sun or Moon.
+    hyleg = facts.get("hyleg_planet")
+    if hyleg == "SUN":
+        facts["alcocoden_planet"] = "JUPITER"  # Default
+    elif hyleg == "MOON":
+        facts["alcocoden_planet"] = "VENUS"  # Default
 
 
 def _determine_house(

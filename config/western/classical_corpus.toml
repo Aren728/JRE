@@ -1,0 +1,775 @@
+# JRS-069: Classical Corpus — Western Astrology Expanded Rules
+# Classical sources: Ptolemy (Tetrabiblos), William Lilly (Christian Astrology),
+# Firmicus Maternus (Mathesis), Paulus Alexandrinus (Introductio),
+# Abu Ma'shar (via Latin tradition), Dorotheus of Sidon, Bonatti.
+# NO modern pop-psychology interpretations.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EXCLUSION POLICY — Modern/Unsupported interpretations are PROHIBITED.
+#
+# The following categories are explicitly excluded from this catalog:
+#
+# EXCLUDED-001: Modern psychological interpretations
+#   "Sun in 1st = narcissistic personality"
+#   "Venus in 7th = codependency patterns"
+#   "Saturn return = midlife crisis inevitability"
+#   Reason: Pop-psychology overlay. Classical texts describe aptitudes,
+#   not personality disorders.
+#
+# EXCLUDED-002: Pop-astrology claims
+#   "Mercury retrograde = communication breakdowns"
+#   "Mars retrograde = suppressed anger"
+#   "Venus retrograde = relationship karma"
+#   Reason: Retrogradation is a visibility/direction phenomenon, not an
+#   emotional state.  Classical texts (Ptolemy II.9) describe visibility
+#   effects on planetary function, not psychological states.
+#
+# EXCLUDED-003: Modern system inventions
+#   "Chiron = wound and healer archetype"
+#   "Pluto transit = transformation imperative"
+#   "North Node = life purpose / karmic direction"
+#   Reason: 20th-century inventions with no classical basis.  Chiron
+#   discovered 1977; Pluto 1930.  Classical texts use 7 visible planets.
+#
+# EXCLUDED-004: Unsupported Hellenistic fringe
+#   "Void of course Moon = nothing will come of the matter"
+#   Reason: Over-simplified.  Classical sources (Dorotheus, Lilly) note
+#   void Moon as a timing factor, not an absolute negation.
+#
+# EXCLUDED-005: Pop-astrology personality types
+#   "Big Three (Sun/Moon/Rising) = personality trinity"
+#   Reason: Modern pop-astrology simplification.  Classical texts treat
+#   these as separate functional domains (vitality, emotion, temperament).
+# ══════════════════════════════════════════════════════════════════════════════
+
+[western]
+version = "3.0"
+source_id = "PTOLEMY"
+default_strength = "MODERATE"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DECANS (Chaldean/Ptolemaic decan rulers)
+# Source: Firmicus Maternus Mathesis II.16, Paulus Alexandrinus Introductio 11,
+#        Lilly CA Ch. 27
+#
+# Each 30° sign is divided into 3 decans of 10° each.  Each decan has
+# a ruling planet (Chaldean order: Saturn, Jupiter, Mars, Sun, Venus,
+# Mercury, Moon — repeating).  The decan ruler adds a secondary
+# influence that modifies the sign ruler's expression.
+#
+# The Chaldean decan ruler sequence for each sign is:
+#   Aries (0): Mars, Sun, Jupiter  (starts from sign ruler Mars)
+#   Taurus (1): Venus, Mercury, Saturn
+#   Gemini (2): Mercury, Jupiter, Mars
+#   Cancer (3): Moon, Saturn, Jupiter
+#   Leo (4): Sun, Jupiter, Mars
+#   Virgo (5): Mercury, Venus, Saturn
+#   Libra (6): Venus, Mars, Jupiter
+#   Scorpio (7): Mars, Moon, Venus
+#   Sagittarius (8): Jupiter, Mercury, Venus
+#   Capricorn (9): Saturn, Mars, Sun
+#   Aquarius (10): Saturn, Mercury, Jupiter
+#   Pisces (11): Jupiter, Venus, Mercury
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Decan 1 (0°–10° of each sign) ───────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-001"
+description = "Planet in Aries decan 1 (0°–10° Aries) — Martial decan: assertive, pioneering energy (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=MARS"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-002"
+description = "Planet in Taurus decan 1 (0°–10° Taurus) — Venereal decan: harmonious, aesthetic expression (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=VENUS"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-003"
+description = "Planet in Gemini decan 1 (0°–10° Gemini) — Mercurial decan: intellectual, communicative capacity (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=MERCURY"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-004"
+description = "Planet in Cancer decan 1 (0°–10° Cancer) — Lunar decan: emotional, intuitive sensitivity (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MOON"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-005"
+description = "Planet in Leo decan 1 (0°–10° Leo) — Solar decan: commanding, vital self-expression (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=SUN"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-006"
+description = "Planet in Virgo decan 1 (0°–10° Virgo) — Mercurial decan: analytical, discriminating intellect (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MERCURY"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-007"
+description = "Planet in Libra decan 1 (0°–10° Libra) — Venereal decan: relational balance and social grace (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=VENUS"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-008"
+description = "Planet in Scorpio decan 1 (0°–10° Scorpio) — Martial decan: intense, transformative drive (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MARS"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-009"
+description = "Planet in Sagittarius decan 1 (0°–10° Sagittarius) — Jovial decan: expansive, philosophical outlook (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=JUPITER"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-010"
+description = "Planet in Capricorn decan 1 (0°–10° Capricorn) — Saturnine decan: disciplined, structured authority (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=SATURN"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-011"
+description = "Planet in Aquarius decan 1 (0°–10° Aquarius) — Saturnine decan: intellectual rigor, social reform (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=SATURN"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-012"
+description = "Planet in Pisces decan 1 (0°–10° Pisces) — Jovial decan: spiritual, compassionate depth (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=JUPITER"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+# ── Decan 2 (10°–20° of each sign) ──────────────────────────────────────────
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-013"
+description = "Planet in Aries decan 2 (10°–20° Aries) — Solar decan: vital, commanding ambition (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=SUN"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-014"
+description = "Planet in Taurus decan 2 (10°–20° Taurus) — Mercurial decan: practical, analytical aesthetics (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MERCURY"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-015"
+description = "Planet in Gemini decan 2 (10°–20° Gemini) — Jovial decan: expansive intellectual curiosity (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=JUPITER"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-016"
+description = "Planet in Leo decan 2 (10°–20° Leo) — Jovial decan: expansive, generous leadership (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=JUPITER"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-017"
+description = "Planet in Virgo decan 2 (10°–20° Virgo) — Venereal decan: aesthetic discrimination in analysis (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=VENUS"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-018"
+description = "Planet in Libra decan 2 (10°–20° Libra) — Martial decan: assertive diplomatic drive (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MARS"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-019"
+description = "Planet in Sagittarius decan 2 (10°–20° Sagittarius) — Mercurial decan: intellectual expansion, philosophical inquiry (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=MERCURY"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-020"
+description = "Planet in Capricorn decan 2 (10°–20° Capricorn) — Martial decan: disciplined executive action (Paulus Alexandrinus Introductio 11)"
+condition_facts = ["decan_ruler=MARS"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PAULUS"
+location = "Introductio 11"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-DECAN-021"
+description = "Planet in Aquarius decan 2 (10°–20° Aquarius) — Mercurial decan: intellectual innovation, systematic reform (Firmicus Maternus Mathesis II.16)"
+condition_facts = ["decan_ruler=MERCURY"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "FIRMICUS"
+location = "Mathesis II.16"
+classification = "LATER_TRADITION"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ESSENTIAL + ACCIDENTAL DIGNITY COMBINATIONS
+# Source: Lilly CA Ch. 22–26, Ptolemy Tetrabiblos I.18, II.9
+#
+# When a planet holds both essential dignity (domicile, exaltation) AND
+# accidental dignity (strong house, direct motion, cazimi), the combined
+# effect amplifies the planet's expression.  Conversely, debility in both
+# dimensions weakens expression.
+#
+# These rules encode specific combination patterns.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-001"
+description = "Sun in domicile + 10th house — supreme authority and career prominence (Lilly CA Ch. 22–26)"
+condition_facts = ["sun_dignity=DOMICILE", "sun_house=10"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22–26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-002"
+description = "Jupiter in domicile + 2nd house — exceptional financial prosperity (Ptolemy Tetrabiblos I.18, II.4)"
+condition_facts = ["jupiter_dignity=DOMICILE", "jupiter_house=2"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18, II.4"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-003"
+description = "Venus in domicile + 7th house — strong marriage and partnership potential (Lilly CA Ch. 22–26)"
+condition_facts = ["venus_dignity=DOMICILE", "venus_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22–26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-004"
+description = "Mars in exaltation + 10th house — disciplined executive power (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["mars_dignity=EXALTATION", "mars_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-005"
+description = "Saturn in exaltation + 10th house — disciplined authority through persistent effort (Lilly CA Ch. 22–26)"
+condition_facts = ["saturn_dignity=EXALTATION", "saturn_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22–26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-006"
+description = "Sun in fall + 12th house — severely weakened vitality, hidden suffering (Ptolemy Tetrabiblos I.18)"
+condition_facts = ["sun_dignity=FALL", "sun_house=12"]
+outcome = "EMOTIONAL_TENSION"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos I.18"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-007"
+description = "Saturn in fall + 1st house — restricted personal initiative (Lilly CA Ch. 22–26)"
+condition_facts = ["saturn_dignity=FALL", "saturn_house=1"]
+outcome = "EMOTIONAL_TENSION"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22–26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-008"
+description = "Mercury cazimi + 10th house — supreme intellectual authority, career in communications (Lilly CA Ch. 22)"
+condition_facts = ["mercury_cazimi=true", "mercury_house=10"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-009"
+description = "Venus cazimi + 5th house — exceptional creative and romantic gifts (Lilly CA Ch. 22)"
+condition_facts = ["venus_cazimi=true", "venus_house=5"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 22"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-COMBO-010"
+description = "Saturn combust + 7th house — severely weakened partnership capacity (Ptolemy Tetrabiblos II.9)"
+condition_facts = ["saturn_combust=true", "saturn_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "CONTRADICT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos II.9"
+classification = "CLASSICAL_PRIMARY"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TRADITIONAL TIMING (Annual Profections, Zodiacal Releasing)
+# Source: Valens Anthology II.17 (profections), Dorotheus (zodiacal releasing),
+#        Lilly CA Ch. 32 (annual profections)
+#
+# These are FACTUAL CALCULATIONS ONLY — they identify which house is
+# "activated" at a given time.  No predictive claims are made.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Annual Profections ───────────────────────────────────────────────────────
+# Annual profections advance the Ascendant by one sign (30°) per year.
+# The profected house determines which area of life is emphasized.
+# Source: Valens Anthology II.17, Lilly CA Ch. 32
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-001"
+description = "Annual profection to 1st house — year of self, body, appearance emphasis (Valens Anthology II.17)"
+condition_facts = ["profection_house=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-002"
+description = "Annual profection to 2nd house — year of finances and personal resources (Valens Anthology II.17)"
+condition_facts = ["profection_house=2"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-003"
+description = "Annual profection to 3rd house — year of siblings, communication, short journeys (Valens Anthology II.17)"
+condition_facts = ["profection_house=3"]
+outcome = "INTELLECTUAL_CAPACITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-004"
+description = "Annual profection to 4th house — year of home, family, property (Valens Anthology II.17)"
+condition_facts = ["profection_house=4"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-005"
+description = "Annual profection to 5th house — year of children, creativity, speculation (Valens Anthology II.17)"
+condition_facts = ["profection_house=5"]
+outcome = "CREATIVE_TALENT"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-006"
+description = "Annual profection to 6th house — year of health, work, service (Valens Anthology II.17)"
+condition_facts = ["profection_house=6"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-007"
+description = "Annual profection to 7th house — year of partnerships, marriage, open rivals (Valens Anthology II.17)"
+condition_facts = ["profection_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-008"
+description = "Annual profection to 8th house — year of shared resources, inheritance (Valens Anthology II.17)"
+condition_facts = ["profection_house=8"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-009"
+description = "Annual profection to 9th house — year of philosophy, higher learning, travel (Valens Anthology II.17)"
+condition_facts = ["profection_house=9"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-010"
+description = "Annual profection to 10th house — year of career, public standing (Valens Anthology II.17)"
+condition_facts = ["profection_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-011"
+description = "Annual profection to 11th house — year of friends, hopes, social gains (Valens Anthology II.17)"
+condition_facts = ["profection_house=11"]
+outcome = "SOCIAL_INFLUENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-PROFECT-012"
+description = "Annual profection to 12th house — year of solitude, hidden matters (Valens Anthology II.17)"
+condition_facts = ["profection_house=12"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology II.17"
+classification = "CLASSICAL_PRIMARY"
+
+# ── Zodiacal Releasing (Lot-based timing) ───────────────────────────────────
+# Source: Valens Anthology IX.1, Dorotheus (via Firmicus)
+#
+# Zodiacal releasing from the Lot of Fortune divides the life into
+# periods based on the sign position of the Lot.  Each period is
+# assigned to a sign, and the key times occur when releasing into
+# angular signs (1st, 4th, 7th, 10th).
+#
+# FACTS ONLY: identifies which life segment is active, no predictions.
+
+[[western.rules]]
+rule_id = "R-WEST-ZR-001"
+description = "Zodiacal releasing into 1st house sign — period of self-assertion, new beginnings (Valens Anthology IX.1)"
+condition_facts = ["zodiacal_releasing_house=1"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology IX.1"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-ZR-002"
+description = "Zodiacal releasing into 4th house sign — period of domestic consolidation (Valens Anthology IX.1)"
+condition_facts = ["zodiacal_releasing_house=4"]
+outcome = "DOMESTIC_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology IX.1"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-ZR-003"
+description = "Zodiacal releasing into 7th house sign — period of partnership emphasis (Valens Anthology IX.1)"
+condition_facts = ["zodiacal_releasing_house=7"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology IX.1"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-ZR-004"
+description = "Zodiacal releasing into 10th house sign — period of career prominence (Valens Anthology IX.1)"
+condition_facts = ["zodiacal_releasing_house=10"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "VALENS"
+location = "Anthology IX.1"
+classification = "CLASSICAL_PRIMARY"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# HYLEG / ALCOCODEN (Traditional Longevity Indicators)
+# Source: Ptolemy Tetrabiblos III.10, Abu Ma'shar (via Latin tradition),
+#        Lilly CA Ch. 60
+#
+# The Hyleg (or Gnomon) is the life-giving planet determined by chart
+# configuration.  The Alcocoden is the planet that "releases" the
+# Hyleg's influence.  These are FACTUAL MARKERS of chart vitality —
+# they indicate where life-force is concentrated, NOT mortality
+# predictions.
+#
+# FACTS ONLY: identifies the hyleg and alcocoden planets.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "R-WEST-HYLEG-001"
+description = "Sun as Hyleg in diurnal chart — Sun as life-giver when above horizon (Ptolemy Tetrabiblos III.10)"
+condition_facts = ["hyleg_planet=SUN", "chart_sect=DIURNAL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.10"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-HYLEG-002"
+description = "Moon as Hyleg in nocturnal chart — Moon as life-giver when above horizon (Ptolemy Tetrabiblos III.10)"
+condition_facts = ["hyleg_planet=MOON", "chart_sect=NOCTURNAL"]
+outcome = "EMOTIONAL_TENSION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.10"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-HYLEG-003"
+description = "Part of Fortune as Hyleg — Arabic Part functioning as life indicator (Abu Ma'shar via Latin tradition)"
+condition_facts = ["hyleg_planet=PART_OF_FORTUNE"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "ABU_MASHAR"
+location = "Introductorium Maius (Latin)"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-ALCOCODEN-001"
+description = "Jupiter as Alcocoden — benevolent release of hyleg vitality (Lilly CA Ch. 60)"
+condition_facts = ["alcocoden_planet=JUPITER"]
+outcome = "FINANCIAL_GAIN"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 60"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-ALCOCODEN-002"
+description = "Venus as Alcocoden — harmonious release of hyleg vitality (Abu Ma'shar via Latin tradition)"
+condition_facts = ["alcocoden_planet=VENUS"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "ABU_MASHAR"
+location = "Introductorium Maius (Latin)"
+classification = "LATER_TRADITION"
+
+[[western.rules]]
+rule_id = "R-WEST-ALCOCODEN-003"
+description = "Saturn as Alcocoden — restrictive release of hyleg vitality (Ptolemy Tetrabiblos III.10)"
+condition_facts = ["alcocoden_planet=SATURN"]
+outcome = "PHILOSOPHICAL_DEPTH"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "PTOLEMY"
+location = "Tetrabiblos III.10"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-ALCOCODEN-004"
+description = "Mars as Alcocoden — forceful release of hyleg vitality (Lilly CA Ch. 60)"
+condition_facts = ["alcocoden_planet=MARS"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 60"
+classification = "COMMENTARY_DEPENDENT"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ESSENTIAL DIGNITY WITH SECT MODIFICATION
+# Source: Lilly CA Ch. 21, 26, Dorotheus C.I.4
+#
+# Sect modifies the expression of essential dignity.  A planet in its
+# own sect (diurnal planet in diurnal chart, nocturnal in nocturnal)
+# gains additional strength; a planet in contrary sect loses some.
+# These rules encode the weight adjustment.
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[western.rules]]
+rule_id = "R-WEST-SECT-DIGNITY-001"
+description = "Diurnal planet in domicile + correct sect — maximum dignity expression (Lilly CA Ch. 21, 26)"
+condition_facts = ["sun_dignity=DOMICILE", "chart_sect=DIURNAL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21, 26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-SECT-DIGNITY-002"
+description = "Diurnal planet in domicile + contrary sect — dignity expression weakened (Lilly CA Ch. 21, 26)"
+condition_facts = ["sun_dignity=DOMICILE", "chart_sect=NOCTURNAL"]
+outcome = "LEADERSHIP_AUTHORITY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "LILLY"
+location = "Christian Astrology Ch. 21, 26"
+classification = "COMMENTARY_DEPENDENT"
+
+[[western.rules]]
+rule_id = "R-WEST-SECT-DIGNITY-003"
+description = "Nocturnal planet in domicile + correct sect — maximum nocturnal dignity (Dorotheus C.I.4)"
+condition_facts = ["venus_dignity=DOMICILE", "chart_sect=NOCTURNAL"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.4"
+classification = "CLASSICAL_PRIMARY"
+
+[[western.rules]]
+rule_id = "R-WEST-SECT-DIGNITY-004"
+description = "Nocturnal planet in domicile + contrary sect — nocturnal dignity weakened (Dorotheus C.I.4)"
+condition_facts = ["venus_dignity=DOMICILE", "chart_sect=DIURNAL"]
+outcome = "RELATIONSHIP_HARMONY"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "DOROTHEUS"
+location = "Carmen Astrologicum I.4"
+classification = "CLASSICAL_PRIMARY"
