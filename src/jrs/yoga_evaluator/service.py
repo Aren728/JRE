@@ -316,6 +316,35 @@ class YogaEvaluatorService:
                     yoga_involved_planets.append([pname, sign_lord])
                     break
 
+        # ── Cancellation rules for FORMED yogas ──
+        for idx, (eval_, involved) in enumerate(
+            zip(results, yoga_involved_planets)
+        ):
+            if eval_.status != YogaStatus.FORMED:
+                continue
+            for planet_name in involved:
+                p_data = planets.get(planet_name, {})
+                # Rule 1: Combustion
+                if p_data.get("combust", False):
+                    results[idx] = replace(
+                        eval_,
+                        status=YogaStatus.CANCELLED,
+                        cancellation_reason="Combustion",
+                    )
+                    break
+                # Rule 2: Conjunct Rahu or Ketu (same house)
+                p_house = p_data.get("house")
+                if isinstance(p_house, int):
+                    rahu_house = planets.get("RAHU", {}).get("house")
+                    ketu_house = planets.get("KETU", {}).get("house")
+                    if p_house == rahu_house or p_house == ketu_house:
+                        results[idx] = replace(
+                            eval_,
+                            status=YogaStatus.WEAKENED,
+                            cancellation_reason="Nodal Affliction",
+                        )
+                        break
+
         # ── Transit activation check ──
         if transit_planet:
             tp_house = planets.get(transit_planet, {}).get("house")
