@@ -237,4 +237,35 @@ class YogaEvaluatorService:
                 continue
             break
 
+        # ── Neecha Bhanga Yoga ──
+        # Debilitation sign → sign lord mapping
+        debilitation_sign_lord: dict[str, str] = {
+            "SUN": "VENUS",       # Sun debilitated in Libra (lord Venus)
+            "MOON": "MARS",        # Moon debilitated in Scorpio (lord Mars)
+            "MARS": "MOON",        # Mars debilitated in Cancer (lord Moon)
+            "MERCURY": "JUPITER",  # Mercury debilitated in Pisces (lord Jupiter)
+            "JUPITER": "SATURN",   # Jupiter debilitated in Capricorn (lord Saturn)
+            "VENUS": "MERCURY",    # Venus debilitated in Virgo (lord Mercury)
+            "SATURN": "MARS",      # Saturn debilitated in Aries (lord Mars)
+        }
+
+        lagna_house = jre_facts.get("lagna_house")
+        if isinstance(lagna_house, int):
+            for pname, pdata in planets.items():
+                if not pdata.get("debilitated", False):
+                    continue
+                sign_lord = debilitation_sign_lord.get(pname)
+                if sign_lord is None:
+                    continue
+                lord_pdata = planets.get(sign_lord, {})
+                lord_house = lord_pdata.get("house")
+                if isinstance(lord_house, int) and lord_house in kendra_houses:
+                    results.append(
+                        YogaEvaluation(
+                            yoga_name="Neecha Bhanga",
+                            status=YogaStatus.FORMED,
+                        )
+                    )
+                    break
+
         return results
