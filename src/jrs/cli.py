@@ -23,6 +23,7 @@ import json
 import sys
 from typing import Any
 
+from jrs.convergence.models import AssessmentStatus, DomainAssessment, TimingStatus
 from jrs.convergence.service import ConvergenceService
 from jrs.domains.career.service import CareerDomainService
 from jrs.domains.education.service import EducationDomainService
@@ -515,11 +516,64 @@ def _format_text_report(
         "=" * 60,
     ])
 
+    return "\n".join(lines)# ── Yoga Assessment Formatting ───────────────────────────────────────────────
+
+
+_YOGA_STATUS_MAP: dict[AssessmentStatus, str] = {
+    AssessmentStatus.STRONGLY_SUPPORTED: "FORMED",
+    AssessmentStatus.SUPPORTED: "FORMED",
+    AssessmentStatus.WEAKLY_SUPPORTED: "WEAKENED",
+    AssessmentStatus.NEUTRAL: "FORMED",
+    AssessmentStatus.CONTRADICTED: "CANCELLED",
+    AssessmentStatus.STRONGLY_CONTRADICTED: "CANCELLED",
+}
+
+
+def format_yoga_assessment(assessment: DomainAssessment) -> str:
+    """Format a yoga DomainAssessment into a human-readable string.
+
+    For each yoga, prints:
+        - Yoga Name / Outcome Category
+        - Status (FORMED / CANCELLED / WEAKENED)
+        - Strength (STRONG / MODERATE / WEAK)
+        - Manifestation (Active via Dasha/Transit or Dormant)
+
+    Args:
+        assessment: A DomainAssessment from the yoga convergence pipeline.
+
+    Returns:
+        A formatted multi-line string summarizing the yoga assessment.
+    """
+    lines: list[str] = []
+
+    lines.append("=" * 50)
+    lines.append("YOGA ASSESSMENT")
+    lines.append("=" * 50)
+    lines.append("")
+
+    # Yoga Name / Outcome Category
+    lines.append(f"Yoga / Outcome: {assessment.outcome_taxonomy}")
+
+    # Status — derived from assessment_status
+    status = _YOGA_STATUS_MAP.get(assessment.assessment_status, "FORMED")
+    lines.append(f"Status: {status}")
+
+    # Strength
+    lines.append(f"Strength: {assessment.overall_evidence_strength.value}")
+
+    # Manifestation
+    if assessment.timing_status == TimingStatus.CONVERGENT:
+        lines.append("Manifestation: Active via Dasha/Transit")
+    else:
+        lines.append("Manifestation: Dormant")
+
+    lines.append("")
+    lines.append("=" * 50)
+
     return "\n".join(lines)
 
 
 # ── Argument Parser ──────────────────────────────────────────────────────────
-
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the CLI argument parser."""
