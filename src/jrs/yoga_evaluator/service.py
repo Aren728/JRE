@@ -135,3 +135,106 @@ class YogaEvaluatorService:
         if 4 in involved_houses or "MOON" in involved_planets:
             return "DOMESTIC_HARMONY"
         return "GENERAL_IMPROVEMENT"
+
+    def evaluate_classical_yogas(
+        self,
+        jre_facts: dict[str, Any],
+    ) -> list[YogaEvaluation]:
+        """Evaluate classical yoga formations from JRE facts.
+
+        Checks for:
+        - Gajakesari Yoga: Jupiter in kendra from Moon.
+        - Raja Yoga: Kendra lord conjunct or mutually aspecting Trikona lord.
+
+        Args:
+            jre_facts: Dictionary containing planet data from JRE.
+
+        Returns:
+            List of YogaEvaluation for each detected classical yoga.
+        """
+        results: list[YogaEvaluation] = []
+        planets = jre_facts.get("planets", {})
+
+        # ── Gajakesari Yoga ──
+        jup_house = planets.get("JUPITER", {}).get("house")
+        moon_house = planets.get("MOON", {}).get("house")
+        if isinstance(jup_house, int) and isinstance(moon_house, int):
+            # Jupiter in kendra from Moon: house distance mod 12 in {0, 3, 6, 9}
+            diff = (jup_house - moon_house) % 12
+            if diff in {0, 3, 6, 9}:
+                # Run formation affliction checks
+                eval_ = self.evaluate_formation(
+                    yoga_name="Gajakesari",
+                    involved_planets=["JUPITER", "MOON"],
+                    jre_facts=jre_facts,
+                )
+                if eval_.status == YogaStatus.FORMED:
+                    results.append(eval_)
+
+        # ── Raja Yoga ──
+        kendra_houses = {1, 4, 7, 10}
+        trikona_houses = {1, 5, 9}
+
+        # Build lists of kendra-lord and trikona-lord planets with their houses
+        kendra_lords: list[tuple[str, int]] = []
+        trikona_lords: list[tuple[str, int]] = []
+        for pname, pdata in planets.items():
+            house = pdata.get("house")
+            if not isinstance(house, int):
+                continue
+            # Check if this planet is a house lord by looking at house_lord_of
+            lord_of = pdata.get("house_lord_of")
+            if lord_of is not None:
+                if isinstance(lord_of, int) and lord_of in kendra_houses:
+                    kendra_lords.append((pname, house))
+                if isinstance(lord_of, int) and lord_of in trikona_houses:
+                    trikona_lords.append((pname, house))
+
+        # Also check using planet ownership mapping from jre_facts
+        house_lords = jre_facts.get("house_lords", {})
+        for house_num, lord_planet in house_lords.items():
+            if not isinstance(house_num, int) or not isinstance(lord_planet, str):
+                continue
+            pdata = planets.get(lord_planet, {})
+            house = pdata.get("house")
+            if not isinstance(house, int):
+                continue
+            if house_num in kendra_houses:
+                kendra_lords.append((lord_planet, house))
+            if house_num in trikona_houses:
+                trikona_lords.append((lord_planet, house))
+
+        # De-duplicate: keep unique (planet, house) pairs
+        seen_kendra: dict[str, int] = {}
+        for pname, phouse in kendra_lords:
+            if pname not in seen_kendra:
+                seen_kendra[pname] = phouse
+        seen_trikona: dict[str, int] = {}
+        for pname, phouse in trikona_lords:
+            if pname not in seen_trikona:
+                seen_trikona[pname] = phouse
+
+        # Check conjunction (same house) or mutual aspect (7 houses apart)
+        for k_name, k_house in seen_kendra.items():
+            for t_name, t_house in seen_trikona.items():
+                if k_name == t_name:
+                    continue
+                diff = abs(k_house - t_house)
+                is_conjunction = (k_house == t_house)
+                is_mutual_aspect = (diff == 7)
+                if is_conjunction or is_mutual_aspect:
+                    involved = [k_name, t_name]
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Raja",
+                        involved_planets=involved,
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status == YogaStatus.FORMED:
+                        results.append(eval_)
+                    # Only first valid Raja yoga to avoid duplicates
+                    break
+            else:
+                continue
+            break
+
+        return results
