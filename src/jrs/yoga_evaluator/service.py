@@ -1,4 +1,4 @@
-"""JRS-075/076 Yoga Formation, Cancellation & Manifestation Evaluator service."""
+"""JRS-075/076/077 Yoga Formation, Cancellation, Manifestation & Outcome Evaluator service."""
 
 from __future__ import annotations
 
@@ -110,3 +110,28 @@ class YogaEvaluatorService:
             )
 
         return evaluation
+
+    def map_outcome(
+        self,
+        yoga_name: str,
+        involved_houses: list[int],
+        involved_planets: list[str],
+    ) -> str:
+        """Map a yoga to its likely outcome category.
+
+        Args:
+            yoga_name: Name of the yoga.
+            involved_houses: House numbers involved in the yoga.
+            involved_planets: Planet names involved in the yoga.
+
+        Returns:
+            One of: CAREER_PROMINENCE, WEALTH_ACCUMULATION,
+            DOMESTIC_HARMONY, GENERAL_IMPROVEMENT.
+        """
+        if 10 in involved_houses or "SUN" in involved_planets:
+            return "CAREER_PROMINENCE"
+        if 2 in involved_houses or 11 in involved_houses or "JUPITER" in involved_planets or "VENUS" in involved_planets:
+            return "WEALTH_ACCUMULATION"
+        if 4 in involved_houses or "MOON" in involved_planets:
+            return "DOMESTIC_HARMONY"
+        return "GENERAL_IMPROVEMENT"

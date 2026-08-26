@@ -1,4 +1,4 @@
-"""JRS-075/076 Yoga Formation, Cancellation & Manifestation Evaluator models."""
+"""JRS-075/076/077 Yoga Formation, Cancellation, Manifestation & Outcome Evaluator models."""
 
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ class YogaEvaluation:
     cancellation_reason: Optional[str] = None
     is_manifesting: bool = False
     activation_source: Optional[str] = None
+    outcome_category: Optional[str] = None
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {
@@ -34,4 +35,6 @@ class YogaEvaluation:
             d["is_manifesting"] = True
         if self.activation_source is not None:
             d["activation_source"] = self.activation_source
+        if self.outcome_category is not None:
+            d["outcome_category"] = self.outcome_category
         return d
