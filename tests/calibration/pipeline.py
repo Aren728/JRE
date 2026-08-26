@@ -59,6 +59,7 @@ _DOMAIN_DIRS: dict[str, str] = {
     "migration_domain": "migration",
     "assets_domain": "assets",
     "progeny_domain": "progeny",
+    "yoga_domain": "yoga",
 }
 
 
@@ -102,6 +103,7 @@ _DOMAIN_SERVICES: dict[str, str] = {
     "migration": "MigrationDomainService",
     "assets": "AssetsDomainService",
     "progeny": "ProgenyDomainService",
+    "yoga": "YogaDomainService",
 }
 
 
@@ -146,6 +148,9 @@ def _get_domain_service(domain: str) -> Any:
     if domain == "progeny":
         from jrs.domains.progeny.service import ProgenyDomainService
         return ProgenyDomainService()
+    if domain == "yoga":
+        from jrs.domains.yoga.service import YogaDomainService
+        return YogaDomainService()
     return None
 
 
@@ -209,6 +214,11 @@ def run_single_assessment(
     """
     facts = chart.get("natal_facts", {})
     domain_svc = _get_domain_service(domain)
+
+    # Handle Yoga domain specially — its assess() returns DomainAssessment directly
+    if domain == "yoga" and domain_svc is not None and hasattr(domain_svc, "assess"):
+        assessment = domain_svc.assess(facts)
+        return assessment.to_dict()
 
     evidence_records: tuple[EvidenceRecord, ...] = ()
     if domain_svc is not None:

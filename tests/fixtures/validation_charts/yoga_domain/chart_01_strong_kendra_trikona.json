@@ -1,0 +1,99 @@
+{
+  "chart_id": "yoga_01_strong_kendra_trikona",
+  "description": "Chart with strong Kendra-Trikona yoga. MARS (1st lord) in 5th house (SIMHA). Strong formation indicators.",
+  "birth_data": {
+    "date": "1990-03-21",
+    "time": "06:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 19.076,
+    "longitude": 72.8777
+  },
+  "known_events": [
+    {
+      "event_date_utc": "2020-01-15T00:00:00Z",
+      "event_type": "CAREER_ADVANCEMENT",
+      "description": "Promoted during Mars Mahadasha"
+    }
+  ],
+  "natal_facts": {
+    "lagna": "MESHA",
+    "planets": {
+      "SUN": {
+        "rashi": "SIMHA",
+        "house": 5,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "MOON": {
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "MARS": {
+        "rashi": "SIMHA",
+        "house": 5,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "MERCURY": {
+        "rashi": "KARKA",
+        "house": 4,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "JUPITER": {
+        "rashi": "MESHA",
+        "house": 1,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "VENUS": {
+        "rashi": "MITHUNA",
+        "house": 3,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      },
+      "SATURN": {
+        "rashi": "MAKARA",
+        "house": 10,
+        "debilitated": false,
+        "combust": false,
+        "retrograde": false
+      }
+    },
+    "active_dasha_lord": "MARS",
+    "transit_planet": "JUPITER"
+  },
+  "dasha_periods": [
+    {
+      "activation_type": "DASHA",
+      "triggering_planet": "MARS",
+      "activation_start_utc": "2018-01-01T00:00:00Z",
+      "activation_end_utc": "2025-01-01T00:00:00Z",
+      "strength": 0.9
+    }
+  ],
+  "transits": [
+    {
+      "activation_type": "TRANSIT",
+      "triggering_planet": "JUPITER",
+      "activation_start_utc": "2020-03-01T00:00:00Z",
+      "activation_end_utc": "2021-04-01T00:00:00Z",
+      "strength": 0.85
+    }
+  ],
+  "expected_assessments": {
+    "YOGA_FORMATION": {
+      "assessment_status": "SUPPORTED",
+      "timing_status": "INACTIVE",
+      "overall_evidence_strength": "MODERATE"
+    }
+  }
+}

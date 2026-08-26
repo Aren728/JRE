@@ -224,3 +224,22 @@ class TestFullCalibration:
         d1.pop("timestamp", None)
         d2.pop("timestamp", None)
         assert json.dumps(d1, sort_keys=True) == json.dumps(d2, sort_keys=True)
+
+    def test_yoga_domain_in_calibration(self) -> None:
+        """Test A: Yoga domain should be included in calibration report."""
+        report = run_calibration()
+        domain_names = [dm.domain for dm in report.domain_metrics]
+        assert "yoga" in domain_names
+
+        # Find the yoga domain metrics
+        yoga_metrics = next(
+            dm for dm in report.domain_metrics if dm.domain == "yoga"
+        )
+        # Should have at least one outcome metric
+        assert len(yoga_metrics.outcome_metrics) > 0
+        # Should have valid precision/recall/f1
+        assert yoga_metrics.precision >= 0.0
+        assert yoga_metrics.recall >= 0.0
+        assert yoga_metrics.f1_score >= 0.0
+        # Total charts should be at least 1
+        assert yoga_metrics.total_charts >= 1
