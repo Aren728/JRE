@@ -237,6 +237,41 @@ class YogaEvaluatorService:
                 continue
             break
 
+        # ── Vipareeta Raja Yoga ──
+        dusthana_set = {6, 8, 12}
+        house_lords = jre_facts.get("house_lords", {})
+        for dusthana_house in dusthana_set:
+            lord_planet = house_lords.get(dusthana_house)
+            if not isinstance(lord_planet, str):
+                continue
+            lord_pdata = planets.get(lord_planet, {})
+            lord_house = lord_pdata.get("house")
+            if isinstance(lord_house, int) and lord_house in dusthana_set:
+                results.append(
+                    YogaEvaluation(
+                        yoga_name="Vipareeta Raja",
+                        status=YogaStatus.FORMED,
+                    )
+                )
+                break
+
+        # ── Dhana Yoga ──
+        second_lord_planet = house_lords.get(2)
+        eleventh_lord_planet = house_lords.get(11)
+        if isinstance(second_lord_planet, str) and isinstance(eleventh_lord_planet, str):
+            second_lord_house = planets.get(second_lord_planet, {}).get("house")
+            eleventh_lord_house = planets.get(eleventh_lord_planet, {}).get("house")
+            if isinstance(second_lord_house, int) and isinstance(eleventh_lord_house, int):
+                is_conjunction = second_lord_house == eleventh_lord_house
+                is_mutual_aspect = abs(second_lord_house - eleventh_lord_house) == 7
+                if is_conjunction or is_mutual_aspect:
+                    results.append(
+                        YogaEvaluation(
+                            yoga_name="Dhana",
+                            status=YogaStatus.FORMED,
+                        )
+                    )
+
         # ── Neecha Bhanga Yoga ──
         # Debilitation sign → sign lord mapping
         debilitation_sign_lord: dict[str, str] = {
