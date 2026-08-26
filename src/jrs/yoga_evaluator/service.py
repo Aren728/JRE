@@ -139,6 +139,7 @@ class YogaEvaluatorService:
     def evaluate_classical_yogas(
         self,
         jre_facts: dict[str, Any],
+        transit_planet: str = "",
     ) -> list[YogaEvaluation]:
         """Evaluate classical yoga formations from JRE facts.
 
@@ -148,11 +149,16 @@ class YogaEvaluatorService:
 
         Args:
             jre_facts: Dictionary containing planet data from JRE.
+            transit_planet: Optional planet currently transiting. If provided,
+                checks for conjunction or aspect with yoga-forming planets
+                to mark the yoga as manifesting.
 
         Returns:
             List of YogaEvaluation for each detected classical yoga.
         """
         results: list[YogaEvaluation] = []
+        # Track which planets are involved in each yoga for transit checks
+        yoga_involved_planets: list[list[str]] = []
         planets = jre_facts.get("planets", {})
 
         # ── Gajakesari Yoga ──
@@ -170,6 +176,7 @@ class YogaEvaluatorService:
                 )
                 if eval_.status == YogaStatus.FORMED:
                     results.append(eval_)
+                    yoga_involved_planets.append(["JUPITER", "MOON"])
 
         # ── Raja Yoga ──
         kendra_houses = {1, 4, 7, 10}
@@ -231,6 +238,7 @@ class YogaEvaluatorService:
                     )
                     if eval_.status == YogaStatus.FORMED:
                         results.append(eval_)
+                        yoga_involved_planets.append([k_name, t_name])
                     # Only first valid Raja yoga to avoid duplicates
                     break
             else:
@@ -253,6 +261,7 @@ class YogaEvaluatorService:
                         status=YogaStatus.FORMED,
                     )
                 )
+                yoga_involved_planets.append([lord_planet])
                 break
 
         # ── Dhana Yoga ──
@@ -270,6 +279,9 @@ class YogaEvaluatorService:
                             yoga_name="Dhana",
                             status=YogaStatus.FORMED,
                         )
+                    )
+                    yoga_involved_planets.append(
+                        [second_lord_planet, eleventh_lord_planet]
                     )
 
         # ── Neecha Bhanga Yoga ──
@@ -301,6 +313,25 @@ class YogaEvaluatorService:
                             status=YogaStatus.FORMED,
                         )
                     )
+                    yoga_involved_planets.append([pname, sign_lord])
                     break
+
+        # ── Transit activation check ──
+        if transit_planet:
+            tp_house = planets.get(transit_planet, {}).get("house")
+            if isinstance(tp_house, int):
+                for idx, involved in enumerate(yoga_involved_planets):
+                    for planet_name in involved:
+                        p_house = planets.get(planet_name, {}).get("house")
+                        if not isinstance(p_house, int):
+                            continue
+                        diff = abs(tp_house - p_house)
+                        if diff == 0 or diff == 7:
+                            results[idx] = replace(
+                                results[idx],
+                                is_manifesting=True,
+                                activation_source=f"Transit: {transit_planet}",
+                            )
+                            break
 
         return results
