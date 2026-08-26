@@ -1,7 +1,8 @@
-"""JRS-075 Yoga Formation & Cancellation Evaluator service."""
+"""JRS-075/076 Yoga Formation, Cancellation & Manifestation Evaluator service."""
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from .models import YogaEvaluation, YogaStatus
@@ -72,3 +73,40 @@ class YogaEvaluatorService:
             yoga_name=yoga_name,
             status=YogaStatus.FORMED,
         )
+
+    def evaluate_manifestation(
+        self,
+        evaluation: YogaEvaluation,
+        yoga_planets: list[str],
+        active_dasha_lord: str,
+        transit_planet: str,
+    ) -> YogaEvaluation:
+        """Determine if a formed yoga is currently manifesting.
+
+        A yoga manifests when its period lord (Dasha) or a transiting
+        planet involved in the yoga is active.
+
+        Args:
+            evaluation: The base YogaEvaluation from evaluate_formation.
+            yoga_planets: List of planet names involved in the yoga.
+            active_dasha_lord: The currently active Vimshottari Dasha lord.
+            transit_planet: The planet currently transiting a key house.
+
+        Returns:
+            Updated YogaEvaluation with manifestation status.
+        """
+        if active_dasha_lord in yoga_planets:
+            return replace(
+                evaluation,
+                is_manifesting=True,
+                activation_source=f"Dasha: {active_dasha_lord}",
+            )
+
+        if transit_planet in yoga_planets:
+            return replace(
+                evaluation,
+                is_manifesting=True,
+                activation_source=f"Transit: {transit_planet}",
+            )
+
+        return evaluation
