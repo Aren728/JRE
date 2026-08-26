@@ -272,3 +272,23 @@ class TestMainEndToEnd:
         parsed = json.loads(output)
         assert parsed["domain"] == "transitions"
         assert "LIFE_PHASE_SHIFT" in parsed["assessment"]["outcome_taxonomy"]
+
+    def test_yoga_in_assessment_output(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Test A: Full orchestrator output includes Yoga domain assessment."""
+        rc = main([
+            "--birth-date", "28-09-1979",
+            "--birth-time", "18:24",
+            "--place", "Mumbai, India",
+            "--query", "career",
+            "--json",
+        ])
+        assert rc == 0
+        output = capsys.readouterr().out
+        parsed = json.loads(output)
+        # Yoga domain should be registered and present in assessment
+        assert "Yoga" in parsed["assessment"]
+        yoga_data = parsed["assessment"]["Yoga"]
+        # Yoga assessment should contain valid evidence dimensions
+        assert "dimensions" in yoga_data
+        dims = yoga_data["dimensions"]
+        assert "supporting_count" in dims

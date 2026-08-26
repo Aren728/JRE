@@ -33,6 +33,7 @@ from jrs.domains.progeny.service import ProgenyDomainService
 from jrs.domains.property.service import PropertyDomainService
 from jrs.domains.transitions.service import TransitionsDomainService
 from jrs.domains.wealth.service import WealthDomainService
+from jrs.domains.yoga.service import YogaDomainService
 from jrs.evidence.models import EvidenceRecord
 from jrs.multisystem.models import (
     EvidenceProvenance,
@@ -58,6 +59,7 @@ DOMAIN_SERVICES: dict[str, Any] = {
     "progeny": ProgenyDomainService,
     "migration": MigrationDomainService,
     "transitions": TransitionsDomainService,
+    "yoga": YogaDomainService,
 }
 
 EVALUATE_METHODS: dict[str, str] = {
@@ -69,6 +71,7 @@ EVALUATE_METHODS: dict[str, str] = {
     "progeny": "evaluate_progeny_facts",
     "migration": "evaluate_migration_facts",
     "transitions": "evaluate_transitions_facts",
+    "yoga": "assess",
 }
 
 QUERY_OUTCOME_MAP: dict[str, str] = {
@@ -165,7 +168,13 @@ def _evaluate_domain(
     svc = svc_class()
     method_name = EVALUATE_METHODS[domain_key]
     method = getattr(svc, method_name)
-    result: tuple[EvidenceRecord, ...] = method(facts)
+    result = method(facts)
+    # YogaDomainService.assess returns DomainAssessment, not EvidenceRecords
+    # Extract evidence records from dimensions if needed
+    if hasattr(result, 'dimensions'):
+        # DomainAssessment - return empty tuple for convergence pipeline
+        # (yoga evidence is handled separately in _run_assessment)
+        return ()
     return result
 
 
@@ -187,7 +196,17 @@ def _run_assessment(
         event_windows=event_windows,
     )
 
-    return assessment.to_dict()
+    result = assessment.to_dict()
+
+    # Always run yoga assessment and include in output
+    try:
+        yoga_svc = YogaDomainService()
+        yoga_assessment = yoga_svc.assess(facts)
+        result["Yoga"] = yoga_assessment.to_dict()
+    except Exception:
+        result["Yoga"] = {}
+
+    return result
 
 
 # ── Multi-System Pipelines ───────────────────────────────────────────────────
