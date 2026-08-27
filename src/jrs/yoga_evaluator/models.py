@@ -14,6 +14,15 @@ class YogaStatus(StrEnum):
     WEAKENED = "WEAKENED"
 
 
+class YogaOutcome(StrEnum):
+    """Mapped outcome category for a formed yoga."""
+    CAREER_PROMINENCE = "CAREER_PROMINENCE"
+    WEALTH_ACCUMULATION = "WEALTH_ACCUMULATION"
+    RELATIONSHIP_HARMONY = "RELATIONSHIP_HARMONY"
+    DOMESTIC_HARMONY = "DOMESTIC_HARMONY"
+    GENERAL_IMPROVEMENT = "GENERAL_IMPROVEMENT"
+
+
 @dataclass(frozen=True)
 class YogaEvaluation:
     """Result of evaluating whether a yoga is formed, weakened, or cancelled."""
@@ -23,6 +32,7 @@ class YogaEvaluation:
     is_manifesting: bool = False
     activation_source: Optional[str] = None
     outcome_category: Optional[str] = None
+    outcome: Optional[YogaOutcome] = None
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {

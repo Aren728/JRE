@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
-from .models import YogaEvaluation, YogaStatus
+from .models import YogaEvaluation, YogaOutcome, YogaStatus
 
 # Dusthana houses — placements that weaken a yoga
 DUSTHANA_HOUSES: frozenset[int] = frozenset({6, 8, 12})
@@ -76,63 +76,98 @@ class YogaEvaluatorService:
 
     def evaluate_manifestation(
         self,
-        evaluation: YogaEvaluation,
-        yoga_planets: list[str],
-        active_dasha_lord: str,
-        transit_planet: str,
-    ) -> YogaEvaluation:
-        """Determine if a formed yoga is currently manifesting.
+        yoga_name_or_evaluation: str | YogaEvaluation | None = None,
+        involved_planets_or_yoga_planets: list[str] | None = None,
+        dasha_lord_or_active: str | None = None,
+        transit_planet: str | None = None,
+        *,
+        evaluation: YogaEvaluation | None = None,
+        yoga_planets: list[str] | None = None,
+        active_dasha_lord: str | None = None,
+    ) -> bool | YogaEvaluation:
+        """Evaluate manifestation of a yoga.
 
-        A yoga manifests when its period lord (Dasha) or a transiting
-        planet involved in the yoga is active.
+        Supports two call signatures:
 
-        Args:
-            evaluation: The base YogaEvaluation from evaluate_formation.
-            yoga_planets: List of planet names involved in the yoga.
-            active_dasha_lord: The currently active Vimshottari Dasha lord.
-            transit_planet: The planet currently transiting a key house.
+        New (JRS-076)::
+            evaluate_manifestation(yoga_name, involved_planets, dasha_lord) -> bool
 
-        Returns:
-            Updated YogaEvaluation with manifestation status.
+        Legacy (JRS-075)::
+            evaluate_manifestation(evaluation=..., yoga_planets=...,
+                                  active_dasha_lord=..., transit_planet=...) -> YogaEvaluation
         """
-        if active_dasha_lord in yoga_planets:
+        # ── New signature: (yoga_name, involved_planets, dasha_lord) -> bool ──
+        if (
+            isinstance(yoga_name_or_evaluation, str)
+            and involved_planets_or_yoga_planets is not None
+            and isinstance(dasha_lord_or_active, str)
+            and evaluation is None
+        ):
+            return dasha_lord_or_active in involved_planets_or_yoga_planets
+
+        # ── Legacy signature ──
+        eval_obj = evaluation if evaluation is not None else yoga_name_or_evaluation
+        planets = yoga_planets if yoga_planets is not None else (involved_planets_or_yoga_planets or [])
+        active = active_dasha_lord if active_dasha_lord is not None else (dasha_lord_or_active or "")
+
+        if not isinstance(eval_obj, YogaEvaluation):
+            raise TypeError("evaluate_manifestation requires a YogaEvaluation for the legacy signature")
+
+        if active in planets:
             return replace(
-                evaluation,
+                eval_obj,
                 is_manifesting=True,
-                activation_source=f"Dasha: {active_dasha_lord}",
+                activation_source=f"Dasha: {active}",
             )
 
-        if transit_planet in yoga_planets:
+        if transit_planet and transit_planet in planets:
             return replace(
-                evaluation,
+                eval_obj,
                 is_manifesting=True,
                 activation_source=f"Transit: {transit_planet}",
             )
 
-        return evaluation
+        return eval_obj
 
     def map_outcome(
         self,
         yoga_name: str,
-        involved_houses: list[int],
-        involved_planets: list[str],
-    ) -> str:
+        involved_houses: list[int] | None = None,
+        involved_planets: list[str] | None = None,
+    ) -> str | YogaOutcome:
         """Map a yoga to its likely outcome category.
 
-        Args:
-            yoga_name: Name of the yoga.
-            involved_houses: House numbers involved in the yoga.
-            involved_planets: Planet names involved in the yoga.
+        Supports two call signatures:
 
-        Returns:
-            One of: CAREER_PROMINENCE, WEALTH_ACCUMULATION,
-            DOMESTIC_HARMONY, GENERAL_IMPROVEMENT.
+        New (JRS-076)::
+            map_outcome(yoga_name: str) -> YogaOutcome
+
+        Legacy (JRS-077)::
+            map_outcome(yoga_name, involved_houses, involved_planets) -> str
         """
-        if 10 in involved_houses or "SUN" in involved_planets:
+        # ── New signature: single yoga_name string -> YogaOutcome ──
+        if involved_houses is None and involved_planets is None:
+            _YOGA_OUTCOME_MAP: dict[str, YogaOutcome] = {
+                "RAJA": YogaOutcome.CAREER_PROMINENCE,
+                "RAJA YOGA": YogaOutcome.CAREER_PROMINENCE,
+                "DHANA": YogaOutcome.WEALTH_ACCUMULATION,
+                "DHANA YOGA": YogaOutcome.WEALTH_ACCUMULATION,
+                "GAJAKESARI": YogaOutcome.GENERAL_IMPROVEMENT,
+                "VIPAREETA RAJA": YogaOutcome.CAREER_PROMINENCE,
+                "VIPAREETA RAJA YOGA": YogaOutcome.CAREER_PROMINENCE,
+                "NEECHA BHANGA": YogaOutcome.GENERAL_IMPROVEMENT,
+            }
+            key = yoga_name.upper().replace("_", " ")
+            return _YOGA_OUTCOME_MAP.get(key, YogaOutcome.GENERAL_IMPROVEMENT)
+
+        # ── Legacy signature ──
+        houses = involved_houses or []
+        planets = involved_planets or []
+        if 10 in houses or "SUN" in planets:
             return "CAREER_PROMINENCE"
-        if 2 in involved_houses or 11 in involved_houses or "JUPITER" in involved_planets or "VENUS" in involved_planets:
+        if 2 in houses or 11 in houses or "JUPITER" in planets or "VENUS" in planets:
             return "WEALTH_ACCUMULATION"
-        if 4 in involved_houses or "MOON" in involved_planets:
+        if 4 in houses or "MOON" in planets:
             return "DOMESTIC_HARMONY"
         return "GENERAL_IMPROVEMENT"
 
