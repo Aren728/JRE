@@ -46,6 +46,8 @@ from jrs.numerology.service import NumerologyDomainService
 from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
 from jrs.western.service import WesternDomainService
+from jrs.yoga_evaluator.integration import YogaEvidenceService
+from jrs.yoga_evaluator.service import YogaEvaluatorService
 from western.service import WesternCalculationService
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
@@ -178,15 +180,118 @@ def _evaluate_domain(
     return result
 
 
+def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
+    """Detect active yogas from JRE facts.
+
+    Runs the standard classical yoga evaluator plus custom detection
+    for Budhaditya Yoga (Sun-Mercury conjunction).
+
+    Args:
+        facts: JRE-computed planetary facts.
+
+    Returns:
+        List of dicts with keys: yoga_name, outcome, is_manifesting, activation_source.
+    """
+    evaluator = YogaEvaluatorService()
+    evidence_svc = YogaEvidenceService()
+    active_dasha = facts.get("active_dasha_lord", "")
+    transit = facts.get("transit_planet", "")
+    yogas: list[dict[str, Any]] = []
+
+    # ── Standard classical yogas ──────────────────────────────────────────
+    for ev in evaluator.evaluate_classical_yogas(facts, transit_planet=transit):
+        involved = []
+        if ev.yoga_name == "Gajakesari":
+            involved = ["JUPITER", "MOON"]
+        elif ev.yoga_name == "Raja":
+            involved = ["KENDRA_LORD", "TRIKONA_LORD"]
+
+        if active_dasha and involved:
+            ev = evaluator.evaluate_manifestation(
+                evaluation=ev,
+                yoga_planets=involved,
+                active_dasha_lord=active_dasha,
+                transit_planet=transit,
+            )
+
+        if ev.status.value == "FORMED" and ev.is_manifesting:
+            outcome = evaluator.map_outcome(
+                yoga_name=ev.yoga_name,
+                involved_planets=involved,
+            )
+            yogas.append({
+                "yoga_name": ev.yoga_name + " Yoga",
+                "outcome": outcome,
+                "is_manifesting": True,
+                "activation_source": ev.activation_source or "",
+            })
+
+    # ── Custom: Budhaditya Yoga (Sun-Mercury conjunction) ─────────────────
+    planets = facts.get("planets", {})
+    sun_data = planets.get("SUN", {})
+    mercury_data = planets.get("MERCURY", {})
+    sun_rashi = sun_data.get("rashi", "")
+    mercury_rashi = mercury_data.get("rashi", "")
+    if sun_rashi and mercury_rashi and sun_rashi == mercury_rashi:
+        # Sun and Mercury in same sign → Budhaditya Yoga
+        bud_eval = evaluator.evaluate_formation(
+            yoga_name="Budhaditya",
+            involved_planets=["SUN", "MERCURY"],
+            jre_facts=facts,
+        )
+        if bud_eval.status.value == "FORMED":
+            if active_dasha in ("SUN", "MERCURY"):
+                bud_eval = evaluator.evaluate_manifestation(
+                    evaluation=bud_eval,
+                    yoga_planets=["SUN", "MERCURY"],
+                    active_dasha_lord=active_dasha,
+                    transit_planet=transit,
+                )
+            elif transit in ("SUN", "MERCURY"):
+                bud_eval = evaluator.evaluate_manifestation(
+                    evaluation=bud_eval,
+                    yoga_planets=["SUN", "MERCURY"],
+                    active_dasha_lord=active_dasha,
+                    transit_planet=transit,
+                )
+            yogas.append({
+                "yoga_name": "Budhaditya Yoga",
+                "outcome": "CAREER_PROMINENCE",
+                "is_manifesting": bud_eval.is_manifesting,
+                "activation_source": bud_eval.activation_source or "",
+            })
+
+    return yogas
+
+
 def _run_assessment(
     domain_key: str,
     facts: dict[str, Any],
     outcome_taxonomy: str,
     event_windows: tuple[EventWindow, ...],
+    include_yogas: bool = False,
 ) -> dict[str, Any]:
     """Run the full JRS pipeline: facts → evidence → convergence → assessment."""
     # Step 1 & 2: Extract facts and generate evidence records
     evidence_records = _evaluate_domain(domain_key, facts)
+
+    # If --include-yogas, detect active yogas and add their evidence
+    active_yogas: list[dict[str, Any]] = []
+    if include_yogas:
+        active_yogas = _detect_active_yogas(facts)
+        evidence_svc = YogaEvidenceService()
+        from jrs.yoga_evaluator.models import YogaEvaluation, YogaStatus
+        for y in active_yogas:
+            ev = YogaEvaluation(
+                yoga_name=y["yoga_name"],
+                status=YogaStatus.FORMED,
+                is_manifesting=y["is_manifesting"],
+                activation_source=y.get("activation_source", ""),
+                outcome_category=y.get("outcome", ""),
+            )
+            record = evidence_svc.convert_to_evidence(ev)
+            if record is not None:
+                evidence_records = (*evidence_records, record)
 
     # Step 3 & 4: Assess convergence
     convergence_svc = ConvergenceService()
@@ -422,6 +527,7 @@ def _format_text_report(
     systems: list[str] | None = None,
     system_assessments: tuple[SystemAssessment, ...] | None = None,
     cross_system: dict[str, Any] | None = None,
+    active_yogas: list[dict[str, Any]] | None = None,
 ) -> str:
     """Format the assessment as a structured traceable report."""
     dims = assessment.get("dimensions", {})
@@ -524,6 +630,24 @@ def _format_text_report(
             lines.append(f"    • {sys_name.upper()}")
         lines.append("")
 
+    # Active Yogas section
+    if active_yogas:
+        lines.append("-" * 60)
+        lines.append("Active Yogas")
+        lines.append("-" * 60)
+        lines.append("")
+        for yoga in active_yogas:
+            name = yoga.get("yoga_name", "Unknown")
+            outcome = yoga.get("outcome", "N/A")
+            manifesting = yoga.get("is_manifesting", False)
+            source = yoga.get("activation_source", "")
+            lines.append(f"  {name}")
+            lines.append(f"    Outcome: {outcome}")
+            lines.append(f"    Manifesting: {'Yes' if manifesting else 'No'}")
+            if source:
+                lines.append(f"    Source: {source}")
+            lines.append("")
+
     lines.extend([
         "Timing:",
         "  Timing status: INACTIVE (no dasha/transit data provided)",
@@ -535,7 +659,10 @@ def _format_text_report(
         "=" * 60,
     ])
 
-    return "\n".join(lines)# ── Yoga Assessment Formatting ───────────────────────────────────────────────
+    return "\n".join(lines)
+
+
+# ── Yoga Assessment Formatting ───────────────────────────────────────────────
 
 
 _YOGA_STATUS_MAP: dict[AssessmentStatus, str] = {
@@ -658,6 +785,12 @@ def build_parser() -> argparse.ArgumentParser:
         default="John Adam Smith",
         help="Full birth name for numerology (default: John Adam Smith)",
     )
+    parser.add_argument(
+        "--include-yogas",
+        action="store_true",
+        dest="include_yogas",
+        help="Include active yoga evidence in the convergence assessment",
+    )
     return parser
 
 
@@ -737,10 +870,16 @@ def main(argv: list[str] | None = None) -> int:
                 facts=facts,
                 outcome_taxonomy=outcome,
                 event_windows=event_windows,
+                include_yogas=getattr(args, "include_yogas", False),
             )
     except Exception as exc:
         print(f"Error: Assessment failed: {exc}", file=sys.stderr)
         return 1
+
+    # Detect active yogas if flag is set
+    active_yogas: list[dict[str, Any]] = []
+    if getattr(args, "include_yogas", False):
+        active_yogas = _detect_active_yogas(facts)
 
     # Format output
     if json_output:
@@ -785,6 +924,9 @@ def main(argv: list[str] | None = None) -> int:
         else:
             output_data["assessment"] = vedic_assessment or {}
 
+        if active_yogas:
+            output_data["active_yogas"] = active_yogas
+
         output = json.dumps(output_data, indent=2, sort_keys=True)
     else:
         output = _format_text_report(
@@ -798,6 +940,7 @@ def main(argv: list[str] | None = None) -> int:
             systems=requested_systems,
             system_assessments=system_assessments,
             cross_system=cross_system if is_multi else None,
+            active_yogas=active_yogas if active_yogas else None,
         )
 
     print(output)
@@ -816,6 +959,13 @@ def _default_facts_for_query(query: str) -> dict[str, Any]:
             "10th_lord_in_kendra_or_trikona": True,
             "sun_strong": True,
             "sun_10th_connection": True,
+            "planets": {
+                "SUN": {"rashi": "MESHA", "house": 1, "combust": False, "debilitated": False},
+                "MERCURY": {"rashi": "MESHA", "house": 1, "combust": False, "debilitated": False},
+            },
+            "lagna": "MESHA",
+            "active_dasha_lord": "SUN",
+            "transit_planet": "MERCURY",
         },
         "wealth": {
             "2nd_lord_in_11th": True,
