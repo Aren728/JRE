@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
+from .modifier_service import ModifierEvaluationService, ModifierReport, ModifierStatus
 from .models import YogaEvaluation, YogaOutcome, YogaStatus
 
 # Dusthana houses — placements that weaken a yoga
@@ -13,6 +14,10 @@ DUSTHANA_HOUSES: frozenset[int] = frozenset({6, 8, 12})
 
 class YogaEvaluatorService:
     """Deterministic service for evaluating yoga formation and cancellation."""
+
+    def __init__(self) -> None:
+        """Initialize with ModifierEvaluationService for Phase 1 pipeline."""
+        self._modifier_svc = ModifierEvaluationService()
 
     def evaluate_formation(
         self,
@@ -37,41 +42,33 @@ class YogaEvaluatorService:
         Returns:
             YogaEvaluation with status and optional cancellation reason.
         """
-        planets = jre_facts.get("planets", {})
+        # ── Phase 1: Run 5-tier modifier pipeline ──
+        # All formation checks (combustion, debilitation, dusthana, etc.)
+        # are now handled by ModifierEvaluationService per RI-010G.
+        modifier_report = self._modifier_svc.evaluate_modifiers(
+            involved_planets, jre_facts
+        )
 
-        for planet in involved_planets:
-            p_data = planets.get(planet, {})
-
-            # Check combustion
-            if p_data.get("combust", False):
-                return YogaEvaluation(
-                    yoga_name=yoga_name,
-                    status=YogaStatus.CANCELLED,
-                    cancellation_reason=f"{planet} is combust",
-                )
-
-            # Check debilitation
-            if p_data.get("debilitated", False):
-                return YogaEvaluation(
-                    yoga_name=yoga_name,
-                    status=YogaStatus.CANCELLED,
-                    cancellation_reason=f"{planet} is debilitated",
-                )
-
-        for planet in involved_planets:
-            p_data = planets.get(planet, {})
-            house = p_data.get("house")
-
-            # Check dusthana placement
-            if isinstance(house, int) and house in DUSTHANA_HOUSES:
-                return YogaEvaluation(
-                    yoga_name=yoga_name,
-                    status=YogaStatus.WEAKENED,
-                )
+        # If modifier pipeline cancels or weakens, override formation status
+        if modifier_report.overall_status == ModifierStatus.CANCELLED:
+            return YogaEvaluation(
+                yoga_name=yoga_name,
+                status=YogaStatus.CANCELLED,
+                cancellation_reason=modifier_report.cancellation_reason,
+                modifier_report=modifier_report,
+            )
+        if modifier_report.overall_status == ModifierStatus.WEAKENED:
+            return YogaEvaluation(
+                yoga_name=yoga_name,
+                status=YogaStatus.WEAKENED,
+                cancellation_reason=modifier_report.cancellation_reason,
+                modifier_report=modifier_report,
+            )
 
         return YogaEvaluation(
             yoga_name=yoga_name,
             status=YogaStatus.FORMED,
+            modifier_report=modifier_report,
         )
 
     def evaluate_manifestation(
@@ -209,7 +206,8 @@ class YogaEvaluatorService:
                     involved_planets=["JUPITER", "MOON"],
                     jre_facts=jre_facts,
                 )
-                if eval_.status == YogaStatus.FORMED:
+                # Append if FORMED or WEAKENED (not CANCELLED)
+                if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
                     results.append(eval_)
                     yoga_involved_planets.append(["JUPITER", "MOON"])
 
@@ -271,7 +269,8 @@ class YogaEvaluatorService:
                         involved_planets=involved,
                         jre_facts=jre_facts,
                     )
-                    if eval_.status == YogaStatus.FORMED:
+                    # Append if FORMED or WEAKENED (not CANCELLED)
+                    if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
                         results.append(eval_)
                         yoga_involved_planets.append([k_name, t_name])
                     # Only first valid Raja yoga to avoid duplicates
@@ -351,34 +350,38 @@ class YogaEvaluatorService:
                     yoga_involved_planets.append([pname, sign_lord])
                     break
 
-        # ── Cancellation rules for FORMED yogas ──
+        # ── Phase 1: Apply 5-tier modifier pipeline to all FORMED yogas ──
+        # Skip Vipareeta Raja: dusthana placement is required, not a weakness
         for idx, (eval_, involved) in enumerate(
             zip(results, yoga_involved_planets)
         ):
             if eval_.status != YogaStatus.FORMED:
                 continue
-            for planet_name in involved:
-                p_data = planets.get(planet_name, {})
-                # Rule 1: Combustion
-                if p_data.get("combust", False):
-                    results[idx] = replace(
-                        eval_,
-                        status=YogaStatus.CANCELLED,
-                        cancellation_reason="Combustion",
-                    )
-                    break
-                # Rule 2: Conjunct Rahu or Ketu (same house)
-                p_house = p_data.get("house")
-                if isinstance(p_house, int):
-                    rahu_house = planets.get("RAHU", {}).get("house")
-                    ketu_house = planets.get("KETU", {}).get("house")
-                    if p_house == rahu_house or p_house == ketu_house:
-                        results[idx] = replace(
-                            eval_,
-                            status=YogaStatus.WEAKENED,
-                            cancellation_reason="Nodal Affliction",
-                        )
-                        break
+            if eval_.yoga_name == "Vipareeta Raja":
+                # Vipareeta Raja yoga requires dusthana lordship — skip modifier
+                continue
+            modifier_report = self._modifier_svc.evaluate_modifiers(
+                involved, jre_facts
+            )
+            if modifier_report.overall_status == ModifierStatus.CANCELLED:
+                results[idx] = replace(
+                    eval_,
+                    status=YogaStatus.CANCELLED,
+                    cancellation_reason=modifier_report.cancellation_reason,
+                    modifier_report=modifier_report,
+                )
+            elif modifier_report.overall_status == ModifierStatus.WEAKENED:
+                results[idx] = replace(
+                    eval_,
+                    status=YogaStatus.WEAKENED,
+                    cancellation_reason=modifier_report.cancellation_reason,
+                    modifier_report=modifier_report,
+                )
+            else:
+                results[idx] = replace(
+                    eval_,
+                    modifier_report=modifier_report,
+                )
 
         # ── Transit activation check ──
         if transit_planet:

@@ -221,12 +221,23 @@ class ModifierEvaluationService:
 
         # ── Tier 5: Node Taint (Rahu/Ketu) Check ──
         # BPHS Ch 9, v. 12: Node conjunct yoga planet weakens (not cancels)
+        # Check both explicit flag and house proximity
         if status != ModifierStatus.CANCELLED:
             node_conjunct = planet_facts.get("node_conjunct", False)
+            if not node_conjunct and isinstance(house, int) and house > 0:
+                # Check if Rahu or Ketu is in the same house
+                rahu_house = planet_facts.get("RAHU_house", 0)
+                ketu_house = planet_facts.get("KETU_house", 0)
+                if (isinstance(rahu_house, int) and rahu_house == house) or (
+                    isinstance(ketu_house, int) and ketu_house == house
+                ):
+                    node_conjunct = True
             if node_conjunct:
                 modifiers.append(ModifierType.NODE_TAINT)
                 status = ModifierStatus.WEAKENED if status == ModifierStatus.FORMED else status
                 strength *= 0.7
+                if cancellation_reason is None:
+                    cancellation_reason = f"{planet} conjunct node (Nodal Affliction)"
 
         # ── Dusthana Placement Check ──
         if status != ModifierStatus.CANCELLED and isinstance(house, int) and house in _DUSTHANA_HOUSES:
@@ -264,7 +275,19 @@ class ModifierEvaluationService:
         results: list[ModifierResult] = []
 
         for planet in involved_planets:
-            p_data = planets.get(planet, {})
+            p_data = dict(planets.get(planet, {}))  # Copy to avoid mutation
+            # Inject cross-planet references for Neecha Bhanga check
+            # (debilitation-sign lord's house from other planets)
+            deb_lord = _DEBILITATION_SIGN_LORD.get(planet)
+            if deb_lord is not None and deb_lord in planets:
+                p_data[f"{deb_lord}_house"] = planets[deb_lord].get("house", 0)
+            # Inject Rahu/Ketu house for node taint detection
+            rahu_data = planets.get("RAHU", {})
+            ketu_data = planets.get("KETU", {})
+            if rahu_data.get("house") is not None:
+                p_data["RAHU_house"] = rahu_data["house"]
+            if ketu_data.get("house") is not None:
+                p_data["KETU_house"] = ketu_data["house"]
             result = self.evaluate_planet(planet, p_data)
             results.append(result)
 
@@ -272,6 +295,7 @@ class ModifierEvaluationService:
         overall_status = ModifierStatus.FORMED
         overall_strength = 1.0
         cancellation_reason: Optional[str] = None
+        weakening_reason: Optional[str] = None
 
         for result in results:
             if result.status == ModifierStatus.CANCELLED:
@@ -282,8 +306,18 @@ class ModifierEvaluationService:
             if result.status == ModifierStatus.WEAKENED:
                 overall_status = ModifierStatus.WEAKENED
                 overall_strength = min(overall_strength, result.net_strength)
+                if weakening_reason is None and result.cancellation_reason:
+                    weakening_reason = result.cancellation_reason
             else:
                 overall_strength = min(overall_strength, result.net_strength)
+
+        # Threshold: if overall_strength < 0.5, downgrade to WEAKENED
+        if overall_status == ModifierStatus.FORMED and overall_strength < 0.5:
+            overall_status = ModifierStatus.WEAKENED
+
+        # Use weakening_reason if no cancellation_reason
+        if cancellation_reason is None and weakening_reason is not None:
+            cancellation_reason = weakening_reason
 
         return ModifierReport(
             planet_results=tuple(results),

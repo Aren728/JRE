@@ -54,4 +54,4 @@ class TestYogaCancellation:
         gaja = [y for y in yogas if y.yoga_name == "Gajakesari"]
         assert len(gaja) == 1
         assert gaja[0].status.value == "WEAKENED"
-        assert gaja[0].cancellation_reason == "Nodal Affliction"
+        assert "Nodal Affliction" in gaja[0].cancellation_reason

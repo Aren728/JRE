@@ -128,7 +128,8 @@ class TestYogaCatalog:
             jre_facts=facts,
         )
         assert result.status == YogaStatus.CANCELLED
-        assert result.cancellation_reason == "MERCURY is debilitated"
+        assert "MERCURY" in result.cancellation_reason
+        assert "debilitated" in result.cancellation_reason.lower()
 
     def test_budhaditya_outcome_in_toml(self) -> None:
         """Budhaditya TOML rule specifies CAREER_PROMINENCE (INTELLECTUAL_DEPTH mapped)."""
