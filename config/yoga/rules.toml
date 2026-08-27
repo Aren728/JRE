@@ -1,0 +1,128 @@
+[yoga]
+version = "1.0"
+source_id = "BPHS"
+default_strength = "MODERATE"
+
+# ── Classical Yoga Rules ──
+# Each rule defines a classical yoga with its formation conditions,
+# involved planets, and outcome mapping.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Chandra Mangala Yoga (Moon + Mars conjunction)
+# When Moon and Mars are in conjunction, the native earns through
+# independent effort, courage, and assertiveness.
+# Source: BPHS Chapter 41, Verse 10-15
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[yoga.rules]]
+rule_id = "R-YOGA-CM-001"
+yoga_name = "Chandra Mangala"
+description = "Moon and Mars in conjunction — wealth through independent effort and courage"
+formation_type = "CONJUNCTION"
+involved_planets = ["MOON", "MARS"]
+involved_houses = []
+condition_facts = ["moon_mars_conjunction=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 10-15"
+
+[[yoga.rules]]
+rule_id = "R-YOGA-CM-002"
+yoga_name = "Chandra Mangala"
+description = "Moon and Mars mutual aspect (7 houses apart) — wealth through assertive action"
+formation_type = "MUTUAL_ASPECT"
+involved_planets = ["MOON", "MARS"]
+involved_houses = []
+condition_facts = ["moon_mars_mutual_aspect=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 41, Verses 10-15"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Budhaditya Yoga (Sun + Mercury conjunction)
+# When Sun and Mercury are in conjunction, the native possesses sharp
+# intellect, analytical ability, and communicative brilliance.
+# Source: BPHS Chapter 41, Verse 20-25
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[yoga.rules]]
+rule_id = "R-YOGA-BD-001"
+yoga_name = "Budhaditya"
+description = "Sun and Mercury in conjunction — intellectual depth and analytical brilliance"
+formation_type = "CONJUNCTION"
+involved_planets = ["SUN", "MERCURY"]
+involved_houses = []
+condition_facts = ["sun_mercury_conjunction=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 20-25"
+
+[[yoga.rules]]
+rule_id = "R-YOGA-BD-002"
+yoga_name = "Budhaditya"
+description = "Sun and Mercury mutual aspect — intellectual depth through communicative ability"
+formation_type = "MUTUAL_ASPECT"
+involved_planets = ["SUN", "MERCURY"]
+involved_houses = []
+condition_facts = ["sun_mercury_mutual_aspect=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "MODERATE"
+source_id = "BPHS"
+location = "Chapter 41, Verses 20-25"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Lakshmi Yoga (Lagna lord + 9th lord in Kendra or Trikona)
+# When the 1st lord and 9th lord are placed in Kendra (1,4,7,10) or
+# Trikona (1,5,9) houses, the native enjoys wealth, prosperity, and
+# divine grace throughout life.
+# Source: BPHS Chapter 41, Verse 30-35
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[yoga.rules]]
+rule_id = "R-YOGA-LK-001"
+yoga_name = "Lakshmi"
+description = "Lagna lord and 9th lord in Kendra — wealth and divine grace"
+formation_type = "LORDS_IN_KENDRA"
+involved_planets = ["LAGNA_LORD", "NINTH_LORD"]
+involved_houses = [1, 4, 7, 10]
+condition_facts = ["lagna_lord_in_kendra=true", "ninth_lord_in_kendra=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 30-35"
+
+[[yoga.rules]]
+rule_id = "R-YOGA-LK-002"
+yoga_name = "Lakshmi"
+description = "Lagna lord and 9th lord in Trikona — prosperity and auspiciousness"
+formation_type = "LORDS_IN_TRIKONA"
+involved_planets = ["LAGNA_LORD", "NINTH_LORD"]
+involved_houses = [1, 5, 9]
+condition_facts = ["lagna_lord_in_trikona=true", "ninth_lord_in_trikona=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 30-35"
+
+[[yoga.rules]]
+rule_id = "R-YOGA-LK-003"
+yoga_name = "Lakshmi"
+description = "Lagna lord and 9th lord conjunct in Kendra or Trikona — maximum prosperity"
+formation_type = "LORDS_CONJUNCTION"
+involved_planets = ["LAGNA_LORD", "NINTH_LORD"]
+involved_houses = [1, 4, 7, 10, 5, 9]
+condition_facts = ["lagna_ninth_conjunction_kendra_or_trikona=true"]
+outcome = "WEALTH_ACCUMULATION"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 41, Verses 30-35"
