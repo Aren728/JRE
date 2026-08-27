@@ -6,6 +6,9 @@ from typing import Any
 
 from .models import PlanetRelationship, RelationshipType
 
+# Rahu/Ketu names for node involvement detection
+_NODE_NAMES: frozenset[str] = frozenset({"RAHU", "KETU"})
+
 # Standard Parashari aspects (7th house for all, plus special aspects)
 _STANDARD_ASPECTS = {
     "MARS": [4, 7, 8],
@@ -60,15 +63,18 @@ class RelationshipGraphService:
                 if p1_data.get("rashi") == p2_data.get("rashi"):
                     key = (p1_name, p2_name, RelationshipType.CONJUNCTION)
                     if key not in seen:
+                        node_inv = p1_name in _NODE_NAMES or p2_name in _NODE_NAMES
                         rel = PlanetRelationship(
                             planet_a=p1_name,
                             planet_b=p2_name,
                             relationship_type=RelationshipType.CONJUNCTION,
+                            is_directed=False,
+                            node_involvement=node_inv,
                         )
                         relationships.append(rel)
                         seen.add(key)
 
-        # 2. Detect Aspects
+        # 2. Detect Aspects (directed: A aspects B, but B may not aspect A)
         for p1_name, p1_data in planets.items():
             p1_rashi_idx = _rashi_to_index(p1_data.get("rashi", ""))
             if p1_rashi_idx is None:
@@ -88,15 +94,18 @@ class RelationshipGraphService:
                             continue
                         aspect_key = (p1_name, p2_name, RelationshipType.ASPECT)
                         if aspect_key not in seen:
+                            node_inv = p1_name in _NODE_NAMES or p2_name in _NODE_NAMES
                             rel = PlanetRelationship(
                                 planet_a=p1_name,
                                 planet_b=p2_name,
                                 relationship_type=RelationshipType.ASPECT,
+                                is_directed=True,
+                                node_involvement=node_inv,
                             )
                             relationships.append(rel)
                             seen.add(aspect_key)
 
-        # 3. Detect Dispositorship (Planet A in sign owned by Planet B)
+        # 3. Detect Dispositorship (Planet A in sign owned by Planet B, directed)
         for p1_name, p1_data in planets.items():
             p1_rashi_idx = _rashi_to_index(p1_data.get("rashi", ""))
             if p1_rashi_idx is None:
@@ -109,11 +118,40 @@ class RelationshipGraphService:
                         planet_a=p1_name,
                         planet_b=owner,
                         relationship_type=RelationshipType.DISPOSITOR,
+                        is_directed=True,
                     )
                     relationships.append(rel)
                     seen.add(key)
 
-        # 4. Detect Transit Activation
+        # 4. Detect Exchanges (Parivartana: A in B's sign AND B in A's sign)
+        for p1_name, p1_data in planets.items():
+            p1_rashi_idx = _rashi_to_index(p1_data.get("rashi", ""))
+            if p1_rashi_idx is None:
+                continue
+            p1_lord = _SIGN_LORDS.get(p1_rashi_idx + 1)
+            if p1_lord is None or p1_lord not in planets or p1_lord == p1_name:
+                continue
+            # Check if p1_lord (B) is in a sign owned by p1_name (A)
+            p2_name = p1_lord
+            p2_data = planets[p2_name]
+            p2_rashi_idx = _rashi_to_index(p2_data.get("rashi", ""))
+            if p2_rashi_idx is None:
+                continue
+            p2_lord = _SIGN_LORDS.get(p2_rashi_idx + 1)
+            if p2_lord == p1_name:
+                # Exchange detected: A in B's sign, B in A's sign
+                key = (min(p1_name, p2_name), max(p1_name, p2_name), RelationshipType.EXCHANGE)
+                if key not in seen:
+                    rel = PlanetRelationship(
+                        planet_a=p1_name,
+                        planet_b=p2_name,
+                        relationship_type=RelationshipType.EXCHANGE,
+                        is_directed=False,
+                    )
+                    relationships.append(rel)
+                    seen.add(key)
+
+        # 5. Detect Transit Activation
         if transit_facts:
             transit_planets = transit_facts.get("planets", {})
             active_natal_pairs: set[tuple[str, str]] = set()
