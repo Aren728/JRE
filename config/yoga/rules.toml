@@ -78,6 +78,41 @@ source_id = "BPHS"
 location = "Chapter 41, Verses 20-25"
 
 # ══════════════════════════════════════════════════════════════════════════════
+# Gaja Kesari Yoga (Jupiter in Kendra from Moon)
+# When Jupiter is in a Kendra (1,4,7,10) from the Moon, the native
+# enjoys wisdom, wealth, and respect throughout life.
+# Source: BPHS Chapter 36, Verses 3-4
+# ══════════════════════════════════════════════════════════════════════════════
+
+[[yoga.rules]]
+rule_id = "R-YOGA-GK-001"
+yoga_name = "Gaja Kesari"
+description = "Jupiter in Kendra from Moon — wisdom, wealth, and respect"
+formation_type = "KENDRA_FROM"
+involved_planets = ["JUPITER", "MOON"]
+involved_houses = [1, 4, 7, 10]
+condition_facts = ["jupiter_kendra_from_moon=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verses 3-4"
+
+[[yoga.rules]]
+rule_id = "R-YOGA-GK-002"
+yoga_name = "Gaja Kesari"
+description = "Jupiter conjunct Moon in Kendra — enhanced wisdom and prosperity"
+formation_type = "CONJUNCTION_IN_KENDRA"
+involved_planets = ["JUPITER", "MOON"]
+involved_houses = [1, 4, 7, 10]
+condition_facts = ["jupiter_moon_conjunction_kendra=true"]
+outcome = "CAREER_PROMINENCE"
+direction = "SUPPORT"
+strength = "VERY_HIGH"
+source_id = "BPHS"
+location = "Chapter 36, Verses 3-4"
+
+# ══════════════════════════════════════════════════════════════════════════════
 # Lakshmi Yoga (Lagna lord + 9th lord in Kendra or Trikona)
 # When the 1st lord and 9th lord are placed in Kendra (1,4,7,10) or
 # Trikona (1,5,9) houses, the native enjoys wealth, prosperity, and
