@@ -120,11 +120,11 @@ class TestGrahaYuddhaTier:
     def test_war_victor_maintains_strength(self) -> None:
         """Planet wins war → strength maintained."""
         svc = ModifierEvaluationService()
-        # Jupiter rashi_num 1 = Aries — not own, not exalted
+        # Jupiter rashi_num 2 = Taurus — not own, not exalted
         result = svc.evaluate_planet(
             "JUPITER",
             {
-                "rashi_num": 1,
+                "rashi_num": 2,
                 "house": 1,
                 "combust": False,
                 "debilitated": False,
@@ -133,17 +133,17 @@ class TestGrahaYuddhaTier:
             },
         )
         assert result.status == ModifierStatus.FORMED
-        assert ModifierType.GRAHA_YUDDHA in result.modifier_chain
+        assert ModifierType.GRAHA_YUDDHA_VICTOR in result.modifier_chain
         assert result.net_strength >= 0.9  # Strength maintained
 
     def test_war_loser_suppressed(self) -> None:
         """Planet loses war → strength suppressed."""
         svc = ModifierEvaluationService()
-        # Mercury rashi_num 1 = Aries — not own (3/6), not exalted (6)
+        # Mercury rashi_num 2 = Taurus — not own (3/6), not exalted (6)
         result = svc.evaluate_planet(
             "MERCURY",
             {
-                "rashi_num": 1,
+                "rashi_num": 2,
                 "house": 1,
                 "combust": False,
                 "debilitated": False,
@@ -152,7 +152,7 @@ class TestGrahaYuddhaTier:
             },
         )
         assert result.status == ModifierStatus.FORMED
-        assert ModifierType.GRAHA_YUDDHA in result.modifier_chain
+        assert ModifierType.GRAHA_YUDDHA_DEFEATED in result.modifier_chain
         assert result.net_strength <= 0.4  # Suppressed
 
 

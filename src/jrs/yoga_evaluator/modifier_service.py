@@ -32,8 +32,13 @@ class ModifierType(StrEnum):
     DEBILITATION = "DEBILITATION"
     NEECHA_BHANGA = "NEECHA_BHANGA"
     GRAHA_YUDDHA = "GRAHA_YUDDHA"
+    GRAHA_YUDDHA_VICTOR = "GRAHA_YUDDHA_VICTOR"
+    GRAHA_YUDDHA_DEFEATED = "GRAHA_YUDDHA_DEFEATED"
     CHESHTA_BALA = "CHESHTA_BALA"
     NODE_TAINT = "NODE_TAINT"
+    NODE_CONJUNCTION_TAINT = "NODE_CONJUNCTION_TAINT"
+    NODE_ASPECT_TAINT = "NODE_ASPECT_TAINT"
+    NODE_PSEUDO_ASPECT_REJECTED = "NODE_PSEUDO_ASPECT_REJECTED"
     DUSTHANA_PLACEMENT = "DUSTHANA_PLACEMENT"
 
 
@@ -90,6 +95,21 @@ _KENDRA_HOUSES: frozenset[int] = frozenset({1, 4, 7, 10})
 # Rahu/Ketu names
 _NODE_NAMES: frozenset[str] = frozenset({"RAHU", "KETU"})
 
+# Non-luminary planets eligible for Graha Yuddha
+_WAR_ELIGIBLE: frozenset[str] = frozenset({"MARS", "MERCURY", "JUPITER", "VENUS", "SATURN"})
+
+# War detection threshold: planets within 1.0° longitude
+WAR_LONGITUDE_THRESHOLD: float = 1.0
+
+# Node conjunction taint: strength multiplier 0.7 (30% reduction)
+NODE_CONJUNCTION_STRENGTH_MULT: float = 0.7
+
+# Node 7th aspect taint: strength multiplier 0.85 (15% reduction)
+NODE_ASPECT_STRENGTH_MULT: float = 0.85
+
+# Node pseudo-aspects (5th/9th) rejected under strict Parashari
+_NODE_PSEUDO_ASPECTS: frozenset[int] = frozenset({5, 9})
+
 
 @dataclass(frozen=True)
 class ModifierResult:
@@ -105,6 +125,9 @@ class ModifierResult:
     is_debilitated: bool = False
     is_node_afflicted: bool = False
     war_victor: Optional[str] = None
+    war_longitude_diff: Optional[float] = None
+    war_is_victor: Optional[bool] = None
+    node_taint_type: Optional[str] = None  # "CONJUNCTION" or "ASPECT"
 
 
 @dataclass(frozen=True)
@@ -199,16 +222,48 @@ class ModifierEvaluationService:
 
         # ── Tier 3: Graha Yuddha (Planetary War) Check ──
         # Saravali Ch 24: Planets within 1° — victor dominates
+        # RI-010C MY-015–019: Only non-luminary planets engage in war
+        war_longitude_diff: Optional[float] = None
+        war_is_victor: Optional[bool] = None
         if status != ModifierStatus.CANCELLED:
             is_war = planet_facts.get("is_war", False)
             war_victor = planet_facts.get("war_victor")
-            if is_war and war_victor is not None:
-                modifiers.append(ModifierType.GRAHA_YUDDHA)
+            war_planets = planet_facts.get("war_planets", [])
+            longitude = planet_facts.get("longitude")
+            war_longitude = planet_facts.get("war_longitude")
+
+            # Check if this planet is eligible for war (non-luminary)
+            is_eligible = planet in _WAR_ELIGIBLE
+
+            # Compute longitude difference if both have longitudes
+            if isinstance(longitude, (int, float)) and isinstance(war_longitude, (int, float)):
+                war_longitude_diff = abs(longitude - war_longitude)
+                # Normalize to 0-360 range
+                if war_longitude_diff > 180:
+                    war_longitude_diff = 360 - war_longitude_diff
+
+            # Detect war: eligible planets within threshold OR explicit flag
+            war_detected = False
+            if is_war and is_eligible:
+                war_detected = True
+            elif (
+                is_eligible
+                and isinstance(war_longitude_diff, float)
+                and war_longitude_diff <= WAR_LONGITUDE_THRESHOLD
+                and war_victor is not None
+            ):
+                war_detected = True
+
+            if war_detected and war_victor is not None:
                 if war_victor == planet:
-                    # This planet won the war — strength maintained
+                    # This planet won the war
+                    modifiers.append(ModifierType.GRAHA_YUDDHA_VICTOR)
+                    war_is_victor = True
                     strength *= 1.0
                 else:
-                    # This planet lost the war — suppressed
+                    # This planet lost the war — suppressed (Saravali Ch 24)
+                    modifiers.append(ModifierType.GRAHA_YUDDHA_DEFEATED)
+                    war_is_victor = False
                     strength *= 0.3
 
         # ── Tier 4: Cheshta Bala (Retrograde) Check ──
@@ -221,23 +276,75 @@ class ModifierEvaluationService:
 
         # ── Tier 5: Node Taint (Rahu/Ketu) Check ──
         # BPHS Ch 9, v. 12: Node conjunct yoga planet weakens (not cancels)
-        # Check both explicit flag and house proximity
+        # RI-010C MY-025–030: Severity matrix for node interception
+        #   - Conjunction (0°-10°): 0.7 multiplier (30% reduction)
+        #   - 7th aspect: 0.85 multiplier (15% reduction)
+        #   - Pseudo-aspects (5th/9th): rejected under strict Parashari
+        node_taint_type: Optional[str] = None
         if status != ModifierStatus.CANCELLED:
             node_conjunct = planet_facts.get("node_conjunct", False)
+            node_aspect = planet_facts.get("node_aspect", False)
+            node_aspect_house = planet_facts.get("node_aspect_house", 0)
+            is_parashari_mode = planet_facts.get("parashari_mode", True)  # Default: Parashari
+
+            # Check conjunction via explicit flag or house proximity
             if not node_conjunct and isinstance(house, int) and house > 0:
-                # Check if Rahu or Ketu is in the same house
                 rahu_house = planet_facts.get("RAHU_house", 0)
                 ketu_house = planet_facts.get("KETU_house", 0)
                 if (isinstance(rahu_house, int) and rahu_house == house) or (
                     isinstance(ketu_house, int) and ketu_house == house
                 ):
                     node_conjunct = True
+
+            # Check 7th aspect from Rahu/Ketu
+            if not node_conjunct and not node_aspect and isinstance(house, int) and house > 0:
+                rahu_house = planet_facts.get("RAHU_house", 0)
+                ketu_house = planet_facts.get("KETU_house", 0)
+                for n_house in (rahu_house, ketu_house):
+                    if isinstance(n_house, int) and n_house > 0:
+                        aspect_house = (n_house + 6) % 12  # 7th aspect offset
+                        if aspect_house == 0:
+                            aspect_house = 12
+                        if aspect_house == house:
+                            node_aspect = True
+                            node_aspect_house = house
+                            break
+
+            # Check for pseudo-aspects (5th/9th) — reject under Parashari
+            if node_aspect and is_parashari_mode and isinstance(node_aspect_house, int):
+                # Determine which aspect type (5th or 9th) vs 7th
+                # If the aspect offset is 5 or 9, it's a pseudo-aspect
+                rahu_house = planet_facts.get("RAHU_house", 0)
+                ketu_house = planet_facts.get("KETU_house", 0)
+                for n_house in (rahu_house, ketu_house):
+                    if isinstance(n_house, int) and n_house > 0:
+                        offset = (house - n_house) % 12
+                        if offset == 0:
+                            offset = 12
+                        if offset in _NODE_PSEUDO_ASPECTS:
+                            # Pseudo-aspect — reject under Parashari
+                            modifiers.append(ModifierType.NODE_PSEUDO_ASPECT_REJECTED)
+                            node_aspect = False
+                            node_taint_type = None
+                            break
+
+            # Apply severity based on taint type
             if node_conjunct:
+                modifiers.append(ModifierType.NODE_CONJUNCTION_TAINT)
                 modifiers.append(ModifierType.NODE_TAINT)
                 status = ModifierStatus.WEAKENED if status == ModifierStatus.FORMED else status
-                strength *= 0.7
+                strength *= NODE_CONJUNCTION_STRENGTH_MULT  # 0.7
+                node_taint_type = "CONJUNCTION"
                 if cancellation_reason is None:
-                    cancellation_reason = f"{planet} conjunct node (Nodal Affliction)"
+                    cancellation_reason = f"{planet} conjunct node (30% strength reduction)"
+            elif node_aspect:
+                modifiers.append(ModifierType.NODE_ASPECT_TAINT)
+                modifiers.append(ModifierType.NODE_TAINT)
+                status = ModifierStatus.WEAKENED if status == ModifierStatus.FORMED else status
+                strength *= NODE_ASPECT_STRENGTH_MULT  # 0.85
+                node_taint_type = "ASPECT"
+                if cancellation_reason is None:
+                    cancellation_reason = f"{planet} aspected by node (15% strength reduction)"
 
         # ── Dusthana Placement Check ──
         if status != ModifierStatus.CANCELLED and isinstance(house, int) and house in _DUSTHANA_HOUSES:
@@ -254,7 +361,11 @@ class ModifierEvaluationService:
             is_retrograde=is_retrograde,
             is_combust=is_combust,
             is_debilitated=is_debilitated,
-            is_node_afflicted=planet_facts.get("node_conjunct", False),
+            is_node_afflicted=planet_facts.get("node_conjunct", False) or bool(node_taint_type),
+            war_victor=planet_facts.get("war_victor"),
+            war_longitude_diff=war_longitude_diff,
+            war_is_victor=war_is_victor,
+            node_taint_type=node_taint_type,
         )
 
     def evaluate_modifiers(
@@ -288,6 +399,25 @@ class ModifierEvaluationService:
                 p_data["RAHU_house"] = rahu_data["house"]
             if ketu_data.get("house") is not None:
                 p_data["KETU_house"] = ketu_data["house"]
+            # Inject war context from other eligible planets
+            for other_name, other_data in planets.items():
+                if other_name == planet:
+                    continue
+                if other_name in _WAR_ELIGIBLE and not p_data.get("is_war"):
+                    # Check if these two planets are in war
+                    p_long = p_data.get("longitude")
+                    o_long = other_data.get("longitude")
+                    if isinstance(p_long, (int, float)) and isinstance(o_long, (int, float)):
+                        diff = abs(p_long - o_long)
+                        if diff > 180:
+                            diff = 360 - diff
+                        if diff <= WAR_LONGITUDE_THRESHOLD:
+                            p_data["is_war"] = True
+                            p_data.setdefault("war_planets", []).append(other_name)
+                            p_data["war_longitude"] = o_long
+                            if not p_data.get("war_victor"):
+                                # Victor is the one with higher longitude (or northern latitude)
+                                p_data["war_victor"] = planet if p_long >= o_long else other_name
             result = self.evaluate_planet(planet, p_data)
             results.append(result)
 

@@ -246,7 +246,7 @@ class TestGrahaYuddhaSuppression:
         jup_result = next(
             pr for pr in result.modifier_report.planet_results if pr.planet == "JUPITER"
         )
-        assert ModifierType.GRAHA_YUDDHA in jup_result.modifier_chain
+        assert ModifierType.GRAHA_YUDDHA_DEFEATED in jup_result.modifier_chain
         assert jup_result.net_strength <= 0.4  # Suppressed
         # Overall yoga should be WEAKENED due to low strength
         assert result.status == YogaStatus.WEAKENED
