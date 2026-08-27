@@ -153,6 +153,16 @@ class YogaEvaluatorService:
                 "VIPAREETA RAJA": YogaOutcome.CAREER_PROMINENCE,
                 "VIPAREETA RAJA YOGA": YogaOutcome.CAREER_PROMINENCE,
                 "NEECHA BHANGA": YogaOutcome.GENERAL_IMPROVEMENT,
+                # Pancha Mahapurusha Yogas
+                "RUCHAKA": YogaOutcome.CAREER_PROMINENCE,
+                "BHADRA": YogaOutcome.CAREER_PROMINENCE,
+                "HAMSA": YogaOutcome.CAREER_PROMINENCE,
+                "MALAVYA": YogaOutcome.RELATIONSHIP_HARMONY,
+                "SASA": YogaOutcome.CAREER_PROMINENCE,
+                # Chandra Yogas
+                "ANAPHA": YogaOutcome.WEALTH_ACCUMULATION,
+                "SUNAPHA": YogaOutcome.WEALTH_ACCUMULATION,
+                "DHUDHARA": YogaOutcome.WEALTH_ACCUMULATION,
             }
             key = yoga_name.upper().replace("_", " ")
             return _YOGA_OUTCOME_MAP.get(key, YogaOutcome.GENERAL_IMPROVEMENT)
@@ -317,6 +327,106 @@ class YogaEvaluatorService:
                     yoga_involved_planets.append(
                         [second_lord_planet, eleventh_lord_planet]
                     )
+
+        # ── Pancha Mahapurusha Yogas ──
+        # Planet in Kendra (1,4,7,10) in own or exaltation sign, non-combust/non-debilitated
+        _MAHAPURUSHA_MAP: dict[str, str] = {
+            "MARS": "Ruchaka",
+            "MERCURY": "Bhadra",
+            "JUPITER": "Hamsa",
+            "VENUS": "Malavya",
+            "SATURN": "Sasa",
+        }
+        _EXALTATION_SIGNS: dict[str, str] = {
+            "SUN": "MESHA",       # Aries
+            "MOON": "VRISHABHA",   # Taurus
+            "MARS": "MAKARA",      # Capricorn
+            "MERCURY": "KANYA",    # Virgo
+            "JUPITER": "KARKA",    # Cancer
+            "VENUS": "MEENA",      # Pisces
+            "SATURN": "TULA",      # Libra
+        }
+        _OWN_SIGNS: dict[str, str] = {
+            "SUN": "SIMHA",        # Leo
+            "MOON": "KARKA",       # Cancer
+            "MARS": "VRISHCHIKA",  # Scorpio
+            "MERCURY": "KANYA",    # Virgo (also Mithuna)
+            "JUPITER": "DHANUSHA", # Sagittarius (also Meena)
+            "VENUS": "TULA",       # Libra (also Vrishabha)
+            "SATURN": "KUMBHA",    # Aquarius (also Makara)
+        }
+
+        for pname, yoga_name in _MAHAPURUSHA_MAP.items():
+            pdata = planets.get(pname, {})
+            house = pdata.get("house")
+            if not isinstance(house, int) or house not in kendra_houses:
+                continue
+            rashi = pdata.get("rashi", "")
+            is_own = rashi == _OWN_SIGNS.get(pname, "")
+            is_exalted = rashi == _EXALTATION_SIGNS.get(pname, "")
+            if not (is_own or is_exalted):
+                continue
+            # Let modifier pipeline handle combustion/debilitation → may return CANCELLED
+            eval_ = self.evaluate_formation(
+                yoga_name=yoga_name,
+                involved_planets=[pname],
+                jre_facts=jre_facts,
+            )
+            # Include all statuses for complete tracking (FORMED, WEAKENED, CANCELLED)
+            results.append(eval_)
+            yoga_involved_planets.append([pname])
+
+        # ── Chandra Yogas (Anapha, Sunapha, Dhudhara) ──
+        if isinstance(moon_house, int):
+            planet_2nd_from_moon = []  # Planets 2nd from Moon (not Sun)
+            planet_12th_from_moon = []  # Planets 12th from Moon (not Sun)
+            for pname, pdata in planets.items():
+                if pname == "MOON" or pname == "SUN":
+                    continue
+                ph = pdata.get("house")
+                if not isinstance(ph, int):
+                    continue
+                if (ph - moon_house) % 12 == 1:  # 2nd from Moon
+                    planet_2nd_from_moon.append(pname)
+                elif (moon_house - ph) % 12 == 1:  # 12th from Moon
+                    planet_12th_from_moon.append(pname)
+
+            if planet_12th_from_moon:
+                # Sunapha: planet 12th from Moon
+                for pname in planet_12th_from_moon:
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Sunapha",
+                        involved_planets=["MOON", pname],
+                        jre_facts=jre_facts,
+                    )
+                    # Include all statuses for complete tracking
+                    if eval_.status != YogaStatus.CANCELLED:
+                        results.append(eval_)
+                        yoga_involved_planets.append(["MOON", pname])
+
+            if planet_2nd_from_moon:
+                # Anapha: planet 2nd from Moon
+                for pname in planet_2nd_from_moon:
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Anapha",
+                        involved_planets=["MOON", pname],
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status != YogaStatus.CANCELLED:
+                        results.append(eval_)
+                        yoga_involved_planets.append(["MOON", pname])
+
+            if planet_2nd_from_moon and planet_12th_from_moon:
+                # Dhudhara: planets on both sides of Moon
+                all_names = ["MOON"] + planet_2nd_from_moon + planet_12th_from_moon
+                eval_ = self.evaluate_formation(
+                    yoga_name="Dhudhara",
+                    involved_planets=all_names,
+                    jre_facts=jre_facts,
+                )
+                if eval_.status != YogaStatus.CANCELLED:
+                    results.append(eval_)
+                    yoga_involved_planets.append(all_names)
 
         # ── Neecha Bhanga Yoga ──
         # Debilitation sign → sign lord mapping

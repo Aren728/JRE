@@ -106,12 +106,17 @@ class RelationshipGraphService:
                             seen.add(aspect_key)
 
         # 3. Detect Dispositorship (Planet A in sign owned by Planet B, directed)
+        # Truncation: If terminal lord is combust, break the chain (BPHS Ch 33 v.18)
         for p1_name, p1_data in planets.items():
             p1_rashi_idx = _rashi_to_index(p1_data.get("rashi", ""))
             if p1_rashi_idx is None:
                 continue
             owner = _SIGN_LORDS.get(p1_rashi_idx + 1)
             if owner and owner in planets and owner != p1_name:
+                # Chain truncation: skip if terminal lord is combust
+                owner_data = planets[owner]
+                if owner_data.get("combust", False):
+                    continue
                 key = (p1_name, owner, RelationshipType.DISPOSITOR)
                 if key not in seen:
                     rel = PlanetRelationship(
