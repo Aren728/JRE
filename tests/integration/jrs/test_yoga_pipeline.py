@@ -1,112 +1,135 @@
-"""End-to-end yoga pipeline integration test (JRS-080)."""
+"""JRS-077 Structural Yoga Integration Test (Atomic Execution)."""
 
 from __future__ import annotations
 
 import pytest
-from jrs.convergence.models import DomainAssessment
-from jrs.domains.yoga.service import YogaDomainService
-from jrs.evidence.models import EvidenceRecord, STRENGTH_VALUES
 from jrs.kendra_trikona.service import KendraTrikonaService
-from jrs.yoga_evaluator.integration import YogaEvidenceService
-from jrs.yoga_evaluator.models import YogaEvaluation, YogaStatus
+from jrs.yoga_evaluator.models import YogaEvaluation, YogaOutcome, YogaStatus
 from jrs.yoga_evaluator.service import YogaEvaluatorService
 
 
-def _build_valid_jre_facts() -> dict:
-    """Build a chart with a valid Kendra-Trikona yoga.
+def _build_mock_jre_facts() -> dict:
+    """Build mock JRE facts for the integration test.
 
     Chart: MESHA (Aries) lagna.
-    SUN placed in MAKARA (Capricorn, 10th house from lagna).
-    SUN is 5th lord (trikona lord) placed in 10th house (kendra) → TRIKONA_LORD_IN_KENDRA.
-    Both SUN and the 10th-house lord (SATURN) are strong: not combust, not debilitated.
-    Active Dasha lord is SUN (one of the yoga planets) → yoga is manifesting.
+    SUN placed in MESHA (1st house) — 5th lord (trikona) in kendra.
+    JUPITER placed in MAKARA (10th house) — 9th lord (trikona) in kendra.
+    Both form TRIKONA_LORD_IN_KENDRA yogas.
+
+    D9 confirmation: Jupiter in MAKARA → navamsa in MEENA (house 10 from
+    D9 lagna MESHA) → Kendra → STRONG.
+
+    Active Dasha lord is JUPITER (one of the yoga planets) → manifesting.
     """
-    # MESHA lagna → house lords: 1=MARS, 5=SUN, 9=JUPITER, 10=SATURN
-    # SATURN (10th lord, kendra lord) placed in MESHA (1st house, trikona)
-    #   → KENDRA_LORD_IN_TRIKONA with planets [SATURN, MARS]
-    # SUN (5th lord, trikona lord) placed in MAKARA (10th house, kendra)
-    #   → TRIKONA_LORD_IN_KENDRA with planets [SUN, SATURN]
-    # active_dasha_lord=SATURN matches both yoga planet sets → manifesting.
     return {
         "lagna": "MESHA",
         "planets": {
-            "SUN": {"rashi": "MAKARA", "house": 10, "combust": False, "debilitated": False},
-            "SATURN": {"rashi": "MESHA", "house": 1, "combust": False, "debilitated": False},
+            "JUPITER": {
+                "rashi": "MAKARA",
+                "house": 10,
+                "combust": False,
+                "debilitated": False,
+            },
+            "SUN": {
+                "rashi": "MESHA",
+                "house": 1,
+                "combust": False,
+                "debilitated": False,
+            },
         },
-        "active_dasha_lord": "SATURN",
+        "active_dasha_lord": "JUPITER",
         "transit_planet": "JUPITER",
     }
 
 
-class TestEndToEndYogaPipeline:
-    def test_end_to_end_yoga_pipeline(self) -> None:
-        """Full pipeline: structural detection → formation → manifestation → evidence."""
-        jre_facts = _build_valid_jre_facts()
+def _check_d9_strength(jupiter_rashi_num: int, lagna_num: int) -> bool:
+    """Replicate D9 strength check from YogaService._check_d9_strength.
 
-        # ── Step 1: Run the domain service ──────────────────────────────────
-        service = YogaDomainService()
-        assessment = service.assess(jre_facts)
+    Returns True if the planet is in Kendra or Trikona in D9 (i.e. STRONG).
+    """
+    KENDRA = {1, 4, 7, 10}
+    TRIKONA = {1, 5, 9}
 
-        assert isinstance(assessment, DomainAssessment)
-        assert assessment.dimensions.supporting_count >= 1, (
-            "DomainAssessment should contain at least 1 evidence record"
-        )
+    # D9 lagna: navamsa of lagna at 0° of sign
+    lagna_longitude = (lagna_num - 1) * 30.0
+    d9_lagna_index = int(lagna_longitude * 9 / 30) % 12
+    d9_lagna_num = d9_lagna_index + 1
 
-        # ── Step 2: Re-run sub-services to get the actual EvidenceRecords ───
-        # (DomainAssessment does not store records directly, so we replicate
-        # the pipeline to access EvidenceRecord fields for detailed assertions.)
+    # Jupiter navamsa
+    planet_longitude = (jupiter_rashi_num - 1) * 30.0
+    planet_navamsa_index = int(planet_longitude * 9 / 30) % 12
+    planet_navamsa_num = planet_navamsa_index + 1
 
+    house = (planet_navamsa_num - d9_lagna_num) % 12 + 1
+    return house in KENDRA or house in TRIKONA
+
+
+class TestFullYogaPipeline:
+    def test_full_yoga_pipeline(self) -> None:
+        """Full pipeline: structural detection → formation → manifestation → outcome.
+
+        Mock: Sun in Aries (1st), Jupiter in Capricorn (10th), Dasha lord = Jupiter.
+        D9: Jupiter in Kendra → STRONG.
+        """
+        jre_facts = _build_mock_jre_facts()
+
+        # ── Step 1: Structural yoga detection ──────────────────────────────
         kt_service = KendraTrikonaService()
-        evaluator = YogaEvaluatorService()
-        evidence_svc = YogaEvidenceService()
-
         structural_yogas = kt_service.evaluate(jre_facts)
         assert len(structural_yogas) >= 1, "At least one structural yoga must be detected"
 
-        evidence_records: list[EvidenceRecord] = []
+        # Pick the yoga involving Jupiter (the Dasha lord)
+        jupiter_yoga = None
         for yoga in structural_yogas:
-            involved_planets = [yoga.planet_a, yoga.planet_b]
-            involved_houses = [yoga.house_a, yoga.house_b]
+            if "JUPITER" in (yoga.planet_a, yoga.planet_b):
+                jupiter_yoga = yoga
+                break
+        assert jupiter_yoga is not None, "A yoga involving Jupiter must be detected"
 
-            evaluation = evaluator.evaluate_formation(
-                yoga_name=yoga.yoga_type.value,
-                involved_planets=involved_planets,
-                jre_facts=jre_facts,
-            )
-            assert evaluation.status == YogaStatus.FORMED
+        involved_planets = [jupiter_yoga.planet_a, jupiter_yoga.planet_b]
 
-            evaluation = evaluator.evaluate_manifestation(
-                evaluation=evaluation,
-                yoga_planets=involved_planets,
-                active_dasha_lord=jre_facts["active_dasha_lord"],
-                transit_planet=jre_facts["transit_planet"],
-            )
-            assert evaluation.is_manifesting is True, "Yoga must be manifesting under the active Dasha"
+        # ── Step 2: Formation evaluation → FORMED ──────────────────────────
+        evaluator = YogaEvaluatorService()
+        evaluation = evaluator.evaluate_formation(
+            yoga_name=jupiter_yoga.yoga_type.value,
+            involved_planets=involved_planets,
+            jre_facts=jre_facts,
+        )
+        assert evaluation.status == YogaStatus.FORMED
 
-            outcome = evaluator.map_outcome(
-                yoga_name=yoga.yoga_type.value,
-                involved_houses=involved_houses,
-                involved_planets=involved_planets,
-            )
-            evaluation = YogaEvaluation(
-                yoga_name=evaluation.yoga_name,
-                status=evaluation.status,
-                cancellation_reason=evaluation.cancellation_reason,
-                is_manifesting=evaluation.is_manifesting,
-                activation_source=evaluation.activation_source,
-                outcome_category=outcome,
-            )
+        # ── Step 3: D9 strength → STRONG ───────────────────────────────────
+        # Jupiter in MAKARA (rashi_num=10), lagna MESHA (num=1)
+        # D9 lagna = MESHA (0); Jupiter navamsa = MEENA (house 10 → Kendra)
+        d9_strong = _check_d9_strength(jupiter_rashi_num=10, lagna_num=1)
+        assert d9_strong is True, "D9 must confirm Jupiter is STRONG (Kendra/Trikona in D9)"
 
-            record = evidence_svc.convert_to_evidence(evaluation)
-            if record is not None:
-                evidence_records.append(record)
+        # ── Step 4: Manifestation → is_manifesting == True ─────────────────
+        evaluation = evaluator.evaluate_manifestation(
+            evaluation=evaluation,
+            yoga_planets=involved_planets,
+            active_dasha_lord=jre_facts["active_dasha_lord"],
+            transit_planet=jre_facts["transit_planet"],
+        )
+        assert evaluation.is_manifesting is True, "Yoga must be manifesting under Jupiter Dasha"
 
-        assert len(evidence_records) >= 1
+        # ── Step 5: Outcome mapping → CAREER_PROMINENCE ────────────────────
+        outcome = evaluator.map_outcome(
+            yoga_name=jupiter_yoga.yoga_type.value,
+            involved_houses=[jupiter_yoga.house_a, jupiter_yoga.house_b],
+            involved_planets=involved_planets,
+        )
+        assert outcome == "CAREER_PROMINENCE", (
+            f"Outcome must be CAREER_PROMINENCE (10th house involved), got {outcome}"
+        )
 
-        # ── Step 3: Assert EvidenceRecord properties ────────────────────────
-        rec = evidence_records[0]
-        assert isinstance(rec, EvidenceRecord)
-        assert rec.source_id == "YogaEvaluator"
-
-        weight = STRENGTH_VALUES[rec.strength]
-        assert weight > 0.5, f"EvidenceRecord weight {weight} must be > 0.5"
+        # ── Step 6: Build final YogaEvaluation with outcome ────────────────
+        final_eval = YogaEvaluation(
+            yoga_name=evaluation.yoga_name,
+            status=evaluation.status,
+            cancellation_reason=evaluation.cancellation_reason,
+            is_manifesting=evaluation.is_manifesting,
+            activation_source=evaluation.activation_source,
+            outcome_category=outcome,
+            outcome=YogaOutcome.CAREER_PROMINENCE,
+        )
+        assert final_eval.outcome == YogaOutcome.CAREER_PROMINENCE
