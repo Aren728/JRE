@@ -13,6 +13,7 @@ from ..graph.chain_evaluator import (
 from ..graph.chain_strength import ChainStrengthEngine, PathImpact
 from ..structural.models import PlanetRelationship, RelationshipType
 from ..structural.service import RelationshipGraphService
+from ..temporal.timeline_service import DynamicTemporalService, DynamicStrengthResult
 from ..varga.confirmation_service import (
     ConfirmationStatus,
     VargaConfirmationResult,
@@ -35,6 +36,7 @@ class YogaEvaluatorService:
         self._varga_confirmation_svc = VargaConfirmationService()
         self._relationship_graph_svc = RelationshipGraphService()
         self._chain_strength_engine = ChainStrengthEngine()
+        self._dynamic_temporal_svc = DynamicTemporalService()
 
     # ── Varga Confirmation Methods ──
 
@@ -136,6 +138,50 @@ class YogaEvaluatorService:
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
 
+    # ── Dynamic Temporal Methods (Phase C — RI-012) ──
+
+    def compute_dynamic_strength(
+        self,
+        static_strength: float,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> DynamicStrengthResult:
+        """Compute dynamic strength from static score + Dasha + Transit.
+
+        Combines the static chain strength (Layer 1.5) with Vimshottari
+        Dasha activation and Transit (Gochar) multipliers.
+
+        Args:
+            static_strength: Base static score from Layer 1.5 (0.0–1.0).
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts dictionary with planet data.
+
+        Returns:
+            DynamicStrengthResult with all multiplier details.
+        """
+        from datetime import datetime
+
+        target_ts = jre_facts.get("target_timestamp")
+        if target_ts is None:
+            target_ts = datetime(2024, 1, 1)
+
+        moon_nakshatra = jre_facts.get("moon_nakshatra", "ASHWINI")
+        moon_nakshatra_degree = jre_facts.get("moon_nakshatra_degree", 0.0)
+        transit_houses = jre_facts.get("transit_houses")
+        ashtakavarga_scores = jre_facts.get("ashtakavarga_scores")
+        natal_moon_house = jre_facts.get("natal_moon_house", 1)
+
+        return self._dynamic_temporal_svc.compute_dynamic_strength(
+            static_strength=static_strength,
+            target_timestamp=target_ts,
+            moon_nakshatra=moon_nakshatra,
+            moon_nakshatra_degree=moon_nakshatra_degree,
+            yoga_planets=involved_planets,
+            transit_houses=transit_houses,
+            ashtakavarga_scores=ashtakavarga_scores,
+            natal_moon_house=natal_moon_house,
+        )
+
     def evaluate_formation(
         self,
         yoga_name: str,
@@ -172,6 +218,21 @@ class YogaEvaluatorService:
         if "planets" in jre_facts and "lagna_sign" in jre_facts:
             chain_impact = self.compute_chain_impact(involved_planets, jre_facts)
 
+        # ── Layer 3: Dynamic Temporal Evaluation (Phase C — RI-012) ──
+        dasha_mult: float | None = None
+        transit_mult: float | None = None
+        dynamic_str: float | None = None
+        if "moon_nakshatra" in jre_facts:
+            static_score = abs(chain_impact) if chain_impact is not None else 0.5
+            dyn_result = self.compute_dynamic_strength(
+                static_strength=static_score,
+                involved_planets=involved_planets,
+                jre_facts=jre_facts,
+            )
+            dasha_mult = dyn_result.dasha_multiplier
+            transit_mult = dyn_result.transit_multiplier
+            dynamic_str = dyn_result.dynamic_strength
+
         # If modifier pipeline cancels or weakens, override formation status
         if modifier_report.overall_status == ModifierStatus.CANCELLED:
             return YogaEvaluation(
@@ -180,6 +241,9 @@ class YogaEvaluatorService:
                 cancellation_reason=modifier_report.cancellation_reason,
                 modifier_report=modifier_report,
                 chain_impact=chain_impact,
+                dasha_multiplier=dasha_mult,
+                transit_multiplier=transit_mult,
+                dynamic_strength=dynamic_str,
             )
         if modifier_report.overall_status == ModifierStatus.WEAKENED:
             return YogaEvaluation(
@@ -188,6 +252,9 @@ class YogaEvaluatorService:
                 cancellation_reason=modifier_report.cancellation_reason,
                 modifier_report=modifier_report,
                 chain_impact=chain_impact,
+                dasha_multiplier=dasha_mult,
+                transit_multiplier=transit_mult,
+                dynamic_strength=dynamic_str,
             )
 
         return YogaEvaluation(
@@ -195,6 +262,9 @@ class YogaEvaluatorService:
             status=YogaStatus.FORMED,
             modifier_report=modifier_report,
             chain_impact=chain_impact,
+            dasha_multiplier=dasha_mult,
+            transit_multiplier=transit_mult,
+            dynamic_strength=dynamic_str,
         )
 
     def evaluate_manifestation(

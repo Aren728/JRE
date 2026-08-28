@@ -22,6 +22,12 @@ from .activation_service import (
     TransitActivationService,
 )
 from .config import load_temporal_config
+from .dasha_engine import (
+    DashaHierarchy,
+    DashaMultiplierResult,
+    DashaPeriod,
+    VimshottariDashaEngine,
+)
 from .errors import (
     InvalidEventWindowError,
     InvalidTemporalConfigError,
@@ -42,6 +48,8 @@ from .models import (
     parse_iso_timestamp,
     windows_overlap,
 )
+from .timeline_service import DynamicStrengthResult, DynamicTemporalService
+from .transit_evaluator import TransitEvaluationResult, TransitEvaluator, TransitProfile
 from .serialize import (
     activation_type_from_str,
     convergence_level_from_str,
@@ -97,4 +105,16 @@ __all__: tuple[str, ...] = (
     "TransitActivationService",
     "VedhaService",
     "TaraBalaService",
+    "VimshottariDashaEngine",
+    "TransitEvaluator",
+    "DynamicTemporalService",
+    # Dasha models
+    "DashaPeriod",
+    "DashaHierarchy",
+    "DashaMultiplierResult",
+    # Transit models
+    "TransitProfile",
+    "TransitEvaluationResult",
+    # Dynamic models
+    "DynamicStrengthResult",
 )

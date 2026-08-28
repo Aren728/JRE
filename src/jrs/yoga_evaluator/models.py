@@ -42,6 +42,9 @@ class YogaEvaluation:
     outcome: Optional[YogaOutcome] = None
     modifier_report: Optional[_ModifierReport] = field(default=None, repr=False)
     chain_impact: Optional[float] = field(default=None, repr=False)
+    dasha_multiplier: Optional[float] = field(default=None, repr=False)
+    transit_multiplier: Optional[float] = field(default=None, repr=False)
+    dynamic_strength: Optional[float] = field(default=None, repr=False)
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {
@@ -64,4 +67,10 @@ class YogaEvaluation:
             }
         if self.chain_impact is not None:
             d["chain_impact"] = self.chain_impact
+        if self.dasha_multiplier is not None:
+            d["dasha_multiplier"] = self.dasha_multiplier
+        if self.transit_multiplier is not None:
+            d["transit_multiplier"] = self.transit_multiplier
+        if self.dynamic_strength is not None:
+            d["dynamic_strength"] = self.dynamic_strength
         return d
