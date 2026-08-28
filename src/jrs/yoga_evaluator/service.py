@@ -6,11 +6,14 @@ from dataclasses import replace
 from typing import Any
 
 from ..graph.chain_evaluator import (
+    ChainEdge,
     ChainPath,
     DirectedChainEvaluator,
+    EdgeType,
     RelationshipGraph,
 )
 from ..graph.chain_strength import ChainStrengthEngine, PathImpact
+from ..graph.nakshatra_service import NakshatraRelationshipService
 from ..structural.models import PlanetRelationship, RelationshipType
 from ..structural.service import RelationshipGraphService
 from ..temporal.timeline_service import DynamicTemporalService, DynamicStrengthResult
@@ -37,6 +40,37 @@ class YogaEvaluatorService:
         self._relationship_graph_svc = RelationshipGraphService()
         self._chain_strength_engine = ChainStrengthEngine()
         self._dynamic_temporal_svc = DynamicTemporalService()
+        self._nakshatra_svc = NakshatraRelationshipService()
+
+    # ── Nakshatra Edge Discovery (Phase D — RI-012) ──
+
+    def _discover_nakshatra_edges(
+        self,
+        jre_facts: dict[str, Any],
+    ) -> list[Any]:
+        """Discover Nakshatra-based relationships from planet longitudes.
+
+        Extracts planetary longitudes from JRE facts and uses the
+        NakshatraRelationshipService to detect NAKSHATRA_PARIVARTANA
+        and NAKSHATRA_LORD edges.
+
+        Args:
+            jre_facts: JRE facts dictionary with planet data.
+
+        Returns:
+            List of NakshatraEdge objects (may be empty if no longitudes).
+        """
+        planets = jre_facts.get("planets", {})
+        planet_positions: dict[str, float] = {}
+        for pname, pdata in planets.items():
+            longitude = pdata.get("longitude")
+            if isinstance(longitude, (int, float)):
+                planet_positions[pname] = float(longitude)
+
+        if not planet_positions:
+            return []
+
+        return self._nakshatra_svc.detect_relationships(planet_positions)
 
     # ── Varga Confirmation Methods ──
 
@@ -117,6 +151,18 @@ class YogaEvaluatorService:
             Aggregate net functional impact across all chain paths.
         """
         relationships = self._relationship_graph_svc.extract_relationships(jre_facts)
+
+        # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
+        nak_edges = self._discover_nakshatra_edges(jre_facts)
+        for ne in nak_edges:
+            relationships.append(PlanetRelationship(
+                planet_a=ne.source,
+                planet_b=ne.target,
+                relationship_type=RelationshipType.CONJUNCTION,
+                is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+            ))
+
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.compute_aggregate_impact(graph, jre_facts)
 
@@ -135,6 +181,18 @@ class YogaEvaluatorService:
             List of PathImpact objects sorted by absolute impact.
         """
         relationships = self._relationship_graph_svc.extract_relationships(jre_facts)
+
+        # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
+        nak_edges = self._discover_nakshatra_edges(jre_facts)
+        for ne in nak_edges:
+            relationships.append(PlanetRelationship(
+                planet_a=ne.source,
+                planet_b=ne.target,
+                relationship_type=RelationshipType.CONJUNCTION,
+                is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+            ))
+
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
 

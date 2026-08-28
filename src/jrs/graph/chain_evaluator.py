@@ -84,6 +84,8 @@ class EdgeType(StrEnum):
     ONE_WAY_ASPECT = "ONE_WAY_ASPECT"
     DISPOSITOR = "DISPOSITOR"
     PARIVARTANA = "PARIVARTANA"
+    NAKSHATRA_PARIVARTANA = "NAKSHATRA_PARIVARTANA"
+    NAKSHATRA_LORD = "NAKSHATRA_LORD"
 
 
 class Dignity(StrEnum):
@@ -106,6 +108,8 @@ EDGE_WEIGHTS: dict[EdgeType, float] = {
     EdgeType.MUTUAL_ASPECT: 0.85,
     EdgeType.ONE_WAY_ASPECT: 0.75,
     EdgeType.DISPOSITOR: 0.60,
+    EdgeType.NAKSHATRA_PARIVARTANA: 0.85,
+    EdgeType.NAKSHATRA_LORD: 0.65,
 }
 
 # Dignity strength scores (BPHS Ch 3)
@@ -349,7 +353,13 @@ class DirectedChainEvaluator:
             is_combust: Whether the planet is combust.
         """
         dignity_enum = Dignity(dignity)
-        profile = self._lordship_classifier.classify(planet.upper(), self._lagna_sign)
+        try:
+            profile = self._lordship_classifier.classify(planet.upper(), self._lagna_sign)
+            role = profile.functional_role
+            weight = profile.base_weight
+        except ValueError:
+            role = FunctionalRole.NEUTRAL
+            weight = 0.0
         node = ChainNode(
             planet=planet,
             house=house,
@@ -357,8 +367,8 @@ class DirectedChainEvaluator:
             dignity=dignity_enum,
             is_retrograde=is_retrograde,
             is_combust=is_combust,
-            functional_role=profile.functional_role,
-            base_weight=profile.base_weight,
+            functional_role=role,
+            base_weight=weight,
         )
         self._manual_nodes[planet] = node
 
@@ -572,6 +582,22 @@ class DirectedChainEvaluator:
         ):
             return None
 
+        # ── Nakshatra edge detection (Phase D — RI-012) ──
+        # Nakshatra edges are stored as CONJUNCTION with strength_modifier
+        # encoding the actual Nakshatra type and weight.
+        if (
+            rel.relationship_type == RelationshipType.CONJUNCTION
+            and rel.strength_modifier.startswith("nakshatra:")
+        ):
+            parts = rel.strength_modifier.split(":")
+            # Format: "nakshatra:NAKSHATRA_PARIVARTANA:0.85"
+            if len(parts) >= 2:
+                nak_type = parts[1]
+                if nak_type == "NAKSHATRA_PARIVARTANA":
+                    return EdgeType.NAKSHATRA_PARIVARTANA
+                if nak_type == "NAKSHATRA_LORD":
+                    return EdgeType.NAKSHATRA_LORD
+
         if rel.relationship_type == RelationshipType.CONJUNCTION:
             return EdgeType.CONJUNCTION
 
@@ -624,8 +650,22 @@ class DirectedChainEvaluator:
         # Compute dignity
         dignity = self._compute_dignity(planet, sign_num)
 
-        # Classify functional role
-        profile = self._lordship_classifier.classify(planet, lagna_sign)
+        # Classify functional role (handle nodes KETU/RAHU gracefully)
+        try:
+            profile = self._lordship_classifier.classify(planet, lagna_sign)
+        except ValueError:
+            # KETU/RAHU are not classical planets — default to NEUTRAL
+            from .functional_lordship import FunctionalRole
+            return ChainNode(
+                planet=planet,
+                house=house,
+                sign=sign_num,
+                dignity=dignity,
+                is_retrograde=is_retrograde,
+                is_combust=is_combust,
+                functional_role=FunctionalRole.NEUTRAL,
+                base_weight=0.0,
+            )
 
         return ChainNode(
             planet=planet,

@@ -35,6 +35,14 @@ from .functional_lordship import FunctionalRole
 # Per-hop damping factor (BPHS Ch 34 cascading attenuation)
 HOP_DAMPING: float = 0.70
 
+# Nakshatra edge attenuation factors (RI-012 Phase D)
+# Nakshatra edges use a separate attenuation to avoid diluting
+# primary planetary aspect/conjunction edge weights.
+NAKSHATRA_EDGE_ATTENUATION: dict[EdgeType, float] = {
+    EdgeType.NAKSHATRA_PARIVARTANA: 1.00,  # No extra attenuation beyond base weight
+    EdgeType.NAKSHATRA_LORD: 1.00,          # No extra attenuation beyond base weight
+}
+
 # Functional role base weights (F_role)
 _ROLE_WEIGHTS: dict[FunctionalRole, float] = {
     FunctionalRole.YOGAKARAKA: 1.50,
@@ -164,13 +172,15 @@ class ChainStrengthEngine:
         impact = f_role * root_mult.net_multiplier
 
         # Multiply by each hop: W_edge(E_i) × M_node(N_i) × 0.70
+        # Nakshatra edges apply their own attenuation factor.
         hop_mults: list[NodeMultiplier] = []
         for i, edge in enumerate(path.edges):
             if i + 1 < len(path.nodes):
                 next_node = path.nodes[i + 1]
                 next_mult = self.compute_node_multiplier(next_node)
                 hop_mults.append(next_mult)
-                impact *= edge.weight * next_mult.net_multiplier * HOP_DAMPING
+                nak_attenuation = NAKSHATRA_EDGE_ATTENUATION.get(edge.edge_type, 1.00)
+                impact *= edge.weight * next_mult.net_multiplier * HOP_DAMPING * nak_attenuation
 
         return PathImpact(
             path=path,
