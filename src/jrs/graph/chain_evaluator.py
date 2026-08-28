@@ -94,6 +94,7 @@ class Dignity(StrEnum):
     FRIEND_SIGN = "FRIEND_SIGN"
     ENEMY_SIGN = "ENEMY_SIGN"
     DEBILITATED = "DEBILITATED"
+    NEUTRAL = "NEUTRAL"
 
 
 # ── Constants (after enum definitions) ────────────────────────────────────────
@@ -114,6 +115,7 @@ DIGNITY_SCORES: dict[Dignity, float] = {
     Dignity.FRIEND_SIGN: 1.00,
     Dignity.ENEMY_SIGN: 0.75,
     Dignity.DEBILITATED: 0.50,
+    Dignity.NEUTRAL: 1.00,
 }
 
 # Retrograde and combust multipliers
@@ -234,9 +236,12 @@ class DirectedChainEvaluator:
         max_depth: Maximum chain depth in hops (default: 3).
     """
 
-    def __init__(self, max_depth: int = MAX_CHAIN_DEPTH) -> None:
+    def __init__(self, max_depth: int = MAX_CHAIN_DEPTH, lagna_sign: int = 1) -> None:
         self._max_depth = max_depth
+        self._lagna_sign = lagna_sign
         self._lordship_classifier = FunctionalLordshipClassifier()
+        self._manual_nodes: dict[str, ChainNode] = {}
+        self._manual_edges: list[ChainEdge] = []
 
     # ── Public API ────────────────────────────────────────────────────────
 
@@ -321,6 +326,153 @@ class DirectedChainEvaluator:
         )
 
         return all_paths
+
+    # ── Manual Graph Construction API ───────────────────────────────────────
+
+    def add_node(
+        self,
+        planet: str,
+        house: int,
+        sign: int,
+        dignity: str,
+        is_retrograde: bool = False,
+        is_combust: bool = False,
+    ) -> None:
+        """Manually add a node to the internal graph.
+
+        Args:
+            planet: Planet name (e.g., ``"Sun"``).
+            house: House number (1–12).
+            sign: Sign number (1–12) where the planet is placed.
+            dignity: Dignity string (e.g., ``"EXALTED"``, ``"NEUTRAL"``).
+            is_retrograde: Whether the planet is retrograde.
+            is_combust: Whether the planet is combust.
+        """
+        dignity_enum = Dignity(dignity)
+        profile = self._lordship_classifier.classify(planet.upper(), self._lagna_sign)
+        node = ChainNode(
+            planet=planet,
+            house=house,
+            sign=sign,
+            dignity=dignity_enum,
+            is_retrograde=is_retrograde,
+            is_combust=is_combust,
+            functional_role=profile.functional_role,
+            base_weight=profile.base_weight,
+        )
+        self._manual_nodes[planet] = node
+
+    def add_edge(
+        self,
+        source: str,
+        target: str,
+        edge_type: str,
+    ) -> None:
+        """Manually add a directed edge to the internal graph.
+
+        Args:
+            source: Source planet name.
+            target: Target planet name.
+            edge_type: Edge type string (e.g., ``"CONJUNCTION"``).
+        """
+        edge_type_enum = EdgeType(edge_type)
+        edge = ChainEdge(
+            source=source,
+            target=target,
+            edge_type=edge_type_enum,
+            weight=EDGE_WEIGHTS[edge_type_enum],
+        )
+        self._manual_edges.append(edge)
+
+    def find_paths(
+        self,
+        source: str,
+        target: str,
+        max_depth: int = 3,
+    ) -> list[ChainPath]:
+        """Find all paths from *source* to *target* in the manual graph.
+
+        Computes net functional impact for each discovered path using
+        ``ChainStrengthEngine``.
+
+        Args:
+            source: Starting planet name.
+            target: Ending planet name.
+            max_depth: Maximum hops allowed.
+
+        Returns:
+            List of ``ChainPath`` objects with computed impacts.
+        """
+        from .chain_strength import ChainStrengthEngine
+
+        engine = ChainStrengthEngine()
+        all_paths: list[ChainPath] = []
+
+        self._dfs_manual(
+            current=source,
+            target=target,
+            nodes=[self._manual_nodes[source]],
+            edges=[],
+            visited=frozenset({source}),
+            max_depth=max_depth,
+            depth=0,
+            paths=all_paths,
+        )
+
+        # Compute impact for each path
+        result: list[ChainPath] = []
+        for p in all_paths:
+            impact_result = engine.compute_path_impact(p)
+            enriched = ChainPath(
+                nodes=p.nodes,
+                edges=p.edges,
+                length=p.length,
+                net_functional_impact=impact_result.net_functional_impact,
+            )
+            result.append(enriched)
+
+        return result
+
+    def _dfs_manual(
+        self,
+        current: str,
+        target: str,
+        nodes: list[ChainNode],
+        edges: list[ChainEdge],
+        visited: frozenset[str],
+        max_depth: int,
+        depth: int,
+        paths: list[ChainPath],
+    ) -> None:
+        """DFS over manually added nodes/edges."""
+        if current == target and edges:
+            paths.append(ChainPath(
+                nodes=tuple(nodes),
+                edges=tuple(edges),
+                length=len(edges),
+            ))
+
+        if depth >= max_depth:
+            return
+
+        for edge in self._manual_edges:
+            if edge.source != current:
+                continue
+            nxt = edge.target
+            if nxt in visited:
+                continue
+            if nxt not in self._manual_nodes:
+                continue
+            self._dfs_manual(
+                current=nxt,
+                target=target,
+                nodes=[*nodes, self._manual_nodes[nxt]],
+                edges=[*edges, edge],
+                visited=visited | {nxt},
+                max_depth=max_depth,
+                depth=depth + 1,
+                paths=paths,
+            )
 
     # ── DFS Traversal ─────────────────────────────────────────────────────
 
@@ -437,6 +589,13 @@ class DirectedChainEvaluator:
             return EdgeType.MUTUAL_ASPECT
 
         return None
+
+    # ── Utility ─────────────────────────────────────────────────────────────
+
+    def clear_manual(self) -> None:
+        """Clear all manually added nodes and edges."""
+        self._manual_nodes.clear()
+        self._manual_edges.clear()
 
     # ── Node Building ─────────────────────────────────────────────────────
 

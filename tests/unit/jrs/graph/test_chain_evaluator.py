@@ -858,3 +858,74 @@ class TestRelationshipGraph:
         graph = RelationshipGraph(relationships=rels)
         neighbors = graph.neighbors("JUPITER")
         assert neighbors == ["MOON", "SATURN"]
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Test Class 6: Manual Graph API (add_node / add_edge / find_paths)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+def test_conjunction_edge_evaluation():
+    """Manual graph: conjunction + one-way aspect, verify impact computation."""
+    evaluator = DirectedChainEvaluator(lagna_sign=1)  # Aries Lagna
+    evaluator.add_node("Sun", house=1, sign=1, dignity="EXALTED")
+    evaluator.add_node("Mercury", house=1, sign=1, dignity="FRIEND_SIGN")
+    evaluator.add_node("Mars", house=5, sign=5, dignity="OWN_SIGN")
+    evaluator.add_edge("Sun", "Mercury", "CONJUNCTION")
+    evaluator.add_edge("Mercury", "Mars", "ONE_WAY_ASPECT")
+
+    paths = evaluator.find_paths("Sun", "Mars", max_depth=3)
+    assert len(paths) == 1
+    path = paths[0]
+    assert path.length == 2
+    assert [n.planet for n in path.nodes] == ["Sun", "Mercury", "Mars"]
+    assert path.edges[0].edge_type == "CONJUNCTION"
+    assert path.edges[0].weight == 1.00
+
+    impact = ChainStrengthEngine.evaluate_path_impact(path)
+    assert impact == pytest.approx(0.6891, abs=1e-4)
+
+
+def test_parivartana_edge_evaluation():
+    """Manual graph: parivartana + one-way aspect, verify non-zero impact."""
+    evaluator = DirectedChainEvaluator(lagna_sign=2)  # Taurus Lagna
+    evaluator.add_node("Venus", house=12, sign=1, dignity="ENEMY_SIGN")
+    evaluator.add_node("Mars", house=6, sign=7, dignity="NEUTRAL")
+    evaluator.add_node("Jupiter", house=11, sign=12, dignity="OWN_SIGN")
+    evaluator.add_edge("Venus", "Mars", "PARIVARTANA")
+    evaluator.add_edge("Mars", "Jupiter", "ONE_WAY_ASPECT")
+
+    paths = evaluator.find_paths("Venus", "Jupiter", max_depth=3)
+    assert len(paths) == 1
+    path = paths[0]
+    assert path.length == 2
+    assert [n.planet for n in path.nodes] == ["Venus", "Mars", "Jupiter"]
+    assert path.edges[0].edge_type == "PARIVARTANA"
+    assert path.edges[0].weight == 0.90
+
+    impact = ChainStrengthEngine.evaluate_path_impact(path)
+    assert impact != 0.0
+    assert path.net_functional_impact == impact
+
+
+def test_combined_conjunction_and_parivartana_multi_hop_chain():
+    """Manual graph: parivartana + one-way aspect with debilated root."""
+    evaluator = DirectedChainEvaluator(lagna_sign=4)  # Cancer Lagna
+    evaluator.add_node("Mars", house=1, sign=4, dignity="DEBILITATED")
+    evaluator.add_node("Moon", house=5, sign=8, dignity="FRIEND_SIGN")
+    evaluator.add_node("Jupiter", house=9, sign=12, dignity="EXALTED")
+    evaluator.add_edge("Mars", "Moon", "PARIVARTANA")
+    evaluator.add_edge("Moon", "Jupiter", "ONE_WAY_ASPECT")
+
+    paths = evaluator.find_paths("Mars", "Jupiter", max_depth=3)
+    assert len(paths) == 1
+    path = paths[0]
+    assert path.length == 2
+    assert [n.planet for n in path.nodes] == ["Mars", "Moon", "Jupiter"]
+    assert path.edges[0].edge_type == "PARIVARTANA"
+    assert path.edges[0].weight == 0.90
+    assert path.edges[1].edge_type == "ONE_WAY_ASPECT"
+    assert path.edges[1].weight == 0.75
+
+    impact = ChainStrengthEngine.evaluate_path_impact(path)
+    assert impact > 0.0

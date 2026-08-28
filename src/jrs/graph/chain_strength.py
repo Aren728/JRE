@@ -237,6 +237,23 @@ class ChainStrengthEngine:
         impacts = self.evaluate_all_paths(graph, jre_facts)
         return sum(pi.net_functional_impact for pi in impacts)
 
+    @staticmethod
+    def evaluate_path_impact(path: ChainPath) -> float:
+        """Evaluate the net functional impact of a single chain path.
+
+        This is a convenience static method that creates a temporary engine
+        instance and returns just the float impact value.
+
+        Args:
+            path: ChainPath to evaluate.
+
+        Returns:
+            Net functional impact as a float.
+        """
+        engine = ChainStrengthEngine()
+        result = engine.compute_path_impact(path)
+        return result.net_functional_impact
+
     def get_strongest_chain(
         self,
         graph: RelationshipGraph,
