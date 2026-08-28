@@ -5,6 +5,11 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
+from ..varga.confirmation_service import (
+    ConfirmationStatus,
+    VargaConfirmationResult,
+    VargaConfirmationService,
+)
 from .modifier_service import ModifierEvaluationService, ModifierReport, ModifierStatus
 from .models import YogaEvaluation, YogaOutcome, YogaStatus
 
@@ -16,8 +21,68 @@ class YogaEvaluatorService:
     """Deterministic service for evaluating yoga formation and cancellation."""
 
     def __init__(self) -> None:
-        """Initialize with ModifierEvaluationService for Phase 1 pipeline."""
+        """Initialize with ModifierEvaluationService and VargaConfirmationService."""
         self._modifier_svc = ModifierEvaluationService()
+        self._varga_confirmation_svc = VargaConfirmationService()
+
+    # ── Varga Confirmation Methods ──
+
+    def evaluate_d9_confirmation(
+        self,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> VargaConfirmationResult:
+        """Evaluate D9 Navamsha confirmation for yoga-forming planets.
+
+        Checks D9 positions for Kendra/Trikona confirmation, debilitation
+        cancellation, and Vargottama status.
+
+        Args:
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts with ``planet_d9_sign`` and ``planet_d9_house``.
+
+        Returns:
+            VargaConfirmationResult with confirmation status and strength.
+        """
+        return self._varga_confirmation_svc.evaluate_d9_confirmation(
+            involved_planets, jre_facts
+        )
+
+    def evaluate_d10_career(
+        self,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> VargaConfirmationResult:
+        """Evaluate D10 (Dashamsha) confirmation for career yogas.
+
+        Args:
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts with ``planet_d10_sign``.
+
+        Returns:
+            VargaConfirmationResult for D10 career confirmation.
+        """
+        return self._varga_confirmation_svc.evaluate_d10_career(
+            involved_planets, jre_facts
+        )
+
+    def evaluate_d7_progeny(
+        self,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> VargaConfirmationResult:
+        """Evaluate D7 (Saptamamsha) confirmation for progeny yogas.
+
+        Args:
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts with ``planet_d7_sign``.
+
+        Returns:
+            VargaConfirmationResult for D7 progeny confirmation.
+        """
+        return self._varga_confirmation_svc.evaluate_d7_progeny(
+            involved_planets, jre_facts
+        )
 
     def evaluate_formation(
         self,
@@ -510,5 +575,31 @@ class YogaEvaluatorService:
                                 activation_source=f"Transit: {transit_planet}",
                             )
                             break
+
+        # ── Phase 4: Apply Varga (D9) Confirmation Mask ──
+        # BPHS Ch 35: D9 confirmation validates or cancels yoga strength.
+        # Applied after modifier pipeline (Phase 1) to post-formation yogas.
+        if "planet_d9_house" in jre_facts:
+            for idx, (eval_, involved) in enumerate(
+                zip(results, yoga_involved_planets)
+            ):
+                # Only apply to FORMED or WEAKENED yogas (not already CANCELLED)
+                if eval_.status == YogaStatus.CANCELLED:
+                    continue
+                # Skip Vipareeta Raja: dusthana placement is required
+                if eval_.yoga_name == "Vipareeta Raja":
+                    continue
+
+                confirmation = self._varga_confirmation_svc.evaluate_d9_confirmation(
+                    involved, jre_facts
+                )
+
+                # Binary cancellation: any debilitated planet in D9 → CANCELLED
+                if confirmation.confirmation_status == ConfirmationStatus.CANCELLED:
+                    results[idx] = replace(
+                        eval_,
+                        status=YogaStatus.CANCELLED,
+                        cancellation_reason=confirmation.cancellation_reason,
+                    )
 
         return results
