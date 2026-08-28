@@ -520,6 +520,7 @@ class HistoricalEvent:
     end_date: str | None = None
     event_certainty: float = 1.0
     description: str = ""
+    expected_layer_states: dict[str, str] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""
@@ -531,6 +532,7 @@ class HistoricalEvent:
             "end_date": self.end_date,
             "event_certainty": self.event_certainty,
             "description": self.description,
+            "expected_layer_states": self.expected_layer_states,
         }
 
 
@@ -615,4 +617,184 @@ class MetricEvaluation:
             "hit": self.hit,
             "timing_match": self.timing_match,
             "score": self.score,
+        }
+
+
+# -- JRS-088: Blind Validation Runner Engine ---------------------------------
+
+
+class CryptographicTamperError(Exception):
+    """Raised when packet verification fails due to SHA-256 hash mismatch.
+
+    This indicates that a persisted prediction packet has been modified
+    after being sealed, violating the blind validation integrity guarantee.
+    """
+
+    def __init__(self, message: str, expected_hash: str = "", actual_hash: str = "") -> None:
+        self.expected_hash = expected_hash
+        self.actual_hash = actual_hash
+        super().__init__(message)
+
+
+class ValidationStatus(Enum):
+    """Status codes for per-chart blind validation results."""
+
+    SUCCESS = "SUCCESS"
+    TAMPERED = "TAMPERED"
+    INCOMPLETE_PROVENANCE = "INCOMPLETE_PROVENANCE"
+    PERSISTENCE_FAILED = "PERSISTENCE_FAILED"
+
+
+@dataclass(frozen=True)
+class SingleValidationReport:
+    """Result of a single blind validation run.
+
+    Attributes:
+        chart_id: The subject chart identifier.
+        status: Validation outcome status code.
+        metric_evaluation: Scoring result (None if evaluation failed).
+        error_message: Human-readable error (empty on success).
+    """
+
+    chart_id: str
+    status: ValidationStatus
+    metric_evaluation: MetricEvaluation | None = None
+    error_message: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        d: dict[str, Any] = {
+            "chart_id": self.chart_id,
+            "status": self.status.value,
+            "error_message": self.error_message,
+        }
+        if self.metric_evaluation is not None:
+            d["metric_evaluation"] = self.metric_evaluation.to_dict()
+        return d
+
+
+@dataclass(frozen=True)
+class BatchValidationReport:
+    """Aggregated results from a batch blind validation sweep.
+
+    Attributes:
+        total_charts: Number of charts evaluated.
+        successful_evaluations: Charts that completed successfully.
+        failed_evaluations: Charts that failed (tamper, persistence, etc.).
+        reports: Per-chart SingleValidationReport entries.
+    """
+
+    total_charts: int = 0
+    successful_evaluations: int = 0
+    failed_evaluations: int = 0
+    reports: tuple[SingleValidationReport, ...] = ()
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "total_charts": self.total_charts,
+            "successful_evaluations": self.successful_evaluations,
+            "failed_evaluations": self.failed_evaluations,
+            "reports": [r.to_dict() for r in self.reports],
+        }
+
+
+# -- JRS-090: Calibration & Error Analysis Engine -----------------------------
+
+
+@dataclass(frozen=True)
+class LayerPerformance:
+    """Per-layer accuracy breakdown across the 5-Layer Pipeline.
+
+    Compares expected layer states (from ground truth) against the
+    sealed prediction telemetry from FrozenPredictionPacket.
+
+    Attributes:
+        formation_accuracy: Accuracy of Yoga/Aspect detection layer.
+        relationship_accuracy: Accuracy of Kendra/Trikona/Lordship layer.
+        modification_accuracy: Accuracy of Dignity/Combustion/Retro layer.
+        varga_confirmation_accuracy: Accuracy of D9/D10/D7 confirmation.
+        activation_accuracy: Accuracy of Dasha + Transit + Nakshatra.
+    """
+
+    formation_accuracy: float = 0.0
+    relationship_accuracy: float = 0.0
+    modification_accuracy: float = 0.0
+    varga_confirmation_accuracy: float = 0.0
+    activation_accuracy: float = 0.0
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "formation_accuracy": round(self.formation_accuracy, 4),
+            "relationship_accuracy": round(self.relationship_accuracy, 4),
+            "modification_accuracy": round(self.modification_accuracy, 4),
+            "varga_confirmation_accuracy": round(self.varga_confirmation_accuracy, 4),
+            "activation_accuracy": round(self.activation_accuracy, 4),
+        }
+
+
+@dataclass(frozen=True)
+class CohortCalibrationReport:
+    """Full calibration and error analysis report for a cohort.
+
+    Computes precision, recall, F1, FPR, FNR, timing-window IoU,
+    and Expected Calibration Error (ECE) across the cohort.
+    Includes telescopic layer-by-layer performance decomposition.
+
+    Attributes:
+        total_evaluated: Number of evaluations processed.
+        precision: TP / (TP + FP).
+        recall: TP / (TP + FN).
+        f1_score: Harmonic mean of precision and recall.
+        false_positive_rate: FP / (FP + TN).
+        false_negative_rate: FN / (FN + TP).
+        timing_window_overlap_avg: Average IoU across all matches.
+        confidence_calibration_error: Expected Calibration Error.
+        precision_ci_lower: Wilson lower bound for precision.
+        precision_ci_upper: Wilson upper bound for precision.
+        recall_ci_lower: Wilson lower bound for recall.
+        recall_ci_upper: Wilson upper bound for recall.
+        f1_ci_lower: Wilson lower bound for F1.
+        f1_ci_upper: Wilson upper bound for F1.
+        layer_telemetry: Per-layer accuracy breakdown.
+        chart_evaluations: Per-chart metric evaluations.
+    """
+
+    total_evaluated: int = 0
+    precision: float = 0.0
+    recall: float = 0.0
+    f1_score: float = 0.0
+    false_positive_rate: float = 0.0
+    false_negative_rate: float = 0.0
+    timing_window_overlap_avg: float = 0.0
+    confidence_calibration_error: float = 0.0
+    precision_ci_lower: float = 0.0
+    precision_ci_upper: float = 0.0
+    recall_ci_lower: float = 0.0
+    recall_ci_upper: float = 0.0
+    f1_ci_lower: float = 0.0
+    f1_ci_upper: float = 0.0
+    layer_telemetry: LayerPerformance = field(default_factory=LayerPerformance)
+    chart_evaluations: tuple[MetricEvaluation, ...] = ()
+
+    def to_dict(self) -> dict[str, Any]:
+        """Deterministic serialization."""
+        return {
+            "total_evaluated": self.total_evaluated,
+            "precision": round(self.precision, 4),
+            "recall": round(self.recall, 4),
+            "f1_score": round(self.f1_score, 4),
+            "false_positive_rate": round(self.false_positive_rate, 4),
+            "false_negative_rate": round(self.false_negative_rate, 4),
+            "timing_window_overlap_avg": round(self.timing_window_overlap_avg, 4),
+            "confidence_calibration_error": round(self.confidence_calibration_error, 4),
+            "precision_ci_lower": round(self.precision_ci_lower, 4),
+            "precision_ci_upper": round(self.precision_ci_upper, 4),
+            "recall_ci_lower": round(self.recall_ci_lower, 4),
+            "recall_ci_upper": round(self.recall_ci_upper, 4),
+            "f1_ci_lower": round(self.f1_ci_lower, 4),
+            "f1_ci_upper": round(self.f1_ci_upper, 4),
+            "layer_telemetry": self.layer_telemetry.to_dict(),
+            "chart_evaluations": [e.to_dict() for e in self.chart_evaluations],
         }

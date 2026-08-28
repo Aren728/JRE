@@ -281,3 +281,30 @@ class ChainStrengthEngine:
         """
         impacts = self.evaluate_all_paths(graph, jre_facts)
         return impacts[0] if impacts else None
+
+    # ── Formation Score ───────────────────────────────────────────────────
+
+    def compute_formation_score(self, paths: list[ChainPath]) -> float:
+        """Compute the aggregate formation score from multiple chain paths.
+
+        Aggregates net functional impact across all paths and clamps
+        the final output to [0.0, 1.0]. Intermediate signed scores
+        (including negative MALEFIC impacts) are preserved during
+        aggregation.
+
+        Args:
+            paths: List of ChainPath objects to aggregate.
+
+        Returns:
+            Formation strength score clamped to [0.0, 1.0].
+        """
+        if not paths:
+            return 0.0
+
+        total_impact = 0.0
+        for path in paths:
+            impact_result = self.compute_path_impact(path)
+            total_impact += impact_result.net_functional_impact
+
+        # Clamp ONLY the final output to [0.0, 1.0]
+        return max(0.0, min(1.0, round(total_impact, 6)))

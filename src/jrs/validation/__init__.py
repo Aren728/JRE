@@ -40,13 +40,17 @@ Blind Validation (JRS-087)::
     metric = protocol.evaluate_prediction_against_event(packet, event)
 """
 
+from .calibration import CohortCalibrationEngine
 from .models import (
+    BatchValidationReport,
     BirthChart,
     BirthData,
     BirthProvenance,
     ChartSubject,
     ChartValidationResult,
     ClassificationMetrics,
+    CohortCalibrationReport,
+    CryptographicTamperError,
     DomainCalibration,
     DomainType,
     EventDomain,
@@ -54,27 +58,37 @@ from .models import (
     FrozenPredictionPacket,
     HistoricalEvent,
     KnownEvent,
+    LayerPerformance,
     MetricEvaluation,
     PredictionVerdict,
     PredictedYoga,
     RoddenRating,
+    SingleValidationReport,
     StatisticalReport,
     TimingAnalysis,
     TimingMatchStatus,
     TimingWindow,
+    ValidationStatus,
 )
+from .datasets import DatasetLoader, REFERENCE_COHORT_12
 from .protocol import BlindValidationProtocol
-from .runner import HistoricalValidationRunner
+from .runner import BlindValidationRunner, HistoricalValidationRunner
 from .stats import StatisticalEvaluator
+from .storage import PredictionPacketStore
 
 __all__ = [
+    "BatchValidationReport",
     "BirthChart",
     "BirthData",
     "BirthProvenance",
     "BlindValidationProtocol",
+    "BlindValidationRunner",
     "ChartSubject",
     "ChartValidationResult",
     "ClassificationMetrics",
+    "CohortCalibrationEngine",
+    "CohortCalibrationReport",
+    "CryptographicTamperError",
     "DomainCalibration",
     "DomainType",
     "EventDomain",
@@ -83,13 +97,19 @@ __all__ = [
     "HistoricalEvent",
     "HistoricalValidationRunner",
     "KnownEvent",
+    "LayerPerformance",
     "MetricEvaluation",
+    "PredictionPacketStore",
     "PredictionVerdict",
     "PredictedYoga",
     "RoddenRating",
+    "SingleValidationReport",
     "StatisticalEvaluator",
     "StatisticalReport",
     "TimingAnalysis",
     "TimingMatchStatus",
     "TimingWindow",
+    "DatasetLoader",
+    "REFERENCE_COHORT_12",
+    "ValidationStatus",
 ]

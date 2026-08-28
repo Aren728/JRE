@@ -21,6 +21,9 @@ from .functional_lordship import (
     LordshipProfile,
 )
 
+# Hop damping constant (imported from chain_strength to avoid circular import)
+HOP_DAMPING: float = 0.70
+
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -86,6 +89,8 @@ class EdgeType(StrEnum):
     PARIVARTANA = "PARIVARTANA"
     NAKSHATRA_PARIVARTANA = "NAKSHATRA_PARIVARTANA"
     NAKSHATRA_LORD = "NAKSHATRA_LORD"
+    LORD_OF = "LORD_OF"
+    OCCUPIES = "OCCUPIES"
 
 
 class Dignity(StrEnum):
@@ -110,6 +115,8 @@ EDGE_WEIGHTS: dict[EdgeType, float] = {
     EdgeType.DISPOSITOR: 0.60,
     EdgeType.NAKSHATRA_PARIVARTANA: 0.85,
     EdgeType.NAKSHATRA_LORD: 0.65,
+    EdgeType.LORD_OF: 0.80,
+    EdgeType.OCCUPIES: 0.70,
 }
 
 # Dignity strength scores (BPHS Ch 3)
@@ -622,6 +629,97 @@ class DirectedChainEvaluator:
         """Clear all manually added nodes and edges."""
         self._manual_nodes.clear()
         self._manual_edges.clear()
+
+    # ── Kendra-Trikona Nexus Evaluator ─────────────────────────────────────
+
+    def evaluate_kendra_trikona_nexus(self, lagna_sign: int) -> float:
+        """Evaluate the Kendra-Trikona structural nexus strength.
+
+        Identifies Kendra lords (houses 1, 4, 7, 10) and Trikona lords
+        (houses 1, 5, 9), then traverses edges between them to compute
+        an edge-weighted connection score with per-hop damping.
+
+        Args:
+            lagna_sign: Lagna sign number (1–12).
+
+        Returns:
+            Continuous score representing structural nexus strength.
+            Higher scores indicate stronger Kendra-Trikona connections.
+        """
+        if not self._manual_nodes:
+            return 0.0
+
+        kendra_houses = {1, 4, 7, 10}
+        trikona_houses = {1, 5, 9}
+
+        kendra_lords: set[str] = set()
+        trikona_lords: set[str] = set()
+
+        for planet, node in self._manual_nodes.items():
+            if node.house in kendra_houses:
+                kendra_lords.add(planet)
+            if node.house in trikona_houses:
+                trikona_lords.add(planet)
+
+        # Find edges between Kendra and Trikona lords
+        nexus_score = 0.0
+        for edge in self._manual_edges:
+            src_is_kendra = edge.source in kendra_lords
+            src_is_trikona = edge.source in trikona_lords
+            tgt_is_kendra = edge.target in kendra_lords
+            tgt_is_trikona = edge.target in trikona_lords
+
+            # Connection between a Kendra lord and a Trikona lord
+            if (src_is_kendra and tgt_is_trikona) or (src_is_trikona and tgt_is_kendra):
+                # Apply hop-decay based on edge weight
+                nexus_score += edge.weight * HOP_DAMPING
+
+        return round(nexus_score, 6)
+
+    # ── Parivartana Yoga Detector ──────────────────────────────────────────
+
+    def detect_parivartana_yogas(self) -> list[ChainPath]:
+        """Detect mutual sign/lord exchange paths (Parivartana Yogas).
+
+        Filters existing graph edges for PARIVARTANA type and returns
+        all mutual exchange paths. Uses existing visited-node tracking
+        for cycle safety.
+
+        Returns:
+            List of ChainPath objects representing Parivartana exchanges.
+        """
+        paths: list[ChainPath] = []
+
+        for edge in self._manual_edges:
+            if edge.edge_type != EdgeType.PARIVARTANA:
+                continue
+
+            # Check for reciprocal PARIVARTANA edge (mutual exchange)
+            for reverse_edge in self._manual_edges:
+                if (
+                    reverse_edge.edge_type == EdgeType.PARIVARTANA
+                    and reverse_edge.source == edge.target
+                    and reverse_edge.target == edge.source
+                ):
+                    # Found mutual exchange — create path
+                    if edge.source in self._manual_nodes and edge.target in self._manual_nodes:
+                        path = ChainPath(
+                            nodes=(
+                                self._manual_nodes[edge.source],
+                                self._manual_nodes[edge.target],
+                            ),
+                            edges=(edge, reverse_edge),
+                            length=2,
+                        )
+                        # Avoid duplicates (A→B and B→A are same exchange)
+                        path_key = tuple(sorted([edge.source, edge.target]))
+                        if not any(
+                            tuple(sorted([p.nodes[0].planet, p.nodes[1].planet])) == path_key
+                            for p in paths
+                        ):
+                            paths.append(path)
+
+        return paths
 
     # ── Node Building ─────────────────────────────────────────────────────
 

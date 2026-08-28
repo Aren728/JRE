@@ -1,24 +1,17 @@
-"""JRS Phase A: Historical Validation Runner — Pipeline Execution & Comparison.
+"""JRS Phase A & JRS-088: Validation Runners.
 
-Ingests historical birth charts with verified life events, executes the
-5-Layer Yoga Pipeline (frozen weights), and compares predicted activations
-against real outcomes.
-
-Pipeline:
-    1. Structural Detection  (YogaEvaluatorService)
-    2. Deep Modifiers        (ModifierEvaluationService — 5-tier)
-    3. Transit Activation    (transit_planet parameter)
-    4. Varga Confirmation    (VargaConfirmationService — D9/D10/D7)
-    5. Saptavargaja Bala     (SaptavargajaBalaService — 7-Varga scoring)
-
-Output: ChartValidationResult → StatisticalReport.
+HistoricalValidationRunner: Executes the non-blind 5-Layer Pipeline.
+BlindValidationRunner: Executes isolated blind evaluation with SHA-256
+    sealing and cryptographic verification.
 
 Source: RI-010 Engine Architecture; BPHS Ch 7, 33, 35, 43, 45.
+    JRS-088 Blind Historical Validation Runner Engine.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import logging
+from pathlib import Path
 from typing import Any
 
 from jrs.temporal.models import windows_overlap
@@ -31,16 +24,27 @@ from jrs.yoga_evaluator.models import YogaOutcome, YogaStatus
 from jrs.yoga_evaluator.service import YogaEvaluatorService
 
 from .models import (
+    BatchValidationReport,
     BirthChart,
+    ChartSubject,
     ChartValidationResult,
+    CryptographicTamperError,
+    DomainType,
     EventDomain,
     EventPredictionMatch,
+    FrozenPredictionPacket,
+    HistoricalEvent,
     KnownEvent,
+    MetricEvaluation,
     PredictionVerdict,
     PredictedYoga,
+    SingleValidationReport,
     TimingMatchStatus,
     TimingWindow,
+    ValidationStatus,
 )
+
+logger = logging.getLogger(__name__)
 
 
 # ── Yoga-to-Domain Mapping ───────────────────────────────────────────────────
@@ -450,3 +454,167 @@ class HistoricalValidationRunner:
                 pass
 
         return best_status, best_ratio
+
+
+# -- JRS-088: Blind Validation Runner Engine ---------------------------------
+
+
+class BlindValidationRunner:
+    """Isolated blind validation runner with cryptographic sealing.
+
+    Enforces strict two-stage execution:
+    1. Stage 1 (Prediction): Generate prediction, seal with SHA-256, persist.
+    2. Stage 2 (Verification): Load from disk, verify hash, score against event.
+
+    This ensures no in-process state sharing between the prediction engine
+    and ground-truth event data.
+
+    Usage::
+
+        runner = BlindValidationRunner()
+        metric = runner.run_blind_evaluation(
+            subject=chart_subject,
+            target_timestamp=target_dt,
+            ground_truth_event=event,
+            output_dir=Path("./output"),
+        )
+    """
+
+    def __init__(
+        self,
+        pipeline_service: Any = None,
+        packet_store: Any = None,
+        protocol: Any = None,
+    ) -> None:
+        """Initialize with injectable dependencies.
+
+        Args:
+            pipeline_service: YogaEvaluatorService for prediction generation.
+            packet_store: PredictionPacketStore for persistence.
+            protocol: BlindValidationProtocol for sealing and scoring.
+        """
+        self._pipeline_service = pipeline_service
+        self._packet_store = packet_store
+        self._protocol = protocol
+
+    def _ensure_dependencies(self) -> None:
+        """Lazy-initialize dependencies if not injected."""
+        if self._pipeline_service is None:
+            self._pipeline_service = YogaEvaluatorService()
+        if self._packet_store is None:
+            from .storage import PredictionPacketStore
+            self._packet_store = PredictionPacketStore()
+        if self._protocol is None:
+            from .protocol import BlindValidationProtocol
+            self._protocol = BlindValidationProtocol(self._pipeline_service)
+
+    def run_blind_evaluation(
+        self,
+        subject: ChartSubject,
+        target_timestamp: str,
+        ground_truth_event: HistoricalEvent,
+        output_dir: Path,
+    ) -> MetricEvaluation:
+        """Execute a fully isolated blind evaluation.
+
+        Stage 1: Generate prediction from subject only, seal with SHA-256,
+            persist to disk, then clear prediction context.
+        Stage 2: Load and verify packet from disk, score against event.
+
+        Args:
+            subject: Birth chart subject (no event data).
+            target_timestamp: ISO 8601 evaluation timestamp.
+            ground_truth_event: Independent ground-truth event.
+            output_dir: Directory for packet persistence.
+
+        Returns:
+            MetricEvaluation with scoring results.
+
+        Raises:
+            CryptographicTamperError: If packet integrity check fails.
+        """
+        self._ensure_dependencies()
+
+        # -- Stage 1: Prediction Generation & Sealing --
+        packet = self._protocol.generate_prediction_packet(
+            subject, target_timestamp,
+        )
+
+        # Persist sealed packet to disk
+        packet_path = output_dir / f"{subject.chart_id}_packet.json"
+        try:
+            self._packet_store.save_packet(packet, packet_path)
+        except Exception as exc:
+            raise RuntimeError(
+                f"Failed to persist prediction packet: {exc}"
+            ) from exc
+
+        # Clear prediction context (simulate process isolation)
+        del packet
+
+        # -- Stage 2: Verification & Scoring --
+        verified_packet = self._packet_store.load_and_verify(packet_path)
+
+        metric = self._protocol.evaluate_prediction_against_event(
+            verified_packet, ground_truth_event,
+        )
+
+        return metric
+
+    def run_batch_evaluation(
+        self,
+        evaluation_pairs: list[
+            tuple[ChartSubject, str, HistoricalEvent]
+        ],
+        output_dir: Path,
+    ) -> BatchValidationReport:
+        """Execute isolated evaluations across multiple charts.
+
+        Each evaluation is independently sealed and verified. Failures
+        in one chart do not affect others.
+
+        Args:
+            evaluation_pairs: List of (subject, target_timestamp, event) tuples.
+            output_dir: Directory for packet persistence.
+
+        Returns:
+            BatchValidationReport with per-chart results.
+        """
+        self._ensure_dependencies()
+
+        reports: list[SingleValidationReport] = []
+        successes = 0
+        failures = 0
+
+        for subject, target_ts, event in evaluation_pairs:
+            try:
+                metric = self.run_blind_evaluation(
+                    subject, target_ts, event, output_dir,
+                )
+                reports.append(SingleValidationReport(
+                    chart_id=subject.chart_id,
+                    status=ValidationStatus.SUCCESS,
+                    metric_evaluation=metric,
+                ))
+                successes += 1
+            except CryptographicTamperError as exc:
+                reports.append(SingleValidationReport(
+                    chart_id=subject.chart_id,
+                    status=ValidationStatus.TAMPERED,
+                    error_message=str(exc),
+                ))
+                failures += 1
+            except Exception as exc:
+                reports.append(SingleValidationReport(
+                    chart_id=subject.chart_id,
+                    status=ValidationStatus.PERSISTENCE_FAILED,
+                    error_message=str(exc),
+                ))
+                failures += 1
+
+        return BatchValidationReport(
+            total_charts=len(evaluation_pairs),
+            successful_evaluations=successes,
+            failed_evaluations=failures,
+            reports=tuple(reports),
+        )
