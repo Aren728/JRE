@@ -41,6 +41,7 @@ class YogaEvaluation:
     outcome_category: Optional[str] = None
     outcome: Optional[YogaOutcome] = None
     modifier_report: Optional[_ModifierReport] = field(default=None, repr=False)
+    chain_impact: Optional[float] = field(default=None, repr=False)
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {
@@ -61,4 +62,6 @@ class YogaEvaluation:
                 "overall_strength": self.modifier_report.overall_strength,
                 "cancellation_reason": self.modifier_report.cancellation_reason,
             }
+        if self.chain_impact is not None:
+            d["chain_impact"] = self.chain_impact
         return d

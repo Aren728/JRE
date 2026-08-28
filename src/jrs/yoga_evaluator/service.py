@@ -5,6 +5,14 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
+from ..graph.chain_evaluator import (
+    ChainPath,
+    DirectedChainEvaluator,
+    RelationshipGraph,
+)
+from ..graph.chain_strength import ChainStrengthEngine, PathImpact
+from ..structural.models import PlanetRelationship, RelationshipType
+from ..structural.service import RelationshipGraphService
 from ..varga.confirmation_service import (
     ConfirmationStatus,
     VargaConfirmationResult,
@@ -21,9 +29,12 @@ class YogaEvaluatorService:
     """Deterministic service for evaluating yoga formation and cancellation."""
 
     def __init__(self) -> None:
-        """Initialize with ModifierEvaluationService and VargaConfirmationService."""
+        """Initialize with ModifierEvaluationService, VargaConfirmationService,
+        RelationshipGraphService, and ChainStrengthEngine (Phase B)."""
         self._modifier_svc = ModifierEvaluationService()
         self._varga_confirmation_svc = VargaConfirmationService()
+        self._relationship_graph_svc = RelationshipGraphService()
+        self._chain_strength_engine = ChainStrengthEngine()
 
     # ── Varga Confirmation Methods ──
 
@@ -84,6 +95,47 @@ class YogaEvaluatorService:
             involved_planets, jre_facts
         )
 
+    # ── Chain Strength Methods (Phase B — RI-011) ──
+
+    def compute_chain_impact(
+        self,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> float:
+        """Compute net functional impact from multi-hop chain analysis.
+
+        Builds a RelationshipGraph from existing PlanetRelationship objects,
+        runs the ChainStrengthEngine, and returns the aggregate impact.
+
+        Args:
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts dictionary with planet data.
+
+        Returns:
+            Aggregate net functional impact across all chain paths.
+        """
+        relationships = self._relationship_graph_svc.extract_relationships(jre_facts)
+        graph = RelationshipGraph(relationships=tuple(relationships))
+        return self._chain_strength_engine.compute_aggregate_impact(graph, jre_facts)
+
+    def get_chain_paths(
+        self,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+    ) -> list[PathImpact]:
+        """Get all chain path impacts for involved planets.
+
+        Args:
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts dictionary with planet data.
+
+        Returns:
+            List of PathImpact objects sorted by absolute impact.
+        """
+        relationships = self._relationship_graph_svc.extract_relationships(jre_facts)
+        graph = RelationshipGraph(relationships=tuple(relationships))
+        return self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
+
     def evaluate_formation(
         self,
         yoga_name: str,
@@ -114,6 +166,12 @@ class YogaEvaluatorService:
             involved_planets, jre_facts
         )
 
+        # ── Layer 1.5: Chain Strength Computation (Phase B — RI-011) ──
+        # Compute multi-hop chain impact as a modifier into Layer 2.
+        chain_impact: float | None = None
+        if "planets" in jre_facts and "lagna_sign" in jre_facts:
+            chain_impact = self.compute_chain_impact(involved_planets, jre_facts)
+
         # If modifier pipeline cancels or weakens, override formation status
         if modifier_report.overall_status == ModifierStatus.CANCELLED:
             return YogaEvaluation(
@@ -121,6 +179,7 @@ class YogaEvaluatorService:
                 status=YogaStatus.CANCELLED,
                 cancellation_reason=modifier_report.cancellation_reason,
                 modifier_report=modifier_report,
+                chain_impact=chain_impact,
             )
         if modifier_report.overall_status == ModifierStatus.WEAKENED:
             return YogaEvaluation(
@@ -128,12 +187,14 @@ class YogaEvaluatorService:
                 status=YogaStatus.WEAKENED,
                 cancellation_reason=modifier_report.cancellation_reason,
                 modifier_report=modifier_report,
+                chain_impact=chain_impact,
             )
 
         return YogaEvaluation(
             yoga_name=yoga_name,
             status=YogaStatus.FORMED,
             modifier_report=modifier_report,
+            chain_impact=chain_impact,
         )
 
     def evaluate_manifestation(

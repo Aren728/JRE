@@ -102,6 +102,7 @@ testpaths = [
     "tests/integration/synthesis",
     "tests/unit/jrs",
     "tests/integration/jrs",
+    "tests/unit/jrs/graph",
     "tests/unit/jrs/evidence",
     "tests/integration/jrs/evidence",
     "tests/unit/jrs/domains/marriage",
