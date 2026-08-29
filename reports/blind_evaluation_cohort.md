@@ -26,8 +26,8 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 ### Chain Impact (Layer 1.5)
 - **Computed for:** 24 yoga formations across all charts
-- **Average chain impact:** -176.863169
-- **Negative chain impacts:** 24/24 (100%)
+- **Average chain impact:** -60.020491
+- **Negative chain impacts:** 21/24 (88%)
 - **Pattern:** Chain impact is consistently negative across the cohort, suggesting multi-hop dispositorship chains tend to produce net malefic functional influence.
 
 ### Vipareeta Raja Yoga Frequency
@@ -76,21 +76,21 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 1.25 | -167.3500 | ACTIVATED |
+| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 1.25 | 1.0000 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **EINSTEIN_GENERAL_RELATIVITY_1915** (1915-11-25) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 0.40 | -167.3500 | DORMANT |
+| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 0.40 | 1.0000 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **EINSTEIN_VISAPR_1905** (1905-06-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 1.25 | -167.3500 | ACTIVATED |
+| Malavya | FORMED | VENUS | 1.000 | 0.4000 | 1.25 | 1.0000 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 ### Marie Curie
@@ -106,24 +106,24 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 1.50 | -263.7906 | ACTIVATED |
-| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 0.40 | -263.7906 | DORMANT |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 1.50 | -78.6550 | ACTIVATED |
+| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 0.40 | -89.0761 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **CURIE_NOBEL_1911** (1911-12-10) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 0.40 | -263.7906 | DORMANT |
-| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 1.10 | -263.7906 | ACTIVATED |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 0.40 | -78.6550 | DORMANT |
+| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 1.10 | -89.0761 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **CURIE_DEATH_1934** (1934-07-04) — HEALTH
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 1.25 | -263.7906 | ACTIVATED |
-| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 1.10 | -263.7906 | ACTIVATED |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.700 | 1.0000 | 1.25 | -78.6550 | ACTIVATED |
+| Raja | CANCELLED | MERCURY, VENUS | 0.500 | 0.4000 | 1.10 | -89.0761 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 ### Wolfgang Amadeus Mozart
@@ -139,7 +139,7 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -6.9190 | DORMANT |
+| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -10.3713 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 | Dhana | CANCELLED | MERCURY, MERCURY | 0.000 | — | 1.25 | — | ACTIVATED |
 
@@ -147,7 +147,7 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -6.9190 | DORMANT |
+| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -10.3713 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 | Dhana | CANCELLED | MERCURY, MERCURY | 0.000 | — | 0.40 | — | DORMANT |
 
@@ -155,7 +155,7 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -6.9190 | DORMANT |
+| Raja | WEAKENED | SATURN, SUN | 0.250 | 0.4000 | 0.40 | -10.3713 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 | Dhana | CANCELLED | MERCURY, MERCURY | 0.000 | — | 0.40 | — | DORMANT |
 
@@ -172,24 +172,24 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 0.40 | -304.3070 | DORMANT |
-| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 0.40 | -304.3070 | DORMANT |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 0.40 | -102.0416 | DORMANT |
+| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 0.40 | -117.4160 | DORMANT |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **TESLA_LAB_FIRE_1895** (1895-03-13) — HEALTH
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 1.50 | -304.3070 | ACTIVATED |
-| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 1.50 | -304.3070 | ACTIVATED |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 1.50 | -102.0416 | ACTIVATED |
+| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 1.50 | -117.4160 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 **TESLA_DEATH_1943** (1943-01-07) — HEALTH
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 0.40 | -304.3070 | DORMANT |
-| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 1.10 | -304.3070 | ACTIVATED |
+| Gajakesari | WEAKENED | JUPITER, MOON | 0.350 | 1.0000 | 0.40 | -102.0416 | DORMANT |
+| Raja | WEAKENED | MOON, MARS | 0.350 | 0.4000 | 1.10 | -117.4160 | ACTIVATED |
 | Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
 
 ### Indira Gandhi
@@ -205,22 +205,22 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -52.2206 | DORMANT |
-| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 1.50 | -52.2206 | ACTIVATED |
+| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -42.7013 | DORMANT |
+| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 1.50 | -40.9027 | ACTIVATED |
 
 **GANDHI_WAR_1971** (1971-12-16) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -52.2206 | DORMANT |
-| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 1.50 | -52.2206 | ACTIVATED |
+| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -42.7013 | DORMANT |
+| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 1.50 | -40.9027 | ACTIVATED |
 
 **GANDHI_ASSASSINATION_1984** (1984-10-31) — HEALTH
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -52.2206 | DORMANT |
-| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 0.40 | -52.2206 | DORMANT |
+| Sunapha | CANCELLED | MOON, VENUS | 0.350 | 0.4000 | 0.40 | -42.7013 | DORMANT |
+| Sunapha | WEAKENED | MOON, RAHU | 0.420 | 0.4000 | 0.40 | -40.9027 | DORMANT |
 
 ---
 
@@ -229,7 +229,7 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 The following hypotheses are derived from the raw pipeline output without proposing fixes.
 
 ### Hypothesis 1: Chain Impact Is Systematically Negative
-- **Observation:** Average chain impact = -176.863169 (24/24 negative)
+- **Observation:** Average chain impact = -60.020491 (21/24 negative)
 - **Possible cause:** The multi-hop chain evaluator (Layer 1.5) may be weighting dispositorship chains through dusthana houses too heavily. When a yoga-forming planet's dispositor chain passes through 6th/8th/12th houses, the negative functional role weight compounds across hops.
 - **Impact:** This suppresses dynamic_strength for otherwise well-formed yogas, reducing the apparent prediction accuracy.
 

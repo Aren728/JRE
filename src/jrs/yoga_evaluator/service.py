@@ -12,6 +12,7 @@ from ..graph.chain_evaluator import (
     EdgeType,
     RelationshipGraph,
 )
+from ..graph.chain_aggregation import YogaSpecificChainAggregator, get_yoga_category
 from ..graph.chain_strength import ChainStrengthEngine, PathImpact
 from ..graph.nakshatra_service import NakshatraRelationshipService
 from ..structural.models import PlanetRelationship, RelationshipType
@@ -39,6 +40,7 @@ class YogaEvaluatorService:
         self._varga_confirmation_svc = VargaConfirmationService()
         self._relationship_graph_svc = RelationshipGraphService()
         self._chain_strength_engine = ChainStrengthEngine()
+        self._chain_aggregator = YogaSpecificChainAggregator()
         self._dynamic_temporal_svc = DynamicTemporalService()
         self._nakshatra_svc = NakshatraRelationshipService()
 
@@ -166,6 +168,52 @@ class YogaEvaluatorService:
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.compute_aggregate_impact(graph, jre_facts)
 
+    def compute_yoga_specific_chain_impact(
+        self,
+        yoga_name: str,
+        involved_planets: list[str],
+        jre_facts: dict[str, Any],
+        **kwargs: Any,
+    ) -> float:
+        """Compute yoga-specific chain impact using RI-013 models.
+
+        Builds a RelationshipGraph, runs ChainStrengthEngine to get path
+        impacts, then applies yoga-specific aggregation via
+        YogaSpecificChainAggregator.
+
+        Args:
+            yoga_name: Name of the yoga (e.g., "Gajakesari", "Malavya").
+            involved_planets: Planet names involved in the yoga.
+            jre_facts: JRE facts dictionary with planet data.
+            **kwargs: Category-specific parameters passed to the aggregator.
+
+        Returns:
+            Yoga-specific net chain impact.
+        """
+        relationships = self._relationship_graph_svc.extract_relationships(jre_facts)
+
+        # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
+        nak_edges = self._discover_nakshatra_edges(jre_facts)
+        for ne in nak_edges:
+            relationships.append(PlanetRelationship(
+                planet_a=ne.source,
+                planet_b=ne.target,
+                relationship_type=RelationshipType.CONJUNCTION,
+                is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+            ))
+
+        graph = RelationshipGraph(relationships=tuple(relationships))
+        path_impacts = self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
+
+        result = self._chain_aggregator.aggregate(
+            path_impacts=path_impacts,
+            yoga_name=yoga_name,
+            yoga_planets=involved_planets,
+            **kwargs,
+        )
+        return result.chain_impact
+
     def get_chain_paths(
         self,
         involved_planets: list[str],
@@ -270,11 +318,45 @@ class YogaEvaluatorService:
             involved_planets, jre_facts
         )
 
-        # ── Layer 1.5: Chain Strength Computation (Phase B — RI-011) ──
-        # Compute multi-hop chain impact as a modifier into Layer 2.
+        # ── Layer 1.5: Yoga-Specific Chain Strength (RI-013 Phase E6c) ──
+        # Compute multi-hop chain impact using yoga-specific aggregation models.
         chain_impact: float | None = None
         if "planets" in jre_facts and "lagna_sign" in jre_facts:
-            chain_impact = self.compute_chain_impact(involved_planets, jre_facts)
+            # Compute kwargs for category-specific parameters
+            chain_kwargs: dict[str, Any] = {}
+            planets = jre_facts.get("planets", {})
+            if yoga_name.upper() in ("MALAVYA", "RUCHAKA", "BHADRA", "HAMSA", "SASA"):
+                # Pancha Mahapurusha: check if planet is in own sign
+                pname = involved_planets[0] if involved_planets else ""
+                pdata = planets.get(pname, {})
+                rashi = pdata.get("rashi", "")
+                _OWN_SIGNS_PM: dict[str, set[str]] = {
+                    "MARS": {"MESHA", "VRISHCHIKA"},
+                    "MERCURY": {"MITHUNA", "KANYA"},
+                    "JUPITER": {"DHANUSHA", "MEENA"},
+                    "VENUS": {"VRISHABHA", "TULA"},
+                    "SATURN": {"MAKARA", "KUMBHA"},
+                }
+                chain_kwargs["planet_in_own_sign"] = rashi in _OWN_SIGNS_PM.get(pname, set())
+            elif yoga_name.upper() == "VIPAREETA RAJA":
+                # Check if planet is primarily a Kendra lord
+                dusthana_set = {6, 8, 12}
+                kendra_set = {1, 4, 7, 10}
+                house_lords = jre_facts.get("house_lords", {})
+                for pname in involved_planets:
+                    owned_houses = [
+                        h for h, lord in house_lords.items()
+                        if lord == pname and isinstance(h, int)
+                    ]
+                    owns_kendra = any(h in kendra_set for h in owned_houses)
+                    owns_trikona = any(h in {1, 5, 9} for h in owned_houses)
+                    owns_dusthana = any(h in dusthana_set for h in owned_houses)
+                    if owns_kendra or owns_trikona:
+                        chain_kwargs["is_primary_kendra_lord"] = True
+                        break
+            chain_impact = self.compute_yoga_specific_chain_impact(
+                yoga_name, involved_planets, jre_facts, **chain_kwargs,
+            )
 
         # ── Layer 3: Dynamic Temporal Evaluation (Phase C — RI-012) ──
         dasha_mult: float | None = None

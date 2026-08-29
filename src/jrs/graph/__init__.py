@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+from .chain_aggregation import (
+    AggregationResult,
+    YogaCategory,
+    YogaSpecificChainAggregator,
+    get_yoga_category,
+)
 from .chain_evaluator import (
     ChainEdge,
     ChainNode,
@@ -17,6 +23,7 @@ from .functional_lordship import (
 )
 
 __all__ = [
+    "AggregationResult",
     "ChainEdge",
     "ChainNode",
     "ChainPath",
@@ -26,4 +33,7 @@ __all__ = [
     "FunctionalLordshipClassifier",
     "FunctionalRole",
     "LordshipProfile",
+    "YogaCategory",
+    "YogaSpecificChainAggregator",
+    "get_yoga_category",
 ]
