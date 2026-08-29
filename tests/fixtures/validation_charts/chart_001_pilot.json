@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_001_pilot",
+    "version": "1.0.0",
+    "subject": "Albert Einstein",
+    "description": "Immutable reference chart for Reconstruction Gate validation. Uses AA-rated birth data from Astro-Databank (astro.com). Birth time 11:30 local on 14 March 1879 in Ulm, Kingdom of Württemberg.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) — the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+
+  "raw_birth_data": {
+    "date": "1879-03-14",
+    "time": "11:30:00",
+    "timezone": "Europe/Berlin",
+    "latitude": 48.4011,
+    "longitude": 9.9876,
+    "location": "Ulm, Kingdom of Württemberg (modern Germany)"
+  },
+
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 76.64987356635059,
+      "rashi": "MITHUNA",
+      "degree_in_rashi": 16.649873566350593,
+      "nakshatra": "ARDRA",
+      "nakshatra_lord": "RAHU",
+      "pada": 3,
+      "degree_in_nakshatra": 9.983206899683932,
+      "d9_sign": "KUMBHA"
+    },
+
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 353.4984335417426,
+        "longitude_sidereal": 331.32419345824417,
+        "longitude_used": 331.32419345824417,
+        "rashi": "MEENA",
+        "degree_in_rashi": 1.3241934582441672,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 11.324193458244164,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "MOON": {
+        "longitude_tropical": 254.395727203963,
+        "longitude_sidereal": 232.22148712046456,
+        "longitude_used": 232.22148712046456,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 22.22148712046456,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 5.554820453797894,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA"
+      },
+      "MARS": {
+        "longitude_tropical": 296.907408286105,
+        "longitude_sidereal": 274.7331682026066,
+        "longitude_used": 274.7331682026066,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 4.733168202606578,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.066501535939905,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 3.125630741558154,
+        "longitude_sidereal": 340.95139065805967,
+        "longitude_used": 340.95139065805967,
+        "rashi": "MEENA",
+        "degree_in_rashi": 10.951390658059665,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.618057324726343,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 327.48197399907235,
+        "longitude_sidereal": 305.3077339155739,
+        "longitude_used": 305.3077339155739,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 5.30773391557392,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.974400582240614,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "VENUS": {
+        "longitude_tropical": 16.973490149752536,
+        "longitude_sidereal": 354.79925006625405,
+        "longitude_used": 354.79925006625405,
+        "rashi": "MEENA",
+        "degree_in_rashi": 24.799250066254046,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 8.132583399587357,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA"
+      },
+      "SATURN": {
+        "longitude_tropical": 4.188673043276508,
+        "longitude_sidereal": 342.01443295977805,
+        "longitude_used": 342.01443295977805,
+        "rashi": "MEENA",
+        "degree_in_rashi": 12.014432959778048,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.681099626444713,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA"
+      },
+      "RAHU": {
+        "longitude_tropical": 301.48085889556984,
+        "longitude_sidereal": 279.3066188120714,
+        "longitude_used": 279.3066188120714,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 9.306618812071406,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.639952145404735,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA"
+      },
+      "KETU": {
+        "longitude_tropical": 121.48085889556984,
+        "longitude_sidereal": 99.3066188120714,
+        "longitude_used": 99.3066188120714,
+        "rashi": "KARKA",
+        "degree_in_rashi": 9.306618812071406,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 5.9732854787380685,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA"
+      }
+    },
+
+    "houses": {
+      "1": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": ["KETU"]
+      },
+      "3": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": ["MOON"]
+      },
+      "7": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": ["MARS", "RAHU"]
+      },
+      "9": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": ["JUPITER"]
+      },
+      "10": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": ["MERCURY", "SATURN", "SUN", "VENUS"]
+      },
+      "11": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    }
+  },
+
+  "known_events": [
+    {
+      "event_id": "EINSTEIN_NOBEL_1921",
+      "event_date_utc": "1921-11-09T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Awarded the Nobel Prize in Physics for the photoelectric effect",
+      "yoga_types": ["RAJA", "DHANA"],
+      "expected_planets": ["SUN", "JUPITER"]
+    },
+    {
+      "event_id": "EINSTEIN_GENERAL_RELATIVITY_1915",
+      "event_date_utc": "1915-11-25T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Presented the general theory of relativity to the Prussian Academy of Sciences",
+      "yoga_types": ["RAJA"],
+      "expected_planets": ["JUPITER", "SATURN"]
+    },
+    {
+      "event_id": "EINSTEIN_VISAPR_1905",
+      "event_date_utc": "1905-06-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Annus Mirabilis — published four groundbreaking papers including special relativity and E=mc²",
+      "yoga_types": ["RAJA", "DHANA"],
+      "expected_planets": ["MERCURY", "SUN", "JUPITER"]
+    }
+  ]
+}
