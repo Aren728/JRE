@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_005_gandhi",
+    "version": "1.0.0",
+    "subject": "Indira Gandhi",
+    "description": "Immutable reference chart for Indira Gandhi. AA-rated birth data. Born 19 November 1917 at 23:10 local time in Allahabad, India.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1917-11-19",
+    "time": "23:10:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 25.4358,
+    "longitude": 81.8463,
+    "location": "Allahabad, United Provinces, British India (modern Prayagraj, India)"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 117.14629548733285,
+      "rashi": "KARKA",
+      "degree_in_rashi": 27.14629548733285,
+      "nakshatra": "ASHLESHA",
+      "nakshatra_lord": "MERCURY",
+      "pada": 4,
+      "degree_in_nakshatra": 10.479628820666187,
+      "d9_sign": "VRISHCHIKA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 236.83914789033847,
+        "longitude_sidereal": 214.12446711960519,
+        "longitude_used": 214.12446711960519,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 4.124467119605185,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 0.7911337862718668,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "MOON": {
+        "longitude_tropical": 298.2931853563385,
+        "longitude_sidereal": 275.5785045856052,
+        "longitude_used": 275.5785045856052,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 5.578504585605174,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.911837918938511,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "MARS": {
+        "longitude_tropical": 159.0892744692437,
+        "longitude_sidereal": 136.3745936985104,
+        "longitude_used": 136.3745936985104,
+        "rashi": "SIMHA",
+        "degree_in_rashi": 16.37459369851041,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 3.041260365177078,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 245.94303114999474,
+        "longitude_sidereal": 223.22835037926143,
+        "longitude_used": 223.22835037926143,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 13.228350379261428,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 9.895017045928094,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 67.71664681118892,
+        "longitude_sidereal": 45.00196604045562,
+        "longitude_used": 45.00196604045562,
+        "rashi": "VRISHABHA",
+        "degree_in_rashi": 15.00196604045562,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "pada": 2,
+        "degree_in_nakshatra": 5.001966040455618,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA"
+      },
+      "VENUS": {
+        "longitude_tropical": 283.71931089628197,
+        "longitude_sidereal": 261.00463012554866,
+        "longitude_used": 261.00463012554866,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 21.00463012554866,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 7.671296792215327,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA"
+      },
+      "SATURN": {
+        "longitude_tropical": 134.50200394330685,
+        "longitude_sidereal": 111.78732317257354,
+        "longitude_used": 111.78732317257354,
+        "rashi": "KARKA",
+        "degree_in_rashi": 21.787323172573537,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 5.120656505906869,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA"
+      },
+      "RAHU": {
+        "longitude_tropical": 273.2801951452466,
+        "longitude_sidereal": 250.56551437451327,
+        "longitude_used": 250.56551437451327,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 10.56551437451327,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 4,
+        "degree_in_nakshatra": 10.565514374513272,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA"
+      },
+      "KETU": {
+        "longitude_tropical": 93.28019514524658,
+        "longitude_sidereal": 70.56551437451327,
+        "longitude_used": 70.56551437451327,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 10.56551437451327,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "degree_in_nakshatra": 3.8988477078466057,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "2": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "3": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "6": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "RAHU",
+          "VENUS"
+        ]
+      },
+      "7": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "8": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "12": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "KETU"
+        ]
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "GANDHI_PM_1966",
+      "event_date_utc": "1966-01-24T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Became the first (and to date only) female Prime Minister of India",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "GANDHI_WAR_1971",
+      "event_date_utc": "1971-12-16T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Led India to decisive victory in the Indo-Pakistani War of 1971; creation of Bangladesh",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MARS",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "GANDHI_ASSASSINATION_1984",
+      "event_date_utc": "1984-10-31T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Assassinated by her Sikh bodyguards in New Delhi following Operation Blue Star",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

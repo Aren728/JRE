@@ -1,0 +1,286 @@
+{
+  "version": "1.0",
+  "created": "2026-08-29",
+  "purpose": "Synthetic chart configurations for validating Yoga-specific chain aggregation models per RI-013",
+
+  "test_cases": [
+    {
+      "id": "TC001",
+      "yoga_category": "Gajakesari",
+      "name": "Pure Gajakesari with benefic chains",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "moon_sign": 4,
+        "moon_house": 4,
+        "jupiter_sign": 7,
+        "jupiter_house": 7,
+        "other_planets": {
+          "VENUS": {"sign": 1, "house": 1, "retrograde": false, "combust": false},
+          "MERCURY": {"sign": 5, "house": 5, "retrograde": false, "combust": false}
+        }
+      },
+      "expected": {
+        "yoga": "Gajakesari",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "positive",
+        "chain_impact_range": "> 0",
+        "reasoning": "Jupiter in Kendra (7th) from Moon. Venus and Mercury as benefics in Kendra/Trikona create positive chains. Gajakesari model: W_benefic=0.8, W_malefic=0.5."
+      }
+    },
+    {
+      "id": "TC002",
+      "yoga_category": "Gajakesari",
+      "name": "Gajakesari with malefic aspect — weakened but not cancelled",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "moon_sign": 4,
+        "moon_house": 4,
+        "jupiter_sign": 7,
+        "jupiter_house": 7,
+        "other_planets": {
+          "SATURN": {"sign": 1, "house": 10, "retrograde": false, "combust": false, "aspecting_jupiter": true}
+        }
+      },
+      "expected": {
+        "yoga": "Gajakesari",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "negative",
+        "chain_impact_range": "−0.1 to −0.3",
+        "reasoning": "Jupiter in Kendra from Moon (FORMED), but Saturn's aspect reduces strength by 30%. Gajakesari is NEVER cancelled — only weakened."
+      }
+    },
+    {
+      "id": "TC003",
+      "yoga_category": "Budhaditya",
+      "name": "Pure Budhaditya — no malefic interference",
+      "setup": {
+        "lagna_sign": 5,
+        "lagna_name": "SIMHA",
+        "sun_sign": 5,
+        "sun_house": 1,
+        "mercury_sign": 5,
+        "mercury_house": 1,
+        "mercury_combust": false,
+        "other_planets": {}
+      },
+      "expected": {
+        "yoga": "Budhaditya",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "positive",
+        "chain_impact_range": "> 0.9",
+        "reasoning": "Sun-Mercury conjunction in own sign (Leo), no malefic interference. Budhaditya model: W_benefic=1.0, no malefics present."
+      }
+    },
+    {
+      "id": "TC004",
+      "yoga_category": "Budhaditya",
+      "name": "Budhaditya with malefic aspect — cancellation",
+      "setup": {
+        "lagna_sign": 5,
+        "lagna_name": "SIMHA",
+        "sun_sign": 5,
+        "sun_house": 1,
+        "mercury_sign": 5,
+        "mercury_house": 1,
+        "mercury_combust": false,
+        "mars_sign": 1,
+        "mars_house": 10,
+        "mars_aspecting_sun": true
+      },
+      "expected": {
+        "yoga": "Budhaditya",
+        "yoga_status": "CANCELLED",
+        "chain_impact_sign": "negative",
+        "chain_impact_range": "0.0",
+        "reasoning": "Mars (malefic) aspects Sun-Mercury pair → COMPLETE CANCELLATION per BPHS Ch 12. Budhaditya model: ANY malefic aspect = cancelled."
+      }
+    },
+    {
+      "id": "TC005",
+      "yoga_category": "Budhaditya",
+      "name": "Budhaditya with Mercury in own sign — immunity",
+      "setup": {
+        "lagna_sign": 6,
+        "lagna_name": "KANYA",
+        "sun_sign": 6,
+        "sun_house": 1,
+        "mercury_sign": 6,
+        "mercury_house": 1,
+        "mercury_combust": false,
+        "mars_sign": 1,
+        "mars_house": 10,
+        "mars_aspecting_sun": true
+      },
+      "expected": {
+        "yoga": "Budhaditya",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "mixed",
+        "chain_impact_range": "0.5 − 0.7",
+        "reasoning": "Mercury in own sign (Virgo) provides immunity — Mars aspect reduces by 50% instead of cancelling. Budhaditya model: own-sign immunity rule."
+      }
+    },
+    {
+      "id": "TC006",
+      "yoga_category": "Pancha_Mahapurusha_Malavya",
+      "name": "Malavya in own sign with Saturn aspect — immunity",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "venus_sign": 7,
+        "venus_house": 7,
+        "saturn_sign": 11,
+        "saturn_house": 11,
+        "saturn_aspecting_venus": true
+      },
+      "expected": {
+        "yoga": "Malavya",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "positive",
+        "chain_impact_range": "> 0.5",
+        "reasoning": "Venus in own sign (Libra) in Kendra → Malavya FORMED. Pancha Mahapurusha immunity: own sign = immune to malefic cancellation. Saturn aspect reduces by only 30%."
+      }
+    },
+    {
+      "id": "TC007",
+      "yoga_category": "Vipareeta_Raja",
+      "name": "Vipareeta Raja — legitimate (primary dusthana lord)",
+      "setup": {
+        "lagna_sign": 3,
+        "lagna_name": "MITHUNA",
+        "house_lords": {
+          "6": "MARS",
+          "8": "SATURN",
+          "12": "JUPITER"
+        },
+        "mars_house": 8,
+        "mars_sign": 8,
+        "mars_rashi_num": 8
+      },
+      "expected": {
+        "yoga": "Vipareeta Raja",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "neutral",
+        "reasoning": "Mars (H6 lord) in H8 (dusthana) — LEGITIMATE Vipareeta Raja. Mars owns ONLY H6 (dusthana), not Kendra/Trikona. Primary dusthana lordship confirmed."
+      }
+    },
+    {
+      "id": "TC008",
+      "yoga_category": "Vipareeta_Raja",
+      "name": "Vipareeta Raja — FALSE POSITIVE (planet also owns Kendra)",
+      "setup": {
+        "lagna_sign": 5,
+        "lagna_name": "SIMHA",
+        "house_lords": {
+          "1": "SUN",
+          "4": "MARS",
+          "6": "MARS",
+          "10": "MARS"
+        },
+        "mars_house": 12,
+        "mars_sign": 4,
+        "mars_rashi_num": 4
+      },
+      "expected": {
+        "yoga": "Vipareeta Raja",
+        "yoga_status": "NOT_FORMED",
+        "reasoning": "Mars owns H4 (Kendra) AND H6 (Dusthana) AND H10 (Kendra). Mars is PRIMARILY a Kendra lord. Vipareeta Raja requires primary dusthana lordship. This is a FALSE POSITIVE in the current engine."
+      }
+    },
+    {
+      "id": "TC009",
+      "yoga_category": "Kemadruma",
+      "name": "Pure Kemadruma — no benefics near Moon",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "moon_sign": 4,
+        "moon_house": 4,
+        "planets_near_moon": {
+          "2nd_from_moon": [],
+          "12th_from_moon": []
+        }
+      },
+      "expected": {
+        "yoga": "Kemadruma",
+        "dosha_status": "FORMED",
+        "dosha_strength": "HIGH",
+        "reasoning": "Complete isolation of Moon — no planets in 2nd or 12th from Moon. Classical Kemadruma: base_dosha = 1.0, no benefic mitigation."
+      }
+    },
+    {
+      "id": "TC010",
+      "yoga_category": "Kemadruma",
+      "name": "Kemadruma cancelled by benefic in 2nd",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "moon_sign": 4,
+        "moon_house": 4,
+        "planets_near_moon": {
+          "2nd_from_moon": ["VENUS"],
+          "12th_from_moon": []
+        }
+      },
+      "expected": {
+        "yoga": "Kemadruma",
+        "dosha_status": "CANCELLED",
+        "dosha_strength": "0.0",
+        "reasoning": "Venus (benefic) in 2nd from Moon → DOSHA CANCELLED per BPHS Ch 11. One benefic destroys Kemadruma."
+      }
+    },
+    {
+      "id": "TC011",
+      "yoga_category": "Raja",
+      "name": "Raja Yoga with benefic reinforcement",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "house_lords": {
+          "1": "MARS",
+          "4": "MOON",
+          "5": "SUN",
+          "9": "JUPITER"
+        },
+        "moon_house": 10,
+        "moon_sign": 10,
+        "sun_house": 10,
+        "sun_sign": 10,
+        "other_planets": {
+          "JUPITER": {"sign": 1, "house": 1, "retrograde": false, "combust": false}
+        }
+      },
+      "expected": {
+        "yoga": "Raja",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "positive",
+        "chain_impact_range": "> 0.5",
+        "reasoning": "Moon (H4, Kendra lord) + Sun (H5, Trikona lord) conjunct in H10. Raja model: W_benefic=1.0, W_malefic=0.7. Jupiter in H1 (Kendra) reinforces."
+      }
+    },
+    {
+      "id": "TC012",
+      "yoga_category": "Pancha_Mahapurusha_Ruchaka",
+      "name": "Ruchaka with Saturn aspect — weakened",
+      "setup": {
+        "lagna_sign": 1,
+        "lagna_name": "MESHA",
+        "mars_sign": 1,
+        "mars_house": 1,
+        "mars_retrograde": false,
+        "mars_combust": false,
+        "saturn_sign": 11,
+        "saturn_house": 11,
+        "saturn_aspecting_mars": true
+      },
+      "expected": {
+        "yoga": "Ruchaka",
+        "yoga_status": "FORMED",
+        "chain_impact_sign": "positive",
+        "chain_impact_range": "0.6 − 0.8",
+        "reasoning": "Mars in own sign (Aries) in Kendra → Ruchaka FORMED. Pancha Mahapurusha immunity: own sign. Saturn aspect reduces by 25% (natural enmity)."
+      }
+    }
+  ]
+}

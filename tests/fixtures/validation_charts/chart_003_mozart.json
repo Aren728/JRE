@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_003_mozart",
+    "version": "1.0.0",
+    "subject": "Wolfgang Amadeus Mozart",
+    "description": "Immutable reference chart for Wolfgang Amadeus Mozart. AA-rated birth data. Born 27 January 1756 at 20:00 local time in Salzburg.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1756-01-27",
+    "time": "20:00:00",
+    "timezone": "Europe/Vienna",
+    "latitude": 47.8095,
+    "longitude": 13.055,
+    "location": "Salzburg, Prince-Archbishopric of Salzburg (modern Austria)"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 139.82011652393768,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 19.820116523937685,
+      "nakshatra": "PURVA_PHALGUNI",
+      "nakshatra_lord": "VENUS",
+      "pada": 2,
+      "degree_in_nakshatra": 6.4867831906043545,
+      "d9_sign": "MAKARA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 307.3745150326374,
+        "longitude_sidereal": 286.92400330506274,
+        "longitude_used": 286.92400330506274,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 16.92400330506274,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 6.92400330506273,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "MOON": {
+        "longitude_tropical": 257.6607893586385,
+        "longitude_sidereal": 237.2102776310639,
+        "longitude_used": 237.2102776310639,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 27.21027763106389,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 10.543610964397212,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA"
+      },
+      "MARS": {
+        "longitude_tropical": 90.32844552070304,
+        "longitude_sidereal": 69.87793379312839,
+        "longitude_used": 69.87793379312839,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 9.877933793128392,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 3.2112671264617263,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 308.1231753828143,
+        "longitude_sidereal": 287.6726636552397,
+        "longitude_used": 287.6726636552397,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 17.672663655239717,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 7.672663655239712,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 198.5154666232917,
+        "longitude_sidereal": 178.06495489571705,
+        "longitude_used": 178.06495489571705,
+        "rashi": "KANYA",
+        "degree_in_rashi": 28.06495489571705,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.73162156238373,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA"
+      },
+      "VENUS": {
+        "longitude_tropical": 329.3092873629211,
+        "longitude_sidereal": 308.8587756353465,
+        "longitude_used": 308.8587756353465,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 8.85877563534649,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.1921089686798547,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 301.9874025917557,
+        "longitude_sidereal": 281.5368908641811,
+        "longitude_used": 281.5368908641811,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 11.536890864181089,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "degree_in_nakshatra": 1.536890864181091,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA"
+      },
+      "RAHU": {
+        "longitude_tropical": 162.85041482607852,
+        "longitude_sidereal": 142.39990309850387,
+        "longitude_used": 142.39990309850387,
+        "rashi": "SIMHA",
+        "degree_in_rashi": 22.39990309850387,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 9.066569765170529,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA"
+      },
+      "KETU": {
+        "longitude_tropical": 342.8504148260785,
+        "longitude_sidereal": 322.39990309850384,
+        "longitude_used": 322.39990309850384,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 22.39990309850384,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 2.3999030985038123,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY",
+          "SATURN",
+          "SUN"
+        ]
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "KETU",
+          "VENUS"
+        ]
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "MOZART_MARRIAGE_1782",
+      "event_date_utc": "1782-08-04T00:00:00Z",
+      "domain": "MARRIAGE",
+      "description": "Married Constanze Weber in St. Stephen's Cathedral, Vienna",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "MOZART_DON_GIOVANNI_1787",
+      "event_date_utc": "1787-10-29T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Premiere of Don Giovanni in Prague \u2014 considered his career peak opera",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "MOZART_DEATH_1791",
+      "event_date_utc": "1791-12-05T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died at age 35 under mysterious circumstances; Requiem left unfinished",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

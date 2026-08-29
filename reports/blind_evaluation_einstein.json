@@ -1,0 +1,131 @@
+{
+  "events": [
+    {
+      "dasha": {
+        "ad": "VENUS",
+        "md": "MARS",
+        "pd": "SATURN"
+      },
+      "description": "Awarded the Nobel Prize in Physics for the photoelectric effect",
+      "domain": "CAREER",
+      "event_date_utc": "1921-11-09T00:00:00Z",
+      "event_id": "EINSTEIN_NOBEL_1921",
+      "yogas": [
+        {
+          "activation_source": "",
+          "activation_status": "DORMANT",
+          "cancellation_reason": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "outcome_domain": "CAREER_PROMINENCE",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Vipareeta Raja"
+        },
+        {
+          "activation_source": "Dasha AD: VENUS",
+          "activation_status": "ACTIVATED",
+          "cancellation_reason": null,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "outcome_domain": "RELATIONSHIP_HARMONY",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Malavya"
+        }
+      ]
+    },
+    {
+      "dasha": {
+        "ad": "SUN",
+        "md": "MOON",
+        "pd": "SATURN"
+      },
+      "description": "Presented the general theory of relativity to the Prussian Academy of Sciences",
+      "domain": "CAREER",
+      "event_date_utc": "1915-11-25T00:00:00Z",
+      "event_id": "EINSTEIN_GENERAL_RELATIVITY_1915",
+      "yogas": [
+        {
+          "activation_source": "",
+          "activation_status": "DORMANT",
+          "cancellation_reason": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "outcome_domain": "CAREER_PROMINENCE",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Vipareeta Raja"
+        },
+        {
+          "activation_source": "",
+          "activation_status": "DORMANT",
+          "cancellation_reason": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "outcome_domain": "RELATIONSHIP_HARMONY",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Malavya"
+        }
+      ]
+    },
+    {
+      "dasha": {
+        "ad": "VENUS",
+        "md": "SUN",
+        "pd": "MOON"
+      },
+      "description": "Annus Mirabilis \u2014 published four groundbreaking papers including special relativity and E=mc\u00b2",
+      "domain": "CAREER",
+      "event_date_utc": "1905-06-01T00:00:00Z",
+      "event_id": "EINSTEIN_VISAPR_1905",
+      "yogas": [
+        {
+          "activation_source": "",
+          "activation_status": "DORMANT",
+          "cancellation_reason": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "outcome_domain": "CAREER_PROMINENCE",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Vipareeta Raja"
+        },
+        {
+          "activation_source": "Dasha AD: VENUS",
+          "activation_status": "ACTIVATED",
+          "cancellation_reason": null,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "outcome_domain": "RELATIONSHIP_HARMONY",
+          "static_strength": 1.0,
+          "status": "FORMED",
+          "yoga_name": "Malavya"
+        }
+      ]
+    }
+  ],
+  "fixture": "/home/abhyram/JRE/tests/fixtures/validation_charts/chart_001_pilot.json",
+  "pipeline_config": {
+    "ayanamsa": "LAHIRI",
+    "ephemeris_provider": "swisseph",
+    "house_system": "WHOLE_SIGN",
+    "node_model": "MEAN",
+    "position_type": "APPARENT",
+    "zodiac_mode": "SIDEREAL"
+  },
+  "subject": "Albert Einstein"
+}

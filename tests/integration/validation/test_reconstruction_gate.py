@@ -1,6 +1,6 @@
-"""Reconstruction Gate — Phase E1/E2 Integration Test.
+"""Reconstruction Gate — Phase E1/E2/E4 Integration Test.
 
-Loads the immutable chart fixture (chart_001_pilot.json), passes
+Loads ALL immutable chart fixtures (chart_001 through chart_005), passes
 raw_birth_data through the JRE fact-generation pipeline (JyotishService),
 and asserts exact matches against the expected_canonical_facts.
 
@@ -26,34 +26,54 @@ from typing import Any
 
 import pytest
 
-# ── Fixtures ────────────────────────────────────────────────────────────────
+# ── Fixtures Discovery ─────────────────────────────────────────────────────
 
-FIXTURE_PATH = (
+FIXTURES_DIR = (
     Path(__file__).resolve().parent.parent.parent
     / "fixtures"
     / "validation_charts"
-    / "chart_001_pilot.json"
 )
+
+# All chart fixture files in the cohort
+CHART_FIXTURES: list[Path] = sorted(FIXTURES_DIR.glob("chart_*.json"))
+
+# Fallback if no fixtures discovered (shouldn't happen)
+assert CHART_FIXTURES, f"No chart fixtures found in {FIXTURES_DIR}"
 
 TOLERANCE_LONGITUDE = 1e-4  # degrees — sub-arcsecond precision
 TOLERANCE_DEGREE_IN_RASHI = 1e-4
 
 
-def _load_fixture() -> dict[str, Any]:
-    """Load and parse the pilot chart fixture."""
-    with FIXTURE_PATH.open(encoding="utf-8") as f:
+def _load_fixture(path: Path) -> dict[str, Any]:
+    """Load and parse a chart fixture JSON."""
+    with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
-@pytest.fixture(scope="module")
-def fixture_data() -> dict[str, Any]:
-    """Module-scoped fixture: parsed JSON from chart_001_pilot.json."""
-    return _load_fixture()
+# ── Parametrized Fixtures ──────────────────────────────────────────────────
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(params=CHART_FIXTURES, ids=lambda p: p.stem)
+def fixture_path(request: pytest.FixtureRequest) -> Path:
+    """Parametrized fixture: yields each chart fixture path."""
+    return request.param
+
+
+@pytest.fixture()
+def fixture_data(fixture_path: Path) -> dict[str, Any]:
+    """Parsed JSON from the chart fixture."""
+    return _load_fixture(fixture_path)
+
+
+@pytest.fixture()
+def chart_subject(fixture_data: dict[str, Any]) -> str:
+    """Human-readable subject name for test IDs."""
+    return fixture_data.get("_meta", {}).get("subject", "Unknown")
+
+
+@pytest.fixture()
 def generated_chart(fixture_data: dict[str, Any]) -> Any:
-    """Module-scoped fixture: run the JRE pipeline on the fixture birth data.
+    """Run the JRE pipeline on the fixture birth data.
 
     Returns the NatalChart produced by JyotishService.chart().
     """
@@ -114,66 +134,72 @@ class TestLagnaReconstruction:
     """Verify the Lagna (ascendant) is reconstructed identically."""
 
     def test_lagna_rashi(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"]["rashi"]
         actual = generated_chart.lagna.rashi.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected Lagna Rashi {expected}, "
-            f"got {actual}"
+            f"[{chart_subject}] Jyotisha Transformation Mismatch: "
+            f"Expected Lagna Rashi {expected}, got {actual}"
         )
 
     def test_lagna_nakshatra(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"]["nakshatra"]
         actual = generated_chart.lagna.nakshatra.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected Lagna Nakshatra {expected}, "
-            f"got {actual}"
+            f"[{chart_subject}] Jyotisha Transformation Mismatch: "
+            f"Expected Lagna Nakshatra {expected}, got {actual}"
         )
 
     def test_lagna_pada(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"]["pada"]
         actual = generated_chart.lagna.pada.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected Lagna Pada {expected}, "
-            f"got {actual}"
+            f"[{chart_subject}] Jyotisha Transformation Mismatch: "
+            f"Expected Lagna Pada {expected}, got {actual}"
         )
 
     def test_lagna_nakshatra_lord(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"]["nakshatra_lord"]
         actual = generated_chart.lagna.nakshatra_lord.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected Lagna Nakshatra Lord "
-            f"{expected}, got {actual}"
+            f"[{chart_subject}] Jyotisha Transformation Mismatch: "
+            f"Expected Lagna Nakshatra Lord {expected}, got {actual}"
         )
 
     def test_lagna_longitude(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"][
             "ascendant_longitude_deg"
         ]
         actual = generated_chart.lagna.ascendant_longitude_deg
         assert abs(actual - expected) < TOLERANCE_LONGITUDE, (
-            f"Astronomical Truth Mismatch: Expected Lagna Longitude "
-            f"{expected:.6f}°, got {actual:.6f}° "
+            f"[{chart_subject}] Astronomical Truth Mismatch: "
+            f"Expected Lagna Longitude {expected:.6f}°, got {actual:.6f}° "
             f"(delta={abs(actual - expected):.6f}°)"
         )
 
     def test_lagna_degree_in_rashi(
-        self, generated_chart: Any, fixture_data: dict[str, Any]
+        self, generated_chart: Any, fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         expected = fixture_data["expected_canonical_facts"]["lagna"]["degree_in_rashi"]
         actual = generated_chart.lagna.degree_in_rashi
         assert abs(actual - expected) < TOLERANCE_DEGREE_IN_RASHI, (
-            f"Jyotisha Transformation Mismatch: Expected Lagna degree_in_rashi "
-            f"{expected:.6f}°, got {actual:.6f}°"
+            f"[{chart_subject}] Jyotisha Transformation Mismatch: "
+            f"Expected Lagna degree_in_rashi {expected:.6f}°, got {actual:.6f}°"
         )
 
 
@@ -197,9 +223,11 @@ class TestPlanetaryReconstruction:
         self,
         generated_chart: Any,
         fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         self.chart = generated_chart
         self.expected = fixture_data["expected_canonical_facts"]["planets"]
+        self.subject = chart_subject
 
     def _get_planet_state(self, planet_name: str) -> Any:
         """Look up a PlanetState by BodyId value."""
@@ -218,8 +246,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["longitude_tropical"]
         actual = self._get_planet_state(planet).longitude_tropical
         assert abs(actual - expected) < TOLERANCE_LONGITUDE, (
-            f"Astronomical Truth Mismatch: Expected {planet} Tropical Longitude "
-            f"{expected:.6f}°, got {actual:.6f}° "
+            f"[{self.subject}] Astronomical Truth Mismatch: Expected {planet} "
+            f"Tropical Longitude {expected:.6f}°, got {actual:.6f}° "
             f"(delta={abs(actual - expected):.6f}°)"
         )
 
@@ -230,11 +258,12 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["longitude_sidereal"]
         actual = self._get_planet_state(planet).longitude_sidereal
         assert actual is not None, (
-            f"Astronomical Truth Mismatch: {planet} sidereal longitude is None"
+            f"[{self.subject}] Astronomical Truth Mismatch: "
+            f"{planet} sidereal longitude is None"
         )
         assert abs(actual - expected) < TOLERANCE_LONGITUDE, (
-            f"Astronomical Truth Mismatch: Expected {planet} Sidereal Longitude "
-            f"{expected:.6f}°, got {actual:.6f}° "
+            f"[{self.subject}] Astronomical Truth Mismatch: Expected {planet} "
+            f"Sidereal Longitude {expected:.6f}°, got {actual:.6f}° "
             f"(delta={abs(actual - expected):.6f}°)"
         )
 
@@ -245,8 +274,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["rashi"]
         actual = self._get_planet_state(planet).rashi.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected {planet} Rashi "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Jyotisha Transformation Mismatch: "
+            f"Expected {planet} Rashi {expected}, got {actual}"
         )
 
     # ── Nakshatra ──
@@ -256,8 +285,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["nakshatra"]
         actual = self._get_planet_state(planet).nakshatra.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected {planet} Nakshatra "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Jyotisha Transformation Mismatch: "
+            f"Expected {planet} Nakshatra {expected}, got {actual}"
         )
 
     # ── Nakshatra Lord ──
@@ -267,8 +296,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["nakshatra_lord"]
         actual = self._get_planet_state(planet).nakshatra_lord.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected {planet} Nakshatra Lord "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Jyotisha Transformation Mismatch: "
+            f"Expected {planet} Nakshatra Lord {expected}, got {actual}"
         )
 
     # ── Pada ──
@@ -278,8 +307,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["pada"]
         actual = self._get_planet_state(planet).pada.value
         assert actual == expected, (
-            f"Jyotisha Transformation Mismatch: Expected {planet} Pada "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Jyotisha Transformation Mismatch: "
+            f"Expected {planet} Pada {expected}, got {actual}"
         )
 
     # ── Retrograde Status ──
@@ -289,8 +318,8 @@ class TestPlanetaryReconstruction:
         expected = self.expected[planet]["retrograde"]
         actual = self._get_planet_state(planet).retrograde.value
         assert actual == expected, (
-            f"Astronomical Truth Mismatch: Expected {planet} Retrograde Status "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Astronomical Truth Mismatch: "
+            f"Expected {planet} Retrograde Status {expected}, got {actual}"
         )
 
     # ── D9 (Navamsha) Sign ──
@@ -305,8 +334,8 @@ class TestPlanetaryReconstruction:
             list(RASHI_ORDER),
         )
         assert actual == expected, (
-            f"Navamsha Computation Mismatch: Expected {planet} D9 Sign "
-            f"{expected}, got {actual}"
+            f"[{self.subject}] Navamsha Computation Mismatch: "
+            f"Expected {planet} D9 Sign {expected}, got {actual}"
         )
 
 
@@ -323,20 +352,20 @@ class TestHouseReconstruction:
         self,
         generated_chart: Any,
         fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         self.chart = generated_chart
         self.expected = fixture_data["expected_canonical_facts"]["houses"]
+        self.subject = chart_subject
 
     @pytest.mark.parametrize("house_num", HOUSE_NUMBERS)
     def test_house_rashi(self, house_num: int) -> None:
-        from astronomy.models import BodyId
-
         expected_rashi = self.expected[str(house_num)]["rashi"]
         bhava = self.chart.bhavas[house_num - 1]
         actual_rashi = bhava.rashi.value
         assert actual_rashi == expected_rashi, (
-            f"House Computation Mismatch: Expected House {house_num} Rashi "
-            f"{expected_rashi}, got {actual_rashi}"
+            f"[{self.subject}] House Computation Mismatch: "
+            f"Expected House {house_num} Rashi {expected_rashi}, got {actual_rashi}"
         )
 
     @pytest.mark.parametrize("house_num", HOUSE_NUMBERS)
@@ -345,8 +374,8 @@ class TestHouseReconstruction:
         bhava = self.chart.bhavas[house_num - 1]
         actual_lord = bhava.house_lord.value
         assert actual_lord == expected_lord, (
-            f"House Computation Mismatch: Expected House {house_num} Lord "
-            f"{expected_lord}, got {actual_lord}"
+            f"[{self.subject}] House Computation Mismatch: "
+            f"Expected House {house_num} Lord {expected_lord}, got {actual_lord}"
         )
 
     @pytest.mark.parametrize("house_num", HOUSE_NUMBERS)
@@ -355,7 +384,8 @@ class TestHouseReconstruction:
         bhava = self.chart.bhavas[house_num - 1]
         actual_occupants = sorted(o.value for o in bhava.occupants)
         assert actual_occupants == sorted(expected_occupants), (
-            f"House Computation Mismatch: Expected House {house_num} Occupants "
+            f"[{self.subject}] House Computation Mismatch: "
+            f"Expected House {house_num} Occupants "
             f"{sorted(expected_occupants)}, got {actual_occupants}"
         )
 
@@ -370,6 +400,7 @@ class TestReconstructionGate:
         self,
         generated_chart: Any,
         fixture_data: dict[str, Any],
+        chart_subject: str,
     ) -> None:
         """Master assertion: every single canonical fact matches.
 
@@ -477,39 +508,58 @@ class TestReconstructionGate:
 
         # ── Gate Verdict ──
         assert not mismatches, (
-            "RECONSTRUCTION GATE FAILED — pipeline produced divergent facts:\n"
+            f"RECONSTRUCTION GATE FAILED [{chart_subject}] — "
+            f"pipeline produced divergent facts:\n"
             + "\n".join(f"  • {m}" for m in mismatches)
         )
 
     def test_fixture_is_immutable(
-        self, fixture_data: dict[str, Any]
+        self, fixture_data: dict[str, Any], chart_subject: str,
     ) -> None:
         """Verify the fixture itself is well-formed and complete."""
-        assert fixture_data["raw_birth_data"]["date"] == "1879-03-14"
-        assert fixture_data["raw_birth_data"]["time"] == "11:30:00"
-        assert fixture_data["raw_birth_data"]["timezone"] == "Europe/Berlin"
+        raw = fixture_data["raw_birth_data"]
+        assert "date" in raw
+        assert "time" in raw
+        assert "timezone" in raw
+        assert "latitude" in raw
+        assert "longitude" in raw
 
         expected = fixture_data["expected_canonical_facts"]
         assert "lagna" in expected
         assert "planets" in expected
         assert "houses" in expected
-        assert len(expected["planets"]) == 9  # SUN through KETU
-        assert len(expected["houses"]) == 12  # All 12 houses
+        assert len(expected["planets"]) == 9, (
+            f"[{chart_subject}] Expected 9 planets, got {len(expected['planets'])}"
+        )
+        assert len(expected["houses"]) == 12, (
+            f"[{chart_subject}] Expected 12 houses, got {len(expected['houses'])}"
+        )
 
         known_events = fixture_data["known_events"]
-        assert len(known_events) == 3
+        assert len(known_events) >= 2, (
+            f"[{chart_subject}] Expected at least 2 known events, "
+            f"got {len(known_events)}"
+        )
         assert all("event_id" in e for e in known_events)
         assert all("domain" in e for e in known_events)
 
     def test_fixture_config_matches_pipeline_defaults(
-        self, fixture_data: dict[str, Any]
+        self, fixture_data: dict[str, Any], chart_subject: str,
     ) -> None:
         """Verify the fixture documents the same config the pipeline uses."""
         from jyotish.config import load_config
 
         config = load_config()
         meta = fixture_data["_meta"]["pipeline_config"]
-        assert meta["zodiac_mode"] == config.zodiac_mode.value
-        assert meta["ayanamsa"] == config.ayanamsa.value
-        assert meta["house_system"] == config.house_system.value
-        assert meta["node_model"] == config.node_model.value
+        assert meta["zodiac_mode"] == config.zodiac_mode.value, (
+            f"[{chart_subject}] zodiac_mode mismatch"
+        )
+        assert meta["ayanamsa"] == config.ayanamsa.value, (
+            f"[{chart_subject}] ayanamsa mismatch"
+        )
+        assert meta["house_system"] == config.house_system.value, (
+            f"[{chart_subject}] house_system mismatch"
+        )
+        assert meta["node_model"] == config.node_model.value, (
+            f"[{chart_subject}] node_model mismatch"
+        )

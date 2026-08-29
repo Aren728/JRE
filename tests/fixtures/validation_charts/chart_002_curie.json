@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_002_curie",
+    "version": "1.0.0",
+    "subject": "Marie Curie",
+    "description": "Immutable reference chart for Marie Curie. AA-rated birth data. Born 7 November 1867 at 19:00 local time in Warsaw, Congress Poland.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1867-11-07",
+    "time": "19:00:00",
+    "timezone": "Europe/Warsaw",
+    "latitude": 52.2297,
+    "longitude": 21.0122,
+    "location": "Warsaw, Congress Poland (modern Poland)"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 72.89412472888772,
+      "rashi": "MITHUNA",
+      "degree_in_rashi": 12.894124728887718,
+      "nakshatra": "ARDRA",
+      "nakshatra_lord": "RAHU",
+      "pada": 2,
+      "degree_in_nakshatra": 6.227458062221053,
+      "d9_sign": "MAKARA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 224.86879114168727,
+        "longitude_sidereal": 202.85911056963155,
+        "longitude_used": 202.85911056963155,
+        "rashi": "TULA",
+        "degree_in_rashi": 22.859110569631554,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 2.859110569631546,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "MOON": {
+        "longitude_tropical": 350.18977050839777,
+        "longitude_sidereal": 328.18008993634214,
+        "longitude_used": 328.18008993634214,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 28.180089936342142,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 8.180089936342146,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA"
+      },
+      "MARS": {
+        "longitude_tropical": 239.82644254903195,
+        "longitude_sidereal": 217.81676197697627,
+        "longitude_used": 217.81676197697627,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 7.816761976976267,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 4.483428643642919,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 246.78257830720838,
+        "longitude_sidereal": 224.7728977351527,
+        "longitude_used": 224.7728977351527,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 14.772897735152696,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 11.43956440181935,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 328.019011616668,
+        "longitude_sidereal": 306.00933104461234,
+        "longitude_used": 306.00933104461234,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 6.009331044612338,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.675997711279033,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "VENUS": {
+        "longitude_tropical": 235.93932825763224,
+        "longitude_sidereal": 213.92964768557655,
+        "longitude_used": 213.92964768557655,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 3.9296476855765547,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 0.596314352243233,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 235.3093315238,
+        "longitude_sidereal": 213.29965095174433,
+        "longitude_used": 213.29965095174433,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 3.2996509517443258,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 13.299650951744331,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "RAHU": {
+        "longitude_tropical": 160.95324925956513,
+        "longitude_sidereal": 138.94356868750947,
+        "longitude_used": 138.94356868750947,
+        "rashi": "SIMHA",
+        "degree_in_rashi": 18.94356868750947,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.610235354176136,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA"
+      },
+      "KETU": {
+        "longitude_tropical": 340.95324925956515,
+        "longitude_sidereal": 318.94356868750947,
+        "longitude_used": 318.94356868750947,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 18.94356868750947,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 4,
+        "degree_in_nakshatra": 12.276902020842803,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "4": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "SUN"
+        ]
+      },
+      "6": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "MERCURY",
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "7": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "KETU",
+          "MOON"
+        ]
+      },
+      "10": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "CURIE_NOBEL_1903",
+      "event_date_utc": "1903-12-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Awarded the Nobel Prize in Physics jointly with Pierre Curie and Henri Becquerel",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SUN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "CURIE_NOBEL_1911",
+      "event_date_utc": "1911-12-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Awarded the Nobel Prize in Chemistry for discovery of radium and polonium",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SUN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "CURIE_DEATH_1934",
+      "event_date_utc": "1934-07-04T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died of aplastic anemia caused by prolonged radiation exposure",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_004_tesla",
+    "version": "1.0.0",
+    "subject": "Nikola Tesla",
+    "description": "Immutable reference chart for Nikola Tesla. AA-rated birth data. Born 10 July 1856 at midnight in Smiljan, Military Frontier.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1856-07-10",
+    "time": "00:00:00",
+    "timezone": "Europe/Belgrade",
+    "latitude": 45.2671,
+    "longitude": 15.3903,
+    "location": "Smiljan, Military Frontier, Austrian Empire (modern Croatia)"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 2.606069334283042,
+      "rashi": "MESHA",
+      "degree_in_rashi": 2.606069334283042,
+      "nakshatra": "ASHWINI",
+      "nakshatra_lord": "KETU",
+      "pada": 1,
+      "degree_in_nakshatra": 2.6060693342830423,
+      "d9_sign": "MESHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 107.80052193791636,
+        "longitude_sidereal": 85.94842645545734,
+        "longitude_used": 85.94842645545734,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 25.948426455457337,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.948426455457341,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA"
+      },
+      "MOON": {
+        "longitude_tropical": 193.84180346167625,
+        "longitude_sidereal": 171.9897079792172,
+        "longitude_used": 171.9897079792172,
+        "rashi": "KANYA",
+        "degree_in_rashi": 21.9897079792172,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 11.9897079792172,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "MARS": {
+        "longitude_tropical": 198.94077398668782,
+        "longitude_sidereal": 177.0886785042288,
+        "longitude_used": 177.0886785042288,
+        "rashi": "KANYA",
+        "degree_in_rashi": 27.088678504228795,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 3.7553451708954526,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 88.10977177222593,
+        "longitude_sidereal": 66.2576762897669,
+        "longitude_used": 66.2576762897669,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 6.257676289766906,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.92434295643357,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 8.590396000883374,
+        "longitude_sidereal": 346.73830051842435,
+        "longitude_used": 346.73830051842435,
+        "rashi": "MEENA",
+        "degree_in_rashi": 16.738300518424353,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 0.07163385175765681,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA"
+      },
+      "VENUS": {
+        "longitude_tropical": 104.81828544072161,
+        "longitude_sidereal": 82.96618995826259,
+        "longitude_used": 82.96618995826259,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 22.96618995826259,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 2.9661899582625932,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 95.55917357443188,
+        "longitude_sidereal": 73.70707809197286,
+        "longitude_used": 73.70707809197286,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 13.70707809197286,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 3,
+        "degree_in_nakshatra": 7.04041142530619,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA"
+      },
+      "RAHU": {
+        "longitude_tropical": 20.06603891891383,
+        "longitude_sidereal": 358.21394343645477,
+        "longitude_used": 358.21394343645477,
+        "rashi": "MEENA",
+        "degree_in_rashi": 28.21394343645477,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 11.547276769788098,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA"
+      },
+      "KETU": {
+        "longitude_tropical": 200.06603891891382,
+        "longitude_sidereal": 178.21394343645477,
+        "longitude_used": 178.21394343645477,
+        "rashi": "KANYA",
+        "degree_in_rashi": 28.21394343645477,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.880610103121432,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MERCURY",
+          "SATURN",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "KETU",
+          "MARS",
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "JUPITER",
+          "RAHU"
+        ]
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "TESLA_US_MOVE_1884",
+      "event_date_utc": "1884-06-06T00:00:00Z",
+      "domain": "MIGRATION",
+      "description": "Arrived in New York City with four cents, a prayer, and a letter of recommendation to Edison",
+      "yoga_types": [],
+      "expected_planets": [
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "TESLA_LAB_FIRE_1895",
+      "event_date_utc": "1895-03-13T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Laboratory fire destroyed years of research notes, models, and financial backing",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "MARS"
+      ]
+    },
+    {
+      "event_id": "TESLA_DEATH_1943",
+      "event_date_utc": "1943-01-07T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died alone in Room 3327 of the New Yorker Hotel, age 86",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}
