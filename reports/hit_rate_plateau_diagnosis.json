@@ -1,0 +1,653 @@
+{
+  "Albert Einstein": [
+    {
+      "dasha": "MARS/VENUS/SATURN",
+      "date": "1921-11-09",
+      "domain": "CAREER",
+      "event_id": "EINSTEIN_NOBEL_1921",
+      "expected_planets": [
+        "SUN",
+        "JUPITER"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Malavya ACTIVATED but yoga_domain=RELATIONSHIP_HARMONY is not in relevant_domains={'CAREER_PROMINENCE', 'GENERAL_IMPROVEMENT'} AND involved_planets=['VENUS'] don't match expected_planets=['SUN', 'JUPITER']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "name": "Vipareeta Raja",
+          "status": "FORMED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": 1.0,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "name": "Malavya",
+          "status": "FORMED",
+          "yoga_domain": "RELATIONSHIP_HARMONY"
+        }
+      ]
+    },
+    {
+      "dasha": "MOON/SUN/SATURN",
+      "date": "1915-11-25",
+      "domain": "CAREER",
+      "event_id": "EINSTEIN_GENERAL_RELATIVITY_1915",
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Vipareeta Raja formed, domain=CAREER_PROMINENCE is relevant, but Dasha lords [MOON/SUN/SATURN] don't match involved_planets=[]",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "name": "Vipareeta Raja",
+          "status": "FORMED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": 1.0,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "name": "Malavya",
+          "status": "FORMED",
+          "yoga_domain": "RELATIONSHIP_HARMONY"
+        }
+      ]
+    },
+    {
+      "dasha": "SUN/VENUS/MOON",
+      "date": "1905-06-01",
+      "domain": "CAREER",
+      "event_id": "EINSTEIN_VISAPR_1905",
+      "expected_planets": [
+        "MERCURY",
+        "SUN",
+        "JUPITER"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Malavya ACTIVATED but yoga_domain=RELATIONSHIP_HARMONY is not in relevant_domains={'CAREER_PROMINENCE', 'GENERAL_IMPROVEMENT'} AND involved_planets=['VENUS'] don't match expected_planets=['MERCURY', 'SUN', 'JUPITER']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [],
+          "name": "Vipareeta Raja",
+          "status": "FORMED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": 1.0,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "VENUS"
+          ],
+          "name": "Malavya",
+          "status": "FORMED",
+          "yoga_domain": "RELATIONSHIP_HARMONY"
+        }
+      ]
+    }
+  ],
+  "Indira Gandhi": [
+    {
+      "dasha": "RAHU/RAHU/SUN",
+      "date": "1966-01-24",
+      "domain": "CAREER",
+      "event_id": "GANDHI_PM_1966",
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Sunapha ACTIVATED but yoga_domain=WEALTH_ACCUMULATION is not in relevant_domains={'CAREER_PROMINENCE', 'GENERAL_IMPROVEMENT'} AND involved_planets=['MOON', 'RAHU'] don't match expected_planets=['JUPITER', 'SATURN']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -42.701265,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "VENUS"
+          ],
+          "name": "Sunapha",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -40.902672,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "RAHU"
+          ],
+          "name": "Sunapha",
+          "status": "WEAKENED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "RAHU/MERCURY/MERCURY",
+      "date": "1971-12-16",
+      "domain": "CAREER",
+      "event_id": "GANDHI_WAR_1971",
+      "expected_planets": [
+        "MARS",
+        "SATURN"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Sunapha ACTIVATED but yoga_domain=WEALTH_ACCUMULATION is not in relevant_domains={'CAREER_PROMINENCE', 'GENERAL_IMPROVEMENT'} AND involved_planets=['MOON', 'RAHU'] don't match expected_planets=['MARS', 'SATURN']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -42.701265,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "VENUS"
+          ],
+          "name": "Sunapha",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -40.902672,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "RAHU"
+          ],
+          "name": "Sunapha",
+          "status": "WEAKENED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "JUPITER/SATURN/KETU",
+      "date": "1984-10-31",
+      "domain": "HEALTH",
+      "event_id": "GANDHI_ASSASSINATION_1984",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Sunapha formed with matching planets ['RAHU'] but Dasha lords [JUPITER/SATURN/KETU] don't match involved_planets=['MOON', 'RAHU']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -42.701265,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "VENUS"
+          ],
+          "name": "Sunapha",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": -40.902672,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "MOON",
+            "RAHU"
+          ],
+          "name": "Sunapha",
+          "status": "WEAKENED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    }
+  ],
+  "Marie Curie": [
+    {
+      "dasha": "MOON/JUPITER/JUPITER",
+      "date": "1903-12-10",
+      "domain": "CAREER",
+      "event_id": "CURIE_NOBEL_1903",
+      "expected_planets": [
+        "SUN",
+        "JUPITER"
+      ],
+      "failure_category": "HIT",
+      "failure_reason": "Relevant yoga activated",
+      "relevant_yoga_activated": true,
+      "yogas": [
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": 130.652737,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": -89.076072,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MERCURY",
+            "VENUS"
+          ],
+          "name": "Raja",
+          "status": "CANCELLED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        }
+      ]
+    },
+    {
+      "dasha": "MARS/RAHU/VENUS",
+      "date": "1911-12-10",
+      "domain": "CAREER",
+      "event_id": "CURIE_NOBEL_1911",
+      "expected_planets": [
+        "SUN",
+        "JUPITER"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Gajakesari formed with matching planets ['JUPITER'] but Dasha lords [MARS/RAHU/VENUS] don't match involved_planets=['JUPITER', 'MOON']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": 130.652737,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -89.076072,
+          "dasha_multiplier": 1.1,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MERCURY",
+            "VENUS"
+          ],
+          "name": "Raja",
+          "status": "CANCELLED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        }
+      ]
+    },
+    {
+      "dasha": "RAHU/MOON/VENUS",
+      "date": "1934-07-04",
+      "domain": "HEALTH",
+      "event_id": "CURIE_DEATH_1934",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Gajakesari ACTIVATED with Dasha AD: MOON but involved_planets=['JUPITER', 'MOON'] don't overlap expected_planets=['SATURN', 'RAHU']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": 130.652737,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -89.076072,
+          "dasha_multiplier": 1.1,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MERCURY",
+            "VENUS"
+          ],
+          "name": "Raja",
+          "status": "CANCELLED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        }
+      ]
+    }
+  ],
+  "Nikola Tesla": [
+    {
+      "dasha": "SUN/SATURN/SATURN",
+      "date": "1884-06-06",
+      "domain": "MIGRATION",
+      "event_id": "TESLA_US_MOVE_1884",
+      "expected_planets": [
+        "RAHU"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Gajakesari formed, domain=GENERAL_IMPROVEMENT is relevant, but Dasha lords [SUN/SATURN/SATURN] don't match involved_planets=['JUPITER', 'MOON']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": 181.01239,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": -117.41605,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MOON",
+            "MARS"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": null,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "VENUS",
+            "SATURN"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "MOON/KETU/SATURN",
+      "date": "1895-03-13",
+      "domain": "HEALTH",
+      "event_id": "TESLA_LAB_FIRE_1895",
+      "expected_planets": [
+        "SATURN",
+        "MARS"
+      ],
+      "failure_category": "HIT",
+      "failure_reason": "Relevant yoga activated",
+      "relevant_yoga_activated": true,
+      "yogas": [
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": 181.01239,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -117.41605,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MOON",
+            "MARS"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": null,
+          "dasha_multiplier": 1.1,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "VENUS",
+            "SATURN"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "SATURN/MERCURY/MARS",
+      "date": "1943-01-07",
+      "domain": "HEALTH",
+      "event_id": "TESLA_DEATH_1943",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Raja ACTIVATED but yoga_domain=CAREER_PROMINENCE is not in relevant_domains={'GENERAL_IMPROVEMENT'} AND involved_planets=['MOON', 'MARS'] don't match expected_planets=['SATURN', 'RAHU']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": 181.01239,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 1.0,
+          "involved_planets": [
+            "JUPITER",
+            "MOON"
+          ],
+          "name": "Gajakesari",
+          "status": "WEAKENED",
+          "yoga_domain": "GENERAL_IMPROVEMENT"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": -117.41605,
+          "dasha_multiplier": 1.1,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "MOON",
+            "MARS"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": null,
+          "dasha_multiplier": 1.5,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "VENUS",
+            "SATURN"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    }
+  ],
+  "Wolfgang Amadeus Mozart": [
+    {
+      "dasha": "MOON/MERCURY/MERCURY",
+      "date": "1782-08-04",
+      "domain": "MARRIAGE",
+      "event_id": "MOZART_MARRIAGE_1782",
+      "expected_planets": [
+        "VENUS"
+      ],
+      "failure_category": "F",
+      "failure_reason": "Raja formed but yoga_domain=CAREER_PROMINENCE not in relevant_domains={'RELATIONSHIP_HARMONY', 'GENERAL_IMPROVEMENT'}, Dasha [MOON/MERCURY/MERCURY] doesn't match involved_planets=['SATURN', 'SUN']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -10.371349,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "SATURN",
+            "SUN"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "ACTIVATED",
+          "chain_impact": null,
+          "dasha_multiplier": 1.25,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "MERCURY",
+            "MERCURY"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "MARS/RAHU/VENUS",
+      "date": "1787-10-29",
+      "domain": "CAREER",
+      "event_id": "MOZART_DON_GIOVANNI_1787",
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Raja formed, domain=CAREER_PROMINENCE is relevant, but Dasha lords [MARS/RAHU/VENUS] don't match involved_planets=['SATURN', 'SUN']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -10.371349,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "SATURN",
+            "SUN"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "MERCURY",
+            "MERCURY"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    },
+    {
+      "dasha": "MARS/VENUS/MARS",
+      "date": "1791-12-05",
+      "domain": "HEALTH",
+      "event_id": "MOZART_DEATH_1791",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "failure_category": "C",
+      "failure_reason": "Raja formed with matching planets ['SATURN'] but Dasha lords [MARS/VENUS/MARS] don't match involved_planets=['SATURN', 'SUN']",
+      "relevant_yoga_activated": false,
+      "yogas": [
+        {
+          "activation": "DORMANT",
+          "chain_impact": -10.371349,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": 0.4,
+          "involved_planets": [
+            "SATURN",
+            "SUN"
+          ],
+          "name": "Raja",
+          "status": "WEAKENED",
+          "yoga_domain": "CAREER_PROMINENCE"
+        },
+        {
+          "activation": "DORMANT",
+          "chain_impact": null,
+          "dasha_multiplier": 0.4,
+          "dynamic_strength": null,
+          "involved_planets": [
+            "MERCURY",
+            "MERCURY"
+          ],
+          "name": "Dhana",
+          "status": "CANCELLED",
+          "yoga_domain": "WEALTH_ACCUMULATION"
+        }
+      ]
+    }
+  ]
+}
