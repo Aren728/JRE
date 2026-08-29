@@ -52,117 +52,154 @@
         "longitude_sidereal": 302.25799251462,
         "longitude_used": 302.25799251462,
         "rashi": "KUMBHA",
+        "house": 2,
         "degree_in_rashi": 2.257992514620014,
         "nakshatra": "DHANISHTHA",
         "nakshatra_lord": "MARS",
         "pada": 3,
         "degree_in_nakshatra": 8.924659181286692,
         "retrograde": "DIRECT",
-        "d9_sign": "MITHUNA"
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          8
+        ]
       },
       "MOON": {
         "longitude_tropical": 296.9310498638958,
         "longitude_sidereal": 275.73585211927673,
         "longitude_used": 275.73585211927673,
         "rashi": "MAKARA",
+        "house": 1,
         "degree_in_rashi": 5.7358521192767284,
         "nakshatra": "UTTARA_ASHADHA",
         "nakshatra_lord": "SUN",
         "pada": 3,
         "degree_in_nakshatra": 9.069185452610057,
         "retrograde": "DIRECT",
-        "d9_sign": "KARKA"
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          7
+        ]
       },
       "MARS": {
         "longitude_tropical": 205.4962357462261,
         "longitude_sidereal": 184.30103800160703,
         "longitude_used": 184.30103800160703,
         "rashi": "TULA",
+        "house": 10,
         "degree_in_rashi": 4.301038001607026,
         "nakshatra": "CHITRA",
         "nakshatra_lord": "MARS",
         "pada": 4,
         "degree_in_nakshatra": 10.967704668273688,
         "retrograde": "DIRECT",
-        "d9_sign": "MEENA"
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          4,
+          11
+        ]
       },
       "MERCURY": {
         "longitude_tropical": 340.29812440918374,
         "longitude_sidereal": 319.1029266645647,
         "longitude_used": 319.1029266645647,
         "rashi": "KUMBHA",
+        "house": 2,
         "degree_in_rashi": 19.102926664564677,
         "nakshatra": "SHATABHISHA",
         "nakshatra_lord": "RAHU",
         "pada": 4,
         "degree_in_nakshatra": 12.436259997897988,
         "retrograde": "DIRECT",
-        "d9_sign": "VRISHCHIKA"
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          6,
+          9
+        ]
       },
       "JUPITER": {
         "longitude_tropical": 352.0845706432159,
         "longitude_sidereal": 330.88937289859683,
         "longitude_used": 330.88937289859683,
         "rashi": "MEENA",
+        "house": 3,
         "degree_in_rashi": 0.8893728985968323,
         "nakshatra": "PURVA_BHADRAPADA",
         "nakshatra_lord": "JUPITER",
         "pada": 4,
         "degree_in_nakshatra": 10.889372898596843,
         "retrograde": "DIRECT",
-        "d9_sign": "VRISHCHIKA"
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          3,
+          12
+        ]
       },
       "VENUS": {
         "longitude_tropical": 7.456160920648613,
         "longitude_sidereal": 346.2609631760295,
         "longitude_used": 346.2609631760295,
         "rashi": "MEENA",
+        "house": 3,
         "degree_in_rashi": 16.26096317602952,
         "nakshatra": "UTTARA_BHADRAPADA",
         "nakshatra_lord": "SATURN",
         "pada": 4,
         "degree_in_nakshatra": 12.927629842696156,
         "retrograde": "DIRECT",
-        "d9_sign": "MEENA"
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          5,
+          10
+        ]
       },
       "SATURN": {
         "longitude_tropical": 243.14282712869684,
         "longitude_sidereal": 221.94762938407771,
         "longitude_used": 221.94762938407771,
         "rashi": "VRISHCHIKA",
+        "house": 11,
         "degree_in_rashi": 11.947629384077715,
         "nakshatra": "ANURADHA",
         "nakshatra_lord": "SATURN",
         "pada": 3,
         "degree_in_nakshatra": 8.614296050744391,
         "retrograde": "DIRECT",
-        "d9_sign": "TULA"
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          1,
+          2
+        ]
       },
       "RAHU": {
         "longitude_tropical": 216.93795829300694,
         "longitude_sidereal": 195.74276054838788,
         "longitude_used": 195.74276054838788,
         "rashi": "TULA",
+        "house": 10,
         "degree_in_rashi": 15.742760548387878,
         "nakshatra": "SWATI",
         "nakshatra_lord": "RAHU",
         "pada": 3,
         "degree_in_nakshatra": 9.076093881721203,
         "retrograde": "RETROGRADE",
-        "d9_sign": "MITHUNA"
+        "d9_sign": "MITHUNA",
+        "house_lord_of": []
       },
       "KETU": {
         "longitude_tropical": 36.93795829300694,
         "longitude_sidereal": 15.742760548387878,
         "longitude_used": 15.742760548387878,
         "rashi": "MESHA",
+        "house": 4,
         "degree_in_rashi": 15.742760548387878,
         "nakshatra": "BHARANI",
         "nakshatra_lord": "VENUS",
         "pada": 1,
         "degree_in_nakshatra": 2.4094272150545444,
         "retrograde": "RETROGRADE",
-        "d9_sign": "SIMHA"
+        "d9_sign": "SIMHA",
+        "house_lord_of": []
       }
     },
     "houses": {
@@ -241,6 +278,20 @@
         "lord": "JUPITER",
         "occupants": []
       }
+    },
+    "house_lords": {
+      "1": "SATURN",
+      "2": "SATURN",
+      "3": "JUPITER",
+      "4": "MARS",
+      "5": "VENUS",
+      "6": "MERCURY",
+      "7": "MOON",
+      "8": "SUN",
+      "9": "MERCURY",
+      "10": "VENUS",
+      "11": "MARS",
+      "12": "JUPITER"
     }
   },
   "known_events": [

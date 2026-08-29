@@ -638,6 +638,29 @@ class YogaEvaluatorService:
                 YogaOutcome.EMOTIONAL_STABILITY,
                 YogaOutcome.PUBLIC_RECOGNITION,
             },
+            # ── Budhaditya ──
+            "BUDHADITYA": {
+                YogaOutcome.INTELLECTUAL_EXCELLENCE,
+                YogaOutcome.COMMUNICATION_SKILLS,
+                YogaOutcome.BUSINESS_ACUMEN,
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.ARTISTIC_EXCELLENCE,
+            },
+            # ── Saraswati ──
+            "SARASWATI": {
+                YogaOutcome.WISDOM_ACCUMULATION,
+                YogaOutcome.INTELLECTUAL_EXCELLENCE,
+                YogaOutcome.TEACHING_ABILITY,
+                YogaOutcome.ARTISTIC_EXCELLENCE,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            # ── Amala ──
+            "AMALA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.PUBLIC_RECOGNITION,
+                YogaOutcome.SOCIAL_STATUS,
+                YogaOutcome.WISDOM_ACCUMULATION,
+            },
         }
         key = yoga_name.upper().replace("_", " ")
         return _YOGA_MULTI_DOMAIN_MAP.get(
@@ -669,6 +692,16 @@ class YogaEvaluatorService:
         # Track which planets are involved in each yoga for transit checks
         yoga_involved_planets: list[list[str]] = []
         planets = jre_facts.get("planets", {})
+
+        # Normalize house_lords keys: JSON fixtures have string keys ("1", "2")
+        # but the engine expects int keys (1, 2).
+        raw_house_lords = jre_facts.get("house_lords", {})
+        house_lords: dict[int, str] = {}
+        for k, v in raw_house_lords.items():
+            try:
+                house_lords[int(k)] = v
+            except (ValueError, TypeError):
+                pass
 
         # ── Gajakesari Yoga ──
         jup_house = planets.get("JUPITER", {}).get("house")
@@ -708,7 +741,6 @@ class YogaEvaluatorService:
                     trikona_lords.append((pname, house))
 
         # Also check using planet ownership mapping from jre_facts
-        house_lords = jre_facts.get("house_lords", {})
         for house_num, lord_planet in house_lords.items():
             if not isinstance(house_num, int) or not isinstance(lord_planet, str):
                 continue
@@ -760,7 +792,6 @@ class YogaEvaluatorService:
         dusthana_set = {6, 8, 12}
         kendra_set = {1, 4, 7, 10}
         trikona_set = {1, 5, 9}
-        house_lords = jre_facts.get("house_lords", {})
         for dusthana_house in dusthana_set:
             lord_planet = house_lords.get(dusthana_house)
             if not isinstance(lord_planet, str):
@@ -966,6 +997,89 @@ class YogaEvaluatorService:
                     )
                     yoga_involved_planets.append([pname, sign_lord])
                     break
+
+        # ── Budhaditya Yoga (BPHS Ch 12) ──
+        # Sun-Mercury conjunction, Mercury not combust.
+        sun_pdata = planets.get("SUN", {})
+        merc_pdata = planets.get("MERCURY", {})
+        sun_house = sun_pdata.get("house")
+        merc_house = merc_pdata.get("house")
+        sun_rashi = sun_pdata.get("rashi", "")
+        merc_rashi = merc_pdata.get("rashi", "")
+        if isinstance(sun_house, int) and isinstance(merc_house, int):
+            if sun_house == merc_house and sun_rashi == merc_rashi:
+                # Check Mercury not combust (distance from Sun > 14°)
+                sun_lon = sun_pdata.get("longitude_used") or sun_pdata.get("longitude", 0)
+                merc_lon = merc_pdata.get("longitude_used") or merc_pdata.get("longitude", 0)
+                diff = abs(sun_lon - merc_lon)
+                if diff > 180:
+                    diff = 360 - diff
+                merc_combust = diff < 8.0
+                if not merc_combust:
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Budhaditya",
+                        involved_planets=["SUN", "MERCURY"],
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                        results.append(eval_)
+                        yoga_involved_planets.append(["SUN", "MERCURY"])
+
+        # ── Saraswati Yoga ──
+        # Jupiter, Mercury, Venus in Kendras (1/4/7/10) or Trikonas (1/5/9) or 2nd/11th,
+        # with Jupiter strong (own sign, exalted, or in Kendra).
+        jup_pdata = planets.get("JUPITER", {})
+        jup_house_val = jup_pdata.get("house")
+        merc_house_val = merc_pdata.get("house")
+        ven_pdata = planets.get("VENUS", {})
+        ven_house_val = ven_pdata.get("house")
+        _SARASWATI_HOUSES = {1, 2, 4, 5, 7, 9, 10, 11}
+        if (isinstance(jup_house_val, int) and isinstance(merc_house_val, int)
+                and isinstance(ven_house_val, int)):
+            all_in_range = all(h in _SARASWATI_HOUSES for h in [jup_house_val, merc_house_val, ven_house_val])
+            jup_rashi = jup_pdata.get("rashi", "")
+            jup_strong = (
+                jup_house_val in kendra_houses
+                or jup_rashi in {"DHANUSHA", "MEENA", "KARKA"}  # own/exalt
+            )
+            if all_in_range and jup_strong:
+                eval_ = self.evaluate_formation(
+                    yoga_name="Saraswati",
+                    involved_planets=["JUPITER", "MERCURY", "VENUS"],
+                    jre_facts=jre_facts,
+                )
+                if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                    results.append(eval_)
+                    yoga_involved_planets.append(["JUPITER", "MERCURY", "VENUS"])
+
+        # ── Amala Yoga ──
+        # Pure benefic (Jupiter/Venus/Mercury/Moon) in H10 from Lagna,
+        # no malefic conjunction or aspect.
+        _AMALA_BENEFICS = {"JUPITER", "VENUS", "MERCURY", "MOON"}
+        _AMALA_MALEFICS = {"SATURN", "MARS", "RAHU", "KETU"}
+        for pname in _AMALA_BENEFICS:
+            pdata = planets.get(pname, {})
+            ph = pdata.get("house")
+            if not isinstance(ph, int) or ph != 10:
+                continue
+            # Check no malefic in same house
+            has_malefic_conj = False
+            for mp in _AMALA_MALEFICS:
+                mpdata = planets.get(mp, {})
+                mph = mpdata.get("house")
+                if isinstance(mph, int) and mph == 10:
+                    has_malefic_conj = True
+                    break
+            if not has_malefic_conj:
+                eval_ = self.evaluate_formation(
+                    yoga_name="Amala",
+                    involved_planets=[pname],
+                    jre_facts=jre_facts,
+                )
+                if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                    results.append(eval_)
+                    yoga_involved_planets.append([pname])
+                    break  # Only first Amala
 
         # ── Phase 1: Apply 5-tier modifier pipeline to all FORMED yogas ──
         # Skip Vipareeta Raja: dusthana placement is required, not a weakness

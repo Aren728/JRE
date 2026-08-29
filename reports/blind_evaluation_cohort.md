@@ -2,7 +2,7 @@
 
 **Phase E5: Consolidated Pattern-Analysis Report**
 
-**Subjects:** 10 | **Events:** 30 | **Relevant Yoga Activations:** 10/30 (33%)
+**Subjects:** 10 | **Events:** 30 | **Relevant Yoga Activations:** 12/30 (40%)
 
 ---
 
@@ -10,7 +10,7 @@
 
 The 5-layer JRE pipeline was executed against 30 known life events across 10 historical subjects. No calibration, tuning, or post-hoc adjustments were applied.
 
-**Overall Hit Rate:** 10/30 (33%) events had a relevant Yoga activated by Dasha at the time of the event.
+**Overall Hit Rate:** 12/30 (40%) events had a relevant Yoga activated by Dasha at the time of the event.
 
 | Subject | Lagna | Events | Activated | Hit Rate |
 |---------|-------|--------|-----------|----------|
@@ -20,7 +20,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 | Nikola Tesla | MESHA | 3 | 1 | 1/3 |
 | Indira Gandhi | KARKA | 3 | 2 | 2/3 |
 | Isaac Newton | VRISHCHIKA | 3 | 0 | 0/3 |
-| Abraham Lincoln | MAKARA | 3 | 0 | 0/3 |
+| Abraham Lincoln | MAKARA | 3 | 2 | 2/3 |
 | Mother Teresa | KUMBHA | 3 | 1 | 1/3 |
 | Steve Jobs | SIMHA | 3 | 0 | 0/3 |
 | Amelia Earhart | SIMHA | 3 | 2 | 2/3 |
@@ -30,9 +30,9 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 ## Section 2: Systemic Patterns
 
 ### Chain Impact (Layer 1.5)
-- **Computed for:** 48 yoga formations across all charts
-- **Average chain impact:** -3.689153
-- **Negative chain impacts:** 33/48 (69%)
+- **Computed for:** 69 yoga formations across all charts
+- **Average chain impact:** -7.784921
+- **Negative chain impacts:** 39/69 (57%)
 - **Pattern:** Chain impact is consistently negative across the cohort, suggesting multi-hop dispositorship chains tend to produce net malefic functional influence.
 
 ### Vipareeta Raja Yoga Frequency
@@ -43,7 +43,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 
 | Domain | Events | Dasha-Aligned | Alignment Rate |
 |--------|--------|---------------|----------------|
-| CAREER | 19 | 8 | 42% |
+| CAREER | 19 | 10 | 53% |
 | HEALTH | 9 | 2 | 22% |
 | MARRIAGE | 1 | 0 | 0% |
 | MIGRATION | 1 | 0 | 0% |
@@ -54,17 +54,20 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|-----------------|-----------|
 | Raja | 18 | 6 |
 | Dhana | 15 | 8 |
+| Budhaditya | 15 | 10 |
 | Gajakesari | 12 | 6 |
 | Anapha | 9 | 4 |
 | Vipareeta Raja | 6 | 0 |
 | Sunapha | 6 | 2 |
 | Malavya | 3 | 2 |
+| Saraswati | 3 | 2 |
 | Neecha Bhanga | 3 | 2 |
+| Amala | 3 | 2 |
 
 ### Modifier Pipeline Outcomes
-- **FORMED:** 15/72 (21%)
-- **WEAKENED:** 30/72 (42%)
-- **CANCELLED:** 27/72 (38%)
+- **FORMED:** 21/93 (23%)
+- **WEAKENED:** 33/93 (35%)
+- **CANCELLED:** 39/93 (42%)
 
 ---
 
@@ -208,6 +211,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Sunapha | CANCELLED | MOON, VENUS | 0.350 | 1.0000 | 0.40 | -42.7013 | DORMANT |
 | Sunapha | WEAKENED | MOON, RAHU | 0.420 | 1.0000 | 1.50 | -40.9027 | ACTIVATED |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 1.10 | 0.0000 | ACTIVATED |
 
 **GANDHI_WAR_1971** (1971-12-16) — CAREER
 
@@ -215,6 +219,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Sunapha | CANCELLED | MOON, VENUS | 0.350 | 1.0000 | 0.40 | -42.7013 | DORMANT |
 | Sunapha | WEAKENED | MOON, RAHU | 0.420 | 1.0000 | 1.50 | -40.9027 | ACTIVATED |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 1.25 | 0.0000 | ACTIVATED |
 
 **GANDHI_ASSASSINATION_1984** (1984-10-31) — HEALTH
 
@@ -222,6 +227,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Sunapha | CANCELLED | MOON, VENUS | 0.350 | 1.0000 | 0.40 | -42.7013 | DORMANT |
 | Sunapha | WEAKENED | MOON, RAHU | 0.420 | 1.0000 | 0.40 | -40.9027 | DORMANT |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
 ### Isaac Newton
 **Fixture:** `chart_006_newton.json` | **Lagna:** VRISHCHIKA (VISHAKHA) | **Moon Nakshatra:** ARDRA
@@ -237,26 +243,32 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 0.40 | -50.3613 | DORMANT |
+| Saraswati | CANCELLED | JUPITER, MERCURY, VENUS | 1.000 | 1.0000 | 1.10 | -77.3642 | ACTIVATED |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 1.10 | 0.0000 | ACTIVATED |
 
 **NEWTON_LUCASIAN_1669** (1669-10-29) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 0.40 | -50.3613 | DORMANT |
+| Saraswati | CANCELLED | JUPITER, MERCURY, VENUS | 1.000 | 1.0000 | 0.40 | -77.3642 | DORMANT |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
 **NEWTON_DEATH_1727** (1727-03-31) — HEALTH
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 1.25 | -50.3613 | ACTIVATED |
+| Saraswati | CANCELLED | JUPITER, MERCURY, VENUS | 1.000 | 1.0000 | 1.25 | -77.3642 | ACTIVATED |
+| Budhaditya | CANCELLED | SUN, MERCURY | 1.000 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
 ### Abraham Lincoln
 **Fixture:** `chart_007_lincoln.json` | **Lagna:** MAKARA (DHANISHTHA) | **Moon Nakshatra:** UTTARA_ASHADHA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| LINCOLN_PRESIDENT_1860 | 1860-11-06 | CAREER | RAHU/SATURN/MERCURY | Raja | 1.0000 | ✗ | JUPITER, SATURN |
-| LINCOLN_EMANCIPATION_1863 | 1863-01-01 | CAREER | RAHU/MERCURY/MERCURY | Raja | 1.0000 | ✗ | JUPITER, MERCURY |
+| LINCOLN_PRESIDENT_1860 | 1860-11-06 | CAREER | RAHU/SATURN/MERCURY | Raja | 1.0000 | ✓ | JUPITER, SATURN |
+| LINCOLN_EMANCIPATION_1863 | 1863-01-01 | CAREER | RAHU/MERCURY/MERCURY | Raja | 1.0000 | ✓ | JUPITER, MERCURY |
 | LINCOLN_ASSASSINATION_1865 | 1865-04-15 | HEALTH | RAHU/MERCURY/SATURN | Raja | 1.0000 | ✗ | SATURN, RAHU |
 
 **LINCOLN_PRESIDENT_1860** (1860-11-06) — CAREER
@@ -265,6 +277,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
 | Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.10 | -21.3694 | ACTIVATED |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 1.10 | 0.0000 | ACTIVATED |
 
 **LINCOLN_EMANCIPATION_1863** (1863-01-01) — CAREER
 
@@ -272,6 +285,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
 | Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.25 | -21.3694 | ACTIVATED |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 1.25 | 0.0000 | ACTIVATED |
 
 **LINCOLN_ASSASSINATION_1865** (1865-04-15) — HEALTH
 
@@ -279,6 +293,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
 | Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.25 | -21.3694 | ACTIVATED |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 1.25 | 0.0000 | ACTIVATED |
 
 ### Mother Teresa
 **Fixture:** `chart_008_teresa.json` | **Lagna:** KUMBHA (DHANISHTHA) | **Moon Nakshatra:** KRITTIKA
@@ -361,7 +376,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 1.50 | 89.9490 | ACTIVATED |
 | Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 0.40 | -57.7999 | DORMANT |
-| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 1.10 | — | ACTIVATED |
+| Amala | FORMED | MOON | 1.000 | 0.4000 | 1.50 | -42.6626 | ACTIVATED |
 
 **EARHART_SOLO_ATLANTIC_1932** (1932-05-20) — CAREER
 
@@ -369,7 +384,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 1.50 | 89.9490 | ACTIVATED |
 | Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 0.40 | -57.7999 | DORMANT |
-| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 1.25 | — | ACTIVATED |
+| Amala | FORMED | MOON | 1.000 | 0.4000 | 1.50 | -42.6626 | ACTIVATED |
 
 **EARHART_DISAPPEARANCE_1937** (1937-07-02) — HEALTH
 
@@ -377,7 +392,7 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 |------|--------|----------|--------|---------|------------|--------------|------------|
 | Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 0.40 | 89.9490 | DORMANT |
 | Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 1.50 | -57.7999 | ACTIVATED |
-| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 0.40 | — | DORMANT |
+| Amala | FORMED | MOON | 1.000 | 0.4000 | 0.40 | -42.6626 | DORMANT |
 
 ---
 
@@ -386,17 +401,17 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 The following hypotheses are derived from the raw pipeline output without proposing fixes.
 
 ### Hypothesis 1: Chain Impact Is Systematically Negative
-- **Observation:** Average chain impact = -3.689153 (33/48 negative)
+- **Observation:** Average chain impact = -7.784921 (39/69 negative)
 - **Possible cause:** The multi-hop chain evaluator (Layer 1.5) may be weighting dispositorship chains through dusthana houses too heavily. When a yoga-forming planet's dispositor chain passes through 6th/8th/12th houses, the negative functional role weight compounds across hops.
 - **Impact:** This suppresses dynamic_strength for otherwise well-formed yogas, reducing the apparent prediction accuracy.
 
 ### Hypothesis 3: Transit Multiplier Is Inactive (Always 1.0)
-- **Observation:** All 48 transit multiplier values are exactly 1.0
+- **Observation:** All 69 transit multiplier values are exactly 1.0
 - **Possible cause:** The transit evaluation layer requires `transit_houses` and `ashtakavarga_scores` in jre_facts, which are not provided by the current fixture format. Without this data, the transit layer defaults to a pass-through multiplier.
 - **Impact:** The pipeline effectively runs a 4-layer evaluation (Layers 1, 1.5, 2, 4) with Layer 3 (transit) inactive. Dynamic strength is determined solely by chain impact and dasha multiplier.
 
 ### Hypothesis 4: Dasha Activation Misses on Key Events
-- **Observation:** 20/30 events had no relevant yoga activated by the active Dasha lords
+- **Observation:** 18/30 events had no relevant yoga activated by the active Dasha lords
 - **Possible cause:** The expected_planets in the fixture define which planets *should* be active, but the Dasha multiplier only fires when the MD/AD/PD lord *is* one of the yoga's involved planets. If the expected planet is not involved in any formed yoga, the activation check cannot succeed by construction.
 - **Impact:** This is a structural limitation of the current evaluation framework — it tests yoga-level activation, not planet-level Dasha presence.
 

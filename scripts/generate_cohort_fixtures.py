@@ -579,14 +579,19 @@ def extract_chart_facts(chart: Any) -> dict[str, Any]:
     }
 
     # Planets
+    lagna_rashi = lagna.rashi.value
+    lagna_rashi_idx = _RASHI_ORDER.index(lagna_rashi)
     planets: dict[str, Any] = {}
     for ps in chart.planet_states:
         name = ps.body.value
+        planet_rashi_idx = _RASHI_ORDER.index(ps.rashi.value)
+        house_num = (planet_rashi_idx - lagna_rashi_idx) % 12 + 1
         planets[name] = {
             "longitude_tropical": ps.longitude_tropical,
             "longitude_sidereal": ps.longitude_sidereal,
             "longitude_used": ps.longitude_used,
             "rashi": ps.rashi.value,
+            "house": house_num,
             "degree_in_rashi": ps.degree_in_rashi,
             "nakshatra": ps.nakshatra.value,
             "nakshatra_lord": ps.nakshatra_lord.value,
@@ -605,10 +610,31 @@ def extract_chart_facts(chart: Any) -> dict[str, Any]:
             "occupants": [o.value for o in bhava.occupants],
         }
 
+    # Compute house_lord_of for each planet
+    # Build reverse map: planet -> list of houses it owns
+    planet_houses: dict[str, list[int]] = {}
+    for bhava in chart.bhavas:
+        lord = bhava.house_lord.value
+        house_num = bhava.house_number
+        if lord not in planet_houses:
+            planet_houses[lord] = []
+        planet_houses[lord].append(house_num)
+
+    # Add house_lord_of to each planet
+    for pname in planets:
+        planets[pname]["house_lord_of"] = sorted(planet_houses.get(pname, []))
+
+    # Build house_lords mapping: house_number (int) -> lord_planet
+    # JSON keys must be strings, but the engine expects int keys
+    house_lords: dict[str, str] = {}
+    for bhava in chart.bhavas:
+        house_lords[str(bhava.house_number)] = bhava.house_lord.value
+
     return {
         "lagna": lagna_facts,
         "planets": planets,
         "houses": houses,
+        "house_lords": house_lords,
     }
 
 
