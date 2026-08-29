@@ -2,15 +2,15 @@
 
 **Phase E5: Consolidated Pattern-Analysis Report**
 
-**Subjects:** 5 | **Events:** 15 | **Relevant Yoga Activations:** 7/15 (47%)
+**Subjects:** 10 | **Events:** 30 | **Relevant Yoga Activations:** 10/30 (33%)
 
 ---
 
 ## Section 1: Executive Summary
 
-The 5-layer JRE pipeline was executed against 15 known life events across 5 historical subjects. No calibration, tuning, or post-hoc adjustments were applied.
+The 5-layer JRE pipeline was executed against 30 known life events across 10 historical subjects. No calibration, tuning, or post-hoc adjustments were applied.
 
-**Overall Hit Rate:** 7/15 (47%) events had a relevant Yoga activated by Dasha at the time of the event.
+**Overall Hit Rate:** 10/30 (33%) events had a relevant Yoga activated by Dasha at the time of the event.
 
 | Subject | Lagna | Events | Activated | Hit Rate |
 |---------|-------|--------|-----------|----------|
@@ -19,26 +19,32 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 | Wolfgang Amadeus Mozart | SIMHA | 3 | 0 | 0/3 |
 | Nikola Tesla | MESHA | 3 | 1 | 1/3 |
 | Indira Gandhi | KARKA | 3 | 2 | 2/3 |
+| Isaac Newton | VRISHCHIKA | 3 | 0 | 0/3 |
+| Abraham Lincoln | MAKARA | 3 | 0 | 0/3 |
+| Mother Teresa | KUMBHA | 3 | 1 | 1/3 |
+| Steve Jobs | SIMHA | 3 | 0 | 0/3 |
+| Amelia Earhart | SIMHA | 3 | 2 | 2/3 |
 
 ---
 
 ## Section 2: Systemic Patterns
 
 ### Chain Impact (Layer 1.5)
-- **Computed for:** 24 yoga formations across all charts
-- **Average chain impact:** 1.524715
-- **Negative chain impacts:** 15/24 (62%)
+- **Computed for:** 48 yoga formations across all charts
+- **Average chain impact:** -3.689153
+- **Negative chain impacts:** 33/48 (69%)
+- **Pattern:** Chain impact is consistently negative across the cohort, suggesting multi-hop dispositorship chains tend to produce net malefic functional influence.
 
 ### Vipareeta Raja Yoga Frequency
-- **Triggered in:** 1/5 subjects (20%)
-- **Formed instances:** 3/3 evaluations
+- **Triggered in:** 2/10 subjects (20%)
+- **Formed instances:** 6/6 evaluations
 
 ### Dasha Activation by Event Domain
 
 | Domain | Events | Dasha-Aligned | Alignment Rate |
 |--------|--------|---------------|----------------|
-| CAREER | 8 | 5 | 62% |
-| HEALTH | 5 | 2 | 40% |
+| CAREER | 19 | 8 | 42% |
+| HEALTH | 9 | 2 | 22% |
 | MARRIAGE | 1 | 0 | 0% |
 | MIGRATION | 1 | 0 | 0% |
 
@@ -46,17 +52,19 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Yoga | Formed/Weakened | Activated |
 |------|-----------------|-----------|
-| Raja | 9 | 4 |
-| Gajakesari | 6 | 3 |
-| Dhana | 6 | 4 |
+| Raja | 18 | 6 |
+| Dhana | 15 | 8 |
+| Gajakesari | 12 | 6 |
+| Anapha | 9 | 4 |
+| Vipareeta Raja | 6 | 0 |
 | Sunapha | 6 | 2 |
-| Vipareeta Raja | 3 | 0 |
 | Malavya | 3 | 2 |
+| Neecha Bhanga | 3 | 2 |
 
 ### Modifier Pipeline Outcomes
-- **FORMED:** 6/33 (18%)
-- **WEAKENED:** 15/33 (45%)
-- **CANCELLED:** 12/33 (36%)
+- **FORMED:** 15/72 (21%)
+- **WEAKENED:** 30/72 (42%)
+- **CANCELLED:** 27/72 (38%)
 
 ---
 
@@ -215,19 +223,180 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 | Sunapha | CANCELLED | MOON, VENUS | 0.350 | 1.0000 | 0.40 | -42.7013 | DORMANT |
 | Sunapha | WEAKENED | MOON, RAHU | 0.420 | 1.0000 | 0.40 | -40.9027 | DORMANT |
 
+### Isaac Newton
+**Fixture:** `chart_006_newton.json` | **Lagna:** VRISHCHIKA (VISHAKHA) | **Moon Nakshatra:** ARDRA
+
+| Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
+|-------|------|--------|-------------|----------|----------|------------|------------------|
+| NEWTON_PRINCIPIA_1687 | 1687-07-05 | CAREER | RAHU/KETU/MERCURY | Raja | 1.0000 | ✗ | JUPITER, MERCURY |
+| NEWTON_LUCASIAN_1669 | 1669-10-29 | CAREER | MARS/RAHU/SATURN | Raja | 1.0000 | ✗ | JUPITER, SATURN |
+| NEWTON_DEATH_1727 | 1727-03-31 | HEALTH | SATURN/JUPITER/SATURN | Raja | 1.0000 | ✗ | SATURN, RAHU |
+
+**NEWTON_PRINCIPIA_1687** (1687-07-05) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 0.40 | -50.3613 | DORMANT |
+
+**NEWTON_LUCASIAN_1669** (1669-10-29) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 0.40 | -50.3613 | DORMANT |
+
+**NEWTON_DEATH_1727** (1727-03-31) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | FORMED | VENUS, JUPITER | 1.000 | 1.0000 | 1.25 | -50.3613 | ACTIVATED |
+
+### Abraham Lincoln
+**Fixture:** `chart_007_lincoln.json` | **Lagna:** MAKARA (DHANISHTHA) | **Moon Nakshatra:** UTTARA_ASHADHA
+
+| Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
+|-------|------|--------|-------------|----------|----------|------------|------------------|
+| LINCOLN_PRESIDENT_1860 | 1860-11-06 | CAREER | RAHU/SATURN/MERCURY | Raja | 1.0000 | ✗ | JUPITER, SATURN |
+| LINCOLN_EMANCIPATION_1863 | 1863-01-01 | CAREER | RAHU/MERCURY/MERCURY | Raja | 1.0000 | ✗ | JUPITER, MERCURY |
+| LINCOLN_ASSASSINATION_1865 | 1865-04-15 | HEALTH | RAHU/MERCURY/SATURN | Raja | 1.0000 | ✗ | SATURN, RAHU |
+
+**LINCOLN_PRESIDENT_1860** (1860-11-06) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
+| Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.10 | -21.3694 | ACTIVATED |
+
+**LINCOLN_EMANCIPATION_1863** (1863-01-01) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
+| Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.25 | -21.3694 | ACTIVATED |
+
+**LINCOLN_ASSASSINATION_1865** (1865-04-15) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | MARS, VENUS | 0.700 | 1.0000 | 0.40 | -31.7300 | DORMANT |
+| Anapha | CANCELLED | MOON, MERCURY | 1.000 | 0.4000 | 1.25 | -21.3694 | ACTIVATED |
+
+### Mother Teresa
+**Fixture:** `chart_008_teresa.json` | **Lagna:** KUMBHA (DHANISHTHA) | **Moon Nakshatra:** KRITTIKA
+
+| Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
+|-------|------|--------|-------------|----------|----------|------------|------------------|
+| TERESA_MISSIONARIES_1950 | 1950-10-07 | CAREER | MARS/SATURN/KETU | Anapha | 1.0000 | ✗ | JUPITER, MOON |
+| TERESA_NOBEL_1979 | 1979-12-10 | CAREER | JUPITER/KETU/KETU | Anapha | 1.0000 | ✓ | JUPITER, SUN |
+| TERESA_DEATH_1997 | 1997-09-05 | HEALTH | SATURN/VENUS/JUPITER | Anapha | 1.0000 | ✗ | SATURN, RAHU |
+
+**TERESA_MISSIONARIES_1950** (1950-10-07) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, RAHU | 0.840 | 1.0000 | 0.40 | -26.2130 | DORMANT |
+| Dhana | WEAKENED | JUPITER, JUPITER | 0.500 | — | 0.40 | — | DORMANT |
+| Neecha Bhanga | CANCELLED | SATURN, MARS | 0.840 | — | 1.50 | — | ACTIVATED |
+
+**TERESA_NOBEL_1979** (1979-12-10) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, RAHU | 0.840 | 1.0000 | 0.40 | -26.2130 | DORMANT |
+| Dhana | WEAKENED | JUPITER, JUPITER | 0.500 | — | 1.50 | — | ACTIVATED |
+| Neecha Bhanga | CANCELLED | SATURN, MARS | 0.840 | — | 0.40 | — | DORMANT |
+
+**TERESA_DEATH_1997** (1997-09-05) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, RAHU | 0.840 | 1.0000 | 0.40 | -26.2130 | DORMANT |
+| Dhana | WEAKENED | JUPITER, JUPITER | 0.500 | — | 1.10 | — | ACTIVATED |
+| Neecha Bhanga | CANCELLED | SATURN, MARS | 0.840 | — | 1.50 | — | ACTIVATED |
+
+### Steve Jobs
+**Fixture:** `chart_009_jobs.json` | **Lagna:** SIMHA (UTTARA_PHALGUNI) | **Moon Nakshatra:** UTTARA_BHADRAPADA
+
+| Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
+|-------|------|--------|-------------|----------|----------|------------|------------------|
+| JOBS_APPLE_1976 | 1976-04-01 | CAREER | VENUS/SATURN/VENUS | Anapha | 1.0000 | ✗ | MERCURY, JUPITER |
+| JOBS_OUSTED_1985 | 1985-09-17 | CAREER | SUN/SATURN/RAHU | Anapha | 1.0000 | ✗ | SATURN, RAHU |
+| JOBS_RETURN_1997 | 1997-09-16 | CAREER | MOON/SUN/MOON | Anapha | 1.0000 | ✗ | JUPITER, VENUS |
+
+**JOBS_APPLE_1976** (1976-04-01) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, MARS | 0.500 | 1.0000 | 0.40 | -58.1349 | DORMANT |
+| Gajakesari | CANCELLED | JUPITER, MOON | 0.500 | 0.4000 | 0.40 | 84.4354 | DORMANT |
+| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
+
+**JOBS_OUSTED_1985** (1985-09-17) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, MARS | 0.500 | 1.0000 | 0.40 | -58.1349 | DORMANT |
+| Gajakesari | CANCELLED | JUPITER, MOON | 0.500 | 0.4000 | 0.40 | 84.4354 | DORMANT |
+| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
+
+**JOBS_RETURN_1997** (1997-09-16) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Anapha | CANCELLED | MOON, MARS | 0.500 | 1.0000 | 1.50 | -58.1349 | ACTIVATED |
+| Gajakesari | CANCELLED | JUPITER, MOON | 0.500 | 0.4000 | 1.50 | 84.4354 | ACTIVATED |
+| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
+
+### Amelia Earhart
+**Fixture:** `chart_010_earhart.json` | **Lagna:** SIMHA (MAGHA) | **Moon Nakshatra:** ROHINI
+
+| Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
+|-------|------|--------|-------------|----------|----------|------------|------------------|
+| EARHART_FIRST_FLIGHT_1928 | 1928-06-17 | CAREER | MOON/RAHU/MERCURY | Gajakesari | 0.4000 | ✓ | JUPITER, RAHU |
+| EARHART_SOLO_ATLANTIC_1932 | 1932-05-20 | CAREER | MOON/MERCURY/VENUS | Gajakesari | 0.4000 | ✓ | JUPITER, MARS |
+| EARHART_DISAPPEARANCE_1937 | 1937-07-02 | HEALTH | MARS/RAHU/VENUS | Gajakesari | 0.4000 | ✗ | RAHU, SATURN |
+
+**EARHART_FIRST_FLIGHT_1928** (1928-06-17) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 1.50 | 89.9490 | ACTIVATED |
+| Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 0.40 | -57.7999 | DORMANT |
+| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 1.10 | — | ACTIVATED |
+
+**EARHART_SOLO_ATLANTIC_1932** (1932-05-20) — CAREER
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 1.50 | 89.9490 | ACTIVATED |
+| Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 0.40 | -57.7999 | DORMANT |
+| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 1.25 | — | ACTIVATED |
+
+**EARHART_DISAPPEARANCE_1937** (1937-07-02) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.4000 | 0.40 | 89.9490 | DORMANT |
+| Raja | WEAKENED | MARS, JUPITER | 0.300 | 0.4000 | 1.50 | -57.7999 | ACTIVATED |
+| Dhana | WEAKENED | MERCURY, MERCURY | 0.350 | — | 0.40 | — | DORMANT |
+
 ---
 
 ## Section 4: Error Attribution Hypotheses
 
 The following hypotheses are derived from the raw pipeline output without proposing fixes.
 
+### Hypothesis 1: Chain Impact Is Systematically Negative
+- **Observation:** Average chain impact = -3.689153 (33/48 negative)
+- **Possible cause:** The multi-hop chain evaluator (Layer 1.5) may be weighting dispositorship chains through dusthana houses too heavily. When a yoga-forming planet's dispositor chain passes through 6th/8th/12th houses, the negative functional role weight compounds across hops.
+- **Impact:** This suppresses dynamic_strength for otherwise well-formed yogas, reducing the apparent prediction accuracy.
+
 ### Hypothesis 3: Transit Multiplier Is Inactive (Always 1.0)
-- **Observation:** All 24 transit multiplier values are exactly 1.0
+- **Observation:** All 48 transit multiplier values are exactly 1.0
 - **Possible cause:** The transit evaluation layer requires `transit_houses` and `ashtakavarga_scores` in jre_facts, which are not provided by the current fixture format. Without this data, the transit layer defaults to a pass-through multiplier.
 - **Impact:** The pipeline effectively runs a 4-layer evaluation (Layers 1, 1.5, 2, 4) with Layer 3 (transit) inactive. Dynamic strength is determined solely by chain impact and dasha multiplier.
 
 ### Hypothesis 4: Dasha Activation Misses on Key Events
-- **Observation:** 8/15 events had no relevant yoga activated by the active Dasha lords
+- **Observation:** 20/30 events had no relevant yoga activated by the active Dasha lords
 - **Possible cause:** The expected_planets in the fixture define which planets *should* be active, but the Dasha multiplier only fires when the MD/AD/PD lord *is* one of the yoga's involved planets. If the expected planet is not involved in any formed yoga, the activation check cannot succeed by construction.
 - **Impact:** This is a structural limitation of the current evaluation framework — it tests yoga-level activation, not planet-level Dasha presence.
 

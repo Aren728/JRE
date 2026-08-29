@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_009_jobs",
+    "version": "1.0.0",
+    "subject": "Steve Jobs",
+    "description": "Immutable reference chart for Steve Jobs. AA-rated birth data. Born 24 February 1955 at 19:15 local time in San Francisco, California.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1955-02-24",
+    "time": "19:15:00",
+    "timezone": "America/Los_Angeles",
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "location": "San Francisco, California, USA"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 149.0555566389604,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 29.05555663896041,
+      "nakshatra": "UTTARA_PHALGUNI",
+      "nakshatra_lord": "SUN",
+      "pada": 1,
+      "degree_in_nakshatra": 2.3888899722937484,
+      "d9_sign": "MESHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 335.7481349816246,
+        "longitude_sidereal": 312.51243881240373,
+        "longitude_used": 312.51243881240373,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 12.51243881240373,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "degree_in_nakshatra": 5.845772145737067,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA"
+      },
+      "MOON": {
+        "longitude_tropical": 7.747329885612751,
+        "longitude_sidereal": 344.5116337163919,
+        "longitude_used": 344.5116337163919,
+        "rashi": "MEENA",
+        "degree_in_rashi": 14.511633716391884,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 11.178300383058538,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA"
+      },
+      "MARS": {
+        "longitude_tropical": 29.090487072451467,
+        "longitude_sidereal": 5.854790903230564,
+        "longitude_used": 5.854790903230564,
+        "rashi": "MESHA",
+        "degree_in_rashi": 5.854790903230564,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "degree_in_nakshatra": 5.854790903230564,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 314.36172883676335,
+        "longitude_sidereal": 291.1260326675424,
+        "longitude_used": 291.1260326675424,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 21.126032667542404,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 11.12603266754242,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 110.50795931866219,
+        "longitude_sidereal": 87.27226314944127,
+        "longitude_used": 87.27226314944127,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 27.272263149441272,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 7.2722631494412715,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MITHUNA"
+      },
+      "VENUS": {
+        "longitude_tropical": 291.1718705721197,
+        "longitude_sidereal": 267.9361744028988,
+        "longitude_used": 267.9361744028988,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 27.936174402898814,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 1,
+        "degree_in_nakshatra": 1.2695077362321305,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 231.16268141241414,
+        "longitude_sidereal": 207.92698524319323,
+        "longitude_used": 207.92698524319323,
+        "rashi": "TULA",
+        "degree_in_rashi": 27.92698524319323,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 7.926985243193216,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA"
+      },
+      "RAHU": {
+        "longitude_tropical": 272.5049475262944,
+        "longitude_sidereal": 249.26925135707353,
+        "longitude_used": 249.26925135707353,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 9.269251357073529,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 3,
+        "degree_in_nakshatra": 9.26925135707353,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA"
+      },
+      "KETU": {
+        "longitude_tropical": 92.50494752629442,
+        "longitude_sidereal": 69.26925135707353,
+        "longitude_used": 69.26925135707353,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 9.269251357073529,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.602584690406864,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "RAHU",
+          "VENUS"
+        ]
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY"
+        ]
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "SUN"
+        ]
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ]
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "JOBS_APPLE_1976",
+      "event_date_utc": "1976-04-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Co-founded Apple Computer with Steve Wozniak",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "JOBS_OUSTED_1985",
+      "event_date_utc": "1985-09-17T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Forced out of Apple by the board of directors",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "JOBS_RETURN_1997",
+      "event_date_utc": "1997-09-16T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Returned to Apple as interim CEO \u2014 began the turnaround",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    }
+  ]
+}

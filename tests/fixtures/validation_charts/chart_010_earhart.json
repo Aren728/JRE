@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_010_earhart",
+    "version": "1.0.0",
+    "subject": "Amelia Earhart",
+    "description": "Immutable reference chart for Amelia Earhart. C-rated birth data (approximate time). Born 24 July 1897 at approximately 08:00 in Atchison, Kansas.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "C",
+      "birth_time_confidence_minutes": 60
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1897-07-24",
+    "time": "08:00:00",
+    "timezone": "America/Chicago",
+    "latitude": 39.5631,
+    "longitude": -95.126,
+    "location": "Atchison, Kansas, USA"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 131.52846034530378,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 11.528460345303785,
+      "nakshatra": "MAGHA",
+      "nakshatra_lord": "KETU",
+      "pada": 4,
+      "degree_in_nakshatra": 11.52846034530379,
+      "d9_sign": "VRISHCHIKA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 121.8599939373531,
+        "longitude_sidereal": 99.42945135027428,
+        "longitude_used": 99.42945135027428,
+        "rashi": "KARKA",
+        "degree_in_rashi": 9.429451350274277,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 6.096118016940939,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA"
+      },
+      "MOON": {
+        "longitude_tropical": 64.1884008684963,
+        "longitude_sidereal": 41.75785828141747,
+        "longitude_used": 41.75785828141747,
+        "rashi": "VRISHABHA",
+        "degree_in_rashi": 11.75785828141747,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "degree_in_nakshatra": 1.7578582814174684,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA"
+      },
+      "MARS": {
+        "longitude_tropical": 159.7714160884571,
+        "longitude_sidereal": 137.34087350137824,
+        "longitude_used": 137.34087350137824,
+        "rashi": "SIMHA",
+        "degree_in_rashi": 17.34087350137824,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.007540168044906,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 131.38359204865102,
+        "longitude_sidereal": 108.9530494615722,
+        "longitude_used": 108.9530494615722,
+        "rashi": "KARKA",
+        "degree_in_rashi": 18.953049461572206,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 2.286382794905539,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 160.1743859240199,
+        "longitude_sidereal": 137.74384333694107,
+        "longitude_used": 137.74384333694107,
+        "rashi": "SIMHA",
+        "degree_in_rashi": 17.74384333694107,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.410510003607737,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA"
+      },
+      "VENUS": {
+        "longitude_tropical": 77.04649220225362,
+        "longitude_sidereal": 54.615949615174785,
+        "longitude_used": 54.615949615174785,
+        "rashi": "VRISHABHA",
+        "degree_in_rashi": 24.615949615174785,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.2826162818414475,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 234.1299526119746,
+        "longitude_sidereal": 211.69941002489577,
+        "longitude_used": 211.69941002489577,
+        "rashi": "VRISHCHIKA",
+        "degree_in_rashi": 1.6994100248957693,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 11.69941002489577,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA"
+      },
+      "RAHU": {
+        "longitude_tropical": 306.311534553909,
+        "longitude_sidereal": 283.88099196683015,
+        "longitude_used": 283.88099196683015,
+        "rashi": "MAKARA",
+        "degree_in_rashi": 13.880991966830152,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 2,
+        "degree_in_nakshatra": 3.880991966830152,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA"
+      },
+      "KETU": {
+        "longitude_tropical": 126.31153455390898,
+        "longitude_sidereal": 103.88099196683015,
+        "longitude_used": 103.88099196683015,
+        "rashi": "KARKA",
+        "degree_in_rashi": 13.880991966830152,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 10.547658633496818,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "JUPITER",
+          "MARS"
+        ]
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "MOON",
+          "VENUS"
+        ]
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU",
+          "MERCURY",
+          "SUN"
+        ]
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "EARHART_FIRST_FLIGHT_1928",
+      "event_date_utc": "1928-06-17T00:00:00Z",
+      "domain": "CAREER",
+      "description": "First woman to fly across the Atlantic (as passenger)",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "EARHART_SOLO_ATLANTIC_1932",
+      "event_date_utc": "1932-05-20T00:00:00Z",
+      "domain": "CAREER",
+      "description": "First woman to fly solo nonstop across the Atlantic",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "MARS"
+      ]
+    },
+    {
+      "event_id": "EARHART_DISAPPEARANCE_1937",
+      "event_date_utc": "1937-07-02T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Disappeared over the Pacific during circumnavigation attempt",
+      "yoga_types": [],
+      "expected_planets": [
+        "RAHU",
+        "SATURN"
+      ]
+    }
+  ]
+}

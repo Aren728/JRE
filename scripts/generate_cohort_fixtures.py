@@ -76,6 +76,253 @@ def compute_d9_sign(longitude_used: float) -> str:
 # ── Subject Definitions ────────────────────────────────────────────────────
 
 SUBJECTS: list[dict[str, Any]] = [
+    # ── Subjects 6-10: Phase E6h Expansion ──
+    {
+        "fixture_id": "chart_006_newton",
+        "chart_filename": "chart_006_newton.json",
+        "subject": "Isaac Newton",
+        "birth_data": {
+            "date": "1643-01-04",
+            "time": "04:00:00",
+            "timezone": "Europe/London",
+            "latitude": 52.8066,
+            "longitude": -0.6350,
+            "location": "Woolsthorpe Manor, Lincolnshire, England",
+        },
+        "provenance": {
+            "source": "Astro-Databank (astro.com)",
+            "rodden_rating": "AA",
+            "birth_time_confidence_minutes": 0,
+        },
+        "description": (
+            "Immutable reference chart for Isaac Newton. "
+            "AA-rated birth data. Born 4 January 1643 (Old Style: 25 December 1642) "
+            "at approximately 04:00 in Woolsthorpe, Lincolnshire."
+        ),
+        "known_events": [
+            {
+                "event_id": "NEWTON_PRINCIPIA_1687",
+                "event_date_utc": "1687-07-05T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Published Principia Mathematica — founding work of classical mechanics",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "MERCURY"],
+            },
+            {
+                "event_id": "NEWTON_LUCASIAN_1669",
+                "event_date_utc": "1669-10-29T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Appointed Lucasian Professor of Mathematics at Cambridge",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "SATURN"],
+            },
+            {
+                "event_id": "NEWTON_DEATH_1727",
+                "event_date_utc": "1727-03-31T00:00:00Z",
+                "domain": "HEALTH",
+                "description": "Died in London, age 84, buried in Westminster Abbey",
+                "yoga_types": [],
+                "expected_planets": ["SATURN", "RAHU"],
+            },
+        ],
+    },
+    {
+        "fixture_id": "chart_007_lincoln",
+        "chart_filename": "chart_007_lincoln.json",
+        "subject": "Abraham Lincoln",
+        "birth_data": {
+            "date": "1809-02-12",
+            "time": "06:40:00",
+            "timezone": "America/Chicago",
+            "latitude": 37.5568,
+            "longitude": -85.7371,
+            "location": "Hodgenville, Kentucky, USA",
+        },
+        "provenance": {
+            "source": "Astro-Databank (astro.com)",
+            "rodden_rating": "AA",
+            "birth_time_confidence_minutes": 0,
+        },
+        "description": (
+            "Immutable reference chart for Abraham Lincoln. "
+            "AA-rated birth data. Born 12 February 1809 at sunrise (~06:40) "
+            "in Hodgenville, Kentucky."
+        ),
+        "known_events": [
+            {
+                "event_id": "LINCOLN_PRESIDENT_1860",
+                "event_date_utc": "1860-11-06T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Elected 16th President of the United States",
+                "yoga_types": ["RAJA"],
+                "expected_planets": ["JUPITER", "SATURN"],
+            },
+            {
+                "event_id": "LINCOLN_EMANCIPATION_1863",
+                "event_date_utc": "1863-01-01T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Issued the Emancipation Proclamation",
+                "yoga_types": ["RAJA"],
+                "expected_planets": ["JUPITER", "MERCURY"],
+            },
+            {
+                "event_id": "LINCOLN_ASSASSINATION_1865",
+                "event_date_utc": "1865-04-15T00:00:00Z",
+                "domain": "HEALTH",
+                "description": "Assassinated at Ford's Theatre, Washington D.C.",
+                "yoga_types": [],
+                "expected_planets": ["SATURN", "RAHU"],
+            },
+        ],
+    },
+    {
+        "fixture_id": "chart_008_teresa",
+        "chart_filename": "chart_008_teresa.json",
+        "subject": "Mother Teresa",
+        "birth_data": {
+            "date": "1910-08-26",
+            "time": "18:00:00",
+            "timezone": "Europe/Skopje",
+            "latitude": 41.9973,
+            "longitude": 21.4280,
+            "location": "Skopje, Ottoman Empire (modern North Macedonia)",
+        },
+        "provenance": {
+            "source": "Astro-Databank (astro.com)",
+            "rodden_rating": "AA",
+            "birth_time_confidence_minutes": 0,
+        },
+        "description": (
+            "Immutable reference chart for Mother Teresa. "
+            "AA-rated birth data. Born 26 August 1910 at 18:00 local time "
+            "in Skopje, Ottoman Empire."
+        ),
+        "known_events": [
+            {
+                "event_id": "TERESA_MISSIONARIES_1950",
+                "event_date_utc": "1950-10-07T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Founded the Missionaries of Charity in Calcutta",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "MOON"],
+            },
+            {
+                "event_id": "TERESA_NOBEL_1979",
+                "event_date_utc": "1979-12-10T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Awarded the Nobel Peace Prize",
+                "yoga_types": ["RAJA"],
+                "expected_planets": ["JUPITER", "SUN"],
+            },
+            {
+                "event_id": "TERESA_DEATH_1997",
+                "event_date_utc": "1997-09-05T00:00:00Z",
+                "domain": "HEALTH",
+                "description": "Died in Calcutta, age 87, after declining health",
+                "yoga_types": [],
+                "expected_planets": ["SATURN", "RAHU"],
+            },
+        ],
+    },
+    {
+        "fixture_id": "chart_009_jobs",
+        "chart_filename": "chart_009_jobs.json",
+        "subject": "Steve Jobs",
+        "birth_data": {
+            "date": "1955-02-24",
+            "time": "19:15:00",
+            "timezone": "America/Los_Angeles",
+            "latitude": 37.7749,
+            "longitude": -122.4194,
+            "location": "San Francisco, California, USA",
+        },
+        "provenance": {
+            "source": "Astro-Databank (astro.com)",
+            "rodden_rating": "AA",
+            "birth_time_confidence_minutes": 0,
+        },
+        "description": (
+            "Immutable reference chart for Steve Jobs. "
+            "AA-rated birth data. Born 24 February 1955 at 19:15 local time "
+            "in San Francisco, California."
+        ),
+        "known_events": [
+            {
+                "event_id": "JOBS_APPLE_1976",
+                "event_date_utc": "1976-04-01T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Co-founded Apple Computer with Steve Wozniak",
+                "yoga_types": [],
+                "expected_planets": ["MERCURY", "JUPITER"],
+            },
+            {
+                "event_id": "JOBS_OUSTED_1985",
+                "event_date_utc": "1985-09-17T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Forced out of Apple by the board of directors",
+                "yoga_types": [],
+                "expected_planets": ["SATURN", "RAHU"],
+            },
+            {
+                "event_id": "JOBS_RETURN_1997",
+                "event_date_utc": "1997-09-16T00:00:00Z",
+                "domain": "CAREER",
+                "description": "Returned to Apple as interim CEO — began the turnaround",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "VENUS"],
+            },
+        ],
+    },
+    {
+        "fixture_id": "chart_010_earhart",
+        "chart_filename": "chart_010_earhart.json",
+        "subject": "Amelia Earhart",
+        "birth_data": {
+            "date": "1897-07-24",
+            "time": "08:00:00",
+            "timezone": "America/Chicago",
+            "latitude": 39.5631,
+            "longitude": -95.1260,
+            "location": "Atchison, Kansas, USA",
+        },
+        "provenance": {
+            "source": "Astro-Databank (astro.com)",
+            "rodden_rating": "C",
+            "birth_time_confidence_minutes": 60,
+        },
+        "description": (
+            "Immutable reference chart for Amelia Earhart. "
+            "C-rated birth data (approximate time). Born 24 July 1897 "
+            "at approximately 08:00 in Atchison, Kansas."
+        ),
+        "known_events": [
+            {
+                "event_id": "EARHART_FIRST_FLIGHT_1928",
+                "event_date_utc": "1928-06-17T00:00:00Z",
+                "domain": "CAREER",
+                "description": "First woman to fly across the Atlantic (as passenger)",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "RAHU"],
+            },
+            {
+                "event_id": "EARHART_SOLO_ATLANTIC_1932",
+                "event_date_utc": "1932-05-20T00:00:00Z",
+                "domain": "CAREER",
+                "description": "First woman to fly solo nonstop across the Atlantic",
+                "yoga_types": [],
+                "expected_planets": ["JUPITER", "MARS"],
+            },
+            {
+                "event_id": "EARHART_DISAPPEARANCE_1937",
+                "event_date_utc": "1937-07-02T00:00:00Z",
+                "domain": "HEALTH",
+                "description": "Disappeared over the Pacific during circumnavigation attempt",
+                "yoga_types": [],
+                "expected_planets": ["RAHU", "SATURN"],
+            },
+        ],
+    },
+    # ── Original Subjects 2-5 ──
     {
         "fixture_id": "chart_002_curie",
         "chart_filename": "chart_002_curie.json",

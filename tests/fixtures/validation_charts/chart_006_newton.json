@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_006_newton",
+    "version": "1.0.0",
+    "subject": "Isaac Newton",
+    "description": "Immutable reference chart for Isaac Newton. AA-rated birth data. Born 4 January 1643 (Old Style: 25 December 1642) at approximately 04:00 in Woolsthorpe, Lincolnshire.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-29",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1643-01-04",
+    "time": "04:00:00",
+    "timezone": "Europe/London",
+    "latitude": 52.8066,
+    "longitude": -0.635,
+    "location": "Woolsthorpe Manor, Lincolnshire, England"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 211.6069163536597,
+      "rashi": "VRISHCHIKA",
+      "degree_in_rashi": 1.6069163536596989,
+      "nakshatra": "VISHAKHA",
+      "nakshatra_lord": "JUPITER",
+      "pada": 4,
+      "degree_in_nakshatra": 11.606916353659708,
+      "d9_sign": "KARKA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 283.77970269901687,
+        "longitude_sidereal": 264.9043500789035,
+        "longitude_used": 264.9043500789035,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 24.90435007890352,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.57101674557018,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA"
+      },
+      "MOON": {
+        "longitude_tropical": 93.6588602456247,
+        "longitude_sidereal": 74.78350762551136,
+        "longitude_used": 74.78350762551136,
+        "rashi": "MITHUNA",
+        "degree_in_rashi": 14.783507625511362,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 3,
+        "degree_in_nakshatra": 8.116840958844696,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA"
+      },
+      "MARS": {
+        "longitude_tropical": 37.54951643841807,
+        "longitude_sidereal": 18.674163818304727,
+        "longitude_used": 18.674163818304727,
+        "rashi": "MESHA",
+        "degree_in_rashi": 18.674163818304727,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.340830484971394,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA"
+      },
+      "MERCURY": {
+        "longitude_tropical": 261.0526205866682,
+        "longitude_sidereal": 242.1772679665549,
+        "longitude_used": 242.1772679665549,
+        "rashi": "DHANUSHA",
+        "degree_in_rashi": 2.1772679665548935,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.177267966554879,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA"
+      },
+      "JUPITER": {
+        "longitude_tropical": 344.1459845614521,
+        "longitude_sidereal": 325.2706319413388,
+        "longitude_used": 325.2706319413388,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 25.27063194133882,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.2706319413388245,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA"
+      },
+      "VENUS": {
+        "longitude_tropical": 327.26732227440516,
+        "longitude_sidereal": 308.3919696542918,
+        "longitude_used": 308.3919696542918,
+        "rashi": "KUMBHA",
+        "degree_in_rashi": 8.391969654291813,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 1.7253029876251444,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA"
+      },
+      "SATURN": {
+        "longitude_tropical": 349.8981890999284,
+        "longitude_sidereal": 331.02283647981506,
+        "longitude_used": 331.02283647981506,
+        "rashi": "MEENA",
+        "degree_in_rashi": 1.022836479815055,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 11.022836479815076,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA"
+      },
+      "RAHU": {
+        "longitude_tropical": 189.62513732223832,
+        "longitude_sidereal": 170.74978470212497,
+        "longitude_used": 170.74978470212497,
+        "rashi": "KANYA",
+        "degree_in_rashi": 20.74978470212497,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 10.749784702124964,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA"
+      },
+      "KETU": {
+        "longitude_tropical": 9.625137322238288,
+        "longitude_sidereal": 350.749784702125,
+        "longitude_used": 350.749784702125,
+        "rashi": "MEENA",
+        "degree_in_rashi": 20.749784702124998,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.083118035458297,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA"
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "3": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "VENUS"
+        ]
+      },
+      "5": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "KETU",
+          "SATURN"
+        ]
+      },
+      "6": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "7": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "9": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "12": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "NEWTON_PRINCIPIA_1687",
+      "event_date_utc": "1687-07-05T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Published Principia Mathematica \u2014 founding work of classical mechanics",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "MERCURY"
+      ]
+    },
+    {
+      "event_id": "NEWTON_LUCASIAN_1669",
+      "event_date_utc": "1669-10-29T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Appointed Lucasian Professor of Mathematics at Cambridge",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "NEWTON_DEATH_1727",
+      "event_date_utc": "1727-03-31T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in London, age 84, buried in Westminster Abbey",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

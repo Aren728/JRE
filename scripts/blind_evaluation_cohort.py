@@ -65,6 +65,11 @@ _CHART_FILES = [
     "chart_003_mozart.json",
     "chart_004_tesla.json",
     "chart_005_gandhi.json",
+    "chart_006_newton.json",
+    "chart_007_lincoln.json",
+    "chart_008_teresa.json",
+    "chart_009_jobs.json",
+    "chart_010_earhart.json",
 ]
 
 
