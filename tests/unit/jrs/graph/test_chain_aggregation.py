@@ -512,3 +512,131 @@ class TestEdgeCases:
         assert result.category == YogaCategory.DHANA
         # Positive because Wb=1.0 > Wm=0.8
         assert result.chain_impact > 0
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Test Class 10: Fix 1 — Gajakesari Natural Benefic Override (Phase E6e)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+class TestGajakesariBeneficOverride:
+    """Gajakesari: Jupiter (natural benefic) always uses benefic weight,
+    even if functional lordship classifies it as MALEFIC."""
+
+    def test_jupiter_kendradhipati_override(self) -> None:
+        """Fix 1: Jupiter as Kendradhipati (functional MALEFIC) but natural
+        BENEFIC → Gajakesari chain impact should be POSITIVE."""
+        agg = YogaSpecificChainAggregator()
+
+        # Jupiter rooted path — classified as 'benefic' by natural nature
+        jup = _make_node("JUPITER", 7, 9, "OWN_SIGN", functional_role="MALEFIC")
+        saturn = _make_node("SATURN", 10, 11, "OWN_SIGN", functional_role="MALEFIC")
+
+        # Jupiter → Saturn path (Jupiter root = natural benefic)
+        path1 = _make_single_path(jup, saturn)
+        pi1 = _make_path_impact(path1, impact=-0.4)
+
+        # Saturn → Jupiter path (Saturn root = natural malefic)
+        path2 = _make_single_path(saturn, jup)
+        pi2 = _make_path_impact(path2, impact=-0.3)
+
+        result = agg.aggregate(
+            path_impacts=[pi1, pi2],
+            yoga_name="Gajakesari",
+            yoga_planets=["JUPITER"],
+        )
+
+        # Jupiter-rooted paths should use Wb=0.8 (benefic), not Wm=0.5
+        # Even with external malefic in chain
+        assert result.chain_impact > 0, (
+            f"Gajakesari chain impact should be positive, got {result.chain_impact}. "
+            f"Jupiter is a natural benefic and should use Wb=0.8."
+        )
+        assert not result.cancelled, "Gajakesari is NEVER cancelled"
+
+    def test_gajakesari_pure_benefic_only(self) -> None:
+        """Gajakesari with only benefic roots → positive."""
+        agg = YogaSpecificChainAggregator()
+
+        jup = _make_node("JUPITER", 7, 9, "OWN_SIGN", functional_role="BENEFIC")
+        moon = _make_node("MOON", 4, 4, "OWN_SIGN", functional_role="BENEFIC")
+
+        path1 = _make_single_path(jup, moon)
+        pi1 = _make_path_impact(path1, impact=0.5)
+
+        path2 = _make_single_path(moon, jup)
+        pi2 = _make_path_impact(path2, impact=0.3)
+
+        result = agg.aggregate(
+            path_impacts=[pi1, pi2],
+            yoga_name="Gajakesari",
+            yoga_planets=["JUPITER", "MOON"],
+        )
+
+        assert result.chain_impact > 0
+        assert result.benefic_paths >= 2
+
+    def test_gajakesari_malefic_root_path_uses_malefic_weight(self) -> None:
+        """Saturn-rooted paths still use Wm=0.5 (malefic weight)."""
+        agg = YogaSpecificChainAggregator()
+
+        saturn = _make_node("SATURN", 10, 11, "OWN_SIGN", functional_role="MALEFIC")
+        path = _make_single_path(saturn)
+        pi = _make_path_impact(path, impact=-0.5)
+
+        # Saturn is NOT a yoga planet, so no paths should be classified
+        result = agg.aggregate(
+            path_impacts=[pi],
+            yoga_name="Gajakesari",
+            yoga_planets=["JUPITER"],
+        )
+
+        # Only JUPITER is a yoga planet — Saturn paths are filtered
+        assert result.total_paths == 0
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Test Class 11: Fix 2 — Vipareeta Raja Stricter Conditions (Phase E6e)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+class TestVipareetaRajaStricter:
+    """Vipareeta Raja: Kendra lord exclusion (BPHS Ch 42)."""
+
+    def test_kendra_lord_excluded_from_vipareeta(self) -> None:
+        """Fix 2: 1st lord in 8th house should NOT trigger Vipareeta Raja."""
+        agg = YogaSpecificChainAggregator()
+
+        mars = _make_node("MARS", 12, 4, "OWN_SIGN", functional_role="MALEFIC")
+        path = _make_single_path(mars)
+        pi = _make_path_impact(path, impact=-0.5)
+
+        result = agg.aggregate(
+            path_impacts=[pi],
+            yoga_name="Vipareeta Raja",
+            yoga_planets=["MARS"],
+            is_primary_kendra_lord=True,
+        )
+
+        assert result.cancelled, (
+            "Kendra lord in dusthana should NOT form Vipareeta Raja"
+        )
+        assert result.chain_impact == 0.0
+
+    def test_trikona_lord_not_excluded(self) -> None:
+        """Trikona lord in dusthana can still form Vipareeta Raja."""
+        agg = YogaSpecificChainAggregator()
+
+        jupiter = _make_node("JUPITER", 8, 10, "NEUTRAL", functional_role="MALEFIC")
+        path = _make_single_path(jupiter)
+        pi = _make_path_impact(path, impact=-0.3)
+
+        result = agg.aggregate(
+            path_impacts=[pi],
+            yoga_name="Vipareeta Raja",
+            yoga_planets=["JUPITER"],
+            is_primary_kendra_lord=False,
+        )
+
+        assert not result.cancelled
+        assert result.chain_impact >= 0

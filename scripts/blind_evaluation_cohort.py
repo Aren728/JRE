@@ -777,6 +777,15 @@ def main() -> int:
                     }
                     for y in e.top_yogas
                 ],
+                "all_yogas": [
+                    {
+                        "name": y.yoga_name,
+                        "status": y.status,
+                        "chain_impact": y.chain_impact,
+                        "activation": y.activation_status,
+                    }
+                    for y in e.all_yogas
+                ],
             }
             subject_data["events"].append(event_data)
         json_data["subjects"].append(subject_data)

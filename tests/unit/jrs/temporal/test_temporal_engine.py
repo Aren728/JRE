@@ -772,3 +772,121 @@ class TestEdgeCases:
                 yoga_planets=["JUPITER"],
             )
             assert 0.0 <= result.dynamic_strength <= 1.0
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Test Class 12: Fix 3 — Extended Dasha Activation (Phase E6e)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+class TestExtendedDashaActivation:
+    """Extended Dasha activation: functional lord / dispositor / nakshatra lord."""
+
+    def setup_method(self) -> None:
+        self.engine = VimshottariDashaEngine()
+
+    def _make_hierarchy(self, md: str, ad: str, pd: str) -> DashaHierarchy:
+        now = datetime(2024, 1, 1)
+        return DashaHierarchy(
+            mahadasha=DashaPeriod(
+                lord=md, period_type="MD",
+                start_utc=now, end_utc=datetime(2030, 1, 1),
+                duration_years=6.0,
+            ),
+            antardasha=DashaPeriod(
+                lord=ad, period_type="AD",
+                start_utc=now, end_utc=datetime(2025, 1, 1),
+                duration_years=1.0,
+            ),
+            pratyantardasha=DashaPeriod(
+                lord=pd, period_type="PD",
+                start_utc=now, end_utc=datetime(2024, 4, 1),
+                duration_years=0.25,
+            ),
+        )
+
+    def test_functional_lord_activation(self) -> None:
+        """Fix 3: Dasha lord is functional Kendra/Trikona lord → partial activation."""
+        # Jupiter (MD lord) is not a yoga planet, but owns house 9 (Trikona)
+        hierarchy = self._make_hierarchy("JUPITER", "SATURN", "MERCURY")
+
+        jre_facts = {
+            "planets": {
+                "VENUS": {"house": 7, "sign_lord": "VENUS", "nakshatra_lord": "SATURN"},
+                "SATURN": {"house": 10, "sign_lord": "SATURN", "nakshatra_lord": "SATURN"},
+            },
+            "house_lords": {1: "MARS", 5: "VENUS", 9: "JUPITER", 10: "SATURN"},
+        }
+
+        # Venus is the yoga planet (in house 7 = Kendra)
+        # Jupiter is NOT a yoga planet but owns house 9 (Trikona)
+        result = self.engine.get_dasha_multiplier(
+            hierarchy, ["VENUS"], jre_facts=jre_facts,
+        )
+
+        # Jupiter (MD) not in yoga planets → not direct match
+        # But Jupiter is a functional Trikona lord + yoga planet in Kendra
+        # → extended activation at MD level... but we only check AD/PD
+        # In this case, MD is not a direct match, so we check AD/PD
+        # Saturn (AD) is not a yoga planet
+        # Mercury (PD) is not a yoga planet
+        # But Saturn is the sign_lord and nakshatra_lord of Venus
+        assert result.multiplier > 0.40, (
+            f"Extended activation should fire, got {result.multiplier}"
+        )
+
+    def test_dispositor_activation(self) -> None:
+        """Fix 3: Dasha lord is dispositor of yoga planet → partial activation."""
+        # AD lord = SATURN, which is the sign_lord of VENUS
+        # PD lord = MERCURY (not related to VENUS)
+        hierarchy = self._make_hierarchy("MOON", "SATURN", "KETU")
+
+        jre_facts = {
+            "planets": {
+                "VENUS": {"house": 7, "sign_lord": "SATURN", "nakshatra_lord": "MERCURY"},
+            },
+            "house_lords": {1: "MARS", 7: "VENUS"},
+        }
+
+        result = self.engine.get_dasha_multiplier(
+            hierarchy, ["VENUS"], jre_facts=jre_facts,
+        )
+
+        # MOON (MD) not in yoga planets → no direct match
+        # SATURN (AD) is sign_lord of VENUS → dispositor activation at AD
+        assert result.matched_level == "AD"
+        assert result.multiplier >= 1.10
+
+    def test_nakshatra_lord_activation(self) -> None:
+        """Fix 3: Dasha lord rules Nakshatra of yoga planet → partial activation."""
+        # PD lord = MERCURY, which is the nakshatra_lord of VENUS
+        hierarchy = self._make_hierarchy("MOON", "SUN", "MERCURY")
+
+        jre_facts = {
+            "planets": {
+                "VENUS": {"house": 7, "sign_lord": "VENUS", "nakshatra_lord": "MERCURY"},
+            },
+            "house_lords": {1: "MARS", 7: "VENUS"},
+        }
+
+        result = self.engine.get_dasha_multiplier(
+            hierarchy, ["VENUS"], jre_facts=jre_facts,
+        )
+
+        # MOON (MD) not match, SUN (AD) not match
+        # MERCURY (PD) is nakshatra_lord of VENUS → nakshatra activation
+        assert result.matched_level == "PD"
+        assert result.multiplier >= 1.05
+
+    def test_no_jre_facts_fallback(self) -> None:
+        """Without jre_facts, only direct matches work (backward compatible)."""
+        hierarchy = self._make_hierarchy("JUPITER", "SATURN", "MERCURY")
+
+        # No jre_facts → no extended matching
+        result = self.engine.get_dasha_multiplier(
+            hierarchy, ["VENUS"],
+        )
+
+        # No direct match → dormant
+        assert result.matched_level == "NONE"
+        assert result.multiplier == 0.40

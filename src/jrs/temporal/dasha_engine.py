@@ -246,33 +246,34 @@ class VimshottariDashaEngine:
         self,
         hierarchy: DashaHierarchy,
         yoga_planets: list[str],
+        jre_facts: dict[str, Any] | None = None,
     ) -> DashaMultiplierResult:
         """Compute Dasha activation multiplier for yoga-forming planets.
 
-        Multiplier logic:
+        Multiplier logic (direct match):
             - MD lord matches yoga planet → 1.50
             - AD lord matches yoga planet → 1.25
             - PD lord matches yoga planet → 1.10
             - No match (dormant) → 0.40
 
-        Returns the maximum applicable multiplier across primary participant
-        planets.
+        Extended matching (when jre_facts provided, BPHS Ch 50):
+            - Dasha lord is functional Kendra/Trikona lord for yoga → 1.15
+            - Dasha lord is dispositor of yoga planet → 1.10
+            - Dasha lord is Nakshatra lord of yoga planet → 1.05
+
+        Returns the maximum applicable multiplier across all checks.
 
         Args:
             hierarchy: Active Dasha hierarchy.
             yoga_planets: List of planet names involved in the yoga.
+            jre_facts: Optional JRE facts for extended matching.
 
         Returns:
             DashaMultiplierResult with multiplier and match details.
         """
         upper_planets = {p.upper() for p in yoga_planets}
 
-        # Check PD first (weakest match)
-        matched_level = "NONE"
-        matched_planet = ""
-        multiplier = _DORMANT_MULTIPLIER
-
-        # Check MD (strongest)
+        # ── Tier 1: Direct yoga planet match (strongest) ──
         if hierarchy.md_lord in upper_planets:
             return DashaMultiplierResult(
                 hierarchy=hierarchy,
@@ -281,7 +282,6 @@ class VimshottariDashaEngine:
                 matched_planet=hierarchy.md_lord,
             )
 
-        # Check AD
         if hierarchy.ad_lord in upper_planets:
             return DashaMultiplierResult(
                 hierarchy=hierarchy,
@@ -290,7 +290,6 @@ class VimshottariDashaEngine:
                 matched_planet=hierarchy.ad_lord,
             )
 
-        # Check PD
         if hierarchy.pd_lord in upper_planets:
             return DashaMultiplierResult(
                 hierarchy=hierarchy,
@@ -299,6 +298,14 @@ class VimshottariDashaEngine:
                 matched_planet=hierarchy.pd_lord,
             )
 
+        # ── Tier 2: Extended matching (functional/dispositor/nakshatra) ──
+        if jre_facts is not None:
+            extended_result = self._check_extended_activation(
+                hierarchy, upper_planets, jre_facts,
+            )
+            if extended_result is not None:
+                return extended_result
+
         # No match — dormant
         return DashaMultiplierResult(
             hierarchy=hierarchy,
@@ -306,6 +313,101 @@ class VimshottariDashaEngine:
             matched_level="NONE",
             matched_planet="",
         )
+
+    def _check_extended_activation(
+        self,
+        hierarchy: DashaHierarchy,
+        yoga_planets: frozenset[str],
+        jre_facts: dict[str, Any],
+    ) -> DashaMultiplierResult | None:
+        """Check extended Dasha activation via functional/dispositor/nakshatra.
+
+        Per BPHS Ch 50: Dasha lord activates a yoga if it rules a house
+        involved in the yoga, or if it rules the Nakshatra/dispositor
+        of a yoga planet.
+
+        Args:
+            hierarchy: Active Dasha hierarchy.
+            yoga_planets: Upper-cased frozenset of yoga planet names.
+            jre_facts: JRE facts with house_lords, planet data.
+
+        Returns:
+            DashaMultiplierResult if extended match found, None otherwise.
+        """
+        planets = jre_facts.get("planets", {})
+        house_lords = jre_facts.get("house_lords", {})
+
+        # Check each Dasha level (MD > AD > PD) for extended matches
+        for level, dasha_lord, mult in [
+            ("AD", hierarchy.ad_lord, 1.15),
+            ("PD", hierarchy.pd_lord, 1.10),
+        ]:
+            if dasha_lord in yoga_planets:
+                continue  # Already checked in Tier 1
+
+            # Check 1: Functional lord of Kendra/Trikona
+            if self._is_functional_kendra_trikona_lord(dasha_lord, house_lords):
+                # Verify the yoga involves a Kendra or Trikona planet
+                if self._yoga_involves_kendra_trikona(yoga_planets, house_lords, planets):
+                    return DashaMultiplierResult(
+                        hierarchy=hierarchy,
+                        multiplier=mult,
+                        matched_level=level,
+                        matched_planet=f"{dasha_lord} (functional)",
+                    )
+
+            # Check 2: Dispositor of yoga planet
+            for yp in yoga_planets:
+                yp_data = planets.get(yp, {})
+                sign_lord = yp_data.get("sign_lord", "")
+                if sign_lord.upper() == dasha_lord:
+                    return DashaMultiplierResult(
+                        hierarchy=hierarchy,
+                        multiplier=max(mult, 1.10),
+                        matched_level=level,
+                        matched_planet=f"{dasha_lord} (dispositor of {yp})",
+                    )
+
+            # Check 3: Nakshatra lord of yoga planet
+            for yp in yoga_planets:
+                yp_data = planets.get(yp, {})
+                nak_lord = yp_data.get("nakshatra_lord", "")
+                if nak_lord.upper() == dasha_lord:
+                    return DashaMultiplierResult(
+                        hierarchy=hierarchy,
+                        multiplier=max(mult, 1.05),
+                        matched_level=level,
+                        matched_planet=f"{dasha_lord} (nakshatra lord of {yp})",
+                    )
+
+        return None
+
+    @staticmethod
+    def _is_functional_kendra_trikona_lord(
+        planet: str,
+        house_lords: dict[str, Any],
+    ) -> bool:
+        """Check if a planet owns a Kendra or Trikona house."""
+        kendra_trikona = {1, 4, 5, 7, 9, 10}
+        for house_num, lord in house_lords.items():
+            if isinstance(house_num, int) and lord == planet and house_num in kendra_trikona:
+                return True
+        return False
+
+    @staticmethod
+    def _yoga_involves_kendra_trikona(
+        yoga_planets: frozenset[str],
+        house_lords: dict[str, Any],
+        planets: dict[str, Any],
+    ) -> bool:
+        """Check if any yoga planet is in a Kendra or Trikona house."""
+        kendra_trikona = {1, 4, 5, 7, 9, 10}
+        for yp in yoga_planets:
+            pdata = planets.get(yp, {})
+            house = pdata.get("house")
+            if isinstance(house, int) and house in kendra_trikona:
+                return True
+        return False
 
     # ── Internal Methods ─────────────────────────────────────────────────
 

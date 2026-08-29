@@ -286,6 +286,7 @@ class YogaEvaluatorService:
             transit_houses=transit_houses,
             ashtakavarga_scores=ashtakavarga_scores,
             natal_moon_house=natal_moon_house,
+            jre_facts=jre_facts,
         )
 
     def evaluate_formation(
@@ -340,8 +341,10 @@ class YogaEvaluatorService:
                 chain_kwargs["planet_in_own_sign"] = rashi in _OWN_SIGNS_PM.get(pname, set())
             elif yoga_name.upper() == "VIPAREETA RAJA":
                 # Check if planet is primarily a Kendra lord
+                # (BPHS Ch 42: Kendra lord in dusthana forms Raja, not Vipareeta)
                 dusthana_set = {6, 8, 12}
                 kendra_set = {1, 4, 7, 10}
+                trikona_set = {1, 5, 9}
                 house_lords = jre_facts.get("house_lords", {})
                 for pname in involved_planets:
                     owned_houses = [
@@ -349,9 +352,9 @@ class YogaEvaluatorService:
                         if lord == pname and isinstance(h, int)
                     ]
                     owns_kendra = any(h in kendra_set for h in owned_houses)
-                    owns_trikona = any(h in {1, 5, 9} for h in owned_houses)
-                    owns_dusthana = any(h in dusthana_set for h in owned_houses)
-                    if owns_kendra or owns_trikona:
+                    owns_trikona = any(h in trikona_set for h in owned_houses)
+                    # Only suppress if Kendra lord without Trikona (pure functional)
+                    if owns_kendra and not owns_trikona:
                         chain_kwargs["is_primary_kendra_lord"] = True
                         break
             chain_impact = self.compute_yoga_specific_chain_impact(
@@ -625,8 +628,10 @@ class YogaEvaluatorService:
                 continue
             break
 
-        # ── Vipareeta Raja Yoga ──
+        # ── Vipareeta Raja Yoga (BPHS Ch 42 — strict exclusions) ──
         dusthana_set = {6, 8, 12}
+        kendra_set = {1, 4, 7, 10}
+        trikona_set = {1, 5, 9}
         house_lords = jre_facts.get("house_lords", {})
         for dusthana_house in dusthana_set:
             lord_planet = house_lords.get(dusthana_house)
@@ -634,15 +639,53 @@ class YogaEvaluatorService:
                 continue
             lord_pdata = planets.get(lord_planet, {})
             lord_house = lord_pdata.get("house")
-            if isinstance(lord_house, int) and lord_house in dusthana_set:
-                results.append(
-                    YogaEvaluation(
-                        yoga_name="Vipareeta Raja",
-                        status=YogaStatus.FORMED,
-                    )
+            if not (isinstance(lord_house, int) and lord_house in dusthana_set):
+                continue
+
+            # Classical exclusion 1: Primary Kendra/Trikona lord cannot
+            # form Vipareeta Raja (they form Raja Yoga instead).
+            owned_houses = [
+                h for h, lord in house_lords.items()
+                if lord == lord_planet and isinstance(h, int)
+            ]
+            owns_kendra = any(h in kendra_set for h in owned_houses)
+            owns_trikona = any(h in trikona_set for h in owned_houses)
+            if owns_kendra and not owns_trikona:
+                # Planet owns a Kendra but NOT a Trikona — standard functional
+                # malefic — still qualifies for Vipareeta, but weaker.
+                pass
+            elif owns_kendra and owns_trikona:
+                # Planet owns both Kendra and Trikona — this is a functional
+                # benefic / Yogakaraka — CANNOT form Vipareeta Raja.
+                continue
+            elif owns_trikona:
+                # Pure Trikona lord in dusthana — classical Dhana/Raja pattern,
+                # not Vipareeta.
+                continue
+
+            # Classical exclusion 2: Planet in own sign in dusthana
+            # forms a different yoga (not Vipareeta).
+            rashi = lord_pdata.get("rashi", "")
+            _V_OWN_SIGNS_VR: dict[str, set[str]] = {
+                "MARS": {"MESHA", "VRISHCHIKA"},
+                "SATURN": {"MAKARA", "KUMBHA"},
+                "VENUS": {"VRISHABHA", "TULA"},
+                "JUPITER": {"DHANUSHA", "MEENA"},
+                "MERCURY": {"MITHUNA", "KANYA"},
+                "SUN": {"SIMHA"},
+                "MOON": {"KARKA"},
+            }
+            if rashi in _V_OWN_SIGNS_VR.get(lord_planet, set()):
+                continue
+
+            results.append(
+                YogaEvaluation(
+                    yoga_name="Vipareeta Raja",
+                    status=YogaStatus.FORMED,
                 )
-                yoga_involved_planets.append([lord_planet])
-                break
+            )
+            yoga_involved_planets.append([lord_planet])
+            break
 
         # ── Dhana Yoga ──
         second_lord_planet = house_lords.get(2)

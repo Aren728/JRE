@@ -372,10 +372,76 @@ class YogaSpecificChainAggregator:
                 path_impacts, yoga_planets, **kwargs,
             )
 
-        # Default: weighted sum model (Gajakesari, Raja, Chandra, Dhana, etc.)
+        if category == YogaCategory.GAJAKESARI:
+            return self._aggregate_gajakesari(
+                path_impacts, yoga_planets, **kwargs,
+            )
+
+        # Default: weighted sum model (Raja, Chandra, Dhana, etc.)
         return self._aggregate_weighted(path_impacts, yoga_name, yoga_planets, **kwargs)
 
-    # ── Weighted Sum Model (Gajakesari, Raja, Chandra, Dhana) ───────────
+    # ── Gajakesari Model (RI-013 §2.2) ──────────────────────────────
+
+    def _aggregate_gajakesari(
+        self,
+        path_impacts: list[PathImpact],
+        yoga_planets: list[str],
+        **kwargs: Any,
+    ) -> AggregationResult:
+        """Gajakesari model: natural benefic override (BPHS Ch 7 §12).
+
+        Jupiter and Moon are ALWAYS natural benefics (BPHS Ch 2).
+        For Gajakesari aggregation, yoga-participating planets use their
+        NATURAL nature (benefic/malefic) regardless of functional lordship.
+        This prevents Jupiter's Kendradhipati Dosha (functional malefic)
+        from dragging the chain impact negative.
+
+        Weights: Wb=0.8, Wm=0.5, never cancelled.
+        """
+        weights = CATEGORY_WEIGHTS[YogaCategory.GAJAKESARI]
+        yoga_set = frozenset(p.upper() for p in yoga_planets) if yoga_planets else frozenset()
+
+        classified = classify_paths(path_impacts, yoga_planets)
+
+        benefic_sum = 0.0
+        malefic_sum = 0.0
+        benefic_count = 0
+        malefic_count = 0
+
+        for cp in classified:
+            root_planet = (
+                cp.path_impact.path.nodes[0].planet.upper()
+                if cp.path_impact.path.nodes else ""
+            )
+
+            # Natural benefic override: yoga-participating planets
+            # use their NATURAL nature, not functional lordship.
+            # Jupiter/Moon are always natural benefics per BPHS Ch 2.
+            if root_planet in yoga_set and root_planet in NATURAL_BENEFICS:
+                # Yoga-participating natural benefic → always benefic weight
+                benefic_sum += cp.magnitude * weights.w_benefic
+                benefic_count += 1
+            elif cp.classification == "benefic":
+                benefic_sum += cp.magnitude * weights.w_benefic
+                benefic_count += 1
+            elif cp.classification == "malefic":
+                malefic_sum += cp.magnitude * weights.w_malefic
+                malefic_count += 1
+
+        chain_impact = benefic_sum - malefic_sum
+
+        return AggregationResult(
+            chain_impact=round(chain_impact, 6),
+            category=YogaCategory.GAJAKESARI,
+            benefic_sum=round(benefic_sum, 6),
+            malefic_sum=round(malefic_sum, 6),
+            total_paths=len(classified),
+            benefic_paths=benefic_count,
+            malefic_paths=malefic_count,
+            cancelled=False,  # Gajakesari is NEVER cancelled by chains
+        )
+
+    # ── Weighted Sum Model (Raja, Chandra, Dhana) ───────────────────
 
     def _aggregate_weighted(
         self,

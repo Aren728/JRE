@@ -77,6 +77,7 @@ class DynamicTemporalService:
         transit_houses: dict[str, int] | None = None,
         ashtakavarga_scores: dict[str, int] | None = None,
         natal_moon_house: int = 1,
+        jre_facts: dict[str, Any] | None = None,
     ) -> DynamicStrengthResult:
         """Compute dynamic strength from static score, Dasha, and Transit.
 
@@ -105,6 +106,7 @@ class DynamicTemporalService:
         dasha_result = self._dasha_engine.get_dasha_multiplier(
             hierarchy=hierarchy,
             yoga_planets=yoga_planets,
+            jre_facts=jre_facts,
         )
         m_dasha = dasha_result.multiplier
 
