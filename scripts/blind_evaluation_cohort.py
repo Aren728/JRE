@@ -96,6 +96,42 @@ def _compute_d9_house(longitude_used: float, d9_lagna_lon: float) -> int:
 # ── Data Structures ─────────────────────────────────────────────────────────
 
 
+# Event domain → yoga domains that would be "relevant"
+_DOMAIN_RELEVANCE: dict[str, set[str]] = {
+    "CAREER": {
+        "CAREER_PROMINENCE", "POLITICAL_POWER", "SOCIAL_STATUS",
+        "LEADERSHIP", "GENERAL_IMPROVEMENT", "BUSINESS_ACUMEN",
+        "PUBLIC_RECOGNITION", "MENTAL_STRENGTH",
+    },
+    "WEALTH": {
+        "WEALTH_ACCUMULATION", "BUSINESS_ACUMEN", "GENERAL_IMPROVEMENT",
+    },
+    "HEALTH": {
+        "GENERAL_IMPROVEMENT", "RECOVERY_FROM_ADVERSITY",
+        "CRISIS_MANAGEMENT", "EMOTIONAL_STABILITY",
+    },
+    "MARRIAGE": {
+        "RELATIONSHIP_HARMONY", "GENERAL_IMPROVEMENT",
+        "DOMESTIC_HARMONY",
+    },
+    "MIGRATION": {
+        "CAREER_PROMINENCE", "GENERAL_IMPROVEMENT",
+        "RECOVERY_FROM_ADVERSITY",
+    },
+    "DEATH": {
+        "GENERAL_IMPROVEMENT", "RECOVERY_FROM_ADVERSITY",
+    },
+    "ARTISTIC": {
+        "ARTISTIC_EXCELLENCE", "CREATIVE_EXCELLENCE",
+        "PUBLIC_RECOGNITION", "GENERAL_IMPROVEMENT",
+    },
+    "EDUCATION": {
+        "INTELLECTUAL_EXCELLENCE", "WISDOM_ACCUMULATION",
+        "TEACHING_ABILITY", "GENERAL_IMPROVEMENT",
+    },
+}
+
+
 @dataclass
 class YogaReport:
     yoga_name: str
@@ -109,7 +145,7 @@ class YogaReport:
     activation_status: str = "DORMANT"
     activation_source: str = ""
     cancellation_reason: str | None = None
-    outcome_domain: str = ""
+    outcome_domains: list[str] = field(default_factory=list)
     modifier_status: str | None = None
     modifier_strength: float | None = None
 
@@ -300,7 +336,7 @@ def _run_pipeline_for_event(
             activation_status=activation_status,
             activation_source=activation_source,
             cancellation_reason=yoga_eval.cancellation_reason,
-            outcome_domain=evaluator.map_outcome(yoga_eval.yoga_name),
+            outcome_domains=[o.value for o in evaluator.get_possible_outcomes(yoga_eval.yoga_name)],
             modifier_status=mod_status,
             modifier_strength=mod_strength,
         ))
@@ -312,13 +348,21 @@ def _run_pipeline_for_event(
     )
 
     # ── Check if any relevant yoga was activated ──
+    # Phase E6g: Multi-domain matching — check both planet AND domain overlap
     expected_planets_upper = {p.upper() for p in event.get("expected_planets", [])}
+    event_domain = event["domain"]
+    relevant_domains = _DOMAIN_RELEVANCE.get(event_domain, set())
     relevant_activated = False
     for yr in yoga_reports_sorted:
         if yr.activation_status == "ACTIVATED" and yr.status != "CANCELLED":
-            # Check if the activated yoga involves any expected planet
+            # Check domain relevance
+            yoga_domains = set(yr.outcome_domains)
+            domain_match = bool(yoga_domains & relevant_domains)
+            # Check planet overlap
             yoga_planets_upper = {p.upper() for p in yr.involved_planets}
-            if yoga_planets_upper & expected_planets_upper:
+            planet_match = bool(yoga_planets_upper & expected_planets_upper)
+            # Activated yoga is relevant if either domain OR planet matches
+            if domain_match or planet_match:
                 relevant_activated = True
                 break
 

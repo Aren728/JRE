@@ -26,7 +26,7 @@
           "date": "1921-11-09T00:00:00Z",
           "domain": "CAREER",
           "event_id": "EINSTEIN_NOBEL_1921",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
@@ -112,7 +112,7 @@
           "date": "1905-06-01T00:00:00Z",
           "domain": "CAREER",
           "event_id": "EINSTEIN_VISAPR_1905",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
@@ -249,7 +249,7 @@
           "date": "1934-07-04T00:00:00Z",
           "domain": "HEALTH",
           "event_id": "CURIE_DEATH_1934",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
@@ -616,7 +616,7 @@
           "date": "1966-01-24T00:00:00Z",
           "domain": "CAREER",
           "event_id": "GANDHI_PM_1966",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -659,7 +659,7 @@
           "date": "1971-12-16T00:00:00Z",
           "domain": "CAREER",
           "event_id": "GANDHI_WAR_1971",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",

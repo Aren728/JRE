@@ -480,6 +480,9 @@ class YogaEvaluatorService:
 
         Legacy (JRS-077)::
             map_outcome(yoga_name, involved_houses, involved_planets) -> str
+
+        Returns the *primary* outcome domain for backward compatibility.
+        For all possible domains, use ``get_possible_outcomes()``.
         """
         # ── New signature: single yoga_name string -> YogaOutcome ──
         if involved_houses is None and involved_planets is None:
@@ -516,6 +519,131 @@ class YogaEvaluatorService:
         if 4 in houses or "MOON" in planets:
             return "DOMESTIC_HARMONY"
         return "GENERAL_IMPROVEMENT"
+
+    def get_possible_outcomes(
+        self,
+        yoga_name: str,
+    ) -> set[YogaOutcome]:
+        """Return ALL classically relevant outcome domains for a yoga.
+
+        Phase E6g: Multi-domain mapping. Each yoga maps to multiple
+        relevant domains based on classical interpretation (BPHS,
+        Phaladeepika, Jataka Parijata).
+
+        Args:
+            yoga_name: Name of the yoga (e.g., "Malavya", "Raja").
+
+        Returns:
+            Set of all possible YogaOutcome domains for this yoga.
+        """
+        _YOGA_MULTI_DOMAIN_MAP: dict[str, set[YogaOutcome]] = {
+            # ── Raja Yogas ──
+            "RAJA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.SOCIAL_STATUS,
+                YogaOutcome.LEADERSHIP,
+            },
+            "RAJA YOGA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.SOCIAL_STATUS,
+                YogaOutcome.LEADERSHIP,
+            },
+            # ── Dhana Yogas ──
+            "DHANA": {
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.BUSINESS_ACUMEN,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            "DHANA YOGA": {
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.BUSINESS_ACUMEN,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            # ── Gajakesari ──
+            "GAJAKESARI": {
+                YogaOutcome.WISDOM_ACCUMULATION,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.TEACHING_ABILITY,
+                YogaOutcome.GENERAL_IMPROVEMENT,
+            },
+            # ── Vipareeta Raja ──
+            "VIPAREETA RAJA": {
+                YogaOutcome.RECOVERY_FROM_ADVERSITY,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.CRISIS_MANAGEMENT,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            "VIPAREETA RAJA YOGA": {
+                YogaOutcome.RECOVERY_FROM_ADVERSITY,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.CRISIS_MANAGEMENT,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            # ── Neecha Bhanga ──
+            "NEECHA BHANGA": {
+                YogaOutcome.GENERAL_IMPROVEMENT,
+                YogaOutcome.RECOVERY_FROM_ADVERSITY,
+                YogaOutcome.WEALTH_ACCUMULATION,
+            },
+            # ── Pancha Mahapurusha Yogas ──
+            "RUCHAKA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.LEADERSHIP,
+                YogaOutcome.SOCIAL_STATUS,
+            },
+            "BHADRA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.INTELLECTUAL_EXCELLENCE,
+                YogaOutcome.COMMUNICATION_SKILLS,
+                YogaOutcome.BUSINESS_ACUMEN,
+            },
+            "HAMSA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.WISDOM_ACCUMULATION,
+                YogaOutcome.TEACHING_ABILITY,
+                YogaOutcome.SOCIAL_STATUS,
+            },
+            "MALAVYA": {
+                YogaOutcome.RELATIONSHIP_HARMONY,
+                YogaOutcome.ARTISTIC_EXCELLENCE,
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.CAREER_PROMINENCE,
+            },
+            "SASA": {
+                YogaOutcome.CAREER_PROMINENCE,
+                YogaOutcome.POLITICAL_POWER,
+                YogaOutcome.LEADERSHIP,
+                YogaOutcome.SOCIAL_STATUS,
+            },
+            # ── Chandra Yogas ──
+            "ANAPHA": {
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.MENTAL_STRENGTH,
+                YogaOutcome.EMOTIONAL_STABILITY,
+                YogaOutcome.PUBLIC_RECOGNITION,
+            },
+            "SUNAPHA": {
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.MENTAL_STRENGTH,
+                YogaOutcome.EMOTIONAL_STABILITY,
+                YogaOutcome.PUBLIC_RECOGNITION,
+            },
+            "DHUDHARA": {
+                YogaOutcome.WEALTH_ACCUMULATION,
+                YogaOutcome.MENTAL_STRENGTH,
+                YogaOutcome.EMOTIONAL_STABILITY,
+                YogaOutcome.PUBLIC_RECOGNITION,
+            },
+        }
+        key = yoga_name.upper().replace("_", " ")
+        return _YOGA_MULTI_DOMAIN_MAP.get(
+            key,
+            {YogaOutcome.GENERAL_IMPROVEMENT},
+        )
 
     def evaluate_classical_yogas(
         self,

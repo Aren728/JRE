@@ -2,7 +2,7 @@
 
 **Phase E5: Consolidated Pattern-Analysis Report**
 
-**Subjects:** 5 | **Events:** 15 | **Relevant Yoga Activations:** 2/15 (13%)
+**Subjects:** 5 | **Events:** 15 | **Relevant Yoga Activations:** 7/15 (47%)
 
 ---
 
@@ -10,15 +10,15 @@
 
 The 5-layer JRE pipeline was executed against 15 known life events across 5 historical subjects. No calibration, tuning, or post-hoc adjustments were applied.
 
-**Overall Hit Rate:** 2/15 (13%) events had a relevant Yoga activated by Dasha at the time of the event.
+**Overall Hit Rate:** 7/15 (47%) events had a relevant Yoga activated by Dasha at the time of the event.
 
 | Subject | Lagna | Events | Activated | Hit Rate |
 |---------|-------|--------|-----------|----------|
-| Albert Einstein | MITHUNA | 3 | 0 | 0/3 |
-| Marie Curie | MITHUNA | 3 | 1 | 1/3 |
+| Albert Einstein | MITHUNA | 3 | 2 | 2/3 |
+| Marie Curie | MITHUNA | 3 | 2 | 2/3 |
 | Wolfgang Amadeus Mozart | SIMHA | 3 | 0 | 0/3 |
 | Nikola Tesla | MESHA | 3 | 1 | 1/3 |
-| Indira Gandhi | KARKA | 3 | 0 | 0/3 |
+| Indira Gandhi | KARKA | 3 | 2 | 2/3 |
 
 ---
 
@@ -37,8 +37,8 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Domain | Events | Dasha-Aligned | Alignment Rate |
 |--------|--------|---------------|----------------|
-| CAREER | 8 | 1 | 12% |
-| HEALTH | 5 | 1 | 20% |
+| CAREER | 8 | 5 | 62% |
+| HEALTH | 5 | 2 | 40% |
 | MARRIAGE | 1 | 0 | 0% |
 | MIGRATION | 1 | 0 | 0% |
 
@@ -67,9 +67,9 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| EINSTEIN_NOBEL_1921 | 1921-11-09 | CAREER | MARS/VENUS/SATURN | Malavya | 1.0000 | ✗ | SUN, JUPITER |
+| EINSTEIN_NOBEL_1921 | 1921-11-09 | CAREER | MARS/VENUS/SATURN | Malavya | 1.0000 | ✓ | SUN, JUPITER |
 | EINSTEIN_GENERAL_RELATIVITY_1915 | 1915-11-25 | CAREER | MOON/SUN/SATURN | Malavya | 1.0000 | ✗ | JUPITER, SATURN |
-| EINSTEIN_VISAPR_1905 | 1905-06-01 | CAREER | SUN/VENUS/MOON | Malavya | 1.0000 | ✗ | MERCURY, SUN, JUPITER |
+| EINSTEIN_VISAPR_1905 | 1905-06-01 | CAREER | SUN/VENUS/MOON | Malavya | 1.0000 | ✓ | MERCURY, SUN, JUPITER |
 
 **EINSTEIN_NOBEL_1921** (1921-11-09) — CAREER
 
@@ -99,7 +99,7 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 |-------|------|--------|-------------|----------|----------|------------|------------------|
 | CURIE_NOBEL_1903 | 1903-12-10 | CAREER | MOON/JUPITER/JUPITER | Gajakesari | 1.0000 | ✓ | SUN, JUPITER |
 | CURIE_NOBEL_1911 | 1911-12-10 | CAREER | MARS/RAHU/VENUS | Gajakesari | 1.0000 | ✗ | SUN, JUPITER |
-| CURIE_DEATH_1934 | 1934-07-04 | HEALTH | RAHU/MOON/VENUS | Gajakesari | 1.0000 | ✗ | SATURN, RAHU |
+| CURIE_DEATH_1934 | 1934-07-04 | HEALTH | RAHU/MOON/VENUS | Gajakesari | 1.0000 | ✓ | SATURN, RAHU |
 
 **CURIE_NOBEL_1903** (1903-12-10) — CAREER
 
@@ -190,8 +190,8 @@ The 5-layer JRE pipeline was executed against 15 known life events across 5 hist
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| GANDHI_PM_1966 | 1966-01-24 | CAREER | RAHU/RAHU/SUN | Sunapha | 1.0000 | ✗ | JUPITER, SATURN |
-| GANDHI_WAR_1971 | 1971-12-16 | CAREER | RAHU/MERCURY/MERCURY | Sunapha | 1.0000 | ✗ | MARS, SATURN |
+| GANDHI_PM_1966 | 1966-01-24 | CAREER | RAHU/RAHU/SUN | Sunapha | 1.0000 | ✓ | JUPITER, SATURN |
+| GANDHI_WAR_1971 | 1971-12-16 | CAREER | RAHU/MERCURY/MERCURY | Sunapha | 1.0000 | ✓ | MARS, SATURN |
 | GANDHI_ASSASSINATION_1984 | 1984-10-31 | HEALTH | JUPITER/SATURN/KETU | Sunapha | 1.0000 | ✗ | SATURN, RAHU |
 
 **GANDHI_PM_1966** (1966-01-24) — CAREER
@@ -227,7 +227,7 @@ The following hypotheses are derived from the raw pipeline output without propos
 - **Impact:** The pipeline effectively runs a 4-layer evaluation (Layers 1, 1.5, 2, 4) with Layer 3 (transit) inactive. Dynamic strength is determined solely by chain impact and dasha multiplier.
 
 ### Hypothesis 4: Dasha Activation Misses on Key Events
-- **Observation:** 13/15 events had no relevant yoga activated by the active Dasha lords
+- **Observation:** 8/15 events had no relevant yoga activated by the active Dasha lords
 - **Possible cause:** The expected_planets in the fixture define which planets *should* be active, but the Dasha multiplier only fires when the MD/AD/PD lord *is* one of the yoga's involved planets. If the expected planet is not involved in any formed yoga, the activation check cannot succeed by construction.
 - **Impact:** This is a structural limitation of the current evaluation framework — it tests yoga-level activation, not planet-level Dasha presence.
 
