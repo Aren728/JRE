@@ -31,6 +31,7 @@ from .schemas import (
     EvaluationResponse,
     FixtureInput,
     HealthResponse,
+    YogaProvenance,
     YogaResult,
 )
 
@@ -129,6 +130,24 @@ def _run_evaluation(
         if y.status.value == "FORMED":
             formed_count += 1
 
+        # Build provenance
+        temporal_evidence: dict[str, Any] = {}
+        if y.dasha_multiplier is not None:
+            temporal_evidence["dasha_multiplier"] = y.dasha_multiplier
+        if y.transit_multiplier is not None:
+            temporal_evidence["transit_multiplier"] = y.transit_multiplier
+
+        varga_evidence: dict[str, Any] = {}
+        if y.cancellation_reason and "D9" in y.cancellation_reason:
+            varga_evidence["d9_cancellation"] = y.cancellation_reason
+
+        provenance = YogaProvenance(
+            formation_evidence=f"{y.yoga_name} yoga: {y.status.value.lower()} by classical rules",
+            chain_evidence=y.chain_impact,
+            temporal_evidence=temporal_evidence,
+            varga_evidence=varga_evidence,
+        )
+
         yoga_results.append(YogaResult(
             yoga_name=y.yoga_name,
             category=category,
@@ -140,6 +159,8 @@ def _run_evaluation(
             cancellation_reason=y.cancellation_reason,
             chain_impact=y.chain_impact,
             dasha_multiplier=y.dasha_multiplier,
+            transit_multiplier=y.transit_multiplier,
+            provenance=provenance,
         ))
 
     elapsed_ms = (time.perf_counter() - start) * 1000

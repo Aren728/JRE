@@ -381,16 +381,45 @@ def _run_pipeline_for_event(
 # ── Main Evaluation Loop ───────────────────────────────────────────────────
 
 
-def _discover_chart_files() -> list[str]:
-    """Auto-discover all chart_*.json files in the fixtures directory."""
-    all_files = sorted(FIXTURES_DIR.glob("chart_*.json"))
-    names = [f.name for f in all_files]
+def _load_split_manifest() -> dict[str, Any]:
+    """Load the validation splits manifest."""
+    splits_path = FIXTURES_DIR.parent / "validation_splits.json"
+    if splits_path.exists():
+        with splits_path.open(encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def _discover_chart_files(split: str | None = None) -> list[str]:
+    """Auto-discover chart files, optionally filtered by split.
+
+    Args:
+        split: 'dev', 'validation', 'holdout', or None for all.
+    """
     if _CHART_FILES is not None:
         return _CHART_FILES
-    return names
+
+    all_files = sorted(FIXTURES_DIR.glob("chart_*.json"))
+    names = [f.name for f in all_files]
+
+    if split is None:
+        return names
+
+    # Filter by split manifest
+    manifest = _load_split_manifest()
+    split_fixtures = manifest.get(split, {}).get("fixtures", [])
+    if not split_fixtures:
+        print(f"WARNING: No fixtures found for split '{split}' in manifest", file=sys.stderr)
+        return names
+
+    # Convert fixture IDs to filenames (add .json)
+    split_filenames = [f"{fid}.json" for fid in split_fixtures]
+    filtered = [n for n in names if n in split_filenames]
+    print(f"Split '{split}': {len(filtered)}/{len(names)} charts")
+    return filtered
 
 
-def _evaluate_all_charts() -> list[SubjectReport]:
+def _evaluate_all_charts(split: str | None = None) -> list[SubjectReport]:
     from jyotish.models import BirthData
     from jyotish.service import JyotishService
     from jrs.yoga_evaluator.service import YogaEvaluatorService
@@ -398,7 +427,7 @@ def _evaluate_all_charts() -> list[SubjectReport]:
     svc = JyotishService()
     evaluator = YogaEvaluatorService()
     all_subjects: list[SubjectReport] = []
-    chart_files = _discover_chart_files()
+    chart_files = _discover_chart_files(split=split)
 
     for chart_file in chart_files:
         fixture_path = FIXTURES_DIR / chart_file
@@ -777,11 +806,19 @@ def _generate_report(subjects: list[SubjectReport]) -> str:
 def main() -> int:
     print("=" * 60)
     print("BLIND EMPIRICAL EVALUATION — Full Cohort")
-    print("Phase F1: 5-Layer Pipeline Execution")
+    # Parse arguments
+    import argparse
+    parser = argparse.ArgumentParser(description="Blind empirical evaluation.")
+    parser.add_argument("--split", choices=["dev", "validation", "holdout"],
+                        default=None, help="Evaluate only charts in this split.")
+    args = parser.parse_args()
+
+    split_label = args.split or "full"
+    print(f"Phase F1: 5-Layer Pipeline Execution ({split_label} set)")
     print("=" * 60)
     print()
 
-    subjects = _evaluate_all_charts()
+    subjects = _evaluate_all_charts(split=args.split)
 
     # Generate report
     output_dir = _PROJECT_ROOT / "reports"

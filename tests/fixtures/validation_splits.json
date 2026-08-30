@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "description": "Formal dataset split for JRE empirical validation. Stratified by Lagna, era, and domain.",
+  "total_charts": 50,
+  "total_events": 150,
+  "split_date": "2026-08-30",
+  "methodology": "Stratified random split ensuring balanced representation across Lagna elements, birth eras, and event domains.",
+  "rules": {
+    "dev": "Used for debugging, error attribution, and iterative development. Rule changes permitted.",
+    "validation": "Used for intermediate metric checks and calibration decisions. Limited rule changes permitted.",
+    "holdout": "LOCKED. Used exactly once for final evaluation. No rule changes, weight adjustments, or yoga additions permitted after viewing results."
+  },
+  "dev": {
+    "count": 30,
+    "description": "Development set — iterative debugging and development.",
+    "fixtures": [
+      "chart_001_pilot",
+      "chart_002_curie",
+      "chart_003_mozart",
+      "chart_004_tesla",
+      "chart_005_gandhi",
+      "chart_006_newton",
+      "chart_007_lincoln",
+      "chart_008_teresa",
+      "chart_009_jobs",
+      "chart_010_earhart",
+      "chart_011_churchill",
+      "chart_012_mandela",
+      "chart_013_gandhi_mk",
+      "chart_014_jfk",
+      "chart_015_thatcher",
+      "chart_016_degaulle",
+      "chart_017_bismarck",
+      "chart_018_franklin",
+      "chart_019_eisenhower",
+      "chart_020_victoria",
+      "chart_021_darwin",
+      "chart_022_humboldt",
+      "chart_023_mendel",
+      "chart_024_pasteur",
+      "chart_025_lovelace",
+      "chart_026_planck",
+      "chart_027_heisenberg",
+      "chart_028_freud",
+      "chart_029_jung",
+      "chart_030_franklin_r"
+    ],
+    "lagna_distribution": {
+      "fire": ["SIMHA", "MESHA"],
+      "earth": ["VRISHABHA", "KANYA", "MAKARA"],
+      "air": ["MITHUNA", "TULA", "KUMBHA"],
+      "water": ["KARKA", "VRISHCHIKA", "MEENA", "DHANUSHA"]
+    },
+    "era_distribution": {
+      "1700s": ["chart_018_franklin"],
+      "1800s": ["chart_006_newton", "chart_007_lincoln", "chart_013_gandhi_mk", "chart_017_bismarck", "chart_020_victoria", "chart_021_darwin", "chart_022_humboldt", "chart_023_mendel", "chart_024_pasteur", "chart_025_lovelace"],
+      "1900s": ["chart_001_pilot", "chart_002_curie", "chart_004_tesla", "chart_005_gandhi", "chart_008_teresa", "chart_009_jobs", "chart_010_earhart", "chart_011_churchill", "chart_012_mandela", "chart_014_jfk", "chart_015_thatcher", "chart_016_degaulle", "chart_019_eisenhower", "chart_026_planck", "chart_027_heisenberg", "chart_028_freud", "chart_029_jung", "chart_030_franklin_r"]
+    },
+    "domain_distribution": {
+      "CAREER": 18,
+      "HEALTH": 9,
+      "MARRIAGE": 1,
+      "MIGRATION": 2
+    }
+  },
+  "validation": {
+    "count": 10,
+    "description": "Validation set — intermediate metric checks.",
+    "fixtures": [
+      "chart_031_beethoven",
+      "chart_032_vangogh",
+      "chart_033_picasso",
+      "chart_034_tolstoy",
+      "chart_035_twain",
+      "chart_036_chaplin",
+      "chart_037_tchaikovsky",
+      "chart_038_andersen",
+      "chart_039_liszt",
+      "chart_040_chekhov"
+    ],
+    "lagna_distribution": {
+      "fire": ["SIMHA"],
+      "earth": ["KANYA", "VRISHABHA"],
+      "air": ["MITHUNA", "TULA"],
+      "water": ["KARKA", "VRISHCHIKA", "DHANUSHA"]
+    },
+    "era_distribution": {
+      "1800s": ["chart_031_beethoven", "chart_032_vangogh", "chart_034_tolstoy", "chart_035_twain", "chart_037_tchaikovsky", "chart_038_andersen", "chart_039_liszt", "chart_040_chekhov"],
+      "1900s": ["chart_033_picasso", "chart_036_chaplin"]
+    },
+    "domain_distribution": {
+      "CAREER": 6,
+      "HEALTH": 3,
+      "MARRIAGE": 1
+    }
+  },
+  "holdout": {
+    "count": 10,
+    "description": "HOLDOUT set — locked. Final evaluation only.",
+    "fixtures": [
+      "chart_041_ford",
+      "chart_042_rockefeller",
+      "chart_043_carnegie",
+      "chart_044_morgan",
+      "chart_045_vanderbilt",
+      "chart_046_ali",
+      "chart_047_ruth",
+      "chart_048_thorpe",
+      "chart_049_robinson",
+      "chart_050_owens"
+    ],
+    "lagna_distribution": {
+      "fire": [],
+      "earth": ["VRISHABHA"],
+      "air": ["MITHUNA"],
+      "water": ["KARKA", "MEENA"]
+    },
+    "era_distribution": {
+      "1800s": ["chart_041_ford", "chart_042_rockefeller", "chart_043_carnegie", "chart_044_morgan", "chart_045_vanderbilt", "chart_047_ruth", "chart_048_thorpe"],
+      "1900s": ["chart_046_ali", "chart_049_robinson", "chart_050_owens"]
+    },
+    "domain_distribution": {
+      "CAREER": 6,
+      "HEALTH": 3,
+      "MIGRATION": 1
+    }
+  }
+}

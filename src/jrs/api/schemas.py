@@ -65,6 +65,27 @@ class FixtureInput(BaseModel):
 # ── Response Schemas ────────────────────────────────────────────────────────
 
 
+class YogaProvenance(BaseModel):
+    """Provenance and explainability data for a yoga evaluation."""
+
+    formation_evidence: str = Field(
+        default="",
+        description="Classical rule that triggered this yoga",
+    )
+    chain_evidence: float | None = Field(
+        default=None,
+        description="Net chain impact score from dispositorship analysis",
+    )
+    temporal_evidence: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Dasha and transit details (MD/AD/PD, transit multiplier)",
+    )
+    varga_evidence: dict[str, Any] = Field(
+        default_factory=dict,
+        description="D9/D10 confirmation status",
+    )
+
+
 class YogaResult(BaseModel):
     """Single yoga evaluation result."""
 
@@ -104,6 +125,14 @@ class YogaResult(BaseModel):
     dasha_multiplier: float | None = Field(
         default=None,
         description="Dasha multiplier for temporal activation",
+    )
+    transit_multiplier: float | None = Field(
+        default=None,
+        description="Transit Ashtakavarga multiplier",
+    )
+    provenance: YogaProvenance = Field(
+        default_factory=YogaProvenance,
+        description="Provenance and explainability data",
     )
 
 
