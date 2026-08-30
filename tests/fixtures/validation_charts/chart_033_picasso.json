@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_033_picasso",
+    "version": "1.0.0",
+    "subject": "Pablo Picasso",
+    "description": "Immutable reference chart for Pablo Picasso. A-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "A",
+      "birth_time_confidence_minutes": 60
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1881-10-25",
+    "time": "23:15:00",
+    "timezone": "Europe/Madrid",
+    "latitude": 36.7213,
+    "longitude": -4.4214,
+    "location": "M\u00e1laga, Andalusia, Spain"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 102.8290225190912,
+      "rashi": "KARKA",
+      "degree_in_rashi": 12.829022519091197,
+      "nakshatra": "PUSHYA",
+      "nakshatra_lord": "SATURN",
+      "pada": 3,
+      "degree_in_nakshatra": 9.495689185757866,
+      "d9_sign": "MITHUNA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 212.71128697141856,
+        "longitude_sidereal": 190.50049476358495,
+        "longitude_used": 190.50049476358495,
+        "rashi": "TULA",
+        "house": 4,
+        "degree_in_rashi": 10.500494763584953,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "degree_in_nakshatra": 3.833828096918296,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 248.1886988120514,
+        "longitude_sidereal": 225.9779066042178,
+        "longitude_used": 225.9779066042178,
+        "rashi": "VRISHCHIKA",
+        "house": 5,
+        "degree_in_rashi": 15.977906604217793,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.644573270884461,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 102.35266914956283,
+        "longitude_sidereal": 80.14187694172924,
+        "longitude_used": 80.14187694172924,
+        "rashi": "MITHUNA",
+        "house": 12,
+        "degree_in_rashi": 20.141876941729237,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 0.14187694172923565,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          5,
+          10
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 234.2431593789047,
+        "longitude_sidereal": 212.0323671710711,
+        "longitude_used": 212.0323671710711,
+        "rashi": "VRISHCHIKA",
+        "house": 5,
+        "degree_in_rashi": 2.032367171071087,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 12.0323671710711,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          3,
+          12
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 53.55900957549279,
+        "longitude_sidereal": 31.34821736765919,
+        "longitude_used": 31.34821736765919,
+        "rashi": "VRISHABHA",
+        "house": 11,
+        "degree_in_rashi": 1.3482173676591884,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "pada": 2,
+        "degree_in_nakshatra": 4.681550700992522,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          6,
+          9
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 184.52444805445208,
+        "longitude_sidereal": 162.3136558466185,
+        "longitude_used": 162.3136558466185,
+        "rashi": "KANYA",
+        "house": 3,
+        "degree_in_rashi": 12.313655846618502,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "degree_in_nakshatra": 2.313655846618497,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          4,
+          11
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 39.457373739108775,
+        "longitude_sidereal": 17.246581531275186,
+        "longitude_used": 17.246581531275186,
+        "rashi": "MESHA",
+        "house": 10,
+        "degree_in_rashi": 17.246581531275186,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 3.913248197941854,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          7,
+          8
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 250.8284850673457,
+        "longitude_sidereal": 228.6176928595121,
+        "longitude_used": 228.6176928595121,
+        "rashi": "VRISHCHIKA",
+        "house": 5,
+        "degree_in_rashi": 18.61769285951209,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 1.9510261928454147,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 70.8284850673457,
+        "longitude_sidereal": 48.61769285951209,
+        "longitude_used": 48.61769285951209,
+        "rashi": "VRISHABHA",
+        "house": 11,
+        "degree_in_rashi": 18.61769285951209,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 8.61769285951209,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "VENUS"
+        ]
+      },
+      "4": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "SUN"
+        ]
+      },
+      "5": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MERCURY",
+          "MOON",
+          "RAHU"
+        ]
+      },
+      "6": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "11": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ]
+      },
+      "12": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MARS"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MOON",
+      "2": "SUN",
+      "3": "MERCURY",
+      "4": "VENUS",
+      "5": "MARS",
+      "6": "JUPITER",
+      "7": "SATURN",
+      "8": "SATURN",
+      "9": "JUPITER",
+      "10": "MARS",
+      "11": "VENUS",
+      "12": "MERCURY"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "PICASSO_GUERNICA_1937",
+      "event_date_utc": "1937-04-26T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Guernica bombing inspired his masterpiece painting",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "PICASSO_BLUE_1901",
+      "event_date_utc": "1901-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Began the Blue Period in Paris",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "PICASSO_DEATH_1973",
+      "event_date_utc": "1973-04-08T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Mougins, France, age 91",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

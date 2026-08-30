@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_036_chaplin",
+    "version": "1.0.0",
+    "subject": "Charlie Chaplin",
+    "description": "Immutable reference chart for Charlie Chaplin. B-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "B",
+      "birth_time_confidence_minutes": 120
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1889-04-16",
+    "time": "00:00:00",
+    "timezone": "Europe/London",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "location": "Walworth, London, England"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 239.92512620373796,
+      "rashi": "VRISHCHIKA",
+      "degree_in_rashi": 29.92512620373796,
+      "nakshatra": "JYESHTHA",
+      "nakshatra_lord": "MERCURY",
+      "pada": 4,
+      "degree_in_nakshatra": 13.258459537071287,
+      "d9_sign": "MEENA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 26.186360599625313,
+        "longitude_sidereal": 3.88029568697323,
+        "longitude_used": 3.88029568697323,
+        "rashi": "MESHA",
+        "house": 6,
+        "degree_in_rashi": 3.88029568697323,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "degree_in_nakshatra": 3.88029568697323,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          10
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 207.1461443312783,
+        "longitude_sidereal": 184.84007941862615,
+        "longitude_used": 184.84007941862615,
+        "rashi": "TULA",
+        "house": 12,
+        "degree_in_rashi": 4.840079418626146,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.506746085292805,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          9
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 42.96938582790837,
+        "longitude_sidereal": 20.663320915256282,
+        "longitude_used": 20.663320915256282,
+        "rashi": "MESHA",
+        "house": 6,
+        "degree_in_rashi": 20.663320915256282,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 7.329987581922949,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          1,
+          6
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 16.176807156421454,
+        "longitude_sidereal": 353.87074224376937,
+        "longitude_used": 353.87074224376937,
+        "rashi": "MEENA",
+        "house": 5,
+        "degree_in_rashi": 23.87074224376937,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 7.204075577102736,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          8,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 278.1469738033772,
+        "longitude_sidereal": 255.84090889072513,
+        "longitude_used": 255.84090889072513,
+        "rashi": "DHANUSHA",
+        "house": 2,
+        "degree_in_rashi": 15.840908890725132,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 2.507575557391815,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          2,
+          5
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 48.34004331160776,
+        "longitude_sidereal": 26.03397839895567,
+        "longitude_used": 26.03397839895567,
+        "rashi": "MESHA",
+        "house": 6,
+        "degree_in_rashi": 26.03397839895567,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.700645065622338,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          7,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 133.42636587892625,
+        "longitude_sidereal": 111.12030096627416,
+        "longitude_used": 111.12030096627416,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 21.120300966274158,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.453634299607495,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          3,
+          4
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 106.30714463885421,
+        "longitude_sidereal": 84.00107972620212,
+        "longitude_used": 84.00107972620212,
+        "rashi": "MITHUNA",
+        "house": 8,
+        "degree_in_rashi": 24.00107972620212,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 4.001079726202129,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 286.3071446388542,
+        "longitude_sidereal": 264.00107972620214,
+        "longitude_used": 264.00107972620214,
+        "rashi": "DHANUSHA",
+        "house": 2,
+        "degree_in_rashi": 24.001079726202136,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 10.667746392868812,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ]
+      },
+      "3": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY"
+        ]
+      },
+      "6": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "7": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "9": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "10": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MOON"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "JUPITER",
+      "3": "SATURN",
+      "4": "SATURN",
+      "5": "JUPITER",
+      "6": "MARS",
+      "7": "VENUS",
+      "8": "MERCURY",
+      "9": "MOON",
+      "10": "SUN",
+      "11": "MERCURY",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "CHAPLIN_KID_1921",
+      "event_date_utc": "1921-02-06T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Premiere of The Kid \u2014 his first full-length film",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "CHAPLIN_GOLD_RUSH_1925",
+      "event_date_utc": "1925-08-16T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Released The Gold Rush \u2014 commercial and critical triumph",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "CHAPLIN_DEATH_1977",
+      "event_date_utc": "1977-12-25T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Corsier-sur-Vevey, age 88",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

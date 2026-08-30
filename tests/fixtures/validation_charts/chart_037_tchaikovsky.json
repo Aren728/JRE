@@ -1,0 +1,333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_037_tchaikovsky",
+    "version": "1.0.0",
+    "subject": "Pyotr Tchaikovsky",
+    "description": "Immutable reference chart for Pyotr Tchaikovsky. B-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "B",
+      "birth_time_confidence_minutes": 120
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1840-05-07",
+    "time": "12:00:00",
+    "timezone": "Europe/Moscow",
+    "latitude": 57.2167,
+    "longitude": 54.0,
+    "location": "Votkinsk, Vyatka Governorate, Russia"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 139.9922806546906,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 19.992280654690603,
+      "nakshatra": "PURVA_PHALGUNI",
+      "nakshatra_lord": "VENUS",
+      "pada": 2,
+      "degree_in_nakshatra": 6.65894732135727,
+      "d9_sign": "MAKARA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 46.847983123793476,
+        "longitude_sidereal": 25.218343327665995,
+        "longitude_used": 25.218343327665995,
+        "rashi": "MESHA",
+        "house": 9,
+        "degree_in_rashi": 25.218343327665995,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.88500999433266,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 121.3759585531751,
+        "longitude_sidereal": 99.7463187570476,
+        "longitude_used": 99.7463187570476,
+        "rashi": "KARKA",
+        "house": 12,
+        "degree_in_rashi": 9.746318757047604,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 6.412985423714265,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          12
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 46.17514129064033,
+        "longitude_sidereal": 24.545501494512852,
+        "longitude_used": 24.545501494512852,
+        "rashi": "MESHA",
+        "house": 9,
+        "degree_in_rashi": 24.545501494512852,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.212168161179518,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          4,
+          9
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 20.61295005342438,
+        "longitude_sidereal": 358.98331025729686,
+        "longitude_used": 358.98331025729686,
+        "rashi": "MEENA",
+        "house": 8,
+        "degree_in_rashi": 28.983310257296864,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 12.316643590630216,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          2,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 223.5341055975432,
+        "longitude_sidereal": 201.90446580141568,
+        "longitude_used": 201.90446580141568,
+        "rashi": "TULA",
+        "house": 3,
+        "degree_in_rashi": 21.904465801415682,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 1.904465801415696,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          5,
+          8
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 25.71141863845098,
+        "longitude_sidereal": 4.0817788423234855,
+        "longitude_used": 4.0817788423234855,
+        "rashi": "MESHA",
+        "house": 9,
+        "degree_in_rashi": 4.0817788423234855,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "degree_in_nakshatra": 4.0817788423234855,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          3,
+          10
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 260.66347428425365,
+        "longitude_sidereal": 239.0338344881262,
+        "longitude_used": 239.0338344881262,
+        "rashi": "VRISHCHIKA",
+        "house": 4,
+        "degree_in_rashi": 29.03383448812619,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 12.367167821459521,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          6,
+          7
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 332.89726564961444,
+        "longitude_sidereal": 311.267625853487,
+        "longitude_used": 311.267625853487,
+        "rashi": "KUMBHA",
+        "house": 7,
+        "degree_in_rashi": 11.267625853487004,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "degree_in_nakshatra": 4.600959186820344,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 152.89726564961438,
+        "longitude_sidereal": 131.267625853487,
+        "longitude_used": 131.267625853487,
+        "rashi": "SIMHA",
+        "house": 1,
+        "degree_in_rashi": 11.267625853487004,
+        "nakshatra": "MAGHA",
+        "nakshatra_lord": "KETU",
+        "pada": 4,
+        "degree_in_nakshatra": 11.267625853487012,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY"
+        ]
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MOON"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "SUN",
+      "2": "MERCURY",
+      "3": "VENUS",
+      "4": "MARS",
+      "5": "JUPITER",
+      "6": "SATURN",
+      "7": "SATURN",
+      "8": "JUPITER",
+      "9": "MARS",
+      "10": "VENUS",
+      "11": "MERCURY",
+      "12": "MOON"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "TCHAIKOVSKY_NUTCRACKER_1892",
+      "event_date_utc": "1892-12-18T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Premiere of The Nutcracker in St. Petersburg",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "TCHAIKOVSKY_SWAN_1877",
+      "event_date_utc": "1877-03-04T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Premiere of Swan Lake at the Bolshoi Theatre",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "TCHAIKOVSKY_DEATH_1893",
+      "event_date_utc": "1893-11-06T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in St. Petersburg, age 53",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

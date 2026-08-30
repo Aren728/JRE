@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_046_ali",
+    "version": "1.0.0",
+    "subject": "Muhammad Ali",
+    "description": "Immutable reference chart for Muhammad Ali. AA-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1942-01-17",
+    "time": "18:35:00",
+    "timezone": "America/Chicago",
+    "latitude": 38.2527,
+    "longitude": -85.7585,
+    "location": "Louisville, Kentucky, USA"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 116.48502371148193,
+      "rashi": "KARKA",
+      "degree_in_rashi": 26.48502371148193,
+      "nakshatra": "ASHLESHA",
+      "nakshatra_lord": "MERCURY",
+      "pada": 3,
+      "degree_in_nakshatra": 9.818357044815254,
+      "d9_sign": "TULA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 297.29293227015404,
+        "longitude_sidereal": 274.24608160640287,
+        "longitude_used": 274.24608160640287,
+        "rashi": "MAKARA",
+        "house": 7,
+        "degree_in_rashi": 4.246081606402868,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.579414939736193,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 312.43234692941786,
+        "longitude_sidereal": 289.38549626566663,
+        "longitude_used": 289.38549626566663,
+        "rashi": "MAKARA",
+        "house": 7,
+        "degree_in_rashi": 19.38549626566663,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 9.385496265666646,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 33.05825874693615,
+        "longitude_sidereal": 10.011408083184909,
+        "longitude_used": 10.011408083184909,
+        "rashi": "MESHA",
+        "house": 10,
+        "degree_in_rashi": 10.011408083184909,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 4,
+        "degree_in_nakshatra": 10.01140808318491,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          5,
+          10
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 313.51511145607003,
+        "longitude_sidereal": 290.4682607923188,
+        "longitude_used": 290.4682607923188,
+        "rashi": "MAKARA",
+        "house": 7,
+        "degree_in_rashi": 20.4682607923188,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 10.46826079231879,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          3,
+          12
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 71.95660594236772,
+        "longitude_sidereal": 48.90975527861649,
+        "longitude_used": 48.90975527861649,
+        "rashi": "VRISHABHA",
+        "house": 11,
+        "degree_in_rashi": 18.909755278616487,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 8.90975527861649,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          6,
+          9
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 320.67039787103585,
+        "longitude_sidereal": 297.6235472072846,
+        "longitude_used": 297.6235472072846,
+        "rashi": "MAKARA",
+        "house": 7,
+        "degree_in_rashi": 27.623547207284616,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.290213873951298,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          4,
+          11
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 51.659813653491476,
+        "longitude_sidereal": 28.61296298974024,
+        "longitude_used": 28.61296298974024,
+        "rashi": "MESHA",
+        "house": 10,
+        "degree_in_rashi": 28.61296298974024,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "pada": 1,
+        "degree_in_nakshatra": 1.9462963230735744,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          7,
+          8
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 165.94199589946186,
+        "longitude_sidereal": 142.89514523571063,
+        "longitude_used": 142.89514523571063,
+        "rashi": "SIMHA",
+        "house": 2,
+        "degree_in_rashi": 22.89514523571063,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 9.5618119023773,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 345.94199589946186,
+        "longitude_sidereal": 322.89514523571063,
+        "longitude_used": 322.89514523571063,
+        "rashi": "KUMBHA",
+        "house": 8,
+        "degree_in_rashi": 22.89514523571063,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 2.89514523571065,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "3": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY",
+          "MOON",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "8": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "9": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "SATURN"
+        ]
+      },
+      "11": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "12": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MOON",
+      "2": "SUN",
+      "3": "MERCURY",
+      "4": "VENUS",
+      "5": "MARS",
+      "6": "JUPITER",
+      "7": "SATURN",
+      "8": "SATURN",
+      "9": "JUPITER",
+      "10": "MARS",
+      "11": "VENUS",
+      "12": "MERCURY"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "ALI_LISTON_1964",
+      "event_date_utc": "1964-02-25T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Defeated Sonny Liston to become World Heavyweight Champion",
+      "yoga_types": [],
+      "expected_planets": [
+        "MARS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "ALI_RUMBLE_1974",
+      "event_date_utc": "1974-10-30T00:00:00Z",
+      "domain": "CAREER",
+      "description": "The Rumble in the Jungle \u2014 defeated George Foreman",
+      "yoga_types": [],
+      "expected_planets": [
+        "MARS",
+        "SUN"
+      ]
+    },
+    {
+      "event_id": "ALI_DEATH_2016",
+      "event_date_utc": "2016-06-03T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Scottsdale, Arizona, age 74",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

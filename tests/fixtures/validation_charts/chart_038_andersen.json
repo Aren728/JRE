@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_038_andersen",
+    "version": "1.0.0",
+    "subject": "Hans Christian Andersen",
+    "description": "Immutable reference chart for Hans Christian Andersen. AA-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1805-04-02",
+    "time": "01:00:00",
+    "timezone": "Europe/Copenhagen",
+    "latitude": 55.4038,
+    "longitude": 10.4024,
+    "location": "Odense, Denmark"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 235.26282848702434,
+      "rashi": "VRISHCHIKA",
+      "degree_in_rashi": 25.262828487024336,
+      "nakshatra": "JYESHTHA",
+      "nakshatra_lord": "MERCURY",
+      "pada": 3,
+      "degree_in_nakshatra": 8.596161820357676,
+      "d9_sign": "KUMBHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 11.822407522908525,
+        "longitude_sidereal": 350.68034360847105,
+        "longitude_used": 350.68034360847105,
+        "rashi": "MEENA",
+        "house": 5,
+        "degree_in_rashi": 20.68034360847105,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.013676941804415,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          10
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 39.220152104695096,
+        "longitude_sidereal": 18.078088190257592,
+        "longitude_used": 18.078088190257592,
+        "rashi": "MESHA",
+        "house": 6,
+        "degree_in_rashi": 18.078088190257592,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.744754856924258,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          9
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 122.43128609846399,
+        "longitude_sidereal": 101.28922218402647,
+        "longitude_used": 101.28922218402647,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 11.289222184026471,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.955888850693134,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          1,
+          6
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 13.194284788023513,
+        "longitude_sidereal": 352.052220873586,
+        "longitude_used": 352.052220873586,
+        "rashi": "MEENA",
+        "house": 5,
+        "degree_in_rashi": 22.05222087358601,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 5.385554206919348,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          8,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 246.1694304121329,
+        "longitude_sidereal": 225.0273664976954,
+        "longitude_used": 225.0273664976954,
+        "rashi": "VRISHCHIKA",
+        "house": 1,
+        "degree_in_rashi": 15.027366497695397,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 11.694033164362063,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          2,
+          5
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 357.2297711530628,
+        "longitude_sidereal": 336.0877072386253,
+        "longitude_used": 336.0877072386253,
+        "rashi": "MEENA",
+        "house": 5,
+        "degree_in_rashi": 6.087707238625285,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 2.754373905291922,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          7,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 192.9050762028998,
+        "longitude_sidereal": 171.7630122884623,
+        "longitude_used": 171.7630122884623,
+        "rashi": "KANYA",
+        "house": 11,
+        "degree_in_rashi": 21.763012288462306,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 11.76301228846232,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          3,
+          4
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 291.73707206878606,
+        "longitude_sidereal": 270.5950081543486,
+        "longitude_used": 270.5950081543486,
+        "rashi": "MAKARA",
+        "house": 3,
+        "degree_in_rashi": 0.5950081543485908,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 2,
+        "degree_in_nakshatra": 3.928341487681926,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 111.73707206878606,
+        "longitude_sidereal": 90.59500815434859,
+        "longitude_used": 90.59500815434859,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 0.5950081543485908,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 10.595008154348593,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "2": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "4": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "6": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU",
+          "MARS"
+        ]
+      },
+      "10": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "12": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "JUPITER",
+      "3": "SATURN",
+      "4": "SATURN",
+      "5": "JUPITER",
+      "6": "MARS",
+      "7": "VENUS",
+      "8": "MERCURY",
+      "9": "MOON",
+      "10": "SUN",
+      "11": "MERCURY",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "ANDERSEN_UGLY_DUCKLING_1843",
+      "event_date_utc": "1843-11-11T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Published The Ugly Duckling",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "ANDERSEN_FROST_1830",
+      "event_date_utc": "1830-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Published first fairy tale collection",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "ANDERSEN_DEATH_1875",
+      "event_date_utc": "1875-08-04T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Copenhagen, age 70",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

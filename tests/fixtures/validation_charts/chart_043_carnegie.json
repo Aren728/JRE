@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_043_carnegie",
+    "version": "1.0.0",
+    "subject": "Andrew Carnegie",
+    "description": "Immutable reference chart for Andrew Carnegie. A-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "A",
+      "birth_time_confidence_minutes": 60
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1835-11-25",
+    "time": "19:00:00",
+    "timezone": "Europe/London",
+    "latitude": 56.0701,
+    "longitude": -3.21,
+    "location": "Dunfermline, Fife, Scotland"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 89.38045476026596,
+      "rashi": "MITHUNA",
+      "degree_in_rashi": 29.380454760265962,
+      "nakshatra": "PUNARVASU",
+      "nakshatra_lord": "JUPITER",
+      "pada": 3,
+      "degree_in_nakshatra": 9.380454760265955,
+      "d9_sign": "MITHUNA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 242.84554936256868,
+        "longitude_sidereal": 221.28415209011155,
+        "longitude_used": 221.28415209011155,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 11.284152090111547,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.950818756778231,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          3
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 315.9758427797697,
+        "longitude_sidereal": 294.4144455073126,
+        "longitude_used": 294.4144455073126,
+        "rashi": "MAKARA",
+        "house": 8,
+        "degree_in_rashi": 24.41444550731262,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.0811121739792793,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 249.5364546509206,
+        "longitude_sidereal": 227.97505737846353,
+        "longitude_used": 227.97505737846353,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 17.975057378463532,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 1.3083907117968718,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          6,
+          11
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 223.05806366884988,
+        "longitude_sidereal": 201.49666639639275,
+        "longitude_used": 201.49666639639275,
+        "rashi": "TULA",
+        "house": 5,
+        "degree_in_rashi": 21.496666396392754,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 1.4966663963927607,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          1,
+          4
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 105.10521113636831,
+        "longitude_sidereal": 83.54381386391125,
+        "longitude_used": 83.54381386391125,
+        "rashi": "MITHUNA",
+        "house": 1,
+        "degree_in_rashi": 23.543813863911254,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 3.543813863911257,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          7,
+          10
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 255.86488254867598,
+        "longitude_sidereal": 234.3034852762189,
+        "longitude_used": 234.3034852762189,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 24.303485276218908,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 7.636818609552224,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          5,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 210.33591690532805,
+        "longitude_sidereal": 188.77451963287095,
+        "longitude_used": 188.77451963287095,
+        "rashi": "TULA",
+        "house": 5,
+        "degree_in_rashi": 8.774519632870948,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.1078529662042826,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          8,
+          9
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 58.92026168365079,
+        "longitude_sidereal": 37.35886441119372,
+        "longitude_used": 37.35886441119372,
+        "rashi": "VRISHABHA",
+        "house": 12,
+        "degree_in_rashi": 7.358864411193721,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "pada": 4,
+        "degree_in_nakshatra": 10.692197744527057,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 238.92026168365078,
+        "longitude_sidereal": 217.35886441119374,
+        "longitude_used": 217.35886441119374,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 7.358864411193736,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 4.025531077860419,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "2": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MERCURY",
+          "SATURN"
+        ]
+      },
+      "6": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "KETU",
+          "MARS",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "7": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "9": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "RAHU"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MERCURY",
+      "2": "MOON",
+      "3": "SUN",
+      "4": "MERCURY",
+      "5": "VENUS",
+      "6": "MARS",
+      "7": "JUPITER",
+      "8": "SATURN",
+      "9": "SATURN",
+      "10": "JUPITER",
+      "11": "MARS",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "CARNEGIE_STEEL_1892",
+      "event_date_utc": "1892-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Carnegie Steel Company became the largest in the world",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "CARNEGIE_GOSPEL_1889",
+      "event_date_utc": "1889-06-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Published The Gospel of Wealth",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "CARNEGIE_DEATH_1919",
+      "event_date_utc": "1919-08-11T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Lenox, Massachusetts, age 84",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

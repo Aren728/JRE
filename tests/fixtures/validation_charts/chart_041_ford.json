@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_041_ford",
+    "version": "1.0.0",
+    "subject": "Henry Ford",
+    "description": "Immutable reference chart for Henry Ford. AA-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1863-07-30",
+    "time": "21:30:00",
+    "timezone": "America/Detroit",
+    "latitude": 42.0997,
+    "longitude": -83.2456,
+    "location": "Greenfield Township, Michigan, USA"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 339.0232273097483,
+      "rashi": "MEENA",
+      "degree_in_rashi": 9.023227309748279,
+      "nakshatra": "UTTARA_BHADRAPADA",
+      "nakshatra_lord": "SATURN",
+      "pada": 2,
+      "degree_in_nakshatra": 5.689893976414977,
+      "d9_sign": "MAKARA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 127.37092361997556,
+        "longitude_sidereal": 105.41417295643532,
+        "longitude_used": 105.41417295643532,
+        "rashi": "KARKA",
+        "house": 5,
+        "degree_in_rashi": 15.414172956435323,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.080839623101989,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          6
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 315.39247900720295,
+        "longitude_sidereal": 293.4357283436628,
+        "longitude_used": 293.4357283436628,
+        "rashi": "MAKARA",
+        "house": 11,
+        "degree_in_rashi": 23.435728343662788,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 0.10239501032945689,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 148.30978025914106,
+        "longitude_sidereal": 126.35302959560084,
+        "longitude_used": 126.35302959560084,
+        "rashi": "SIMHA",
+        "house": 6,
+        "degree_in_rashi": 6.3530295956008445,
+        "nakshatra": "MAGHA",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "degree_in_nakshatra": 6.353029595600843,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          2,
+          9
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 123.79407322979195,
+        "longitude_sidereal": 101.83732256625173,
+        "longitude_used": 101.83732256625173,
+        "rashi": "KARKA",
+        "house": 5,
+        "degree_in_rashi": 11.837322566251729,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.503989232918398,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          4,
+          7
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 200.47223365785902,
+        "longitude_sidereal": 178.5154829943188,
+        "longitude_used": 178.5154829943188,
+        "rashi": "KANYA",
+        "house": 7,
+        "degree_in_rashi": 28.515482994318802,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.182149660985454,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          1,
+          10
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 172.56014596522175,
+        "longitude_sidereal": 150.60339530168153,
+        "longitude_used": 150.60339530168153,
+        "rashi": "KANYA",
+        "house": 7,
+        "degree_in_rashi": 0.6033953016815303,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "pada": 2,
+        "degree_in_nakshatra": 3.9367286350148722,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          3,
+          8
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 181.57585314969978,
+        "longitude_sidereal": 159.61910248615953,
+        "longitude_used": 159.61910248615953,
+        "rashi": "KANYA",
+        "house": 7,
+        "degree_in_rashi": 9.619102486159534,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.952435819492873,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          11,
+          12
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 243.60021275407982,
+        "longitude_sidereal": 221.6434620905396,
+        "longitude_used": 221.6434620905396,
+        "rashi": "VRISHCHIKA",
+        "house": 9,
+        "degree_in_rashi": 11.6434620905396,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.310128757206257,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 63.60021275407985,
+        "longitude_sidereal": 41.64346209053963,
+        "longitude_used": 41.64346209053963,
+        "rashi": "VRISHABHA",
+        "house": 3,
+        "degree_in_rashi": 11.643462090539629,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "degree_in_nakshatra": 1.6434620905396244,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "4": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "6": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "7": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER",
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "8": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "10": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "12": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "JUPITER",
+      "2": "MARS",
+      "3": "VENUS",
+      "4": "MERCURY",
+      "5": "MOON",
+      "6": "SUN",
+      "7": "MERCURY",
+      "8": "VENUS",
+      "9": "MARS",
+      "10": "JUPITER",
+      "11": "SATURN",
+      "12": "SATURN"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "FORD_MODEL_T_1908",
+      "event_date_utc": "1908-10-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Introduced the Model T automobile",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "MERCURY"
+      ]
+    },
+    {
+      "event_id": "FORD_ASSEMBLY_1913",
+      "event_date_utc": "1913-12-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Introduced the moving assembly line at Highland Park",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "FORD_DEATH_1947",
+      "event_date_utc": "1947-04-07T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Dearborn, Michigan, age 83",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

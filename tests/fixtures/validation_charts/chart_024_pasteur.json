@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_024_pasteur",
+    "version": "1.0.0",
+    "subject": "Louis Pasteur",
+    "description": "Immutable reference chart for Louis Pasteur. A-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "A",
+      "birth_time_confidence_minutes": 60
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1822-12-27",
+    "time": "20:00:00",
+    "timezone": "Europe/Paris",
+    "latitude": 47.1,
+    "longitude": 5.4833,
+    "location": "Dole, Jura, France"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 120.82544696466715,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 0.825446964667151,
+      "nakshatra": "MAGHA",
+      "nakshatra_lord": "KETU",
+      "pada": 1,
+      "degree_in_nakshatra": 0.8254469646671573,
+      "d9_sign": "SIMHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 275.58435560999567,
+        "longitude_sidereal": 254.19517667876042,
+        "longitude_used": 254.19517667876042,
+        "rashi": "DHANUSHA",
+        "house": 5,
+        "degree_in_rashi": 14.195176678760419,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 0.8618433454270821,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 89.50272897328009,
+        "longitude_sidereal": 68.11355004204475,
+        "longitude_used": 68.11355004204475,
+        "rashi": "MITHUNA",
+        "house": 11,
+        "degree_in_rashi": 8.11355004204475,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 1.4468833753780843,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          12
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 295.10194465606685,
+        "longitude_sidereal": 273.7127657248315,
+        "longitude_used": 273.7127657248315,
+        "rashi": "MAKARA",
+        "house": 6,
+        "degree_in_rashi": 3.712765724831513,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.046099058164852,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          4,
+          9
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 271.9464115130538,
+        "longitude_sidereal": 250.55723258181848,
+        "longitude_used": 250.55723258181848,
+        "rashi": "DHANUSHA",
+        "house": 5,
+        "degree_in_rashi": 10.557232581818482,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 4,
+        "degree_in_nakshatra": 10.557232581818493,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          2,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 57.56795656038206,
+        "longitude_sidereal": 36.178777629146715,
+        "longitude_used": 36.178777629146715,
+        "rashi": "VRISHABHA",
+        "house": 10,
+        "degree_in_rashi": 6.178777629146715,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "degree_in_nakshatra": 9.512110962480048,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          5,
+          8
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 276.5456311589579,
+        "longitude_sidereal": 255.15645222772264,
+        "longitude_used": 255.15645222772264,
+        "rashi": "DHANUSHA",
+        "house": 5,
+        "degree_in_rashi": 15.156452227722639,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.8231188943893224,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3,
+          10
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 33.349249321049086,
+        "longitude_sidereal": 11.960070389813751,
+        "longitude_used": 11.960070389813751,
+        "rashi": "MESHA",
+        "house": 9,
+        "degree_in_rashi": 11.960070389813751,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 4,
+        "degree_in_nakshatra": 11.960070389813753,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          6,
+          7
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 308.65731992730264,
+        "longitude_sidereal": 287.26814099606736,
+        "longitude_used": 287.26814099606736,
+        "rashi": "MAKARA",
+        "house": 6,
+        "degree_in_rashi": 17.26814099606736,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 7.268140996067342,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 128.65731992730264,
+        "longitude_sidereal": 107.26814099606736,
+        "longitude_used": 107.26814099606736,
+        "rashi": "KARKA",
+        "house": 12,
+        "degree_in_rashi": 17.26814099606736,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 0.6014743294006925,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "SUN",
+      "2": "MERCURY",
+      "3": "VENUS",
+      "4": "MARS",
+      "5": "JUPITER",
+      "6": "SATURN",
+      "7": "SATURN",
+      "8": "JUPITER",
+      "9": "MARS",
+      "10": "VENUS",
+      "11": "MERCURY",
+      "12": "MOON"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "PASTEUR_RABIES_1885",
+      "event_date_utc": "1885-07-06T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Successfully vaccinated a human against rabies for the first time",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "SUN"
+      ]
+    },
+    {
+      "event_id": "PASTEUR_PASTEURIZATION_1864",
+      "event_date_utc": "1864-04-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Demonstrated germ theory with the swan-neck flask experiment",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "PASTEUR_DEATH_1895",
+      "event_date_utc": "1895-09-28T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died at Villeneuve-l'\u00c9tang, age 72",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

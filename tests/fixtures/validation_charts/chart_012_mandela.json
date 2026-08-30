@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_012_mandela",
+    "version": "1.0.0",
+    "subject": "Nelson Mandela",
+    "description": "Immutable reference chart for Nelson Mandela. AA-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "AA",
+      "birth_time_confidence_minutes": 0
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1918-07-18",
+    "time": "14:30:00",
+    "timezone": "Africa/Johannesburg",
+    "latitude": -32.3,
+    "longitude": 27.1333,
+    "location": "Mvezo, Cape Province, South Africa"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 233.96265550853212,
+      "rashi": "VRISHCHIKA",
+      "degree_in_rashi": 23.962655508532123,
+      "nakshatra": "JYESHTHA",
+      "nakshatra_lord": "MERCURY",
+      "pada": 3,
+      "degree_in_nakshatra": 7.295988841865471,
+      "d9_sign": "KUMBHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 115.05489904523074,
+        "longitude_sidereal": 92.3305370622493,
+        "longitude_used": 92.3305370622493,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 2.330537062249306,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 12.330537062249311,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          10
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 230.05160336707726,
+        "longitude_sidereal": 207.32724138409583,
+        "longitude_used": 207.32724138409583,
+        "rashi": "TULA",
+        "house": 12,
+        "degree_in_rashi": 27.327241384095828,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 7.32724138409584,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          9
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 192.5690777931149,
+        "longitude_sidereal": 169.8447158101334,
+        "longitude_used": 169.8447158101334,
+        "rashi": "KANYA",
+        "house": 11,
+        "degree_in_rashi": 19.84471581013341,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 3,
+        "degree_in_nakshatra": 9.844715810133392,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          1,
+          6
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 136.1064662171607,
+        "longitude_sidereal": 113.38210423417925,
+        "longitude_used": 113.38210423417925,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 23.382104234179252,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 6.71543756751259,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          8,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 91.16388133941467,
+        "longitude_sidereal": 68.43951935643321,
+        "longitude_used": 68.43951935643321,
+        "rashi": "MITHUNA",
+        "house": 8,
+        "degree_in_rashi": 8.439519356433209,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 1.7728526897665402,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          2,
+          5
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 82.5596213056317,
+        "longitude_sidereal": 59.83525932265025,
+        "longitude_used": 59.83525932265025,
+        "rashi": "VRISHABHA",
+        "house": 7,
+        "degree_in_rashi": 29.835259322650252,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 6.50192598931692,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          7,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 135.0303957462576,
+        "longitude_sidereal": 112.30603376327615,
+        "longitude_used": 112.30603376327615,
+        "rashi": "KARKA",
+        "house": 9,
+        "degree_in_rashi": 22.306033763276147,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 5.639367096609476,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          3,
+          4
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 260.53019039540555,
+        "longitude_sidereal": 237.80582841242412,
+        "longitude_used": 237.80582841242412,
+        "rashi": "VRISHCHIKA",
+        "house": 1,
+        "degree_in_rashi": 27.80582841242412,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 11.139161745757452,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 80.53019039540555,
+        "longitude_sidereal": 57.80582841242415,
+        "longitude_used": 57.80582841242415,
+        "rashi": "VRISHABHA",
+        "house": 7,
+        "degree_in_rashi": 27.805828412424148,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 4.472495079090819,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "2": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "KETU",
+          "VENUS"
+        ]
+      },
+      "8": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "9": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MERCURY",
+          "SATURN",
+          "SUN"
+        ]
+      },
+      "10": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "12": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MOON"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "JUPITER",
+      "3": "SATURN",
+      "4": "SATURN",
+      "5": "JUPITER",
+      "6": "MARS",
+      "7": "VENUS",
+      "8": "MERCURY",
+      "9": "MOON",
+      "10": "SUN",
+      "11": "MERCURY",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "MANDELA_RELEASE_1990",
+      "event_date_utc": "1990-02-11T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Released from prison after 27 years",
+      "yoga_types": [],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "MANDELA_PRESIDENT_1994",
+      "event_date_utc": "1994-05-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Inaugurated as first Black president of South Africa",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SUN"
+      ]
+    },
+    {
+      "event_id": "MANDELA_DEATH_2013",
+      "event_date_utc": "2013-12-05T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died at age 95 in Johannesburg",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

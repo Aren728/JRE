@@ -59,18 +59,7 @@ _RASHI_ORDER: list[str] = [
     "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
 ]
 
-_CHART_FILES = [
-    "chart_001_pilot.json",
-    "chart_002_curie.json",
-    "chart_003_mozart.json",
-    "chart_004_tesla.json",
-    "chart_005_gandhi.json",
-    "chart_006_newton.json",
-    "chart_007_lincoln.json",
-    "chart_008_teresa.json",
-    "chart_009_jobs.json",
-    "chart_010_earhart.json",
-]
+_CHART_FILES: list[str] | None = None  # None = auto-discover all chart_*.json
 
 
 # ── D9 Helpers ──────────────────────────────────────────────────────────────
@@ -392,6 +381,15 @@ def _run_pipeline_for_event(
 # ── Main Evaluation Loop ───────────────────────────────────────────────────
 
 
+def _discover_chart_files() -> list[str]:
+    """Auto-discover all chart_*.json files in the fixtures directory."""
+    all_files = sorted(FIXTURES_DIR.glob("chart_*.json"))
+    names = [f.name for f in all_files]
+    if _CHART_FILES is not None:
+        return _CHART_FILES
+    return names
+
+
 def _evaluate_all_charts() -> list[SubjectReport]:
     from jyotish.models import BirthData
     from jyotish.service import JyotishService
@@ -400,8 +398,9 @@ def _evaluate_all_charts() -> list[SubjectReport]:
     svc = JyotishService()
     evaluator = YogaEvaluatorService()
     all_subjects: list[SubjectReport] = []
+    chart_files = _discover_chart_files()
 
-    for chart_file in _CHART_FILES:
+    for chart_file in chart_files:
         fixture_path = FIXTURES_DIR / chart_file
         if not fixture_path.exists():
             print(f"  SKIP: {fixture_path} not found", file=sys.stderr)
@@ -777,8 +776,8 @@ def _generate_report(subjects: list[SubjectReport]) -> str:
 
 def main() -> int:
     print("=" * 60)
-    print("BLIND EMPIRICAL EVALUATION — 5-Chart Cohort")
-    print("Phase E5: 5-Layer Pipeline Execution")
+    print("BLIND EMPIRICAL EVALUATION — Full Cohort")
+    print("Phase F1: 5-Layer Pipeline Execution")
     print("=" * 60)
     print()
 
@@ -797,7 +796,7 @@ def main() -> int:
     print(f"Report written to: {md_path}")
     print("=" * 60)
 
-    # Also write JSON for programmatic consumption
+    # Also write raw JSON for statistical evaluation
     json_data: dict[str, Any] = {
         "cohort_size": len(subjects),
         "total_events": sum(len(s.event_reports) for s in subjects),
@@ -842,10 +841,17 @@ def main() -> int:
             subject_data["events"].append(event_data)
         json_data["subjects"].append(subject_data)
 
+    # Write main JSON
     json_path = output_dir / "blind_evaluation_cohort.json"
     with json_path.open("w", encoding="utf-8") as f:
         json.dump(json_data, f, indent=2, sort_keys=True)
     print(f"JSON data written to: {json_path}")
+
+    # Also write raw output for statistical evaluator
+    raw_path = output_dir / "blind_evaluation_50_cohort_raw.json"
+    with raw_path.open("w", encoding="utf-8") as f:
+        json.dump(json_data, f, indent=2, sort_keys=True)
+    print(f"Raw predictions written to: {raw_path}")
 
     return 0
 

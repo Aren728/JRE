@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_032_vangogh",
+    "version": "1.0.0",
+    "subject": "Vincent van Gogh",
+    "description": "Immutable reference chart for Vincent van Gogh. A-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "A",
+      "birth_time_confidence_minutes": 60
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1853-03-30",
+    "time": "11:00:00",
+    "timezone": "Europe/Amsterdam",
+    "latitude": 51.7175,
+    "longitude": 4.6031,
+    "location": "Groot-Zundert, Netherlands"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 89.36579051308829,
+      "rashi": "MITHUNA",
+      "degree_in_rashi": 29.365790513088285,
+      "nakshatra": "PUNARVASU",
+      "nakshatra_lord": "JUPITER",
+      "pada": 3,
+      "degree_in_nakshatra": 9.365790513088289,
+      "d9_sign": "MITHUNA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 9.653051995604894,
+        "longitude_sidereal": 347.85012221820796,
+        "longitude_used": 347.85012221820796,
+        "rashi": "MEENA",
+        "house": 10,
+        "degree_in_rashi": 17.850122218207957,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "degree_in_nakshatra": 1.1834555515412863,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 260.7245139483034,
+        "longitude_sidereal": 238.92158417090647,
+        "longitude_used": 238.92158417090647,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 28.92158417090647,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 12.254917504239799,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 356.12619142549755,
+        "longitude_sidereal": 334.32326164810064,
+        "longitude_used": 334.32326164810064,
+        "rashi": "MEENA",
+        "house": 10,
+        "degree_in_rashi": 4.32326164810064,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 0.989928314767288,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          6,
+          11
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 25.606450655075193,
+        "longitude_sidereal": 3.8035208776782623,
+        "longitude_used": 3.8035208776782623,
+        "rashi": "MESHA",
+        "house": 11,
+        "degree_in_rashi": 3.8035208776782623,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "degree_in_nakshatra": 3.8035208776782627,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          1,
+          4
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 264.26825945226534,
+        "longitude_sidereal": 242.46532967486837,
+        "longitude_used": 242.46532967486837,
+        "rashi": "DHANUSHA",
+        "house": 7,
+        "degree_in_rashi": 2.4653296748683715,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.4653296748683715,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          7,
+          10
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 358.0555573570452,
+        "longitude_sidereal": 336.2526275796482,
+        "longitude_used": 336.2526275796482,
+        "rashi": "MEENA",
+        "house": 10,
+        "degree_in_rashi": 6.25262757964822,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 2.9192942463149074,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          5,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 45.95824673173834,
+        "longitude_sidereal": 24.155316954341405,
+        "longitude_used": 24.155316954341405,
+        "rashi": "MESHA",
+        "house": 11,
+        "degree_in_rashi": 24.155316954341405,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 10.821983621008073,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          8,
+          9
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 83.47488301432855,
+        "longitude_sidereal": 61.67195323693162,
+        "longitude_used": 61.67195323693162,
+        "rashi": "MITHUNA",
+        "house": 1,
+        "degree_in_rashi": 1.6719532369316212,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 3,
+        "degree_in_nakshatra": 8.338619903598286,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 263.47488301432855,
+        "longitude_sidereal": 241.6719532369316,
+        "longitude_used": 241.6719532369316,
+        "rashi": "DHANUSHA",
+        "house": 7,
+        "degree_in_rashi": 1.6719532369316141,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 1,
+        "degree_in_nakshatra": 1.6719532369316195,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "2": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ]
+      },
+      "8": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MARS",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "11": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MERCURY",
+          "SATURN"
+        ]
+      },
+      "12": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MERCURY",
+      "2": "MOON",
+      "3": "SUN",
+      "4": "MERCURY",
+      "5": "VENUS",
+      "6": "MARS",
+      "7": "JUPITER",
+      "8": "SATURN",
+      "9": "SATURN",
+      "10": "JUPITER",
+      "11": "MARS",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "VANGOGH_STARRY_1889",
+      "event_date_utc": "1889-06-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Painted The Starry Night at the asylum in Saint-R\u00e9my",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "VANGOGH_ARLES_1888",
+      "event_date_utc": "1888-02-01T00:00:00Z",
+      "domain": "MIGRATION",
+      "description": "Moved to Arles seeking artistic community",
+      "yoga_types": [],
+      "expected_planets": [
+        "VENUS",
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "VANGOGH_DEATH_1890",
+      "event_date_utc": "1890-07-29T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Auvers-sur-Oise, age 37",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}

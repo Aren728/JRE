@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_035_twain",
+    "version": "1.0.0",
+    "subject": "Mark Twain",
+    "description": "Immutable reference chart for Mark Twain. C-rated.",
+    "provenance": {
+      "source": "Astro-Databank (astro.com)",
+      "rodden_rating": "C",
+      "birth_time_confidence_minutes": 120
+    },
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1835-11-30",
+    "time": "04:45:00",
+    "timezone": "America/Chicago",
+    "latitude": 40.2,
+    "longitude": -92.65,
+    "location": "Florida, Missouri, USA"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 193.9774295558554,
+      "rashi": "TULA",
+      "degree_in_rashi": 13.977429555855394,
+      "nakshatra": "SWATI",
+      "nakshatra_lord": "RAHU",
+      "pada": 3,
+      "degree_in_nakshatra": 7.310762889188717,
+      "d9_sign": "MITHUNA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 247.55611081851026,
+        "longitude_sidereal": 225.99458542230695,
+        "longitude_used": 225.99458542230695,
+        "rashi": "VRISHCHIKA",
+        "house": 2,
+        "degree_in_rashi": 15.994585422306955,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.66125208897362,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          11
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 15.477219404112255,
+        "longitude_sidereal": 353.91569400790894,
+        "longitude_used": 353.91569400790894,
+        "rashi": "MEENA",
+        "house": 6,
+        "degree_in_rashi": 23.91569400790894,
+        "nakshatra": "REVATI",
+        "nakshatra_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 7.249027341242254,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          10
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 252.9508552586311,
+        "longitude_sidereal": 231.38932986242784,
+        "longitude_used": 231.38932986242784,
+        "rashi": "VRISHCHIKA",
+        "house": 2,
+        "degree_in_rashi": 21.389329862427843,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.722663195761184,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 228.7619515902124,
+        "longitude_sidereal": 207.20042619400908,
+        "longitude_used": 207.20042619400908,
+        "rashi": "TULA",
+        "house": 1,
+        "degree_in_rashi": 27.200426194009083,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 7.200426194009095,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 104.73771217965607,
+        "longitude_sidereal": 83.17618678345276,
+        "longitude_used": 83.17618678345276,
+        "rashi": "MITHUNA",
+        "house": 9,
+        "degree_in_rashi": 23.176186783452764,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 3.1761867834527577,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 261.6900666939591,
+        "longitude_sidereal": 240.12854129775582,
+        "longitude_used": 240.12854129775582,
+        "rashi": "DHANUSHA",
+        "house": 3,
+        "degree_in_rashi": 0.12854129775581669,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 1,
+        "degree_in_nakshatra": 0.12854129775580617,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 210.83344156882376,
+        "longitude_sidereal": 189.27191617262042,
+        "longitude_used": 189.27191617262042,
+        "rashi": "TULA",
+        "house": 1,
+        "degree_in_rashi": 9.271916172620422,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "degree_in_nakshatra": 2.6052495059537724,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          4,
+          5
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 58.67403694291764,
+        "longitude_sidereal": 37.112511546714344,
+        "longitude_used": 37.112511546714344,
+        "rashi": "VRISHABHA",
+        "house": 8,
+        "degree_in_rashi": 7.1125115467143445,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "pada": 4,
+        "degree_in_nakshatra": 10.44584488004768,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 238.67403694291764,
+        "longitude_sidereal": 217.11251154671436,
+        "longitude_used": 217.11251154671436,
+        "rashi": "VRISHCHIKA",
+        "house": 2,
+        "degree_in_rashi": 7.112511546714359,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 3.7791782133810083,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MERCURY",
+          "SATURN"
+        ]
+      },
+      "2": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "KETU",
+          "MARS",
+          "SUN"
+        ]
+      },
+      "3": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "VENUS"
+        ]
+      },
+      "4": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "9": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "10": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "VENUS",
+      "2": "MARS",
+      "3": "JUPITER",
+      "4": "SATURN",
+      "5": "SATURN",
+      "6": "JUPITER",
+      "7": "MARS",
+      "8": "VENUS",
+      "9": "MERCURY",
+      "10": "MOON",
+      "11": "SUN",
+      "12": "MERCURY"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "TWAIN_TOM_SAWYER_1876",
+      "event_date_utc": "1876-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Published The Adventures of Tom Sawyer",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "TWAIN_MARK_1863",
+      "event_date_utc": "1863-02-03T00:00:00Z",
+      "domain": "CAREER",
+      "description": "First used the pen name Mark Twain",
+      "yoga_types": [],
+      "expected_planets": [
+        "MERCURY",
+        "RAHU"
+      ]
+    },
+    {
+      "event_id": "TWAIN_DEATH_1910",
+      "event_date_utc": "1910-04-21T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Died in Redding, Connecticut, age 74",
+      "yoga_types": [],
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ]
+    }
+  ]
+}
