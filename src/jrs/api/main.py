@@ -18,6 +18,7 @@ from typing import Any
 from fastapi import FastAPI, HTTPException
 
 from .dependencies import (
+    _PROJECT_ROOT,
     build_jre_facts,
     compute_chart_from_birth_data,
     compute_chart_from_fixture,
@@ -299,6 +300,72 @@ async def generate_report(
         "subject": subject,
         "content": content,
     }
+
+
+# ── Feedback Endpoint ───────────────────────────────────────────────────────
+
+
+@app.post(
+    "/api/v1/feedback",
+    tags=["Feedback"],
+)
+async def submit_feedback(
+    fixture_id: str = "",
+    event_date: str = "",
+    expected_outcome: str = "",
+    actual_outcome: str = "",
+    notes: str = "",
+) -> dict[str, Any]:
+    """Submit beta tester feedback.
+
+    Appends the feedback to reports/beta_feedback_log.jsonl for later analysis.
+
+    Args:
+        fixture_id: Chart fixture identifier.
+        event_date: Date of the event being evaluated.
+        expected_outcome: What the tester expected.
+        actual_outcome: What the engine predicted.
+        notes: Additional notes or category (false_negative, false_positive, etc.).
+    """
+    import json
+    from datetime import datetime, timezone
+
+    feedback_entry = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "fixture_id": fixture_id,
+        "event_date": event_date,
+        "expected_outcome": expected_outcome,
+        "actual_outcome": actual_outcome,
+        "notes": notes,
+    }
+
+    # Write to JSONL file
+    feedback_dir = _PROJECT_ROOT / "reports"
+    feedback_dir.mkdir(parents=True, exist_ok=True)
+    feedback_path = feedback_dir / "beta_feedback_log.jsonl"
+
+    try:
+        with feedback_path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(feedback_entry) + "\n")
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to save feedback: {e}",
+        )
+
+    return {
+        "status": "recorded",
+        "message": "Feedback saved successfully",
+        "entry_count": _count_feedback_entries(feedback_path),
+    }
+
+
+def _count_feedback_entries(path: Path) -> int:
+    """Count existing feedback entries."""
+    if not path.exists():
+        return 0
+    with path.open(encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip())
 
 
 # ── Entry Point ─────────────────────────────────────────────────────────────

@@ -1,0 +1,54 @@
+# JRE API — Staging Deployment Configuration
+#
+# Production-ready Docker Compose for beta testing.
+#
+# Usage:
+#   docker-compose -f docker-compose.staging.yml up --build
+#   docker-compose -f docker-compose.staging.yml up --build -d
+#   docker-compose -f docker-compose.staging.yml down
+#
+# The API will be available at http://localhost:8000
+# API docs at http://localhost:8000/docs
+# Feedback log at ./data/beta_feedback_log.jsonl
+
+version: "3.8"
+
+services:
+  jre-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jre-api-staging
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount fixtures as read-only
+      - ./tests/fixtures/validation_charts:/app/tests/fixtures/validation_charts:ro
+      # Persistent storage for feedback log
+      - jre-feedback-data:/app/data
+      - ./data:/app/reports
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - JRE_ENV=staging
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; r = httpx.get('http://localhost:8000/api/v1/health'); assert r.status_code == 200"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  jre-feedback-data:
+    driver: local
