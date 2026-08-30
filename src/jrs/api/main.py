@@ -239,6 +239,68 @@ async def evaluate_custom(input_data: BirthDataInput) -> EvaluationResponse:
     return _run_evaluation(chart, jre_facts, subject="Custom")
 
 
+# ── Report Endpoint ────────────────────────────────────────────────────────
+
+
+@app.post(
+    "/api/v1/report/fixture",
+    tags=["Report"],
+)
+async def generate_report(
+    input_data: FixtureInput,
+    format: str = "markdown",
+) -> dict[str, Any]:
+    """Generate a human-readable astrological report for a chart fixture.
+
+    Args:
+        input_data: FixtureInput with fixture_id.
+        format: Output format — 'markdown' (default) or 'html'.
+
+    Returns:
+        Dictionary with 'format' and 'content' keys.
+    """
+    from jrs.reporting.generator import ReportGenerator
+
+    # Validate format
+    if format not in ("markdown", "html"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid format: {format}. Use 'markdown' or 'html'.",
+        )
+
+    # Load fixture and evaluate
+    try:
+        fixture = load_fixture(input_data.fixture_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    subject = fixture.get("_meta", {}).get("subject", input_data.fixture_id)
+
+    try:
+        chart = compute_chart_from_fixture(fixture)
+        jre_facts = build_jre_facts(chart)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Chart computation failed: {e}",
+        )
+
+    response = _run_evaluation(chart, jre_facts, subject=subject)
+
+    # Generate report
+    generator = ReportGenerator(response)
+    if format == "html":
+        content = generator.generate_html()
+    else:
+        content = generator.generate_markdown()
+
+    return {
+        "format": format,
+        "subject": subject,
+        "content": content,
+    }
+
+
 # ── Entry Point ─────────────────────────────────────────────────────────────
 
 def main() -> None:
