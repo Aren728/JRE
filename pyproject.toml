@@ -127,6 +127,7 @@ testpaths = [
     "tests/unit/numerology",
     "tests/unit/jrs/numerology",
     "tests/integration/numerology",
+    "tests/unit/jrs/api",
     "tests/calibration",
 ]
 addopts = "-q"

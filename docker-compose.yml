@@ -1,0 +1,32 @@
+# JRE API — Docker Compose Configuration
+#
+# Usage:
+#   docker-compose up --build          # Start the API server
+#   docker-compose up --build -d       # Start in detached mode
+#   docker-compose down                # Stop the server
+#
+# The API will be available at http://localhost:8000
+# API docs at http://localhost:8000/docs
+
+version: "3.8"
+
+services:
+  jre-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jre-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount fixtures as read-only for runtime access
+      - ./tests/fixtures/validation_charts:/app/tests/fixtures/validation_charts:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; r = httpx.get('http://localhost:8000/api/v1/health'); assert r.status_code == 200"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
