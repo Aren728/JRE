@@ -277,6 +277,20 @@ class YogaEvaluatorService:
         ashtakavarga_scores = jre_facts.get("ashtakavarga_scores")
         natal_moon_house = jre_facts.get("natal_moon_house", 1)
 
+        # Phase I1: Compute real transit data if not provided
+        if transit_houses is None or ashtakavarga_scores is None:
+            try:
+                from jrs.temporal.ashtakavarga_service import AshtakavargaService
+                av_svc = AshtakavargaService()
+                av_profile = av_svc.compute_profile(jre_facts, target_ts)
+                if transit_houses is None:
+                    transit_houses = av_profile.transit_houses
+                if ashtakavarga_scores is None:
+                    ashtakavarga_scores = av_profile.ashtakavarga_scores
+            except Exception:
+                # Graceful fallback: transit layer remains inactive
+                pass
+
         return self._dynamic_temporal_svc.compute_dynamic_strength(
             static_strength=static_strength,
             target_timestamp=target_ts,
