@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_068_ambedkar",
+    "version": "1.0.0",
+    "subject": "B.R. Ambedkar",
+    "description": "Indian jurist, architect of the Indian Constitution, social reformer",
+    "provenance": "Wikipedia \u2014 B.R. Ambedkar birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1891-04-14",
+    "time": "12:00",
+    "latitude": 20.9336,
+    "longitude": 77.7643,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "KARKA",
+      "longitude": 93.71257396051148
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 1.69863182951809,
+        "rashi": "MESHA",
+        "house": 10,
+        "degree_in_rashi": 1.69863182951809,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MOON": {
+        "longitude_used": 71.18418289411638,
+        "rashi": "MITHUNA",
+        "house": 12,
+        "degree_in_rashi": 11.184182894116375,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MARS": {
+        "longitude_used": 33.60876479488423,
+        "rashi": "VRISHABHA",
+        "house": 11,
+        "degree_in_rashi": 3.6087647948842303,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          5,
+          10
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 20.64726473956861,
+        "rashi": "MESHA",
+        "house": 10,
+        "degree_in_rashi": 20.64726473956861,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          3,
+          12
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 315.90228830662556,
+        "rashi": "KUMBHA",
+        "house": 8,
+        "degree_in_rashi": 15.902288306625564,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          6,
+          9
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 322.13745677389767,
+        "rashi": "KUMBHA",
+        "house": 8,
+        "degree_in_rashi": 22.137456773897668,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          4,
+          11
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 138.6753040285488,
+        "rashi": "SIMHA",
+        "house": 2,
+        "degree_in_rashi": 18.675304028548794,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "SUN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          7,
+          8
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 45.40814174150287,
+        "rashi": "VRISHABHA",
+        "house": 11,
+        "degree_in_rashi": 15.408141741502867,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "VENUS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 225.40814174150287,
+        "rashi": "VRISHCHIKA",
+        "house": 5,
+        "degree_in_rashi": 15.408141741502874,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "3": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "6": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "VENUS"
+        ]
+      },
+      "9": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "11": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "12": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MOON",
+      "2": "SUN",
+      "3": "MERCURY",
+      "4": "VENUS",
+      "5": "MARS",
+      "6": "JUPITER",
+      "7": "SATURN",
+      "8": "SATURN",
+      "9": "JUPITER",
+      "10": "MARS",
+      "11": "VENUS",
+      "12": "MERCURY"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "AMBEDKAR_PHD_1923",
+      "event_date_utc": "1923-06-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Earned PhD from Columbia University",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "AMBEDKAR_CONSTITUTION_1950",
+      "event_date_utc": "1950-01-26T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Indian Constitution came into effect, drafted by Ambedkar",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "MERCURY"
+      ]
+    },
+    {
+      "event_id": "AMBEDKAR_DEATH_1956",
+      "event_date_utc": "1956-12-06T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Passed away in Delhi",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "MARS"
+      ]
+    }
+  ]
+}

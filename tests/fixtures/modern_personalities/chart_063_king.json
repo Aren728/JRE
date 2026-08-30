@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_063_king",
+    "version": "1.0.0",
+    "subject": "Martin Luther King Jr.",
+    "description": "American civil rights leader, Nobel Peace Prize laureate",
+    "provenance": "Wikipedia \u2014 Martin Luther King Jr. birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1929-01-15",
+    "time": "12:00",
+    "latitude": 33.749,
+    "longitude": -84.388,
+    "timezone": "America/New_York"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MESHA",
+      "longitude": 0.17647591903035575
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 272.2296640128074,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 2.2296640128074046,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_used": 326.1833120850102,
+        "rashi": "KUMBHA",
+        "house": 11,
+        "degree_in_rashi": 26.183312085010186,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_used": 59.041500838809,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 29.041500838809,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 288.83043513230245,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 18.830435132302455,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 8.308188157796655,
+        "rashi": "MESHA",
+        "house": 1,
+        "degree_in_rashi": 8.308188157796655,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 317.6431818061174,
+        "rashi": "KUMBHA",
+        "house": 11,
+        "degree_in_rashi": 17.64318180611741,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 242.48528172035867,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 2.485281720358671,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 34.62423782132025,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 4.62423782132025,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "VENUS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 214.62423782132026,
+        "rashi": "VRISHCHIKA",
+        "house": 8,
+        "degree_in_rashi": 4.624237821320264,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "MOON",
+          "VENUS"
+        ]
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "KING_MARCH_1963",
+      "event_date_utc": "1963-08-28T00:00:00Z",
+      "domain": "CAREER",
+      "description": "March on Washington, 'I Have a Dream' speech",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "MERCURY"
+      ]
+    },
+    {
+      "event_id": "KING_NOBEL_1964",
+      "event_date_utc": "1964-12-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Awarded Nobel Peace Prize",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "KING_ASSASSINATION_1968",
+      "event_date_utc": "1968-04-04T00:00:00Z",
+      "domain": "HEALTH",
+      "description": "Assassinated in Memphis, Tennessee",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "MARS"
+      ]
+    }
+  ]
+}

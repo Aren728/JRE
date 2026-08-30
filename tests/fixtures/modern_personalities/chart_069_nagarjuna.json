@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_069_nagarjuna",
+    "version": "1.0.0",
+    "subject": "Akkineni Nagarjuna",
+    "description": "Indian actor, producer, entrepreneur, Telugu cinema icon",
+    "provenance": "Wikipedia \u2014 Nagarjuna birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1959-08-29",
+    "time": "02:30",
+    "latitude": 17.385,
+    "longitude": 78.4867,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MITHUNA",
+      "longitude": 82.62271272393187
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 131.50157674093765,
+        "rashi": "SIMHA",
+        "house": 3,
+        "degree_in_rashi": 11.50157674093765,
+        "nakshatra": "MAGHA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "SUN",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          3
+        ]
+      },
+      "MOON": {
+        "longitude_used": 69.46035005310085,
+        "rashi": "MITHUNA",
+        "house": 1,
+        "degree_in_rashi": 9.460350053100854,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          2
+        ]
+      },
+      "MARS": {
+        "longitude_used": 151.5156330239305,
+        "rashi": "KANYA",
+        "house": 4,
+        "degree_in_rashi": 1.5156330239304907,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          6,
+          11
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 114.42819536457479,
+        "rashi": "KARKA",
+        "house": 2,
+        "degree_in_rashi": 24.42819536457479,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          1,
+          4
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 211.0928501891155,
+        "rashi": "VRISHCHIKA",
+        "house": 6,
+        "degree_in_rashi": 1.0928501891154951,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          7,
+          10
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 136.85006470650148,
+        "rashi": "SIMHA",
+        "house": 3,
+        "degree_in_rashi": 16.850064706501485,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "SUN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          5,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 247.20557296635218,
+        "rashi": "DHANUSHA",
+        "house": 7,
+        "degree_in_rashi": 7.205572966352179,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          8,
+          9
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 162.05813234127507,
+        "rashi": "KANYA",
+        "house": 4,
+        "degree_in_rashi": 12.05813234127507,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "MERCURY",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 342.05813234127504,
+        "rashi": "MEENA",
+        "house": 10,
+        "degree_in_rashi": 12.05813234127504,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "2": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MERCURY"
+        ]
+      },
+      "3": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "4": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "5": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "7": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "8": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "11": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MERCURY",
+      "2": "MOON",
+      "3": "SUN",
+      "4": "MERCURY",
+      "5": "VENUS",
+      "6": "MARS",
+      "7": "JUPITER",
+      "8": "SATURN",
+      "9": "SATURN",
+      "10": "JUPITER",
+      "11": "MARS",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "NAGARJUNA_DEBUT_1986",
+      "event_date_utc": "1986-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Breakthrough role in 'Vikram'",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "NAGARJUNA_SHIVA_1989",
+      "event_date_utc": "1989-03-15T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Blockbuster 'Shiva' established stardom",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "NAGARJUNA_BUSINESS_2005",
+      "event_date_utc": "2005-01-01T00:00:00Z",
+      "domain": "WEALTH",
+      "description": "Expanded into film production and business",
+      "yoga_types": [
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    }
+  ]
+}

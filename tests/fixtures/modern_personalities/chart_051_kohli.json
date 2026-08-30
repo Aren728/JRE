@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_051_kohli",
+    "version": "1.0.0",
+    "subject": "Virat Kohli",
+    "description": "Indian cricket legend, former captain, one of the greatest batsmen",
+    "provenance": "Wikipedia \u2014 Virat Kohli birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1988-11-05",
+    "time": "17:20",
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MESHA",
+      "longitude": 16.728256188337546
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 199.58385832930108,
+        "rashi": "TULA",
+        "house": 7,
+        "degree_in_rashi": 19.58385832930108,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_used": 153.7141193617232,
+        "rashi": "KANYA",
+        "house": 6,
+        "degree_in_rashi": 3.714119361723192,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_used": 336.6181493916633,
+        "rashi": "MEENA",
+        "house": 12,
+        "degree_in_rashi": 6.61814939166328,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 184.54111704271833,
+        "rashi": "TULA",
+        "house": 7,
+        "degree_in_rashi": 4.5411170427183265,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 39.66074967775741,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 9.660749677757408,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "VENUS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 164.18154503360907,
+        "rashi": "KANYA",
+        "house": 6,
+        "degree_in_rashi": 14.18154503360907,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 245.6303807165398,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 5.630380716539804,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 317.07727119482774,
+        "rashi": "KUMBHA",
+        "house": 11,
+        "degree_in_rashi": 17.077271194827745,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 137.07727119482774,
+        "rashi": "SIMHA",
+        "house": 5,
+        "degree_in_rashi": 17.077271194827745,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "SUN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON",
+          "VENUS"
+        ]
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MARS"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "KOHLI_U19_2008",
+      "event_date_utc": "2008-03-02T00:00:00Z",
+      "domain": "CAREER",
+      "description": "U-19 World Cup captaincy win",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "KOHLI_ODI_CAPTAIN_2013",
+      "event_date_utc": "2013-09-15T00:00:00Z",
+      "domain": "CAREER",
+      "description": "First ODI captaincy appointment",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "KOHLI_PEAK_2018",
+      "event_date_utc": "2018-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Peak ICC ranking #1 across all formats",
+      "yoga_types": [
+        "RAJA",
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    }
+  ]
+}

@@ -380,6 +380,33 @@ class VimshottariDashaEngine:
                         matched_planet=f"{dasha_lord} (nakshatra lord of {yp})",
                     )
 
+            # Check 4: Dasha lord aspects yoga planet (Vedic aspects)
+            dasha_lord_pdata = planets.get(dasha_lord, {})
+            dasha_lord_house = dasha_lord_pdata.get("house")
+            if isinstance(dasha_lord_house, int):
+                # Classical Vedic aspect houses from planet's position
+                _ASPECT_MAP: dict[str, list[int]] = {
+                    "MARS": [4, 7, 8],      # 4th, 7th, 8th
+                    "JUPITER": [5, 7, 9],    # 5th, 7th, 9th
+                    "SATURN": [3, 7, 10],    # 3rd, 7th, 10th
+                }
+                aspect_offsets = _ASPECT_MAP.get(dasha_lord, [7])  # Default: 7th only
+                for yp in yoga_planets:
+                    yp_pdata = planets.get(yp, {})
+                    yp_house = yp_pdata.get("house")
+                    if not isinstance(yp_house, int):
+                        continue
+                    for offset in aspect_offsets:
+                        # House that the aspect lands on from dasha lord
+                        target_house = ((dasha_lord_house + offset - 1) % 12) + 1
+                        if target_house == yp_house:
+                            return DashaMultiplierResult(
+                                hierarchy=hierarchy,
+                                multiplier=max(mult, 1.08),
+                                matched_level=level,
+                                matched_planet=f"{dasha_lord} (aspects {yp})",
+                            )
+
         return None
 
     @staticmethod

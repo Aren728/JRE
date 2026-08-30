@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_060_swift",
+    "version": "1.0.0",
+    "subject": "Taylor Swift",
+    "description": "American singer-songwriter, highest-grossing touring artist",
+    "provenance": "Wikipedia \u2014 Taylor Swift birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1989-12-13",
+    "time": "08:30",
+    "latitude": 35.1495,
+    "longitude": -90.049,
+    "timezone": "America/Chicago"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "DHANUSHA",
+      "longitude": 257.6418720716282
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 237.84813295269444,
+        "rashi": "VRISHCHIKA",
+        "house": 12,
+        "degree_in_rashi": 27.848132952694442,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          9
+        ]
+      },
+      "MOON": {
+        "longitude_used": 70.32660823343069,
+        "rashi": "MITHUNA",
+        "house": 7,
+        "degree_in_rashi": 10.32660823343069,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          8
+        ]
+      },
+      "MARS": {
+        "longitude_used": 213.0876897131055,
+        "rashi": "VRISHCHIKA",
+        "house": 12,
+        "degree_in_rashi": 3.0876897131055046,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          5,
+          12
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 255.17149583927576,
+        "rashi": "DHANUSHA",
+        "house": 1,
+        "degree_in_rashi": 15.171495839275764,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          7,
+          10
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 73.9478752802518,
+        "rashi": "MITHUNA",
+        "house": 7,
+        "degree_in_rashi": 13.947875280251793,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          1,
+          4
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 278.216149572534,
+        "rashi": "MAKARA",
+        "house": 2,
+        "degree_in_rashi": 8.216149572533993,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          6,
+          11
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 259.7437975915028,
+        "rashi": "DHANUSHA",
+        "house": 1,
+        "degree_in_rashi": 19.743797591502812,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          2,
+          3
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 295.71559824480875,
+        "rashi": "MAKARA",
+        "house": 2,
+        "degree_in_rashi": 25.715598244808746,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "SATURN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 115.71559824480875,
+        "rashi": "KARKA",
+        "house": 8,
+        "degree_in_rashi": 25.715598244808746,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "SATURN"
+        ]
+      },
+      "2": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU",
+          "VENUS"
+        ]
+      },
+      "3": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER",
+          "MOON"
+        ]
+      },
+      "8": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "9": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "SUN"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "JUPITER",
+      "2": "SATURN",
+      "3": "SATURN",
+      "4": "JUPITER",
+      "5": "MARS",
+      "6": "VENUS",
+      "7": "MERCURY",
+      "8": "MOON",
+      "9": "SUN",
+      "10": "MERCURY",
+      "11": "VENUS",
+      "12": "MARS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "SWIFT_DEBUT_2006",
+      "event_date_utc": "2006-10-24T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Self-titled debut album released",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "SWIFT_1989_2014",
+      "event_date_utc": "2014-10-27T00:00:00Z",
+      "domain": "CAREER",
+      "description": "'1989' album breaks sales records",
+      "yoga_types": [
+        "RAJA",
+        "DHANA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "SWIFT_ERAS_2023",
+      "event_date_utc": "2023-03-17T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Eras Tour becomes highest-grossing concert tour ever",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    }
+  ]
+}

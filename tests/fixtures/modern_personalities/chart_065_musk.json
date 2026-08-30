@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_065_musk",
+    "version": "1.0.0",
+    "subject": "Elon Musk",
+    "description": "South African-American entrepreneur, CEO of Tesla and SpaceX",
+    "provenance": "Wikipedia \u2014 Elon Musk birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1971-06-28",
+    "time": "02:30",
+    "latitude": -25.7479,
+    "longitude": 28.2293,
+    "timezone": "Africa/Johannesburg"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MESHA",
+      "longitude": 13.27529557518994
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 72.22976212233019,
+        "rashi": "MITHUNA",
+        "house": 3,
+        "degree_in_rashi": 12.229762122330186,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_used": 132.27635677099138,
+        "rashi": "SIMHA",
+        "house": 5,
+        "degree_in_rashi": 12.276356770991384,
+        "nakshatra": "MAGHA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "SUN",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_used": 297.410351435797,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 27.410351435796997,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 80.17031412350451,
+        "rashi": "MITHUNA",
+        "house": 3,
+        "degree_in_rashi": 20.17031412350451,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 214.20186186298997,
+        "rashi": "VRISHCHIKA",
+        "house": 8,
+        "degree_in_rashi": 4.201861862989972,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 55.6806397311365,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 25.680639731136502,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 37.63664869213205,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 7.636648692132049,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 293.0717756237626,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 23.07177562376262,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "SATURN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 113.07177562376262,
+        "rashi": "KARKA",
+        "house": 4,
+        "degree_in_rashi": 23.07177562376262,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "MUSK_PAYPAL_2002",
+      "event_date_utc": "2002-02-01T00:00:00Z",
+      "domain": "WEALTH",
+      "description": "Sold PayPal to eBay for $1.5 billion",
+      "yoga_types": [
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "MUSK_SPACEX_2008",
+      "event_date_utc": "2008-09-28T00:00:00Z",
+      "domain": "CAREER",
+      "description": "SpaceX Falcon 1 reaches orbit",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "MUSK_RICHEST_2021",
+      "event_date_utc": "2021-01-07T00:00:00Z",
+      "domain": "WEALTH",
+      "description": "Became world's richest person",
+      "yoga_types": [
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    }
+  ]
+}

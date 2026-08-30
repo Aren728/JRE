@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_070_awadh",
+    "version": "1.0.0",
+    "subject": "Narendra Modi",
+    "description": "Indian Prime Minister, longest-serving non-Congress PM",
+    "provenance": "Wikipedia \u2014 Narendra Modi birth data (rectified)",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1950-09-17",
+    "time": "11:00",
+    "latitude": 23.0225,
+    "longitude": 72.5714,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "VRISHCHIKA",
+      "longitude": 211.4662087574505
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 150.59174854885316,
+        "rashi": "KANYA",
+        "house": 11,
+        "degree_in_rashi": 0.5917485488531611,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          10
+        ]
+      },
+      "MOON": {
+        "longitude_used": 218.8079004998834,
+        "rashi": "VRISHCHIKA",
+        "house": 1,
+        "degree_in_rashi": 8.807900499883402,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          9
+        ]
+      },
+      "MARS": {
+        "longitude_used": 210.9297435176214,
+        "rashi": "VRISHCHIKA",
+        "house": 1,
+        "degree_in_rashi": 0.9297435176214037,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          1,
+          6
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 150.78471131934904,
+        "rashi": "KANYA",
+        "house": 11,
+        "degree_in_rashi": 0.7847113193490429,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          8,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 306.59480047572623,
+        "rashi": "KUMBHA",
+        "house": 4,
+        "degree_in_rashi": 6.594800475726231,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "SATURN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          2,
+          5
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 135.6872732547255,
+        "rashi": "SIMHA",
+        "house": 10,
+        "degree_in_rashi": 15.687273254725511,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "SUN",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          7,
+          12
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 149.65140124782718,
+        "rashi": "SIMHA",
+        "house": 10,
+        "degree_in_rashi": 29.65140124782718,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SUN",
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3,
+          4
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 335.2174001467757,
+        "rashi": "MEENA",
+        "house": 5,
+        "degree_in_rashi": 5.217400146775674,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 155.21740014677562,
+        "rashi": "KANYA",
+        "house": 11,
+        "degree_in_rashi": 5.217400146775617,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "MOON"
+        ]
+      },
+      "2": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "5": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "6": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "11": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "KETU",
+          "MERCURY",
+          "SUN"
+        ]
+      },
+      "12": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "JUPITER",
+      "3": "SATURN",
+      "4": "SATURN",
+      "5": "JUPITER",
+      "6": "MARS",
+      "7": "VENUS",
+      "8": "MERCURY",
+      "9": "MOON",
+      "10": "SUN",
+      "11": "MERCURY",
+      "12": "VENUS"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "MODI_CM_2001",
+      "event_date_utc": "2001-10-07T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Became Chief Minister of Gujarat",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "MODI_PM_2014",
+      "event_date_utc": "2014-05-26T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Inaugurated as Prime Minister of India",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "MODI_REELECT_2019",
+      "event_date_utc": "2019-05-30T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Re-elected as Prime Minister with larger majority",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    }
+  ]
+}

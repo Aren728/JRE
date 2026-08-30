@@ -890,6 +890,13 @@ def main() -> int:
         json.dump(json_data, f, indent=2, sort_keys=True)
     print(f"Raw predictions written to: {raw_path}")
 
+    # Write split-specific output for error attribution
+    if args.split:
+        split_raw_path = output_dir / f"blind_evaluation_{args.split}_raw.json"
+        with split_raw_path.open("w", encoding="utf-8") as f:
+            json.dump(json_data, f, indent=2, sort_keys=True)
+        print(f"Split raw predictions written to: {split_raw_path}")
+
     return 0
 
 

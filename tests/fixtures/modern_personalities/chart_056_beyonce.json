@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_056_beyonce",
+    "version": "1.0.0",
+    "subject": "Beyonc\u00e9 Knowles",
+    "description": "American singer, songwriter, actress, cultural icon",
+    "provenance": "Wikipedia \u2014 Beyonc\u00e9 birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1981-09-04",
+    "time": "10:00",
+    "latitude": 29.7604,
+    "longitude": -95.3698,
+    "timezone": "America/Chicago"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "KANYA",
+      "longitude": 176.66507410075369
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 138.38246921861273,
+        "rashi": "SIMHA",
+        "house": 12,
+        "degree_in_rashi": 18.382469218612727,
+        "nakshatra": "PURVA_PHALGUNI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "SUN",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          12
+        ]
+      },
+      "MOON": {
+        "longitude_used": 207.30668827958237,
+        "rashi": "TULA",
+        "house": 2,
+        "degree_in_rashi": 27.306688279582374,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          11
+        ]
+      },
+      "MARS": {
+        "longitude_used": 98.02092482581213,
+        "rashi": "KARKA",
+        "house": 11,
+        "degree_in_rashi": 8.02092482581213,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MOON",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          3,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 158.95035397049966,
+        "rashi": "KANYA",
+        "house": 1,
+        "degree_in_rashi": 8.950353970499663,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          1,
+          10
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 168.79165928496622,
+        "rashi": "KANYA",
+        "house": 1,
+        "degree_in_rashi": 18.791659284966215,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          4,
+          7
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 176.6257745353897,
+        "rashi": "KANYA",
+        "house": 1,
+        "degree_in_rashi": 26.625774535389695,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          2,
+          9
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 165.4543615722052,
+        "rashi": "KANYA",
+        "house": 1,
+        "degree_in_rashi": 15.454361572205187,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "MERCURY",
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          5,
+          6
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 95.85639605554144,
+        "rashi": "KARKA",
+        "house": 11,
+        "degree_in_rashi": 5.856396055541438,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MOON",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MESHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 275.85639605554144,
+        "rashi": "MAKARA",
+        "house": 5,
+        "degree_in_rashi": 5.856396055541438,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KARKA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER",
+          "MERCURY",
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "2": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "3": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "6": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "11": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ]
+      },
+      "12": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": [
+          "SUN"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MERCURY",
+      "2": "VENUS",
+      "3": "MARS",
+      "4": "JUPITER",
+      "5": "SATURN",
+      "6": "SATURN",
+      "7": "JUPITER",
+      "8": "MARS",
+      "9": "VENUS",
+      "10": "MERCURY",
+      "11": "MOON",
+      "12": "SUN"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "BEYONCE_DESTINY_1999",
+      "event_date_utc": "1999-11-15T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Destiny's Child wins first Grammy",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "BEYONCE_SOLO_2003",
+      "event_date_utc": "2003-06-20T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Solo debut 'Dangerously in Love' wins 5 Grammys",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "BEYONCE_SUPERBOWL_2013",
+      "event_date_utc": "2013-02-03T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Super Bowl XLVII halftime show performance",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "SUN"
+      ]
+    }
+  ]
+}

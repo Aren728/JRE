@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_053_tendulkar",
+    "version": "1.0.0",
+    "subject": "Sachin Tendulkar",
+    "description": "Indian cricket legend, 'God of Cricket', highest run-scorer in internationals",
+    "provenance": "Wikipedia \u2014 Sachin Tendulkar birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1973-04-24",
+    "time": "07:20",
+    "latitude": 19.076,
+    "longitude": 72.8777,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MESHA",
+      "longitude": 27.754924023976745
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 10.261669193903531,
+        "rashi": "MESHA",
+        "house": 1,
+        "degree_in_rashi": 10.261669193903531,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_used": 261.78836779165727,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 21.788367791657265,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_used": 296.5347415559054,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 26.534741555905384,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 346.37250407571946,
+        "rashi": "MEENA",
+        "house": 12,
+        "degree_in_rashi": 16.372504075719462,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 286.56863822791075,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 16.568638227910753,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 13.965757926659665,
+        "rashi": "MESHA",
+        "house": 1,
+        "degree_in_rashi": 13.965757926659665,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "MARS",
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 54.23423576014023,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 24.23423576014023,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 257.7761332538411,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 17.776133253841124,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 77.77613325384112,
+        "rashi": "MITHUNA",
+        "house": 3,
+        "degree_in_rashi": 17.776133253841124,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MOON",
+          "RAHU"
+        ]
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "MARS"
+        ]
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "TENDULKAR_DEBUT_1989",
+      "event_date_utc": "1989-11-15T00:00:00Z",
+      "domain": "CAREER",
+      "description": "International cricket debut at age 16",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "TENDULKAR_WORLD_CUP_2011",
+      "event_date_utc": "2011-04-02T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Won Cricket World Cup, fulfilled lifelong dream",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "MOON"
+      ]
+    },
+    {
+      "event_id": "TENDULKAR_RETIREMENT_2013",
+      "event_date_utc": "2013-11-16T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Retired from international cricket with record books",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    }
+  ]
+}

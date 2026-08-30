@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_066_ratan_tata",
+    "version": "1.0.0",
+    "subject": "Ratan Tata",
+    "description": "Indian industrialist, chairman emeritus of Tata Group",
+    "provenance": "Wikipedia \u2014 Ratan Tata birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1937-12-28",
+    "time": "15:00",
+    "latitude": 21.1702,
+    "longitude": 72.8311,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "sign": "MESHA",
+      "longitude": 28.485480620702905
+    },
+    "planets": {
+      "SUN": {
+        "longitude_used": 253.25172301183568,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 13.25172301183568,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_used": 205.8306738063815,
+        "rashi": "TULA",
+        "house": 7,
+        "degree_in_rashi": 25.830673806381498,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_used": 312.04261991977455,
+        "rashi": "KUMBHA",
+        "house": 11,
+        "degree_in_rashi": 12.042619919774552,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_used": 257.3131011194764,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 17.313101119476414,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_used": 278.82638495472827,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 8.826384954728269,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_used": 244.2153602397639,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 4.215360239763896,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_used": 335.9801800470759,
+        "rashi": "MEENA",
+        "house": 12,
+        "degree_in_rashi": 5.980180047075919,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_used": 221.40970418837642,
+        "rashi": "VRISHCHIKA",
+        "house": 8,
+        "degree_in_rashi": 11.409704188376423,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_used": 41.409704188376395,
+        "rashi": "VRISHABHA",
+        "house": 2,
+        "degree_in_rashi": 11.409704188376395,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "VENUS",
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MAKARA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "MARS"
+        ]
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "SATURN"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "TATA_CHAIRMAN_1991",
+      "event_date_utc": "1991-04-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Became chairman of Tata Group",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "TATA_JAGUAR_2008",
+      "event_date_utc": "2008-06-02T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Acquired Jaguar Land Rover",
+      "yoga_types": [
+        "RAJA",
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "TATA_NANO_2008",
+      "event_date_utc": "2008-01-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Launched Tata Nano, world's cheapest car",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "MERCURY"
+      ]
+    }
+  ]
+}

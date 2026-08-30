@@ -1,5 +1,5 @@
 {
-  "cohort_size": 30,
+  "cohort_size": 10,
   "subjects": [
     {
       "events": [
@@ -8,469 +8,24 @@
             {
               "activation": "DORMANT",
               "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 1.0,
-              "name": "Malavya",
-              "status": "FORMED"
+              "name": "Dhana",
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
-            "ad": "VENUS",
-            "md": "MARS",
-            "pd": "SATURN"
-          },
-          "date": "1921-11-09T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EINSTEIN_NOBEL_1921",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 1.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.92,
-              "name": "Malavya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 1.0,
-              "name": "Malavya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SUN",
-            "md": "MOON",
-            "pd": "SATURN"
-          },
-          "date": "1915-11-25T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EINSTEIN_GENERAL_RELATIVITY_1915",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 1.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.92,
-              "name": "Malavya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 1.0,
-              "name": "Malavya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "VENUS",
-            "md": "SUN",
-            "pd": "MOON"
-          },
-          "date": "1905-06-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EINSTEIN_VISAPR_1905",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 1.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.92,
-              "name": "Malavya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_001_pilot.json",
-      "lagna": "MITHUNA",
-      "moon_nakshatra": "JYESHTHA",
-      "name": "Albert Einstein"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 130.652737,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -89.076072,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "MOON",
-            "pd": "JUPITER"
-          },
-          "date": "1903-12-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "CURIE_NOBEL_1903",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 130.652737,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -89.076072,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 130.652737,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -89.076072,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MARS",
-            "pd": "VENUS"
-          },
-          "date": "1911-12-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "CURIE_NOBEL_1911",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 130.652737,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -89.076072,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 130.652737,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -89.076072,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
+            "ad": "KETU",
             "md": "RAHU",
-            "pd": "VENUS"
-          },
-          "date": "1934-07-04T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "CURIE_DEATH_1934",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 130.652737,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -89.076072,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_002_curie.json",
-      "lagna": "MITHUNA",
-      "moon_nakshatra": "PURVA_BHADRAPADA",
-      "name": "Marie Curie"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "MOON",
-            "pd": "MERCURY"
-          },
-          "date": "1782-08-04T00:00:00Z",
-          "domain": "MARRIAGE",
-          "event_id": "MOZART_MARRIAGE_1782",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MARS",
-            "pd": "VENUS"
-          },
-          "date": "1787-10-29T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "MOZART_DON_GIOVANNI_1787",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "VENUS",
-            "md": "MARS",
             "pd": "MARS"
           },
-          "date": "1791-12-05T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "MOZART_DEATH_1791",
+          "date": "1824-05-07T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "BEETHOVEN_9TH_1824",
           "relevant_yoga_activated": false,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": -10.371349,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
               "chain_impact": null,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_003_mozart.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "JYESHTHA",
-      "name": "Wolfgang Amadeus Mozart"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 181.01239,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -117.41605,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "SUN",
-            "pd": "SATURN"
-          },
-          "date": "1884-06-06T00:00:00Z",
-          "domain": "MIGRATION",
-          "event_id": "TESLA_US_MOVE_1884",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 181.01239,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -117.41605,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.25,
               "dynamic_strength": null,
               "name": "Dhana",
               "status": "CANCELLED"
@@ -480,1319 +35,29 @@
         {
           "all_yogas": [
             {
-              "activation": "ACTIVATED",
-              "chain_impact": 181.01239,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -117.41605,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
+              "activation": "DORMANT",
               "chain_impact": null,
               "name": "Dhana",
               "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
             }
           ],
           "dasha": {
-            "ad": "KETU",
+            "ad": "SATURN",
             "md": "MOON",
-            "pd": "SATURN"
-          },
-          "date": "1895-03-13T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "TESLA_LAB_FIRE_1895",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 181.01239,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -117.41605,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 181.01239,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -117.41605,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
-            "pd": "MARS"
-          },
-          "date": "1943-01-07T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "TESLA_DEATH_1943",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 181.01239,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -117.41605,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_004_tesla.json",
-      "lagna": "MESHA",
-      "moon_nakshatra": "HASTA",
-      "name": "Nikola Tesla"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -40.902672,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "RAHU",
-            "pd": "SUN"
-          },
-          "date": "1966-01-24T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "GANDHI_PM_1966",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -40.902672,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -40.902672,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "RAHU",
-            "pd": "MERCURY"
-          },
-          "date": "1971-12-16T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "GANDHI_WAR_1971",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -40.902672,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -40.902672,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "JUPITER",
-            "pd": "KETU"
-          },
-          "date": "1984-10-31T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "GANDHI_ASSASSINATION_1984",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.701265,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -40.902672,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.727375,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_005_gandhi.json",
-      "lagna": "KARKA",
-      "moon_nakshatra": "UTTARA_ASHADHA",
-      "name": "Indira Gandhi"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -50.361339,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -77.364192,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "RAHU",
-            "pd": "MERCURY"
-          },
-          "date": "1687-07-05T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "NEWTON_PRINCIPIA_1687",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -50.361339,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -77.364192,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -50.361339,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -77.364192,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MARS",
-            "pd": "SATURN"
-          },
-          "date": "1669-10-29T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "NEWTON_LUCASIAN_1669",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -50.361339,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -77.364192,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -50.361339,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -77.364192,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "SATURN",
-            "pd": "SATURN"
-          },
-          "date": "1727-03-31T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "NEWTON_DEATH_1727",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -50.361339,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -77.364192,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_006_newton.json",
-      "lagna": "VRISHCHIKA",
-      "moon_nakshatra": "ARDRA",
-      "name": "Isaac Newton"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "RAHU",
-            "pd": "MERCURY"
-          },
-          "date": "1860-11-06T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "LINCOLN_PRESIDENT_1860",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "RAHU",
-            "pd": "MERCURY"
-          },
-          "date": "1863-01-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "LINCOLN_EMANCIPATION_1863",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "RAHU",
-            "pd": "SATURN"
-          },
-          "date": "1865-04-15T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "LINCOLN_ASSASSINATION_1865",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.730045,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_007_lincoln.json",
-      "lagna": "MAKARA",
-      "moon_nakshatra": "UTTARA_ASHADHA",
-      "name": "Abraham Lincoln"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "MARS",
-            "pd": "KETU"
-          },
-          "date": "1950-10-07T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "TERESA_MISSIONARIES_1950",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "JUPITER",
-            "pd": "KETU"
-          },
-          "date": "1979-12-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "TERESA_NOBEL_1979",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "VENUS",
-            "md": "SATURN",
-            "pd": "JUPITER"
-          },
-          "date": "1997-09-05T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "TERESA_DEATH_1997",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.213014,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_008_teresa.json",
-      "lagna": "KUMBHA",
-      "moon_nakshatra": "KRITTIKA",
-      "name": "Mother Teresa"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 84.435449,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.134919,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "VENUS",
-            "pd": "VENUS"
-          },
-          "date": "1976-04-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "JOBS_APPLE_1976",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.134919,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 84.435449,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 84.435449,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.134919,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "SUN",
             "pd": "RAHU"
           },
-          "date": "1985-09-17T00:00:00Z",
+          "date": "1802-01-01T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "JOBS_OUSTED_1985",
+          "event_id": "BEETHOVEN_MOONLIGHT_1802",
           "relevant_yoga_activated": false,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": -58.134919,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 84.435449,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 84.435449,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.134919,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "SUN",
-            "md": "MOON",
-            "pd": "MOON"
-          },
-          "date": "1997-09-16T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "JOBS_RETURN_1997",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.134919,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 84.435449,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_009_jobs.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "UTTARA_BHADRAPADA",
-      "name": "Steve Jobs"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 89.948967,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.79987,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MOON",
-            "pd": "MERCURY"
-          },
-          "date": "1928-06-17T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EARHART_FIRST_FLIGHT_1928",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 89.948967,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.79987,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 89.948967,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.79987,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "MOON",
-            "pd": "VENUS"
-          },
-          "date": "1932-05-20T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EARHART_SOLO_ATLANTIC_1932",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 89.948967,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.79987,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 89.948967,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -57.79987,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.662558,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MARS",
-            "pd": "VENUS"
-          },
-          "date": "1937-07-02T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "EARHART_DISAPPEARANCE_1937",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 89.948967,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -57.79987,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_010_earhart.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "ROHINI",
-      "name": "Amelia Earhart"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -39.235981,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -43.671258,
-              "name": "Anapha",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "JUPITER",
-            "pd": "JUPITER"
-          },
-          "date": "1940-05-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "CHURCHILL_PM_1940",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -43.671258,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -39.235981,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
               "chain_impact": null,
               "dasha_multiplier": 0.4,
               "dynamic_strength": null,
               "name": "Dhana",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             }
           ]
         },
@@ -1800,318 +65,36 @@
           "all_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": -39.235981,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
               "chain_impact": null,
               "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -43.671258,
-              "name": "Anapha",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
-            "md": "SATURN",
-            "pd": "JUPITER"
-          },
-          "date": "1953-12-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "CHURCHILL_NOBEL_1953",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -43.671258,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -39.235981,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -39.235981,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -43.671258,
-              "name": "Anapha",
-              "status": "FORMED"
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
             "ad": "VENUS",
-            "md": "MERCURY",
-            "pd": "VENUS"
-          },
-          "date": "1965-01-24T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "CHURCHILL_DEATH_1965",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -43.671258,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -39.235981,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.529,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_011_churchill.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "MAGHA",
-      "name": "Winston Churchill"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -24.404899,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.589121,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.101828,
-              "name": "Dhudhara",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "JUPITER",
-            "pd": "VENUS"
-          },
-          "date": "1990-02-11T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "MANDELA_RELEASE_1990",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -24.404899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.589121,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.101828,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -24.404899,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.589121,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.101828,
-              "name": "Dhudhara",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "VENUS",
-            "md": "JUPITER",
+            "md": "RAHU",
             "pd": "SATURN"
           },
-          "date": "1994-05-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "MANDELA_PRESIDENT_1994",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -24.404899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.589121,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.101828,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -24.404899,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.589121,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.101828,
-              "name": "Dhudhara",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MARS",
-            "md": "SATURN",
-            "pd": "MERCURY"
-          },
-          "date": "2013-12-05T00:00:00Z",
+          "date": "1827-03-26T00:00:00Z",
           "domain": "HEALTH",
-          "event_id": "MANDELA_DEATH_2013",
+          "event_id": "BEETHOVEN_DEATH_1827",
           "relevant_yoga_activated": false,
           "top_yogas": [
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -24.404899,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
               "activation": "DORMANT",
-              "chain_impact": -26.589121,
+              "chain_impact": null,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.101828,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
+              "dynamic_strength": null,
+              "name": "Dhana",
               "status": "CANCELLED"
             }
           ]
         }
       ],
-      "fixture": "chart_012_mandela.json",
+      "fixture": "chart_031_beethoven.json",
       "lagna": "VRISHCHIKA",
-      "moon_nakshatra": "VISHAKHA",
-      "name": "Nelson Mandela"
+      "moon_nakshatra": "JYESHTHA",
+      "name": "Ludwig van Beethoven"
     },
     {
       "events": [
@@ -2119,193 +102,86 @@
           "all_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.161453,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "VENUS",
-            "md": "RAHU",
-            "pd": "MOON"
-          },
-          "date": "1930-04-06T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "GANDHI_SALT_1930",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.161453,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.256,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.161453,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
-            "md": "JUPITER",
-            "pd": "JUPITER"
-          },
-          "date": "1947-08-15T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "GANDHI_INDEPENDENCE_1947",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.161453,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.256,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.161453,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
-            "md": "JUPITER",
-            "pd": "MERCURY"
-          },
-          "date": "1948-01-30T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "GANDHI_ASSASSINATION_1948",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 86.242371,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.161453,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.256,
-              "name": "Raja",
-              "status": "CANCELLED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_013_gandhi_mk.json",
-      "lagna": "KANYA",
-      "moon_nakshatra": "ASHLESHA",
-      "name": "Mahatma Gandhi"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 22.664634,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -18.756899,
+              "chain_impact": -42.024256,
               "name": "Raja",
               "status": "FORMED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -16.414048,
-              "name": "Sunapha",
-              "status": "CANCELLED"
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Hamsa",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -43.856686,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -45.995303,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -87.036628,
+              "name": "Saraswati",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -57.702305,
+              "name": "Vasumati",
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
-            "ad": "SATURN",
+            "ad": "RAHU",
             "md": "RAHU",
-            "pd": "VENUS"
+            "pd": "SATURN"
           },
-          "date": "1960-11-08T00:00:00Z",
+          "date": "1889-06-01T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "JFK_PRESIDENT_1960",
+          "event_id": "VANGOGH_STARRY_1889",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": 22.664634,
+              "chain_impact": -43.856686,
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
-              "name": "Gajakesari",
+              "name": "Anapha",
               "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -18.756899,
-              "dasha_multiplier": 1.1,
+              "activation": "DORMANT",
+              "chain_impact": -45.995303,
+              "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
+              "name": "Anapha",
+              "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -16.414048,
-              "dasha_multiplier": 1.25,
+              "activation": "DORMANT",
+              "chain_impact": -57.702305,
+              "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
+              "name": "Vasumati",
+              "status": "WEAKENED"
             }
           ]
         },
@@ -2313,1417 +189,401 @@
           "all_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": 22.664634,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.756899,
+              "chain_impact": -42.024256,
               "name": "Raja",
               "status": "FORMED"
             },
             {
               "activation": "DORMANT",
-              "chain_impact": -16.414048,
-              "name": "Sunapha",
-              "status": "CANCELLED"
+              "chain_impact": 1.0,
+              "name": "Hamsa",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -43.856686,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -45.995303,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -87.036628,
+              "name": "Saraswati",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -57.702305,
+              "name": "Vasumati",
+              "status": "WEAKENED"
             }
           ],
+          "dasha": {
+            "ad": "MOON",
+            "md": "MARS",
+            "pd": "MARS"
+          },
+          "date": "1888-02-01T00:00:00Z",
+          "domain": "MIGRATION",
+          "event_id": "VANGOGH_ARLES_1888",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -43.856686,
+              "dasha_multiplier": 1.25,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -45.995303,
+              "dasha_multiplier": 1.25,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -57.702305,
+              "dasha_multiplier": 1.25,
+              "dynamic_strength": 1.0,
+              "name": "Vasumati",
+              "status": "WEAKENED"
+            }
+          ]
+        },
+        {
+          "all_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": -42.024256,
+              "name": "Raja",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Hamsa",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -43.856686,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -45.995303,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -87.036628,
+              "name": "Saraswati",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -57.702305,
+              "name": "Vasumati",
+              "status": "WEAKENED"
+            }
+          ],
+          "dasha": {
+            "ad": "RAHU",
+            "md": "RAHU",
+            "pd": "VENUS"
+          },
+          "date": "1890-07-29T00:00:00Z",
+          "domain": "HEALTH",
+          "event_id": "VANGOGH_DEATH_1890",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": -43.856686,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -45.995303,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -57.702305,
+              "dasha_multiplier": 1.1,
+              "dynamic_strength": 1.0,
+              "name": "Vasumati",
+              "status": "WEAKENED"
+            }
+          ]
+        }
+      ],
+      "fixture": "chart_032_vangogh.json",
+      "lagna": "MITHUNA",
+      "moon_nakshatra": "JYESHTHA",
+      "name": "Vincent van Gogh"
+    },
+    {
+      "events": [
+        {
+          "all_yogas": [],
+          "dasha": {
+            "ad": "JUPITER",
+            "md": "JUPITER",
+            "pd": "MOON"
+          },
+          "date": "1937-04-26T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "PICASSO_GUERNICA_1937",
+          "relevant_yoga_activated": false,
+          "top_yogas": []
+        },
+        {
+          "all_yogas": [],
+          "dasha": {
+            "ad": "MOON",
+            "md": "MOON",
+            "pd": "RAHU"
+          },
+          "date": "1901-01-01T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "PICASSO_BLUE_1901",
+          "relevant_yoga_activated": false,
+          "top_yogas": []
+        },
+        {
+          "all_yogas": [],
+          "dasha": {
+            "ad": "KETU",
+            "md": "MERCURY",
+            "pd": "KETU"
+          },
+          "date": "1973-04-08T00:00:00Z",
+          "domain": "HEALTH",
+          "event_id": "PICASSO_DEATH_1973",
+          "relevant_yoga_activated": false,
+          "top_yogas": []
+        }
+      ],
+      "fixture": "chart_033_picasso.json",
+      "lagna": "KARKA",
+      "moon_nakshatra": "ANURADHA",
+      "name": "Pablo Picasso"
+    },
+    {
+      "events": [
+        {
+          "all_yogas": [],
+          "dasha": {
+            "ad": "RAHU",
+            "md": "RAHU",
+            "pd": "RAHU"
+          },
+          "date": "1869-01-01T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "TOLSTOY_WAR_AND_PEACE_1869",
+          "relevant_yoga_activated": false,
+          "top_yogas": []
+        },
+        {
+          "all_yogas": [],
           "dasha": {
             "ad": "MERCURY",
             "md": "RAHU",
             "pd": "MERCURY"
           },
-          "date": "1962-10-22T00:00:00Z",
+          "date": "1877-01-01T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "JFK_CUBAN_MISSILE_1962",
+          "event_id": "TOLSTOY_ANNA_KARENINA_1877",
           "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 22.664634,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.756899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -16.414048,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ]
+          "top_yogas": []
         },
         {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 22.664634,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.756899,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -16.414048,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ],
+          "all_yogas": [],
           "dasha": {
-            "ad": "MERCURY",
-            "md": "RAHU",
-            "pd": "MARS"
+            "ad": "VENUS",
+            "md": "SATURN",
+            "pd": "RAHU"
           },
-          "date": "1963-11-22T00:00:00Z",
+          "date": "1910-11-20T00:00:00Z",
           "domain": "HEALTH",
-          "event_id": "JFK_ASSASSINATION_1963",
+          "event_id": "TOLSTOY_DEATH_1910",
           "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 22.664634,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.756899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -16.414048,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ]
+          "top_yogas": []
         }
       ],
-      "fixture": "chart_014_jfk.json",
+      "fixture": "chart_034_tolstoy.json",
       "lagna": "KANYA",
       "moon_nakshatra": "PURVA_PHALGUNI",
-      "name": "John F. Kennedy"
+      "name": "Leo Tolstoy"
     },
     {
       "events": [
         {
           "all_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 38.570548,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -34.852296,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
             {
               "activation": "DORMANT",
               "chain_impact": null,
               "name": "Dhana",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
+              "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Sasa",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -32.170707,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -22.90656,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -41.296221,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "JUPITER",
-            "pd": "MOON"
-          },
-          "date": "1979-05-04T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "THATCHER_PM_1979",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -22.90656,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -41.296221,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -32.170707,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.94875,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
               "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Sasa",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -32.170707,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -22.90656,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -41.296221,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
             }
           ],
           "dasha": {
             "ad": "MERCURY",
-            "md": "JUPITER",
-            "pd": "MERCURY"
+            "md": "MOON",
+            "pd": "SATURN"
           },
-          "date": "1982-06-14T00:00:00Z",
+          "date": "1876-01-01T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "THATCHER_FALKLANDS_1982",
-          "relevant_yoga_activated": false,
+          "event_id": "TWAIN_TOM_SAWYER_1876",
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
-              "activation": "DORMANT",
-              "chain_impact": -22.90656,
-              "dasha_multiplier": 0.4,
+              "activation": "ACTIVATED",
+              "chain_impact": 38.570548,
+              "dasha_multiplier": 1.5,
               "dynamic_strength": 1.0,
-              "name": "Anapha",
+              "name": "Gajakesari",
               "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
-              "chain_impact": -41.296221,
-              "dasha_multiplier": 0.4,
+              "activation": "ACTIVATED",
+              "chain_impact": -34.852296,
+              "dasha_multiplier": 1.25,
               "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
+              "name": "Raja",
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
-              "chain_impact": -32.170707,
+              "chain_impact": null,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.94875,
-              "name": "Sunapha",
+              "dynamic_strength": null,
+              "name": "Dhana",
               "status": "WEAKENED"
             }
           ]
         },
         {
           "all_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 38.570548,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -34.852296,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
             {
               "activation": "ACTIVATED",
               "chain_impact": null,
               "name": "Dhana",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
+              "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Sasa",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -32.170707,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -22.90656,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -41.296221,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MARS",
-            "md": "JUPITER",
-            "pd": "MERCURY"
-          },
-          "date": "1990-11-22T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "THATCHER_RESIGNATION_1990",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -22.90656,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -41.296221,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -32.170707,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.94875,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_015_thatcher.json",
-      "lagna": "TULA",
-      "moon_nakshatra": "MAGHA",
-      "name": "Margaret Thatcher"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "RAHU",
-            "pd": "KETU"
-          },
-          "date": "1944-08-25T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "DEGAULLE_LIBERATION_1944",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "JUPITER",
-            "pd": "JUPITER"
-          },
-          "date": "1959-01-08T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "DEGAULLE_PRESIDENT_1959",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
-            "md": "JUPITER",
-            "pd": "SATURN"
-          },
-          "date": "1970-11-09T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "DEGAULLE_DEATH_1970",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_016_degaulle.json",
-      "lagna": "TULA",
-      "moon_nakshatra": "UTTARA_BHADRAPADA",
-      "name": "Charles de Gaulle"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 53.519672,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.030701,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -49.532351,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -53.04322,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "RAHU",
-            "pd": "KETU"
-          },
-          "date": "1871-03-21T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "BISMARCK_CHANCELLOR_1871",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 53.519672,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.030701,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 53.519672,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.030701,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -49.532351,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -53.04322,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "RAHU",
-            "pd": "MERCURY"
-          },
-          "date": "1871-01-18T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "BISMARCK_UNIFICATION_1871",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 53.519672,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.030701,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 53.519672,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.030701,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -49.532351,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -53.04322,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "JUPITER",
-            "pd": "VENUS"
-          },
-          "date": "1898-07-30T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "BISMARCK_DEATH_1898",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 53.519672,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.030701,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -51.36182,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_017_bismarck.json",
-      "lagna": "MITHUNA",
-      "moon_nakshatra": "PURVA_ASHADHA",
-      "name": "Otto von Bismarck"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.703372,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -62.718047,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "MARS",
-            "pd": "JUPITER"
-          },
-          "date": "1752-06-15T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "FRANKLIN_LIGHTNING_1752",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.703372,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.368,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.253,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -62.718047,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.2024,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.703372,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -62.718047,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "JUPITER",
-            "pd": "RAHU"
-          },
-          "date": "1778-02-06T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "FRANKLIN_TREATY_1778",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.703372,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.368,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.253,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -62.718047,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.2024,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -36.703372,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Neecha Bhanga",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -62.718047,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "SATURN",
-            "pd": "SATURN"
-          },
-          "date": "1790-04-17T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "FRANKLIN_DEATH_1790",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -36.703372,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.368,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -42.636964,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.253,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -62.718047,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.2024,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_018_franklin.json",
-      "lagna": "MEENA",
-      "moon_nakshatra": "SHATABHISHA",
-      "name": "Benjamin Franklin"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -31.87972,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.30527,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.230332,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
               "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -12.455395,
-              "name": "Amala",
-              "status": "FORMED"
             }
           ],
           "dasha": {
-            "ad": "VENUS",
-            "md": "RAHU",
-            "pd": "MOON"
-          },
-          "date": "1944-06-06T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EISENHOWER_DDAY_1944",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.30527,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.230332,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -31.87972,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.30527,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.230332,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -12.455395,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "JUPITER",
-            "pd": "KETU"
-          },
-          "date": "1953-01-20T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "EISENHOWER_PRESIDENT_1953",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.30527,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.230332,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -31.87972,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.30527,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.230332,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -12.455395,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
-            "pd": "MERCURY"
-          },
-          "date": "1969-03-28T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "EISENHOWER_DEATH_1969",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.30527,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.230332,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -72.715788,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_019_eisenhower.json",
-      "lagna": "MAKARA",
-      "moon_nakshatra": "SWATI",
-      "name": "Dwight Eisenhower"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -44.074314,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.792725,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -33.595032,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "VENUS",
-            "pd": "VENUS"
-          },
-          "date": "1838-06-28T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "VICTORIA_CORONATION_1838",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -33.595032,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.792725,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.69575,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -44.074314,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.198,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -44.074314,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.792725,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -33.595032,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "VENUS",
-            "pd": "SATURN"
-          },
-          "date": "1840-02-10T00:00:00Z",
-          "domain": "MARRIAGE",
-          "event_id": "VICTORIA_MARRIAGE_1840",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -33.595032,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -38.792725,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.69575,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -44.074314,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.198,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -44.074314,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.792725,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -33.595032,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "SATURN",
-            "pd": "RAHU"
-          },
-          "date": "1901-01-22T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "VICTORIA_DEATH_1901",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -33.595032,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.792725,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.69575,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -44.074314,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.198,
-              "name": "Raja",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_020_victoria.json",
-      "lagna": "VRISHABHA",
-      "moon_nakshatra": "ROHINI",
-      "name": "Queen Victoria"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.393837,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -34.477305,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "RAHU",
-            "pd": "MOON"
-          },
-          "date": "1859-11-24T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "DARWIN_ORIGINS_1859",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -26.393837,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -34.477305,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.8464,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -26.393837,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -34.477305,
-              "name": "Saraswati",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
+            "ad": "SUN",
             "md": "SUN",
             "pd": "SATURN"
           },
-          "date": "1836-10-02T00:00:00Z",
-          "domain": "MIGRATION",
-          "event_id": "DARWIN_VOYAGE_1836",
+          "date": "1863-02-03T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "TWAIN_MARK_1863",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -26.393837,
-              "dasha_multiplier": 1.25,
+              "activation": "DORMANT",
+              "chain_impact": 38.570548,
+              "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
-              "name": "Raja",
+              "name": "Gajakesari",
               "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
-              "chain_impact": -21.369389,
-              "dasha_multiplier": 0.4,
+              "activation": "ACTIVATED",
+              "chain_impact": -34.852296,
+              "dasha_multiplier": 1.1,
               "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
+              "name": "Raja",
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -34.477305,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.8464,
-              "name": "Saraswati",
-              "status": "FORMED"
+              "chain_impact": null,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
             }
           ]
         },
@@ -3731,311 +591,112 @@
           "all_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": -26.393837,
-              "name": "Raja",
+              "chain_impact": 38.570548,
+              "name": "Gajakesari",
               "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
-              "name": "Anapha",
-              "status": "FORMED"
+              "chain_impact": -34.852296,
+              "name": "Raja",
+              "status": "CANCELLED"
             },
             {
-              "activation": "ACTIVATED",
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
               "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -34.477305,
-              "name": "Saraswati",
-              "status": "FORMED"
+              "name": "Sasa",
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
             "ad": "MERCURY",
             "md": "JUPITER",
-            "pd": "SATURN"
+            "pd": "JUPITER"
           },
-          "date": "1882-04-19T00:00:00Z",
+          "date": "1910-04-21T00:00:00Z",
           "domain": "HEALTH",
-          "event_id": "DARWIN_DEATH_1882",
+          "event_id": "TWAIN_DEATH_1910",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": -26.393837,
+              "chain_impact": 38.570548,
               "dasha_multiplier": 1.5,
               "dynamic_strength": 1.0,
-              "name": "Raja",
+              "name": "Gajakesari",
               "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -21.369389,
+              "chain_impact": -34.852296,
               "dasha_multiplier": 1.25,
               "dynamic_strength": 1.0,
-              "name": "Anapha",
-              "status": "FORMED"
+              "name": "Raja",
+              "status": "CANCELLED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -34.477305,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.8464,
-              "name": "Saraswati",
-              "status": "FORMED"
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
             }
           ]
         }
       ],
-      "fixture": "chart_021_darwin.json",
-      "lagna": "VRISHCHIKA",
-      "moon_nakshatra": "UTTARA_ASHADHA",
-      "name": "Charles Darwin"
+      "fixture": "chart_035_twain.json",
+      "lagna": "TULA",
+      "moon_nakshatra": "REVATI",
+      "name": "Mark Twain"
     },
     {
       "events": [
         {
           "all_yogas": [
             {
-              "activation": "DORMANT",
-              "chain_impact": -18.977128,
+              "activation": "ACTIVATED",
+              "chain_impact": -110.276578,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
+              "activation": "DORMANT",
               "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
+              "name": "Vipareeta Raja",
+              "status": "FORMED"
             }
           ],
           "dasha": {
-            "ad": "MERCURY",
-            "md": "SUN",
+            "ad": "JUPITER",
+            "md": "MARS",
             "pd": "MERCURY"
           },
-          "date": "1800-07-16T00:00:00Z",
-          "domain": "MIGRATION",
-          "event_id": "HUMBOLDT_AMERICA_1800",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.977128,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.368,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.977128,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "JUPITER",
-            "pd": "MARS"
-          },
-          "date": "1845-01-01T00:00:00Z",
+          "date": "1921-02-06T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "HUMBOLDT_COSMOS_1845",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -18.977128,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.368,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -18.977128,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
-            "pd": "SATURN"
-          },
-          "date": "1859-05-06T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "HUMBOLDT_DEATH_1859",
+          "event_id": "CHAPLIN_KID_1921",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": -18.977128,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.368,
+              "chain_impact": -110.276578,
+              "dasha_multiplier": 1.25,
+              "dynamic_strength": 1.0,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": null,
               "dasha_multiplier": 0.4,
               "dynamic_strength": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_022_humboldt.json",
-      "lagna": "TULA",
-      "moon_nakshatra": "SHATABHISHA",
-      "name": "Alexander von Humboldt"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -71.127447,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -49.132856,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "MARS",
-            "pd": "MOON"
-          },
-          "date": "1865-02-08T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "MENDEL_DISCOVERY_1865",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -71.127447,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -49.132856,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
+              "name": "Vipareeta Raja",
               "status": "FORMED"
             }
           ]
@@ -4044,270 +705,41 @@
           "all_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "FORMED"
+              "chain_impact": -110.276578,
+              "name": "Raja",
+              "status": "WEAKENED"
             },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -71.127447,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -49.132856,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "MARS",
-            "pd": "SATURN"
-          },
-          "date": "1866-01-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "MENDEL_PUBLICATION_1866",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -71.127447,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -49.132856,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
             {
               "activation": "DORMANT",
               "chain_impact": null,
-              "name": "Dhana",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -71.127447,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -49.132856,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MOON",
-            "md": "RAHU",
-            "pd": "RAHU"
-          },
-          "date": "1884-01-06T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "MENDEL_DEATH_1884",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -71.127447,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -49.132856,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Saraswati",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -14.476581,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.46,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_023_mendel.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "ASHLESHA",
-      "name": "Gregor Mendel"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -68.087071,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SATURN",
-            "md": "JUPITER",
-            "pd": "SATURN"
-          },
-          "date": "1885-07-06T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "PASTEUR_RABIES_1885",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -68.087071,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "name": "Amala",
+              "name": "Vipareeta Raja",
               "status": "FORMED"
             }
           ],
           "dasha": {
             "ad": "SUN",
             "md": "MARS",
-            "pd": "JUPITER"
+            "pd": "VENUS"
           },
-          "date": "1864-04-01T00:00:00Z",
+          "date": "1925-08-16T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "PASTEUR_PASTEURIZATION_1864",
-          "relevant_yoga_activated": true,
+          "event_id": "CHAPLIN_GOLD_RUSH_1925",
+          "relevant_yoga_activated": false,
           "top_yogas": [
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
-              "dasha_multiplier": 1.1,
+              "activation": "DORMANT",
+              "chain_impact": -110.276578,
+              "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
+              "name": "Raja",
               "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Amala",
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": null,
+              "name": "Vipareeta Raja",
               "status": "FORMED"
             }
           ]
@@ -4315,77 +747,51 @@
         {
           "all_yogas": [
             {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "CANCELLED"
-            },
-            {
               "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
-              "name": "Sunapha",
-              "status": "FORMED"
+              "chain_impact": -110.276578,
+              "name": "Raja",
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
-              "chain_impact": -68.087071,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "name": "Amala",
+              "chain_impact": null,
+              "name": "Vipareeta Raja",
               "status": "FORMED"
             }
           ],
           "dasha": {
-            "ad": "MARS",
-            "md": "JUPITER",
-            "pd": "MARS"
+            "ad": "JUPITER",
+            "md": "SATURN",
+            "pd": "VENUS"
           },
-          "date": "1895-09-28T00:00:00Z",
+          "date": "1977-12-25T00:00:00Z",
           "domain": "HEALTH",
-          "event_id": "PASTEUR_DEATH_1895",
+          "event_id": "CHAPLIN_DEATH_1977",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": -52.554154,
+              "chain_impact": -110.276578,
               "dasha_multiplier": 1.5,
               "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -90.402582,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Dhudhara",
+              "name": "Raja",
               "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.379051,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Amala",
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": null,
+              "name": "Vipareeta Raja",
               "status": "FORMED"
             }
           ]
         }
       ],
-      "fixture": "chart_024_pasteur.json",
-      "lagna": "SIMHA",
-      "moon_nakshatra": "ARDRA",
-      "name": "Louis Pasteur"
+      "fixture": "chart_036_chaplin.json",
+      "lagna": "VRISHCHIKA",
+      "moon_nakshatra": "CHITRA",
+      "name": "Charlie Chaplin"
     },
     {
       "events": [
@@ -4393,42 +799,125 @@
           "all_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": -42.897596,
-              "name": "Raja",
-              "status": "FORMED"
+              "chain_impact": 28.399885,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
+              "chain_impact": -36.708316,
+              "name": "Raja",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "name": "Anapha",
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
             "ad": "MARS",
-            "md": "SUN",
-            "pd": "MARS"
+            "md": "RAHU",
+            "pd": "VENUS"
           },
-          "date": "1843-10-01T00:00:00Z",
+          "date": "1892-12-18T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "LOVELACE_NOTES_1843",
+          "event_id": "TCHAIKOVSKY_NUTCRACKER_1892",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
-              "activation": "DORMANT",
-              "chain_impact": -42.897596,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.324,
+              "activation": "ACTIVATED",
+              "chain_impact": -36.708316,
+              "dasha_multiplier": 1.25,
+              "dynamic_strength": 1.0,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 28.399885,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            }
+          ]
+        },
+        {
+          "all_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 28.399885,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -36.708316,
+              "name": "Raja",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            }
+          ],
+          "dasha": {
+            "ad": "RAHU",
+            "md": "RAHU",
+            "pd": "VENUS"
+          },
+          "date": "1877-03-04T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "TCHAIKOVSKY_SWAN_1877",
+          "relevant_yoga_activated": false,
+          "top_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": -36.708316,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Raja",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 28.399885,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
             }
           ]
         },
@@ -4436,917 +925,207 @@
           "all_yogas": [
             {
               "activation": "ACTIVATED",
-              "chain_impact": -42.897596,
+              "chain_impact": 28.399885,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -36.708316,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            }
+          ],
+          "dasha": {
+            "ad": "JUPITER",
+            "md": "JUPITER",
+            "pd": "MERCURY"
+          },
+          "date": "1893-11-06T00:00:00Z",
+          "domain": "HEALTH",
+          "event_id": "TCHAIKOVSKY_DEATH_1893",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": -36.708316,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Raja",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -24.48839,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Anapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 28.399885,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            }
+          ]
+        }
+      ],
+      "fixture": "chart_037_tchaikovsky.json",
+      "lagna": "SIMHA",
+      "moon_nakshatra": "PUSHYA",
+      "name": "Pyotr Tchaikovsky"
+    },
+    {
+      "events": [
+        {
+          "all_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -93.816758,
+              "name": "Sunapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "CANCELLED"
+            }
+          ],
+          "dasha": {
+            "ad": "SATURN",
+            "md": "MOON",
+            "pd": "JUPITER"
+          },
+          "date": "1843-11-11T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "ANDERSEN_UGLY_DUCKLING_1843",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -93.816758,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 1.0,
+              "name": "Sunapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "dasha_multiplier": 1.1,
+              "dynamic_strength": null,
+              "name": "Neecha Bhanga",
+              "status": "CANCELLED"
+            }
+          ]
+        },
+        {
+          "all_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -93.816758,
+              "name": "Sunapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
             "ad": "MERCURY",
             "md": "VENUS",
-            "pd": "SATURN"
-          },
-          "date": "1841-07-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "LOVELACE_POETRY_1841",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.897596,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.324,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.897596,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "MOON",
-            "pd": "MOON"
-          },
-          "date": "1852-11-27T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "LOVELACE_DEATH_1852",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.897596,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 0.324,
-              "name": "Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_025_lovelace.json",
-      "lagna": "KANYA",
-      "moon_nakshatra": "UTTARA_BHADRAPADA",
-      "name": "Ada Lovelace"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.695458,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "MARS",
-            "md": "MARS",
             "pd": "RAHU"
           },
-          "date": "1900-12-14T00:00:00Z",
+          "date": "1830-01-01T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "PLANCK_QUANTUM_1900",
+          "event_id": "ANDERSEN_FROST_1830",
           "relevant_yoga_activated": true,
           "top_yogas": [
             {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.695458,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
               "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.695458,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "RAHU",
-            "pd": "MARS"
-          },
-          "date": "1918-11-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "PLANCK_NOBEL_1918",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -57.695458,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": null,
-              "name": "Dhana",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Ruchaka",
-              "status": "FORMED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -57.695458,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "SATURN",
-            "pd": "VENUS"
-          },
-          "date": "1947-10-04T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "PLANCK_DEATH_1947",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 61.951901,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -57.695458,
+              "chain_impact": -93.816758,
               "dasha_multiplier": 1.5,
               "dynamic_strength": 1.0,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
+              "activation": "ACTIVATED",
               "chain_impact": null,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_026_planck.json",
-      "lagna": "VRISHCHIKA",
-      "moon_nakshatra": "MAGHA",
-      "name": "Max Planck"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.739508,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "JUPITER",
-            "md": "SUN",
-            "pd": "MOON"
-          },
-          "date": "1927-03-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "HEISENBERG_UNCERTAINTY_1927",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
               "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.739508,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "WEAKENED"
+              "dynamic_strength": null,
+              "name": "Neecha Bhanga",
+              "status": "CANCELLED"
             }
           ]
         },
         {
           "all_yogas": [
             {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
               "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "name": "Raja",
+              "chain_impact": -93.816758,
+              "name": "Sunapha",
               "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -19.739508,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
-            "ad": "RAHU",
-            "md": "MOON",
-            "pd": "VENUS"
-          },
-          "date": "1932-12-10T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "HEISENBERG_NOBEL_1932",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -19.739508,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -19.739508,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 0.0,
-              "name": "Budhaditya",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "SUN",
+            "ad": "SATURN",
             "md": "JUPITER",
-            "pd": "SUN"
-          },
-          "date": "1976-02-01T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "HEISENBERG_DEATH_1976",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": 32.835953,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -38.794857,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -19.739508,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 0.529,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_027_heisenberg.json",
-      "lagna": "TULA",
-      "moon_nakshatra": "HASTA",
-      "name": "Werner Heisenberg"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.426913,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -113.761059,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -52.398691,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -201.009317,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "RAHU",
-            "pd": "RAHU"
-          },
-          "date": "1899-11-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "FREUD_INTERPRETATION_1899",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.426913,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -113.761059,
-              "dasha_multiplier": 1.5,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.426913,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -113.761059,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.398691,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -201.009317,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
-            "pd": "RAHU"
-          },
-          "date": "1938-06-04T00:00:00Z",
-          "domain": "MIGRATION",
-          "event_id": "FREUD_ESCAPED_1938",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -58.426913,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -113.761059,
-              "dasha_multiplier": 1.1,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.426913,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -113.761059,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -52.398691,
-              "name": "Anapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -201.009317,
-              "name": "Dhudhara",
-              "status": "WEAKENED"
-            }
-          ],
-          "dasha": {
-            "ad": "KETU",
-            "md": "SATURN",
-            "pd": "SUN"
-          },
-          "date": "1939-09-23T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "FREUD_DEATH_1939",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": -58.426913,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -105.539899,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -113.761059,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "WEAKENED"
-            }
-          ]
-        }
-      ],
-      "fixture": "chart_028_freud.json",
-      "lagna": "TULA",
-      "moon_nakshatra": "ROHINI",
-      "name": "Sigmund Freud"
-    },
-    {
-      "events": [
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -36.555695,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.513986,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -17.085781,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "RAHU",
-            "md": "MARS",
-            "pd": "RAHU"
-          },
-          "date": "1916-11-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "JUNG_COLLECTIVE_1916",
-          "relevant_yoga_activated": false,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -36.555695,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -37.513986,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.555695,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.513986,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -17.085781,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
             "pd": "SATURN"
           },
-          "date": "1963-01-01T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "JUNG_MEMORIES_1963",
-          "relevant_yoga_activated": true,
-          "top_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.555695,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.513986,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            }
-          ]
-        },
-        {
-          "all_yogas": [
-            {
-              "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.555695,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.513986,
-              "name": "Sunapha",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -17.085781,
-              "name": "Amala",
-              "status": "FORMED"
-            }
-          ],
-          "dasha": {
-            "ad": "MERCURY",
-            "md": "SATURN",
-            "pd": "SUN"
-          },
-          "date": "1961-06-06T00:00:00Z",
+          "date": "1875-08-04T00:00:00Z",
           "domain": "HEALTH",
-          "event_id": "JUNG_DEATH_1961",
+          "event_id": "ANDERSEN_DEATH_1875",
           "relevant_yoga_activated": false,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": 64.446147,
-              "dasha_multiplier": 0.4,
-              "dynamic_strength": 1.0,
-              "name": "Gajakesari",
-              "status": "CANCELLED"
-            },
-            {
-              "activation": "ACTIVATED",
-              "chain_impact": -36.555695,
-              "dasha_multiplier": 1.25,
-              "dynamic_strength": 1.0,
-              "name": "Raja",
-              "status": "WEAKENED"
-            },
-            {
-              "activation": "DORMANT",
-              "chain_impact": -37.513986,
+              "chain_impact": -93.816758,
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Sunapha",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": null,
+              "name": "Neecha Bhanga",
               "status": "CANCELLED"
             }
           ]
         }
       ],
-      "fixture": "chart_029_jung.json",
-      "lagna": "MAKARA",
+      "fixture": "chart_038_andersen.json",
+      "lagna": "VRISHCHIKA",
       "moon_nakshatra": "BHARANI",
-      "name": "Carl Jung"
+      "name": "Hans Christian Andersen"
     },
     {
       "events": [
@@ -5354,95 +1133,430 @@
           "all_yogas": [
             {
               "activation": "DORMANT",
+              "chain_impact": 71.94683,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -51.956746,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
               "chain_impact": null,
               "name": "Vipareeta Raja",
               "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
             "ad": "MERCURY",
-            "md": "MARS",
-            "pd": "VENUS"
+            "md": "VENUS",
+            "pd": "RAHU"
           },
-          "date": "1952-05-01T00:00:00Z",
+          "date": "1832-04-09T00:00:00Z",
           "domain": "CAREER",
-          "event_id": "FRANKLIN_PHOTO51_1952",
-          "relevant_yoga_activated": false,
+          "event_id": "LISZT_PAGANINI_1832",
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
+              "activation": "ACTIVATED",
+              "chain_impact": 1.0,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
               "activation": "DORMANT",
-              "chain_impact": null,
+              "chain_impact": 71.94683,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -51.956746,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 0.529,
+              "name": "Raja",
+              "status": "CANCELLED"
             }
           ]
         },
         {
           "all_yogas": [
             {
+              "activation": "ACTIVATED",
+              "chain_impact": 71.94683,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -51.956746,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
               "activation": "DORMANT",
               "chain_impact": null,
               "name": "Vipareeta Raja",
               "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
-            "ad": "KETU",
-            "md": "MARS",
-            "pd": "JUPITER"
+            "ad": "MERCURY",
+            "md": "MOON",
+            "pd": "MARS"
           },
-          "date": "1953-04-25T00:00:00Z",
-          "domain": "CAREER",
-          "event_id": "FRANKLIN_DNA_1953",
-          "relevant_yoga_activated": false,
+          "date": "1847-02-01T00:00:00Z",
+          "domain": "MARRIAGE",
+          "event_id": "LISZT_BERNED_1847",
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": null,
+              "chain_impact": 1.0,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
-              "status": "FORMED"
+              "dynamic_strength": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 71.94683,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -51.956746,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 0.529,
+              "name": "Raja",
+              "status": "CANCELLED"
             }
           ]
         },
         {
           "all_yogas": [
             {
+              "activation": "ACTIVATED",
+              "chain_impact": 71.94683,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -51.956746,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
               "activation": "DORMANT",
               "chain_impact": null,
               "name": "Vipareeta Raja",
               "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Dhana",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": null,
+              "name": "Neecha Bhanga",
+              "status": "WEAKENED"
+            }
+          ],
+          "dasha": {
+            "ad": "SUN",
+            "md": "JUPITER",
+            "pd": "MERCURY"
+          },
+          "date": "1886-07-31T00:00:00Z",
+          "domain": "HEALTH",
+          "event_id": "LISZT_DEATH_1886",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 1.0,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Malavya",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 71.94683,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 0.529,
+              "name": "Gajakesari",
+              "status": "WEAKENED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -51.956746,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 0.529,
+              "name": "Raja",
+              "status": "CANCELLED"
+            }
+          ]
+        }
+      ],
+      "fixture": "chart_039_liszt.json",
+      "lagna": "KARKA",
+      "moon_nakshatra": "MULA",
+      "name": "Franz Liszt"
+    },
+    {
+      "events": [
+        {
+          "all_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 30.270587,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -41.615761,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -33.449692,
+              "name": "Sunapha",
+              "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 0.0,
+              "name": "Budhaditya",
+              "status": "CANCELLED"
             }
           ],
           "dasha": {
             "ad": "RAHU",
-            "md": "RAHU",
-            "pd": "MARS"
+            "md": "MARS",
+            "pd": "MERCURY"
           },
-          "date": "1958-04-16T00:00:00Z",
-          "domain": "HEALTH",
-          "event_id": "FRANKLIN_DEATH_1958",
+          "date": "1904-01-17T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "CHEKHOV_CHERRY_1904",
           "relevant_yoga_activated": false,
           "top_yogas": [
             {
               "activation": "DORMANT",
-              "chain_impact": null,
+              "chain_impact": 30.270587,
               "dasha_multiplier": 0.4,
-              "dynamic_strength": null,
-              "name": "Vipareeta Raja",
+              "dynamic_strength": 1.0,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -41.615761,
+              "dasha_multiplier": 1.1,
+              "dynamic_strength": 1.0,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -33.449692,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Sunapha",
+              "status": "FORMED"
+            }
+          ]
+        },
+        {
+          "all_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 30.270587,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -41.615761,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -33.449692,
+              "name": "Sunapha",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 0.0,
+              "name": "Budhaditya",
+              "status": "CANCELLED"
+            }
+          ],
+          "dasha": {
+            "ad": "JUPITER",
+            "md": "MOON",
+            "pd": "VENUS"
+          },
+          "date": "1896-10-17T00:00:00Z",
+          "domain": "CAREER",
+          "event_id": "CHEKHOV_SEAGULL_1896",
+          "relevant_yoga_activated": true,
+          "top_yogas": [
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": 30.270587,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 1.0,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -41.615761,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "ACTIVATED",
+              "chain_impact": -33.449692,
+              "dasha_multiplier": 1.5,
+              "dynamic_strength": 1.0,
+              "name": "Sunapha",
+              "status": "FORMED"
+            }
+          ]
+        },
+        {
+          "all_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 30.270587,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -41.615761,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -33.449692,
+              "name": "Sunapha",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": 0.0,
+              "name": "Budhaditya",
+              "status": "CANCELLED"
+            }
+          ],
+          "dasha": {
+            "ad": "RAHU",
+            "md": "MARS",
+            "pd": "MARS"
+          },
+          "date": "1904-07-15T00:00:00Z",
+          "domain": "HEALTH",
+          "event_id": "CHEKHOV_DEATH_1904",
+          "relevant_yoga_activated": false,
+          "top_yogas": [
+            {
+              "activation": "DORMANT",
+              "chain_impact": 30.270587,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Gajakesari",
+              "status": "FORMED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -41.615761,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Raja",
+              "status": "CANCELLED"
+            },
+            {
+              "activation": "DORMANT",
+              "chain_impact": -33.449692,
+              "dasha_multiplier": 0.4,
+              "dynamic_strength": 1.0,
+              "name": "Sunapha",
               "status": "FORMED"
             }
           ]
         }
       ],
-      "fixture": "chart_030_franklin_r.json",
-      "lagna": "VRISHABHA",
-      "moon_nakshatra": "ANURADHA",
-      "name": "Rosalind Franklin"
+      "fixture": "chart_040_chekhov.json",
+      "lagna": "DHANUSHA",
+      "moon_nakshatra": "REVATI",
+      "name": "Anton Chekhov"
     }
   ],
-  "total_events": 90
+  "total_events": 30
 }

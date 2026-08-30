@@ -1095,6 +1095,91 @@ class YogaEvaluatorService:
                     yoga_involved_planets.append([pname])
                     break  # Only first Amala
 
+        # ── Adhi Yoga (BPHS Ch 40 — sudden rise/power) ──
+        # Benefics (Mercury, Jupiter, Venus) in 6th, 7th, or 8th houses from Lagna or Moon.
+        _ADHI_BENEFICS = {"MERCURY", "JUPITER", "VENUS"}
+        _ADHI_HOUSES = {6, 7, 8}
+        adhi_from_lagna = 0
+        adhi_from_moon = 0
+        adhi_planets: list[str] = []
+        for pname in _ADHI_BENEFICS:
+            pdata = planets.get(pname, {})
+            ph = pdata.get("house")
+            if not isinstance(ph, int):
+                continue
+            # Check from Lagna (house number as-is)
+            if ph in _ADHI_HOUSES:
+                adhi_from_lagna += 1
+                adhi_planets.append(pname)
+            # Check from Moon
+            if isinstance(moon_house, int):
+                diff_from_moon = (ph - moon_house) % 12
+                if diff_from_moon in {5, 6, 7}:  # 6th, 7th, 8th from Moon (0-indexed)
+                    adhi_from_moon += 1
+                    if pname not in adhi_planets:
+                        adhi_planets.append(pname)
+        if adhi_from_lagna >= 2 or adhi_from_moon >= 2:
+            eval_ = self.evaluate_formation(
+                yoga_name="Adhi",
+                involved_planets=adhi_planets[:3],
+                jre_facts=jre_facts,
+            )
+            if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                results.append(eval_)
+                yoga_involved_planets.append(adhi_planets[:3])
+
+        # ── Vasumati Yoga (BPHS Ch 41 — wealth through effort) ──
+        # Benefics (Mercury, Jupiter, Venus, Moon) in Upachaya houses (3, 6, 10, 11)
+        # from Lagna or Moon.
+        _VASUMATI_BENEFICS = {"MERCURY", "JUPITER", "VENUS", "MOON"}
+        _UPACHAYA_HOUSES = {3, 6, 10, 11}
+        vasu_from_lagna = 0
+        vasu_from_moon = 0
+        vasu_planets: list[str] = []
+        for pname in _VASUMATI_BENEFICS:
+            pdata = planets.get(pname, {})
+            ph = pdata.get("house")
+            if not isinstance(ph, int):
+                continue
+            if ph in _UPACHAYA_HOUSES:
+                vasu_from_lagna += 1
+                vasu_planets.append(pname)
+            if isinstance(moon_house, int):
+                diff_from_moon = (ph - moon_house) % 12
+                if diff_from_moon in {2, 5, 9, 10}:  # 3rd, 6th, 10th, 11th from Moon
+                    vasu_from_moon += 1
+                    if pname not in vasu_planets:
+                        vasu_planets.append(pname)
+        if vasu_from_lagna >= 3 or vasu_from_moon >= 3:
+            eval_ = self.evaluate_formation(
+                yoga_name="Vasumati",
+                involved_planets=vasu_planets[:4],
+                jre_facts=jre_facts,
+            )
+            if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                results.append(eval_)
+                yoga_involved_planets.append(vasu_planets[:4])
+
+        # ── Kamala Yoga (All 7 classical planets in Kendra houses 1/4/7/10) ──
+        _KAMALA_PLANETS = ["SUN", "MOON", "MARS", "MERCURY", "JUPITER", "VENUS", "SATURN"]
+        _KENDRA_HOUSES = {1, 4, 7, 10}
+        kamala_all_in_kendra = True
+        for pname in _KAMALA_PLANETS:
+            pdata = planets.get(pname, {})
+            ph = pdata.get("house")
+            if not isinstance(ph, int) or ph not in _KENDRA_HOUSES:
+                kamala_all_in_kendra = False
+                break
+        if kamala_all_in_kendra:
+            eval_ = self.evaluate_formation(
+                yoga_name="Kamala",
+                involved_planets=_KAMALA_PLANETS,
+                jre_facts=jre_facts,
+            )
+            if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                results.append(eval_)
+                yoga_involved_planets.append(_KAMALA_PLANETS)
+
         # ── Phase 1: Apply 5-tier modifier pipeline to all FORMED yogas ──
         # Skip Vipareeta Raja: dusthana placement is required, not a weakness
         for idx, (eval_, involved) in enumerate(
@@ -1173,3 +1258,69 @@ class YogaEvaluatorService:
                     )
 
         return results
+
+    # ── Domain Exclusivity (Phase F4 — Part C) ───────────────────────────
+
+    # Material domains that should NOT activate for HEALTH/CRISIS events
+    # unless the Dasha lord has strong 8th/12th house connections.
+    _MATERIAL_DOMAINS: frozenset[str] = frozenset({
+        "CAREER_PROMINENCE", "WEALTH_ACCUMULATION", "ARTISTIC_EXCELLENCE",
+        "BUSINESS_ACUMEN", "POLITICAL_POWER", "SOCIAL_STATUS",
+        "PUBLIC_RECOGNITION", "INTELLECTUAL_EXCELLENCE",
+    })
+
+    def should_activate_for_event(
+        self,
+        yoga: YogaEvaluation | Any,
+        event_domain: str,
+        dasha_md_lord: str,
+        jre_facts: dict[str, Any],
+    ) -> bool:
+        """Apply domain exclusivity rules to prevent inappropriate activations.
+
+        Rule: HEALTH/CRISIS events should not activate pure CAREER/WEALTH/ARTS
+        yogas unless the Dasha lord has strong 8th/12th house connections.
+
+        Args:
+            yoga: The yoga evaluation result (YogaEvaluation or YogaReport).
+            event_domain: Domain of the event (e.g., HEALTH, CAREER).
+            dasha_md_lord: Current Mahadasha lord.
+            jre_facts: JRE facts with planet data.
+
+        Returns:
+            True if activation should proceed, False to block.
+        """
+        if event_domain not in ("HEALTH", "CRISIS", "LIFE_TRANSITION"):
+            return True  # Allow activation for non-health events
+
+        # Get yoga outcome domains — handle both YogaEvaluation and YogaReport
+        yoga_domains: set[str] = set()
+        if hasattr(yoga, "outcome_domains"):
+            yoga_domains = set(yoga.outcome_domains)
+        elif hasattr(yoga, "outcome_category") and yoga.outcome_category:
+            yoga_domains = {yoga.outcome_category}
+
+        # Check if yoga has any material domains
+        if not yoga_domains.intersection(self._MATERIAL_DOMAINS):
+            return True  # Yoga has health/recovery domains — allow
+
+        # Check Dasha lord's house connections
+        planets = jre_facts.get("planets", {})
+        md_pdata = planets.get(dasha_md_lord, {})
+        md_house = md_pdata.get("house")
+
+        # 8th or 12th house placement indicates health/crisis relevance
+        if isinstance(md_house, int) and md_house in (8, 12):
+            return True  # Dasha lord in dusthana — allow
+
+        # Check if Dasha lord owns 8th or 12th house
+        house_lords = jre_facts.get("house_lords", {})
+        owned_houses = [
+            h for h, lord in house_lords.items()
+            if lord == dasha_md_lord and isinstance(h, int)
+        ]
+        if 8 in owned_houses or 12 in owned_houses:
+            return True  # Dasha lord owns dusthana — allow
+
+        # Block: Pure material yoga during health event without dusthana link
+        return False
