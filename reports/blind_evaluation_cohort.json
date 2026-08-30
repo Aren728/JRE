@@ -152,7 +152,7 @@
               "activation": "DORMANT",
               "chain_impact": -89.076072,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -179,7 +179,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ]
         },
@@ -195,7 +195,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -89.076072,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -206,7 +206,7 @@
           "date": "1911-12-10T00:00:00Z",
           "domain": "CAREER",
           "event_id": "CURIE_NOBEL_1911",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -222,7 +222,7 @@
               "dasha_multiplier": 1.1,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ]
         },
@@ -238,7 +238,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -89.076072,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -265,7 +265,7 @@
               "dasha_multiplier": 1.1,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ]
         }
@@ -438,7 +438,7 @@
               "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -449,7 +449,7 @@
           "date": "1884-06-06T00:00:00Z",
           "domain": "MIGRATION",
           "event_id": "TESLA_US_MOVE_1884",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -501,7 +501,7 @@
               "activation": "DORMANT",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -564,7 +564,7 @@
               "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -617,7 +617,7 @@
               "activation": "DORMANT",
               "chain_impact": -42.701265,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -629,7 +629,7 @@
               "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -648,7 +648,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -664,7 +664,7 @@
               "dasha_multiplier": 1.1,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -674,7 +674,7 @@
               "activation": "DORMANT",
               "chain_impact": -42.701265,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -686,7 +686,7 @@
               "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -705,7 +705,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -721,7 +721,7 @@
               "dasha_multiplier": 1.25,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -731,7 +731,7 @@
               "activation": "DORMANT",
               "chain_impact": -42.701265,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -743,7 +743,7 @@
               "activation": "DORMANT",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -762,7 +762,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Sunapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -778,7 +778,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         }
@@ -796,13 +796,13 @@
               "activation": "DORMANT",
               "chain_impact": -50.361339,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -819,7 +819,7 @@
           "date": "1687-07-05T00:00:00Z",
           "domain": "CAREER",
           "event_id": "NEWTON_PRINCIPIA_1687",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -827,7 +827,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
@@ -843,7 +843,7 @@
               "dasha_multiplier": 1.1,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -853,13 +853,13 @@
               "activation": "DORMANT",
               "chain_impact": -50.361339,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "DORMANT",
@@ -884,7 +884,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
@@ -900,7 +900,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -910,13 +910,13 @@
               "activation": "ACTIVATED",
               "chain_impact": -50.361339,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -941,7 +941,7 @@
               "dasha_multiplier": 1.25,
               "dynamic_strength": 1.0,
               "name": "Raja",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
@@ -957,7 +957,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.0,
               "name": "Budhaditya",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         }
@@ -981,7 +981,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -21.369389,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1014,7 +1014,7 @@
               "dasha_multiplier": 1.1,
               "dynamic_strength": 0.4,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1038,7 +1038,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -21.369389,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1071,7 +1071,7 @@
               "dasha_multiplier": 1.25,
               "dynamic_strength": 0.4,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1095,7 +1095,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -21.369389,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1112,7 +1112,7 @@
           "date": "1865-04-15T00:00:00Z",
           "domain": "HEALTH",
           "event_id": "LINCOLN_ASSASSINATION_1865",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -1128,7 +1128,7 @@
               "dasha_multiplier": 1.25,
               "dynamic_strength": 0.4,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "FORMED"
             },
             {
               "activation": "ACTIVATED",
@@ -1160,13 +1160,13 @@
               "activation": "DORMANT",
               "chain_impact": -26.213014,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
               "chain_impact": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -1177,7 +1177,7 @@
           "date": "1950-10-07T00:00:00Z",
           "domain": "CAREER",
           "event_id": "TERESA_MISSIONARIES_1950",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -1185,7 +1185,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1201,7 +1201,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -1217,13 +1217,13 @@
               "activation": "DORMANT",
               "chain_impact": -26.213014,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -1242,7 +1242,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -1258,7 +1258,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         },
@@ -1274,13 +1274,13 @@
               "activation": "DORMANT",
               "chain_impact": -26.213014,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
               "chain_impact": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ],
           "dasha": {
@@ -1291,7 +1291,7 @@
           "date": "1997-09-05T00:00:00Z",
           "domain": "HEALTH",
           "event_id": "TERESA_DEATH_1997",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "DORMANT",
@@ -1299,7 +1299,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -1315,7 +1315,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": null,
               "name": "Neecha Bhanga",
-              "status": "CANCELLED"
+              "status": "FORMED"
             }
           ]
         }
@@ -1333,7 +1333,7 @@
               "activation": "DORMANT",
               "chain_impact": 84.435449,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1351,7 +1351,7 @@
               "activation": "DORMANT",
               "chain_impact": -58.134919,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -1370,7 +1370,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1378,7 +1378,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1396,7 +1396,7 @@
               "activation": "DORMANT",
               "chain_impact": 84.435449,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1414,7 +1414,7 @@
               "activation": "DORMANT",
               "chain_impact": -58.134919,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -1433,7 +1433,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1441,7 +1441,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1459,7 +1459,7 @@
               "activation": "ACTIVATED",
               "chain_impact": 84.435449,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1477,7 +1477,7 @@
               "activation": "ACTIVATED",
               "chain_impact": -58.134919,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             }
           ],
           "dasha": {
@@ -1488,7 +1488,7 @@
           "date": "1997-09-16T00:00:00Z",
           "domain": "CAREER",
           "event_id": "JOBS_RETURN_1997",
-          "relevant_yoga_activated": false,
+          "relevant_yoga_activated": true,
           "top_yogas": [
             {
               "activation": "ACTIVATED",
@@ -1496,7 +1496,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": 1.0,
               "name": "Anapha",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "ACTIVATED",
@@ -1504,7 +1504,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "CANCELLED"
+              "status": "WEAKENED"
             },
             {
               "activation": "DORMANT",
@@ -1530,13 +1530,13 @@
               "activation": "ACTIVATED",
               "chain_impact": 89.948967,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": -57.79987,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
@@ -1551,8 +1551,8 @@
               "status": "WEAKENED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
+              "activation": "DORMANT",
+              "chain_impact": -36.491824,
               "name": "Amala",
               "status": "FORMED"
             }
@@ -1573,7 +1573,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
@@ -1581,12 +1581,12 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
-              "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 1.5,
+              "activation": "DORMANT",
+              "chain_impact": -36.491824,
+              "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Amala",
               "status": "FORMED"
@@ -1599,13 +1599,13 @@
               "activation": "ACTIVATED",
               "chain_impact": 89.948967,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
               "chain_impact": -57.79987,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
@@ -1621,7 +1621,7 @@
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
+              "chain_impact": -36.491824,
               "name": "Amala",
               "status": "FORMED"
             }
@@ -1642,7 +1642,7 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
@@ -1650,12 +1650,12 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 1.5,
+              "chain_impact": -36.491824,
+              "dasha_multiplier": 1.1,
               "dynamic_strength": 0.4,
               "name": "Amala",
               "status": "FORMED"
@@ -1668,13 +1668,13 @@
               "activation": "DORMANT",
               "chain_impact": 89.948967,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
               "chain_impact": -57.79987,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
               "activation": "DORMANT",
@@ -1689,8 +1689,8 @@
               "status": "WEAKENED"
             },
             {
-              "activation": "DORMANT",
-              "chain_impact": -42.662558,
+              "activation": "ACTIVATED",
+              "chain_impact": -36.491824,
               "name": "Amala",
               "status": "FORMED"
             }
@@ -1711,7 +1711,7 @@
               "dasha_multiplier": 0.4,
               "dynamic_strength": 0.4,
               "name": "Gajakesari",
-              "status": "FORMED"
+              "status": "CANCELLED"
             },
             {
               "activation": "ACTIVATED",
@@ -1719,12 +1719,12 @@
               "dasha_multiplier": 1.5,
               "dynamic_strength": 0.4,
               "name": "Raja",
-              "status": "WEAKENED"
+              "status": "CANCELLED"
             },
             {
-              "activation": "DORMANT",
-              "chain_impact": -42.662558,
-              "dasha_multiplier": 0.4,
+              "activation": "ACTIVATED",
+              "chain_impact": -36.491824,
+              "dasha_multiplier": 1.1,
               "dynamic_strength": 0.4,
               "name": "Amala",
               "status": "FORMED"

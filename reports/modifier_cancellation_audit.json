@@ -1,0 +1,285 @@
+{
+  "total_formed": 20,
+  "cancellations": [],
+  "survived": [
+    {
+      "chart": "Marie Curie",
+      "fixture": "chart_002_curie",
+      "yoga": "Gajakesari",
+      "involved_planets": [
+        "JUPITER",
+        "MOON"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "JUPITER conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Marie Curie",
+      "fixture": "chart_002_curie",
+      "yoga": "Raja",
+      "involved_planets": [
+        "MERCURY",
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Wolfgang Amadeus Mozart",
+      "fixture": "chart_003_mozart",
+      "yoga": "Raja",
+      "involved_planets": [
+        "SATURN",
+        "SUN"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Nikola Tesla",
+      "fixture": "chart_004_tesla",
+      "yoga": "Gajakesari",
+      "involved_planets": [
+        "JUPITER",
+        "MOON"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "JUPITER conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Nikola Tesla",
+      "fixture": "chart_004_tesla",
+      "yoga": "Raja",
+      "involved_planets": [
+        "MOON",
+        "MARS"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "MOON conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Nikola Tesla",
+      "fixture": "chart_004_tesla",
+      "yoga": "Budhaditya",
+      "involved_planets": [
+        "SUN",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Indira Gandhi",
+      "fixture": "chart_005_gandhi",
+      "yoga": "Budhaditya",
+      "involved_planets": [
+        "SUN",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Indira Gandhi",
+      "fixture": "chart_005_gandhi",
+      "yoga": "Sunapha",
+      "involved_planets": [
+        "MOON",
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "RAHU conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Isaac Newton",
+      "fixture": "chart_006_newton",
+      "yoga": "Raja",
+      "involved_planets": [
+        "VENUS",
+        "JUPITER"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Isaac Newton",
+      "fixture": "chart_006_newton",
+      "yoga": "Budhaditya",
+      "involved_planets": [
+        "SUN",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Isaac Newton",
+      "fixture": "chart_006_newton",
+      "yoga": "Saraswati",
+      "involved_planets": [
+        "JUPITER",
+        "MERCURY",
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Abraham Lincoln",
+      "fixture": "chart_007_lincoln",
+      "yoga": "Raja",
+      "involved_planets": [
+        "MARS",
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "MARS conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Abraham Lincoln",
+      "fixture": "chart_007_lincoln",
+      "yoga": "Budhaditya",
+      "involved_planets": [
+        "SUN",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Abraham Lincoln",
+      "fixture": "chart_007_lincoln",
+      "yoga": "Anapha",
+      "involved_planets": [
+        "MOON",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Steve Jobs",
+      "fixture": "chart_009_jobs",
+      "yoga": "Gajakesari",
+      "involved_planets": [
+        "JUPITER",
+        "MOON"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "JUPITER conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Steve Jobs",
+      "fixture": "chart_009_jobs",
+      "yoga": "Anapha",
+      "involved_planets": [
+        "MOON",
+        "MARS"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Amelia Earhart",
+      "fixture": "chart_010_earhart",
+      "yoga": "Gajakesari",
+      "involved_planets": [
+        "JUPITER",
+        "MOON"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Amelia Earhart",
+      "fixture": "chart_010_earhart",
+      "yoga": "Raja",
+      "involved_planets": [
+        "MARS",
+        "JUPITER"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    },
+    {
+      "chart": "Amelia Earhart",
+      "fixture": "chart_010_earhart",
+      "yoga": "Budhaditya",
+      "involved_planets": [
+        "SUN",
+        "MERCURY"
+      ],
+      "formed": true,
+      "engine_status": "WEAKENED",
+      "cancellation_reason": "SUN conjunct node (30% strength reduction)",
+      "classification": "SURVIVED_WEAKENED"
+    },
+    {
+      "chart": "Amelia Earhart",
+      "fixture": "chart_010_earhart",
+      "yoga": "Amala",
+      "involved_planets": [
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "FORMED",
+      "cancellation_reason": null,
+      "classification": "SURVIVED"
+    }
+  ],
+  "not_detected": [
+    {
+      "chart": "Amelia Earhart",
+      "fixture": "chart_010_earhart",
+      "yoga": "Malavya",
+      "involved_planets": [
+        "VENUS"
+      ],
+      "formed": true,
+      "engine_status": "NOT_IN_ENGINE",
+      "classification": "NOT_DETECTED"
+    }
+  ],
+  "summary": {
+    "justifiable": 0,
+    "suspicious": 0,
+    "unknown": 0,
+    "survived": 20
+  }
+}

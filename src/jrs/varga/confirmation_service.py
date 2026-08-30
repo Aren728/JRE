@@ -139,11 +139,10 @@ class VargaConfirmationService:
 
         # ── Check for D9 debilitation → binary cancellation ──
         # BPHS Ch 35: Debilitation in Navamsha destroys yoga results
+        # Uses sign-based check (not house-position proxy)
         for planet in involved_planets:
-            d9_house = d9_houses.get(planet)
-            if isinstance(d9_house, int) and self._is_debilitated_in_d9(
-                planet, d9_house
-            ):
+            d9_sign = d9_signs.get(planet, "")
+            if d9_sign and self._is_debilitated_in_d9(planet, d9_sign):
                 return VargaConfirmationResult(
                     confirmation_status=ConfirmationStatus.CANCELLED,
                     strength=ConfirmationStrength.WEAK,
@@ -357,43 +356,38 @@ class VargaConfirmationService:
                     return True
         return False
 
+    # BPHS classical debilitation signs (Neecha signs)
+    _DEBILITATION_SIGN: dict[str, str] = {
+        "SUN": "TULA",
+        "MOON": "VRISHCHIKA",
+        "MARS": "KARKA",
+        "MERCURY": "MEENA",
+        "JUPITER": "MAKARA",
+        "VENUS": "KANYA",
+        "SATURN": "MESHA",
+    }
+
     @staticmethod
-    def _is_debilitated_in_d9(planet: str, d9_house: int) -> bool:
-        """Check if a planet is debilitated in D9.
+    def _is_debilitated_in_d9(planet: str, d9_sign: str) -> bool:
+        """Check if a planet is debilitated in D9 (Navamsha).
 
-        A planet is debilitated in D9 if its D9 house falls in a Dusthana
-        house (6, 8, 12) from its D1 position, or if the D9 sign is its
-        debilitation sign.
+        Uses the classical debilitation sign mapping from BPHS:
+          Sun  = TULA (Libra)
+          Moon = VRISHCHIKA (Scorpio)
+          Mars = KARKA (Cancer)
+          Mercury = MEENA (Pisces)
+          Jupiter = MAKARA (Capricorn)
+          Venus = KANYA (Virgo)
+          Saturn = MESHA (Aries)
 
-        Simplified: If the planet's D9 house is 6, 8, or 12, and the planet
-        does not have Neecha Bhanga, it is considered weakened in D9.
+        Args:
+            planet: Planet name (e.g., "MERCURY").
+            d9_sign: D9 sign name for the planet (e.g., "MEENA").
 
-        For precise check, we use the debilitation sign mapping:
-        If the D9 rashi_num matches the planet's debilitation sign, it is
-        debilitated in D9.
-
-        Since we don't have D9 rashi_num directly, we use a proxy:
-        A planet is considered debilitated in D9 if its D9 house is a
-        Dusthana AND it doesn't have a friendly dispositor in D9.
+        Returns:
+            True if the planet's D9 sign is its classical debilitation sign.
         """
-        _DUSTHANA_HOUSES: frozenset[int] = frozenset({6, 8, 12})
-
-        # Simplified: planet debilitated in D9 if placed in Dusthana (6/8/12)
-        # without a Kendra dispositor (Neecha Bhanga in D9)
-        if d9_house in _DUSTHANA_HOUSES:
-            # Check for Neecha Bhanga: debilitation-sign lord in Kendra from D9
-            _DEBILITATION_SIGN_LORD: dict[str, str] = {
-                "SUN": "VENUS",
-                "MOON": "MARS",
-                "MARS": "MOON",
-                "MERCURY": "JUPITER",
-                "JUPITER": "SATURN",
-                "VENUS": "MERCURY",
-                "SATURN": "MARS",
-            }
-            deb_lord = _DEBILITATION_SIGN_LORD.get(planet)
-            if deb_lord is None:
-                return False
-            # Without D9 lord data, use Dusthana placement as proxy
-            return True
-        return False
+        deb_sign = VargaConfirmationService._DEBILITATION_SIGN.get(planet)
+        if deb_sign is None:
+            return False
+        return d9_sign == deb_sign

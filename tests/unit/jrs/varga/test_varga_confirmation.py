@@ -107,7 +107,7 @@ class TestD9KendraTrikonaConfirmation:
             JUPITER=_make_planet(house=5, rashi_num=8),
         )
         facts["planet_d9_house"] = {"MARS": 4, "JUPITER": 5}
-        facts["planet_d9_sign"] = {"MARS": "KARKA", "JUPITER": "SIMHA"}
+        facts["planet_d9_sign"] = {"MARS": "SIMHA", "JUPITER": "SIMHA"}
         result = self.svc.evaluate_d9_confirmation(
             ["MARS", "JUPITER"], facts
         )
@@ -132,23 +132,43 @@ class TestD9PartialConfirmation:
     def setup_method(self) -> None:
         self.svc = VargaConfirmationService()
 
-    def test_one_in_kendra_one_in_dusthana_cancels(self) -> None:
-        """One in Kendra, one in Dusthana (6/8/12) → CANCELLED.
+    def test_one_in_kendra_one_in_debilitated_sign_cancels(self) -> None:
+        """One in Kendra, one debilitated in D9 by sign → CANCELLED.
 
-        Per BPHS Ch 35: Debilitation in D9 (Dusthana placement) causes
+        Per BPHS Ch 35: Debilitation in D9 (sign-based) causes
         binary cancellation regardless of other planet's position.
+        Jupiter debilitated in D9 sign MAKARA (Capricorn) → CANCELLED.
         """
         facts = _chart(
             MARS=_make_planet(house=10, rashi_num=8),
             JUPITER=_make_planet(house=10, rashi_num=8),
         )
         facts["planet_d9_house"] = {"MARS": 1, "JUPITER": 6}
+        facts["planet_d9_sign"] = {"MARS": "MESHA", "JUPITER": "MAKARA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["MARS", "JUPITER"], facts
+        )
+        # Jupiter D9 sign MAKARA (debilitation sign) → CANCELLED
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_dusthana_house_not_debilitated_not_cancelled(self) -> None:
+        """Planet in Dusthana house but NOT debilitation sign → NOT cancelled.
+
+        Dusthana house alone does not cause cancellation; only sign-based
+        debilitation per BPHS.
+        """
+        facts = _chart(
+            MARS=_make_planet(house=10, rashi_num=8),
+            JUPITER=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"MARS": 1, "JUPITER": 6}
+        # Jupiter in D9 sign KANYA (Virgo) — NOT Jupiter's debilitation sign
         facts["planet_d9_sign"] = {"MARS": "MESHA", "JUPITER": "KANYA"}
         result = self.svc.evaluate_d9_confirmation(
             ["MARS", "JUPITER"], facts
         )
-        # Jupiter in D9 house 6 (Dusthana) → debilitated → CANCELLED
-        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+        # Jupiter in house 6 but sign KANYA ≠ debilitation → NOT cancelled
+        assert result.confirmation_status == ConfirmationStatus.FORMED
 
     def test_none_in_kendra_trikona(self) -> None:
         """Both planets in non-Kendra/non-Trikona → WEAK."""
@@ -172,50 +192,122 @@ class TestD9PartialConfirmation:
 
 
 class TestD9DebilitationCancellation:
-    """D9 confirmation: planet debilitated in D9 → CANCELLED."""
+    """D9 confirmation: planet debilitated in D9 by sign → CANCELLED.
+
+    Uses classical debilitation signs (BPHS):
+      Sun=TULA, Moon=VRISHCHIKA, Mars=KARKA, Mercury=MEENA,
+      Jupiter=MAKARA, Venus=KANYA, Saturn=MESHA.
+    """
 
     def setup_method(self) -> None:
         self.svc = VargaConfirmationService()
 
-    def test_planet_in_dusthana_cancels(self) -> None:
-        """Planet in Dusthana (6/8/12) in D9 → CANCELLED."""
+    def test_mars_debilitated_in_d9_cancels(self) -> None:
+        """Mars in D9 sign KARKA (Cancer) → debilitated → CANCELLED."""
         facts = _chart(
             MARS=_make_planet(house=10, rashi_num=8),
             JUPITER=_make_planet(house=10, rashi_num=8),
         )
-        facts["planet_d9_house"] = {"MARS": 6, "JUPITER": 1}
-        facts["planet_d9_sign"] = {"MARS": "KANYA", "JUPITER": "MESHA"}
+        facts["planet_d9_house"] = {"MARS": 4, "JUPITER": 1}
+        facts["planet_d9_sign"] = {"MARS": "KARKA", "JUPITER": "MESHA"}
         result = self.svc.evaluate_d9_confirmation(
             ["MARS", "JUPITER"], facts
         )
         assert result.confirmation_status == ConfirmationStatus.CANCELLED
         assert "debilitated" in result.cancellation_reason.lower()
 
-    def test_8th_house_cancels(self) -> None:
-        """Planet in 8th house in D9 → CANCELLED."""
+    def test_mercury_debilitated_in_d9_cancels(self) -> None:
+        """Mercury in D9 sign MEENA (Pisces) → debilitated → CANCELLED."""
         facts = _chart(
-            MARS=_make_planet(house=10, rashi_num=8),
+            MERCURY=_make_planet(house=10, rashi_num=8),
             JUPITER=_make_planet(house=10, rashi_num=8),
         )
-        facts["planet_d9_house"] = {"MARS": 8, "JUPITER": 1}
-        facts["planet_d9_sign"] = {"MARS": "SIMHA", "JUPITER": "MESHA"}
+        facts["planet_d9_house"] = {"MERCURY": 12, "JUPITER": 1}
+        facts["planet_d9_sign"] = {"MERCURY": "MEENA", "JUPITER": "MESHA"}
         result = self.svc.evaluate_d9_confirmation(
-            ["MARS", "JUPITER"], facts
+            ["MERCURY", "JUPITER"], facts
         )
         assert result.confirmation_status == ConfirmationStatus.CANCELLED
 
-    def test_12th_house_cancels(self) -> None:
-        """Planet in 12th house in D9 → CANCELLED."""
+    def test_jupiter_debilitated_in_d9_cancels(self) -> None:
+        """Jupiter in D9 sign MAKARA (Capricorn) → debilitated → CANCELLED."""
+        facts = _chart(
+            JUPITER=_make_planet(house=10, rashi_num=8),
+            MARS=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"JUPITER": 10, "MARS": 1}
+        facts["planet_d9_sign"] = {"JUPITER": "MAKARA", "MARS": "MESHA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["JUPITER", "MARS"], facts
+        )
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_venus_debilitated_in_d9_cancels(self) -> None:
+        """Venus in D9 sign KANYA (Virgo) → debilitated → CANCELLED."""
+        facts = _chart(
+            VENUS=_make_planet(house=10, rashi_num=8),
+            MARS=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"VENUS": 6, "MARS": 1}
+        facts["planet_d9_sign"] = {"VENUS": "KANYA", "MARS": "MESHA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["VENUS", "MARS"], facts
+        )
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_saturn_debilitated_in_d9_cancels(self) -> None:
+        """Saturn in D9 sign MESHA (Aries) → debilitated → CANCELLED."""
+        facts = _chart(
+            SATURN=_make_planet(house=10, rashi_num=8),
+            MARS=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"SATURN": 1, "MARS": 4}
+        facts["planet_d9_sign"] = {"SATURN": "MESHA", "MARS": "KARKA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["SATURN", "MARS"], facts
+        )
+        # SATURN debilitated → CANCELLED (MARS also debilitated but SATURN checked first)
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_sun_debilitated_in_d9_cancels(self) -> None:
+        """Sun in D9 sign TULA (Libra) → debilitated → CANCELLED."""
+        facts = _chart(
+            SUN=_make_planet(house=10, rashi_num=8),
+            MARS=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"SUN": 7, "MARS": 1}
+        facts["planet_d9_sign"] = {"SUN": "TULA", "MARS": "MESHA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["SUN", "MARS"], facts
+        )
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_moon_debilitated_in_d9_cancels(self) -> None:
+        """Moon in D9 sign VRISHCHIKA (Scorpio) → debilitated → CANCELLED."""
+        facts = _chart(
+            MOON=_make_planet(house=10, rashi_num=8),
+            MARS=_make_planet(house=10, rashi_num=8),
+        )
+        facts["planet_d9_house"] = {"MOON": 8, "MARS": 1}
+        facts["planet_d9_sign"] = {"MOON": "VRISHCHIKA", "MARS": "MESHA"}
+        result = self.svc.evaluate_d9_confirmation(
+            ["MOON", "MARS"], facts
+        )
+        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+
+    def test_non_debilitated_sign_not_cancelled(self) -> None:
+        """Planet in non-debilitation D9 sign → NOT cancelled."""
         facts = _chart(
             MARS=_make_planet(house=10, rashi_num=8),
             JUPITER=_make_planet(house=10, rashi_num=8),
         )
-        facts["planet_d9_house"] = {"MARS": 12, "JUPITER": 1}
-        facts["planet_d9_sign"] = {"MARS": "MEENA", "JUPITER": "MESHA"}
+        facts["planet_d9_house"] = {"MARS": 6, "JUPITER": 1}
+        # Mars D9 sign KANYA (Virgo) is NOT Mars's debilitation sign (KARKA)
+        facts["planet_d9_sign"] = {"MARS": "KANYA", "JUPITER": "MESHA"}
         result = self.svc.evaluate_d9_confirmation(
             ["MARS", "JUPITER"], facts
         )
-        assert result.confirmation_status == ConfirmationStatus.CANCELLED
+        assert result.confirmation_status == ConfirmationStatus.FORMED
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -548,14 +640,13 @@ class TestVargaConfirmationIntegration:
     def test_d9_debilitation_cancels_yoga(self) -> None:
         """D9 debilitation → yoga CANCELLED in evaluate_classical_yogas."""
         # Jupiter in kendra from Moon → Gajakesari Yoga
-        # Jupiter debilitated in D9 → CANCELLED
+        # Jupiter debilitated in D9 (sign MAKARA = Capricorn)
         facts = _chart(
             JUPITER=_make_planet(house=1, rashi_num=9, rashi="DHANUSHA"),
             MOON=_make_planet(house=1, rashi_num=4, rashi="KARKA"),
         )
-        # Jupiter D9 house = 6 (Dusthana) → debilitated in D9
         facts["planet_d9_house"] = {"JUPITER": 6, "MOON": 1}
-        facts["planet_d9_sign"] = {"JUPITER": "KANYA", "MOON": "KARKA"}
+        facts["planet_d9_sign"] = {"JUPITER": "MAKARA", "MOON": "KARKA"}
         results = self.yoga_svc.evaluate_classical_yogas(facts)
         gajakesari = [r for r in results if r.yoga_name == "Gajakesari"]
         # If Gajakesari is detected, it should be CANCELLED due to D9 debilitation
