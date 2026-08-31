@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_meta": {
-    "fixture_id": "chart_055_bezos",
+    "fixture_id": "chart_056_bezos",
     "version": "1.0.0",
     "subject": "Jeff Bezos",
     "description": "American entrepreneur, founder of Amazon, space explorer",
-    "provenance": "Wikipedia \u2014 Jeff Bezos birth data",
+    "provenance": "Wikipedia \u2014 Jeff Bezos birth data (Rodden AA)",
     "pipeline_config": {
       "zodiac_mode": "SIDEREAL",
       "ayanamsa": "LAHIRI",
@@ -25,140 +25,182 @@
   },
   "raw_birth_data": {
     "date": "1964-01-12",
-    "time": "03:00",
-    "latitude": 39.0438,
-    "longitude": -77.4874,
-    "timezone": "America/New_York"
+    "time": "14:30",
+    "latitude": 35.0844,
+    "longitude": -106.6504,
+    "timezone": "America/Denver"
   },
   "expected_canonical_facts": {
     "lagna": {
-      "sign": "TULA",
-      "longitude": 207.2640569032026
+      "ascendant_longitude_deg": 52.201762843171245,
+      "rashi": "VRISHABHA",
+      "degree_in_rashi": 22.201762843171245,
+      "nakshatra": "ROHINI",
+      "nakshatra_lord": "MOON",
+      "pada": 4,
+      "degree_in_nakshatra": 12.201762843171242,
+      "d9_sign": "MESHA"
     },
     "planets": {
       "SUN": {
-        "longitude_used": 267.7921556121062,
+        "longitude_tropical": 291.7156655340756,
+        "longitude_sidereal": 268.3654417071087,
+        "longitude_used": 268.3654417071087,
         "rashi": "DHANUSHA",
-        "house": 3,
-        "degree_in_rashi": 27.792155612106228,
+        "house": 8,
+        "degree_in_rashi": 28.365441707108687,
         "nakshatra": "UTTARA_ASHADHA",
         "nakshatra_lord": "SUN",
         "sign_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 1.6987750404420054,
         "retrograde": "DIRECT",
         "d9_sign": "SIMHA",
         "house_lord_of": [
-          11
+          4
         ]
       },
       "MOON": {
-        "longitude_used": 239.51968553956945,
-        "rashi": "VRISHCHIKA",
-        "house": 2,
-        "degree_in_rashi": 29.51968553956945,
-        "nakshatra": "JYESHTHA",
-        "nakshatra_lord": "MERCURY",
-        "sign_lord": "MARS",
-        "retrograde": "DIRECT",
-        "d9_sign": "MEENA",
-        "house_lord_of": [
-          10
-        ]
-      },
-      "MARS": {
-        "longitude_used": 275.92479711981446,
-        "rashi": "MAKARA",
-        "house": 4,
-        "degree_in_rashi": 5.924797119814457,
-        "nakshatra": "UTTARA_ASHADHA",
-        "nakshatra_lord": "SUN",
-        "sign_lord": "SATURN",
-        "retrograde": "DIRECT",
-        "d9_sign": "KARKA",
-        "house_lord_of": [
-          2,
-          7
-        ]
-      },
-      "MERCURY": {
-        "longitude_used": 251.8992806792933,
+        "longitude_tropical": 269.63398190046127,
+        "longitude_sidereal": 246.28375807349443,
+        "longitude_used": 246.28375807349443,
         "rashi": "DHANUSHA",
-        "house": 3,
-        "degree_in_rashi": 11.899280679293298,
+        "house": 8,
+        "degree_in_rashi": 6.283758073494425,
         "nakshatra": "MULA",
         "nakshatra_lord": "KETU",
         "sign_lord": "JUPITER",
-        "retrograde": "RETROGRADE",
-        "d9_sign": "MEENA",
+        "pada": 2,
+        "degree_in_nakshatra": 6.283758073494432,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
         "house_lord_of": [
-          9,
+          3
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 299.7153632535732,
+        "longitude_sidereal": 276.36513942660633,
+        "longitude_used": 276.36513942660633,
+        "rashi": "MAKARA",
+        "house": 9,
+        "degree_in_rashi": 6.3651394266063335,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 9.698472759939655,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          7,
           12
         ]
       },
+      "MERCURY": {
+        "longitude_tropical": 275.00047527454353,
+        "longitude_sidereal": 251.65025144757664,
+        "longitude_used": 251.65025144757664,
+        "rashi": "DHANUSHA",
+        "house": 8,
+        "degree_in_rashi": 11.650251447576636,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 11.65025144757665,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          2,
+          5
+        ]
+      },
       "JUPITER": {
-        "longitude_used": 348.5702845280077,
+        "longitude_tropical": 11.988556409951041,
+        "longitude_sidereal": 348.63833258298416,
+        "longitude_used": 348.63833258298416,
         "rashi": "MEENA",
-        "house": 6,
-        "degree_in_rashi": 18.570284528007676,
+        "house": 11,
+        "degree_in_rashi": 18.638332582984162,
         "nakshatra": "REVATI",
         "nakshatra_lord": "MERCURY",
         "sign_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 1.9716659163175252,
         "retrograde": "DIRECT",
         "d9_sign": "MESHA",
         "house_lord_of": [
-          3,
-          6
+          8,
+          11
         ]
       },
       "VENUS": {
-        "longitude_used": 300.7759436799253,
+        "longitude_tropical": 324.81719163205076,
+        "longitude_sidereal": 301.4669678050839,
+        "longitude_used": 301.4669678050839,
         "rashi": "KUMBHA",
-        "house": 5,
-        "degree_in_rashi": 0.7759436799253194,
+        "house": 10,
+        "degree_in_rashi": 1.4669678050839252,
         "nakshatra": "DHANISHTHA",
         "nakshatra_lord": "MARS",
         "sign_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 8.133634471750595,
         "retrograde": "DIRECT",
         "d9_sign": "MITHUNA",
         "house_lord_of": [
           1,
-          8
+          6
         ]
       },
       "SATURN": {
-        "longitude_used": 298.2622819737333,
+        "longitude_tropical": 321.67427436507904,
+        "longitude_sidereal": 298.32405053811215,
+        "longitude_used": 298.32405053811215,
         "rashi": "MAKARA",
-        "house": 4,
-        "degree_in_rashi": 28.26228197373331,
+        "house": 9,
+        "degree_in_rashi": 28.324050538112147,
         "nakshatra": "DHANISHTHA",
         "nakshatra_lord": "MARS",
         "sign_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 4.990717204778809,
         "retrograde": "DIRECT",
         "d9_sign": "KUMBHA",
         "house_lord_of": [
-          4,
-          5
+          9,
+          10
         ]
       },
       "RAHU": {
-        "longitude_used": 77.4055425774259,
+        "longitude_tropical": 100.72595837806607,
+        "longitude_sidereal": 77.37573455109916,
+        "longitude_used": 77.37573455109916,
         "rashi": "MITHUNA",
-        "house": 9,
-        "degree_in_rashi": 17.405542577425905,
+        "house": 2,
+        "degree_in_rashi": 17.375734551099157,
         "nakshatra": "ARDRA",
         "nakshatra_lord": "RAHU",
         "sign_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 10.709067884432493,
         "retrograde": "RETROGRADE",
         "d9_sign": "MEENA",
         "house_lord_of": []
       },
       "KETU": {
-        "longitude_used": 257.4055425774259,
+        "longitude_tropical": 280.7259583780661,
+        "longitude_sidereal": 257.3757345510992,
+        "longitude_used": 257.3757345510992,
         "rashi": "DHANUSHA",
-        "house": 3,
-        "degree_in_rashi": 17.405542577425877,
+        "house": 8,
+        "degree_in_rashi": 17.375734551099185,
         "nakshatra": "PURVA_ASHADHA",
         "nakshatra_lord": "VENUS",
         "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 4.0424012177658435,
         "retrograde": "RETROGRADE",
         "d9_sign": "VRISHABHA",
         "house_lord_of": []
@@ -166,27 +208,53 @@
     },
     "houses": {
       "1": {
-        "rashi": "TULA",
+        "rashi": "VRISHABHA",
         "lord": "VENUS",
         "occupants": []
       },
       "2": {
-        "rashi": "VRISHCHIKA",
-        "lord": "MARS",
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
         "occupants": [
-          "MOON"
+          "RAHU"
         ]
       },
       "3": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "8": {
         "rashi": "DHANUSHA",
         "lord": "JUPITER",
         "occupants": [
           "KETU",
           "MERCURY",
+          "MOON",
           "SUN"
         ]
       },
-      "4": {
+      "9": {
         "rashi": "MAKARA",
         "lord": "SATURN",
         "occupants": [
@@ -194,66 +262,39 @@
           "SATURN"
         ]
       },
-      "5": {
+      "10": {
         "rashi": "KUMBHA",
         "lord": "SATURN",
         "occupants": [
           "VENUS"
         ]
       },
-      "6": {
+      "11": {
         "rashi": "MEENA",
         "lord": "JUPITER",
         "occupants": [
           "JUPITER"
         ]
       },
-      "7": {
+      "12": {
         "rashi": "MESHA",
         "lord": "MARS",
-        "occupants": []
-      },
-      "8": {
-        "rashi": "VRISHABHA",
-        "lord": "VENUS",
-        "occupants": []
-      },
-      "9": {
-        "rashi": "MITHUNA",
-        "lord": "MERCURY",
-        "occupants": [
-          "RAHU"
-        ]
-      },
-      "10": {
-        "rashi": "KARKA",
-        "lord": "MOON",
-        "occupants": []
-      },
-      "11": {
-        "rashi": "SIMHA",
-        "lord": "SUN",
-        "occupants": []
-      },
-      "12": {
-        "rashi": "KANYA",
-        "lord": "MERCURY",
         "occupants": []
       }
     },
     "house_lords": {
       "1": "VENUS",
-      "2": "MARS",
-      "3": "JUPITER",
-      "4": "SATURN",
-      "5": "SATURN",
-      "6": "JUPITER",
+      "2": "MERCURY",
+      "3": "MOON",
+      "4": "SUN",
+      "5": "MERCURY",
+      "6": "VENUS",
       "7": "MARS",
-      "8": "VENUS",
-      "9": "MERCURY",
-      "10": "MOON",
-      "11": "SUN",
-      "12": "MERCURY"
+      "8": "JUPITER",
+      "9": "SATURN",
+      "10": "SATURN",
+      "11": "JUPITER",
+      "12": "MARS"
     }
   },
   "known_events": [
@@ -261,7 +302,7 @@
       "event_id": "BEZOS_AMAZON_1994",
       "event_date_utc": "1994-07-05T00:00:00Z",
       "domain": "CAREER",
-      "description": "Founded Amazon in Bellevue, Washington",
+      "description": "Amazon Founding",
       "yoga_types": [
         "RAJA",
         "DHANA"
@@ -272,10 +313,10 @@
       ]
     },
     {
-      "event_id": "BEZOS_BILLIONAIRE_2017",
-      "event_date_utc": "2017-10-27T00:00:00Z",
+      "event_id": "BEZOS_IPO_1997",
+      "event_date_utc": "1997-05-15T00:00:00Z",
       "domain": "WEALTH",
-      "description": "Became world's richest person",
+      "description": "Amazon IPO",
       "yoga_types": [
         "DHANA"
       ],
@@ -288,7 +329,7 @@
       "event_id": "BEZOS_SPACE_2021",
       "event_date_utc": "2021-07-20T00:00:00Z",
       "domain": "CAREER",
-      "description": "Blue Origin space flight",
+      "description": "Blue Origin Space Flight",
       "yoga_types": [
         "RAJA"
       ],

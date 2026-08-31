@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_062_rajinikanth",
+    "version": "1.0.0",
+    "subject": "Rajinikanth",
+    "description": "Indian actor, cultural icon, 'Superstar' of Tamil cinema",
+    "provenance": "Wikipedia \u2014 Rajinikanth birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1950-12-12",
+    "time": "12:00",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 319.36129872089964,
+      "rashi": "KUMBHA",
+      "degree_in_rashi": 19.36129872089964,
+      "nakshatra": "SHATABHISHA",
+      "nakshatra_lord": "RAHU",
+      "pada": 4,
+      "degree_in_nakshatra": 12.694632054232999,
+      "d9_sign": "VRISHCHIKA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 259.66539307125817,
+        "longitude_sidereal": 236.49301864949885,
+        "longitude_used": 236.49301864949885,
+        "rashi": "VRISHCHIKA",
+        "house": 10,
+        "degree_in_rashi": 26.49301864949885,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MARS",
+        "pada": 3,
+        "degree_in_nakshatra": 9.826351982832184,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          7
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 299.95952534282344,
+        "longitude_sidereal": 276.78715092106415,
+        "longitude_used": 276.78715092106415,
+        "rashi": "MAKARA",
+        "house": 12,
+        "degree_in_rashi": 6.787150921064153,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 10.12048425439749,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          6
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 297.5792762862228,
+        "longitude_sidereal": 274.4069018644635,
+        "longitude_used": 274.4069018644635,
+        "rashi": "MAKARA",
+        "house": 12,
+        "degree_in_rashi": 4.406901864463521,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.74023519779685,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          3,
+          10
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 279.67458935060887,
+        "longitude_sidereal": 256.50221492884964,
+        "longitude_used": 256.50221492884964,
+        "rashi": "DHANUSHA",
+        "house": 11,
+        "degree_in_rashi": 16.50221492884964,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 3.1688815955163188,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          5,
+          8
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 331.3932098908927,
+        "longitude_sidereal": 308.2208354691334,
+        "longitude_used": 308.2208354691334,
+        "rashi": "KUMBHA",
+        "house": 1,
+        "degree_in_rashi": 8.22083546913342,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 1.5541688024667464,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          2,
+          11
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 266.574685638558,
+        "longitude_sidereal": 243.40231121679864,
+        "longitude_used": 243.40231121679864,
+        "rashi": "DHANUSHA",
+        "house": 11,
+        "degree_in_rashi": 3.402311216798637,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 3.402311216798639,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          4,
+          9
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 181.51432434328638,
+        "longitude_sidereal": 158.34194992152706,
+        "longitude_used": 158.34194992152706,
+        "rashi": "KANYA",
+        "house": 8,
+        "degree_in_rashi": 8.34194992152706,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 11.67528325486041,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          1,
+          12
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 353.83024947663097,
+        "longitude_sidereal": 330.6578750548717,
+        "longitude_used": 330.6578750548717,
+        "rashi": "MEENA",
+        "house": 2,
+        "degree_in_rashi": 0.6578750548716812,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "JUPITER",
+        "pada": 4,
+        "degree_in_nakshatra": 10.65787505487168,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 173.83024947663102,
+        "longitude_sidereal": 150.65787505487168,
+        "longitude_used": 150.65787505487168,
+        "rashi": "KANYA",
+        "house": 8,
+        "degree_in_rashi": 0.6578750548716812,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 3.9912083882050124,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "2": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "3": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "KETU",
+          "SATURN"
+        ]
+      },
+      "9": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "SUN"
+        ]
+      },
+      "11": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MERCURY",
+          "VENUS"
+        ]
+      },
+      "12": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "MARS",
+          "MOON"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "SATURN",
+      "2": "JUPITER",
+      "3": "MARS",
+      "4": "VENUS",
+      "5": "MERCURY",
+      "6": "MOON",
+      "7": "SUN",
+      "8": "MERCURY",
+      "9": "VENUS",
+      "10": "MARS",
+      "11": "JUPITER",
+      "12": "SATURN"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "RAJNI_DEBUT_1975",
+      "event_date_utc": "1975-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Film Debut",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "RAJNI_ENTHIRAN_2010",
+      "event_date_utc": "2010-10-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Enthiran Release",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "RAJNI_POLITICS_2021",
+      "event_date_utc": "2021-04-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Political Entry/Retreat",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    }
+  ]
+}

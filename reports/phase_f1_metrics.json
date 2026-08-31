@@ -1,36 +1,27 @@
 {
   "ci_95": [
-    0.4873644505470557,
-    0.6459688827862776
+    0.46088963344948825,
+    0.8057770332171783
   ],
-  "cohort_size": 50,
+  "cohort_size": 10,
   "domain_metrics": {
     "CAREER": {
-      "f1": 0.7682119205298013,
-      "fn": 28,
-      "fp": 7,
-      "precision": 0.8923076923076924,
-      "recall": 0.6744186046511628,
-      "total": 93,
-      "tp": 58
+      "f1": 0.8125,
+      "fn": 4,
+      "fp": 2,
+      "precision": 0.8666666666666667,
+      "recall": 0.7647058823529411,
+      "total": 19,
+      "tp": 13
     },
     "HEALTH": {
-      "f1": 0.5671641791044776,
-      "fn": 13,
-      "fp": 16,
-      "precision": 0.5428571428571428,
-      "recall": 0.59375,
-      "total": 48,
-      "tp": 19
-    },
-    "MARRIAGE": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
+      "f1": 0.6666666666666666,
+      "fn": 3,
+      "fp": 2,
+      "precision": 0.7142857142857143,
+      "recall": 0.625,
+      "total": 10,
+      "tp": 5
     },
     "MIGRATION": {
       "f1": 1.0,
@@ -38,79 +29,25 @@
       "fp": 0,
       "precision": 1.0,
       "recall": 1.0,
-      "total": 6,
-      "tp": 6
+      "total": 1,
+      "tp": 1
     }
   },
-  "f1": 0.723404255319149,
-  "fn": 41,
-  "fp": 24,
-  "hit_rate": 0.5666666666666667,
-  "precision": 0.7798165137614679,
-  "recall": 0.6746031746031746,
+  "f1": 0.7755102040816326,
+  "fn": 7,
+  "fp": 4,
+  "hit_rate": 0.6333333333333333,
+  "precision": 0.8260869565217391,
+  "recall": 0.7307692307692307,
   "subject_metrics": {
-    "Abraham Lincoln": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Ada Lovelace": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
-    "Albert Einstein": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
-    "Alexander von Humboldt": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Amelia Earhart": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
     "Andrew Carnegie": {
-      "f1": 0.0,
-      "fn": 1,
-      "fp": 2,
-      "precision": 0.0,
-      "recall": 0.0,
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
       "total": 3,
-      "tp": 0
-    },
-    "Anton Chekhov": {
-      "f1": 0.5,
-      "fn": 1,
-      "fp": 1,
-      "precision": 0.5,
-      "recall": 0.5,
-      "total": 3,
-      "tp": 1
+      "tp": 3
     },
     "Babe Ruth": {
       "f1": 1.0,
@@ -121,51 +58,6 @@
       "total": 3,
       "tp": 3
     },
-    "Benjamin Franklin": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Carl Jung": {
-      "f1": 0.5,
-      "fn": 0,
-      "fp": 2,
-      "precision": 0.3333333333333333,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 1
-    },
-    "Charles Darwin": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Charles de Gaulle": {
-      "f1": 0.0,
-      "fn": 3,
-      "fp": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Charlie Chaplin": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
     "Cornelius Vanderbilt": {
       "f1": 1.0,
       "fn": 0,
@@ -175,42 +67,6 @@
       "total": 3,
       "tp": 3
     },
-    "Dwight Eisenhower": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Franz Liszt": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Gregor Mendel": {
-      "f1": 0.5,
-      "fn": 1,
-      "fp": 1,
-      "precision": 0.5,
-      "recall": 0.5,
-      "total": 3,
-      "tp": 1
-    },
-    "Hans Christian Andersen": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
     "Henry Ford": {
       "f1": 0.0,
       "fn": 3,
@@ -219,24 +75,6 @@
       "recall": 0.0,
       "total": 3,
       "tp": 0
-    },
-    "Indira Gandhi": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
-    "Isaac Newton": {
-      "f1": 0.5,
-      "fn": 1,
-      "fp": 1,
-      "precision": 0.5,
-      "recall": 0.5,
-      "total": 3,
-      "tp": 1
     },
     "J.P. Morgan": {
       "f1": 0.5,
@@ -248,13 +86,13 @@
       "tp": 1
     },
     "Jackie Robinson": {
-      "f1": 0.5,
-      "fn": 2,
+      "f1": 0.8,
+      "fn": 1,
       "fp": 0,
       "precision": 1.0,
-      "recall": 0.3333333333333333,
+      "recall": 0.6666666666666666,
       "total": 3,
-      "tp": 1
+      "tp": 2
     },
     "Jesse Owens": {
       "f1": 1.0,
@@ -283,124 +121,7 @@
       "total": 3,
       "tp": 1
     },
-    "John F. Kennedy": {
-      "f1": 0.5,
-      "fn": 2,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.3333333333333333,
-      "total": 3,
-      "tp": 1
-    },
-    "Leo Tolstoy": {
-      "f1": 0.0,
-      "fn": 3,
-      "fp": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Louis Pasteur": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Ludwig van Beethoven": {
-      "f1": 0.0,
-      "fn": 3,
-      "fp": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Mahatma Gandhi": {
-      "f1": 0.0,
-      "fn": 0,
-      "fp": 3,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Margaret Thatcher": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
-    "Marie Curie": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Mark Twain": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Max Planck": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
-    "Mother Teresa": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
     "Muhammad Ali": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
-    "Nelson Mandela": {
-      "f1": 0.5,
-      "fn": 1,
-      "fp": 1,
-      "precision": 0.5,
-      "recall": 0.5,
-      "total": 3,
-      "tp": 1
-    },
-    "Nikola Tesla": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
-    "Otto von Bismarck": {
       "f1": 1.0,
       "fn": 0,
       "fp": 0,
@@ -408,98 +129,8 @@
       "recall": 1.0,
       "total": 3,
       "tp": 3
-    },
-    "Pablo Picasso": {
-      "f1": 0.0,
-      "fn": 3,
-      "fp": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Pyotr Tchaikovsky": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
-    "Queen Victoria": {
-      "f1": 0.8,
-      "fn": 1,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.6666666666666666,
-      "total": 3,
-      "tp": 2
-    },
-    "Rosalind Franklin": {
-      "f1": 0.0,
-      "fn": 3,
-      "fp": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
-    },
-    "Sigmund Freud": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Steve Jobs": {
-      "f1": 0.5,
-      "fn": 2,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 0.3333333333333333,
-      "total": 3,
-      "tp": 1
-    },
-    "Vincent van Gogh": {
-      "f1": 0.8,
-      "fn": 0,
-      "fp": 1,
-      "precision": 0.6666666666666666,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 2
-    },
-    "Werner Heisenberg": {
-      "f1": 1.0,
-      "fn": 0,
-      "fp": 0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "total": 3,
-      "tp": 3
-    },
-    "Winston Churchill": {
-      "f1": 0.5,
-      "fn": 1,
-      "fp": 1,
-      "precision": 0.5,
-      "recall": 0.5,
-      "total": 3,
-      "tp": 1
-    },
-    "Wolfgang Amadeus Mozart": {
-      "f1": 0.0,
-      "fn": 2,
-      "fp": 1,
-      "precision": 0.0,
-      "recall": 0.0,
-      "total": 3,
-      "tp": 0
     }
   },
-  "total_events": 150,
-  "tp": 85
+  "total_events": 30,
+  "tp": 19
 }

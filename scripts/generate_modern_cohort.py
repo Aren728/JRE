@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Phase F4: Modern Personality Cohort — Fixture Generator.
+"""Phase F4a: Modern Personality Cohort — Exact 20 Personalities.
 
-Generates 20 modern personality chart fixtures for validation.
-Uses the existing JRE fact-generation pipeline (JyotishService + Swiss Ephemeris).
-
+Generates 20 modern personality chart fixtures using verified birth data.
 NO changes to rules, weights, or engine logic.
 
 Usage::
@@ -42,6 +40,13 @@ _SIGN_TYPES: dict[int, str] = {
     8: "fire", 9: "earth", 10: "air", 11: "water",
 }
 
+_SIGN_LORDS: dict[str, str] = {
+    "MESHA": "MARS", "VRISHABHA": "VENUS", "MITHUNA": "MERCURY",
+    "KARKA": "MOON", "SIMHA": "SUN", "KANYA": "MERCURY",
+    "TULA": "VENUS", "VRISHCHIKA": "MARS", "DHANUSHA": "JUPITER",
+    "MAKARA": "SATURN", "KUMBHA": "SATURN", "MEENA": "JUPITER",
+}
+
 
 def compute_d9_sign(longitude_used: float) -> str:
     """Classical navamsha sign from a sidereal longitude."""
@@ -63,15 +68,18 @@ def compute_d9_sign(longitude_used: float) -> str:
     return _RASHI_ORDER[d9_index]
 
 
-# ── Modern Personalities (20 subjects) ─────────────────────────────────────
+# ── Exact 20 Personalities (Non-Negotiable) ────────────────────────────────
 
 MODERN_PERSONALITIES: list[dict[str, Any]] = [
+    # ══════════════════════════════════════════════════════════════════════
+    # Sports (4)
+    # ══════════════════════════════════════════════════════════════════════
     {
         "fixture_id": "chart_051_kohli",
         "chart_filename": "chart_051_kohli.json",
         "subject": "Virat Kohli",
         "description": "Indian cricket legend, former captain, one of the greatest batsmen",
-        "provenance": "Wikipedia — Virat Kohli birth data",
+        "provenance": "Wikipedia — Virat Kohli birth data (Rodden AA)",
         "birth_data": {
             "date": "1988-11-05",
             "time": "17:20",
@@ -80,20 +88,173 @@ MODERN_PERSONALITIES: list[dict[str, Any]] = [
             "timezone": "Asia/Kolkata",
         },
         "known_events": [
-            {"event_id": "KOHLI_U19_2008", "event_date_utc": "2008-03-02T00:00:00Z",
-             "domain": "CAREER", "description": "U-19 World Cup captaincy win",
+            {"event_id": "KOHLI_U19_2008", "event_date_utc": "2008-03-04T00:00:00Z",
+             "domain": "CAREER", "description": "U-19 World Cup Win",
              "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
             {"event_id": "KOHLI_ODI_CAPTAIN_2013", "event_date_utc": "2013-09-15T00:00:00Z",
-             "domain": "CAREER", "description": "First ODI captaincy appointment",
+             "domain": "CAREER", "description": "First ODI Captaincy",
              "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
             {"event_id": "KOHLI_PEAK_2018", "event_date_utc": "2018-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Peak ICC ranking #1 across all formats",
+             "domain": "CAREER", "description": "Peak Ranking #1",
              "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
         ],
     },
     {
-        "fixture_id": "chart_052_ambani",
-        "chart_filename": "chart_052_ambani.json",
+        "fixture_id": "chart_052_williams",
+        "chart_filename": "chart_052_williams.json",
+        "subject": "Serena Williams",
+        "description": "American tennis legend, 23 Grand Slam singles titles",
+        "provenance": "Wikipedia — Serena Williams birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1981-09-26",
+            "time": "03:53",
+            "latitude": 43.4098,
+            "longitude": -83.9508,
+            "timezone": "America/Detroit",
+        },
+        "known_events": [
+            {"event_id": "WILLIAMS_US_OPEN_1999", "event_date_utc": "1999-09-11T00:00:00Z",
+             "domain": "CAREER", "description": "First Grand Slam - US Open",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "WILLIAMS_AUSTRALIAN_2017", "event_date_utc": "2017-01-28T00:00:00Z",
+             "domain": "CAREER", "description": "Australian Open - pregnancy comeback",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MOON"]},
+            {"event_id": "WILLIAMS_RETIREMENT_2022", "event_date_utc": "2022-09-03T00:00:00Z",
+             "domain": "CAREER", "description": "Retirement from professional tennis",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_053_ronaldo",
+        "chart_filename": "chart_053_ronaldo.json",
+        "subject": "Cristiano Ronaldo",
+        "description": "Portuguese football legend, all-time top international scorer",
+        "provenance": "Wikipedia — Cristiano Ronaldo birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1985-02-05",
+            "time": "08:30",
+            "latitude": 32.6500,
+            "longitude": -16.9000,
+            "timezone": "Atlantic/Madeira",
+        },
+        "known_events": [
+            {"event_id": "RONALDO_MANUTD_2003", "event_date_utc": "2003-08-16T00:00:00Z",
+             "domain": "CAREER", "description": "Man United Debut",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
+            {"event_id": "RONALDO_REAL_2009", "event_date_utc": "2009-06-11T00:00:00Z",
+             "domain": "CAREER", "description": "Real Madrid Transfer",
+             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
+            {"event_id": "RONALDO_EURO_2016", "event_date_utc": "2016-07-10T00:00:00Z",
+             "domain": "CAREER", "description": "Euro Cup Win with Portugal",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_054_tendulkar",
+        "chart_filename": "chart_054_tendulkar.json",
+        "subject": "Sachin Tendulkar",
+        "description": "Indian cricket legend, 'God of Cricket', highest run-scorer",
+        "provenance": "Wikipedia — Sachin Tendulkar birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1973-04-24",
+            "time": "15:30",
+            "latitude": 19.0760,
+            "longitude": 72.8777,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "TENDULKAR_DEBUT_1989", "event_date_utc": "1989-11-15T00:00:00Z",
+             "domain": "CAREER", "description": "International Debut",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+            {"event_id": "TENDULKAR_WORLD_CUP_2011", "event_date_utc": "2011-04-02T00:00:00Z",
+             "domain": "CAREER", "description": "World Cup Win",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MOON"]},
+            {"event_id": "TENDULKAR_RETIREMENT_2013", "event_date_utc": "2013-11-14T00:00:00Z",
+             "domain": "CAREER", "description": "Retirement from cricket",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
+        ],
+    },
+    # ══════════════════════════════════════════════════════════════════════
+    # Business & Technology (4)
+    # ══════════════════════════════════════════════════════════════════════
+    {
+        "fixture_id": "chart_055_musk",
+        "chart_filename": "chart_055_musk.json",
+        "subject": "Elon Musk",
+        "description": "South African-American entrepreneur, CEO of Tesla and SpaceX",
+        "provenance": "Wikipedia — Elon Musk birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1971-06-28",
+            "time": "18:30",
+            "latitude": -25.7479,
+            "longitude": 28.2293,
+            "timezone": "Africa/Johannesburg",
+        },
+        "known_events": [
+            {"event_id": "MUSK_ZIP2_1995", "event_date_utc": "1995-03-01T00:00:00Z",
+             "domain": "CAREER", "description": "Zip2 Founding",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+            {"event_id": "MUSK_PAYPAL_2002", "event_date_utc": "2002-02-15T00:00:00Z",
+             "domain": "WEALTH", "description": "PayPal Sale",
+             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
+            {"event_id": "MUSK_TWITTER_2022", "event_date_utc": "2022-10-27T00:00:00Z",
+             "domain": "CAREER", "description": "Twitter Acquisition",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_056_bezos",
+        "chart_filename": "chart_056_bezos.json",
+        "subject": "Jeff Bezos",
+        "description": "American entrepreneur, founder of Amazon, space explorer",
+        "provenance": "Wikipedia — Jeff Bezos birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1964-01-12",
+            "time": "14:30",
+            "latitude": 35.0844,
+            "longitude": -106.6504,
+            "timezone": "America/Denver",
+        },
+        "known_events": [
+            {"event_id": "BEZOS_AMAZON_1994", "event_date_utc": "1994-07-05T00:00:00Z",
+             "domain": "CAREER", "description": "Amazon Founding",
+             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "MERCURY"]},
+            {"event_id": "BEZOS_IPO_1997", "event_date_utc": "1997-05-15T00:00:00Z",
+             "domain": "WEALTH", "description": "Amazon IPO",
+             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
+            {"event_id": "BEZOS_SPACE_2021", "event_date_utc": "2021-07-20T00:00:00Z",
+             "domain": "CAREER", "description": "Blue Origin Space Flight",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_057_pichai",
+        "chart_filename": "chart_057_pichai.json",
+        "subject": "Sundar Pichai",
+        "description": "Indian-American business executive, CEO of Alphabet and Google",
+        "provenance": "Wikipedia — Sundar Pichai birth data",
+        "birth_data": {
+            "date": "1972-07-10",
+            "time": "10:00",
+            "latitude": 9.9252,
+            "longitude": 78.1198,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "PICHAI_GOOGLE_2004", "event_date_utc": "2004-04-01T00:00:00Z",
+             "domain": "CAREER", "description": "Joined Google",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+            {"event_id": "PICHAI_CEO_2015", "event_date_utc": "2015-08-10T00:00:00Z",
+             "domain": "CAREER", "description": "Google CEO Appointment",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+            {"event_id": "PICHAI_ALPHABET_2019", "event_date_utc": "2019-12-03T00:00:00Z",
+             "domain": "CAREER", "description": "Alphabet CEO",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_058_ambani",
+        "chart_filename": "chart_058_ambani.json",
         "subject": "Mukesh Ambani",
         "description": "Indian business magnate, chairman of Reliance Industries",
         "provenance": "Wikipedia — Mukesh Ambani birth data (approximate time)",
@@ -106,464 +267,326 @@ MODERN_PERSONALITIES: list[dict[str, Any]] = [
         },
         "known_events": [
             {"event_id": "AMBANI_RELIANCE_2002", "event_date_utc": "2002-07-06T00:00:00Z",
-             "domain": "CAREER", "description": "Took over Reliance Industries after father's death",
+             "domain": "CAREER", "description": "Reliance Takeover",
              "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
             {"event_id": "AMBANI_JIO_2016", "event_date_utc": "2016-09-05T00:00:00Z",
-             "domain": "CAREER", "description": "Launched Reliance Jio, disrupted telecom industry",
+             "domain": "CAREER", "description": "Jio Launch",
              "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MERCURY"]},
             {"event_id": "AMBANI_FORBES_2020", "event_date_utc": "2020-08-01T00:00:00Z",
-             "domain": "WEALTH", "description": "Forbes Top 10 richest globally",
+             "domain": "WEALTH", "description": "Forbes Top 10",
              "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
         ],
     },
+    # ══════════════════════════════════════════════════════════════════════
+    # Film & Entertainment (5)
+    # ══════════════════════════════════════════════════════════════════════
     {
-        "fixture_id": "chart_053_tendulkar",
-        "chart_filename": "chart_053_tendulkar.json",
-        "subject": "Sachin Tendulkar",
-        "description": "Indian cricket legend, 'God of Cricket', highest run-scorer in internationals",
-        "provenance": "Wikipedia — Sachin Tendulkar birth data",
+        "fixture_id": "chart_059_khan_srk",
+        "chart_filename": "chart_059_khan_srk.json",
+        "subject": "Shah Rukh Khan",
+        "description": "Indian actor, producer, 'King of Bollywood'",
+        "provenance": "Wikipedia — Shah Rukh Khan birth data",
         "birth_data": {
-            "date": "1973-04-24",
-            "time": "07:20",
-            "latitude": 19.0760,
-            "longitude": 72.8777,
+            "date": "1965-11-02",
+            "time": "21:00",
+            "latitude": 28.6139,
+            "longitude": 77.2090,
             "timezone": "Asia/Kolkata",
         },
         "known_events": [
-            {"event_id": "TENDULKAR_DEBUT_1989", "event_date_utc": "1989-11-15T00:00:00Z",
-             "domain": "CAREER", "description": "International cricket debut at age 16",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-            {"event_id": "TENDULKAR_WORLD_CUP_2011", "event_date_utc": "2011-04-02T00:00:00Z",
-             "domain": "CAREER", "description": "Won Cricket World Cup, fulfilled lifelong dream",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MOON"]},
-            {"event_id": "TENDULKAR_RETIREMENT_2013", "event_date_utc": "2013-11-16T00:00:00Z",
-             "domain": "CAREER", "description": "Retired from international cricket with record books",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_054_oprah",
-        "chart_filename": "chart_054_oprah.json",
-        "subject": "Oprah Winfrey",
-        "description": "American media mogul, talk show host, philanthropist, billionaire",
-        "provenance": "Wikipedia — Oprah Winfrey birth data",
-        "birth_data": {
-            "date": "1954-01-29",
-            "time": "04:30",
-            "latitude": 35.1495,
-            "longitude": -90.0490,
-            "timezone": "America/Chicago",
-        },
-        "known_events": [
-            {"event_id": "OPRAH_SHOW_1986", "event_date_utc": "1986-09-08T00:00:00Z",
-             "domain": "CAREER", "description": "The Oprah Winfrey Show goes national",
-             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "OPRAH_BILLIONAIRE_2003", "event_date_utc": "2003-02-01T00:00:00Z",
-             "domain": "WEALTH", "description": "Became first Black female billionaire",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "OPRAH_NETWORK_2011", "event_date_utc": "2011-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Launched OWN: Oprah Winfrey Network",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_055_bezos",
-        "chart_filename": "chart_055_bezos.json",
-        "subject": "Jeff Bezos",
-        "description": "American entrepreneur, founder of Amazon, space explorer",
-        "provenance": "Wikipedia — Jeff Bezos birth data",
-        "birth_data": {
-            "date": "1964-01-12",
-            "time": "03:00",
-            "latitude": 39.0438,
-            "longitude": -77.4874,
-            "timezone": "America/New_York",
-        },
-        "known_events": [
-            {"event_id": "BEZOS_AMAZON_1994", "event_date_utc": "1994-07-05T00:00:00Z",
-             "domain": "CAREER", "description": "Founded Amazon in Bellevue, Washington",
-             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "MERCURY"]},
-            {"event_id": "BEZOS_BILLIONAIRE_2017", "event_date_utc": "2017-10-27T00:00:00Z",
-             "domain": "WEALTH", "description": "Became world's richest person",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "BEZOS_SPACE_2021", "event_date_utc": "2021-07-20T00:00:00Z",
-             "domain": "CAREER", "description": "Blue Origin space flight",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_056_beyonce",
-        "chart_filename": "chart_056_beyonce.json",
-        "subject": "Beyoncé Knowles",
-        "description": "American singer, songwriter, actress, cultural icon",
-        "provenance": "Wikipedia — Beyoncé birth data",
-        "birth_data": {
-            "date": "1981-09-04",
-            "time": "10:00",
-            "latitude": 29.7604,
-            "longitude": -95.3698,
-            "timezone": "America/Chicago",
-        },
-        "known_events": [
-            {"event_id": "BEYONCE_DESTINY_1999", "event_date_utc": "1999-11-15T00:00:00Z",
-             "domain": "CAREER", "description": "Destiny's Child wins first Grammy",
+            {"event_id": "SRK_DEEWANA_1992", "event_date_utc": "1992-06-26T00:00:00Z",
+             "domain": "CAREER", "description": "Deewana Debut",
              "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "BEYONCE_SOLO_2003", "event_date_utc": "2003-06-20T00:00:00Z",
-             "domain": "CAREER", "description": "Solo debut 'Dangerously in Love' wins 5 Grammys",
+            {"event_id": "SRK_MOHABBATEIN_2000", "event_date_utc": "2000-10-27T00:00:00Z",
+             "domain": "CAREER", "description": "Mohabbatein",
              "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "BEYONCE_SUPERBOWL_2013", "event_date_utc": "2013-02-03T00:00:00Z",
-             "domain": "CAREER", "description": "Super Bowl XLVII halftime show performance",
-             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "SUN"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_057_messi",
-        "chart_filename": "chart_057_messi.json",
-        "subject": "Lionel Messi",
-        "description": "Argentine football legend, World Cup winner, 8 Ballon d'Or",
-        "provenance": "Wikipedia — Lionel Messi birth data",
-        "birth_data": {
-            "date": "1987-06-24",
-            "time": "06:00",
-            "latitude": -32.8895,
-            "longitude": -68.8255,
-            "timezone": "America/Argentina/Mendoza",
-        },
-        "known_events": [
-            {"event_id": "MESSI_DEBUT_2004", "event_date_utc": "2004-10-16T00:00:00Z",
-             "domain": "CAREER", "description": "FC Barcelona first-team debut at age 17",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "MESSI_BALLONDOR_2009", "event_date_utc": "2009-12-01T00:00:00Z",
-             "domain": "CAREER", "description": "First Ballon d'Or award",
-             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "MESSI_WORLDCUP_2022", "event_date_utc": "2022-12-18T00:00:00Z",
-             "domain": "CAREER", "description": "FIFA World Cup victory with Argentina",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_058_malala",
-        "chart_filename": "chart_058_malala.json",
-        "subject": "Malala Yousafzai",
-        "description": "Pakistani activist for female education, youngest Nobel laureate",
-        "provenance": "Wikipedia — Malala Yousafzai birth data",
-        "birth_data": {
-            "date": "1997-07-12",
-            "time": "12:00",
-            "latitude": 34.1683,
-            "longitude": 71.7489,
-            "timezone": "Asia/Karachi",
-        },
-        "known_events": [
-            {"event_id": "MALALA_BLOG_2009", "event_date_utc": "2009-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Started BBC Urdu blog about life under Taliban",
-             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
-            {"event_id": "MALALA_SHOOTING_2012", "event_date_utc": "2012-10-09T00:00:00Z",
-             "domain": "HEALTH", "description": "Shot by Taliban, survived and became global symbol",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "MARS"]},
-            {"event_id": "MALALA_NOBEL_2014", "event_date_utc": "2014-10-10T00:00:00Z",
-             "domain": "CAREER", "description": "Awarded Nobel Peace Prize at age 17",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_059_zuckerberg",
-        "chart_filename": "chart_059_zuckerberg.json",
-        "subject": "Mark Zuckerberg",
-        "description": "American entrepreneur, co-founder of Meta (Facebook)",
-        "provenance": "Wikipedia — Mark Zuckerberg birth data",
-        "birth_data": {
-            "date": "1984-05-14",
-            "time": "08:00",
-            "latitude": 40.7608,
-            "longitude": -73.9776,
-            "timezone": "America/New_York",
-        },
-        "known_events": [
-            {"event_id": "ZUCK_FACEBOOK_2004", "event_date_utc": "2004-02-04T00:00:00Z",
-             "domain": "CAREER", "description": "Launched Facebook from Harvard dorm",
-             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
-            {"event_id": "ZUCK_IPO_2012", "event_date_utc": "2012-05-18T00:00:00Z",
-             "domain": "WEALTH", "description": "Facebook IPO, became billionaire",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "ZUCK_META_2021", "event_date_utc": "2021-10-28T00:00:00Z",
-             "domain": "CAREER", "description": "Rebranded Facebook to Meta, pivot to metaverse",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_060_swift",
-        "chart_filename": "chart_060_swift.json",
-        "subject": "Taylor Swift",
-        "description": "American singer-songwriter, highest-grossing touring artist",
-        "provenance": "Wikipedia — Taylor Swift birth data",
-        "birth_data": {
-            "date": "1989-12-13",
-            "time": "08:30",
-            "latitude": 35.1495,
-            "longitude": -90.0490,
-            "timezone": "America/Chicago",
-        },
-        "known_events": [
-            {"event_id": "SWIFT_DEBUT_2006", "event_date_utc": "2006-10-24T00:00:00Z",
-             "domain": "CAREER", "description": "Self-titled debut album released",
-             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "SWIFT_1989_2014", "event_date_utc": "2014-10-27T00:00:00Z",
-             "domain": "CAREER", "description": "'1989' album breaks sales records",
-             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "SWIFT_ERAS_2023", "event_date_utc": "2023-03-17T00:00:00Z",
-             "domain": "CAREER", "description": "Eras Tour becomes highest-grossing concert tour ever",
+            {"event_id": "SRK_PATHAAN_2023", "event_date_utc": "2023-01-25T00:00:00Z",
+             "domain": "CAREER", "description": "Pathaan Comeback",
              "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
         ],
     },
     {
-        "fixture_id": "chart_061_gates",
-        "chart_filename": "chart_061_gates.json",
-        "subject": "Bill Gates",
-        "description": "American entrepreneur, co-founder of Microsoft, philanthropist",
-        "provenance": "Wikipedia — Bill Gates birth data",
+        "fixture_id": "chart_060_dicaprio",
+        "chart_filename": "chart_060_dicaprio.json",
+        "subject": "Leonardo DiCaprio",
+        "description": "American actor, environmentalist, Oscar winner",
+        "provenance": "Wikipedia — Leonardo DiCaprio birth data (Rodden AA)",
         "birth_data": {
-            "date": "1955-10-28",
-            "time": "22:00",
-            "latitude": 47.6062,
-            "longitude": -122.3321,
+            "date": "1974-11-11",
+            "time": "02:47",
+            "latitude": 34.0522,
+            "longitude": -118.2437,
             "timezone": "America/Los_Angeles",
         },
         "known_events": [
-            {"event_id": "GATES_MICROSOFT_1975", "event_date_utc": "1975-04-04T00:00:00Z",
-             "domain": "CAREER", "description": "Co-founded Microsoft with Paul Allen",
-             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["MERCURY", "JUPITER"]},
-            {"event_id": "GATES_RICHEST_1995", "event_date_utc": "1995-07-17T00:00:00Z",
-             "domain": "WEALTH", "description": "Became world's richest person (Forbes)",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "GATES_PHILANTHROPY_2000", "event_date_utc": "2000-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Founded Bill & Melinda Gates Foundation",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
+            {"event_id": "DICAPRIO_TITANIC_1997", "event_date_utc": "1997-11-01T00:00:00Z",
+             "domain": "CAREER", "description": "Titanic Release",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "DICAPRIO_OSCAR_2016", "event_date_utc": "2016-02-28T00:00:00Z",
+             "domain": "CAREER", "description": "Oscar Win - Revenant",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "DICAPRIO_CLIMATE_2020", "event_date_utc": "2020-09-23T00:00:00Z",
+             "domain": "CAREER", "description": "Climate Activism Peak",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
         ],
     },
     {
-        "fixture_id": "chart_062_mandela_modern",
-        "chart_filename": "chart_062_mandela_modern.json",
-        "subject": "Nelson Mandela (Validation)",
-        "description": "South African anti-apartheid leader, first Black president (validation fixture)",
-        "provenance": "Wikipedia — Nelson Mandela birth data",
+        "fixture_id": "chart_061_chopra",
+        "chart_filename": "chart_061_chopra.json",
+        "subject": "Priyanka Chopra",
+        "description": "Indian actress, producer, Miss World 2000, Hollywood crossover",
+        "provenance": "Wikipedia — Priyanka Chopra birth data",
         "birth_data": {
-            "date": "1918-07-18",
+            "date": "1982-07-18",
+            "time": "11:30",
+            "latitude": 22.8046,
+            "longitude": 86.2029,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "CHOPRA_MISS_WORLD_2000", "event_date_utc": "2000-11-30T00:00:00Z",
+             "domain": "CAREER", "description": "Miss World",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "CHOPRA_QUANTICO_2015", "event_date_utc": "2015-09-27T00:00:00Z",
+             "domain": "CAREER", "description": "Quantico Premiere",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "CHOPRA_MARRIAGE_2018", "event_date_utc": "2018-12-01T00:00:00Z",
+             "domain": "MARRIAGE", "description": "Marriage to Nick Jonas",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_062_rajinikanth",
+        "chart_filename": "chart_062_rajinikanth.json",
+        "subject": "Rajinikanth",
+        "description": "Indian actor, cultural icon, 'Superstar' of Tamil cinema",
+        "provenance": "Wikipedia — Rajinikanth birth data",
+        "birth_data": {
+            "date": "1950-12-12",
+            "time": "12:00",
+            "latitude": 12.9716,
+            "longitude": 77.5946,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "RAJNI_DEBUT_1975", "event_date_utc": "1975-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Film Debut",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "RAJNI_ENTHIRAN_2010", "event_date_utc": "2010-10-01T00:00:00Z",
+             "domain": "CAREER", "description": "Enthiran Release",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "RAJNI_POLITICS_2021", "event_date_utc": "2021-04-10T00:00:00Z",
+             "domain": "CAREER", "description": "Political Entry/Retreat",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_063_vijay",
+        "chart_filename": "chart_063_vijay.json",
+        "subject": "Joseph Vijay",
+        "description": "Indian actor, 'Thalapathy' of Tamil cinema",
+        "provenance": "Wikipedia — Joseph Vijay birth data",
+        "birth_data": {
+            "date": "1974-06-22",
             "time": "14:30",
-            "latitude": -32.8895,
-            "longitude": 25.5186,
-            "timezone": "Africa/Johannesburg",
-        },
-        "known_events": [
-            {"event_id": "MANDELA_FREEDOM_1990", "event_date_utc": "1990-02-11T00:00:00Z",
-             "domain": "CAREER", "description": "Released from prison after 27 years",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-            {"event_id": "MANDELA_PRESIDENT_1994", "event_date_utc": "1994-05-10T00:00:00Z",
-             "domain": "CAREER", "description": "Inaugurated as first Black president of South Africa",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-            {"event_id": "MANDELA_NOBEL_1993", "event_date_utc": "1993-10-15T00:00:00Z",
-             "domain": "CAREER", "description": "Nobel Peace Prize with de Klerk",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_063_king",
-        "chart_filename": "chart_063_king.json",
-        "subject": "Martin Luther King Jr.",
-        "description": "American civil rights leader, Nobel Peace Prize laureate",
-        "provenance": "Wikipedia — Martin Luther King Jr. birth data",
-        "birth_data": {
-            "date": "1929-01-15",
-            "time": "12:00",
-            "latitude": 33.7490,
-            "longitude": -84.3880,
-            "timezone": "America/New_York",
-        },
-        "known_events": [
-            {"event_id": "KING_MARCH_1963", "event_date_utc": "1963-08-28T00:00:00Z",
-             "domain": "CAREER", "description": "March on Washington, 'I Have a Dream' speech",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MERCURY"]},
-            {"event_id": "KING_NOBEL_1964", "event_date_utc": "1964-12-10T00:00:00Z",
-             "domain": "CAREER", "description": "Awarded Nobel Peace Prize",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "KING_ASSASSINATION_1968", "event_date_utc": "1968-04-04T00:00:00Z",
-             "domain": "HEALTH", "description": "Assassinated in Memphis, Tennessee",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "MARS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_064_curie_modern",
-        "chart_filename": "chart_064_curie_modern.json",
-        "subject": "Marie Curie (Validation)",
-        "description": "Polish-French physicist, first woman to win Nobel Prize (validation fixture)",
-        "provenance": "Wikipedia — Marie Curie birth data",
-        "birth_data": {
-            "date": "1867-11-07",
-            "time": "12:00",
-            "latitude": 52.2297,
-            "longitude": 21.0122,
-            "timezone": "Europe/Warsaw",
-        },
-        "known_events": [
-            {"event_id": "CURIE_PHD_1898", "event_date_utc": "1898-06-25T00:00:00Z",
-             "domain": "CAREER", "description": "Discovered polonium and radium",
-             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
-            {"event_id": "CURIE_NOBEL_1903", "event_date_utc": "1903-11-05T00:00:00Z",
-             "domain": "CAREER", "description": "First Nobel Prize in Physics (shared with Pierre)",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SUN"]},
-            {"event_id": "CURIE_NOBEL2_1911", "event_date_utc": "1911-12-10T00:00:00Z",
-             "domain": "CAREER", "description": "Second Nobel Prize in Chemistry (solo)",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MERCURY"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_065_musk",
-        "chart_filename": "chart_065_musk.json",
-        "subject": "Elon Musk",
-        "description": "South African-American entrepreneur, CEO of Tesla and SpaceX",
-        "provenance": "Wikipedia — Elon Musk birth data",
-        "birth_data": {
-            "date": "1971-06-28",
-            "time": "02:30",
-            "latitude": -25.7479,
-            "longitude": 28.2293,
-            "timezone": "Africa/Johannesburg",
-        },
-        "known_events": [
-            {"event_id": "MUSK_PAYPAL_2002", "event_date_utc": "2002-02-01T00:00:00Z",
-             "domain": "WEALTH", "description": "Sold PayPal to eBay for $1.5 billion",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "MUSK_SPACEX_2008", "event_date_utc": "2008-09-28T00:00:00Z",
-             "domain": "CAREER", "description": "SpaceX Falcon 1 reaches orbit",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-            {"event_id": "MUSK_RICHEST_2021", "event_date_utc": "2021-01-07T00:00:00Z",
-             "domain": "WEALTH", "description": "Became world's richest person",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_066_ratan_tata",
-        "chart_filename": "chart_066_ratan_tata.json",
-        "subject": "Ratan Tata",
-        "description": "Indian industrialist, chairman emeritus of Tata Group",
-        "provenance": "Wikipedia — Ratan Tata birth data",
-        "birth_data": {
-            "date": "1937-12-28",
-            "time": "15:00",
-            "latitude": 21.1702,
-            "longitude": 72.8311,
+            "latitude": 13.0827,
+            "longitude": 80.2707,
             "timezone": "Asia/Kolkata",
         },
         "known_events": [
-            {"event_id": "TATA_CHAIRMAN_1991", "event_date_utc": "1991-04-01T00:00:00Z",
-             "domain": "CAREER", "description": "Became chairman of Tata Group",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-            {"event_id": "TATA_JAGUAR_2008", "event_date_utc": "2008-06-02T00:00:00Z",
-             "domain": "CAREER", "description": "Acquired Jaguar Land Rover",
-             "yoga_types": ["RAJA", "DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-            {"event_id": "TATA_NANO_2008", "event_date_utc": "2008-01-10T00:00:00Z",
-             "domain": "CAREER", "description": "Launched Tata Nano, world's cheapest car",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MERCURY"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_067_ruth_bader",
-        "chart_filename": "chart_067_ruth_bader.json",
-        "subject": "Ruth Bader Ginsburg",
-        "description": "American Supreme Court Justice, gender equality champion",
-        "provenance": "Wikipedia — Ruth Bader Ginsburg birth data",
-        "birth_data": {
-            "date": "1933-03-15",
-            "time": "17:00",
-            "latitude": 40.6782,
-            "longitude": -73.9442,
-            "timezone": "America/New_York",
-        },
-        "known_events": [
-            {"event_id": "RBG_JUDGE_1980", "event_date_utc": "1980-06-01T00:00:00Z",
-             "domain": "CAREER", "description": "Appointed to U.S. Court of Appeals",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-            {"event_id": "RBG_SCOTUS_1993", "event_date_utc": "1993-08-10T00:00:00Z",
-             "domain": "CAREER", "description": "Confirmed to Supreme Court",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-            {"event_id": "RBG_NOTORIOUS_2013", "event_date_utc": "2013-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Became cultural icon 'Notorious RBG'",
+            {"event_id": "VIJAY_DEBUT_1992", "event_date_utc": "1992-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Naalaiya Theerpu Debut",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "VIJAY_MERSAL_2017", "event_date_utc": "2017-10-18T00:00:00Z",
+             "domain": "CAREER", "description": "Mersal Release",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "VIJAY_LEO_2023", "event_date_utc": "2023-10-19T00:00:00Z",
+             "domain": "CAREER", "description": "Leo Release",
              "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
         ],
     },
+    # ══════════════════════════════════════════════════════════════════════
+    # Politics & Leadership (2)
+    # ══════════════════════════════════════════════════════════════════════
     {
-        "fixture_id": "chart_068_ambedkar",
-        "chart_filename": "chart_068_ambedkar.json",
-        "subject": "B.R. Ambedkar",
-        "description": "Indian jurist, architect of the Indian Constitution, social reformer",
-        "provenance": "Wikipedia — B.R. Ambedkar birth data",
-        "birth_data": {
-            "date": "1891-04-14",
-            "time": "12:00",
-            "latitude": 20.9336,
-            "longitude": 77.7643,
-            "timezone": "Asia/Kolkata",
-        },
-        "known_events": [
-            {"event_id": "AMBEDKAR_PHD_1923", "event_date_utc": "1923-06-01T00:00:00Z",
-             "domain": "CAREER", "description": "Earned PhD from Columbia University",
-             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
-            {"event_id": "AMBEDKAR_CONSTITUTION_1950", "event_date_utc": "1950-01-26T00:00:00Z",
-             "domain": "CAREER", "description": "Indian Constitution came into effect, drafted by Ambedkar",
-             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "MERCURY"]},
-            {"event_id": "AMBEDKAR_DEATH_1956", "event_date_utc": "1956-12-06T00:00:00Z",
-             "domain": "HEALTH", "description": "Passed away in Delhi",
-             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "MARS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_069_nagarjuna",
-        "chart_filename": "chart_069_nagarjuna.json",
-        "subject": "Akkineni Nagarjuna",
-        "description": "Indian actor, producer, entrepreneur, Telugu cinema icon",
-        "provenance": "Wikipedia — Nagarjuna birth data",
-        "birth_data": {
-            "date": "1959-08-29",
-            "time": "02:30",
-            "latitude": 17.3850,
-            "longitude": 78.4867,
-            "timezone": "Asia/Kolkata",
-        },
-        "known_events": [
-            {"event_id": "NAGARJUNA_DEBUT_1986", "event_date_utc": "1986-01-01T00:00:00Z",
-             "domain": "CAREER", "description": "Breakthrough role in 'Vikram'",
-             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "NAGARJUNA_SHIVA_1989", "event_date_utc": "1989-03-15T00:00:00Z",
-             "domain": "CAREER", "description": "Blockbuster 'Shiva' established stardom",
-             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
-            {"event_id": "NAGARJUNA_BUSINESS_2005", "event_date_utc": "2005-01-01T00:00:00Z",
-             "domain": "WEALTH", "description": "Expanded into film production and business",
-             "yoga_types": ["DHANA"], "expected_planets": ["JUPITER", "VENUS"]},
-        ],
-    },
-    {
-        "fixture_id": "chart_070_awadh",
-        "chart_filename": "chart_070_awadh.json",
+        "fixture_id": "chart_064_modi",
+        "chart_filename": "chart_064_modi.json",
         "subject": "Narendra Modi",
         "description": "Indian Prime Minister, longest-serving non-Congress PM",
         "provenance": "Wikipedia — Narendra Modi birth data (rectified)",
         "birth_data": {
             "date": "1950-09-17",
-            "time": "11:00",
-            "latitude": 23.0225,
-            "longitude": 72.5714,
+            "time": "11:35",
+            "latitude": 23.8343,
+            "longitude": 72.6325,
             "timezone": "Asia/Kolkata",
         },
         "known_events": [
             {"event_id": "MODI_CM_2001", "event_date_utc": "2001-10-07T00:00:00Z",
-             "domain": "CAREER", "description": "Became Chief Minister of Gujarat",
+             "domain": "CAREER", "description": "CM Gujarat",
              "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
-            {"event_id": "MODI_PM_2014", "event_date_utc": "2014-05-26T00:00:00Z",
-             "domain": "CAREER", "description": "Inaugurated as Prime Minister of India",
+            {"event_id": "MODI_PM_2014", "event_date_utc": "2014-05-16T00:00:00Z",
+             "domain": "CAREER", "description": "PM Election",
              "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
-            {"event_id": "MODI_REELECT_2019", "event_date_utc": "2019-05-30T00:00:00Z",
-             "domain": "CAREER", "description": "Re-elected as Prime Minister with larger majority",
+            {"event_id": "MODI_REELECT_2019", "event_date_utc": "2019-05-23T00:00:00Z",
+             "domain": "CAREER", "description": "Re-election",
              "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_065_meloni",
+        "chart_filename": "chart_065_meloni.json",
+        "subject": "Giorgia Meloni",
+        "description": "Italian Prime Minister, leader of Brothers of Italy",
+        "provenance": "Wikipedia — Giorgia Meloni birth data",
+        "birth_data": {
+            "date": "1977-01-15",
+            "time": "11:30",
+            "latitude": 41.9028,
+            "longitude": 12.4964,
+            "timezone": "Europe/Rome",
+        },
+        "known_events": [
+            {"event_id": "MELONI_ENTRY_1992", "event_date_utc": "1992-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Political Entry",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
+            {"event_id": "MELONI_BROTHERS_2014", "event_date_utc": "2014-03-09T00:00:00Z",
+             "domain": "CAREER", "description": "Brothers of Italy Founding",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+            {"event_id": "MELONI_PM_2022", "event_date_utc": "2022-10-22T00:00:00Z",
+             "domain": "CAREER", "description": "PM Election",
+             "yoga_types": ["RAJA"], "expected_planets": ["JUPITER", "SATURN"]},
+        ],
+    },
+    # ══════════════════════════════════════════════════════════════════════
+    # Writers & Intellectuals (2)
+    # ══════════════════════════════════════════════════════════════════════
+    {
+        "fixture_id": "chart_066_rowling",
+        "chart_filename": "chart_066_rowling.json",
+        "subject": "J.K. Rowling",
+        "description": "British author, creator of Harry Potter series",
+        "provenance": "Wikipedia — J.K. Rowling birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1965-07-31",
+            "time": "19:00",
+            "latitude": 51.5394,
+            "longitude": -2.4167,
+            "timezone": "Europe/London",
+        },
+        "known_events": [
+            {"event_id": "ROWLING_HP1_1997", "event_date_utc": "1997-06-26T00:00:00Z",
+             "domain": "CAREER", "description": "HP1 Publication",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+            {"event_id": "ROWLING_HP7_2007", "event_date_utc": "2007-07-21T00:00:00Z",
+             "domain": "CAREER", "description": "HP7 Release",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+            {"event_id": "ROWLING_CONTROVERSY_2020", "event_date_utc": "2020-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Controversies Peak",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "MERCURY"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_067_roy",
+        "chart_filename": "chart_067_roy.json",
+        "subject": "Arundhati Roy",
+        "description": "Indian author, political activist, Booker Prize winner",
+        "provenance": "Wikipedia — Arundhati Roy birth data",
+        "birth_data": {
+            "date": "1961-11-24",
+            "time": "10:00",
+            "latitude": 25.5788,
+            "longitude": 91.8933,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "ROY_BOOKER_1997", "event_date_utc": "1997-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Booker Prize - God of Small Things",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+            {"event_id": "ROY_ACTIVISM_2002", "event_date_utc": "2002-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Activism Peak",
+             "yoga_types": ["RAJA"], "expected_planets": ["SATURN", "JUPITER"]},
+            {"event_id": "ROY_PANDEMIC_2020", "event_date_utc": "2020-03-01T00:00:00Z",
+             "domain": "CAREER", "description": "Pandemic Writings",
+             "yoga_types": ["RAJA"], "expected_planets": ["MERCURY", "JUPITER"]},
+        ],
+    },
+    # ══════════════════════════════════════════════════════════════════════
+    # Music & Arts (3)
+    # ══════════════════════════════════════════════════════════════════════
+    {
+        "fixture_id": "chart_068_rahman",
+        "chart_filename": "chart_068_rahman.json",
+        "subject": "A.R. Rahman",
+        "description": "Indian composer, Oscar winner, 'Mozart of Madras'",
+        "provenance": "Wikipedia — A.R. Rahman birth data",
+        "birth_data": {
+            "date": "1967-01-06",
+            "time": "06:30",
+            "latitude": 13.0827,
+            "longitude": 80.2707,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "RAHMAN_ROJA_1992", "event_date_utc": "1992-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Roja Breakthrough",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "RAHMAN_OSCARS_2009", "event_date_utc": "2009-03-01T00:00:00Z",
+             "domain": "CAREER", "description": "Slumdog Oscars",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "RAHMAN_PANDEMIC_2020", "event_date_utc": "2020-06-01T00:00:00Z",
+             "domain": "CAREER", "description": "Pandemic Concerts",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_069_singh",
+        "chart_filename": "chart_069_singh.json",
+        "subject": "Arijit Singh",
+        "description": "Indian playback singer, most streamed artist in India",
+        "provenance": "Wikipedia — Arijit Singh birth data",
+        "birth_data": {
+            "date": "1987-04-25",
+            "time": "10:00",
+            "latitude": 24.1989,
+            "longitude": 88.2828,
+            "timezone": "Asia/Kolkata",
+        },
+        "known_events": [
+            {"event_id": "SINGH_FAME_2011", "event_date_utc": "2011-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Fame Gurukul",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "SINGH_AASHIQUI_2013", "event_date_utc": "2013-08-15T00:00:00Z",
+             "domain": "CAREER", "description": "Aashiqui 2 - Tum Hi Ho",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "SINGH_PANDEMIC_2020", "event_date_utc": "2020-05-01T00:00:00Z",
+             "domain": "CAREER", "description": "Pandemic Concerts",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+        ],
+    },
+    {
+        "fixture_id": "chart_070_beyonce",
+        "chart_filename": "chart_070_beyonce.json",
+        "subject": "Beyoncé",
+        "description": "American singer, songwriter, actress, cultural icon",
+        "provenance": "Wikipedia — Beyoncé birth data (Rodden AA)",
+        "birth_data": {
+            "date": "1981-09-04",
+            "time": "11:30",
+            "latitude": 29.7604,
+            "longitude": -95.3698,
+            "timezone": "America/Chicago",
+        },
+        "known_events": [
+            {"event_id": "BEYONCE_DESTINY_1997", "event_date_utc": "1997-01-01T00:00:00Z",
+             "domain": "CAREER", "description": "Destiny's Child Debut",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "BEYONCE_SINGLE_LADIES_2008", "event_date_utc": "2008-09-02T00:00:00Z",
+             "domain": "CAREER", "description": "Single Ladies",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
+            {"event_id": "BEYONCE_LEMONADE_2016", "event_date_utc": "2016-04-23T00:00:00Z",
+             "domain": "CAREER", "description": "Lemonade Release",
+             "yoga_types": ["RAJA"], "expected_planets": ["VENUS", "JUPITER"]},
         ],
     },
 ]
@@ -573,26 +596,39 @@ MODERN_PERSONALITIES: list[dict[str, Any]] = [
 
 def extract_chart_facts(chart: Any) -> dict[str, Any]:
     """Extract canonical facts from a computed JyotishService chart."""
-    lagna_rashi = chart.lagna.rashi.value
-    lagna_rashi_idx = _RASHI_ORDER.index(lagna_rashi)
-
+    # Lagna
+    lagna = chart.lagna
     lagna_facts = {
-        "sign": lagna_rashi,
-        "longitude": chart.lagna.ascendant_longitude_deg,
+        "ascendant_longitude_deg": lagna.ascendant_longitude_deg,
+        "rashi": lagna.rashi.value,
+        "degree_in_rashi": lagna.degree_in_rashi,
+        "nakshatra": lagna.nakshatra.value,
+        "nakshatra_lord": lagna.nakshatra_lord.value,
+        "pada": lagna.pada.value,
+        "degree_in_nakshatra": lagna.degree_in_nakshatra,
+        "d9_sign": compute_d9_sign(lagna.ascendant_longitude_deg),
     }
 
+    # Planets
+    lagna_rashi = lagna.rashi.value
+    lagna_rashi_idx = _RASHI_ORDER.index(lagna_rashi)
     planets: dict[str, Any] = {}
     for ps in chart.planet_states:
         name = ps.body.value
         planet_rashi_idx = _RASHI_ORDER.index(ps.rashi.value)
         house_num = (planet_rashi_idx - lagna_rashi_idx) % 12 + 1
         planets[name] = {
+            "longitude_tropical": ps.longitude_tropical,
+            "longitude_sidereal": ps.longitude_sidereal,
             "longitude_used": ps.longitude_used,
             "rashi": ps.rashi.value,
             "house": house_num,
             "degree_in_rashi": ps.degree_in_rashi,
             "nakshatra": ps.nakshatra.value,
             "nakshatra_lord": ps.nakshatra_lord.value,
+            "sign_lord": _SIGN_LORDS.get(ps.rashi.value, ""),
+            "pada": ps.pada.value,
+            "degree_in_nakshatra": ps.degree_in_nakshatra,
             "retrograde": ps.retrograde.value,
             "d9_sign": compute_d9_sign(ps.longitude_used),
         }
@@ -635,47 +671,6 @@ def build_fixture(subject_def: dict[str, Any], chart: Any) -> dict[str, Any]:
     """Build the complete fixture JSON structure."""
     facts = extract_chart_facts(chart)
 
-    # Build expected_canonical_facts in the same format as validation charts
-    expected_facts = {
-        "lagna": {
-            "sign": facts["lagna"]["sign"],
-            "longitude": facts["lagna"]["longitude"],
-        },
-        "planets": {},
-        "houses": {},
-        "house_lords": facts["house_lords"],
-    }
-
-    # Add planet data with sign_lord computation
-    _SIGN_LORDS: dict[str, str] = {
-        "MESHA": "MARS", "VRISHABHA": "VENUS", "MITHUNA": "MERCURY",
-        "KARKA": "MOON", "SIMHA": "SUN", "KANYA": "MERCURY",
-        "TULA": "VENUS", "VRISHCHIKA": "MARS", "DHANUSHA": "JUPITER",
-        "MAKARA": "SATURN", "KUMBHA": "SATURN", "MEENA": "JUPITER",
-    }
-
-    for pname, pdata in facts["planets"].items():
-        expected_facts["planets"][pname] = {
-            "longitude_used": pdata["longitude_used"],
-            "rashi": pdata["rashi"],
-            "house": pdata["house"],
-            "degree_in_rashi": pdata["degree_in_rashi"],
-            "nakshatra": pdata["nakshatra"],
-            "nakshatra_lord": pdata["nakshatra_lord"],
-            "sign_lord": _SIGN_LORDS.get(pdata["rashi"], ""),
-            "retrograde": pdata["retrograde"],
-            "d9_sign": pdata["d9_sign"],
-            "house_lord_of": pdata.get("house_lord_of", []),
-        }
-
-    # Add house data
-    for hnum, hdata in facts["houses"].items():
-        expected_facts["houses"][hnum] = {
-            "rashi": hdata["rashi"],
-            "lord": hdata["lord"],
-            "occupants": hdata["occupants"],
-        }
-
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "_meta": {
@@ -702,7 +697,7 @@ def build_fixture(subject_def: dict[str, Any], chart: Any) -> dict[str, Any]:
             ],
         },
         "raw_birth_data": subject_def["birth_data"],
-        "expected_canonical_facts": expected_facts,
+        "expected_canonical_facts": facts,
         "known_events": subject_def["known_events"],
     }
 
@@ -728,11 +723,15 @@ def main() -> int:
     svc = JyotishService()
 
     print("=" * 64)
-    print(f"Phase F4: Modern Personality Cohort — Fixture Generator ({len(MODERN_PERSONALITIES)} subjects)")
+    print(f"Phase F4a: Modern Personality Cohort — Exact 20 Personalities")
     print("=" * 64)
     print()
 
     FIXTURES_DIR.mkdir(parents=True, exist_ok=True)
+
+    generated = 0
+    skipped = 0
+    errors = 0
 
     for subject_def in MODERN_PERSONALITIES:
         fixture_id = subject_def["fixture_id"]
@@ -743,6 +742,7 @@ def main() -> int:
         out_path = FIXTURES_DIR / filename
         if out_path.exists() and not args.dry_run:
             print(f"── {subject_def['subject']} ({fixture_id}) — SKIP (exists)")
+            skipped += 1
             continue
 
         print(f"── {subject_def['subject']} ({fixture_id}) ──")
@@ -769,10 +769,12 @@ def main() -> int:
                 with out_path.open("w", encoding="utf-8") as f:
                     json.dump(fixture, f, indent=2, sort_keys=False)
                 print(f"   ✓ Saved: {out_path}")
+                generated += 1
 
         except Exception as e:
             print(f"   ✗ ERROR: {e}")
             print(f"   Skipping {subject_def['subject']}")
+            errors += 1
 
         print()
 
@@ -781,7 +783,10 @@ def main() -> int:
         print("Dry run complete — no files written.")
     else:
         print(f"Fixture generation complete.")
-        print(f"Output directory: {FIXTURES_DIR}")
+        print(f"  Generated: {generated}")
+        print(f"  Skipped (existing): {skipped}")
+        print(f"  Errors: {errors}")
+        print(f"  Output directory: {FIXTURES_DIR}")
     print("=" * 64)
 
     return 0

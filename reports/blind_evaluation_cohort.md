@@ -2,7 +2,7 @@
 
 **Phase E5: Consolidated Pattern-Analysis Report**
 
-**Subjects:** 10 | **Events:** 30 | **Relevant Yoga Activations:** 16/30 (53%)
+**Subjects:** 10 | **Events:** 30 | **Relevant Yoga Activations:** 19/30 (63%)
 
 ---
 
@@ -10,370 +10,376 @@
 
 The 5-layer JRE pipeline was executed against 30 known life events across 10 historical subjects. No calibration, tuning, or post-hoc adjustments were applied.
 
-**Overall Hit Rate:** 16/30 (53%) events had a relevant Yoga activated by Dasha at the time of the event.
+**Overall Hit Rate:** 19/30 (63%) events had a relevant Yoga activated by Dasha at the time of the event.
 
 | Subject | Lagna | Events | Activated | Hit Rate |
 |---------|-------|--------|-----------|----------|
-| Ludwig van Beethoven | VRISHCHIKA | 3 | 0 | 0/3 |
-| Vincent van Gogh | MITHUNA | 3 | 3 | 3/3 |
-| Pablo Picasso | KARKA | 3 | 0 | 0/3 |
-| Leo Tolstoy | KANYA | 3 | 0 | 0/3 |
-| Mark Twain | TULA | 3 | 3 | 3/3 |
-| Charlie Chaplin | VRISHCHIKA | 3 | 2 | 2/3 |
-| Pyotr Tchaikovsky | SIMHA | 3 | 2 | 2/3 |
-| Hans Christian Andersen | VRISHCHIKA | 3 | 2 | 2/3 |
-| Franz Liszt | KARKA | 3 | 3 | 3/3 |
-| Anton Chekhov | DHANUSHA | 3 | 1 | 1/3 |
+| Henry Ford | MEENA | 3 | 0 | 0/3 |
+| John D. Rockefeller | MESHA | 3 | 1 | 1/3 |
+| Andrew Carnegie | MITHUNA | 3 | 3 | 3/3 |
+| J.P. Morgan | VRISHABHA | 3 | 1 | 1/3 |
+| Cornelius Vanderbilt | MITHUNA | 3 | 3 | 3/3 |
+| Muhammad Ali | KARKA | 3 | 3 | 3/3 |
+| Babe Ruth | VRISHABHA | 3 | 3 | 3/3 |
+| Jim Thorpe | MITHUNA | 3 | 0 | 0/3 |
+| Jackie Robinson | KARKA | 3 | 2 | 2/3 |
+| Jesse Owens | MEENA | 3 | 3 | 3/3 |
 
 ---
 
 ## Section 2: Systemic Patterns
 
 ### Chain Impact (Layer 1.5)
-- **Computed for:** 66 yoga formations across all charts
-- **Average chain impact:** -24.163267
-- **Negative chain impacts:** 39/66 (59%)
+- **Computed for:** 72 yoga formations across all charts
+- **Average chain impact:** -30.057786
+- **Negative chain impacts:** 51/72 (71%)
 - **Pattern:** Chain impact is consistently negative across the cohort, suggesting multi-hop dispositorship chains tend to produce net malefic functional influence.
 
 ### Vipareeta Raja Yoga Frequency
-- **Triggered in:** 2/10 subjects (20%)
-- **Formed instances:** 6/6 evaluations
+- **Triggered in:** 0/10 subjects (0%)
+- **Formed instances:** 0/0 evaluations
 
 ### Dasha Activation by Event Domain
 
 | Domain | Events | Dasha-Aligned | Alignment Rate |
 |--------|--------|---------------|----------------|
-| CAREER | 18 | 9 | 50% |
+| CAREER | 19 | 13 | 68% |
 | HEALTH | 10 | 5 | 50% |
-| MARRIAGE | 1 | 1 | 100% |
 | MIGRATION | 1 | 1 | 100% |
 
 ### Yoga Formation Frequency
 
 | Yoga | Formed/Weakened | Activated |
 |------|-----------------|-----------|
-| Raja | 18 | 9 |
-| Dhana | 12 | 4 |
-| Gajakesari | 12 | 6 |
-| Anapha | 9 | 2 |
-| Neecha Bhanga | 9 | 6 |
-| Malavya | 6 | 2 |
-| Vipareeta Raja | 6 | 0 |
-| Sunapha | 6 | 3 |
-| Hamsa | 3 | 0 |
-| Saraswati | 3 | 1 |
-| Vasumati | 3 | 2 |
-| Sasa | 3 | 2 |
-| Budhaditya | 3 | 1 |
+| Raja | 18 | 12 |
+| Budhaditya | 12 | 5 |
+| Sunapha | 9 | 4 |
+| Anapha | 9 | 5 |
+| Neecha Bhanga | 6 | 2 |
+| Hamsa | 6 | 3 |
+| Dhana | 6 | 4 |
+| Adhi | 6 | 5 |
+| Amala | 6 | 3 |
+| Vasumati | 3 | 3 |
+| Gajakesari | 3 | 3 |
 
 ### Modifier Pipeline Outcomes
-- **FORMED:** 18/93 (19%)
-- **WEAKENED:** 51/93 (55%)
-- **CANCELLED:** 24/93 (26%)
+- **FORMED:** 39/84 (46%)
+- **WEAKENED:** 21/84 (25%)
+- **CANCELLED:** 24/84 (29%)
 
 ---
 
 ## Section 3: Per-Chart Breakdown
 
-### Ludwig van Beethoven
-**Fixture:** `chart_031_beethoven.json` | **Lagna:** VRISHCHIKA (ANURADHA) | **Moon Nakshatra:** JYESHTHA
+### Henry Ford
+**Fixture:** `chart_041_ford.json` | **Lagna:** MEENA (UTTARA_BHADRAPADA) | **Moon Nakshatra:** DHANISHTHA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| BEETHOVEN_9TH_1824 | 1824-05-07 | CAREER | RAHU/KETU/MARS | Dhana | N/A | ✗ | JUPITER, VENUS |
-| BEETHOVEN_MOONLIGHT_1802 | 1802-01-01 | CAREER | MOON/SATURN/RAHU | Dhana | N/A | ✗ | VENUS, MERCURY |
-| BEETHOVEN_DEATH_1827 | 1827-03-26 | HEALTH | RAHU/VENUS/SATURN | Dhana | N/A | ✗ | SATURN, RAHU |
+| FORD_MODEL_T_1908 | 1908-10-01 | CAREER | MARS/SATURN/RAHU | — | N/A | ✗ | VENUS, MERCURY |
+| FORD_ASSEMBLY_1913 | 1913-12-01 | CAREER | RAHU/RAHU/MERCURY | — | N/A | ✗ | MERCURY, SATURN |
+| FORD_DEATH_1947 | 1947-04-07 | HEALTH | SATURN/SATURN/MERCURY | — | N/A | ✗ | SATURN, RAHU |
 
-**BEETHOVEN_9TH_1824** (1824-05-07) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Dhana | CANCELLED | JUPITER, MERCURY | 0.000 | — | 0.40 | — | DORMANT |
-
-**BEETHOVEN_MOONLIGHT_1802** (1802-01-01) — CAREER
+**FORD_MODEL_T_1908** (1908-10-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Dhana | CANCELLED | JUPITER, MERCURY | 0.000 | — | 0.40 | — | DORMANT |
 
-**BEETHOVEN_DEATH_1827** (1827-03-26) — HEALTH
+**FORD_ASSEMBLY_1913** (1913-12-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Dhana | CANCELLED | JUPITER, MERCURY | 0.000 | — | 0.40 | — | DORMANT |
 
-### Vincent van Gogh
-**Fixture:** `chart_032_vangogh.json` | **Lagna:** MITHUNA (PUNARVASU) | **Moon Nakshatra:** JYESHTHA
+**FORD_DEATH_1947** (1947-04-07) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+
+### John D. Rockefeller
+**Fixture:** `chart_042_rockefeller.json` | **Lagna:** MESHA (BHARANI) | **Moon Nakshatra:** ROHINI
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| VANGOGH_STARRY_1889 | 1889-06-01 | CAREER | RAHU/RAHU/SATURN | Anapha | 1.0000 | ✓ | VENUS, JUPITER |
-| VANGOGH_ARLES_1888 | 1888-02-01 | MIGRATION | MARS/MOON/MARS | Anapha | 1.0000 | ✓ | VENUS, RAHU |
-| VANGOGH_DEATH_1890 | 1890-07-29 | HEALTH | RAHU/RAHU/VENUS | Anapha | 1.0000 | ✓ | SATURN, RAHU |
+| ROCKEFELLER_STD_1870 | 1870-01-10 | CAREER | MOON/MOON/MOON | Raja | 1.0000 | ✗ | VENUS, MERCURY |
+| ROCKEFELLER_RICHEST_1916 | 1916-09-29 | CAREER | JUPITER/MOON/RAHU | Raja | 1.0000 | ✓ | VENUS, JUPITER |
+| ROCKEFELLER_DEATH_1937 | 1937-05-23 | HEALTH | SATURN/RAHU/MARS | Raja | 1.0000 | ✗ | SATURN, RAHU |
 
-**VANGOGH_STARRY_1889** (1889-06-01) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Anapha | WEAKENED | MOON, JUPITER | 0.350 | 1.0000 | 0.40 | -43.8567 | DORMANT |
-| Anapha | WEAKENED | MOON, KETU | 0.350 | 1.0000 | 0.40 | -45.9953 | DORMANT |
-| Vasumati | WEAKENED | MERCURY, MOON, VENUS | 0.350 | 1.0000 | 0.40 | -57.7023 | DORMANT |
-
-**VANGOGH_ARLES_1888** (1888-02-01) — MIGRATION
+**ROCKEFELLER_STD_1870** (1870-01-10) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Anapha | WEAKENED | MOON, JUPITER | 0.350 | 1.0000 | 1.25 | -43.8567 | ACTIVATED |
-| Anapha | WEAKENED | MOON, KETU | 0.350 | 1.0000 | 1.25 | -45.9953 | ACTIVATED |
-| Vasumati | WEAKENED | MERCURY, MOON, VENUS | 0.350 | 1.0000 | 1.25 | -57.7023 | ACTIVATED |
+| Raja | WEAKENED | MARS, JUPITER | 0.500 | 1.0000 | 0.40 | -13.7075 | DORMANT |
 
-**VANGOGH_DEATH_1890** (1890-07-29) — HEALTH
+**ROCKEFELLER_RICHEST_1916** (1916-09-29) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Anapha | WEAKENED | MOON, JUPITER | 0.350 | 1.0000 | 0.40 | -43.8567 | DORMANT |
-| Anapha | WEAKENED | MOON, KETU | 0.350 | 1.0000 | 0.40 | -45.9953 | DORMANT |
-| Vasumati | WEAKENED | MERCURY, MOON, VENUS | 0.350 | 1.0000 | 1.10 | -57.7023 | ACTIVATED |
+| Raja | WEAKENED | MARS, JUPITER | 0.500 | 1.0000 | 1.50 | -13.7075 | ACTIVATED |
 
-### Pablo Picasso
-**Fixture:** `chart_033_picasso.json` | **Lagna:** KARKA (PUSHYA) | **Moon Nakshatra:** ANURADHA
+**ROCKEFELLER_DEATH_1937** (1937-05-23) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | MARS, JUPITER | 0.500 | 1.0000 | 1.10 | -13.7075 | ACTIVATED |
+
+### Andrew Carnegie
+**Fixture:** `chart_043_carnegie.json` | **Lagna:** MITHUNA (PUNARVASU) | **Moon Nakshatra:** DHANISHTHA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| PICASSO_GUERNICA_1937 | 1937-04-26 | CAREER | JUPITER/JUPITER/MOON | — | N/A | ✗ | VENUS, SATURN |
-| PICASSO_BLUE_1901 | 1901-01-01 | CAREER | MOON/MOON/RAHU | — | N/A | ✗ | VENUS, RAHU |
-| PICASSO_DEATH_1973 | 1973-04-08 | HEALTH | MERCURY/KETU/KETU | — | N/A | ✗ | SATURN, RAHU |
+| CARNEGIE_STEEL_1892 | 1892-01-01 | CAREER | RAHU/SATURN/JUPITER | Raja | 0.5290 | ✓ | VENUS, SATURN |
+| CARNEGIE_GOSPEL_1889 | 1889-06-01 | CAREER | RAHU/JUPITER/RAHU | Raja | 0.5290 | ✓ | MERCURY, JUPITER |
+| CARNEGIE_DEATH_1919 | 1919-08-11 | HEALTH | SATURN/SATURN/VENUS | Raja | 0.5290 | ✓ | SATURN, RAHU |
 
-**PICASSO_GUERNICA_1937** (1937-04-26) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-
-**PICASSO_BLUE_1901** (1901-01-01) — CAREER
+**CARNEGIE_STEEL_1892** (1892-01-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | CANCELLED | MERCURY, SATURN | 1.000 | 0.5290 | 1.25 | -43.1987 | ACTIVATED |
+| Vasumati | WEAKENED | JUPITER, MERCURY, VENUS | 0.350 | 0.4232 | 1.10 | -61.3564 | ACTIVATED |
 
-**PICASSO_DEATH_1973** (1973-04-08) — HEALTH
+**CARNEGIE_GOSPEL_1889** (1889-06-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | CANCELLED | MERCURY, SATURN | 1.000 | 0.5290 | 0.40 | -43.1987 | DORMANT |
+| Vasumati | WEAKENED | JUPITER, MERCURY, VENUS | 0.350 | 0.4232 | 1.25 | -61.3564 | ACTIVATED |
 
-### Leo Tolstoy
-**Fixture:** `chart_034_tolstoy.json` | **Lagna:** KANYA (UTTARA_PHALGUNI) | **Moon Nakshatra:** PURVA_PHALGUNI
+**CARNEGIE_DEATH_1919** (1919-08-11) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | CANCELLED | MERCURY, SATURN | 1.000 | 0.5290 | 1.50 | -43.1987 | ACTIVATED |
+| Vasumati | WEAKENED | JUPITER, MERCURY, VENUS | 0.350 | 0.4232 | 1.10 | -61.3564 | ACTIVATED |
+
+### J.P. Morgan
+**Fixture:** `chart_044_morgan.json` | **Lagna:** VRISHABHA (ROHINI) | **Moon Nakshatra:** PURVA_PHALGUNI
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| TOLSTOY_WAR_AND_PEACE_1869 | 1869-01-01 | CAREER | RAHU/RAHU/RAHU | — | N/A | ✗ | JUPITER, MERCURY |
-| TOLSTOY_ANNA_KARENINA_1877 | 1877-01-01 | CAREER | RAHU/MERCURY/MERCURY | — | N/A | ✗ | VENUS, MERCURY |
-| TOLSTOY_DEATH_1910 | 1910-11-20 | HEALTH | SATURN/VENUS/RAHU | — | N/A | ✗ | SATURN, RAHU |
+| MORGAN_PANIC_1907 | 1907-10-24 | CAREER | SATURN/SATURN/VENUS | Sunapha | 1.0000 | ✗ | VENUS, SATURN |
+| MORGAN_TRUST_1895 | 1895-02-01 | CAREER | JUPITER/SATURN/JUPITER | Sunapha | 1.0000 | ✓ | VENUS, JUPITER |
+| MORGAN_DEATH_1913 | 1913-03-31 | HEALTH | SATURN/KETU/SATURN | Sunapha | 1.0000 | ✗ | SATURN, RAHU |
 
-**TOLSTOY_WAR_AND_PEACE_1869** (1869-01-01) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-
-**TOLSTOY_ANNA_KARENINA_1877** (1877-01-01) — CAREER
+**MORGAN_PANIC_1907** (1907-10-24) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
+| Sunapha | FORMED | MOON, MARS | 0.700 | 1.0000 | 0.40 | -71.3658 | DORMANT |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 0.40 | -99.7659 | DORMANT |
+| Neecha Bhanga | FORMED | MARS, MOON | 0.700 | — | 0.40 | — | DORMANT |
 
-**TOLSTOY_DEATH_1910** (1910-11-20) — HEALTH
+**MORGAN_TRUST_1895** (1895-02-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
+| Sunapha | FORMED | MOON, MARS | 0.700 | 1.0000 | 0.40 | -71.3658 | DORMANT |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 1.50 | -99.7659 | ACTIVATED |
+| Neecha Bhanga | FORMED | MARS, MOON | 0.700 | — | 0.40 | — | DORMANT |
 
-### Mark Twain
-**Fixture:** `chart_035_twain.json` | **Lagna:** TULA (SWATI) | **Moon Nakshatra:** REVATI
+**MORGAN_DEATH_1913** (1913-03-31) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Sunapha | FORMED | MOON, MARS | 0.700 | 1.0000 | 0.40 | -71.3658 | DORMANT |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 0.40 | -99.7659 | DORMANT |
+| Neecha Bhanga | FORMED | MARS, MOON | 0.700 | — | 0.40 | — | DORMANT |
+
+### Cornelius Vanderbilt
+**Fixture:** `chart_045_vanderbilt.json` | **Lagna:** MITHUNA (MRIGASHIRA) | **Moon Nakshatra:** BHARANI
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| TWAIN_TOM_SAWYER_1876 | 1876-01-01 | CAREER | MOON/MERCURY/SATURN | Gajakesari | 1.0000 | ✓ | MERCURY, JUPITER |
-| TWAIN_MARK_1863 | 1863-02-03 | CAREER | SUN/SUN/SATURN | Gajakesari | 1.0000 | ✓ | MERCURY, RAHU |
-| TWAIN_DEATH_1910 | 1910-04-21 | HEALTH | JUPITER/MERCURY/JUPITER | Gajakesari | 1.0000 | ✓ | SATURN, RAHU |
+| VANDERBILT_RAILROAD_1863 | 1863-01-01 | CAREER | JUPITER/SATURN/RAHU | Raja | 1.0000 | ✓ | VENUS, SATURN |
+| VANDERBILT_RICHEST_1869 | 1869-01-01 | CAREER | JUPITER/VENUS/MERCURY | Raja | 1.0000 | ✓ | VENUS, JUPITER |
+| VANDERBILT_DEATH_1877 | 1877-01-04 | HEALTH | SATURN/SATURN/RAHU | Raja | 1.0000 | ✓ | SATURN, RAHU |
 
-**TWAIN_TOM_SAWYER_1876** (1876-01-01) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 1.0000 | 1.50 | 38.5705 | ACTIVATED |
-| Raja | CANCELLED | SATURN, MERCURY | 1.000 | 1.0000 | 1.25 | -34.8523 | ACTIVATED |
-| Dhana | WEAKENED | MARS, SUN | 0.350 | — | 0.40 | — | DORMANT |
-
-**TWAIN_MARK_1863** (1863-02-03) — CAREER
+**VANDERBILT_RAILROAD_1863** (1863-01-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 1.0000 | 0.40 | 38.5705 | DORMANT |
-| Raja | CANCELLED | SATURN, MERCURY | 1.000 | 1.0000 | 1.10 | -34.8523 | ACTIVATED |
-| Dhana | WEAKENED | MARS, SUN | 0.350 | — | 1.50 | — | ACTIVATED |
+| Raja | WEAKENED | MERCURY, SATURN | 0.150 | 1.0000 | 1.25 | -52.7612 | ACTIVATED |
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 1.50 | 1.0000 | ACTIVATED |
+| Anapha | CANCELLED | MOON, MERCURY | 0.150 | 1.0000 | 0.40 | -59.4591 | DORMANT |
 
-**TWAIN_DEATH_1910** (1910-04-21) — HEALTH
+**VANDERBILT_RICHEST_1869** (1869-01-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 1.0000 | 1.50 | 38.5705 | ACTIVATED |
-| Raja | CANCELLED | SATURN, MERCURY | 1.000 | 1.0000 | 1.25 | -34.8523 | ACTIVATED |
-| Dhana | WEAKENED | MARS, SUN | 0.350 | — | 0.40 | — | DORMANT |
+| Raja | WEAKENED | MERCURY, SATURN | 0.150 | 1.0000 | 1.10 | -52.7612 | ACTIVATED |
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 1.50 | 1.0000 | ACTIVATED |
+| Anapha | CANCELLED | MOON, MERCURY | 0.150 | 1.0000 | 1.10 | -59.4591 | ACTIVATED |
 
-### Charlie Chaplin
-**Fixture:** `chart_036_chaplin.json` | **Lagna:** VRISHCHIKA (JYESHTHA) | **Moon Nakshatra:** CHITRA
+**VANDERBILT_DEATH_1877** (1877-01-04) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | MERCURY, SATURN | 0.150 | 1.0000 | 1.50 | -52.7612 | ACTIVATED |
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 0.40 | 1.0000 | DORMANT |
+| Anapha | CANCELLED | MOON, MERCURY | 0.150 | 1.0000 | 0.40 | -59.4591 | DORMANT |
+
+### Muhammad Ali
+**Fixture:** `chart_046_ali.json` | **Lagna:** KARKA (ASHLESHA) | **Moon Nakshatra:** SHRAVANA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| CHAPLIN_KID_1921 | 1921-02-06 | CAREER | MARS/JUPITER/MERCURY | Raja | 1.0000 | ✓ | VENUS, JUPITER |
-| CHAPLIN_GOLD_RUSH_1925 | 1925-08-16 | CAREER | MARS/SUN/VENUS | Raja | 1.0000 | ✗ | VENUS, JUPITER |
-| CHAPLIN_DEATH_1977 | 1977-12-25 | HEALTH | SATURN/JUPITER/VENUS | Raja | 1.0000 | ✓ | SATURN, RAHU |
+| ALI_LISTON_1964 | 1964-02-25 | CAREER | MOON/RAHU/MERCURY | Raja | 1.0000 | ✓ | MARS, JUPITER |
+| ALI_RUMBLE_1974 | 1974-10-30 | CAREER | MARS/SATURN/VENUS | Raja | 1.0000 | ✓ | MARS, SUN |
+| ALI_DEATH_2016 | 2016-06-03 | HEALTH | SATURN/MERCURY/KETU | Raja | 1.0000 | ✓ | SATURN, RAHU |
 
-**CHAPLIN_KID_1921** (1921-02-06) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, JUPITER | 0.700 | 1.0000 | 1.25 | -110.2766 | ACTIVATED |
-| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
-
-**CHAPLIN_GOLD_RUSH_1925** (1925-08-16) — CAREER
+**ALI_LISTON_1964** (1964-02-25) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, JUPITER | 0.700 | 1.0000 | 0.40 | -110.2766 | DORMANT |
-| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
+| Raja | CANCELLED | VENUS, MOON | 1.000 | 1.0000 | 1.50 | -33.4548 | ACTIVATED |
+| Anapha | CANCELLED | MOON, KETU | 0.420 | 1.0000 | 1.50 | -43.1462 | ACTIVATED |
+| Adhi | FORMED | MERCURY, VENUS | 1.000 | 1.0000 | 1.10 | -32.0897 | ACTIVATED |
 
-**CHAPLIN_DEATH_1977** (1977-12-25) — HEALTH
+**ALI_RUMBLE_1974** (1974-10-30) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SATURN, JUPITER | 0.700 | 1.0000 | 1.50 | -110.2766 | ACTIVATED |
-| Vipareeta Raja | FORMED | — | 1.000 | — | 0.40 | — | DORMANT |
+| Raja | CANCELLED | VENUS, MOON | 1.000 | 1.0000 | 1.10 | -33.4548 | ACTIVATED |
+| Anapha | CANCELLED | MOON, KETU | 0.420 | 1.0000 | 0.40 | -43.1462 | DORMANT |
+| Adhi | FORMED | MERCURY, VENUS | 1.000 | 1.0000 | 1.10 | -32.0897 | ACTIVATED |
 
-### Pyotr Tchaikovsky
-**Fixture:** `chart_037_tchaikovsky.json` | **Lagna:** SIMHA (PURVA_PHALGUNI) | **Moon Nakshatra:** PUSHYA
+**ALI_DEATH_2016** (2016-06-03) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | CANCELLED | VENUS, MOON | 1.000 | 1.0000 | 0.40 | -33.4548 | DORMANT |
+| Anapha | CANCELLED | MOON, KETU | 0.420 | 1.0000 | 1.10 | -43.1462 | ACTIVATED |
+| Adhi | FORMED | MERCURY, VENUS | 1.000 | 1.0000 | 1.25 | -32.0897 | ACTIVATED |
+
+### Babe Ruth
+**Fixture:** `chart_047_ruth.json` | **Lagna:** VRISHABHA (ROHINI) | **Moon Nakshatra:** ARDRA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| TCHAIKOVSKY_NUTCRACKER_1892 | 1892-12-18 | CAREER | RAHU/MARS/VENUS | Raja | 1.0000 | ✓ | VENUS, JUPITER |
-| TCHAIKOVSKY_SWAN_1877 | 1877-03-04 | CAREER | RAHU/RAHU/VENUS | Raja | 1.0000 | ✗ | VENUS, SATURN |
-| TCHAIKOVSKY_DEATH_1893 | 1893-11-06 | HEALTH | JUPITER/JUPITER/MERCURY | Raja | 1.0000 | ✓ | SATURN, RAHU |
+| RUTH_60_HOMERS_1927 | 1927-09-30 | CAREER | MARS/MERCURY/JUPITER | Raja | 1.0000 | ✓ | MARS, JUPITER |
+| RUTH_SOLD_1920 | 1920-01-03 | MIGRATION | MOON/MERCURY/MARS | Raja | 1.0000 | ✓ | VENUS, RAHU |
+| RUTH_DEATH_1948 | 1948-08-16 | HEALTH | JUPITER/JUPITER/JUPITER | Raja | 1.0000 | ✓ | SATURN, RAHU |
 
-**TCHAIKOVSKY_NUTCRACKER_1892** (1892-12-18) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SUN, MARS | 0.500 | 1.0000 | 1.25 | -36.7083 | ACTIVATED |
-| Anapha | WEAKENED | MOON, KETU | 0.500 | 1.0000 | 0.40 | -24.4884 | DORMANT |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 0.40 | 28.3999 | DORMANT |
-
-**TCHAIKOVSKY_SWAN_1877** (1877-03-04) — CAREER
+**RUTH_60_HOMERS_1927** (1927-09-30) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SUN, MARS | 0.500 | 1.0000 | 0.40 | -36.7083 | DORMANT |
-| Anapha | WEAKENED | MOON, KETU | 0.500 | 1.0000 | 0.40 | -24.4884 | DORMANT |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 0.40 | 28.3999 | DORMANT |
+| Raja | CANCELLED | VENUS, MERCURY | 1.000 | 1.0000 | 1.25 | -48.4344 | ACTIVATED |
+| Amala | FORMED | MERCURY | 1.000 | 1.0000 | 1.25 | -22.5568 | ACTIVATED |
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.3680 | 1.10 | 53.0263 | ACTIVATED |
 
-**TCHAIKOVSKY_DEATH_1893** (1893-11-06) — HEALTH
+**RUTH_SOLD_1920** (1920-01-03) — MIGRATION
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Raja | WEAKENED | SUN, MARS | 0.500 | 1.0000 | 0.40 | -36.7083 | DORMANT |
-| Anapha | WEAKENED | MOON, KETU | 0.500 | 1.0000 | 0.40 | -24.4884 | DORMANT |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 1.50 | 28.3999 | ACTIVATED |
+| Raja | CANCELLED | VENUS, MERCURY | 1.000 | 1.0000 | 1.25 | -48.4344 | ACTIVATED |
+| Amala | FORMED | MERCURY | 1.000 | 1.0000 | 1.25 | -22.5568 | ACTIVATED |
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.3680 | 1.50 | 53.0263 | ACTIVATED |
 
-### Hans Christian Andersen
-**Fixture:** `chart_038_andersen.json` | **Lagna:** VRISHCHIKA (JYESHTHA) | **Moon Nakshatra:** BHARANI
+**RUTH_DEATH_1948** (1948-08-16) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | CANCELLED | VENUS, MERCURY | 1.000 | 1.0000 | 0.40 | -48.4344 | DORMANT |
+| Amala | FORMED | MERCURY | 1.000 | 1.0000 | 0.40 | -22.5568 | DORMANT |
+| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 0.3680 | 1.50 | 53.0263 | ACTIVATED |
+
+### Jim Thorpe
+**Fixture:** `chart_048_thorpe.json` | **Lagna:** MITHUNA (ARDRA) | **Moon Nakshatra:** CHITRA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| ANDERSEN_UGLY_DUCKLING_1843 | 1843-11-11 | CAREER | MOON/SATURN/JUPITER | Sunapha | 1.0000 | ✓ | MERCURY, JUPITER |
-| ANDERSEN_FROST_1830 | 1830-01-01 | CAREER | VENUS/MERCURY/RAHU | Sunapha | 1.0000 | ✓ | MERCURY, VENUS |
-| ANDERSEN_DEATH_1875 | 1875-08-04 | HEALTH | JUPITER/SATURN/SATURN | Sunapha | 1.0000 | ✗ | SATURN, RAHU |
+| THORPE_OLYMPICS_1912 | 1912-07-13 | CAREER | MOON/MOON/RAHU | Dhana | N/A | ✗ | MARS, JUPITER |
+| THORPE_NFL_1920 | 1920-08-20 | CAREER | MOON/VENUS/MOON | Dhana | N/A | ✗ | MARS, SATURN |
+| THORPE_DEATH_1953 | 1953-03-28 | HEALTH | JUPITER/MERCURY/MARS | Dhana | N/A | ✗ | SATURN, RAHU |
 
-**ANDERSEN_UGLY_DUCKLING_1843** (1843-11-11) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | WEAKENED | MOON, VENUS | 0.500 | 1.0000 | 1.50 | -93.8168 | ACTIVATED |
-| Neecha Bhanga | CANCELLED | MERCURY, JUPITER | 0.000 | — | 1.10 | — | ACTIVATED |
-
-**ANDERSEN_FROST_1830** (1830-01-01) — CAREER
+**THORPE_OLYMPICS_1912** (1912-07-13) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | WEAKENED | MOON, VENUS | 0.500 | 1.0000 | 1.50 | -93.8168 | ACTIVATED |
-| Neecha Bhanga | CANCELLED | MERCURY, JUPITER | 0.000 | — | 1.25 | — | ACTIVATED |
+| Dhana | CANCELLED | MOON, MARS | 1.000 | — | 1.50 | — | ACTIVATED |
+| Budhaditya | WEAKENED | SUN, MERCURY | 0.500 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
-**ANDERSEN_DEATH_1875** (1875-08-04) — HEALTH
+**THORPE_NFL_1920** (1920-08-20) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Sunapha | WEAKENED | MOON, VENUS | 0.500 | 1.0000 | 0.40 | -93.8168 | DORMANT |
-| Neecha Bhanga | CANCELLED | MERCURY, JUPITER | 0.000 | — | 1.50 | — | ACTIVATED |
+| Dhana | CANCELLED | MOON, MARS | 1.000 | — | 1.50 | — | ACTIVATED |
+| Budhaditya | WEAKENED | SUN, MERCURY | 0.500 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
-### Franz Liszt
-**Fixture:** `chart_039_liszt.json` | **Lagna:** KARKA (PUNARVASU) | **Moon Nakshatra:** MULA
+**THORPE_DEATH_1953** (1953-03-28) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Dhana | CANCELLED | MOON, MARS | 1.000 | — | 1.10 | — | ACTIVATED |
+| Budhaditya | WEAKENED | SUN, MERCURY | 0.500 | 0.0000 | 1.25 | 0.0000 | ACTIVATED |
+
+### Jackie Robinson
+**Fixture:** `chart_049_robinson.json` | **Lagna:** KARKA (ASHLESHA) | **Moon Nakshatra:** SHRAVANA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| LISZT_PAGANINI_1832 | 1832-04-09 | CAREER | VENUS/MERCURY/RAHU | Malavya | 1.0000 | ✓ | VENUS, JUPITER |
-| LISZT_BERNED_1847 | 1847-02-01 | MARRIAGE | MOON/MERCURY/MARS | Malavya | 1.0000 | ✓ | VENUS, SATURN |
-| LISZT_DEATH_1886 | 1886-07-31 | HEALTH | JUPITER/SUN/MERCURY | Malavya | 1.0000 | ✓ | SATURN, RAHU |
+| ROBINSON_BREAKS_COLOR_1947 | 1947-04-15 | CAREER | MOON/KETU/JUPITER | Raja | 1.0000 | ✓ | MARS, JUPITER |
+| ROBINSON_MVP_1949 | 1949-09-01 | CAREER | MOON/SUN/VENUS | Raja | 1.0000 | ✓ | JUPITER, SUN |
+| ROBINSON_DEATH_1972 | 1972-10-24 | HEALTH | RAHU/MOON/SATURN | Raja | 1.0000 | ✗ | SATURN, RAHU |
 
-**LISZT_PAGANINI_1832** (1832-04-09) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | WEAKENED | VENUS | 0.500 | 1.0000 | 1.50 | 1.0000 | ACTIVATED |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 0.40 | 71.9468 | DORMANT |
-| Raja | CANCELLED | MOON, MARS | 0.500 | 0.5290 | 0.40 | -51.9567 | DORMANT |
-
-**LISZT_BERNED_1847** (1847-02-01) — MARRIAGE
+**ROBINSON_BREAKS_COLOR_1947** (1947-04-15) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | WEAKENED | VENUS | 0.500 | 1.0000 | 0.40 | 1.0000 | DORMANT |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 1.50 | 71.9468 | ACTIVATED |
-| Raja | CANCELLED | MOON, MARS | 0.500 | 0.5290 | 1.50 | -51.9567 | ACTIVATED |
+| Raja | WEAKENED | VENUS, MARS | 0.500 | 1.0000 | 0.40 | -52.0833 | DORMANT |
+| Adhi | WEAKENED | JUPITER, MERCURY, VENUS | 0.500 | 0.8096 | 1.10 | -57.4673 | ACTIVATED |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 0.40 | 0.0000 | DORMANT |
 
-**LISZT_DEATH_1886** (1886-07-31) — HEALTH
+**ROBINSON_MVP_1949** (1949-09-01) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Malavya | WEAKENED | VENUS | 0.500 | 1.0000 | 0.40 | 1.0000 | DORMANT |
-| Gajakesari | WEAKENED | JUPITER, MOON | 0.500 | 0.5290 | 1.50 | 71.9468 | ACTIVATED |
-| Raja | CANCELLED | MOON, MARS | 0.500 | 0.5290 | 0.40 | -51.9567 | DORMANT |
+| Raja | WEAKENED | VENUS, MARS | 0.500 | 1.0000 | 1.10 | -52.0833 | ACTIVATED |
+| Adhi | WEAKENED | JUPITER, MERCURY, VENUS | 0.500 | 0.8096 | 1.10 | -57.4673 | ACTIVATED |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 1.25 | 0.0000 | ACTIVATED |
 
-### Anton Chekhov
-**Fixture:** `chart_040_chekhov.json` | **Lagna:** DHANUSHA (PURVA_ASHADHA) | **Moon Nakshatra:** REVATI
+**ROBINSON_DEATH_1972** (1972-10-24) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Raja | WEAKENED | VENUS, MARS | 0.500 | 1.0000 | 0.40 | -52.0833 | DORMANT |
+| Adhi | WEAKENED | JUPITER, MERCURY, VENUS | 0.500 | 0.8096 | 0.40 | -57.4673 | DORMANT |
+| Budhaditya | FORMED | SUN, MERCURY | 1.000 | 0.0000 | 0.40 | 0.0000 | DORMANT |
+
+### Jesse Owens
+**Fixture:** `chart_050_owens.json` | **Lagna:** MEENA (REVATI) | **Moon Nakshatra:** DHANISHTHA
 
 | Event | Date | Domain | Active Dasha | Top Yoga | Dyn. Str | Activated? | Expected Planets |
 |-------|------|--------|-------------|----------|----------|------------|------------------|
-| CHEKHOV_CHERRY_1904 | 1904-01-17 | CAREER | MARS/RAHU/MERCURY | Gajakesari | 1.0000 | ✗ | VENUS, JUPITER |
-| CHEKHOV_SEAGULL_1896 | 1896-10-17 | CAREER | MOON/JUPITER/VENUS | Gajakesari | 1.0000 | ✓ | VENUS, MERCURY |
-| CHEKHOV_DEATH_1904 | 1904-07-15 | HEALTH | MARS/RAHU/MARS | Gajakesari | 1.0000 | ✗ | SATURN, RAHU |
+| OWENS_BERLIN_1936 | 1936-08-09 | CAREER | SUN/MOON/RAHU | Hamsa | 1.0000 | ✓ | JUPITER, MARS |
+| OWENS_4_RECORDS_1935 | 1935-05-25 | CAREER | VENUS/KETU/MOON | Hamsa | 1.0000 | ✓ | MARS, SUN |
+| OWENS_DEATH_1980 | 1980-03-31 | HEALTH | JUPITER/SATURN/KETU | Hamsa | 1.0000 | ✓ | SATURN, RAHU |
 
-**CHEKHOV_CHERRY_1904** (1904-01-17) — CAREER
-
-| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
-|------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 1.0000 | 0.40 | 30.2706 | DORMANT |
-| Raja | CANCELLED | MERCURY, SUN | 0.700 | 1.0000 | 1.10 | -41.6158 | ACTIVATED |
-| Sunapha | FORMED | MOON, VENUS | 1.000 | 1.0000 | 0.40 | -33.4497 | DORMANT |
-
-**CHEKHOV_SEAGULL_1896** (1896-10-17) — CAREER
+**OWENS_BERLIN_1936** (1936-08-09) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 1.0000 | 1.50 | 30.2706 | ACTIVATED |
-| Raja | CANCELLED | MERCURY, SUN | 0.700 | 1.0000 | 0.40 | -41.6158 | DORMANT |
-| Sunapha | FORMED | MOON, VENUS | 1.000 | 1.0000 | 1.50 | -33.4497 | ACTIVATED |
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 0.40 | 1.0000 | DORMANT |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 1.25 | -14.6162 | ACTIVATED |
+| Amala | FORMED | JUPITER | 1.000 | 1.0000 | 0.40 | -6.4450 | DORMANT |
 
-**CHEKHOV_DEATH_1904** (1904-07-15) — HEALTH
+**OWENS_4_RECORDS_1935** (1935-05-25) — CAREER
 
 | Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
 |------|--------|----------|--------|---------|------------|--------------|------------|
-| Gajakesari | FORMED | JUPITER, MOON | 1.000 | 1.0000 | 0.40 | 30.2706 | DORMANT |
-| Raja | CANCELLED | MERCURY, SUN | 0.700 | 1.0000 | 0.40 | -41.6158 | DORMANT |
-| Sunapha | FORMED | MOON, VENUS | 1.000 | 1.0000 | 0.40 | -33.4497 | DORMANT |
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 0.40 | 1.0000 | DORMANT |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 1.10 | -14.6162 | ACTIVATED |
+| Amala | FORMED | JUPITER | 1.000 | 1.0000 | 0.40 | -6.4450 | DORMANT |
+
+**OWENS_DEATH_1980** (1980-03-31) — HEALTH
+
+| Yoga | Status | Involved | Static | Dynamic | Dasha Mult | Chain Impact | Activation |
+|------|--------|----------|--------|---------|------------|--------------|------------|
+| Hamsa | FORMED | JUPITER | 1.000 | 1.0000 | 1.50 | 1.0000 | ACTIVATED |
+| Sunapha | FORMED | MOON, JUPITER | 1.000 | 1.0000 | 1.50 | -14.6162 | ACTIVATED |
+| Amala | FORMED | JUPITER | 1.000 | 1.0000 | 1.50 | -6.4450 | ACTIVATED |
 
 ---
 
@@ -382,12 +388,12 @@ The 5-layer JRE pipeline was executed against 30 known life events across 10 his
 The following hypotheses are derived from the raw pipeline output without proposing fixes.
 
 ### Hypothesis 1: Chain Impact Is Systematically Negative
-- **Observation:** Average chain impact = -24.163267 (39/66 negative)
+- **Observation:** Average chain impact = -30.057786 (51/72 negative)
 - **Possible cause:** The multi-hop chain evaluator (Layer 1.5) may be weighting dispositorship chains through dusthana houses too heavily. When a yoga-forming planet's dispositor chain passes through 6th/8th/12th houses, the negative functional role weight compounds across hops.
 - **Impact:** This suppresses dynamic_strength for otherwise well-formed yogas, reducing the apparent prediction accuracy.
 
 ### Hypothesis 4: Dasha Activation Misses on Key Events
-- **Observation:** 14/30 events had no relevant yoga activated by the active Dasha lords
+- **Observation:** 11/30 events had no relevant yoga activated by the active Dasha lords
 - **Possible cause:** The expected_planets in the fixture define which planets *should* be active, but the Dasha multiplier only fires when the MD/AD/PD lord *is* one of the yoga's involved planets. If the expected planet is not involved in any formed yoga, the activation check cannot succeed by construction.
 - **Impact:** This is a structural limitation of the current evaluation framework — it tests yoga-level activation, not planet-level Dasha presence.
 

@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_067_roy",
+    "version": "1.0.0",
+    "subject": "Arundhati Roy",
+    "description": "Indian author, political activist, Booker Prize winner",
+    "provenance": "Wikipedia \u2014 Arundhati Roy birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1961-11-24",
+    "time": "10:00",
+    "latitude": 25.5788,
+    "longitude": 91.8933,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 276.66687302541476,
+      "rashi": "MAKARA",
+      "degree_in_rashi": 6.666873025414759,
+      "nakshatra": "UTTARA_ASHADHA",
+      "nakshatra_lord": "SUN",
+      "pada": 4,
+      "degree_in_nakshatra": 10.000206358748107,
+      "d9_sign": "SIMHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 241.65781214488035,
+        "longitude_sidereal": 218.3362802614862,
+        "longitude_used": 218.3362802614862,
+        "rashi": "VRISHCHIKA",
+        "house": 11,
+        "degree_in_rashi": 8.336280261486195,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.002946928152865,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          8
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 83.61276451122815,
+        "longitude_sidereal": 60.29123262783399,
+        "longitude_used": 60.29123262783399,
+        "rashi": "MITHUNA",
+        "house": 6,
+        "degree_in_rashi": 0.29123262783399184,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 6.957899294500656,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          7
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 247.41299783481693,
+        "longitude_sidereal": 224.09146595142278,
+        "longitude_used": 224.09146595142278,
+        "rashi": "VRISHCHIKA",
+        "house": 11,
+        "degree_in_rashi": 14.091465951422776,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 10.758132618089432,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          4,
+          11
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 229.40358072240778,
+        "longitude_sidereal": 206.08204883901362,
+        "longitude_used": 206.08204883901362,
+        "rashi": "TULA",
+        "house": 10,
+        "degree_in_rashi": 26.082048839013623,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 6.082048839013623,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          6,
+          9
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 302.95544938400843,
+        "longitude_sidereal": 279.6339175006143,
+        "longitude_used": 279.6339175006143,
+        "rashi": "MAKARA",
+        "house": 1,
+        "degree_in_rashi": 9.633917500614302,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.967250833947624,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          3,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 226.22992083976763,
+        "longitude_sidereal": 202.90838895637344,
+        "longitude_used": 202.90838895637344,
+        "rashi": "TULA",
+        "house": 10,
+        "degree_in_rashi": 22.908388956373443,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 2.908388956373427,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          5,
+          10
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 295.8266213343038,
+        "longitude_sidereal": 272.5050894509096,
+        "longitude_used": 272.5050894509096,
+        "rashi": "MAKARA",
+        "house": 1,
+        "degree_in_rashi": 2.5050894509096224,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 5.838422784242943,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          1,
+          2
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 142.0156076021381,
+        "longitude_sidereal": 118.69407571874393,
+        "longitude_used": 118.69407571874393,
+        "rashi": "KARKA",
+        "house": 7,
+        "degree_in_rashi": 28.69407571874393,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 12.027409052077271,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 322.01560760213806,
+        "longitude_sidereal": 298.69407571874393,
+        "longitude_used": 298.69407571874393,
+        "rashi": "MAKARA",
+        "house": 1,
+        "degree_in_rashi": 28.69407571874393,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 5.360742385410588,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "KETU",
+          "SATURN"
+        ]
+      },
+      "2": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "8": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MERCURY",
+          "VENUS"
+        ]
+      },
+      "11": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MARS",
+          "SUN"
+        ]
+      },
+      "12": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "SATURN",
+      "2": "SATURN",
+      "3": "JUPITER",
+      "4": "MARS",
+      "5": "VENUS",
+      "6": "MERCURY",
+      "7": "MOON",
+      "8": "SUN",
+      "9": "MERCURY",
+      "10": "VENUS",
+      "11": "MARS",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "ROY_BOOKER_1997",
+      "event_date_utc": "1997-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Booker Prize - God of Small Things",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "ROY_ACTIVISM_2002",
+      "event_date_utc": "2002-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Activism Peak",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "ROY_PANDEMIC_2020",
+      "event_date_utc": "2020-03-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Pandemic Writings",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    }
+  ]
+}

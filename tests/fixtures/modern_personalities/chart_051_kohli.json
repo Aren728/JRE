@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "subject": "Virat Kohli",
     "description": "Indian cricket legend, former captain, one of the greatest batsmen",
-    "provenance": "Wikipedia \u2014 Virat Kohli birth data",
+    "provenance": "Wikipedia \u2014 Virat Kohli birth data (Rodden AA)",
     "pipeline_config": {
       "zodiac_mode": "SIDEREAL",
       "ayanamsa": "LAHIRI",
@@ -32,11 +32,19 @@
   },
   "expected_canonical_facts": {
     "lagna": {
-      "sign": "MESHA",
-      "longitude": 16.728256188337546
+      "ascendant_longitude_deg": 16.728256188337546,
+      "rashi": "MESHA",
+      "degree_in_rashi": 16.728256188337546,
+      "nakshatra": "BHARANI",
+      "nakshatra_lord": "VENUS",
+      "pada": 2,
+      "degree_in_nakshatra": 3.394922855004213,
+      "d9_sign": "KANYA"
     },
     "planets": {
       "SUN": {
+        "longitude_tropical": 223.28628614918563,
+        "longitude_sidereal": 199.58385832930108,
         "longitude_used": 199.58385832930108,
         "rashi": "TULA",
         "house": 7,
@@ -44,6 +52,8 @@
         "nakshatra": "SWATI",
         "nakshatra_lord": "RAHU",
         "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.917191662634414,
         "retrograde": "DIRECT",
         "d9_sign": "KARKA",
         "house_lord_of": [
@@ -51,6 +61,8 @@
         ]
       },
       "MOON": {
+        "longitude_tropical": 177.41654718160768,
+        "longitude_sidereal": 153.7141193617232,
         "longitude_used": 153.7141193617232,
         "rashi": "KANYA",
         "house": 6,
@@ -58,6 +70,8 @@
         "nakshatra": "UTTARA_PHALGUNI",
         "nakshatra_lord": "SUN",
         "sign_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 7.0474526950565295,
         "retrograde": "DIRECT",
         "d9_sign": "MEENA",
         "house_lord_of": [
@@ -65,6 +79,8 @@
         ]
       },
       "MARS": {
+        "longitude_tropical": 0.32057721154775726,
+        "longitude_sidereal": 336.6181493916633,
         "longitude_used": 336.6181493916633,
         "rashi": "MEENA",
         "house": 12,
@@ -72,6 +88,8 @@
         "nakshatra": "UTTARA_BHADRAPADA",
         "nakshatra_lord": "SATURN",
         "sign_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 3.2848160583299535,
         "retrograde": "DIRECT",
         "d9_sign": "DHANUSHA",
         "house_lord_of": [
@@ -80,6 +98,8 @@
         ]
       },
       "MERCURY": {
+        "longitude_tropical": 208.24354486260285,
+        "longitude_sidereal": 184.54111704271833,
         "longitude_used": 184.54111704271833,
         "rashi": "TULA",
         "house": 7,
@@ -87,6 +107,8 @@
         "nakshatra": "CHITRA",
         "nakshatra_lord": "MARS",
         "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.207783709384987,
         "retrograde": "DIRECT",
         "d9_sign": "MEENA",
         "house_lord_of": [
@@ -95,6 +117,8 @@
         ]
       },
       "JUPITER": {
+        "longitude_tropical": 63.36317749764189,
+        "longitude_sidereal": 39.66074967775741,
         "longitude_used": 39.66074967775741,
         "rashi": "VRISHABHA",
         "house": 2,
@@ -102,6 +126,8 @@
         "nakshatra": "KRITTIKA",
         "nakshatra_lord": "SUN",
         "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.994083011090744,
         "retrograde": "RETROGRADE",
         "d9_sign": "DHANUSHA",
         "house_lord_of": [
@@ -110,6 +136,8 @@
         ]
       },
       "VENUS": {
+        "longitude_tropical": 187.8839728534936,
+        "longitude_sidereal": 164.18154503360907,
         "longitude_used": 164.18154503360907,
         "rashi": "KANYA",
         "house": 6,
@@ -117,6 +145,8 @@
         "nakshatra": "HASTA",
         "nakshatra_lord": "MOON",
         "sign_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.181545033609062,
         "retrograde": "DIRECT",
         "d9_sign": "MITHUNA",
         "house_lord_of": [
@@ -125,6 +155,8 @@
         ]
       },
       "SATURN": {
+        "longitude_tropical": 269.3328085364243,
+        "longitude_sidereal": 245.6303807165398,
         "longitude_used": 245.6303807165398,
         "rashi": "DHANUSHA",
         "house": 9,
@@ -132,6 +164,8 @@
         "nakshatra": "MULA",
         "nakshatra_lord": "KETU",
         "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.630380716539817,
         "retrograde": "DIRECT",
         "d9_sign": "MAKARA",
         "house_lord_of": [
@@ -140,6 +174,8 @@
         ]
       },
       "RAHU": {
+        "longitude_tropical": 340.7796990147122,
+        "longitude_sidereal": 317.07727119482774,
         "longitude_used": 317.07727119482774,
         "rashi": "KUMBHA",
         "house": 11,
@@ -147,11 +183,15 @@
         "nakshatra": "SHATABHISHA",
         "nakshatra_lord": "RAHU",
         "sign_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 10.410604528161086,
         "retrograde": "RETROGRADE",
         "d9_sign": "VRISHCHIKA",
         "house_lord_of": []
       },
       "KETU": {
+        "longitude_tropical": 160.77969901471215,
+        "longitude_sidereal": 137.07727119482774,
         "longitude_used": 137.07727119482774,
         "rashi": "SIMHA",
         "house": 5,
@@ -159,6 +199,8 @@
         "nakshatra": "PURVA_PHALGUNI",
         "nakshatra_lord": "VENUS",
         "sign_lord": "SUN",
+        "pada": 2,
+        "degree_in_nakshatra": 3.7439378614944196,
         "retrograde": "RETROGRADE",
         "d9_sign": "MAKARA",
         "house_lord_of": []
@@ -260,9 +302,9 @@
   "known_events": [
     {
       "event_id": "KOHLI_U19_2008",
-      "event_date_utc": "2008-03-02T00:00:00Z",
+      "event_date_utc": "2008-03-04T00:00:00Z",
       "domain": "CAREER",
-      "description": "U-19 World Cup captaincy win",
+      "description": "U-19 World Cup Win",
       "yoga_types": [
         "RAJA"
       ],
@@ -275,7 +317,7 @@
       "event_id": "KOHLI_ODI_CAPTAIN_2013",
       "event_date_utc": "2013-09-15T00:00:00Z",
       "domain": "CAREER",
-      "description": "First ODI captaincy appointment",
+      "description": "First ODI Captaincy",
       "yoga_types": [
         "RAJA"
       ],
@@ -288,7 +330,7 @@
       "event_id": "KOHLI_PEAK_2018",
       "event_date_utc": "2018-01-01T00:00:00Z",
       "domain": "CAREER",
-      "description": "Peak ICC ranking #1 across all formats",
+      "description": "Peak Ranking #1",
       "yoga_types": [
         "RAJA",
         "DHANA"

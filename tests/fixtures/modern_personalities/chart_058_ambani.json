@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_meta": {
-    "fixture_id": "chart_052_ambani",
+    "fixture_id": "chart_058_ambani",
     "version": "1.0.0",
     "subject": "Mukesh Ambani",
     "description": "Indian business magnate, chairman of Reliance Industries",
@@ -32,11 +32,19 @@
   },
   "expected_canonical_facts": {
     "lagna": {
-      "sign": "MITHUNA",
-      "longitude": 76.13567844686014
+      "ascendant_longitude_deg": 76.13567844686014,
+      "rashi": "MITHUNA",
+      "degree_in_rashi": 16.13567844686014,
+      "nakshatra": "ARDRA",
+      "nakshatra_lord": "RAHU",
+      "pada": 3,
+      "degree_in_nakshatra": 9.469011780193476,
+      "d9_sign": "KUMBHA"
     },
     "planets": {
       "SUN": {
+        "longitude_tropical": 28.97566505476496,
+        "longitude_sidereal": 5.711503438502456,
         "longitude_used": 5.711503438502456,
         "rashi": "MESHA",
         "house": 11,
@@ -44,6 +52,8 @@
         "nakshatra": "ASHWINI",
         "nakshatra_lord": "KETU",
         "sign_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.711503438502456,
         "retrograde": "DIRECT",
         "d9_sign": "VRISHABHA",
         "house_lord_of": [
@@ -51,6 +61,8 @@
         ]
       },
       "MOON": {
+        "longitude_tropical": 269.1436564337841,
+        "longitude_sidereal": 245.8794948175216,
         "longitude_used": 245.8794948175216,
         "rashi": "DHANUSHA",
         "house": 7,
@@ -58,6 +70,8 @@
         "nakshatra": "MULA",
         "nakshatra_lord": "KETU",
         "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.879494817521576,
         "retrograde": "DIRECT",
         "d9_sign": "MAKARA",
         "house_lord_of": [
@@ -65,6 +79,8 @@
         ]
       },
       "MARS": {
+        "longitude_tropical": 80.37383441898396,
+        "longitude_sidereal": 57.10967280272147,
         "longitude_used": 57.10967280272147,
         "rashi": "VRISHABHA",
         "house": 12,
@@ -72,6 +88,8 @@
         "nakshatra": "MRIGASHIRA",
         "nakshatra_lord": "MARS",
         "sign_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 3.7763394693881343,
         "retrograde": "DIRECT",
         "d9_sign": "MITHUNA",
         "house_lord_of": [
@@ -80,6 +98,8 @@
         ]
       },
       "MERCURY": {
+        "longitude_tropical": 47.743255038522726,
+        "longitude_sidereal": 24.47909342226023,
         "longitude_used": 24.47909342226023,
         "rashi": "MESHA",
         "house": 11,
@@ -87,6 +107,8 @@
         "nakshatra": "BHARANI",
         "nakshatra_lord": "VENUS",
         "sign_lord": "MARS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.145760088926897,
         "retrograde": "DIRECT",
         "d9_sign": "VRISHCHIKA",
         "house_lord_of": [
@@ -95,6 +117,8 @@
         ]
       },
       "JUPITER": {
+        "longitude_tropical": 173.15390372505243,
+        "longitude_sidereal": 149.88974210878993,
         "longitude_used": 149.88974210878993,
         "rashi": "SIMHA",
         "house": 3,
@@ -102,6 +126,8 @@
         "nakshatra": "UTTARA_PHALGUNI",
         "nakshatra_lord": "SUN",
         "sign_lord": "SUN",
+        "pada": 1,
+        "degree_in_nakshatra": 3.22307544212326,
         "retrograde": "RETROGRADE",
         "d9_sign": "MESHA",
         "house_lord_of": [
@@ -110,6 +136,8 @@
         ]
       },
       "VENUS": {
+        "longitude_tropical": 30.20744639119131,
+        "longitude_sidereal": 6.943284774928808,
         "longitude_used": 6.943284774928808,
         "rashi": "MESHA",
         "house": 11,
@@ -117,6 +145,8 @@
         "nakshatra": "ASHWINI",
         "nakshatra_lord": "KETU",
         "sign_lord": "MARS",
+        "pada": 3,
+        "degree_in_nakshatra": 6.943284774928807,
         "retrograde": "DIRECT",
         "d9_sign": "MITHUNA",
         "house_lord_of": [
@@ -125,6 +155,8 @@
         ]
       },
       "SATURN": {
+        "longitude_tropical": 253.74959686106476,
+        "longitude_sidereal": 230.48543524480226,
         "longitude_used": 230.48543524480226,
         "rashi": "VRISHCHIKA",
         "house": 6,
@@ -132,6 +164,8 @@
         "nakshatra": "JYESHTHA",
         "nakshatra_lord": "MERCURY",
         "sign_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 3.81876857813559,
         "retrograde": "RETROGRADE",
         "d9_sign": "MAKARA",
         "house_lord_of": [
@@ -140,6 +174,8 @@
         ]
       },
       "RAHU": {
+        "longitude_tropical": 230.97825873669703,
+        "longitude_sidereal": 207.71409712043453,
         "longitude_used": 207.71409712043453,
         "rashi": "TULA",
         "house": 5,
@@ -147,11 +183,15 @@
         "nakshatra": "VISHAKHA",
         "nakshatra_lord": "JUPITER",
         "sign_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 7.714097120434518,
         "retrograde": "RETROGRADE",
         "d9_sign": "TULA",
         "house_lord_of": []
       },
       "KETU": {
+        "longitude_tropical": 50.97825873669706,
+        "longitude_sidereal": 27.71409712043453,
         "longitude_used": 27.71409712043453,
         "rashi": "MESHA",
         "house": 11,
@@ -159,6 +199,8 @@
         "nakshatra": "KRITTIKA",
         "nakshatra_lord": "SUN",
         "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.0474304537678638,
         "retrograde": "RETROGRADE",
         "d9_sign": "DHANUSHA",
         "house_lord_of": []
@@ -261,7 +303,7 @@
       "event_id": "AMBANI_RELIANCE_2002",
       "event_date_utc": "2002-07-06T00:00:00Z",
       "domain": "CAREER",
-      "description": "Took over Reliance Industries after father's death",
+      "description": "Reliance Takeover",
       "yoga_types": [
         "RAJA",
         "DHANA"
@@ -275,7 +317,7 @@
       "event_id": "AMBANI_JIO_2016",
       "event_date_utc": "2016-09-05T00:00:00Z",
       "domain": "CAREER",
-      "description": "Launched Reliance Jio, disrupted telecom industry",
+      "description": "Jio Launch",
       "yoga_types": [
         "RAJA"
       ],
@@ -288,7 +330,7 @@
       "event_id": "AMBANI_FORBES_2020",
       "event_date_utc": "2020-08-01T00:00:00Z",
       "domain": "WEALTH",
-      "description": "Forbes Top 10 richest globally",
+      "description": "Forbes Top 10",
       "yoga_types": [
         "DHANA"
       ],

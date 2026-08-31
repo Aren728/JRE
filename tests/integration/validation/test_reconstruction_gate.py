@@ -34,8 +34,20 @@ FIXTURES_DIR = (
     / "validation_charts"
 )
 
-# All chart fixture files in the cohort
-CHART_FIXTURES: list[Path] = sorted(FIXTURES_DIR.glob("chart_*.json"))
+# Modern personalities directory
+MODERN_DIR = (
+    Path(__file__).resolve().parent.parent.parent
+    / "fixtures"
+    / "modern_personalities"
+)
+
+# All chart fixture files in the cohort (validation + modern)
+CHART_FIXTURES: list[Path] = sorted(
+    list(FIXTURES_DIR.glob("chart_*.json"))
+    + list(MODERN_DIR.glob("chart_*.json"))
+    if MODERN_DIR.exists()
+    else FIXTURES_DIR.glob("chart_*.json")
+)
 
 # Fallback if no fixtures discovered (shouldn't happen)
 assert CHART_FIXTURES, f"No chart fixtures found in {FIXTURES_DIR}"

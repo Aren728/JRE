@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_053_ronaldo",
+    "version": "1.0.0",
+    "subject": "Cristiano Ronaldo",
+    "description": "Portuguese football legend, all-time top international scorer",
+    "provenance": "Wikipedia \u2014 Cristiano Ronaldo birth data (Rodden AA)",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1985-02-05",
+    "time": "08:30",
+    "latitude": 32.65,
+    "longitude": -16.9,
+    "timezone": "Atlantic/Madeira"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 301.51051841883265,
+      "rashi": "KUMBHA",
+      "degree_in_rashi": 1.5105184188326461,
+      "nakshatra": "DHANISHTHA",
+      "nakshatra_lord": "MARS",
+      "pada": 3,
+      "degree_in_nakshatra": 8.177185085499298,
+      "d9_sign": "MITHUNA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 316.4909384601172,
+        "longitude_sidereal": 292.84533606608676,
+        "longitude_used": 292.84533606608676,
+        "rashi": "MAKARA",
+        "house": 12,
+        "degree_in_rashi": 22.84533606608676,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 12.84533606608676,
+        "retrograde": "DIRECT",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          7
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 132.69599326736054,
+        "longitude_sidereal": 109.05039087333006,
+        "longitude_used": 109.05039087333006,
+        "rashi": "KARKA",
+        "house": 6,
+        "degree_in_rashi": 19.05039087333006,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "pada": 1,
+        "degree_in_nakshatra": 2.3837242066633904,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          6
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 1.9810715813956823,
+        "longitude_sidereal": 338.3354691873652,
+        "longitude_used": 338.3354691873652,
+        "rashi": "MEENA",
+        "house": 2,
+        "degree_in_rashi": 8.33546918736522,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.002135854031857,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          3,
+          10
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 306.4844410417797,
+        "longitude_sidereal": 282.83883864774924,
+        "longitude_used": 282.83883864774924,
+        "rashi": "MAKARA",
+        "house": 12,
+        "degree_in_rashi": 12.838838647749242,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "SATURN",
+        "pada": 1,
+        "degree_in_nakshatra": 2.8388386477492396,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          5,
+          8
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 299.7028394051899,
+        "longitude_sidereal": 276.0572370111594,
+        "longitude_used": 276.0572370111594,
+        "rashi": "MAKARA",
+        "house": 12,
+        "degree_in_rashi": 6.057237011159373,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 9.390570344492719,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          2,
+          11
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 2.7173172267111543,
+        "longitude_sidereal": 339.07171483268064,
+        "longitude_used": 339.07171483268064,
+        "rashi": "MEENA",
+        "house": 2,
+        "degree_in_rashi": 9.071714832680641,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 5.7383814993473035,
+        "retrograde": "DIRECT",
+        "d9_sign": "MAKARA",
+        "house_lord_of": [
+          4,
+          9
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 237.35756757108857,
+        "longitude_sidereal": 213.71196517705812,
+        "longitude_used": 213.71196517705812,
+        "rashi": "VRISHCHIKA",
+        "house": 10,
+        "degree_in_rashi": 3.7119651770581186,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 0.37863184372478526,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          1,
+          12
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 53.276315066907145,
+        "longitude_sidereal": 29.630712672876665,
+        "longitude_used": 29.630712672876665,
+        "rashi": "MESHA",
+        "house": 3,
+        "degree_in_rashi": 29.630712672876665,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 2.9640460062099985,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 233.27631506690716,
+        "longitude_sidereal": 209.63071267287665,
+        "longitude_used": 209.63071267287665,
+        "rashi": "TULA",
+        "house": 9,
+        "degree_in_rashi": 29.630712672876655,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 9.630712672876648,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "TULA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MARS",
+          "VENUS"
+        ]
+      },
+      "3": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "4": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "7": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "10": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "11": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER",
+          "MERCURY",
+          "SUN"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "SATURN",
+      "2": "JUPITER",
+      "3": "MARS",
+      "4": "VENUS",
+      "5": "MERCURY",
+      "6": "MOON",
+      "7": "SUN",
+      "8": "MERCURY",
+      "9": "VENUS",
+      "10": "MARS",
+      "11": "JUPITER",
+      "12": "SATURN"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "RONALDO_MANUTD_2003",
+      "event_date_utc": "2003-08-16T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Man United Debut",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "RONALDO_REAL_2009",
+      "event_date_utc": "2009-06-11T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Real Madrid Transfer",
+      "yoga_types": [
+        "RAJA",
+        "DHANA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ]
+    },
+    {
+      "event_id": "RONALDO_EURO_2016",
+      "event_date_utc": "2016-07-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Euro Cup Win with Portugal",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    }
+  ]
+}

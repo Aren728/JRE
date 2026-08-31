@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_057_pichai",
+    "version": "1.0.0",
+    "subject": "Sundar Pichai",
+    "description": "Indian-American business executive, CEO of Alphabet and Google",
+    "provenance": "Wikipedia \u2014 Sundar Pichai birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1972-07-10",
+    "time": "10:00",
+    "latitude": 9.9252,
+    "longitude": 78.1198,
+    "timezone": "Asia/Kolkata"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 140.1861064276418,
+      "rashi": "SIMHA",
+      "degree_in_rashi": 20.18610642764179,
+      "nakshatra": "PURVA_PHALGUNI",
+      "nakshatra_lord": "VENUS",
+      "pada": 3,
+      "degree_in_nakshatra": 6.852773094308456,
+      "d9_sign": "KUMBHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 108.01178166782249,
+        "longitude_sidereal": 84.53402275997243,
+        "longitude_used": 84.53402275997243,
+        "rashi": "MITHUNA",
+        "house": 11,
+        "degree_in_rashi": 24.53402275997243,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 4.534022759972434,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          1
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 99.61382414547028,
+        "longitude_sidereal": 76.13606523762022,
+        "longitude_used": 76.13606523762022,
+        "rashi": "MITHUNA",
+        "house": 11,
+        "degree_in_rashi": 16.136065237620215,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "MERCURY",
+        "pada": 3,
+        "degree_in_nakshatra": 9.469398570953555,
+        "retrograde": "DIRECT",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          12
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 127.29037885580739,
+        "longitude_sidereal": 103.81261994795733,
+        "longitude_used": 103.81261994795733,
+        "rashi": "KARKA",
+        "house": 12,
+        "degree_in_rashi": 13.81261994795733,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 10.479286614624,
+        "retrograde": "DIRECT",
+        "d9_sign": "KARKA",
+        "house_lord_of": [
+          4,
+          9
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 134.38951710761026,
+        "longitude_sidereal": 110.91175819976021,
+        "longitude_used": 110.91175819976021,
+        "rashi": "KARKA",
+        "house": 12,
+        "degree_in_rashi": 20.911758199760214,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "pada": 2,
+        "degree_in_nakshatra": 4.245091533093542,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          2,
+          11
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 271.53577774051683,
+        "longitude_sidereal": 248.05801883266676,
+        "longitude_used": 248.05801883266676,
+        "rashi": "DHANUSHA",
+        "house": 5,
+        "degree_in_rashi": 8.058018832666761,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "JUPITER",
+        "pada": 3,
+        "degree_in_nakshatra": 8.058018832666777,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KUMBHA",
+        "house_lord_of": [
+          5,
+          8
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 78.23826539083689,
+        "longitude_sidereal": 54.76050648298682,
+        "longitude_used": 54.76050648298682,
+        "rashi": "VRISHABHA",
+        "house": 10,
+        "degree_in_rashi": 24.76050648298682,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.4271731496534845,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          3,
+          10
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 74.95346154995848,
+        "longitude_sidereal": 51.47570264210842,
+        "longitude_used": 51.47570264210842,
+        "rashi": "VRISHABHA",
+        "house": 10,
+        "degree_in_rashi": 21.475702642108423,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 11.47570264210842,
+        "retrograde": "DIRECT",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          6,
+          7
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 296.5097114267996,
+        "longitude_sidereal": 273.03195251894954,
+        "longitude_used": 273.03195251894954,
+        "rashi": "MAKARA",
+        "house": 6,
+        "degree_in_rashi": 3.031952518949538,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 6.365285852282863,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 116.50971142679958,
+        "longitude_sidereal": 93.03195251894954,
+        "longitude_used": 93.03195251894954,
+        "rashi": "KARKA",
+        "house": 12,
+        "degree_in_rashi": 3.031952518949538,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MOON",
+        "pada": 4,
+        "degree_in_nakshatra": 13.031952518949529,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "2": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "6": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "7": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "10": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "SATURN",
+          "VENUS"
+        ]
+      },
+      "11": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON",
+          "SUN"
+        ]
+      },
+      "12": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "KETU",
+          "MARS",
+          "MERCURY"
+        ]
+      }
+    },
+    "house_lords": {
+      "1": "SUN",
+      "2": "MERCURY",
+      "3": "VENUS",
+      "4": "MARS",
+      "5": "JUPITER",
+      "6": "SATURN",
+      "7": "SATURN",
+      "8": "JUPITER",
+      "9": "MARS",
+      "10": "VENUS",
+      "11": "MERCURY",
+      "12": "MOON"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "PICHAI_GOOGLE_2004",
+      "event_date_utc": "2004-04-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Joined Google",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "PICHAI_CEO_2015",
+      "event_date_utc": "2015-08-10T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Google CEO Appointment",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "PICHAI_ALPHABET_2019",
+      "event_date_utc": "2019-12-03T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Alphabet CEO",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    }
+  ]
+}

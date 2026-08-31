@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_060_dicaprio",
+    "version": "1.0.0",
+    "subject": "Leonardo DiCaprio",
+    "description": "American actor, environmentalist, Oscar winner",
+    "provenance": "Wikipedia \u2014 Leonardo DiCaprio birth data (Rodden AA)",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1974-11-11",
+    "time": "02:47",
+    "latitude": 34.0522,
+    "longitude": -118.2437,
+    "timezone": "America/Los_Angeles"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 159.6142067914913,
+      "rashi": "KANYA",
+      "degree_in_rashi": 9.614206791491313,
+      "nakshatra": "UTTARA_PHALGUNI",
+      "nakshatra_lord": "SUN",
+      "pada": 4,
+      "degree_in_nakshatra": 12.94754012482466,
+      "d9_sign": "MESHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 228.6627380585981,
+        "longitude_sidereal": 205.15266361718673,
+        "longitude_used": 205.15266361718673,
+        "rashi": "TULA",
+        "house": 2,
+        "degree_in_rashi": 25.152663617186732,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.152663617186725,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          12
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 195.7363445116205,
+        "longitude_sidereal": 172.22627007020913,
+        "longitude_used": 172.22627007020913,
+        "rashi": "KANYA",
+        "house": 1,
+        "degree_in_rashi": 22.226270070209125,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "MERCURY",
+        "pada": 4,
+        "degree_in_nakshatra": 12.226270070209129,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          11
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 219.59318666800883,
+        "longitude_sidereal": 196.08311222659745,
+        "longitude_used": 196.08311222659745,
+        "rashi": "TULA",
+        "house": 2,
+        "degree_in_rashi": 16.08311222659745,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 9.416445559930791,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          3,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 209.7568789865732,
+        "longitude_sidereal": 186.2468045451618,
+        "longitude_used": 186.2468045451618,
+        "rashi": "TULA",
+        "house": 2,
+        "degree_in_rashi": 6.246804545161808,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.91347121182847,
+        "retrograde": "DIRECT",
+        "d9_sign": "MEENA",
+        "house_lord_of": [
+          1,
+          10
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 338.09400514048815,
+        "longitude_sidereal": 314.58393069907675,
+        "longitude_used": 314.58393069907675,
+        "rashi": "KUMBHA",
+        "house": 6,
+        "degree_in_rashi": 14.583930699076745,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "pada": 3,
+        "degree_in_nakshatra": 7.917264032410054,
+        "retrograde": "DIRECT",
+        "d9_sign": "TULA",
+        "house_lord_of": [
+          4,
+          7
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 229.8920451467051,
+        "longitude_sidereal": 206.3819707052937,
+        "longitude_used": 206.3819707052937,
+        "rashi": "TULA",
+        "house": 2,
+        "degree_in_rashi": 26.381970705293696,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "VENUS",
+        "pada": 2,
+        "degree_in_nakshatra": 6.3819707052937,
+        "retrograde": "DIRECT",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          2,
+          9
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 108.79866803714783,
+        "longitude_sidereal": 85.28859359573646,
+        "longitude_used": 85.28859359573646,
+        "rashi": "MITHUNA",
+        "house": 10,
+        "degree_in_rashi": 25.288593595736458,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "sign_lord": "MERCURY",
+        "pada": 2,
+        "degree_in_nakshatra": 5.288593595736462,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          5,
+          6
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 251.2729526718728,
+        "longitude_sidereal": 227.76287823046144,
+        "longitude_used": 227.76287823046144,
+        "rashi": "VRISHCHIKA",
+        "house": 3,
+        "degree_in_rashi": 17.76287823046144,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 1.0962115637947607,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 71.27295267187276,
+        "longitude_sidereal": 47.76287823046141,
+        "longitude_used": 47.76287823046141,
+        "rashi": "VRISHABHA",
+        "house": 9,
+        "degree_in_rashi": 17.76287823046141,
+        "nakshatra": "ROHINI",
+        "nakshatra_lord": "MOON",
+        "sign_lord": "VENUS",
+        "pada": 3,
+        "degree_in_nakshatra": 7.762878230461411,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "2": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "MARS",
+          "MERCURY",
+          "SUN",
+          "VENUS"
+        ]
+      },
+      "3": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "4": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "5": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "JUPITER"
+        ]
+      },
+      "7": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      },
+      "8": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": []
+      },
+      "9": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": [
+          "KETU"
+        ]
+      },
+      "10": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "11": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": []
+      },
+      "12": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MERCURY",
+      "2": "VENUS",
+      "3": "MARS",
+      "4": "JUPITER",
+      "5": "SATURN",
+      "6": "SATURN",
+      "7": "JUPITER",
+      "8": "MARS",
+      "9": "VENUS",
+      "10": "MERCURY",
+      "11": "MOON",
+      "12": "SUN"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "DICAPRIO_TITANIC_1997",
+      "event_date_utc": "1997-11-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Titanic Release",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "DICAPRIO_OSCAR_2016",
+      "event_date_utc": "2016-02-28T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Oscar Win - Revenant",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "VENUS",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "DICAPRIO_CLIMATE_2020",
+      "event_date_utc": "2020-09-23T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Climate Activism Peak",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    }
+  ]
+}

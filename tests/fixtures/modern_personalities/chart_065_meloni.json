@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "fixture_id": "chart_065_meloni",
+    "version": "1.0.0",
+    "subject": "Giorgia Meloni",
+    "description": "Italian Prime Minister, leader of Brothers of Italy",
+    "provenance": "Wikipedia \u2014 Giorgia Meloni birth data",
+    "pipeline_config": {
+      "zodiac_mode": "SIDEREAL",
+      "ayanamsa": "LAHIRI",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "ephemeris_provider": "swisseph"
+    },
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "generated_at": "2026-08-30",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ]
+  },
+  "raw_birth_data": {
+    "date": "1977-01-15",
+    "time": "11:30",
+    "latitude": 41.9028,
+    "longitude": 12.4964,
+    "timezone": "Europe/Rome"
+  },
+  "expected_canonical_facts": {
+    "lagna": {
+      "ascendant_longitude_deg": 2.122290893458665,
+      "rashi": "MESHA",
+      "degree_in_rashi": 2.122290893458665,
+      "nakshatra": "ASHWINI",
+      "nakshatra_lord": "KETU",
+      "pada": 1,
+      "degree_in_nakshatra": 2.122290893458665,
+      "d9_sign": "MESHA"
+    },
+    "planets": {
+      "SUN": {
+        "longitude_tropical": 295.1731477086845,
+        "longitude_sidereal": 271.63413963831266,
+        "longitude_used": 271.63413963831266,
+        "rashi": "MAKARA",
+        "house": 10,
+        "degree_in_rashi": 1.6341396383126607,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "SATURN",
+        "pada": 2,
+        "degree_in_nakshatra": 4.967472971646,
+        "retrograde": "DIRECT",
+        "d9_sign": "MITHUNA",
+        "house_lord_of": [
+          5
+        ]
+      },
+      "MOON": {
+        "longitude_tropical": 239.52137254397357,
+        "longitude_sidereal": 215.98236447360162,
+        "longitude_used": 215.98236447360162,
+        "rashi": "VRISHCHIKA",
+        "house": 8,
+        "degree_in_rashi": 5.982364473601621,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 2.6490311402682925,
+        "retrograde": "DIRECT",
+        "d9_sign": "SIMHA",
+        "house_lord_of": [
+          4
+        ]
+      },
+      "MARS": {
+        "longitude_tropical": 280.83956704694015,
+        "longitude_sidereal": 257.3005589765683,
+        "longitude_used": 257.3005589765683,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 17.30055897656831,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "pada": 2,
+        "degree_in_nakshatra": 3.967225643234963,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": [
+          1,
+          8
+        ]
+      },
+      "MERCURY": {
+        "longitude_tropical": 277.36041707048065,
+        "longitude_sidereal": 253.82140900010884,
+        "longitude_used": 253.82140900010884,
+        "rashi": "DHANUSHA",
+        "house": 9,
+        "degree_in_rashi": 13.821409000108844,
+        "nakshatra": "PURVA_ASHADHA",
+        "nakshatra_lord": "VENUS",
+        "sign_lord": "JUPITER",
+        "pada": 1,
+        "degree_in_nakshatra": 0.48807566677549874,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MESHA",
+        "house_lord_of": [
+          3,
+          6
+        ]
+      },
+      "JUPITER": {
+        "longitude_tropical": 51.17341869341448,
+        "longitude_sidereal": 27.634410623042605,
+        "longitude_used": 27.634410623042605,
+        "rashi": "MESHA",
+        "house": 1,
+        "degree_in_rashi": 27.634410623042605,
+        "nakshatra": "KRITTIKA",
+        "nakshatra_lord": "SUN",
+        "sign_lord": "MARS",
+        "pada": 1,
+        "degree_in_nakshatra": 0.9677439563759401,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "DHANUSHA",
+        "house_lord_of": [
+          9,
+          12
+        ]
+      },
+      "VENUS": {
+        "longitude_tropical": 341.9316656485302,
+        "longitude_sidereal": 318.3926575781584,
+        "longitude_used": 318.3926575781584,
+        "rashi": "KUMBHA",
+        "house": 11,
+        "degree_in_rashi": 18.392657578158378,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "sign_lord": "SATURN",
+        "pada": 4,
+        "degree_in_nakshatra": 11.725990911491694,
+        "retrograde": "DIRECT",
+        "d9_sign": "VRISHCHIKA",
+        "house_lord_of": [
+          2,
+          7
+        ]
+      },
+      "SATURN": {
+        "longitude_tropical": 134.86305714767968,
+        "longitude_sidereal": 111.3240490773078,
+        "longitude_used": 111.3240490773078,
+        "rashi": "KARKA",
+        "house": 4,
+        "degree_in_rashi": 21.324049077307805,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "sign_lord": "MOON",
+        "pada": 2,
+        "degree_in_nakshatra": 4.657382410641141,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "KANYA",
+        "house_lord_of": [
+          10,
+          11
+        ]
+      },
+      "RAHU": {
+        "longitude_tropical": 209.12085125732443,
+        "longitude_sidereal": 185.5818431869525,
+        "longitude_used": 185.5818431869525,
+        "rashi": "TULA",
+        "house": 7,
+        "degree_in_rashi": 5.581843186952511,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "sign_lord": "VENUS",
+        "pada": 4,
+        "degree_in_nakshatra": 12.248509853619167,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "MEENA",
+        "house_lord_of": []
+      },
+      "KETU": {
+        "longitude_tropical": 29.120851257324432,
+        "longitude_sidereal": 5.581843186952483,
+        "longitude_used": 5.581843186952483,
+        "rashi": "MESHA",
+        "house": 1,
+        "degree_in_rashi": 5.581843186952483,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "sign_lord": "MARS",
+        "pada": 2,
+        "degree_in_nakshatra": 5.581843186952483,
+        "retrograde": "RETROGRADE",
+        "d9_sign": "VRISHABHA",
+        "house_lord_of": []
+      }
+    },
+    "houses": {
+      "1": {
+        "rashi": "MESHA",
+        "lord": "MARS",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ]
+      },
+      "2": {
+        "rashi": "VRISHABHA",
+        "lord": "VENUS",
+        "occupants": []
+      },
+      "3": {
+        "rashi": "MITHUNA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "4": {
+        "rashi": "KARKA",
+        "lord": "MOON",
+        "occupants": [
+          "SATURN"
+        ]
+      },
+      "5": {
+        "rashi": "SIMHA",
+        "lord": "SUN",
+        "occupants": []
+      },
+      "6": {
+        "rashi": "KANYA",
+        "lord": "MERCURY",
+        "occupants": []
+      },
+      "7": {
+        "rashi": "TULA",
+        "lord": "VENUS",
+        "occupants": [
+          "RAHU"
+        ]
+      },
+      "8": {
+        "rashi": "VRISHCHIKA",
+        "lord": "MARS",
+        "occupants": [
+          "MOON"
+        ]
+      },
+      "9": {
+        "rashi": "DHANUSHA",
+        "lord": "JUPITER",
+        "occupants": [
+          "MARS",
+          "MERCURY"
+        ]
+      },
+      "10": {
+        "rashi": "MAKARA",
+        "lord": "SATURN",
+        "occupants": [
+          "SUN"
+        ]
+      },
+      "11": {
+        "rashi": "KUMBHA",
+        "lord": "SATURN",
+        "occupants": [
+          "VENUS"
+        ]
+      },
+      "12": {
+        "rashi": "MEENA",
+        "lord": "JUPITER",
+        "occupants": []
+      }
+    },
+    "house_lords": {
+      "1": "MARS",
+      "2": "VENUS",
+      "3": "MERCURY",
+      "4": "MOON",
+      "5": "SUN",
+      "6": "MERCURY",
+      "7": "VENUS",
+      "8": "MARS",
+      "9": "JUPITER",
+      "10": "SATURN",
+      "11": "SATURN",
+      "12": "JUPITER"
+    }
+  },
+  "known_events": [
+    {
+      "event_id": "MELONI_ENTRY_1992",
+      "event_date_utc": "1992-01-01T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Political Entry",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "SATURN",
+        "JUPITER"
+      ]
+    },
+    {
+      "event_id": "MELONI_BROTHERS_2014",
+      "event_date_utc": "2014-03-09T00:00:00Z",
+      "domain": "CAREER",
+      "description": "Brothers of Italy Founding",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    },
+    {
+      "event_id": "MELONI_PM_2022",
+      "event_date_utc": "2022-10-22T00:00:00Z",
+      "domain": "CAREER",
+      "description": "PM Election",
+      "yoga_types": [
+        "RAJA"
+      ],
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ]
+    }
+  ]
+}
