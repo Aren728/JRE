@@ -21,6 +21,10 @@ from jrs.reporting.generator import ReportGenerator  # noqa: E402
 
 client = TestClient(app)
 
+# Test API key for authenticated endpoints
+_TEST_API_KEY = "jre-beta-key-alpha"
+_AUTH_HEADERS = {"X-API-Key": _TEST_API_KEY}
+
 
 # ── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -234,6 +238,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -247,6 +252,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture?format=html",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -258,6 +264,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture",
             json={"fixture_id": "chart_999_nonexistent"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 404
 
@@ -266,6 +273,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture?format=pdf",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 400
 
@@ -274,6 +282,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         data = response.json()
         assert "Malavya" in data["content"]
@@ -283,6 +292,7 @@ class TestReportEndpoint:
         response = client.post(
             "/api/v1/report/fixture",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         data = response.json()
         assert data["subject"] == "Albert Einstein"

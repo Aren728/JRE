@@ -10,8 +10,19 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 
-# ── Request Schemas ─────────────────────────────────────────────────────────
+# ── Constants ───────────────────────────────────────────────────────────────
 
+ENGINE_VERSION = "v1.0.0-beta"
+
+LEGAL_DISCLAIMER = (
+    "DISCLAIMER: This output is a computational interpretation based on "
+    "classical Vedic astrology rulesets (BPHS, Phaladeepika). It is provided "
+    "for informational and research purposes only. It does not constitute "
+    "medical, financial, legal, or guaranteed predictive advice."
+)
+
+
+# ── Request Schemas ─────────────────────────────────────────────────────────
 
 class BirthDataInput(BaseModel):
     """Birth data for custom chart evaluation."""
@@ -63,7 +74,6 @@ class FixtureInput(BaseModel):
 
 
 # ── Response Schemas ────────────────────────────────────────────────────────
-
 
 class YogaProvenance(BaseModel):
     """Provenance and explainability data for a yoga evaluation."""
@@ -139,6 +149,13 @@ class YogaResult(BaseModel):
 class EvaluationResponse(BaseModel):
     """Response from yoga evaluation endpoint."""
 
+    evaluation_id: str = Field(
+        default="",
+        description=(
+            "Deterministic SHA-256 evaluation identifier for reproducibility. "
+            "Hash of fixture_id + engine_version."
+        ),
+    )
     subject: str = Field(
         default="Custom",
         description="Subject name or identifier",
@@ -167,6 +184,14 @@ class EvaluationResponse(BaseModel):
         default=0.0,
         description="Processing time in milliseconds",
     )
+    engine_version: str = Field(
+        default=ENGINE_VERSION,
+        description="Engine version used for this evaluation",
+    )
+    disclaimer: str = Field(
+        default=LEGAL_DISCLAIMER,
+        description="Legal and computational disclaimer",
+    )
 
 
 class HealthResponse(BaseModel):
@@ -174,3 +199,69 @@ class HealthResponse(BaseModel):
 
     status: str = Field(default="healthy", description="Service status")
     version: str = Field(default="1.0.0", description="API version")
+
+
+# ── Feedback Schema ─────────────────────────────────────────────────────────
+
+class FeedbackEntry(BaseModel):
+    """Structured feedback from beta testers.
+
+    Strictly typed to enable systematic analysis of expert feedback
+    across multiple dimensions (agreement, error types, domain).
+    """
+
+    evaluation_id: str = Field(
+        ...,
+        description="Tied to the specific evaluation manifest",
+    )
+    expert_id: str = Field(
+        ...,
+        description="Anonymized expert identifier (e.g., 'EXPERT_A')",
+    )
+    domain: str = Field(
+        ...,
+        description="Event domain (e.g., 'CAREER', 'HEALTH', 'MARRIAGE')",
+    )
+
+    # Structured Taxonomy (boolean flags)
+    expert_agreement: bool = Field(
+        default=False,
+        description="Expert agrees with the engine's overall assessment",
+    )
+    expert_disagreement: bool = Field(
+        default=False,
+        description="Expert disagrees with the engine's overall assessment",
+    )
+    missing_yoga: bool = Field(
+        default=False,
+        description="A classical yoga should have been detected but wasn't",
+    )
+    false_positive: bool = Field(
+        default=False,
+        description="Engine detected a yoga that shouldn't exist or is irrelevant",
+    )
+    false_negative: bool = Field(
+        default=False,
+        description="Engine missed a yoga that should have been activated",
+    )
+    timing_issue: bool = Field(
+        default=False,
+        description="Dasha activation timing is incorrect for this event",
+    )
+    interpretation_issue: bool = Field(
+        default=False,
+        description="Classical interpretation of the yoga is incorrect",
+    )
+    astronomical_issue: bool = Field(
+        default=False,
+        description="Underlying astronomical calculation is wrong (positions, Dasha)",
+    )
+    other: bool = Field(
+        default=False,
+        description="Other issue not covered by the above categories",
+    )
+
+    free_text: str = Field(
+        default="",
+        description="Optional detailed notes or explanation",
+    )

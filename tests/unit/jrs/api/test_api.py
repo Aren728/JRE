@@ -21,6 +21,10 @@ from jrs.api.main import app  # noqa: E402
 
 client = TestClient(app)
 
+# Test API key for authenticated endpoints
+_TEST_API_KEY = "jre-beta-key-alpha"
+_AUTH_HEADERS = {"X-API-Key": _TEST_API_KEY}
+
 
 # ── Health Endpoint ─────────────────────────────────────────────────────────
 
@@ -54,7 +58,7 @@ class TestFixturesEndpoint:
 
     def test_list_fixtures_returns_200(self) -> None:
         """Fixtures endpoint returns 200 with fixture list."""
-        response = client.get("/api/v1/fixtures")
+        response = client.get("/api/v1/fixtures", headers=_AUTH_HEADERS)
         assert response.status_code == 200
         data = response.json()
         assert "count" in data
@@ -64,7 +68,7 @@ class TestFixturesEndpoint:
 
     def test_list_fixtures_contains_chart_001(self) -> None:
         """Fixture list contains chart_001_pilot."""
-        response = client.get("/api/v1/fixtures")
+        response = client.get("/api/v1/fixtures", headers=_AUTH_HEADERS)
         data = response.json()
         assert "chart_001_pilot" in data["fixtures"]
 
@@ -80,6 +84,7 @@ class TestEvaluateFixtureEndpoint:
         response = client.post(
             "/api/v1/evaluate/fixture",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -111,6 +116,7 @@ class TestEvaluateFixtureEndpoint:
         response = client.post(
             "/api/v1/evaluate/fixture",
             json={"fixture_id": "chart_002_curie"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -122,6 +128,7 @@ class TestEvaluateFixtureEndpoint:
         response = client.post(
             "/api/v1/evaluate/fixture",
             json={"fixture_id": "chart_001_pilot.json"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
 
@@ -130,6 +137,7 @@ class TestEvaluateFixtureEndpoint:
         response = client.post(
             "/api/v1/evaluate/fixture",
             json={"fixture_id": "chart_999_nonexistent"},
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 404
 
@@ -138,6 +146,7 @@ class TestEvaluateFixtureEndpoint:
         response = client.post(
             "/api/v1/evaluate/fixture",
             json={"fixture_id": "chart_001_pilot"},
+            headers=_AUTH_HEADERS,
         )
         data = response.json()
         assert data["processing_time_ms"] > 0
@@ -161,6 +170,7 @@ class TestEvaluateCustomEndpoint:
                 "longitude": -74.0060,
                 "timezone": "America/New_York",
             },
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -185,6 +195,7 @@ class TestEvaluateCustomEndpoint:
                 "longitude": 77.2090,
                 "timezone": "Asia/Kolkata",
             },
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 200
         data = response.json()
@@ -202,6 +213,7 @@ class TestEvaluateCustomEndpoint:
                 "longitude": -74.0060,
                 "timezone": "America/New_York",
             },
+            headers=_AUTH_HEADERS,
         )
         # Should return error (422 for validation or 500 for computation)
         assert response.status_code in (422, 500)
@@ -214,6 +226,7 @@ class TestEvaluateCustomEndpoint:
                 "date": "1990-01-15",
                 # Missing time, latitude, longitude, timezone
             },
+            headers=_AUTH_HEADERS,
         )
         assert response.status_code == 422
 
@@ -228,6 +241,7 @@ class TestEvaluateCustomEndpoint:
                 "longitude": -74.0060,
                 "timezone": "America/New_York",
             },
+            headers=_AUTH_HEADERS,
         )
         data = response.json()
         for yoga in data["yogas"]:

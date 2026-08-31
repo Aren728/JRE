@@ -228,11 +228,15 @@ class ReportGenerator:
         # ── Title ──
         lines.append(f"# Jyotish Yoga Report: {r.subject}")
         lines.append("")
+        if r.evaluation_id:
+            lines.append(f"**Evaluation ID:** `{r.evaluation_id}`")
         lines.append(f"**Lagna (Ascendant):** {r.lagna}")
         if r.moon_nakshatra:
             lines.append(f"**Moon Nakshatra:** {r.moon_nakshatra}")
         lines.append(f"**Yogas Detected:** {r.yoga_count} "
                      f"({r.formed_count} active)")
+        if r.engine_version:
+            lines.append(f"**Engine Version:** {r.engine_version}")
         lines.append(f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}")
         lines.append("")
         lines.append("---")
@@ -327,6 +331,18 @@ class ReportGenerator:
                      "validation.")
         lines.append("")
 
+        # ── Legal Disclaimer ──
+        lines.append("---")
+        lines.append("")
+        disclaimer = getattr(r, 'disclaimer', '') or (
+            "DISCLAIMER: This output is a computational interpretation based on "
+            "classical Vedic astrology rulesets (BPHS, Phaladeepika). It is provided "
+            "for informational and research purposes only. It does not constitute "
+            "medical, financial, legal, or guaranteed predictive advice."
+        )
+        lines.append(f"*{disclaimer}*")
+        lines.append("")
+
         return "\n".join(lines)
 
     # ── HTML Renderer ───────────────────────────────────────────────────────
@@ -342,6 +358,15 @@ class ReportGenerator:
 
         # Simple markdown-to-HTML conversion for the report
         html_body = self._markdown_to_html(md)
+
+        disclaimer = getattr(r, 'disclaimer', '') or (
+            "DISCLAIMER: This output is a computational interpretation based on "
+            "classical Vedic astrology rulesets (BPHS, Phaladeepika). It is provided "
+            "for informational and research purposes only. It does not constitute "
+            "medical, financial, legal, or guaranteed predictive advice."
+        )
+        eval_id = getattr(r, 'evaluation_id', '')
+        eval_line = f'<p class="meta">Evaluation ID: <code>{eval_id}</code></p>' if eval_id else ''
 
         return f"""<!DOCTYPE html>
 <html lang="en">
@@ -414,7 +439,11 @@ class ReportGenerator:
     </style>
 </head>
 <body>
+{eval_line}
 {html_body}
+    <div style="margin-top: 2rem; padding: 1rem; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; font-size: 0.85em; color: #664d03;">
+        <strong>Disclaimer:</strong> {disclaimer}
+    </div>
 </body>
 </html>"""
 

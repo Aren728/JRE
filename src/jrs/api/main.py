@@ -12,11 +12,16 @@ Usage::
 
 from __future__ import annotations
 
+import hashlib
+import json
 import time
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request, Response
 
+from .auth import check_rate_limit, get_key_hash, require_api_key
 from .dependencies import (
     _PROJECT_ROOT,
     build_jre_facts,
@@ -26,9 +31,13 @@ from .dependencies import (
     list_fixtures,
     load_fixture,
 )
+from .logging_config import get_logger, log_request
 from .schemas import (
+    ENGINE_VERSION,
+    LEGAL_DISCLAIMER,
     BirthDataInput,
     EvaluationResponse,
+    FeedbackEntry,
     FixtureInput,
     HealthResponse,
     YogaProvenance,
@@ -48,6 +57,33 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+# Module-level logger
+_logger = get_logger("jre.api.main")
+
+
+# ── Evaluation ID Generation ────────────────────────────────────────────────
+
+
+def _generate_evaluation_id(
+    fixture_id: str = "",
+    target_timestamp: str = "",
+) -> str:
+    """Generate a deterministic SHA-256 evaluation ID.
+
+    The ID is a hash of fixture_id + engine_version, ensuring
+    exact reproducibility of any evaluation result.
+
+    Args:
+        fixture_id: The fixture identifier (or "custom" for custom data).
+        target_timestamp: Optional event timestamp for event-specific eval.
+
+    Returns:
+        Hex string (first 16 chars of SHA-256).
+    """
+    components = [fixture_id, target_timestamp, ENGINE_VERSION]
+    digest = hashlib.sha256("|".join(components).encode()).hexdigest()
+    return digest[:16]
 
 
 # ── Yoga Category Mapping ──────────────────────────────────────────────────
@@ -93,10 +129,13 @@ _YOGA_OUTCOME_DOMAINS: dict[str, list[str]] = {
 
 # ── Helper ──────────────────────────────────────────────────────────────────
 
+
 def _run_evaluation(
     chart: Any,
     jre_facts: dict[str, Any],
     subject: str = "Custom",
+    fixture_id: str = "custom",
+    target_timestamp: str = "",
 ) -> EvaluationResponse:
     """Run the yoga evaluation pipeline and format the response.
 
@@ -104,6 +143,8 @@ def _run_evaluation(
         chart: NatalChart object (for lagna/nakshatra extraction).
         jre_facts: JRE facts dictionary.
         subject: Subject name for the response.
+        fixture_id: Fixture identifier for evaluation_id generation.
+        target_timestamp: Optional timestamp for event-specific evaluation.
 
     Returns:
         EvaluationResponse with all detected yogas.
@@ -172,7 +213,11 @@ def _run_evaluation(
             moon_nak = ps.nakshatra.value
             break
 
+    # Generate deterministic evaluation ID
+    evaluation_id = _generate_evaluation_id(fixture_id, target_timestamp)
+
     return EvaluationResponse(
+        evaluation_id=evaluation_id,
         subject=subject,
         lagna=lagna_rashi,
         moon_nakshatra=moon_nak,
@@ -180,7 +225,32 @@ def _run_evaluation(
         yoga_count=len(yoga_results),
         formed_count=formed_count,
         processing_time_ms=round(elapsed_ms, 2),
+        engine_version=ENGINE_VERSION,
+        disclaimer=LEGAL_DISCLAIMER,
     )
+
+
+# ── Middleware: Request Logging ─────────────────────────────────────────────
+
+
+@app.middleware("http")
+async def log_requests_middleware(request: Request, call_next: Any) -> Response:
+    """Log every API request with structured data (PII-safe)."""
+    start = time.time()
+    response = await call_next(request)
+    elapsed_ms = (time.time() - start) * 1000
+
+    # Skip health check logging to reduce noise
+    if request.url.path != "/api/v1/health":
+        log_request(
+            endpoint=request.url.path,
+            method=request.method,
+            status_code=response.status_code,
+            latency_ms=elapsed_ms,
+            message=f"{request.method} {request.url.path} → {response.status_code}",
+        )
+
+    return response
 
 
 # ── Endpoints ───────────────────────────────────────────────────────────────
@@ -188,13 +258,15 @@ def _run_evaluation(
 
 @app.get("/api/v1/health", response_model=HealthResponse, tags=["Health"])
 async def health_check() -> HealthResponse:
-    """Health check endpoint."""
+    """Health check endpoint. No authentication required."""
     return HealthResponse(status="healthy", version="1.0.0")
 
 
 @app.get("/api/v1/fixtures", tags=["Fixtures"])
-async def list_available_fixtures() -> dict[str, Any]:
-    """List all available chart fixtures."""
+async def list_available_fixtures(
+    _auth: dict[str, Any] = Depends(check_rate_limit),
+) -> dict[str, Any]:
+    """List all available chart fixtures. Requires API key."""
     fixtures = list_fixtures()
     return {
         "count": len(fixtures),
@@ -207,12 +279,18 @@ async def list_available_fixtures() -> dict[str, Any]:
     response_model=EvaluationResponse,
     tags=["Evaluation"],
 )
-async def evaluate_fixture(input_data: FixtureInput) -> EvaluationResponse:
+async def evaluate_fixture(
+    input_data: FixtureInput,
+    request: Request,
+    _auth: dict[str, Any] = Depends(check_rate_limit),
+) -> EvaluationResponse:
     """Evaluate yogas for a pre-computed chart fixture.
 
     Loads the fixture by ID, computes the natal chart, and runs
-    the full JRS evaluation pipeline.
+    the full JRS evaluation pipeline. Requires API key.
     """
+    request_start = time.perf_counter()
+
     try:
         fixture = load_fixture(input_data.fixture_id)
     except FileNotFoundError as e:
@@ -229,7 +307,25 @@ async def evaluate_fixture(input_data: FixtureInput) -> EvaluationResponse:
             detail=f"Chart computation failed: {e}",
         )
 
-    return _run_evaluation(chart, jre_facts, subject=subject)
+    response = _run_evaluation(
+        chart, jre_facts, subject=subject,
+        fixture_id=input_data.fixture_id,
+    )
+
+    # Log with evaluation_id and key hash (PII-safe)
+    latency_ms = (time.perf_counter() - request_start) * 1000
+    raw_key = request.headers.get("X-API-Key", "")
+    log_request(
+        endpoint="/api/v1/evaluate/fixture",
+        method="POST",
+        status_code=200,
+        latency_ms=latency_ms,
+        evaluation_id=response.evaluation_id,
+        key_hash=get_key_hash(raw_key),
+        message=f"Fixture evaluation completed: {input_data.fixture_id}",
+    )
+
+    return response
 
 
 @app.post(
@@ -237,12 +333,18 @@ async def evaluate_fixture(input_data: FixtureInput) -> EvaluationResponse:
     response_model=EvaluationResponse,
     tags=["Evaluation"],
 )
-async def evaluate_custom(input_data: BirthDataInput) -> EvaluationResponse:
+async def evaluate_custom(
+    input_data: BirthDataInput,
+    request: Request,
+    _auth: dict[str, Any] = Depends(check_rate_limit),
+) -> EvaluationResponse:
     """Evaluate yogas for custom birth data.
 
     Computes the natal chart from the provided birth data and runs
-    the full JRS evaluation pipeline.
+    the full JRS evaluation pipeline. Requires API key.
     """
+    request_start = time.perf_counter()
+
     try:
         chart = compute_chart_from_birth_data(
             date=input_data.date,
@@ -258,7 +360,22 @@ async def evaluate_custom(input_data: BirthDataInput) -> EvaluationResponse:
             detail=f"Chart computation failed: {e}",
         )
 
-    return _run_evaluation(chart, jre_facts, subject="Custom")
+    response = _run_evaluation(chart, jre_facts, subject="Custom")
+
+    # Log with evaluation_id and key hash (PII-safe)
+    latency_ms = (time.perf_counter() - request_start) * 1000
+    raw_key = request.headers.get("X-API-Key", "")
+    log_request(
+        endpoint="/api/v1/evaluate/custom",
+        method="POST",
+        status_code=200,
+        latency_ms=latency_ms,
+        evaluation_id=response.evaluation_id,
+        key_hash=get_key_hash(raw_key),
+        message="Custom birth data evaluation completed",
+    )
+
+    return response
 
 
 # ── Report Endpoint ────────────────────────────────────────────────────────
@@ -271,6 +388,8 @@ async def evaluate_custom(input_data: BirthDataInput) -> EvaluationResponse:
 async def generate_report(
     input_data: FixtureInput,
     format: str = "markdown",
+    request: Request = None,  # type: ignore[assignment]
+    _auth: dict[str, Any] = Depends(check_rate_limit),
 ) -> dict[str, Any]:
     """Generate a human-readable astrological report for a chart fixture.
 
@@ -279,7 +398,7 @@ async def generate_report(
         format: Output format — 'markdown' (default) or 'html'.
 
     Returns:
-        Dictionary with 'format' and 'content' keys.
+        Dictionary with 'format', 'content', and 'disclaimer' keys.
     """
     from jrs.reporting.generator import ReportGenerator
 
@@ -307,7 +426,10 @@ async def generate_report(
             detail=f"Chart computation failed: {e}",
         )
 
-    response = _run_evaluation(chart, jre_facts, subject=subject)
+    response = _run_evaluation(
+        chart, jre_facts, subject=subject,
+        fixture_id=input_data.fixture_id,
+    )
 
     # Generate report
     generator = ReportGenerator(response)
@@ -319,7 +441,9 @@ async def generate_report(
     return {
         "format": format,
         "subject": subject,
+        "evaluation_id": response.evaluation_id,
         "content": content,
+        "disclaimer": LEGAL_DISCLAIMER,
     }
 
 
@@ -331,65 +455,64 @@ async def generate_report(
     tags=["Feedback"],
 )
 async def submit_feedback(
-    fixture_id: str = "",
-    event_date: str = "",
-    expected_outcome: str = "",
-    actual_outcome: str = "",
-    notes: str = "",
+    entry: FeedbackEntry,
+    request: Request,
+    _auth: dict[str, Any] = Depends(check_rate_limit),
 ) -> dict[str, Any]:
-    """Submit beta tester feedback.
+    """Submit structured beta tester feedback.
 
-    Appends the feedback to reports/beta_feedback_log.jsonl for later analysis.
+    Validates the FeedbackEntry schema and appends to
+    data/feedback_log.jsonl.
 
     Args:
-        fixture_id: Chart fixture identifier.
-        event_date: Date of the event being evaluated.
-        expected_outcome: What the tester expected.
-        actual_outcome: What the engine predicted.
-        notes: Additional notes or category (false_negative, false_positive, etc.).
+        entry: FeedbackEntry with structured taxonomy flags.
     """
-    import json
-    from datetime import datetime, timezone
+    # Build log entry with timestamp
+    log_entry = entry.model_dump()
+    log_entry["timestamp"] = datetime.now(timezone.utc).isoformat()
+    log_entry["engine_version"] = ENGINE_VERSION
 
-    feedback_entry = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "fixture_id": fixture_id,
-        "event_date": event_date,
-        "expected_outcome": expected_outcome,
-        "actual_outcome": actual_outcome,
-        "notes": notes,
-    }
-
-    # Write to JSONL file
-    feedback_dir = _PROJECT_ROOT / "reports"
-    feedback_dir.mkdir(parents=True, exist_ok=True)
-    feedback_path = feedback_dir / "beta_feedback_log.jsonl"
+    # Ensure data directory exists
+    data_dir = _PROJECT_ROOT / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    feedback_path = data_dir / "feedback_log.jsonl"
 
     try:
         with feedback_path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(feedback_entry) + "\n")
+            f.write(json.dumps(log_entry) + "\n")
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Failed to save feedback: {e}",
         )
 
+    # Count entries
+    entry_count = 0
+    if feedback_path.exists():
+        with feedback_path.open(encoding="utf-8") as f:
+            entry_count = sum(1 for line in f if line.strip())
+
+    # Log the feedback submission (PII-safe)
+    raw_key = request.headers.get("X-API-Key", "")
+    log_request(
+        endpoint="/api/v1/feedback",
+        method="POST",
+        status_code=200,
+        evaluation_id=entry.evaluation_id,
+        key_hash=get_key_hash(raw_key),
+        message=f"Feedback recorded for evaluation {entry.evaluation_id}",
+    )
+
     return {
         "status": "recorded",
         "message": "Feedback saved successfully",
-        "entry_count": _count_feedback_entries(feedback_path),
+        "evaluation_id": entry.evaluation_id,
+        "entry_count": entry_count,
     }
 
 
-def _count_feedback_entries(path: Path) -> int:
-    """Count existing feedback entries."""
-    if not path.exists():
-        return 0
-    with path.open(encoding="utf-8") as f:
-        return sum(1 for line in f if line.strip())
-
-
 # ── Entry Point ─────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     """Run the API server directly."""

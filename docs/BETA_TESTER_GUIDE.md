@@ -1,6 +1,6 @@
 # JRE Beta Testing Guide
 
-**Version:** 1.0.0 | **Date:** August 2026
+**Version:** 1.0.0-beta | **Date:** August 2026 | **Engine:** v1.0.0-beta (frozen)
 
 ---
 
@@ -16,16 +16,51 @@ The **Jyotish Reasoning Engine (JRE)** is a deterministic, rule-based system for
 4. **Temporal Evaluation (Layer 3):** Combines Vimshottari Dasha activation with real Ashtakavarga transit bindus
 5. **Varga Confirmation (Layer 4):** Validates yoga strength through D9 (Navamsha) confirmation
 
-### Empirical Validation
-
-Tested against 50 historical charts (150 known life events):
+### Empirical Validation (HOLDOUT)
 
 | Metric | Value |
 |--------|-------|
-| **Precision** | 78.0% |
-| **Recall** | 67.5% |
-| **F1 Score** | 0.723 |
-| **Hit Rate** | 56.7% (95% CI: 48.7%–64.6%) |
+| **Precision** | 82.6% |
+| **Recall** | 73.1% |
+| **F1 Score** | 0.776 |
+| **Hit Rate** | 63.3% (95% CI: 46.1%–80.6%) |
+
+---
+
+## ⚠️ Legal & Computational Disclaimer
+
+> **DISCLAIMER:** This output is a computational interpretation based on classical Vedic astrology rulesets (BPHS, Phaladeepika). It is provided for informational and research purposes only. It does not constitute medical, financial, legal, or guaranteed predictive advice.
+
+All API responses and generated reports include this disclaimer. By using this API, you acknowledge that the output is a deterministic computational model, not a prediction service.
+
+---
+
+## API Authentication
+
+All `/api/v1/` endpoints (except `/health`) require an API key via the `X-API-Key` header.
+
+### Your Beta API Keys
+
+| Key | Name | Tier |
+|-----|------|------|
+| `jre-beta-key-alpha` | Beta Tester A | Standard |
+| `jre-beta-key-beta` | Beta Tester B | Standard |
+| `jre-beta-key-gamma` | Beta Tester C | Standard |
+
+### Rate Limits
+
+- **10 requests per minute** per API key
+- Exceeding the limit returns HTTP 429 with `Retry-After` header
+- Rate limits reset automatically after the sliding window expires
+
+### Authentication Example
+
+```bash
+curl -X POST http://localhost:8000/api/v1/evaluate/fixture \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
+  -d '{"fixture_id": "chart_001_pilot"}'
+```
 
 ---
 
@@ -40,7 +75,7 @@ Career-relevant yogas (Raja, Gajakesari) sometimes activate during death/health 
 A yoga is only "activated" when the Mahadasha/Antardasha/Pratyantardasha lord IS one of the yoga's involved planets. This is strict — the engine doesn't consider dispositorship or aspect relationships for Dasha matching.
 
 ### 3. Missing Advanced Yogas
-Some charts (Picasso, Tolstoy, Beethoven, de Gaulle, Ford) have zero yogas detected because their planetary configurations don't match any currently implemented yoga patterns. Additional detectors are needed.
+Some charts have zero yogas detected because their planetary configurations don't match any currently implemented yoga patterns. Additional detectors are needed.
 
 ### 4. Transit Layer Limitations
 The transit layer computes real Ashtakavarga bindus but uses natal planet positions as an approximation for transit positions. Full ephemeris-based transit computation would improve accuracy.
@@ -59,8 +94,8 @@ Death timing and longevity calculations are not yet implemented. The engine focu
 git clone <repository-url>
 cd JRE
 
-# Build and start the API server
-docker-compose up --build
+# Build and start the staging API server
+docker-compose -f docker-compose.staging.yml up --build
 
 # The API is now available at http://localhost:8000
 # Swagger UI at http://localhost:8000/docs
@@ -81,21 +116,11 @@ pip install fastapi uvicorn httpx
 uvicorn src.jrs.api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-### Option 3: Run Tests
-
-```bash
-# Run the full test suite
-pytest tests/unit/jrs/ -q
-
-# Run API tests only
-pytest tests/unit/jrs/api/ -v
-```
-
 ---
 
 ## API Endpoints
 
-### Health Check
+### Health Check (No Auth Required)
 ```bash
 curl http://localhost:8000/api/v1/health
 # {"status": "healthy", "version": "1.0.0"}
@@ -103,7 +128,8 @@ curl http://localhost:8000/api/v1/health
 
 ### List Available Charts
 ```bash
-curl http://localhost:8000/api/v1/fixtures
+curl http://localhost:8000/api/v1/fixtures \
+  -H "X-API-Key: jre-beta-key-alpha"
 # {"count": 50, "fixtures": ["chart_001_pilot", "chart_002_curie", ...]}
 ```
 
@@ -111,6 +137,7 @@ curl http://localhost:8000/api/v1/fixtures
 ```bash
 curl -X POST http://localhost:8000/api/v1/evaluate/fixture \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
   -d '{"fixture_id": "chart_001_pilot"}'
 ```
 
@@ -118,6 +145,7 @@ curl -X POST http://localhost:8000/api/v1/evaluate/fixture \
 ```bash
 curl -X POST http://localhost:8000/api/v1/evaluate/custom \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
   -d '{
     "date": "1990-01-15",
     "time": "14:30:00",
@@ -132,26 +160,75 @@ curl -X POST http://localhost:8000/api/v1/evaluate/custom \
 # Markdown format
 curl -X POST http://localhost:8000/api/v1/report/fixture \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
   -d '{"fixture_id": "chart_001_pilot"}'
 
 # HTML format
 curl -X POST "http://localhost:8000/api/v1/report/fixture?format=html" \
   -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
   -d '{"fixture_id": "chart_001_pilot"}'
 ```
 
-### Submit Feedback
+---
+
+## Submitting Structured Feedback
+
+We use a **structured feedback taxonomy** to enable systematic analysis. Each feedback submission must include:
+
+### FeedbackEntry Schema
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `evaluation_id` | string | ✅ | The `evaluation_id` from the API response |
+| `expert_id` | string | ✅ | Your anonymized ID (e.g., "EXPERT_A") |
+| `domain` | string | ✅ | Event domain (CAREER, HEALTH, MARRIAGE, etc.) |
+| `expert_agreement` | bool | — | You agree with the engine's assessment |
+| `expert_disagreement` | bool | — | You disagree with the engine's assessment |
+| `missing_yoga` | bool | — | A yoga should have been detected but wasn't |
+| `false_positive` | bool | — | Engine detected a yoga that shouldn't exist |
+| `false_negative` | bool | — | Engine missed a yoga that should have been activated |
+| `timing_issue` | bool | — | Dasha activation timing is incorrect |
+| `interpretation_issue` | bool | — | Classical interpretation is wrong |
+| `astronomical_issue` | bool | — | Underlying astronomical calculation is wrong |
+| `other` | bool | — | Other issue |
+| `free_text` | string | — | Optional detailed notes |
+
+### Feedback Submission Example
+
 ```bash
+# First, get the evaluation_id from the API response
+EVAL_ID=$(curl -s -X POST http://localhost:8000/api/v1/evaluate/fixture \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: jre-beta-key-alpha" \
+  -d '{"fixture_id": "chart_001_pilot"}' | jq -r '.evaluation_id')
+
+# Then submit feedback
 curl -X POST http://localhost:8000/api/v1/feedback \
   -H "Content-Type: application/json" \
-  -d '{
-    "fixture_id": "chart_001_pilot",
-    "event_date": "1921-11-09",
-    "expected_outcome": "Nobel Prize — career peak",
-    "actual_outcome": "Engine predicted Malavya yoga activated",
-    "notes": "Prediction matches well"
-  }'
+  -H "X-API-Key: jre-beta-key-alpha" \
+  -d "{
+    \"evaluation_id\": \"$EVAL_ID\",
+    \"expert_id\": \"EXPERT_A\",
+    \"domain\": \"CAREER\",
+    \"expert_agreement\": true,
+    \"missing_yoga\": false,
+    \"false_positive\": false,
+    \"false_negative\": false,
+    \"timing_issue\": false,
+    \"interpretation_issue\": false,
+    \"astronomical_issue\": false,
+    \"other\": false,
+    \"free_text\": \"Raja yoga activation during JUPITER MD aligns well with the career peak.\"
+  }"
 ```
+
+### Feedback Guidelines
+
+1. **Always include `evaluation_id`** — This ties your feedback to the exact engine output for reproducibility.
+2. **Use your `expert_id`** — Consistent IDs allow us to track inter-rater reliability.
+3. **Set only relevant flags** — Multiple flags can be true if applicable.
+4. **Be specific in `free_text`** — The more detail, the better for post-analysis.
 
 ---
 
@@ -172,39 +249,8 @@ curl -X POST http://localhost:8000/api/v1/feedback \
 - **ACTIVATED:** The Dasha lord matches a yoga planet. The yoga is "live" at this time.
 - **DORMANT:** The Dasha lord doesn't match. The yoga exists but isn't currently manifesting.
 
-### Reading the Markdown Report
-
-The report groups yogas by outcome domain:
-- **Career & Professional Life** — Raja, Gajakesari, Pancha Mahapurusha yogas
-- **Wealth & Financial Prosperity** — Dhana yogas
-- **Arts & Creative Expression** — Malavya, Saraswati yogas
-- **Relationships & Partnerships** — Sunapha, Anapha yogas
-
-Each yoga includes:
-- Classical description (what it means)
-- Strength assessment (how strong it is)
-- Timing context (when it manifests via Dasha)
-
----
-
-## Providing Feedback
-
-We value your feedback! Please use the `/api/v1/feedback` endpoint to report:
-
-1. **Incorrect predictions:** Where the engine got the yoga or timing wrong
-2. **Missing yogas:** Classical yogas that should be detected but aren't
-3. **Report quality:** Suggestions for improving the Markdown/HTML reports
-4. **API usability:** Issues with the API interface or documentation
-
-### Feedback Categories
-
-| Category | Description |
-|----------|-------------|
-| `false_negative` | Engine missed a yoga that should have been detected |
-| `false_positive` | Engine detected a yoga that shouldn't exist |
-| `timing_error` | Yoga activation timing is wrong |
-| `report_quality` | Report formatting or content suggestions |
-| `api_issue` | API usability or documentation issues |
+### Evaluation ID
+Every API response includes a deterministic `evaluation_id` — a SHA-256 hash of the fixture ID and engine version. This allows exact reproducibility: the same input will always produce the same `evaluation_id`.
 
 ---
 
@@ -250,3 +296,4 @@ We value your feedback! Please use the `/api/v1/feedback` endpoint to report:
 - **API Documentation:** http://localhost:8000/docs (Swagger UI)
 - **Health Check:** http://localhost:8000/api/v1/health
 - **Bug Reports:** Use the feedback endpoint or open a GitHub issue
+- **Evaluation ID:** Include this in any support request for exact reproducibility
