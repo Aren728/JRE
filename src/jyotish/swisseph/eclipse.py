@@ -66,9 +66,7 @@ class SwissEphemerisEclipseProvider(EclipseProvider):
         if jd_start > jd_end:
             raise EclipseError(f"jd_start {jd_start} must be <= jd_end {jd_end}")
         kinds: tuple[EclipseKind, ...] = (
-            (EclipseKind.SOLAR, EclipseKind.LUNAR)
-            if kind is None
-            else (kind,)
+            (EclipseKind.SOLAR, EclipseKind.LUNAR) if kind is None else (kind,)
         )
         events: list[EclipseEvent] = []
         with self._lock:

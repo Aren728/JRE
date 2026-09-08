@@ -112,35 +112,35 @@ ASPECT_ANGLES: dict[WesternAspectType, float] = {
 # Fall: opposite sign.
 
 DOMICILE_SIGNS: dict[WesternPlanet, int] = {
-    WesternPlanet.SUN: 4,          # Leo (120°)
-    WesternPlanet.MOON: 1,         # Taurus (30°) — classical, some traditions say Cancer
-    WesternPlanet.MERCURY: 2,      # Gemini (60°) — also Virgo (5)
-    WesternPlanet.VENUS: 1,        # Taurus (30°) — also Libra (7)
-    WesternPlanet.MARS: 0,         # Aries (0°) — also Scorpio (7)
-    WesternPlanet.JUPITER: 8,      # Sagittarius (240°) — also Pisces (11)
-    WesternPlanet.SATURN: 9,       # Capricorn (270°) — also Aquarius (10)
-    WesternPlanet.URANUS: 10,      # Aquarius (300°) — modern ruler
-    WesternPlanet.NEPTUNE: 11,     # Pisces (330°) — modern ruler
-    WesternPlanet.PLUTO: 7,        # Scorpio (210°) — modern ruler
+    WesternPlanet.SUN: 4,  # Leo (120°)
+    WesternPlanet.MOON: 1,  # Taurus (30°) — classical, some traditions say Cancer
+    WesternPlanet.MERCURY: 2,  # Gemini (60°) — also Virgo (5)
+    WesternPlanet.VENUS: 1,  # Taurus (30°) — also Libra (7)
+    WesternPlanet.MARS: 0,  # Aries (0°) — also Scorpio (7)
+    WesternPlanet.JUPITER: 8,  # Sagittarius (240°) — also Pisces (11)
+    WesternPlanet.SATURN: 9,  # Capricorn (270°) — also Aquarius (10)
+    WesternPlanet.URANUS: 10,  # Aquarius (300°) — modern ruler
+    WesternPlanet.NEPTUNE: 11,  # Pisces (330°) — modern ruler
+    WesternPlanet.PLUTO: 7,  # Scorpio (210°) — modern ruler
 }
 
 EXALTATION_SIGNS: dict[WesternPlanet, int] = {
-    WesternPlanet.SUN: 0,          # Aries (0°)
-    WesternPlanet.MOON: 1,         # Taurus (30°)
-    WesternPlanet.MERCURY: 5,      # Virgo (150°)
-    WesternPlanet.VENUS: 11,       # Pisces (330°)
-    WesternPlanet.MARS: 9,         # Capricorn (270°)
-    WesternPlanet.JUPITER: 3,      # Cancer (90°)
-    WesternPlanet.SATURN: 6,       # Libra (180°)
+    WesternPlanet.SUN: 0,  # Aries (0°)
+    WesternPlanet.MOON: 1,  # Taurus (30°)
+    WesternPlanet.MERCURY: 5,  # Virgo (150°)
+    WesternPlanet.VENUS: 11,  # Pisces (330°)
+    WesternPlanet.MARS: 9,  # Capricorn (270°)
+    WesternPlanet.JUPITER: 3,  # Cancer (90°)
+    WesternPlanet.SATURN: 6,  # Libra (180°)
 }
 
 # Secondary domicile rulerships (some planets share signs)
 SECONDARY_DOMICILE: dict[WesternPlanet, int] = {
-    WesternPlanet.MERCURY: 5,      # Virgo
-    WesternPlanet.VENUS: 7,        # Libra
-    WesternPlanet.MARS: 7,         # Scorpio
-    WesternPlanet.JUPITER: 11,     # Pisces
-    WesternPlanet.SATURN: 10,      # Aquarius
+    WesternPlanet.MERCURY: 5,  # Virgo
+    WesternPlanet.VENUS: 7,  # Libra
+    WesternPlanet.MARS: 7,  # Scorpio
+    WesternPlanet.JUPITER: 11,  # Pisces
+    WesternPlanet.SATURN: 10,  # Aquarius
 }
 
 
@@ -152,9 +152,18 @@ def _sign_index(longitude: float) -> int:
 def _sign_name(longitude: float) -> str:
     """Return zodiac sign name from ecliptic longitude."""
     signs = [
-        "ARIES", "TAURUS", "GEMINI", "CANCER",
-        "LEO", "VIRGO", "LIBRA", "SCORPIO",
-        "SAGITTARIUS", "CAPRICORN", "AQUARIUS", "PISCES",
+        "ARIES",
+        "TAURUS",
+        "GEMINI",
+        "CANCER",
+        "LEO",
+        "VIRGO",
+        "LIBRA",
+        "SCORPIO",
+        "SAGITTARIUS",
+        "CAPRICORN",
+        "AQUARIUS",
+        "PISCES",
     ]
     return signs[_sign_index(longitude)]
 
@@ -291,9 +300,7 @@ class WesternChart:
 
     def __post_init__(self) -> None:
         if not self.deterministic_id:
-            object.__setattr__(
-                self, "deterministic_id", _compute_chart_id(self)
-            )
+            object.__setattr__(self, "deterministic_id", _compute_chart_id(self))
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""

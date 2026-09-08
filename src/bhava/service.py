@@ -48,9 +48,7 @@ def _parse_systems(values: Any) -> tuple[HouseSystem, ...]:
     return tuple(systems)
 
 
-def _effective_config(
-    config: BhavaConfig | None, house_systems: Any
-) -> BhavaConfig:
+def _effective_config(config: BhavaConfig | None, house_systems: Any) -> BhavaConfig:
     cfg = validate(config or BhavaConfig())
     if house_systems is not None:
         cfg = dataclasses.replace(cfg, house_systems=_parse_systems(house_systems))

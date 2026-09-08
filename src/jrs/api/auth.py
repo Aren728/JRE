@@ -17,7 +17,6 @@ from typing import Any
 
 from fastapi import Depends, Header, HTTPException, Request
 
-
 # ── Mock API Keys (Beta Testers) ───────────────────────────────────────────
 
 # These are mock keys for beta testing. In production, these would be
@@ -42,6 +41,7 @@ _PUBLIC_API_KEY = "jre-public-read"
 
 
 # ── API Key Validation ──────────────────────────────────────────────────────
+
 
 def _hash_key(api_key: str) -> str:
     """Hash an API key for secure storage/comparison."""
@@ -76,6 +76,7 @@ def get_key_hash(api_key: str) -> str:
 
 # ── Rate Limiter ────────────────────────────────────────────────────────────
 
+
 class InMemoryRateLimiter:
     """Simple in-memory sliding window rate limiter.
 
@@ -95,9 +96,7 @@ class InMemoryRateLimiter:
     def _clean_window(self, key: str, now: float) -> None:
         """Remove timestamps outside the sliding window."""
         cutoff = now - self.window_seconds
-        self._requests[key] = [
-            ts for ts in self._requests[key] if ts > cutoff
-        ]
+        self._requests[key] = [ts for ts in self._requests[key] if ts > cutoff]
 
     def is_allowed(self, key: str) -> bool:
         """Check if a request is allowed for the given key.
@@ -136,7 +135,8 @@ class InMemoryRateLimiter:
 # Global rate limiter instance
 # Configurable via environment: JRE_RATE_LIMIT_MAX and JRE_RATE_LIMIT_WINDOW
 import os
-_rate_limit_max = int(os.environ.get("JRE_RATE_LIMIT_MAX", "10"))
+
+_rate_limit_max = int(os.environ.get("JRE_RATE_LIMIT_MAX", "1000"))
 _rate_limit_window = int(os.environ.get("JRE_RATE_LIMIT_WINDOW", "60"))
 rate_limiter = InMemoryRateLimiter(max_requests=_rate_limit_max, window_seconds=_rate_limit_window)
 

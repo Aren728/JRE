@@ -32,24 +32,34 @@ YOGA_VERSION = "0.1.0"
 # --------------------------------------------------------------------------- #
 
 SIGN_LORDS: dict[int, BodyId] = {
-    1: BodyId.MARS,      # Aries (Mesha)
-    2: BodyId.VENUS,     # Taurus (Vrishabha)
-    3: BodyId.MERCURY,   # Gemini (Mithuna)
-    4: BodyId.MOON,      # Cancer (Karka)
-    5: BodyId.SUN,       # Leo (Simha)
-    6: BodyId.MERCURY,   # Virgo (Kanya)
-    7: BodyId.VENUS,     # Libra (Tula)
-    8: BodyId.MARS,      # Scorpio (Vrishchika)
-    9: BodyId.JUPITER,   # Sagittarius (Dhanusha)
-    10: BodyId.SATURN,    # Capricorn (Makara)
-    11: BodyId.SATURN,    # Aquarius (Kumbha)
-    12: BodyId.JUPITER,   # Pisces (Meena)
+    1: BodyId.MARS,  # Aries (Mesha)
+    2: BodyId.VENUS,  # Taurus (Vrishabha)
+    3: BodyId.MERCURY,  # Gemini (Mithuna)
+    4: BodyId.MOON,  # Cancer (Karka)
+    5: BodyId.SUN,  # Leo (Simha)
+    6: BodyId.MERCURY,  # Virgo (Kanya)
+    7: BodyId.VENUS,  # Libra (Tula)
+    8: BodyId.MARS,  # Scorpio (Vrishchika)
+    9: BodyId.JUPITER,  # Sagittarius (Dhanusha)
+    10: BodyId.SATURN,  # Capricorn (Makara)
+    11: BodyId.SATURN,  # Aquarius (Kumbha)
+    12: BodyId.JUPITER,  # Pisces (Meena)
 }
 
 # RashiId value -> 1-indexed number
 _RASHI_ORDER: list[str] = [
-    "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-    "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+    "MESHA",
+    "VRISHABHA",
+    "MITHUNA",
+    "KARKA",
+    "SIMHA",
+    "KANYA",
+    "TULA",
+    "VRISHCHIKA",
+    "DHANUSHA",
+    "MAKARA",
+    "KUMBHA",
+    "MEENA",
 ]
 
 
@@ -87,6 +97,7 @@ def signs_away(from_sign: int, to_sign: int) -> int:
 # Enums
 # --------------------------------------------------------------------------- #
 
+
 class YogaId(StrEnum):
     """Supported classical yogas (V1 subset)."""
 
@@ -120,10 +131,10 @@ class ConnectionType(StrEnum):
 class ParivartanaType(StrEnum):
     """Classification of sign exchanges (BPHS Ch.26)."""
 
-    MAHA = "MAHA"          # Kendra-Trikona exchange
-    KAHALA = "KAHALA"      # Exchange between functional-positive houses (2/5/9/11)
-    DAINYA = "DAINYA"      # Exchange involving Dusthana lords (6/8/12)
-    NONE = "NONE"          # Not an exchange or unclassifiable
+    MAHA = "MAHA"  # Kendra-Trikona exchange
+    KAHALA = "KAHALA"  # Exchange between functional-positive houses (2/5/9/11)
+    DAINYA = "DAINYA"  # Exchange involving Dusthana lords (6/8/12)
+    NONE = "NONE"  # Not an exchange or unclassifiable
 
 
 class YogaStrength(StrEnum):
@@ -163,6 +174,7 @@ CONNECTION_STRENGTH: dict[ConnectionType, float] = {
 # --------------------------------------------------------------------------- #
 # Data models
 # --------------------------------------------------------------------------- #
+
 
 @dataclass(frozen=True)
 class YogaCondition:
@@ -226,9 +238,7 @@ class YogaConfig:
 
     version: str = YOGA_VERSION
     min_bala_ratio: float = 0.5
-    enabled_yogas: tuple[YogaId, ...] = field(
-        default_factory=lambda: tuple(YogaId)
-    )
+    enabled_yogas: tuple[YogaId, ...] = field(default_factory=lambda: tuple(YogaId))
 
     def to_dict(self) -> dict[str, Any]:
         return cast(dict[str, Any], _model_to_dict(self))
@@ -252,9 +262,7 @@ class YogaConfig:
 def validate(config: YogaConfig) -> YogaConfig:
     """Validate a ``YogaConfig``; raises ``InvalidYogaConfigError``."""
     if not isinstance(config.version, str) or config.version == "":
-        raise InvalidYogaConfigError(
-            f"version must be a non-empty string, got {config.version!r}"
-        )
+        raise InvalidYogaConfigError(f"version must be a non-empty string, got {config.version!r}")
     if not isinstance(config.min_bala_ratio, (int, float)) or config.min_bala_ratio < 0:
         raise InvalidYogaConfigError(
             f"min_bala_ratio must be a non-negative number, got {config.min_bala_ratio!r}"
@@ -269,6 +277,7 @@ def validate(config: YogaConfig) -> YogaConfig:
 # --------------------------------------------------------------------------- #
 # Generic serialization helpers
 # --------------------------------------------------------------------------- #
+
 
 def _model_to_dict(model: Any) -> Any:
     """Generic dataclass serializer (deterministic key order = declaration

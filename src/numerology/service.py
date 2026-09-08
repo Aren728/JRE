@@ -160,15 +160,32 @@ class NumerologyCalculationService:
         raw_sum = 0
 
         pyth_map = {
-            "A": 1, "J": 1, "S": 1,
-            "B": 2, "K": 2, "T": 2,
-            "C": 3, "L": 3, "U": 3,
-            "D": 4, "M": 4, "V": 4,
-            "E": 5, "N": 5, "W": 5,
-            "F": 6, "O": 6, "X": 6,
-            "G": 7, "P": 7, "Y": 7,
-            "H": 8, "Q": 8, "Z": 8,
-            "I": 9, "R": 9,
+            "A": 1,
+            "J": 1,
+            "S": 1,
+            "B": 2,
+            "K": 2,
+            "T": 2,
+            "C": 3,
+            "L": 3,
+            "U": 3,
+            "D": 4,
+            "M": 4,
+            "V": 4,
+            "E": 5,
+            "N": 5,
+            "W": 5,
+            "F": 6,
+            "O": 6,
+            "X": 6,
+            "G": 7,
+            "P": 7,
+            "Y": 7,
+            "H": 8,
+            "Q": 8,
+            "Z": 8,
+            "I": 9,
+            "R": 9,
         }
 
         for ch in full_name.upper():
@@ -186,9 +203,7 @@ class NumerologyCalculationService:
             letter_values=letter_values,
         )
 
-    def _calculate_personal_year(
-        self, birth_date: str, target_year: int
-    ) -> PersonalYearNumber:
+    def _calculate_personal_year(self, birth_date: str, target_year: int) -> PersonalYearNumber:
         """Calculate Personal Year Number.
 
         Algorithm:
@@ -233,7 +248,11 @@ class NumerologyCalculationService:
         raw_sum = 0
 
         pyth_map = {
-            "A": 1, "E": 5, "I": 9, "O": 6, "U": 3,
+            "A": 1,
+            "E": 5,
+            "I": 9,
+            "O": 6,
+            "U": 3,
         }
 
         for ch in full_name.upper():
@@ -268,10 +287,27 @@ class NumerologyCalculationService:
         raw_sum = 0
 
         pyth_map = {
-            "B": 2, "C": 3, "D": 4, "F": 6, "G": 7, "H": 8,
-            "J": 1, "K": 2, "L": 3, "M": 4, "N": 5, "P": 7,
-            "Q": 8, "R": 9, "S": 1, "T": 2, "V": 4, "W": 5,
-            "X": 6, "Y": 7, "Z": 8,
+            "B": 2,
+            "C": 3,
+            "D": 4,
+            "F": 6,
+            "G": 7,
+            "H": 8,
+            "J": 1,
+            "K": 2,
+            "L": 3,
+            "M": 4,
+            "N": 5,
+            "P": 7,
+            "Q": 8,
+            "R": 9,
+            "S": 1,
+            "T": 2,
+            "V": 4,
+            "W": 5,
+            "X": 6,
+            "Y": 7,
+            "Z": 8,
         }
 
         for ch in full_name.upper():

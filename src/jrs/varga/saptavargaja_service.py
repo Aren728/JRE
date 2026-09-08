@@ -31,6 +31,7 @@ from typing import Any, Optional
 
 class DignityLevel(StrEnum):
     """Dignity classification for Saptavargaja Bala score."""
+
     VERY_STRONG = "VERY_STRONG"
     MODERATE = "MODERATE"
     WEAK = "WEAK"
@@ -39,6 +40,7 @@ class DignityLevel(StrEnum):
 @dataclass(frozen=True)
 class SaptavargajaScore:
     """Saptavargaja Bala score for a single planet across 7 Vargas."""
+
     planet: str
     total_score: float
     dignity_level: DignityLevel
@@ -73,25 +75,25 @@ VARGA_NAMES: tuple[str, ...] = ("D1", "D2", "D3", "D7", "D9", "D12", "D30")
 
 # ── Exaltation Signs (1-indexed rashi number) ────────────────────────
 _EXALTATION: dict[str, int] = {
-    "SUN": 1,       # Aries
-    "MOON": 2,      # Taurus
-    "MARS": 10,     # Capricorn
-    "MERCURY": 6,   # Virgo
-    "JUPITER": 4,   # Cancer
-    "VENUS": 12,    # Pisces
-    "SATURN": 7,    # Libra
+    "SUN": 1,  # Aries
+    "MOON": 2,  # Taurus
+    "MARS": 10,  # Capricorn
+    "MERCURY": 6,  # Virgo
+    "JUPITER": 4,  # Cancer
+    "VENUS": 12,  # Pisces
+    "SATURN": 7,  # Libra
 }
 
 # ── Moolatrikona Signs (1-indexed rashi number) ─────────────────────
 # BPHS Ch 3: Moolatrikona is between 0°20' and the start of the sign
 _MOOLATRIKONA: dict[str, int] = {
-    "SUN": 5,       # Leo (0°20'–20°)
-    "MOON": 2,      # Taurus (4°–20°)
-    "MARS": 1,      # Aries (0°20'–12°)
-    "MERCURY": 6,   # Virgo (16°–20°)
-    "JUPITER": 9,   # Sagittarius (0°20'–10°)
-    "VENUS": 7,     # Libra (0°20'–15°)
-    "SATURN": 11,   # Aquarius (0°20'–20°)
+    "SUN": 5,  # Leo (0°20'–20°)
+    "MOON": 2,  # Taurus (4°–20°)
+    "MARS": 1,  # Aries (0°20'–12°)
+    "MERCURY": 6,  # Virgo (16°–20°)
+    "JUPITER": 9,  # Sagittarius (0°20'–10°)
+    "VENUS": 7,  # Libra (0°20'–15°)
+    "SATURN": 11,  # Aquarius (0°20'–20°)
 }
 
 # ── Own Signs (1-indexed rashi numbers) ─────────────────────────────
@@ -107,45 +109,73 @@ _OWN_SIGNS: dict[str, tuple[int, ...]] = {
 
 # ── Debilitation Signs (1-indexed rashi number) ─────────────────────
 _DEBILITATION: dict[str, int] = {
-    "SUN": 7,       # Libra
-    "MOON": 8,      # Scorpio
-    "MARS": 4,      # Cancer
+    "SUN": 7,  # Libra
+    "MOON": 8,  # Scorpio
+    "MARS": 4,  # Cancer
     "MERCURY": 12,  # Pisces
     "JUPITER": 10,  # Capricorn
-    "VENUS": 6,     # Virgo
-    "SATURN": 1,    # Aries
+    "VENUS": 6,  # Virgo
+    "SATURN": 1,  # Aries
 }
 
 # ── Friendship Table (BPHS Ch 2) ────────────────────────────────────
 # Great Friends, Friends, Neutral, Enemies, Great Enemies
 _FRIENDSHIP: dict[str, dict[str, str]] = {
     "SUN": {
-        "MOON": "FRIEND", "MARS": "FRIEND", "JUPITER": "FRIEND",
-        "MERCURY": "ENEMY", "VENUS": "ENEMY", "SATURN": "ENEMY",
+        "MOON": "FRIEND",
+        "MARS": "FRIEND",
+        "JUPITER": "FRIEND",
+        "MERCURY": "ENEMY",
+        "VENUS": "ENEMY",
+        "SATURN": "ENEMY",
     },
     "MOON": {
-        "SUN": "FRIEND", "MARS": "ENEMY", "JUPITER": "FRIEND",
-        "MERCURY": "ENEMY", "VENUS": "FRIEND", "SATURN": "ENEMY",
+        "SUN": "FRIEND",
+        "MARS": "ENEMY",
+        "JUPITER": "FRIEND",
+        "MERCURY": "ENEMY",
+        "VENUS": "FRIEND",
+        "SATURN": "ENEMY",
     },
     "MARS": {
-        "SUN": "FRIEND", "MOON": "ENEMY", "JUPITER": "FRIEND",
-        "MERCURY": "ENEMY", "VENUS": "ENEMY", "SATURN": "FRIEND",
+        "SUN": "FRIEND",
+        "MOON": "ENEMY",
+        "JUPITER": "FRIEND",
+        "MERCURY": "ENEMY",
+        "VENUS": "ENEMY",
+        "SATURN": "FRIEND",
     },
     "MERCURY": {
-        "SUN": "ENEMY", "MOON": "ENEMY", "MARS": "ENEMY",
-        "JUPITER": "FRIEND", "VENUS": "FRIEND", "SATURN": "FRIEND",
+        "SUN": "ENEMY",
+        "MOON": "ENEMY",
+        "MARS": "ENEMY",
+        "JUPITER": "FRIEND",
+        "VENUS": "FRIEND",
+        "SATURN": "FRIEND",
     },
     "JUPITER": {
-        "SUN": "FRIEND", "MOON": "FRIEND", "MARS": "FRIEND",
-        "MERCURY": "ENEMY", "VENUS": "ENEMY", "SATURN": "ENEMY",
+        "SUN": "FRIEND",
+        "MOON": "FRIEND",
+        "MARS": "FRIEND",
+        "MERCURY": "ENEMY",
+        "VENUS": "ENEMY",
+        "SATURN": "ENEMY",
     },
     "VENUS": {
-        "SUN": "ENEMY", "MOON": "FRIEND", "MARS": "ENEMY",
-        "MERCURY": "FRIEND", "JUPITER": "ENEMY", "SATURN": "FRIEND",
+        "SUN": "ENEMY",
+        "MOON": "FRIEND",
+        "MARS": "ENEMY",
+        "MERCURY": "FRIEND",
+        "JUPITER": "ENEMY",
+        "SATURN": "FRIEND",
     },
     "SATURN": {
-        "SUN": "ENEMY", "MOON": "ENEMY", "MARS": "FRIEND",
-        "MERCURY": "FRIEND", "JUPITER": "ENEMY", "VENUS": "FRIEND",
+        "SUN": "ENEMY",
+        "MOON": "ENEMY",
+        "MARS": "FRIEND",
+        "MERCURY": "FRIEND",
+        "JUPITER": "ENEMY",
+        "VENUS": "FRIEND",
     },
 }
 
@@ -174,8 +204,18 @@ _GREAT_ENEMIES: dict[str, frozenset[str]] = {
 def _rashi_to_index(rashi_str: str) -> int | None:
     """Convert Rashi string to 0-based index."""
     _RASHI_ORDER: list[str] = [
-        "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-        "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+        "MESHA",
+        "VRISHABHA",
+        "MITHUNA",
+        "KARKA",
+        "SIMHA",
+        "KANYA",
+        "TULA",
+        "VRISHCHIKA",
+        "DHANUSHA",
+        "MAKARA",
+        "KUMBHA",
+        "MEENA",
     ]
     try:
         return _RASHI_ORDER.index(rashi_str)
@@ -208,9 +248,18 @@ def _get_dignity(planet: str, rashi_num: int) -> str:
     # 5. Friendship-based dignity
     # The sign lord determines the friendship relationship
     _SIGN_LORDS: dict[int, str] = {
-        1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON", 5: "SUN",
-        6: "MERCURY", 7: "VENUS", 8: "MARS", 9: "JUPITER", 10: "SATURN",
-        11: "SATURN", 12: "JUPITER",
+        1: "MARS",
+        2: "VENUS",
+        3: "MERCURY",
+        4: "MOON",
+        5: "SUN",
+        6: "MERCURY",
+        7: "VENUS",
+        8: "MARS",
+        9: "JUPITER",
+        10: "SATURN",
+        11: "SATURN",
+        12: "JUPITER",
     }
     sign_lord = _SIGN_LORDS.get(rashi_num)
     if sign_lord is None or sign_lord == planet:
@@ -358,8 +407,18 @@ class SaptavargajaBalaService:
     ) -> int | None:
         """Get the rashi number for a planet in a specific varga."""
         _RASHI_ORDER: list[str] = [
-            "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-            "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+            "MESHA",
+            "VRISHABHA",
+            "MITHUNA",
+            "KARKA",
+            "SIMHA",
+            "KANYA",
+            "TULA",
+            "VRISHCHIKA",
+            "DHANUSHA",
+            "MAKARA",
+            "KUMBHA",
+            "MEENA",
         ]
 
         if varga == "D1":

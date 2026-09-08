@@ -45,9 +45,7 @@ def migration_config_from_dict(data: dict[str, Any]) -> MigrationConfig:
 
 def migration_rule_catalog_from_dict(data: dict[str, Any]) -> MigrationRuleCatalog:
     """Deserialize a MigrationRuleCatalog from a dict."""
-    rules = tuple(
-        migration_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(migration_rule_from_dict(r) for r in data.get("rules", []))
     return MigrationRuleCatalog(rules=rules)
 
 

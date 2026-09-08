@@ -69,6 +69,7 @@ PROVENANCE_STAGES: tuple[str, ...] = (
 
 class CapabilityState(StrEnum):
     """The state of a capability in the manifest (frozen V1 lifecycle)."""
+
     AVAILABLE = "AVAILABLE"
     NOT_REQUESTED = "NOT_REQUESTED"
     UNAVAILABLE = "UNAVAILABLE"
@@ -76,6 +77,7 @@ class CapabilityState(StrEnum):
 
 class FactKind(StrEnum):
     """The kind of fact contained in a FactEnvelope."""
+
     PLANET_STATE = "PLANET_STATE"
     PAIR_GEOMETRY = "PAIR_GEOMETRY"
     HOUSE_ANALYSIS = "HOUSE_ANALYSIS"
@@ -87,19 +89,13 @@ class FactKind(StrEnum):
 #: Narrowest typed ``FactEnvelope`` payload (SPEC §9 / DC §4): exactly the
 #: six ``FactKind``-mapped lower-layer fact types. Lower-layer payloads stay
 #: source-owned and opaque — JRE-007 never re-declares their schemas.
-FactPayload = (
-    PlanetState
-    | PairGeometry
-    | HouseAnalysis
-    | TransitEvent
-    | EclipseEvent
-    | LagnaState
-)
+FactPayload = PlanetState | PairGeometry | HouseAnalysis | TransitEvent | EclipseEvent | LagnaState
 
 
 @dataclass(frozen=True)
 class CapabilityManifest:
     """The manifest of requested and available capabilities."""
+
     natal_chart: CapabilityState = CapabilityState.NOT_REQUESTED
     pair_geometry: CapabilityState = CapabilityState.NOT_REQUESTED
     eclipse_facts: CapabilityState = CapabilityState.NOT_REQUESTED
@@ -140,9 +136,7 @@ CAPABILITIES: Mapping[str, CapabilityDescriptor] = MappingProxyType(
         "instant": CapabilityDescriptor(
             id="instant", version=CAPABILITY_VERSION, requires=("instant_utc_iso", "bodies")
         ),
-        "natal": CapabilityDescriptor(
-            id="natal", version=CAPABILITY_VERSION, requires=("birth",)
-        ),
+        "natal": CapabilityDescriptor(id="natal", version=CAPABILITY_VERSION, requires=("birth",)),
         "interval": CapabilityDescriptor(
             id="interval",
             version=CAPABILITY_VERSION,
@@ -180,9 +174,7 @@ class ContextConfig:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> ContextConfig:
         config = cls(
-            snapshot_version=_as_string(
-                data.get("snapshot_version"), "snapshot_version", "0.1.0"
-            ),
+            snapshot_version=_as_string(data.get("snapshot_version"), "snapshot_version", "0.1.0"),
             default_time_precision=_as_string(
                 data.get("default_time_precision"), "default_time_precision", "EXACT"
             ),
@@ -389,9 +381,7 @@ def check_capability(request: ContextRequest) -> None:
             f"capability {request.capability!r}: requested minimum version "
             f"{request.capability_version!r} exceeds provided {descriptor.version!r}"
         )
-    missing = [
-        name for name in descriptor.requires if getattr(request, name, None) is None
-    ]
+    missing = [name for name in descriptor.requires if getattr(request, name, None) is None]
     if missing:
         raise InvalidContextRequestError(
             f"capability {request.capability!r} requires inputs "

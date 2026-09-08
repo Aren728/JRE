@@ -45,9 +45,7 @@ def progeny_config_from_dict(data: dict[str, Any]) -> ProgenyConfig:
 
 def progeny_rule_catalog_from_dict(data: dict[str, Any]) -> ProgenyRuleCatalog:
     """Deserialize a ProgenyRuleCatalog from a dict."""
-    rules = tuple(
-        progeny_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(progeny_rule_from_dict(r) for r in data.get("rules", []))
     return ProgenyRuleCatalog(rules=rules)
 
 

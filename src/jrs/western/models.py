@@ -88,9 +88,7 @@ class WesternRuleCatalog:
             "rule_count": len(self.rules),
         }
 
-    def get_rules_by_outcome(
-        self, outcome: WesternOutcomeTaxonomy
-    ) -> tuple[WesternRule, ...]:
+    def get_rules_by_outcome(self, outcome: WesternOutcomeTaxonomy) -> tuple[WesternRule, ...]:
         """Get all rules for a specific outcome taxonomy."""
         return tuple(r for r in self.rules if r.outcome is outcome)
 
@@ -618,9 +616,7 @@ def _extract_hyleg_alcocoden(
         facts["alcocoden_planet"] = "VENUS"  # Default
 
 
-def _determine_house(
-    longitude: float, chart: WesternChart
-) -> int | None:
+def _determine_house(longitude: float, chart: WesternChart) -> int | None:
     """Determine which house a planet falls in based on house cusps.
 
     Uses the standard method: a planet is in house N if its longitude
@@ -682,9 +678,7 @@ def evaluate_condition(condition: str, facts: dict[str, Any]) -> bool:
     return bool(fact_val) if fact_val is not None else False
 
 
-def evaluate_rule(
-    rule: WesternRule, facts: dict[str, Any]
-) -> EvidenceRecord | None:
+def evaluate_rule(rule: WesternRule, facts: dict[str, Any]) -> EvidenceRecord | None:
     """Evaluate a single rule against facts and produce an EvidenceRecord.
 
     All condition_facts must be satisfied (AND logic).

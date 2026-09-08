@@ -15,7 +15,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-
 # ── Constants ────────────────────────────────────────────────────────────────
 
 _BASE_TRANSIT_MULTIPLIER: float = 1.00

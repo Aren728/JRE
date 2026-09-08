@@ -150,11 +150,13 @@ class DashaService:
         first_maha_end = current_start + timedelta(days=first_maha_years * 365.25)
 
         if max_depth == 1:
-            periods.append(DashaPeriod(
-                start_utc=current_start,
-                end_utc=first_maha_end,
-                mahadasha_lord=current_lord,
-            ))
+            periods.append(
+                DashaPeriod(
+                    start_utc=current_start,
+                    end_utc=first_maha_end,
+                    mahadasha_lord=current_lord,
+                )
+            )
         else:
             sub_periods = self._build_antardashas(
                 current_lord, current_start, first_maha_years, max_depth
@@ -180,11 +182,13 @@ class DashaService:
             maha_end = current_start + timedelta(days=maha_years * 365.25)
 
             if max_depth == 1:
-                periods.append(DashaPeriod(
-                    start_utc=current_start,
-                    end_utc=maha_end,
-                    mahadasha_lord=current_lord,
-                ))
+                periods.append(
+                    DashaPeriod(
+                        start_utc=current_start,
+                        end_utc=maha_end,
+                        mahadasha_lord=current_lord,
+                    )
+                )
             else:
                 sub_periods = self._build_antardashas(
                     current_lord, current_start, maha_years, max_depth
@@ -217,12 +221,14 @@ class DashaService:
             adasha_end = current_start + timedelta(days=adasha_years_scaled * 365.25)
 
             if max_depth == 2:
-                periods.append(DashaPeriod(
-                    start_utc=current_start,
-                    end_utc=adasha_end,
-                    mahadasha_lord=mahadasha_lord,
-                    antardasha_lord=adasha_lord,
-                ))
+                periods.append(
+                    DashaPeriod(
+                        start_utc=current_start,
+                        end_utc=adasha_end,
+                        mahadasha_lord=mahadasha_lord,
+                        antardasha_lord=adasha_lord,
+                    )
+                )
             else:
                 # max_depth == 3: build Pratyantardashas
                 praty_periods = self._build_pratyantardashas(
@@ -254,19 +260,19 @@ class DashaService:
             # Scale to the actual Antardasha duration
             adasha_total = _antardasha_duration(mahadasha_lord, antardasha_lord)
             praty_years_scaled = (
-                praty_years * adasha_years / adasha_total
-                if adasha_total > 0
-                else 0.0
+                praty_years * adasha_years / adasha_total if adasha_total > 0 else 0.0
             )
             praty_end = current_start + timedelta(days=praty_years_scaled * 365.25)
 
-            periods.append(DashaPeriod(
-                start_utc=current_start,
-                end_utc=praty_end,
-                mahadasha_lord=mahadasha_lord,
-                antardasha_lord=antardasha_lord,
-                pratyantardasha_lord=praty_lord,
-            ))
+            periods.append(
+                DashaPeriod(
+                    start_utc=current_start,
+                    end_utc=praty_end,
+                    mahadasha_lord=mahadasha_lord,
+                    antardasha_lord=antardasha_lord,
+                    pratyantardasha_lord=praty_lord,
+                )
+            )
 
             current_start = praty_end
 
@@ -288,9 +294,7 @@ class DashaService:
                 f"moon_state must be a PlanetState, got {type(moon_state).__name__}"
             )
         if moon_state.body != BodyId.MOON:
-            raise InvalidDashaRequestError(
-                f"moon_state.body must be MOON, got {moon_state.body!r}"
-            )
+            raise InvalidDashaRequestError(f"moon_state.body must be MOON, got {moon_state.body!r}")
         if not isinstance(birth_time, datetime):
             raise InvalidDashaRequestError(
                 f"birth_time must be a datetime, got {type(birth_time).__name__}"

@@ -47,9 +47,7 @@ def marriage_config_from_dict(data: dict[str, Any]) -> MarriageConfig:
 
 def marriage_rule_catalog_from_dict(data: dict[str, Any]) -> MarriageRuleCatalog:
     """Deserialize a MarriageRuleCatalog from a dict."""
-    rules = tuple(
-        marriage_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(marriage_rule_from_dict(r) for r in data.get("rules", []))
     return MarriageRuleCatalog(rules=rules)
 
 

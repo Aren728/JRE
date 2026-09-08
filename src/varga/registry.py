@@ -228,9 +228,7 @@ _V1_DEFINITIONS: dict[str, VargaDefinition] = {
             "D2",
             SubdivisionStrategy.UNIFORM,
             MappingStrategy.SPECIALIZED,
-            FixedStartParams(
-                odd_start=RashiId.SIMHA, even_start=RashiId.KARKA, hora=True
-            ),
+            FixedStartParams(odd_start=RashiId.SIMHA, even_start=RashiId.KARKA, hora=True),
             (BPHS,),
         ),
         _ZODIAC,
@@ -469,9 +467,7 @@ _VARIANTS: dict[str, tuple[VargaCalculationMethod, ...]] = {
 }
 
 
-def get_varga_definition(
-    varga_id: str, method_id: str | None = None
-) -> VargaDefinition:
+def get_varga_definition(varga_id: str, method_id: str | None = None) -> VargaDefinition:
     """Return the frozen definition for ``varga_id``, optionally selecting
     a specific method. Unknown ids/methods raise ``InvalidVargaRequestError``.
 

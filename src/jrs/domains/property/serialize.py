@@ -45,9 +45,7 @@ def property_config_from_dict(data: dict[str, Any]) -> PropertyConfig:
 
 def property_rule_catalog_from_dict(data: dict[str, Any]) -> PropertyRuleCatalog:
     """Deserialize a PropertyRuleCatalog from a dict."""
-    rules = tuple(
-        property_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(property_rule_from_dict(r) for r in data.get("rules", []))
     return PropertyRuleCatalog(rules=rules)
 
 

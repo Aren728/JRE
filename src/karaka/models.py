@@ -30,33 +30,34 @@ KARAKA_VERSION = "0.1.0"
 # Enums
 # --------------------------------------------------------------------------- #
 
+
 class KarakaCategory(StrEnum):
     """Classical life categories (Jaimini Karaka scheme)."""
 
-    ATMA = "ATMA"           # Soul / Self
-    MANAS = "MANAS"         # Mind / Emotions
-    PUTRA = "PUTRA"         # Children / Progeny
-    DHANA = "DHANA"         # Financial assets
-    DARA = "DARA"           # Spouse / Marriage
-    SANTANA = "SANTANA"     # Progeny (broader)
-    BHRATRU = "BHRATRU"     # Siblings
-    MATRU = "MATRU"         # Mother
-    SHATRU = "SHATRU"       # Enemies
-    VYAYA = "VYAYA"         # Loss / Expenditure
-    AYUR = "AYUR"           # Longevity
-    RIKTA = "RIKTA"         # Wastage / Loss
-    LABHA = "LABHA"         # Gains / Profit
-    BANDHU = "BANDHU"       # Relatives / Kinsmen
-    VAK = "VAK"             # Speech / Communication
+    ATMA = "ATMA"  # Soul / Self
+    MANAS = "MANAS"  # Mind / Emotions
+    PUTRA = "PUTRA"  # Children / Progeny
+    DHANA = "DHANA"  # Financial assets
+    DARA = "DARA"  # Spouse / Marriage
+    SANTANA = "SANTANA"  # Progeny (broader)
+    BHRATRU = "BHRATRU"  # Siblings
+    MATRU = "MATRU"  # Mother
+    SHATRU = "SHATRU"  # Enemies
+    VYAYA = "VYAYA"  # Loss / Expenditure
+    AYUR = "AYUR"  # Longevity
+    RIKTA = "RIKTA"  # Wastage / Loss
+    LABHA = "LABHA"  # Gains / Profit
+    BANDHU = "BANDHU"  # Relatives / Kinsmen
+    VAK = "VAK"  # Speech / Communication
 
 
 class KarakaType(StrEnum):
     """Types of significators."""
 
-    NAISARGIKA = "NAISARGIKA"   # Natural significator
-    STHIRA = "STHIRA"          # Permanent significator
-    CHARA = "CHARA"            # Temporary / Jaimini significator
-    VISHESHA = "VISHESHA"      # Special significator
+    NAISARGIKA = "NAISARGIKA"  # Natural significator
+    STHIRA = "STHIRA"  # Permanent significator
+    CHARA = "CHARA"  # Temporary / Jaimini significator
+    VISHESHA = "VISHESHA"  # Special significator
 
 
 # --------------------------------------------------------------------------- #
@@ -99,18 +100,19 @@ DEFAULT_STHIRA: dict[KarakaCategory, BodyId] = {
 # --------------------------------------------------------------------------- #
 
 CHARA_KARAKA_RANKS: tuple[KarakaCategory, ...] = (
-    KarakaCategory.ATMA,      # Atmakaraka (rank 1)
-    KarakaCategory.MANAS,     # Amatyakaraka (rank 2)
-    KarakaCategory.BHRATRU,   # Bhratrukaraka (rank 3)
-    KarakaCategory.MATRU,     # Matrukaraka (rank 4)
-    KarakaCategory.PUTRA,     # Putrakaraka (rank 5)
-    KarakaCategory.SHATRU,    # Gnatikaraka (rank 6)
-    KarakaCategory.DARA,      # Darakaraka (rank 7)
+    KarakaCategory.ATMA,  # Atmakaraka (rank 1)
+    KarakaCategory.MANAS,  # Amatyakaraka (rank 2)
+    KarakaCategory.BHRATRU,  # Bhratrukaraka (rank 3)
+    KarakaCategory.MATRU,  # Matrukaraka (rank 4)
+    KarakaCategory.PUTRA,  # Putrakaraka (rank 5)
+    KarakaCategory.SHATRU,  # Gnatikaraka (rank 6)
+    KarakaCategory.DARA,  # Darakaraka (rank 7)
 )
 
 # --------------------------------------------------------------------------- #
 # Data models
 # --------------------------------------------------------------------------- #
+
 
 @dataclass(frozen=True)
 class KarakaAssignment:
@@ -136,21 +138,15 @@ class KarakaReport:
     def to_dict(self) -> dict[str, Any]:
         return cast(dict[str, Any], _model_to_dict(self))
 
-    def karakas_for_category(
-        self, category: KarakaCategory
-    ) -> tuple[KarakaAssignment, ...]:
+    def karakas_for_category(self, category: KarakaCategory) -> tuple[KarakaAssignment, ...]:
         """Return all significators for a given category."""
         return tuple(a for a in self.assignments if a.category == category)
 
-    def karakas_for_planet(
-        self, planet: BodyId
-    ) -> tuple[KarakaAssignment, ...]:
+    def karakas_for_planet(self, planet: BodyId) -> tuple[KarakaAssignment, ...]:
         """Return all categories a planet signifies."""
         return tuple(a for a in self.assignments if a.planet == planet)
 
-    def karakas_by_type(
-        self, karaka_type: KarakaType
-    ) -> tuple[KarakaAssignment, ...]:
+    def karakas_by_type(self, karaka_type: KarakaType) -> tuple[KarakaAssignment, ...]:
         """Return all assignments of a given type."""
         return tuple(a for a in self.assignments if a.karaka_type == karaka_type)
 
@@ -205,23 +201,21 @@ def validate(config: KarakaConfig) -> KarakaConfig:
         )
     if not isinstance(config.chara_planet_count, int) or config.chara_planet_count < 1:
         raise InvalidKarakaConfigError(
-            f"chara_planet_count must be a positive integer, "
-            f"got {config.chara_planet_count!r}"
+            f"chara_planet_count must be a positive integer, got {config.chara_planet_count!r}"
         )
     if not isinstance(config.naisargika, dict) or not config.naisargika:
         raise InvalidKarakaConfigError(
             f"naisargika must be a non-empty dict, got {config.naisargika!r}"
         )
     if not isinstance(config.sthira, dict) or not config.sthira:
-        raise InvalidKarakaConfigError(
-            f"sthira must be a non-empty dict, got {config.sthira!r}"
-        )
+        raise InvalidKarakaConfigError(f"sthira must be a non-empty dict, got {config.sthira!r}")
     return config
 
 
 # --------------------------------------------------------------------------- #
 # Pure derivation helpers
 # --------------------------------------------------------------------------- #
+
 
 def _degree_in_sign(longitude: float) -> float:
     """Degrees within the sign, in [0, 30)."""
@@ -251,9 +245,18 @@ def compute_chara_karakas(
     """
     # Filter to classical planets (Sun through Saturn)
     classical = [
-        s for s in planet_states
-        if s.body in {BodyId.SUN, BodyId.MOON, BodyId.MARS, BodyId.MERCURY,
-                      BodyId.JUPITER, BodyId.VENUS, BodyId.SATURN}
+        s
+        for s in planet_states
+        if s.body
+        in {
+            BodyId.SUN,
+            BodyId.MOON,
+            BodyId.MARS,
+            BodyId.MERCURY,
+            BodyId.JUPITER,
+            BodyId.VENUS,
+            BodyId.SATURN,
+        }
     ]
 
     # Sort by degree-in-sign descending (highest = rank 1)
@@ -274,6 +277,7 @@ def compute_chara_karakas(
 # --------------------------------------------------------------------------- #
 # Generic serialization helpers
 # --------------------------------------------------------------------------- #
+
 
 def _model_to_dict(model: Any) -> Any:
     """Generic dataclass serializer (deterministic key order = declaration

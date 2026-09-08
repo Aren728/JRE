@@ -14,6 +14,7 @@ from jrs.evidence.models import (
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class MarriageOutcomeTaxonomy(Enum):
     """Highly specific marriage/relationship outcome taxonomies."""
 
@@ -34,6 +35,7 @@ class MarriageOutcomeTaxonomy(Enum):
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class MarriageRule:
@@ -102,6 +104,7 @@ class MarriageConfig:
 
 
 # ── Fact Evaluation Logic ────────────────────────────────────────────────────
+
 
 def evaluate_condition(
     condition: str,

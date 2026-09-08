@@ -140,9 +140,7 @@ def instant_request_from_dict(data: dict[str, Any]) -> ContextInstantRequest:
     """Validate/normalize a GENERIC instant snapshot request dict (DC §5)."""
     instant = data.get("instant_utc_iso")
     if not isinstance(instant, str):
-        raise InvalidContextRequestError(
-            f"instant_utc_iso must be a string, got {instant!r}"
-        )
+        raise InvalidContextRequestError(f"instant_utc_iso must be a string, got {instant!r}")
     civil_split(instant)  # validates ISO-UTC + time component (SPEC §8)
     bodies = _parse_bodies(data.get("bodies"))
     return ContextInstantRequest(
@@ -168,9 +166,7 @@ def natal_request_from_dict(data: dict[str, Any]) -> ContextNatalRequest:
         )
     time_precision = data.get("time_precision")
     if time_precision is not None and not isinstance(time_precision, str):
-        raise InvalidContextRequestError(
-            f"time_precision must be a string, got {time_precision!r}"
-        )
+        raise InvalidContextRequestError(f"time_precision must be a string, got {time_precision!r}")
     return ContextNatalRequest(
         birth=birth,
         config=_parse_config(data.get("config")),
@@ -405,12 +401,12 @@ def validate_schema(payload: Any, schema: dict[str, Any], path: str = "$") -> No
             )
         return
 
-    if "pattern" in schema and isinstance(payload, str) and not re.match(
-        schema["pattern"], payload
+    if (
+        "pattern" in schema
+        and isinstance(payload, str)
+        and not re.match(schema["pattern"], payload)
     ):
-        raise InvalidContextRequestError(
-            f"{path}: {payload!r} does not match {schema['pattern']}"
-        )
+        raise InvalidContextRequestError(f"{path}: {payload!r} does not match {schema['pattern']}")
 
     if "null" in allowed and payload is None:
         return

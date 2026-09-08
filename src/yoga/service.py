@@ -88,9 +88,7 @@ class YogaService:
         results: list[YogaResult] = []
 
         for yoga_id in self._config.enabled_yogas:
-            result = self._evaluate_yoga(
-                yoga_id, state_map, lagna_num, connections, bala_report
-            )
+            result = self._evaluate_yoga(yoga_id, state_map, lagna_num, connections, bala_report)
             results.append(result)
 
         return YogaReport(results=tuple(results))
@@ -108,7 +106,7 @@ class YogaService:
         conns: dict[tuple[BodyId, BodyId], ConnectionType] = {}
 
         for i, s1 in enumerate(planet_states):
-            for s2 in planet_states[i + 1:]:
+            for s2 in planet_states[i + 1 :]:
                 conn = self._detect_connection(s1, s2, drik_result)
                 if conn != ConnectionType.NONE:
                     conns[(s1.body, s2.body)] = conn
@@ -213,9 +211,7 @@ class YogaService:
                 details=f"Jupiter {offset} signs from Moon",
             ),
         )
-        d9_strength = self._check_d9_strength(
-            [BodyId.JUPITER], state_map, lagna_num
-        )
+        d9_strength = self._check_d9_strength([BodyId.JUPITER], state_map, lagna_num)
         raw_result = YogaResult(
             yoga_id=YogaId.GAJAKESARI_YOGA,
             is_present=True,
@@ -274,9 +270,7 @@ class YogaService:
                             details=f"{k_lord.value} --{conn.value}--> {t_lord.value}",
                         ),
                     )
-                    d9_strength = self._check_d9_strength(
-                        [k_lord, t_lord], state_map, lagna_num
-                    )
+                    d9_strength = self._check_d9_strength([k_lord, t_lord], state_map, lagna_num)
                     raw_result = YogaResult(
                         yoga_id=YogaId.RAJA_YOGA,
                         is_present=True,
@@ -326,8 +320,7 @@ class YogaService:
             [lord_2, lord_11], state_map, bala_report, lagna_num, conn
         )
         evidence = (
-            f"2nd lord {lord_2.value} connected to 11th lord {lord_11.value} "
-            f"via {conn.value}",
+            f"2nd lord {lord_2.value} connected to 11th lord {lord_11.value} via {conn.value}",
         )
         conditions = (
             YogaCondition(
@@ -368,7 +361,7 @@ class YogaService:
 
         # Check connections between any pair of dusthana lords
         for i, lord_a in enumerate(dusthana_lords):
-            for lord_b in dusthana_lords[i + 1:]:
+            for lord_b in dusthana_lords[i + 1 :]:
                 conn = connections.get((lord_a, lord_b), ConnectionType.NONE)
                 if conn in (ConnectionType.CONJUNCTION, ConnectionType.EXCHANGE):
                     strength = self._compute_strength(
@@ -383,10 +376,10 @@ class YogaService:
                             condition_type="VIPARITA_CONNECTION",
                             planets_involved=(lord_a, lord_b),
                             houses_involved=tuple(
-                                h for h in DUSTHANA_HOUSES
-                                if SIGN_LORDS.get(
-                                    (lagna_num - 1 + h - 1) % 12 + 1
-                                ) in (lord_a, lord_b)
+                                h
+                                for h in DUSTHANA_HOUSES
+                                if SIGN_LORDS.get((lagna_num - 1 + h - 1) % 12 + 1)
+                                in (lord_a, lord_b)
                             ),
                             connection_type=conn,
                             details=f"{lord_a.value} --{conn.value}--> {lord_b.value}",
@@ -498,7 +491,10 @@ class YogaService:
 
         # Natural benefics: Jupiter, Venus, Mercury, Moon
         _NATURAL_BENEFICS: tuple[BodyId, ...] = (
-            BodyId.JUPITER, BodyId.VENUS, BodyId.MERCURY, BodyId.MOON,
+            BodyId.JUPITER,
+            BodyId.VENUS,
+            BodyId.MERCURY,
+            BodyId.MOON,
         )
 
         # Find which planets rule Kendra houses from Lagna
@@ -533,9 +529,7 @@ class YogaService:
         )
         planets_str = ", ".join(p.value for p in dosha_planets)
         houses_str = ", ".join(str(h) for h in sorted(dosha_houses))
-        evidence = (
-            f"Natural benefic(s) {planets_str} rule Kendra house(s) {houses_str}",
-        )
+        evidence = (f"Natural benefic(s) {planets_str} rule Kendra house(s) {houses_str}",)
         conditions = (
             YogaCondition(
                 condition_type="KENDRADHIPATI_DOSHA",
@@ -567,22 +561,22 @@ class YogaService:
         3. The planet exalted in that sign is in Kendra from Lagna or Moon.
         """
         _DEBILITATION: dict[BodyId, int] = {
-            BodyId.SUN: 7,       # Libra
-            BodyId.MOON: 8,      # Scorpio
-            BodyId.MARS: 4,      # Cancer
+            BodyId.SUN: 7,  # Libra
+            BodyId.MOON: 8,  # Scorpio
+            BodyId.MARS: 4,  # Cancer
             BodyId.MERCURY: 12,  # Pisces
             BodyId.JUPITER: 10,  # Capricorn
-            BodyId.VENUS: 6,     # Virgo
-            BodyId.SATURN: 1,    # Aries
+            BodyId.VENUS: 6,  # Virgo
+            BodyId.SATURN: 1,  # Aries
         }
         _EXALTED_IN_SIGN: dict[int, BodyId] = {
-            1: BodyId.SUN,       # Aries
-            2: BodyId.MOON,      # Taurus
-            4: BodyId.JUPITER,   # Cancer
-            6: BodyId.MERCURY,   # Virgo
-            7: BodyId.SATURN,    # Libra
-            10: BodyId.MARS,     # Capricorn
-            12: BodyId.VENUS,    # Pisces
+            1: BodyId.SUN,  # Aries
+            2: BodyId.MOON,  # Taurus
+            4: BodyId.JUPITER,  # Cancer
+            6: BodyId.MERCURY,  # Virgo
+            7: BodyId.SATURN,  # Libra
+            10: BodyId.MARS,  # Capricorn
+            12: BodyId.VENUS,  # Pisces
         }
 
         moon = state_map.get(BodyId.MOON)
@@ -594,9 +588,7 @@ class YogaService:
         if moon_num is not None and moon_num != lagna_num:
             ref_signs.append(moon_num)
         if not ref_signs:
-            return self._absent(
-                YogaId.NEECHA_BHANGA_YOGA, "Neither Lagna nor Moon available"
-            )
+            return self._absent(YogaId.NEECHA_BHANGA_YOGA, "Neither Lagna nor Moon available")
 
         debilitated_planets: list[BodyId] = []
         evidence_parts: list[str] = []
@@ -621,9 +613,7 @@ class YogaService:
                 if deb_lord is not None:
                     deb_lord_state = state_map.get(deb_lord)
                     if deb_lord_state is not None:
-                        lord_offset = (
-                            rashi_number(deb_lord_state.rashi) - ref
-                        ) % 12 + 1
+                        lord_offset = (rashi_number(deb_lord_state.rashi) - ref) % 12 + 1
                         if lord_offset in KENDRA_HOUSES:
                             debilitated_planets.append(planet)
                             evidence_parts.append(
@@ -654,9 +644,7 @@ class YogaService:
                 if exalted_planet is not None:
                     ex_state = state_map.get(exalted_planet)
                     if ex_state is not None:
-                        ex_offset = (
-                            rashi_number(ex_state.rashi) - ref
-                        ) % 12 + 1
+                        ex_offset = (rashi_number(ex_state.rashi) - ref) % 12 + 1
                         if ex_offset in KENDRA_HOUSES:
                             debilitated_planets.append(planet)
                             evidence_parts.append(
@@ -677,9 +665,7 @@ class YogaService:
                 "No debilitated planet has Neecha Bhanga",
             )
 
-        strength = self._compute_strength(
-            debilitated_planets, state_map, bala_report, lagna_num
-        )
+        strength = self._compute_strength(debilitated_planets, state_map, bala_report, lagna_num)
         evidence = tuple(evidence_parts)
         conditions = (
             YogaCondition(
@@ -730,9 +716,7 @@ class YogaService:
             if state is None:
                 continue
 
-            planet_navamsa_index = self._compute_navamsa_rashi_index(
-                state.longitude_used
-            )
+            planet_navamsa_index = self._compute_navamsa_rashi_index(state.longitude_used)
             planet_navamsa_num = planet_navamsa_index + 1
 
             house = house_from_lagna(d9_lagna_num, planet_navamsa_num)
@@ -775,27 +759,19 @@ class YogaService:
             # Check debilitation
             dignity = self._get_dignity(state)
             if dignity == "DEBILITATED":
-                reasons.append(
-                    f"{planet.value} debilitated in {state.rashi.value}"
-                )
+                reasons.append(f"{planet.value} debilitated in {state.rashi.value}")
 
             # Check combustion
             if planet not in (BodyId.SUN, BodyId.RAHU, BodyId.KETU):
                 sun_state = state_map.get(BodyId.SUN)
                 if sun_state is not None and self._is_combust(state, sun_state):
-                    reasons.append(
-                        f"{planet.value} combust near Sun"
-                    )
+                    reasons.append(f"{planet.value} combust near Sun")
 
             # Check Dusthana placement
             if lagna_num is not None:
-                house = house_from_lagna(
-                    lagna_num, rashi_number(state.rashi)
-                )
+                house = house_from_lagna(lagna_num, rashi_number(state.rashi))
                 if house in DUSTHANA_HOUSES:
-                    reasons.append(
-                        f"{planet.value} in house {house} (Dusthana)"
-                    )
+                    reasons.append(f"{planet.value} in house {house} (Dusthana)")
 
         return tuple(reasons)
 
@@ -903,7 +879,7 @@ class YogaService:
             state = state_map.get(planet)
             sun_state = state_map.get(BodyId.SUN)
             if state is not None and sun_state is not None and self._is_combust(state, sun_state):
-                    combustion_penalty *= 0.3  # Significant penalty
+                combustion_penalty *= 0.3  # Significant penalty
 
         # Factor 4: Retrograde bonus
         retrograde_factor = 1.0
@@ -949,22 +925,22 @@ class YogaService:
         """
         # Classical exaltation/debilitation signs
         _EXALTATION: dict[BodyId, int] = {
-            BodyId.SUN: 1,       # Aries
-            BodyId.MOON: 2,      # Taurus
-            BodyId.MARS: 10,     # Capricorn
-            BodyId.MERCURY: 6,   # Virgo
-            BodyId.JUPITER: 4,   # Cancer
-            BodyId.VENUS: 12,    # Pisces
-            BodyId.SATURN: 7,    # Libra
+            BodyId.SUN: 1,  # Aries
+            BodyId.MOON: 2,  # Taurus
+            BodyId.MARS: 10,  # Capricorn
+            BodyId.MERCURY: 6,  # Virgo
+            BodyId.JUPITER: 4,  # Cancer
+            BodyId.VENUS: 12,  # Pisces
+            BodyId.SATURN: 7,  # Libra
         }
         _DEBILITATION: dict[BodyId, int] = {
-            BodyId.SUN: 7,       # Libra
-            BodyId.MOON: 8,      # Scorpio
-            BodyId.MARS: 4,      # Cancer
+            BodyId.SUN: 7,  # Libra
+            BodyId.MOON: 8,  # Scorpio
+            BodyId.MARS: 4,  # Cancer
             BodyId.MERCURY: 12,  # Pisces
             BodyId.JUPITER: 10,  # Capricorn
-            BodyId.VENUS: 6,     # Virgo
-            BodyId.SATURN: 1,    # Aries
+            BodyId.VENUS: 6,  # Virgo
+            BodyId.SATURN: 1,  # Aries
         }
         _OWN_SIGNS: dict[BodyId, tuple[int, ...]] = {
             BodyId.SUN: (5,),
@@ -1074,9 +1050,7 @@ class YogaService:
         # Kahala: both involved in functional-positive houses
         return ParivartanaType.KAHALA
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Yoga computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidYogaRequestError(
@@ -1085,6 +1059,5 @@ class YogaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidYogaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

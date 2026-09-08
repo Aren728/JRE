@@ -209,9 +209,7 @@ class EphemerisRequest:
             timezone=data["timezone"],
             latitude=float(data["latitude"]),
             longitude=float(data["longitude"]),
-            bodies=(
-                None if bodies_raw is None else tuple(BodyId(b) for b in bodies_raw)
-            ),
+            bodies=(None if bodies_raw is None else tuple(BodyId(b) for b in bodies_raw)),
             config=CalculationConfig.from_dict(data["config"]),
             provider_id=data.get("provider_id"),
         )

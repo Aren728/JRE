@@ -83,8 +83,10 @@ class NakshatraActivationService:
         # 3. Compute transit ingress activations
         if transit_states:
             ingress_activations = self._compute_transit_ingress_activations(
-                planet_states, transit_states,
-                activation_window_start, activation_window_end,
+                planet_states,
+                transit_states,
+                activation_window_start,
+                activation_window_end,
             )
             activations.extend(ingress_activations)
 
@@ -305,9 +307,7 @@ class NakshatraActivationService:
 
         return activations
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the activation computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidActivationRequestError(
@@ -316,6 +316,5 @@ class NakshatraActivationService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidActivationRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

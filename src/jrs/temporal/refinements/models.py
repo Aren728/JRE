@@ -66,13 +66,12 @@ class TemporalModifier:
     def __post_init__(self) -> None:
         """Validate fields and compute deterministic_id."""
         if not 0.0 <= self.weight_scalar <= 2.0:
-            raise ValueError(
-                f"weight_scalar must be in [0.0, 2.0], "
-                f"got {self.weight_scalar}"
-            )
+            raise ValueError(f"weight_scalar must be in [0.0, 2.0], got {self.weight_scalar}")
         if not self.deterministic_id:
             object.__setattr__(
-                self, "deterministic_id", _compute_modifier_hash(self),
+                self,
+                "deterministic_id",
+                _compute_modifier_hash(self),
             )
 
     def to_dict(self) -> dict[str, Any]:

@@ -30,8 +30,10 @@ def tajika_config_from_dict(data: dict[str, Any]) -> TajikaConfig:
     raw_sahams = data.get("enabled_sahams")
     if isinstance(raw_sahams, list) and raw_sahams:
         from .models import SahamType
+
         enabled = tuple(SahamType(s) for s in raw_sahams)
     else:
         from .models import SahamType
+
         enabled = tuple(SahamType)
     return TajikaConfig(version=version, enabled_sahams=enabled)

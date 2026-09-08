@@ -140,10 +140,7 @@ def load_facts(
         return {str(k): str(v) for k, v in tables[fact_id].items()}
 
     def _own_signs() -> dict[str, tuple[str, ...]]:
-        return {
-            str(k): tuple(str(item) for item in v)
-            for k, v in tables["own_signs"].items()
-        }
+        return {str(k): tuple(str(item) for item in v) for k, v in tables["own_signs"].items()}
 
     def _combustion() -> dict[str, dict[str, float]]:
         result: dict[str, dict[str, float]] = {}
@@ -176,10 +173,7 @@ def load_facts(
         return result
 
     def _positions(fact_id: str) -> dict[str, tuple[int, ...]]:
-        return {
-            str(k): tuple(int(item) for item in v)
-            for k, v in tables[fact_id].items()
-        }
+        return {str(k): tuple(int(item) for item in v) for k, v in tables[fact_id].items()}
 
     return FactsRegistry(
         natures=_body_table("nature"),
@@ -274,9 +268,7 @@ def derive_combusted(
     return separation_from_sun_deg <= threshold
 
 
-def derive_aspect_strength(
-    facts: FactsRegistry, aspecter: str, aspected_house: int
-) -> str | None:
+def derive_aspect_strength(facts: FactsRegistry, aspecter: str, aspected_house: int) -> str | None:
     """Classical strength of ``aspecter``'s glance on a body in its
     ``aspected_house`` (BPHS ch. 26 v. 2-5 / Phaladīpikā ch. 2 v. 23).
 

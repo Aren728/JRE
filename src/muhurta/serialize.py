@@ -52,17 +52,13 @@ def muhurta_config_from_dict(data: dict[str, Any]) -> MuhurtaConfig:
     """Deserialize a ``MuhurtaConfig`` from a JSON-shaped dict."""
     version = data.get("version", "0.1.0")
 
-    inauspicious_tithis = tuple(
-        Tithi(t) for t in _safe_str_list(data.get("inauspicious_tithis"))
-    )
+    inauspicious_tithis = tuple(Tithi(t) for t in _safe_str_list(data.get("inauspicious_tithis")))
 
     inauspicious_karanas = tuple(
         Karana(k) for k in _safe_str_list(data.get("inauspicious_karanas"))
     )
 
-    inauspicious_yogas = tuple(
-        Yoga(y) for y in _safe_str_list(data.get("inauspicious_yogas"))
-    )
+    inauspicious_yogas = tuple(Yoga(y) for y in _safe_str_list(data.get("inauspicious_yogas")))
 
     raw_cats: Any = data.get("category_rules", {})
     category_rules: dict[str, CategoryRule] = {}
@@ -72,44 +68,26 @@ def muhurta_config_from_dict(data: dict[str, Any]) -> MuhurtaConfig:
                 cat_dict: dict[str, Any] = cat_data
                 category_rules[str(cat_name)] = CategoryRule(
                     required_nakshatras=tuple(
-                        NakshatraId(n) for n in _safe_str_list(
-                            cat_dict.get("required_nakshatras")
-                        )
+                        NakshatraId(n) for n in _safe_str_list(cat_dict.get("required_nakshatras"))
                     ),
                     avoided_tithis=tuple(
-                        Tithi(t) for t in _safe_str_list(
-                            cat_dict.get("avoided_tithis")
-                        )
+                        Tithi(t) for t in _safe_str_list(cat_dict.get("avoided_tithis"))
                     ),
                     avoided_karanas=tuple(
-                        Karana(k) for k in _safe_str_list(
-                            cat_dict.get("avoided_karanas")
-                        )
+                        Karana(k) for k in _safe_str_list(cat_dict.get("avoided_karanas"))
                     ),
                     avoided_yogas=tuple(
-                        Yoga(y) for y in _safe_str_list(
-                            cat_dict.get("avoided_yogas")
-                        )
+                        Yoga(y) for y in _safe_str_list(cat_dict.get("avoided_yogas"))
                     ),
                     avoided_vars=tuple(
-                        Var(v) for v in _safe_str_list(
-                            cat_dict.get("avoided_vars")
-                        )
+                        Var(v) for v in _safe_str_list(cat_dict.get("avoided_vars"))
                     ),
                     preferred_vars=tuple(
-                        Var(v) for v in _safe_str_list(
-                            cat_dict.get("preferred_vars")
-                        )
+                        Var(v) for v in _safe_str_list(cat_dict.get("preferred_vars"))
                     ),
-                    weight_required=_safe_float(
-                        cat_dict.get("weight_required"), 0.3
-                    ),
-                    weight_avoided=_safe_float(
-                        cat_dict.get("weight_avoided"), 0.5
-                    ),
-                    weight_preferred=_safe_float(
-                        cat_dict.get("weight_preferred"), 0.2
-                    ),
+                    weight_required=_safe_float(cat_dict.get("weight_required"), 0.3),
+                    weight_avoided=_safe_float(cat_dict.get("weight_avoided"), 0.5),
+                    weight_preferred=_safe_float(cat_dict.get("weight_preferred"), 0.2),
                 )
 
     return MuhurtaConfig(

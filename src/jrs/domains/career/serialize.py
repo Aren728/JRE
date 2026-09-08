@@ -45,9 +45,7 @@ def career_config_from_dict(data: dict[str, Any]) -> CareerConfig:
 
 def career_rule_catalog_from_dict(data: dict[str, Any]) -> CareerRuleCatalog:
     """Deserialize a CareerRuleCatalog from a dict."""
-    rules = tuple(
-        career_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(career_rule_from_dict(r) for r in data.get("rules", []))
     return CareerRuleCatalog(rules=rules)
 
 

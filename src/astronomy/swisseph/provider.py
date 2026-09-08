@@ -90,8 +90,7 @@ class SwissEphemerisProvider(EphemerisProvider):
             mode = self._resolve_mode(jd_ut, config)
             ayanamsa_value = self._ayanamsa(jd_ut, config)
             positions = tuple(
-                self._compute_body(jd_ut, body, config, mode, ayanamsa_value)
-                for body in bodies
+                self._compute_body(jd_ut, body, config, mode, ayanamsa_value) for body in bodies
             )
             files = required_ephemeris_files() if mode is EphemerisMode.SWIEPH else ()
             return ProviderRun(positions=positions, ephemeris_mode=mode, ephemeris_files=files)
@@ -100,9 +99,7 @@ class SwissEphemerisProvider(EphemerisProvider):
     # Mode resolution and fallback (never silent)
     # ------------------------------------------------------------------ #
 
-    def _resolve_mode(
-        self, jd_ut: float, config: CalculationConfig
-    ) -> EphemerisMode:
+    def _resolve_mode(self, jd_ut: float, config: CalculationConfig) -> EphemerisMode:
         if config.ephemeris_mode is EphemerisMode.MOSEPH:
             return EphemerisMode.MOSEPH
         path = resolve_ephemeris_path(config.ephemeris_path)

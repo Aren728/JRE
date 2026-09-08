@@ -9,16 +9,16 @@ from typing import Any
 from .errors import InvalidValidationConfigError
 from .models import ValidationConfig
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "match_threshold",
-    "trigger_weights",
-    "source_reliability",
-})
-
-_CONFIG_PATH = (
-    Path(__file__).resolve().parent.parent.parent / "config" / "validation.toml"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "match_threshold",
+        "trigger_weights",
+        "source_reliability",
+    }
 )
+
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent / "config" / "validation.toml"
 
 
 def load_validation_config(path: Path | None = None) -> ValidationConfig:

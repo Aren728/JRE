@@ -36,8 +36,8 @@ from .models import (
     HistoricalEvent,
     KnownEvent,
     MetricEvaluation,
-    PredictionVerdict,
     PredictedYoga,
+    PredictionVerdict,
     SingleValidationReport,
     TimingMatchStatus,
     TimingWindow,
@@ -141,20 +141,15 @@ class HistoricalValidationRunner:
             # Determine involved planets from modifier report
             involved: tuple[str, ...] = ()
             if eval_.modifier_report is not None:
-                involved = tuple(
-                    pr.planet for pr in eval_.modifier_report.planet_results
-                )
+                involved = tuple(pr.planet for pr in eval_.modifier_report.planet_results)
 
             # ── Layer 4: D9 confirmation ──
             varga_multiplier = 1.0
             cancellation_reason = eval_.cancellation_reason
-            if (
-                eval_.status != YogaStatus.CANCELLED
-                and "planet_d9_house" in jre_facts
-                and involved
-            ):
+            if eval_.status != YogaStatus.CANCELLED and "planet_d9_house" in jre_facts and involved:
                 confirmation = self._varga_svc.evaluate_d9_confirmation(
-                    list(involved), jre_facts,
+                    list(involved),
+                    jre_facts,
                 )
                 if confirmation.confirmation_status == ConfirmationStatus.CANCELLED:
                     eval_status = "CANCELLED"
@@ -174,7 +169,8 @@ class HistoricalValidationRunner:
                     p_data = jre_facts.get("planets", {}).get(planet, {})
                     if p_data:
                         score = self._saptavargaja_svc.evaluate_planet(
-                            planet, p_data,
+                            planet,
+                            p_data,
                         )
                         scores.append(score.total_score)
                 if scores:
@@ -186,13 +182,12 @@ class HistoricalValidationRunner:
             modifier_strength = 1.0
             if eval_.modifier_report is not None:
                 modifier_strength = eval_.modifier_report.overall_strength
-            overall_multiplier = (
-                modifier_strength * varga_multiplier + saptavargaja_boost
-            )
+            overall_multiplier = modifier_strength * varga_multiplier + saptavargaja_boost
 
             # ── Timing windows from Dasha/Transit ──
             timing_windows = self._extract_timing_windows(
-                jre_facts, involved,
+                jre_facts,
+                involved,
             )
 
             prediction = PredictedYoga(
@@ -203,17 +198,20 @@ class HistoricalValidationRunner:
                 timing_windows=timing_windows,
                 cancellation_reason=cancellation_reason,
                 involved_planets=involved,
-                confidence=_determine_yoga_confidence(PredictedYoga(
-                    yoga_name=yoga_name,
-                    predicted_status=eval_status,
-                    overall_multiplier=overall_multiplier,
-                )),
+                confidence=_determine_yoga_confidence(
+                    PredictedYoga(
+                        yoga_name=yoga_name,
+                        predicted_status=eval_status,
+                        overall_multiplier=overall_multiplier,
+                    )
+                ),
             )
             predicted_yogas.append(prediction)
 
         # ── Compare predictions against known events ──
         matches = self._compare_predictions(
-            predicted_yogas, chart.known_events,
+            predicted_yogas,
+            chart.known_events,
         )
 
         return ChartValidationResult(
@@ -259,26 +257,30 @@ class HistoricalValidationRunner:
         for d in dasha_periods:
             planet = d.get("triggering_planet", "")
             if planet in involved_planets:
-                windows.append(TimingWindow(
-                    yoga_name="",
-                    window_start_utc=d.get("activation_start_utc", ""),
-                    window_end_utc=d.get("activation_end_utc", ""),
-                    dasha_lord=planet,
-                    confidence=float(d.get("strength", 1.0)),
-                ))
+                windows.append(
+                    TimingWindow(
+                        yoga_name="",
+                        window_start_utc=d.get("activation_start_utc", ""),
+                        window_end_utc=d.get("activation_end_utc", ""),
+                        dasha_lord=planet,
+                        confidence=float(d.get("strength", 1.0)),
+                    )
+                )
 
         # Transit activations
         transits = jre_facts.get("transits", [])
         for t in transits:
             planet = t.get("triggering_planet", "")
             if planet in involved_planets:
-                windows.append(TimingWindow(
-                    yoga_name="",
-                    window_start_utc=t.get("activation_start_utc", ""),
-                    window_end_utc=t.get("activation_end_utc", ""),
-                    transit_planet=planet,
-                    confidence=float(t.get("strength", 1.0)),
-                ))
+                windows.append(
+                    TimingWindow(
+                        yoga_name="",
+                        window_start_utc=t.get("activation_start_utc", ""),
+                        window_end_utc=t.get("activation_end_utc", ""),
+                        transit_planet=planet,
+                        confidence=float(t.get("strength", 1.0)),
+                    )
+                )
 
         return tuple(windows)
 
@@ -300,14 +302,12 @@ class HistoricalValidationRunner:
         for event in known_events:
             # Find predictions relevant to this event
             relevant_preds = [
-                p for p in predictions
+                p
+                for p in predictions
                 if (
                     p.domain == event.domain
                     or p.yoga_name in event.yoga_types
-                    or any(
-                        pl in event.expected_planets
-                        for pl in p.involved_planets
-                    )
+                    or any(pl in event.expected_planets for pl in p.involved_planets)
                 )
             ]
 
@@ -321,7 +321,8 @@ class HistoricalValidationRunner:
 
                 # Determine timing overlap
                 timing_status, overlap_ratio = self._compute_timing_overlap(
-                    best_pred.timing_windows, event,
+                    best_pred.timing_windows,
+                    event,
                 )
 
                 # If yoga is CANCELLED, it's effectively not predicted
@@ -330,48 +331,49 @@ class HistoricalValidationRunner:
                 else:
                     verdict = PredictionVerdict.TRUE_POSITIVE
 
-                matches.append(EventPredictionMatch(
-                    event_id=event.event_id,
-                    yoga_name=best_pred.yoga_name,
-                    verdict=verdict,
-                    timing_status=timing_status,
-                    timing_overlap_ratio=overlap_ratio,
-                    confidence=best_pred.confidence,
-                ))
+                matches.append(
+                    EventPredictionMatch(
+                        event_id=event.event_id,
+                        yoga_name=best_pred.yoga_name,
+                        verdict=verdict,
+                        timing_status=timing_status,
+                        timing_overlap_ratio=overlap_ratio,
+                        confidence=best_pred.confidence,
+                    )
+                )
             else:
                 # No prediction for this event → FALSE NEGATIVE
-                matches.append(EventPredictionMatch(
-                    event_id=event.event_id,
-                    yoga_name="",
-                    verdict=PredictionVerdict.FALSE_NEGATIVE,
-                    timing_status=TimingMatchStatus.ACTUAL_ONLY,
-                    timing_overlap_ratio=0.0,
-                    confidence=0.0,
-                ))
+                matches.append(
+                    EventPredictionMatch(
+                        event_id=event.event_id,
+                        yoga_name="",
+                        verdict=PredictionVerdict.FALSE_NEGATIVE,
+                        timing_status=TimingMatchStatus.ACTUAL_ONLY,
+                        timing_overlap_ratio=0.0,
+                        confidence=0.0,
+                    )
+                )
 
         # Check for predictions that don't match any known event (FP)
         matched_yogas = {m.yoga_name for m in matches if m.yoga_name}
         for pred in predictions:
-            if (
-                pred.yoga_name not in matched_yogas
-                and pred.predicted_status != "CANCELLED"
-            ):
+            if pred.yoga_name not in matched_yogas and pred.predicted_status != "CANCELLED":
                 # Find any event this prediction is relevant to
                 # (domain match but not matched above = FP)
-                domain_matches = [
-                    e for e in known_events if e.domain == pred.domain
-                ]
+                domain_matches = [e for e in known_events if e.domain == pred.domain]
                 if not domain_matches:
                     # No events in this domain — this is a prediction
                     # without ground truth; classify as FP conservatively
-                    matches.append(EventPredictionMatch(
-                        event_id=f"unmatched_{pred.yoga_name}",
-                        yoga_name=pred.yoga_name,
-                        verdict=PredictionVerdict.FALSE_POSITIVE,
-                        timing_status=TimingMatchStatus.PREDICTED_ONLY,
-                        timing_overlap_ratio=0.0,
-                        confidence=pred.confidence,
-                    ))
+                    matches.append(
+                        EventPredictionMatch(
+                            event_id=f"unmatched_{pred.yoga_name}",
+                            yoga_name=pred.yoga_name,
+                            verdict=PredictionVerdict.FALSE_POSITIVE,
+                            timing_status=TimingMatchStatus.PREDICTED_ONLY,
+                            timing_overlap_ratio=0.0,
+                            confidence=pred.confidence,
+                        )
+                    )
 
         return matches
 
@@ -413,7 +415,10 @@ class HistoricalValidationRunner:
                 )
 
                 overlap_start, overlap_end = compute_overlap_window(
-                    pred_start, pred_end, event_start, event_end,
+                    pred_start,
+                    pred_end,
+                    event_start,
+                    event_end,
                 )
 
                 if overlap_start and overlap_end:
@@ -434,15 +439,9 @@ class HistoricalValidationRunner:
                         ovl_dt_end = parse_iso_timestamp(overlap_end)
 
                         if ovl_dt_start is not None and ovl_dt_end is not None:
-                            ovl_duration = (
-                                ovl_dt_end - ovl_dt_start
-                            ).total_seconds()
+                            ovl_duration = (ovl_dt_end - ovl_dt_start).total_seconds()
                             min_duration = min(pred_duration, evt_duration)
-                            ratio = (
-                                ovl_duration / min_duration
-                                if min_duration > 0
-                                else 0.0
-                            )
+                            ratio = ovl_duration / min_duration if min_duration > 0 else 0.0
 
                             if ratio >= 0.9:
                                 best_status = TimingMatchStatus.OVERLAP
@@ -503,9 +502,11 @@ class BlindValidationRunner:
             self._pipeline_service = YogaEvaluatorService()
         if self._packet_store is None:
             from .storage import PredictionPacketStore
+
             self._packet_store = PredictionPacketStore()
         if self._protocol is None:
             from .protocol import BlindValidationProtocol
+
             self._protocol = BlindValidationProtocol(self._pipeline_service)
 
     def run_blind_evaluation(
@@ -537,7 +538,8 @@ class BlindValidationRunner:
 
         # -- Stage 1: Prediction Generation & Sealing --
         packet = self._protocol.generate_prediction_packet(
-            subject, target_timestamp,
+            subject,
+            target_timestamp,
         )
 
         # Persist sealed packet to disk
@@ -545,9 +547,7 @@ class BlindValidationRunner:
         try:
             self._packet_store.save_packet(packet, packet_path)
         except Exception as exc:
-            raise RuntimeError(
-                f"Failed to persist prediction packet: {exc}"
-            ) from exc
+            raise RuntimeError(f"Failed to persist prediction packet: {exc}") from exc
 
         # Clear prediction context (simulate process isolation)
         del packet
@@ -556,16 +556,15 @@ class BlindValidationRunner:
         verified_packet = self._packet_store.load_and_verify(packet_path)
 
         metric = self._protocol.evaluate_prediction_against_event(
-            verified_packet, ground_truth_event,
+            verified_packet,
+            ground_truth_event,
         )
 
         return metric
 
     def run_batch_evaluation(
         self,
-        evaluation_pairs: list[
-            tuple[ChartSubject, str, HistoricalEvent]
-        ],
+        evaluation_pairs: list[tuple[ChartSubject, str, HistoricalEvent]],
         output_dir: Path,
     ) -> BatchValidationReport:
         """Execute isolated evaluations across multiple charts.
@@ -589,27 +588,36 @@ class BlindValidationRunner:
         for subject, target_ts, event in evaluation_pairs:
             try:
                 metric = self.run_blind_evaluation(
-                    subject, target_ts, event, output_dir,
+                    subject,
+                    target_ts,
+                    event,
+                    output_dir,
                 )
-                reports.append(SingleValidationReport(
-                    chart_id=subject.chart_id,
-                    status=ValidationStatus.SUCCESS,
-                    metric_evaluation=metric,
-                ))
+                reports.append(
+                    SingleValidationReport(
+                        chart_id=subject.chart_id,
+                        status=ValidationStatus.SUCCESS,
+                        metric_evaluation=metric,
+                    )
+                )
                 successes += 1
             except CryptographicTamperError as exc:
-                reports.append(SingleValidationReport(
-                    chart_id=subject.chart_id,
-                    status=ValidationStatus.TAMPERED,
-                    error_message=str(exc),
-                ))
+                reports.append(
+                    SingleValidationReport(
+                        chart_id=subject.chart_id,
+                        status=ValidationStatus.TAMPERED,
+                        error_message=str(exc),
+                    )
+                )
                 failures += 1
             except Exception as exc:
-                reports.append(SingleValidationReport(
-                    chart_id=subject.chart_id,
-                    status=ValidationStatus.PERSISTENCE_FAILED,
-                    error_message=str(exc),
-                ))
+                reports.append(
+                    SingleValidationReport(
+                        chart_id=subject.chart_id,
+                        status=ValidationStatus.PERSISTENCE_FAILED,
+                        error_message=str(exc),
+                    )
+                )
                 failures += 1
 
         return BatchValidationReport(

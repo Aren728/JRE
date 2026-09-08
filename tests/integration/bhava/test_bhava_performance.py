@@ -13,10 +13,13 @@ from __future__ import annotations
 
 import time
 
+import pytest
+
 import jyotish
 from bhava import BhavaConfig, derive_house_analysis
 
 
+@pytest.mark.no_cover
 def test_single_chart_analysis_p95(jyotish_service, birth) -> None:
     # Delegated JRE-003 computations, computed once and excluded from the
     # JRE-005 budget (SPEC §30). The chart computation is excluded per the

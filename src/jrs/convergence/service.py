@@ -66,21 +66,19 @@ class ConvergenceService:
 
         # Separate records by direction
         support_records = tuple(
-            r for r in evidence_records
-            if r.direction is EvidenceDirection.SUPPORT
+            r for r in evidence_records if r.direction is EvidenceDirection.SUPPORT
         )
         contradict_records = tuple(
-            r for r in evidence_records
-            if r.direction is EvidenceDirection.CONTRADICT
+            r for r in evidence_records if r.direction is EvidenceDirection.CONTRADICT
         )
         mitigate_records = tuple(
-            r for r in evidence_records
-            if r.direction is EvidenceDirection.MITIGATE
+            r for r in evidence_records if r.direction is EvidenceDirection.MITIGATE
         )
 
         # Calculate dimensions
         independent = count_independent_channels(
-            support_records, self._config.source_weights,
+            support_records,
+            self._config.source_weights,
         )
         source_confidence = self._classify_source_confidence(support_records)
         timing_count = self._count_timing_convergence(event_windows)
@@ -96,13 +94,16 @@ class ConvergenceService:
 
         # Classify statuses
         assessment_status = classify_assessment_status(
-            dimensions, self._config,
+            dimensions,
+            self._config,
         )
         timing_status = classify_timing_status(
-            timing_count, self._config,
+            timing_count,
+            self._config,
         )
         overall_strength = classify_overall_strength(
-            dimensions, self._config,
+            dimensions,
+            self._config,
         )
 
         return DomainAssessment(

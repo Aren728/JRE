@@ -19,32 +19,34 @@ from jrs.evidence.models import (
 )
 
 # Forbidden terms that must never appear in generated output
-_FORBIDDEN_TERMS: frozenset[str] = frozenset({
-    "disease",
-    "death",
-    "surgery",
-    "diagnosis",
-    "medical",
-    "illness",
-    "sickness",
-    "cancer",
-    "tumor",
-    "infection",
-    "virus",
-    "bacteria",
-    "hospital",
-    "doctor",
-    "physician",
-    "treatment",
-    "medication",
-    "drug",
-    "therapy",
-    "symptom",
-    "syndrome",
-    "disorder",
-    "condition",
-    "prognosis",
-})
+_FORBIDDEN_TERMS: frozenset[str] = frozenset(
+    {
+        "disease",
+        "death",
+        "surgery",
+        "diagnosis",
+        "medical",
+        "illness",
+        "sickness",
+        "cancer",
+        "tumor",
+        "infection",
+        "virus",
+        "bacteria",
+        "hospital",
+        "doctor",
+        "physician",
+        "treatment",
+        "medication",
+        "drug",
+        "therapy",
+        "symptom",
+        "syndrome",
+        "disorder",
+        "condition",
+        "prognosis",
+    }
+)
 
 
 def _validate_no_medical_terms(text: str) -> None:

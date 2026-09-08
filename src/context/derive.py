@@ -314,9 +314,7 @@ def assemble_snapshot(
         natal_chart=natal_chart,
         planet_states=planet_states if planet_states else None,
         pair_geometry=pair_geometry,
-        house_analyses=(
-            (house_analysis,) if house_analysis is not None else None
-        ),
+        house_analyses=((house_analysis,) if house_analysis is not None else None),
         transit_events=transit_events,
         state_samples=state_samples,
         gochar_instant=gochar_instant,

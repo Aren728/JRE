@@ -12,14 +12,33 @@ TRIKONA_HOUSES: frozenset[int] = frozenset({1, 5, 9})
 
 # Sign ownership (Vimshottari) — 1-indexed rashi number -> owning planet
 _SIGN_LORDS: dict[int, str] = {
-    1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON", 5: "SUN",
-    6: "MERCURY", 7: "VENUS", 8: "MARS", 9: "JUPITER", 10: "SATURN",
-    11: "SATURN", 12: "JUPITER",
+    1: "MARS",
+    2: "VENUS",
+    3: "MERCURY",
+    4: "MOON",
+    5: "SUN",
+    6: "MERCURY",
+    7: "VENUS",
+    8: "MARS",
+    9: "JUPITER",
+    10: "SATURN",
+    11: "SATURN",
+    12: "JUPITER",
 }
 
 _RASHI_ORDER: list[str] = [
-    "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-    "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+    "MESHA",
+    "VRISHABHA",
+    "MITHUNA",
+    "KARKA",
+    "SIMHA",
+    "KANYA",
+    "TULA",
+    "VRISHCHIKA",
+    "DHANUSHA",
+    "MAKARA",
+    "KUMBHA",
+    "MEENA",
 ]
 
 
@@ -54,7 +73,7 @@ class KendraTrikonaService:
         """
         lagna_rashi = jre_facts.get("lagna")
         planets = jre_facts.get("planets", {})
-        
+
         if not lagna_rashi or not planets:
             return []
 
@@ -83,13 +102,15 @@ class KendraTrikonaService:
                     # Is it placed in a Trikona house?
                     if p_house in TRIKONA_HOUSES:
                         owner_of_placement = house_lords.get(p_house, "")
-                        yogas.append(StructuralYoga(
-                            yoga_type=KendraTrikonaType.KENDRA_LORD_IN_TRIKONA,
-                            planet_a=p_name,
-                            planet_b=owner_of_placement,
-                            house_a=k_house,
-                            house_b=p_house,
-                        ))
+                        yogas.append(
+                            StructuralYoga(
+                                yoga_type=KendraTrikonaType.KENDRA_LORD_IN_TRIKONA,
+                                planet_a=p_name,
+                                planet_b=owner_of_placement,
+                                house_a=k_house,
+                                house_b=p_house,
+                            )
+                        )
 
             # Check if planet is a Trikona lord
             for t_house in TRIKONA_HOUSES:
@@ -97,12 +118,14 @@ class KendraTrikonaService:
                     # Is it placed in a Kendra house?
                     if p_house in KENDRA_HOUSES:
                         owner_of_placement = house_lords.get(p_house, "")
-                        yogas.append(StructuralYoga(
-                            yoga_type=KendraTrikonaType.TRIKONA_LORD_IN_KENDRA,
-                            planet_a=p_name,
-                            planet_b=owner_of_placement,
-                            house_a=t_house,
-                            house_b=p_house,
-                        ))
+                        yogas.append(
+                            StructuralYoga(
+                                yoga_type=KendraTrikonaType.TRIKONA_LORD_IN_KENDRA,
+                                planet_a=p_name,
+                                planet_b=owner_of_placement,
+                                house_a=t_house,
+                                house_b=p_house,
+                            )
+                        )
 
         return yogas

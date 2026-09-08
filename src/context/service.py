@@ -43,9 +43,7 @@ T = TypeVar("T")
 
 def _jyotish_config(house_system: str) -> JyotishConfig:
     """JRE-003 config for the pinned house system."""
-    return dataclasses.replace(
-        JyotishConfig(), house_system=HouseSystem(house_system)
-    )
+    return dataclasses.replace(JyotishConfig(), house_system=HouseSystem(house_system))
 
 
 def _bhava_config(cfg: ContextConfig) -> BhavaConfig:
@@ -163,9 +161,7 @@ class ContextService:
             ),
             "planetary_state",
         )
-        pair_geometry = self._delegate(
-            lambda: jyotish.all_pairs(states, jyotish_cfg), "all_pairs"
-        )
+        pair_geometry = self._delegate(lambda: jyotish.all_pairs(states, jyotish_cfg), "all_pairs")
         return assemble_snapshot(
             birth=None,
             time_precision=cfg.default_time_precision,
@@ -195,9 +191,7 @@ class ContextService:
         jyotish_cfg = _jyotish_config(_house_system(cfg))
         bhava_cfg = _bhava_config(cfg)
 
-        chart = self._delegate(
-            lambda: self._jyotish.chart(request.birth, jyotish_cfg), "chart"
-        )
+        chart = self._delegate(lambda: self._jyotish.chart(request.birth, jyotish_cfg), "chart")
         house_analysis: HouseAnalysis | None = None
         if request.include_house_analysis:
             house_analysis = self._delegate(
@@ -327,6 +321,4 @@ def _validate_interval(start: str, end: str) -> None:
     start_jd = jyotish.iso_utc_to_jd(start)
     end_jd = jyotish.iso_utc_to_jd(end)
     if start_jd > end_jd:
-        raise InvalidContextRequestError(
-            f"interval start {start!r} must be <= end {end!r}"
-        )
+        raise InvalidContextRequestError(f"interval start {start!r} must be <= end {end!r}")

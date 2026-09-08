@@ -47,9 +47,7 @@ _CANONICAL_ORDER: tuple[BodyId, ...] = (
 )
 
 
-def angular_separation_deg(
-    lon1: float, lat1: float, lon2: float, lat2: float
-) -> float:
+def angular_separation_deg(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
     """Great-circle separation on the ecliptic sphere (latitudes included).
 
     ``acos(sin β1·sin β2 + cos β1·cos β2·cos(λ1 − λ2))`` in [0, 180].
@@ -80,8 +78,12 @@ def circular_distance_deg(separation: float, ideal: float) -> float:
 
 
 def applying_separating(
-    lon1: float, speed1: float, lon2: float, speed2: float,
-    ideal: float, station_epsilon: float,
+    lon1: float,
+    speed1: float,
+    lon2: float,
+    speed2: float,
+    ideal: float,
+    station_epsilon: float,
 ) -> ApplyingSeparating:
     """Closed-form applying/separating rule (Specialist §10.7).
 
@@ -164,10 +166,7 @@ def _same_bhava_flag(
     """Whether two bodies occupy the same bhava; None without a chart."""
     if bhavas is None:
         return None
-    return any(
-        first.body in bhava.occupants and second.body in bhava.occupants
-        for bhava in bhavas
-    )
+    return any(first.body in bhava.occupants and second.body in bhava.occupants for bhava in bhavas)
 
 
 def all_pairs(
@@ -218,7 +217,11 @@ def cusp_aspects_to_occupants(
                 within_orb=distance <= orb,
                 orb_deg=orb,
                 applying_separating=applying_separating(
-                    cusp_deg, 0.0, occupant.longitude_used, occupant.speed_longitude, ideal,
+                    cusp_deg,
+                    0.0,
+                    occupant.longitude_used,
+                    occupant.speed_longitude,
+                    ideal,
                     config.station_speed_epsilon,
                 ),
             )

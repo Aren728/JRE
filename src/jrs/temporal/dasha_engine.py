@@ -25,8 +25,15 @@ from typing import Any
 
 # Classical Vimshottari Dasha order and durations (years)
 VIMSHOTTARI_ORDER: tuple[str, ...] = (
-    "KETU", "VENUS", "SUN", "MOON", "MARS",
-    "RAHU", "JUPITER", "SATURN", "MERCURY",
+    "KETU",
+    "VENUS",
+    "SUN",
+    "MOON",
+    "MARS",
+    "RAHU",
+    "JUPITER",
+    "SATURN",
+    "MERCURY",
 )
 
 VIMSHOTTARI_DURATIONS: dict[str, float] = {
@@ -208,7 +215,8 @@ class VimshottariDashaEngine:
                 lord=md_lord,
                 period_type="MD",
                 start_utc=target_timestamp,
-                end_utc=target_timestamp + timedelta(days=365.25 * VIMSHOTTARI_DURATIONS.get(md_lord, 10.0)),
+                end_utc=target_timestamp
+                + timedelta(days=365.25 * VIMSHOTTARI_DURATIONS.get(md_lord, 10.0)),
                 duration_years=VIMSHOTTARI_DURATIONS.get(md_lord, 10.0),
             )
 
@@ -301,7 +309,9 @@ class VimshottariDashaEngine:
         # ── Tier 2: Extended matching (functional/dispositor/nakshatra) ──
         if jre_facts is not None:
             extended_result = self._check_extended_activation(
-                hierarchy, upper_planets, jre_facts,
+                hierarchy,
+                upper_planets,
+                jre_facts,
             )
             if extended_result is not None:
                 return extended_result
@@ -386,9 +396,9 @@ class VimshottariDashaEngine:
             if isinstance(dasha_lord_house, int):
                 # Classical Vedic aspect houses from planet's position
                 _ASPECT_MAP: dict[str, list[int]] = {
-                    "MARS": [4, 7, 8],      # 4th, 7th, 8th
-                    "JUPITER": [5, 7, 9],    # 5th, 7th, 9th
-                    "SATURN": [3, 7, 10],    # 3rd, 7th, 10th
+                    "MARS": [4, 7, 8],  # 4th, 7th, 8th
+                    "JUPITER": [5, 7, 9],  # 5th, 7th, 9th
+                    "SATURN": [3, 7, 10],  # 3rd, 7th, 10th
                 }
                 aspect_offsets = _ASPECT_MAP.get(dasha_lord, [7])  # Default: 7th only
                 for yp in yoga_planets:
@@ -462,9 +472,7 @@ class VimshottariDashaEngine:
         elapsed_days = fraction_elapsed * md_duration_days
         return target_timestamp - timedelta(days=elapsed_days)
 
-    def _compute_md_periods(
-        self, birth_epoch: datetime
-    ) -> list[DashaPeriod]:
+    def _compute_md_periods(self, birth_epoch: datetime) -> list[DashaPeriod]:
         """Compute the full MD period sequence starting from birth."""
         periods: list[DashaPeriod] = []
         current_start = birth_epoch
@@ -480,20 +488,20 @@ class VimshottariDashaEngine:
                 duration_years = VIMSHOTTARI_DURATIONS[lord]
                 duration_days = duration_years * 365.25
                 end = current_start + timedelta(days=duration_days)
-                periods.append(DashaPeriod(
-                    lord=lord,
-                    period_type="MD",
-                    start_utc=current_start,
-                    end_utc=end,
-                    duration_years=duration_years,
-                ))
+                periods.append(
+                    DashaPeriod(
+                        lord=lord,
+                        period_type="MD",
+                        start_utc=current_start,
+                        end_utc=end,
+                        duration_years=duration_years,
+                    )
+                )
                 current_start = end
 
         return periods
 
-    def _compute_sub_periods(
-        self, parent: DashaPeriod, sub_type: str
-    ) -> list[DashaPeriod]:
+    def _compute_sub_periods(self, parent: DashaPeriod, sub_type: str) -> list[DashaPeriod]:
         """Compute AD or PD sub-periods within a parent period."""
         periods: list[DashaPeriod] = []
         parent_lord = parent.lord
@@ -517,21 +525,22 @@ class VimshottariDashaEngine:
             sub_duration_days = parent_duration_days * sub_fraction
 
             end = current_start + timedelta(days=sub_duration_days)
-            periods.append(DashaPeriod(
-                lord=sub_lord,
-                period_type=sub_type,
-                start_utc=current_start,
-                end_utc=end,
-                duration_years=sub_duration_years * (parent.duration_years / TOTAL_VIMSHOTTARI_YEARS),
-            ))
+            periods.append(
+                DashaPeriod(
+                    lord=sub_lord,
+                    period_type=sub_type,
+                    start_utc=current_start,
+                    end_utc=end,
+                    duration_years=sub_duration_years
+                    * (parent.duration_years / TOTAL_VIMSHOTTARI_YEARS),
+                )
+            )
             current_start = end
 
         return periods
 
     @staticmethod
-    def _find_active_period(
-        periods: list[DashaPeriod], ts: datetime
-    ) -> DashaPeriod | None:
+    def _find_active_period(periods: list[DashaPeriod], ts: datetime) -> DashaPeriod | None:
         """Find the period containing the given timestamp."""
         for period in periods:
             if period.contains(ts):

@@ -9,6 +9,7 @@ from typing import Any
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class ActivationType(Enum):
     """Types of temporal activation."""
 
@@ -41,6 +42,7 @@ CONVERGENCE_VALUES: dict[ConvergenceLevel, float] = {
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class TemporalTrigger:
@@ -92,6 +94,7 @@ class EventWindow:
 
 # ── Temporal Config (embedded) ───────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class TemporalConfig:
     """Configuration for the temporal evidence layer."""
@@ -104,6 +107,7 @@ class TemporalConfig:
 
 
 # ── Overlap Calculation Helpers ──────────────────────────────────────────────
+
 
 def parse_iso_timestamp(ts: str) -> datetime | None:
     """Parse an ISO format timestamp string.
@@ -123,8 +127,10 @@ def parse_iso_timestamp(ts: str) -> datetime | None:
 
 
 def windows_overlap(
-    start1: str, end1: str,
-    start2: str, end2: str,
+    start1: str,
+    end1: str,
+    start2: str,
+    end2: str,
 ) -> bool:
     """Check if two time windows overlap.
 
@@ -147,8 +153,10 @@ def windows_overlap(
 
 
 def compute_overlap_window(
-    start1: str, end1: str,
-    start2: str, end2: str,
+    start1: str,
+    end1: str,
+    start2: str,
+    end2: str,
 ) -> tuple[str, str]:
     """Compute the overlapping time window of two periods.
 
@@ -242,8 +250,10 @@ def find_overlapping_triggers(
             if i >= j:
                 continue
             if windows_overlap(
-                t1.activation_start_utc, t1.activation_end_utc,
-                t2.activation_start_utc, t2.activation_end_utc,
+                t1.activation_start_utc,
+                t1.activation_end_utc,
+                t2.activation_start_utc,
+                t2.activation_end_utc,
             ):
                 if t1 not in overlapping:
                     overlapping.append(t1)

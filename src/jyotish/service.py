@@ -200,9 +200,7 @@ class JyotishService:
         cfg = self._resolve_config(config)
         start_jd = iso_utc_to_jd(start_utc_iso)
         end_jd = iso_utc_to_jd(end_utc_iso)
-        engine = ContinuousTransitEngine(
-            self._position_provider(bodies, cfg)
-        )
+        engine = ContinuousTransitEngine(self._position_provider(bodies, cfg))
         return engine.events_between(start_jd, end_jd, bodies, kinds, cfg)
 
     def state_series(
@@ -256,9 +254,7 @@ class JyotishService:
             node_positions = tuple(
                 positions[b] for b in (BodyId.RAHU, BodyId.KETU) if b in positions
             )
-            solar_lunar = tuple(
-                positions[b] for b in (BodyId.SUN, BodyId.MOON) if b in positions
-            )
+            solar_lunar = tuple(positions[b] for b in (BodyId.SUN, BodyId.MOON) if b in positions)
             from dataclasses import replace
 
             result.append(
@@ -274,9 +270,7 @@ class JyotishService:
     # INDIVIDUAL mode
     # ------------------------------------------------------------------ #
 
-    def chart(
-        self, birth: BirthData, config: JyotishConfig | None = None
-    ) -> NatalChart:
+    def chart(self, birth: BirthData, config: JyotishConfig | None = None) -> NatalChart:
         """Natal chart from birth data (birth snapshot echoed, never stored)."""
         cfg = self._resolve_config(config)
         birth_date, birth_time = _parse_birth(birth)
@@ -284,9 +278,7 @@ class JyotishService:
             birth_date, birth_time, birth.timezone, birth.latitude, birth.longitude, None, cfg
         )
         states = self._states_from_result(result, cfg)
-        cusp_result = self._house_cusps(
-            result.julian_day_ut, birth.latitude, birth.longitude, cfg
-        )
+        cusp_result = self._house_cusps(result.julian_day_ut, birth.latitude, birth.longitude, cfg)
         bhavas = compute_bhavas(cusp_result, states, cfg)
         lagna = derive_lagna(cusp_result.ascendant_deg, cfg, cfg.house_system, bhavas[0])
         metadata = (
@@ -340,9 +332,7 @@ class JyotishService:
                 aspect
                 for occupant in natal.planet_states
                 if occupant.body in occupants
-                for aspect in _geometry.pair_geometry(
-                    transit_state, occupant, cfg
-                ).aspects
+                for aspect in _geometry.pair_geometry(transit_state, occupant, cfg).aspects
             )
             entries.append(
                 HouseTransitEntry(
@@ -478,9 +468,7 @@ class JyotishService:
 
         house_number = (transit_index - anchor_index) % 12 + 1
         house_rashi = _ORDER[(anchor_index + house_number - 1) % 12]
-        occupants = tuple(
-            s.body for s in natal.planet_states if s.rashi == house_rashi
-        )
+        occupants = tuple(s.body for s in natal.planet_states if s.rashi == house_rashi)
         return house_number, house_rashi, occupants
 
 

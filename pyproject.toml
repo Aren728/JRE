@@ -129,6 +129,7 @@ testpaths = [
     "tests/integration/numerology",
     "tests/unit/jrs/api",
     "tests/unit/jrs/reporting",
+    "tests/unit/jrs/advanced_charts",
     "tests/calibration",
 ]
 addopts = "-q"
@@ -136,6 +137,10 @@ pythonpath = ["."]
 markers = [
     "slow: marks tests as slow (full calibration runs across all domains)",
 ]
+filterwarnings = [
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated:DeprecationWarning",
+]
+
 # integration tests require pysweph + the bundled .se1 files (datasets/ephemeris)
 
 [tool.ruff]

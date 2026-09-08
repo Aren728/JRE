@@ -47,9 +47,7 @@ def litigation_rule_catalog_from_dict(
     data: dict[str, Any],
 ) -> LitigationRuleCatalog:
     """Deserialize a LitigationRuleCatalog from a dict."""
-    rules = tuple(
-        litigation_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(litigation_rule_from_dict(r) for r in data.get("rules", []))
     return LitigationRuleCatalog(rules=rules)
 
 
@@ -59,7 +57,9 @@ def result_to_dict(catalog: LitigationRuleCatalog) -> dict[str, Any]:
 
 
 def result_to_json(
-    catalog: LitigationRuleCatalog, *, indent: int | None = None,
+    catalog: LitigationRuleCatalog,
+    *,
+    indent: int | None = None,
 ) -> str:
     """Deterministic JSON serialization of a LitigationRuleCatalog."""
     d = result_to_dict(catalog)

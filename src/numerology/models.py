@@ -19,15 +19,32 @@ from typing import Any
 # ── Letter-to-Number Mapping (Pythagorean) ───────────────────────────────────
 
 _PYTHAGOREAN_MAP: dict[str, int] = {
-    "A": 1, "J": 1, "S": 1,
-    "B": 2, "K": 2, "T": 2,
-    "C": 3, "L": 3, "U": 3,
-    "D": 4, "M": 4, "V": 4,
-    "E": 5, "N": 5, "W": 5,
-    "F": 6, "O": 6, "X": 6,
-    "G": 7, "P": 7, "Y": 7,
-    "H": 8, "Q": 8, "Z": 8,
-    "I": 9, "R": 9,
+    "A": 1,
+    "J": 1,
+    "S": 1,
+    "B": 2,
+    "K": 2,
+    "T": 2,
+    "C": 3,
+    "L": 3,
+    "U": 3,
+    "D": 4,
+    "M": 4,
+    "V": 4,
+    "E": 5,
+    "N": 5,
+    "W": 5,
+    "F": 6,
+    "O": 6,
+    "X": 6,
+    "G": 7,
+    "P": 7,
+    "Y": 7,
+    "H": 8,
+    "Q": 8,
+    "Z": 8,
+    "I": 9,
+    "R": 9,
 }
 
 
@@ -247,9 +264,7 @@ class NumerologyChart:
 
     def __post_init__(self) -> None:
         if not self.deterministic_id:
-            object.__setattr__(
-                self, "deterministic_id", _compute_chart_id(self)
-            )
+            object.__setattr__(self, "deterministic_id", _compute_chart_id(self))
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""
@@ -260,12 +275,8 @@ class NumerologyChart:
             "life_path": self.life_path.to_dict() if self.life_path else None,
             "destiny": self.destiny.to_dict() if self.destiny else None,
             "soul_urge": self.soul_urge.to_dict() if self.soul_urge else None,
-            "personality": (
-                self.personality.to_dict() if self.personality else None
-            ),
-            "personal_year": (
-                self.personal_year.to_dict() if self.personal_year else None
-            ),
+            "personality": (self.personality.to_dict() if self.personality else None),
+            "personal_year": (self.personal_year.to_dict() if self.personal_year else None),
             "deterministic_id": self.deterministic_id,
         }
         return result

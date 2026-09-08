@@ -66,8 +66,13 @@ def local_time_to_utc(date: dt.date, time: dt.time, timezone: str) -> tuple[dt.d
     validate_civil_date(date)
     zone = _resolve_zone(timezone)
     naive = dt.datetime(
-        date.year, date.month, date.day,
-        time.hour, time.minute, time.second, time.microsecond,
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
+        time.second,
+        time.microsecond,
     )
     local = naive.replace(tzinfo=zone, fold=0)
     utc_dt = local.astimezone(UTC)
@@ -114,13 +119,5 @@ def julian_day_ut(utc_dt: dt.datetime) -> float:
     a = (14 - m) // 12
     yy = y + 4800 - a
     mm = m + 12 * a - 3
-    jdn = (
-        d
-        + (153 * mm + 2) // 5
-        + 365 * yy
-        + yy // 4
-        - yy // 100
-        + yy // 400
-        - 32045
-    )
+    jdn = d + (153 * mm + 2) // 5 + 365 * yy + yy // 4 - yy // 100 + yy // 400 - 32045
     return float(jdn) - 0.5 + day_fraction

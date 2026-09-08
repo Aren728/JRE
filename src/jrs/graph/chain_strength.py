@@ -14,21 +14,18 @@ from dataclasses import dataclass
 from typing import Any
 
 from .chain_evaluator import (
+    COMBUST_MULTIPLIER,
+    DIGNITY_SCORES,
+    RETROGRADE_MULTIPLIER,
     ChainEdge,
     ChainNode,
     ChainPath,
-    DIGNITY_SCORES,
-    DirectedChainEvaluator,
     Dignity,
+    DirectedChainEvaluator,
     EdgeType,
     RelationshipGraph,
 )
-from .chain_evaluator import (
-    COMBUST_MULTIPLIER,
-    RETROGRADE_MULTIPLIER,
-)
 from .functional_lordship import FunctionalRole
-
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -40,7 +37,7 @@ HOP_DAMPING: float = 0.70
 # primary planetary aspect/conjunction edge weights.
 NAKSHATRA_EDGE_ATTENUATION: dict[EdgeType, float] = {
     EdgeType.NAKSHATRA_PARIVARTANA: 1.00,  # No extra attenuation beyond base weight
-    EdgeType.NAKSHATRA_LORD: 1.00,          # No extra attenuation beyond base weight
+    EdgeType.NAKSHATRA_LORD: 1.00,  # No extra attenuation beyond base weight
 }
 
 # Functional role base weights (F_role)
@@ -53,6 +50,7 @@ _ROLE_WEIGHTS: dict[FunctionalRole, float] = {
 
 
 # ── Data Structures ───────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class NodeMultiplier:
@@ -91,6 +89,7 @@ class PathImpact:
 
 
 # ── Chain Strength Engine ─────────────────────────────────────────────────────
+
 
 class ChainStrengthEngine:
     """Compute cascading strength for multi-hop planetary chains.
@@ -157,8 +156,11 @@ class ChainStrengthEngine:
             return PathImpact(
                 path=path,
                 root_multiplier=NodeMultiplier(
-                    planet="", dignity_score=0.0, retrograde_multiplier=1.0,
-                    combust_multiplier=1.0, net_multiplier=0.0,
+                    planet="",
+                    dignity_score=0.0,
+                    retrograde_multiplier=1.0,
+                    combust_multiplier=1.0,
+                    net_multiplier=0.0,
                 ),
                 hop_multipliers=(),
                 net_functional_impact=0.0,

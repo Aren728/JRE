@@ -108,22 +108,16 @@ class BalaService:
             house_number = self._planet_house_number(planet, state, lagna_state)
 
             # Determine the sign lord of the planet's current sign
-            sign_lord = SIGN_LORDS_VIMSHOTTARI.get(
-                _rashi_number(state.rashi), BodyId.SUN
-            )
+            sign_lord = SIGN_LORDS_VIMSHOTTARI.get(_rashi_number(state.rashi), BodyId.SUN)
 
             # 1. Sthana Bala
-            sthana = self._compute_sthana_bala(
-                planet, state, house_number, sign_lord
-            )
+            sthana = self._compute_sthana_bala(planet, state, house_number, sign_lord)
 
             # 2. Dig Bala
             dig = self._compute_dig_bala(planet, house_number, lagna_state)
 
             # 3. Kala Bala
-            kala = self._compute_kala_bala(
-                planet, state, moon_phase_fraction
-            )
+            kala = self._compute_kala_bala(planet, state, moon_phase_fraction)
 
             # 4. Cheshta Bala
             cheshta = self._compute_cheshta_bala(planet, state)
@@ -153,15 +147,17 @@ class BalaService:
                 sthana.total, dig, kala.total, cheshta, naisargika, drik
             )
 
-            results.append(ShadbalaResult(
-                planet=planet,
-                components=components,
-                total_virupas=total_virupas,
-                total_rupas=total_rupas,
-                minimum_required=minimum,
-                ratio=ratio,
-                ishta_kashta=ishta_kashta,
-            ))
+            results.append(
+                ShadbalaResult(
+                    planet=planet,
+                    components=components,
+                    total_virupas=total_virupas,
+                    total_rupas=total_rupas,
+                    minimum_required=minimum,
+                    ratio=ratio,
+                    ishta_kashta=ishta_kashta,
+                )
+            )
 
         return ShadbalaReport(results=tuple(results))
 
@@ -207,9 +203,7 @@ class BalaService:
         bala = 60.0 * diff / 180.0
         return max(0.0, min(bala, 60.0))
 
-    def _saptavargaja_bala(
-        self, planet: BodyId, sign_lord: BodyId
-    ) -> float:
+    def _saptavargaja_bala(self, planet: BodyId, sign_lord: BodyId) -> float:
         """Saptavargaja Bala: simplified dignity-based scoring.
 
         Without full Varga charts, we score based on the D-1 (Rashi)
@@ -355,9 +349,7 @@ class BalaService:
             return 15.0
         return 15.0  # Mercury, Rahu, Ketu
 
-    def _paksha_bala(
-        self, planet: BodyId, moon_phase_fraction: float
-    ) -> float:
+    def _paksha_bala(self, planet: BodyId, moon_phase_fraction: float) -> float:
         """Paksha Bala: lunar phase strength.
 
         Classical formula:
@@ -391,9 +383,7 @@ class BalaService:
             return 30.0  # Night
         return 0.0  # Other planets
 
-    def _ayana_bala(
-        self, planet: BodyId, state: PlanetState
-    ) -> float:
+    def _ayana_bala(self, planet: BodyId, state: PlanetState) -> float:
         """Ayana Bala: solstice strength based on declination.
 
         Planets north of the celestial equator (positive declination)
@@ -414,9 +404,7 @@ class BalaService:
     # 4. Cheshta Bala (Motional/Effective Strength)
     # ------------------------------------------------------------------ #
 
-    def _compute_cheshta_bala(
-        self, planet: BodyId, state: PlanetState
-    ) -> float:
+    def _compute_cheshta_bala(self, planet: BodyId, state: PlanetState) -> float:
         """Cheshta Bala: motional strength based on retrograde/speed.
 
         Retrograde planets get maximum Cheshta Bala (60 virupas).
@@ -493,9 +481,7 @@ class BalaService:
         house = (planet_num - lagna_num) % 12 + 1
         return house
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Bala computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidBalaRequestError(
@@ -504,6 +490,5 @@ class BalaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidBalaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

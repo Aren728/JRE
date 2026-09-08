@@ -47,9 +47,7 @@ def business_rule_catalog_from_dict(
     data: dict[str, Any],
 ) -> BusinessRuleCatalog:
     """Deserialize a BusinessRuleCatalog from a dict."""
-    rules = tuple(
-        business_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(business_rule_from_dict(r) for r in data.get("rules", []))
     return BusinessRuleCatalog(rules=rules)
 
 
@@ -59,7 +57,9 @@ def result_to_dict(catalog: BusinessRuleCatalog) -> dict[str, Any]:
 
 
 def result_to_json(
-    catalog: BusinessRuleCatalog, *, indent: int | None = None,
+    catalog: BusinessRuleCatalog,
+    *,
+    indent: int | None = None,
 ) -> str:
     """Deterministic JSON serialization of a BusinessRuleCatalog."""
     d = result_to_dict(catalog)

@@ -45,9 +45,7 @@ def education_config_from_dict(data: dict[str, Any]) -> EducationConfig:
 
 def education_rule_catalog_from_dict(data: dict[str, Any]) -> EducationRuleCatalog:
     """Deserialize an EducationRuleCatalog from a dict."""
-    rules = tuple(
-        education_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(education_rule_from_dict(r) for r in data.get("rules", []))
     return EducationRuleCatalog(rules=rules)
 
 

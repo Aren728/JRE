@@ -52,9 +52,7 @@ class WesternDomainService:
             self._rules = load_western_rules(self._config_path)
         return WesternRuleCatalog(rules=self._rules)
 
-    def evaluate_chart_facts(
-        self, chart: WesternChart
-    ) -> tuple[EvidenceRecord, ...]:
+    def evaluate_chart_facts(self, chart: WesternChart) -> tuple[EvidenceRecord, ...]:
         """Evaluate a WesternChart against the rule catalog.
 
         Args:
@@ -103,20 +101,14 @@ class WesternDomainService:
             if record.direction is EvidenceDirection.SUPPORT:
                 outcome_support[outcome] = outcome_support.get(outcome, 0) + 1
             elif record.direction is EvidenceDirection.CONTRADICT:
-                outcome_contradict[outcome] = (
-                    outcome_contradict.get(outcome, 0) + 1
-                )
+                outcome_contradict[outcome] = outcome_contradict.get(outcome, 0) + 1
 
         # Find the outcome with the strongest net support
-        all_outcomes = set(outcome_support.keys()) | set(
-            outcome_contradict.keys()
-        )
+        all_outcomes = set(outcome_support.keys()) | set(outcome_contradict.keys())
         best_outcome = ""
         best_score = -1
         for outcome in all_outcomes:
-            score = outcome_support.get(outcome, 0) - outcome_contradict.get(
-                outcome, 0
-            )
+            score = outcome_support.get(outcome, 0) - outcome_contradict.get(outcome, 0)
             if score > best_score:
                 best_score = score
                 best_outcome = outcome
@@ -147,9 +139,7 @@ class WesternDomainService:
             ),
         )
 
-    def assess_chart_per_outcome(
-        self, chart: WesternChart
-    ) -> tuple[SystemAssessment, ...]:
+    def assess_chart_per_outcome(self, chart: WesternChart) -> tuple[SystemAssessment, ...]:
         """Produce one SystemAssessment per outcome taxonomy.
 
         Useful for feeding into CrossSystemEvidence which expects
@@ -176,12 +166,8 @@ class WesternDomainService:
 
         assessments: list[SystemAssessment] = []
         for outcome, recs in outcome_records.items():
-            support = sum(
-                1 for r in recs if r.direction is EvidenceDirection.SUPPORT
-            )
-            contradict = sum(
-                1 for r in recs if r.direction is EvidenceDirection.CONTRADICT
-            )
+            support = sum(1 for r in recs if r.direction is EvidenceDirection.SUPPORT)
+            contradict = sum(1 for r in recs if r.direction is EvidenceDirection.CONTRADICT)
 
             if support >= 3 and contradict == 0:
                 status = "STRONGLY_SUPPORTED"

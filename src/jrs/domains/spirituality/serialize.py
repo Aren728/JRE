@@ -47,9 +47,7 @@ def spirituality_rule_catalog_from_dict(
     data: dict[str, Any],
 ) -> SpiritualityRuleCatalog:
     """Deserialize a SpiritualityRuleCatalog from a dict."""
-    rules = tuple(
-        spirituality_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(spirituality_rule_from_dict(r) for r in data.get("rules", []))
     return SpiritualityRuleCatalog(rules=rules)
 
 
@@ -59,7 +57,9 @@ def result_to_dict(catalog: SpiritualityRuleCatalog) -> dict[str, Any]:
 
 
 def result_to_json(
-    catalog: SpiritualityRuleCatalog, *, indent: int | None = None,
+    catalog: SpiritualityRuleCatalog,
+    *,
+    indent: int | None = None,
 ) -> str:
     """Deterministic JSON serialization of a SpiritualityRuleCatalog."""
     d = result_to_dict(catalog)

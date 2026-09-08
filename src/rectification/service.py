@@ -88,7 +88,11 @@ class RectificationService:
 
             # Check corroboration: do other events with same type produce similar offsets?
             corroborated = self._check_corroboration(
-                event, offset, events, transit_times, method,
+                event,
+                offset,
+                events,
+                transit_times,
+                method,
             )
 
             # Compute confidence
@@ -112,12 +116,14 @@ class RectificationService:
             if corroborated:
                 evidence.append("Multiple events corroborate this offset")
 
-            results.append(RectificationResult(
-                method=method,
-                calculated_offset_seconds=offset,
-                confidence_score=confidence,
-                evidence=tuple(evidence),
-            ))
+            results.append(
+                RectificationResult(
+                    method=method,
+                    calculated_offset_seconds=offset,
+                    confidence_score=confidence,
+                    evidence=tuple(evidence),
+                )
+            )
 
         # Aggregate into a single suggested birth time
         aggregate = aggregate_offsets(tuple(results), self._config.max_offset_seconds)
@@ -169,9 +175,7 @@ class RectificationService:
     ) -> None:
         """Validate the rectification request."""
         if not isinstance(birth_time_utc, str) or birth_time_utc == "":
-            raise InvalidRectificationRequestError(
-                "birth_time_utc must be a non-empty string"
-            )
+            raise InvalidRectificationRequestError("birth_time_utc must be a non-empty string")
         if not isinstance(events, tuple) or not events:
             raise InvalidRectificationRequestError(
                 "events must be a non-empty tuple of LifeEvent values"
@@ -179,11 +183,9 @@ class RectificationService:
         for event in events:
             if not isinstance(event, LifeEvent):
                 raise InvalidRectificationRequestError(
-                    f"events must contain LifeEvent values, "
-                    f"got {type(event).__name__}"
+                    f"events must contain LifeEvent values, got {type(event).__name__}"
                 )
         if not isinstance(method, RectificationMethod):
             raise InvalidRectificationRequestError(
-                f"method must be a RectificationMethod, "
-                f"got {type(method).__name__}"
+                f"method must be a RectificationMethod, got {type(method).__name__}"
             )

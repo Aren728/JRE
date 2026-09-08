@@ -8,6 +8,7 @@ from typing import Any
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class EvidenceDirection(Enum):
     """Direction of evidence relative to an outcome."""
 
@@ -38,6 +39,7 @@ STRENGTH_VALUES: dict[EvidenceStrength, float] = {
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class ClassicalSource:
@@ -135,6 +137,7 @@ class EvidenceChain:
 
 # ── Validation Config (embedded) ─────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class EvidenceConfig:
     """Configuration for the evidence framework."""
@@ -146,6 +149,7 @@ class EvidenceConfig:
 
 
 # ── Graph Traversal Helpers ──────────────────────────────────────────────────
+
 
 def detect_circular_references(
     records: dict[str, EvidenceRecord],
@@ -222,10 +226,14 @@ def resolve_evidence_chain(
         return None
 
     contradictions = _resolve_links(
-        record.contradicted_by, records, max_depth,
+        record.contradicted_by,
+        records,
+        max_depth,
     )
     mitigations = _resolve_links(
-        record.mitigated_by, records, max_depth,
+        record.mitigated_by,
+        records,
+        max_depth,
     )
     supporting = _find_supporting(evidence_id, records)
 

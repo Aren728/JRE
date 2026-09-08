@@ -161,7 +161,8 @@ def _compute_ece(
 
         # Find samples in this bin
         in_bin = [
-            j for j, p in enumerate(predictions)
+            j
+            for j, p in enumerate(predictions)
             if bin_low <= p < bin_high or (i == n_bins - 1 and p == bin_high)
         ]
 
@@ -210,7 +211,8 @@ class CohortCalibrationEngine:
         """
         # Filter to successful evaluations
         successful = [
-            r for r in batch_report.reports
+            r
+            for r in batch_report.reports
             if r.status == ValidationStatus.SUCCESS and r.metric_evaluation is not None
         ]
 
@@ -240,8 +242,7 @@ class CohortCalibrationEngine:
         # Compute metrics
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-        f1 = (2 * precision * recall / (precision + recall)
-              if (precision + recall) > 0 else 0.0)
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
         fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0
         fnr = fn / (fn + tp) if (fn + tp) > 0 else 0.0
 
@@ -255,8 +256,7 @@ class CohortCalibrationEngine:
 
         # Timing window IoU
         timing_ious = self._compute_timing_ious(evaluations, ground_truth_events)
-        avg_iou = (sum(timing_ious) / len(timing_ious)
-                   if timing_ious else 0.0)
+        avg_iou = sum(timing_ious) / len(timing_ious) if timing_ious else 0.0
 
         # ECE
         predictions = [e.prediction_strength for e in evaluations]
@@ -265,7 +265,8 @@ class CohortCalibrationEngine:
 
         # Layer performance
         layer_telemetry = self._compute_layer_performance(
-            evaluations, ground_truth_events,
+            evaluations,
+            ground_truth_events,
         )
 
         return CohortCalibrationReport(
@@ -529,8 +530,7 @@ class CohortCalibrationEngine:
 
         if lt.formation_accuracy < 0.5 and report.total_evaluated > 0:
             recs.append(
-                "Formation layer needs improvement: review Yoga detection "
-                "rules and aspect coverage"
+                "Formation layer needs improvement: review Yoga detection rules and aspect coverage"
             )
 
         return recs

@@ -9,6 +9,7 @@ from typing import Any
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class EventType(Enum):
     """Known life event types for validation."""
 
@@ -47,6 +48,7 @@ class TriggerSource(Enum):
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class KnownEvent:
@@ -155,6 +157,7 @@ class ValidationReport:
 
 # ── Validation Config (embedded for convenience) ─────────────────────────────
 
+
 @dataclass(frozen=True)
 class ValidationConfig:
     """Configuration for the validation system."""
@@ -166,6 +169,7 @@ class ValidationConfig:
 
 
 # ── Trigger Extraction Logic ─────────────────────────────────────────────────
+
 
 def extract_triggers_from_engines(
     engine_names: tuple[str, ...],
@@ -199,20 +203,24 @@ def extract_triggers_from_engines(
         confidence = reliability.get(engine_name, 1.0)
         trigger_id = f"{engine_name}_present"
 
-        triggers.append(ExtractedTrigger(
-            trigger_id=trigger_id,
-            source=source,
-            confidence=confidence,
-        ))
+        triggers.append(
+            ExtractedTrigger(
+                trigger_id=trigger_id,
+                source=source,
+                confidence=confidence,
+            )
+        )
 
     # Add research evidence as triggers
     for topic in research_evidence:
-        triggers.append(ExtractedTrigger(
-            trigger_id=f"research_{topic}",
-            source=TriggerSource.SYNTHESIS,
-            confidence=0.8,
-            metadata=f"Research topic: {topic}",
-        ))
+        triggers.append(
+            ExtractedTrigger(
+                trigger_id=f"research_{topic}",
+                source=TriggerSource.SYNTHESIS,
+                confidence=0.8,
+                metadata=f"Research topic: {topic}",
+            )
+        )
 
     return tuple(triggers)
 
@@ -275,9 +283,7 @@ def compute_match_score(
 
     # Weighted totals
     expected_weight = sum(weights.get(exp, 1.0) for exp in expected)
-    actual_weight = sum(
-        weights.get(t.trigger_id, 1.0) for t in actual
-    )
+    actual_weight = sum(weights.get(t.trigger_id, 1.0) for t in actual)
 
     if expected_weight == 0 or actual_weight == 0:
         return 0.0
@@ -306,7 +312,5 @@ def find_missing_and_false_positives(
     """
     actual_ids = {t.trigger_id for t in actual}
     missing = tuple(t for t in expected if t not in actual_ids)
-    false_pos = tuple(
-        t.trigger_id for t in actual if t.trigger_id not in set(expected)
-    )
+    false_pos = tuple(t.trigger_id for t in actual if t.trigger_id not in set(expected))
     return missing, false_pos

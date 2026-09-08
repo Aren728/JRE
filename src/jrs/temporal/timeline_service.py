@@ -18,7 +18,6 @@ from typing import Any
 from .dasha_engine import DashaHierarchy, DashaMultiplierResult, VimshottariDashaEngine
 from .transit_evaluator import TransitEvaluationResult, TransitEvaluator
 
-
 # ── Constants ────────────────────────────────────────────────────────────────
 
 _SCORE_MIN: float = 0.0
@@ -124,10 +123,7 @@ class DynamicTemporalService:
             )
             # Use aggregate multiplier only for planets involved in the yoga
             yoga_upper = {p.upper() for p in yoga_planets}
-            relevant_profiles = [
-                p for p in transit_result.profiles
-                if p.planet in yoga_upper
-            ]
+            relevant_profiles = [p for p in transit_result.profiles if p.planet in yoga_upper]
             if relevant_profiles:
                 m_transit = 1.0
                 for p in relevant_profiles:

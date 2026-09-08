@@ -42,8 +42,18 @@ _BAV_TABLE: dict[str, frozenset[int]] = {
 
 # Rashi order for longitude-to-sign conversion
 _RASHI_ORDER: list[str] = [
-    "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-    "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+    "MESHA",
+    "VRISHABHA",
+    "MITHUNA",
+    "KARKA",
+    "SIMHA",
+    "KANYA",
+    "TULA",
+    "VRISHCHIKA",
+    "DHANUSHA",
+    "MAKARA",
+    "KUMBHA",
+    "MEENA",
 ]
 
 
@@ -114,9 +124,7 @@ class AshtakavargaService:
         lagna_longitude = (lagna_sign_num - 1) * 30.0  # Approximate
 
         # Compute transit positions at target timestamp
-        transit_positions = self._compute_transit_positions(
-            target_timestamp, jre_facts
-        )
+        transit_positions = self._compute_transit_positions(target_timestamp, jre_facts)
 
         # Compute SAV for each house from Moon
         # SAV[house] = sum of bindus from all 7 planets when in that house

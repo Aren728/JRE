@@ -156,9 +156,7 @@ def compute_bhavas(
     return tuple(bhavas)
 
 
-def bhava_containing_longitude(
-    bhavas: tuple[Bhava, ...], longitude_deg: float
-) -> Bhava | None:
+def bhava_containing_longitude(bhavas: tuple[Bhava, ...], longitude_deg: float) -> Bhava | None:
     """The bhava whose span contains a longitude (None if outside all spans)."""
     lon = longitude_deg % 360.0
     for bhava in bhavas:

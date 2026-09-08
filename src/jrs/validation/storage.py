@@ -69,7 +69,8 @@ def _storage_dict_to_packet(d: dict[str, Any]) -> FrozenPredictionPacket:
         source=provenance_dict.get("source", "unknown"),
         rodden_rating=RoddenRating(provenance_dict.get("rodden_rating", "C")),
         birth_time_confidence_minutes=provenance_dict.get(
-            "birth_time_confidence_minutes", 0,
+            "birth_time_confidence_minutes",
+            0,
         ),
     )
 
@@ -175,13 +176,15 @@ class PredictionPacketStore:
         # the hash key itself). This catches injected extra fields.
         canonical_payload = _canonicalize_floats(storage_dict)
         canonical_str = json.dumps(
-            canonical_payload, sort_keys=True, separators=(",", ":"),
+            canonical_payload,
+            sort_keys=True,
+            separators=(",", ":"),
         )
         computed_hash = hashlib.sha256(canonical_str.encode("utf-8")).hexdigest()
 
         if computed_hash != stored_hash:
             raise CryptographicTamperError(
-                f"SHA-256 hash mismatch for packet '{storage_dict.get("subject", {}).get("chart_id", "unknown")}'. "
+                f"SHA-256 hash mismatch for packet '{storage_dict.get('subject', {}).get('chart_id', 'unknown')}'. "
                 f"Expected {stored_hash[:16]}..., got {computed_hash[:16]}... "
                 f"The prediction packet has been tampered with.",
                 expected_hash=stored_hash,

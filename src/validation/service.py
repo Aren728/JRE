@@ -124,11 +124,7 @@ class ValidationService:
             report = self.run_validation(chart, output)
             results.extend(report.results)
 
-        overall_score = (
-            sum(r.match_score for r in results) / len(results)
-            if results
-            else 0.0
-        )
+        overall_score = sum(r.match_score for r in results) / len(results) if results else 0.0
 
         return ValidationReport(
             results=tuple(results),
@@ -152,9 +148,7 @@ class ValidationService:
             TriggerExtractionError: If extraction fails.
         """
         try:
-            engine_names = tuple(
-                eo.engine_name for eo in jrs_output.engine_outputs
-            )
+            engine_names = tuple(eo.engine_name for eo in jrs_output.engine_outputs)
             research = jrs_output.research_evidence
             return extract_triggers_from_engines(
                 engine_names,
@@ -186,12 +180,14 @@ class ValidationService:
         # Use ground truth keys as evidence of engine presence
         gt = chart.ground_truth
         for key in sorted(gt.keys()):
-            triggers.append(ExtractedTrigger(
-                trigger_id=f"gt_{key}",
-                source=TriggerSource.SYNTHESIS,
-                confidence=1.0,
-                metadata=f"Ground truth: {key}={gt[key]}",
-            ))
+            triggers.append(
+                ExtractedTrigger(
+                    trigger_id=f"gt_{key}",
+                    source=TriggerSource.SYNTHESIS,
+                    confidence=1.0,
+                    metadata=f"Ground truth: {key}={gt[key]}",
+                )
+            )
 
         return tuple(triggers)
 

@@ -65,13 +65,14 @@ DEFAULT_ORB_DEG: float = 6.0
 # Enums
 # --------------------------------------------------------------------------- #
 
+
 class AspectType(StrEnum):
     """Classical Jyotish aspect types."""
 
-    STANDARD = "STANDARD"           # 7th house (all planets)
-    MARS_SPECIAL = "MARS_SPECIAL"   # 4th and 8th house
+    STANDARD = "STANDARD"  # 7th house (all planets)
+    MARS_SPECIAL = "MARS_SPECIAL"  # 4th and 8th house
     JUPITER_SPECIAL = "JUPITER_SPECIAL"  # 5th and 9th house
-    SATURN_SPECIAL = "SATURN_SPECIAL"    # 3rd and 10th house
+    SATURN_SPECIAL = "SATURN_SPECIAL"  # 3rd and 10th house
 
 
 class AspectDirection(StrEnum):
@@ -85,6 +86,7 @@ class AspectDirection(StrEnum):
 # --------------------------------------------------------------------------- #
 # Data models
 # --------------------------------------------------------------------------- #
+
 
 @dataclass(frozen=True)
 class AspectRule:
@@ -142,8 +144,7 @@ class DrikResult:
     def aspects_involving(self, planet: BodyId) -> tuple[AspectApplication, ...]:
         """Return all aspects where *planet* is source or target."""
         return tuple(
-            a for a in self.aspects
-            if a.source_planet == planet or a.target_planet == planet
+            a for a in self.aspects if a.source_planet == planet or a.target_planet == planet
         )
 
 
@@ -156,9 +157,7 @@ class DrikConfig:
     version: str = DRIK_VERSION
     default_orb_deg: float = DEFAULT_ORB_DEG
     aspect_houses: dict[str, tuple[int, ...]] = field(
-        default_factory=lambda: {
-            k.value: v for k, v in DEFAULT_ASPECT_HOUSES.items()
-        }
+        default_factory=lambda: {k.value: v for k, v in DEFAULT_ASPECT_HOUSES.items()}
     )
 
     def to_dict(self) -> dict[str, Any]:
@@ -176,9 +175,7 @@ class DrikConfig:
                 for k, v in houses_raw.items()
             }
         else:
-            aspect_houses = {
-                k.value: v for k, v in DEFAULT_ASPECT_HOUSES.items()
-            }
+            aspect_houses = {k.value: v for k, v in DEFAULT_ASPECT_HOUSES.items()}
         return cls(
             version=str(version),
             default_orb_deg=orb,
@@ -189,9 +186,7 @@ class DrikConfig:
 def validate(config: DrikConfig) -> DrikConfig:
     """Validate a ``DrikConfig``; raises ``InvalidDrikConfigError``."""
     if not isinstance(config.version, str) or config.version == "":
-        raise InvalidDrikConfigError(
-            f"version must be a non-empty string, got {config.version!r}"
-        )
+        raise InvalidDrikConfigError(f"version must be a non-empty string, got {config.version!r}")
     if not isinstance(config.default_orb_deg, (int, float)) or config.default_orb_deg < 0:
         raise InvalidDrikConfigError(
             f"default_orb_deg must be a non-negative number, got {config.default_orb_deg!r}"
@@ -202,9 +197,7 @@ def validate(config: DrikConfig) -> DrikConfig:
         )
     for planet_str, houses in config.aspect_houses.items():
         if not isinstance(houses, (list, tuple)):
-            raise InvalidDrikConfigError(
-                f"aspect_houses[{planet_str!r}] must be a list of ints"
-            )
+            raise InvalidDrikConfigError(f"aspect_houses[{planet_str!r}] must be a list of ints")
         for h in houses:
             if not isinstance(h, int) or h < 1 or h > 12:
                 raise InvalidDrikConfigError(
@@ -216,6 +209,7 @@ def validate(config: DrikConfig) -> DrikConfig:
 # --------------------------------------------------------------------------- #
 # Generic serialization helpers
 # --------------------------------------------------------------------------- #
+
 
 def _model_to_dict(model: Any) -> Any:
     """Generic dataclass serializer (deterministic key order = declaration

@@ -177,9 +177,7 @@ def _model_to_dict(model: Any) -> Any:
     if isinstance(model, Enum):
         return model.value
     if isinstance(model, dict):
-        return {
-            _model_to_dict(key): _model_to_dict(value) for key, value in model.items()
-        }
+        return {_model_to_dict(key): _model_to_dict(value) for key, value in model.items()}
     if isinstance(model, (list, tuple)):
         return [_model_to_dict(item) for item in model]
     if hasattr(model, "__dataclass_fields__"):

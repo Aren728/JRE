@@ -45,9 +45,7 @@ def traits_config_from_dict(data: dict[str, Any]) -> TraitsConfig:
 
 def trait_rule_catalog_from_dict(data: dict[str, Any]) -> TraitRuleCatalog:
     """Deserialize a TraitRuleCatalog from a dict."""
-    rules = tuple(
-        trait_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(trait_rule_from_dict(r) for r in data.get("rules", []))
     return TraitRuleCatalog(rules=rules)
 
 

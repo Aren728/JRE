@@ -9,6 +9,7 @@ from typing import Any, Optional, cast
 
 class RelationshipType(StrEnum):
     """Types of relationships between planets."""
+
     ASPECT = "ASPECT"
     CONJUNCTION = "CONJUNCTION"
     EXCHANGE = "EXCHANGE"
@@ -27,6 +28,7 @@ class PlanetRelationship:
     - war_victor: The winning planet in a Graha Yuddha.
     - node_involvement: True when Rahu or Ketu is involved in the relationship.
     """
+
     planet_a: str
     planet_b: str
     relationship_type: RelationshipType

@@ -72,13 +72,9 @@ class GocharConfig:
         explicit ``null`` → ``None`` where the type allows). Unknown enum
         values raise ``InvalidGocharConfigError`` (SPEC §5)."""
         config = cls(
-            reference_point=_as_string(
-                data.get("reference_point"), "reference_point", "LAGNA"
-            ),
+            reference_point=_as_string(data.get("reference_point"), "reference_point", "LAGNA"),
             house_system=_as_string(data.get("house_system"), "house_system", "WHOLE_SIGN"),
-            sample_step_hours=_as_float(
-                data.get("sample_step_hours"), "sample_step_hours", 24.0
-            ),
+            sample_step_hours=_as_float(data.get("sample_step_hours"), "sample_step_hours", 24.0),
             aspect_echo=_as_bool(data.get("aspect_echo"), "aspect_echo", True),
             natal_house_series=_as_bool(
                 data.get("natal_house_series"), "natal_house_series", False

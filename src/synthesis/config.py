@@ -74,6 +74,7 @@ def _parse_rules(
 
             try:
                 from .models import SynthesisCategory
+
                 category = SynthesisCategory(cat_name)
             except ValueError:
                 continue
@@ -101,9 +102,7 @@ def load_config(path: str | Path | None = None) -> SynthesisConfig:
         data = tomllib.load(handle)
     section = data.get("synthesis", {})
     if not isinstance(section, dict):
-        raise InvalidSynthesisConfigError(
-            f"[synthesis] section must be a table, got {section!r}"
-        )
+        raise InvalidSynthesisConfigError(f"[synthesis] section must be a table, got {section!r}")
 
     missing = [field for field in _DECLARED_FIELDS if field not in section]
     if missing:
@@ -114,9 +113,7 @@ def load_config(path: str | Path | None = None) -> SynthesisConfig:
 
     version = section.get("version", "0.1.0")
     if not isinstance(version, str) or version == "":
-        raise InvalidSynthesisConfigError(
-            f"version must be a non-empty string, got {version!r}"
-        )
+        raise InvalidSynthesisConfigError(f"version must be a non-empty string, got {version!r}")
 
     raw_thresholds = section.get("strength_thresholds", {})
     strength_thresholds = _safe_float_dict(raw_thresholds)

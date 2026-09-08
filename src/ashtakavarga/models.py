@@ -27,13 +27,13 @@ ASHTAKAVARGA_VERSION = "0.1.0"
 # --------------------------------------------------------------------------- #
 
 CLASSICAL_BINDU_RULES: dict[BodyId, tuple[int, ...]] = {
-    BodyId.SUN:     (1, 2, 4, 7, 8, 9, 10, 11),
-    BodyId.MOON:    (1, 3, 6, 7, 8, 10, 11, 12),
-    BodyId.MARS:    (1, 2, 4, 7, 8, 10, 11),
+    BodyId.SUN: (1, 2, 4, 7, 8, 9, 10, 11),
+    BodyId.MOON: (1, 3, 6, 7, 8, 10, 11, 12),
+    BodyId.MARS: (1, 2, 4, 7, 8, 10, 11),
     BodyId.MERCURY: (1, 2, 4, 6, 8, 9, 10, 11),
     BodyId.JUPITER: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
-    BodyId.VENUS:   (1, 2, 3, 4, 5, 7, 8, 9, 10, 11),
-    BodyId.SATURN:  (1, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+    BodyId.VENUS: (1, 2, 3, 4, 5, 7, 8, 9, 10, 11),
+    BodyId.SATURN: (1, 3, 4, 5, 6, 7, 8, 9, 10, 11),
 }
 
 #: Each contributing house receives this many bindus.

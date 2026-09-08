@@ -11,16 +11,20 @@ from jrs.evidence.models import EvidenceDirection, EvidenceStrength
 from .errors import InvalidPropertyConfigError
 from .models import PropertyConfig, PropertyOutcomeTaxonomy, PropertyRule
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_id",
-    "default_strength",
-    "rules",
-})
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_id",
+        "default_strength",
+        "rules",
+    }
+)
 
 _CONFIG_PATH = (
     Path(__file__).resolve().parent.parent.parent.parent.parent
-    / "config" / "domains" / "property.toml"
+    / "config"
+    / "domains"
+    / "property.toml"
 )
 
 

@@ -134,35 +134,39 @@ class TransitionService:
             if period.pratyantardasha_lord is not None:
                 affected = ("dasha_lord", "antardasha_lord", "pratyantardasha_lord")
 
-            events.append(TransitionEvent(
-                transition_type=TransitionType.DASHA_BOUNDARY,
-                exact_timestamp=timestamp,
-                state_change=state_change,
-                affected_facts=affected,
-                provenance="JRE-010",
-                duration_seconds=duration,
-                metadata={"depth": str(period.depth)},
-            ))
+            events.append(
+                TransitionEvent(
+                    transition_type=TransitionType.DASHA_BOUNDARY,
+                    exact_timestamp=timestamp,
+                    state_change=state_change,
+                    affected_facts=affected,
+                    provenance="JRE-010",
+                    duration_seconds=duration,
+                    metadata={"depth": str(period.depth)},
+                )
+            )
 
             # DASHA_SANDHI: junction window before the boundary
             sandhi_start = period.start_utc - self._sandhi_buffer
             sandhi_end = period.start_utc + self._sandhi_buffer
             sandhi_ts = _datetime_to_iso(sandhi_start)
 
-            events.append(TransitionEvent(
-                transition_type=TransitionType.DASHA_SANDHI,
-                exact_timestamp=sandhi_ts,
-                state_change=StateChange(
-                    before=before_lord,
-                    after=after_lord,
-                ),
-                affected_facts=("dasha_lord",),
-                provenance="JRE-010",
-                duration_seconds=self._sandhi_buffer.total_seconds() * 2,
-                metadata={
-                    "sandhi_window_end": _datetime_to_iso(sandhi_end),
-                },
-            ))
+            events.append(
+                TransitionEvent(
+                    transition_type=TransitionType.DASHA_SANDHI,
+                    exact_timestamp=sandhi_ts,
+                    state_change=StateChange(
+                        before=before_lord,
+                        after=after_lord,
+                    ),
+                    affected_facts=("dasha_lord",),
+                    provenance="JRE-010",
+                    duration_seconds=self._sandhi_buffer.total_seconds() * 2,
+                    metadata={
+                        "sandhi_window_end": _datetime_to_iso(sandhi_end),
+                    },
+                )
+            )
 
         return events
 
@@ -192,17 +196,19 @@ class TransitionService:
 
             affected = _transit_affected_facts(te.kind)
 
-            events.append(TransitionEvent(
-                transition_type=transition_type,
-                exact_timestamp=te.event_utc_iso,
-                state_change=StateChange(
-                    before=before_state,
-                    after=after_state,
-                ),
-                affected_facts=affected,
-                provenance="JRE-003",
-                metadata=metadata,
-            ))
+            events.append(
+                TransitionEvent(
+                    transition_type=transition_type,
+                    exact_timestamp=te.event_utc_iso,
+                    state_change=StateChange(
+                        before=before_state,
+                        after=after_state,
+                    ),
+                    affected_facts=affected,
+                    provenance="JRE-003",
+                    metadata=metadata,
+                )
+            )
 
         return events
 
@@ -216,9 +222,7 @@ class TransitionService:
         events: list[TransitionEvent] = []
 
         for ee in eclipse_events:
-            duration = (
-                ee.post_event_interval_days + ee.pre_event_interval_days
-            ) * 86400.0
+            duration = (ee.post_event_interval_days + ee.pre_event_interval_days) * 86400.0
 
             metadata: dict[str, str] = {
                 "eclipse_kind": ee.kind.value,
@@ -226,18 +230,20 @@ class TransitionService:
                 "magnitude": str(ee.magnitude),
             }
 
-            events.append(TransitionEvent(
-                transition_type=TransitionType.ECLIPSE_WINDOW,
-                exact_timestamp=ee.maximum_utc_iso,
-                state_change=StateChange(
-                    before=f"{ee.kind.value}_PRE_ECLIPSE",
-                    after=f"{ee.kind.value}_POST_ECLIPSE",
-                ),
-                affected_facts=("eclipse_kind", "eclipse_classification"),
-                provenance="JRE-003-eclipse",
-                duration_seconds=duration,
-                metadata=metadata,
-            ))
+            events.append(
+                TransitionEvent(
+                    transition_type=TransitionType.ECLIPSE_WINDOW,
+                    exact_timestamp=ee.maximum_utc_iso,
+                    state_change=StateChange(
+                        before=f"{ee.kind.value}_PRE_ECLIPSE",
+                        after=f"{ee.kind.value}_POST_ECLIPSE",
+                    ),
+                    affected_facts=("eclipse_kind", "eclipse_classification"),
+                    provenance="JRE-003-eclipse",
+                    duration_seconds=duration,
+                    metadata=metadata,
+                )
+            )
 
         return events
 

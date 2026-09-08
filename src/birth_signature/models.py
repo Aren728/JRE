@@ -163,36 +163,36 @@ class AmPm(StrEnum):
 
 #: Canonical tithi names indexed by tithi number (1-30).
 _TITHI_NAMES: tuple[Tithi, ...] = (
-    Tithi.SHUKLA_PRATIPADA,    # 1
-    Tithi.SHUKLA_DVITIYA,      # 2
-    Tithi.SHUKLA_TRITIYA,      # 3
-    Tithi.SHUKLA_CHATURTHI,    # 4
-    Tithi.SHUKLA_PANCHAMI,     # 5
-    Tithi.SHUKLA_SHASHTHI,     # 6
-    Tithi.SHUKLA_SAPTAMI,      # 7
-    Tithi.SHUKLA_ASHTAMI,      # 8
-    Tithi.SHUKLA_NAVAMI,       # 9
-    Tithi.SHUKLA_DASHAMI,      # 10
-    Tithi.SHUKLA_EKADASHI,     # 11
-    Tithi.SHUKLA_DVADASHI,     # 12
-    Tithi.SHUKLA_TRAYODASHI,   # 13
+    Tithi.SHUKLA_PRATIPADA,  # 1
+    Tithi.SHUKLA_DVITIYA,  # 2
+    Tithi.SHUKLA_TRITIYA,  # 3
+    Tithi.SHUKLA_CHATURTHI,  # 4
+    Tithi.SHUKLA_PANCHAMI,  # 5
+    Tithi.SHUKLA_SHASHTHI,  # 6
+    Tithi.SHUKLA_SAPTAMI,  # 7
+    Tithi.SHUKLA_ASHTAMI,  # 8
+    Tithi.SHUKLA_NAVAMI,  # 9
+    Tithi.SHUKLA_DASHAMI,  # 10
+    Tithi.SHUKLA_EKADASHI,  # 11
+    Tithi.SHUKLA_DVADASHI,  # 12
+    Tithi.SHUKLA_TRAYODASHI,  # 13
     Tithi.SHUKLA_CHATURDASHI,  # 14
-    Tithi.PURNIMA,             # 15
-    Tithi.KRISHNA_PRATIPADA,   # 16
-    Tithi.KRISHNA_DVITIYA,     # 17
-    Tithi.KRISHNA_TRITIYA,     # 18
-    Tithi.KRISHNA_CHATURTHI,   # 19
-    Tithi.KRISHNA_PANCHAMI,    # 20
-    Tithi.KRISHNA_SHASHTHI,    # 21
-    Tithi.KRISHNA_SAPTAMI,     # 22
-    Tithi.KRISHNA_ASHTAMI,     # 23
-    Tithi.KRISHNA_NAVAMI,      # 24
-    Tithi.KRISHNA_DASHAMI,     # 25
-    Tithi.KRISHNA_EKADASHI,    # 26
-    Tithi.KRISHNA_DVADASHI,    # 27
+    Tithi.PURNIMA,  # 15
+    Tithi.KRISHNA_PRATIPADA,  # 16
+    Tithi.KRISHNA_DVITIYA,  # 17
+    Tithi.KRISHNA_TRITIYA,  # 18
+    Tithi.KRISHNA_CHATURTHI,  # 19
+    Tithi.KRISHNA_PANCHAMI,  # 20
+    Tithi.KRISHNA_SHASHTHI,  # 21
+    Tithi.KRISHNA_SAPTAMI,  # 22
+    Tithi.KRISHNA_ASHTAMI,  # 23
+    Tithi.KRISHNA_NAVAMI,  # 24
+    Tithi.KRISHNA_DASHAMI,  # 25
+    Tithi.KRISHNA_EKADASHI,  # 26
+    Tithi.KRISHNA_DVADASHI,  # 27
     Tithi.KRISHNA_TRAYODASHI,  # 28
-    Tithi.KRISHNA_CHATURDASHI, # 29
-    Tithi.AMANTHA,             # 30
+    Tithi.KRISHNA_CHATURDASHI,  # 29
+    Tithi.AMANTHA,  # 30
 )
 
 #: One tithi arc in degrees (12 degrees).
@@ -221,43 +221,43 @@ _SHAKUNI: Karana = Karana.SHAKUNI
 #: Canonical yoga names indexed by yoga number (1-27).
 _YOGA_NAMES: tuple[Yoga, ...] = (
     Yoga.VISHKAMBHA,  # 1
-    Yoga.PRITI,       # 2
-    Yoga.AYUSHMAN,    # 3
-    Yoga.SOUBHAGYA,   # 4
-    Yoga.SHOBHANA,    # 5
-    Yoga.ATIGANDA,    # 6
-    Yoga.SUKARMA,     # 7
-    Yoga.DHRTI,       # 8
-    Yoga.SHULA,       # 9
-    Yoga.GANDA,       # 10
-    Yoga.VRIDDHI,     # 11
-    Yoga.DHRUVA,      # 12
-    Yoga.VYAGHATA,    # 13
-    Yoga.HARSHANA,    # 14
-    Yoga.VAJRA,       # 15
-    Yoga.SIDDHI,      # 16
-    Yoga.VYATIPATA,   # 17
-    Yoga.VARIGHA,     # 18
-    Yoga.PARIGHA,     # 19
-    Yoga.SHIVA,       # 20
-    Yoga.SIDDHA,      # 21
-    Yoga.SADHYA,      # 22
-    Yoga.SUBHA,       # 23
-    Yoga.SHUKLA,      # 24
-    Yoga.BRAHMA,      # 25
-    Yoga.INDRA,       # 26
-    Yoga.VAIDHRITI,   # 27
+    Yoga.PRITI,  # 2
+    Yoga.AYUSHMAN,  # 3
+    Yoga.SOUBHAGYA,  # 4
+    Yoga.SHOBHANA,  # 5
+    Yoga.ATIGANDA,  # 6
+    Yoga.SUKARMA,  # 7
+    Yoga.DHRTI,  # 8
+    Yoga.SHULA,  # 9
+    Yoga.GANDA,  # 10
+    Yoga.VRIDDHI,  # 11
+    Yoga.DHRUVA,  # 12
+    Yoga.VYAGHATA,  # 13
+    Yoga.HARSHANA,  # 14
+    Yoga.VAJRA,  # 15
+    Yoga.SIDDHI,  # 16
+    Yoga.VYATIPATA,  # 17
+    Yoga.VARIGHA,  # 18
+    Yoga.PARIGHA,  # 19
+    Yoga.SHIVA,  # 20
+    Yoga.SIDDHA,  # 21
+    Yoga.SADHYA,  # 22
+    Yoga.SUBHA,  # 23
+    Yoga.SHUKLA,  # 24
+    Yoga.BRAHMA,  # 25
+    Yoga.INDRA,  # 26
+    Yoga.VAIDHRITI,  # 27
 )
 
 #: Weekday lords (Sun=0 Sunday ... Saturn=6 Saturday) for hora calculation.
 _VARA_LORDS: tuple[HoraPeriod, ...] = (
-    HoraPeriod.SUN,      # Sunday
-    HoraPeriod.MOON,     # Monday
-    HoraPeriod.MARS,     # Tuesday
+    HoraPeriod.SUN,  # Sunday
+    HoraPeriod.MOON,  # Monday
+    HoraPeriod.MARS,  # Tuesday
     HoraPeriod.MERCURY,  # Wednesday
     HoraPeriod.JUPITER,  # Thursday
-    HoraPeriod.VENUS,    # Friday
-    HoraPeriod.SATURN,   # Saturday
+    HoraPeriod.VENUS,  # Friday
+    HoraPeriod.SATURN,  # Saturday
 )
 
 #: Weekday to Vara enum mapping.
@@ -481,9 +481,7 @@ class BirthSignature:
     def __post_init__(self) -> None:
         """Compute deterministic_id if not provided."""
         if not self.deterministic_id:
-            object.__setattr__(
-                self, "deterministic_id", _compute_hash(self)
-            )
+            object.__setattr__(self, "deterministic_id", _compute_hash(self))
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization (declaration-order keys)."""

@@ -80,6 +80,7 @@ class BlindValidationProtocol:
         # Lazy-init pipeline service
         if self._pipeline_service is None:
             from jrs.yoga_evaluator.service import YogaEvaluatorService
+
             self._pipeline_service = YogaEvaluatorService()
 
         telemetry = self._execute_pipeline(subject, target_timestamp)
@@ -190,10 +191,7 @@ class BlindValidationProtocol:
             )
             # Compute formation strength from results
             if yogas:
-                formed = [
-                    y for y in yogas
-                    if hasattr(y, "status") and y.status.value == "FORMED"
-                ]
+                formed = [y for y in yogas if hasattr(y, "status") and y.status.value == "FORMED"]
                 formation_strength = len(formed) / len(yogas) if yogas else 0.0
                 # Use dynamic_strength from first formed yoga if available
                 predicted = 0.0

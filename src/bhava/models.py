@@ -378,9 +378,7 @@ def validate(config: BhavaConfig) -> BhavaConfig:
     the offending value (SPEC §29)."""
     orb = config.cusp_proximity_orb_deg
     if not (_VALID_ORB_RANGE[0] < orb < _VALID_ORB_RANGE[1]):
-        raise InvalidBhavaConfigError(
-            f"cusp_proximity_orb_deg must be in (0, 30.0), got {orb}"
-        )
+        raise InvalidBhavaConfigError(f"cusp_proximity_orb_deg must be in (0, 30.0), got {orb}")
     if not config.house_systems:
         raise InvalidBhavaConfigError("house_systems must be non-empty")
     if len(set(config.house_systems)) != len(config.house_systems):

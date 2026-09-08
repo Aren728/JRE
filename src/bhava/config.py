@@ -36,9 +36,7 @@ def load_config(path: str | Path | None = None) -> BhavaConfig:
 
     house_systems_raw = section.get("house_systems", ["WHOLE_SIGN"])
     if not isinstance(house_systems_raw, list):
-        raise InvalidBhavaConfigError(
-            f"house_systems must be an array, got {house_systems_raw!r}"
-        )
+        raise InvalidBhavaConfigError(f"house_systems must be an array, got {house_systems_raw!r}")
 
     house_systems = tuple(
         _parse_enum(HouseSystem, item, "house_system", HouseSystem.WHOLE_SIGN)

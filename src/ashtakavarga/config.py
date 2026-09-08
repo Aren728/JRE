@@ -16,9 +16,7 @@ from .models import AshtakavargaConfig
 
 DEFAULT_CONFIG_PATH: Path = Path("config/ashtakavarga.toml")
 
-_DECLARED_FIELDS: tuple[str, ...] = (
-    "version",
-)
+_DECLARED_FIELDS: tuple[str, ...] = ("version",)
 
 
 def load_config(path: str | Path | None = None) -> AshtakavargaConfig:

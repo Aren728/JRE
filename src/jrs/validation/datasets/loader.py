@@ -105,10 +105,12 @@ class DatasetLoader:
         cohort = self.get_reference_cohort()
         records = []
         for subject, event in cohort:
-            records.append({
-                "subject": _chart_subject_to_dict(subject),
-                "event": _historical_event_to_dict(event),
-            })
+            records.append(
+                {
+                    "subject": _chart_subject_to_dict(subject),
+                    "event": _historical_event_to_dict(event),
+                }
+            )
 
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         payload = {

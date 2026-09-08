@@ -58,7 +58,8 @@ class JaiminiService:
 
         # Determine starting sign
         start_house_offset = self._config.chara_dasha_start_sign.get(
-            lagna_nature.value, 9,
+            lagna_nature.value,
+            9,
         )
         starting_sign = compute_starting_sign(
             lagna_rashi=lagna_rashi,
@@ -107,6 +108,5 @@ class JaiminiService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidJaiminiRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

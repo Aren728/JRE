@@ -4,6 +4,19 @@
 
 ---
 
+## Beta Testing Resources
+
+| Document | Purpose | Link |
+|----------|---------|------|
+| **Quick Reference** | One-page cheat sheet with endpoints and feedback schema | [BETA_QUICK_REF.md](BETA_QUICK_REF.md) |
+| **Onboarding Guide** | Comprehensive setup, workflow, and feedback protocol | [BETA_ONBOARDING.md](BETA_ONBOARDING.md) |
+| **Feedback Examples** | Concrete examples of structured feedback submissions | [FEEDBACK_EXAMPLES.md](FEEDBACK_EXAMPLES.md) |
+| **This Guide** | Full technical reference, API docs, and architecture | [BETA_TESTER_GUIDE.md](BETA_TESTER_GUIDE.md) |
+
+**New to beta testing?** Start with [BETA_QUICK_REF.md](BETA_QUICK_REF.md) for a 5-minute overview, then read [BETA_ONBOARDING.md](BETA_ONBOARDING.md) for the complete workflow.
+
+---
+
 ## Overview
 
 The **Jyotish Reasoning Engine (JRE)** is a deterministic, rule-based system for evaluating classical Jyotish yogas from birth data. It implements a 5-layer reasoning pipeline based on authoritative texts (BPHS, Phaladeepika, Saravali).

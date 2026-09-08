@@ -115,8 +115,6 @@ QUERY_WESTERN_OUTCOME_MAP: dict[str, str] = {
 }
 
 
-
-
 # ── Core Pipeline ────────────────────────────────────────────────────────────
 
 
@@ -140,10 +138,12 @@ def _build_event_windows(
             activation_end_utc=dasha_end,
             strength=0.9,
         )
-        windows.append(EventWindow(
-            candidate_event_taxonomy=candidate_event,
-            triggers=(trigger,),
-        ))
+        windows.append(
+            EventWindow(
+                candidate_event_taxonomy=candidate_event,
+                triggers=(trigger,),
+            )
+        )
 
     if transit_planet and transit_start and transit_end:
         trigger = TemporalTrigger(
@@ -153,10 +153,12 @@ def _build_event_windows(
             activation_end_utc=transit_end,
             strength=0.8,
         )
-        windows.append(EventWindow(
-            candidate_event_taxonomy=candidate_event,
-            triggers=(trigger,),
-        ))
+        windows.append(
+            EventWindow(
+                candidate_event_taxonomy=candidate_event,
+                triggers=(trigger,),
+            )
+        )
 
     return tuple(windows)
 
@@ -173,7 +175,7 @@ def _evaluate_domain(
     result = method(facts)
     # YogaDomainService.assess returns DomainAssessment, not EvidenceRecords
     # Extract evidence records from dimensions if needed
-    if hasattr(result, 'dimensions'):
+    if hasattr(result, "dimensions"):
         # DomainAssessment - return empty tuple for convergence pipeline
         # (yoga evidence is handled separately in _run_assessment)
         return ()
@@ -219,12 +221,14 @@ def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
                 yoga_name=ev.yoga_name,
                 involved_planets=involved,
             )
-            yogas.append({
-                "yoga_name": ev.yoga_name + " Yoga",
-                "outcome": outcome,
-                "is_manifesting": True,
-                "activation_source": ev.activation_source or "",
-            })
+            yogas.append(
+                {
+                    "yoga_name": ev.yoga_name + " Yoga",
+                    "outcome": outcome,
+                    "is_manifesting": True,
+                    "activation_source": ev.activation_source or "",
+                }
+            )
 
     # ── Custom: Budhaditya Yoga (Sun-Mercury conjunction) ─────────────────
     planets = facts.get("planets", {})
@@ -254,12 +258,14 @@ def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
                     active_dasha_lord=active_dasha,
                     transit_planet=transit,
                 )
-            yogas.append({
-                "yoga_name": "Budhaditya Yoga",
-                "outcome": "CAREER_PROMINENCE",
-                "is_manifesting": bud_eval.is_manifesting,
-                "activation_source": bud_eval.activation_source or "",
-            })
+            yogas.append(
+                {
+                    "yoga_name": "Budhaditya Yoga",
+                    "outcome": "CAREER_PROMINENCE",
+                    "is_manifesting": bud_eval.is_manifesting,
+                    "activation_source": bud_eval.activation_source or "",
+                }
+            )
 
     return yogas
 
@@ -281,6 +287,7 @@ def _run_assessment(
         active_yogas = _detect_active_yogas(facts)
         evidence_svc = YogaEvidenceService()
         from jrs.yoga_evaluator.models import YogaEvaluation, YogaStatus
+
         for y in active_yogas:
             ev = YogaEvaluation(
                 yoga_name=y["yoga_name"],
@@ -369,11 +376,10 @@ def _run_western_system_assessment(
     # Parse birth date (DD-MM-YYYY) and time (HH:MM or HH:MM:SS)
     date_parts = birth_date.split("-")
     time_parts = birth_time.split(":")
-    parsed_date = dt.date(
-        int(date_parts[2]), int(date_parts[1]), int(date_parts[0])
-    )
+    parsed_date = dt.date(int(date_parts[2]), int(date_parts[1]), int(date_parts[0]))
     parsed_time = dt.time(
-        int(time_parts[0]), int(time_parts[1]),
+        int(time_parts[0]),
+        int(time_parts[1]),
         int(time_parts[2]) if len(time_parts) > 2 else 0,
     )
 
@@ -414,7 +420,10 @@ def _run_multi_system(
     if "vedic" in systems:
         assessments.append(
             _run_vedic_system_assessment(
-                domain_key, facts, outcome_taxonomy, event_windows,
+                domain_key,
+                facts,
+                outcome_taxonomy,
+                event_windows,
             )
         )
 
@@ -507,9 +516,7 @@ def _build_cross_system_result(
         "independence_score": round(independence, 6),
         "adjusted_convergence": round(adjusted_convergence, 6),
         "systems": [a.system_type.value for a in assessments],
-        "individual_assessments": {
-            a.system_type.value: a.to_dict() for a in assessments
-        },
+        "individual_assessments": {a.system_type.value: a.to_dict() for a in assessments},
     }
 
 
@@ -552,21 +559,23 @@ def _format_text_report(
         lines.append(f"  {', '.join(s.title() for s in systems)}")
         lines.append("")
 
-    lines.extend([
-        "Assessment:",
-        f"  {assessment.get('assessment_status', 'N/A')}",
-        "",
-        "Evidence:",
-        f"  Supporting channels:   {dims.get('supporting_count', 0)}",
-        f"  Independent channels:  {dims.get('independent_channels', 0)}",
-        f"  Contradicting channels: {dims.get('contradicting_count', 0)}",
-        f"  Timing convergence:    {dims.get('timing_convergence_count', 0)}",
-        f"  Source confidence:      {dims.get('source_confidence', 'N/A')}",
-        "",
-        "Overall Evidence Strength:",
-        f"  {assessment.get('overall_evidence_strength', 'N/A')}",
-        "",
-    ])
+    lines.extend(
+        [
+            "Assessment:",
+            f"  {assessment.get('assessment_status', 'N/A')}",
+            "",
+            "Evidence:",
+            f"  Supporting channels:   {dims.get('supporting_count', 0)}",
+            f"  Independent channels:  {dims.get('independent_channels', 0)}",
+            f"  Contradicting channels: {dims.get('contradicting_count', 0)}",
+            f"  Timing convergence:    {dims.get('timing_convergence_count', 0)}",
+            f"  Source confidence:      {dims.get('source_confidence', 'N/A')}",
+            "",
+            "Overall Evidence Strength:",
+            f"  {assessment.get('overall_evidence_strength', 'N/A')}",
+            "",
+        ]
+    )
 
     # Key factors from evidence records
     lines.append("Key factors:")
@@ -601,11 +610,7 @@ def _format_text_report(
             lines.append("")
             lines.append(f"  [{sa.system_type.value}]")
             prov = sa.provenance
-            source_info = (
-                f"  Source: {prov.source_tradition}"
-                if prov
-                else "  Source: N/A"
-            )
+            source_info = f"  Source: {prov.source_tradition}" if prov else "  Source: N/A"
             lines.append(source_info)
             lines.append(f"  Outcome: {sa.outcome_taxonomy}")
             lines.append(f"  Status: {sa.assessment_status}")
@@ -648,16 +653,18 @@ def _format_text_report(
                 lines.append(f"    Source: {source}")
             lines.append("")
 
-    lines.extend([
-        "Timing:",
-        "  Timing status: INACTIVE (no dasha/transit data provided)",
-        "",
-        "Limitations:",
-        "  • No specific transit data for exact event timing",
-        "  • Birth place resolved to approximate coordinates",
-        "",
-        "=" * 60,
-    ])
+    lines.extend(
+        [
+            "Timing:",
+            "  Timing status: INACTIVE (no dasha/transit data provided)",
+            "",
+            "Limitations:",
+            "  • No specific transit data for exact event timing",
+            "  • Birth place resolved to approximate coordinates",
+            "",
+            "=" * 60,
+        ]
+    )
 
     return "\n".join(lines)
 
@@ -720,6 +727,7 @@ def format_yoga_assessment(assessment: DomainAssessment) -> str:
 
 
 # ── Argument Parser ──────────────────────────────────────────────────────────
+
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the CLI argument parser."""
@@ -888,19 +896,23 @@ def main(argv: list[str] | None = None) -> int:
             research_svc = ResearchService()
             domain_citations = research_svc.get_citations_for_domain(domain_key)
             for c in domain_citations:
-                classical_sources.append({
-                    "rule_id": c.rule_id,
-                    "source": c.source_full,
-                    "location": c.location,
-                    "claim": c.claim,
-                })
+                classical_sources.append(
+                    {
+                        "rule_id": c.rule_id,
+                        "source": c.source_full,
+                        "location": c.location,
+                        "claim": c.claim,
+                    }
+                )
         except Exception:
-            classical_sources.append({
-                "rule_id": "default",
-                "source": "Brihat Parashara Hora Shastra",
-                "location": "General",
-                "claim": "Classical Jyotish principles",
-            })
+            classical_sources.append(
+                {
+                    "rule_id": "default",
+                    "source": "Brihat Parashara Hora Shastra",
+                    "location": "General",
+                    "claim": "Classical Jyotish principles",
+                }
+            )
 
         output_data: dict[str, Any] = {
             "birth_data": {
@@ -917,8 +929,7 @@ def main(argv: list[str] | None = None) -> int:
 
         if is_multi:
             output_data["system_assessments"] = {
-                sa.system_type.value: sa.to_dict()
-                for sa in system_assessments
+                sa.system_type.value: sa.to_dict() for sa in system_assessments
             }
             output_data["cross_system_convergence"] = cross_system
         else:

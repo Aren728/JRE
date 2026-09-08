@@ -143,8 +143,7 @@ class ResearchWorker:
         """Generate a human-readable summary of findings."""
         if not evidence:
             return (
-                f"No evidence found for query '{task.query}' "
-                f"with concepts {task.target_concepts}"
+                f"No evidence found for query '{task.query}' with concepts {task.target_concepts}"
             )
 
         source_files = sorted(set(ev.source_file for ev in evidence))

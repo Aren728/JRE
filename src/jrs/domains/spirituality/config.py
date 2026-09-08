@@ -11,16 +11,20 @@ from jrs.evidence.models import EvidenceDirection, EvidenceStrength
 from .errors import InvalidSpiritualityConfigError
 from .models import SpiritualityConfig, SpiritualityOutcomeTaxonomy, SpiritualityRule
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_id",
-    "default_strength",
-    "rules",
-})
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_id",
+        "default_strength",
+        "rules",
+    }
+)
 
 _CONFIG_PATH = (
     Path(__file__).resolve().parent.parent.parent.parent.parent
-    / "config" / "domains" / "spirituality.toml"
+    / "config"
+    / "domains"
+    / "spirituality.toml"
 )
 
 

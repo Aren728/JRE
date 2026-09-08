@@ -118,10 +118,7 @@ class EvidenceService:
         Returns:
             A tuple of matching EvidenceRecord objects.
         """
-        return tuple(
-            r for r in self._registry.values()
-            if r.outcome_taxonomy == outcome_taxonomy
-        )
+        return tuple(r for r in self._registry.values() if r.outcome_taxonomy == outcome_taxonomy)
 
     def get_records_by_source(self, source_id: str) -> tuple[EvidenceRecord, ...]:
         """Get all evidence records from a specific classical source.
@@ -132,10 +129,7 @@ class EvidenceService:
         Returns:
             A tuple of matching EvidenceRecord objects.
         """
-        return tuple(
-            r for r in self._registry.values()
-            if r.source_id == source_id
-        )
+        return tuple(r for r in self._registry.values() if r.source_id == source_id)
 
     @property
     def config(self) -> EvidenceConfig:

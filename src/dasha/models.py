@@ -261,17 +261,11 @@ class DashaConfig:
 def validate(config: DashaConfig) -> DashaConfig:
     """Validate a ``DashaConfig``; raises ``InvalidDashaConfigError``."""
     if not isinstance(config.version, str) or config.version == "":
-        raise InvalidDashaConfigError(
-            f"version must be a non-empty string, got {config.version!r}"
-        )
+        raise InvalidDashaConfigError(f"version must be a non-empty string, got {config.version!r}")
     if not isinstance(config.default_system, DashaSystem):
-        raise InvalidDashaConfigError(
-            f"unknown default_system value {config.default_system!r}"
-        )
+        raise InvalidDashaConfigError(f"unknown default_system value {config.default_system!r}")
     if not isinstance(config.max_depth, int) or config.max_depth < 1 or config.max_depth > 3:
-        raise InvalidDashaConfigError(
-            f"max_depth must be 1, 2, or 3, got {config.max_depth}"
-        )
+        raise InvalidDashaConfigError(f"max_depth must be 1, 2, or 3, got {config.max_depth}")
     if not isinstance(config.vimshottari_years, dict) or not config.vimshottari_years:
         raise InvalidDashaConfigError(
             f"vimshottari_years must be a non-empty dict, got {config.vimshottari_years!r}"

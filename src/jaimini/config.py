@@ -36,9 +36,7 @@ def load_config(path: str | Path | None = None) -> JaiminiConfig:
         data = tomllib.load(handle)
     section = data.get("jaimini", {})
     if not isinstance(section, dict):
-        raise InvalidJaiminiConfigError(
-            f"[jaimini] section must be a table, got {section!r}"
-        )
+        raise InvalidJaiminiConfigError(f"[jaimini] section must be a table, got {section!r}")
 
     missing = [field for field in _DECLARED_FIELDS if field not in section]
     if missing:

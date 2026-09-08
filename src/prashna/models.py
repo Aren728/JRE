@@ -52,13 +52,13 @@ class PrashnaCategory(StrEnum):
 # lord of the Moon at query time.  Each Nakshatra lord (BodyId) maps to
 # the rashi they naturally rule.
 _NAKSHATRA_LORD_RASHI: dict[BodyId, RashiId] = {
-    BodyId.SUN: RashiId.SIMHA,        # Sun rules Leo
-    BodyId.MOON: RashiId.KARKA,       # Moon rules Cancer
-    BodyId.MARS: RashiId.MESHA,       # Mars rules Aries
-    BodyId.MERCURY: RashiId.KANYA,    # Mercury rules Virgo
-    BodyId.JUPITER: RashiId.DHANUSHA, # Jupiter rules Sagittarius
+    BodyId.SUN: RashiId.SIMHA,  # Sun rules Leo
+    BodyId.MOON: RashiId.KARKA,  # Moon rules Cancer
+    BodyId.MARS: RashiId.MESHA,  # Mars rules Aries
+    BodyId.MERCURY: RashiId.KANYA,  # Mercury rules Virgo
+    BodyId.JUPITER: RashiId.DHANUSHA,  # Jupiter rules Sagittarius
     BodyId.VENUS: RashiId.VRISHABHA,  # Venus rules Taurus
-    BodyId.SATURN: RashiId.MAKARA,    # Saturn rules Capricorn
+    BodyId.SATURN: RashiId.MAKARA,  # Saturn rules Capricorn
 }
 
 

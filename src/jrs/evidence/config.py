@@ -9,16 +9,16 @@ from typing import Any
 from .errors import InvalidEvidenceConfigError
 from .models import EvidenceConfig
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_weights",
-    "strength_multipliers",
-    "max_chain_depth",
-})
-
-_CONFIG_PATH = (
-    Path(__file__).resolve().parent.parent.parent.parent / "config" / "evidence.toml"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_weights",
+        "strength_multipliers",
+        "max_chain_depth",
+    }
 )
+
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent.parent / "config" / "evidence.toml"
 
 
 def load_evidence_config(path: Path | None = None) -> EvidenceConfig:

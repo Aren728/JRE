@@ -54,7 +54,11 @@ def iso_utc_to_jd(iso_utc: str) -> float:
         value = value.replace(tzinfo=_dt.UTC)
     utc = value.astimezone(_dt.UTC)
     return _julian_day(
-        utc.year, utc.month, utc.day, utc.hour, utc.minute,
+        utc.year,
+        utc.month,
+        utc.day,
+        utc.hour,
+        utc.minute,
         utc.second + utc.microsecond / 1e6,
     )
 
@@ -97,9 +101,7 @@ def jd_to_iso_utc(jd_ut: float) -> str:
         hour = 0
         day_int += 1
 
-    dt_value = _dt.datetime(
-        year, month, day_int, hour, minute, sec_int, micro, tzinfo=_dt.UTC
-    )
+    dt_value = _dt.datetime(year, month, day_int, hour, minute, sec_int, micro, tzinfo=_dt.UTC)
     text = dt_value.isoformat()
     if text.endswith("+00:00"):
         text = text[:-6] + "Z"
@@ -137,9 +139,9 @@ class ContinuousTransitEngine:
         position_provider: Callable[[float], tuple[PlanetState, ...]] | None = None,
     ) -> None:
         #: Bound position provider; replaced by the service per query.
-        self._position_provider: (
-            Callable[[float], tuple[PlanetState, ...]] | None
-        ) = position_provider
+        self._position_provider: Callable[[float], tuple[PlanetState, ...]] | None = (
+            position_provider
+        )
         self._cache: OrderedDict[float, tuple[PlanetState, ...]] = OrderedDict()
         self._query_keys: set[float] = set()
 
@@ -201,7 +203,11 @@ class ContinuousTransitEngine:
                 for boundary in _rashi_boundaries(unwrapped):
                     events.extend(
                         self._boundary_events(
-                            body, samples, unwrapped, boundary, config,
+                            body,
+                            samples,
+                            unwrapped,
+                            boundary,
+                            config,
                             TransitEventKind.RASHI_INGRESS,
                         )
                     )
@@ -213,7 +219,11 @@ class ContinuousTransitEngine:
                 for boundary in _arc_boundaries(_nakshatra.NAKSHATRA_ARC, unwrapped):
                     events.extend(
                         self._boundary_events(
-                            body, samples, unwrapped, boundary, config,
+                            body,
+                            samples,
+                            unwrapped,
+                            boundary,
+                            config,
                             TransitEventKind.NAKSHATRA_INGRESS,
                         )
                     )
@@ -225,7 +235,11 @@ class ContinuousTransitEngine:
                 for boundary in _arc_boundaries(_nakshatra.PADA_ARC, unwrapped):
                     events.extend(
                         self._boundary_events(
-                            body, samples, unwrapped, boundary, config,
+                            body,
+                            samples,
+                            unwrapped,
+                            boundary,
+                            config,
                             TransitEventKind.PADA_INGRESS,
                         )
                     )

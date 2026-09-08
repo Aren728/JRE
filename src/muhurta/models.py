@@ -142,30 +142,36 @@ class MuhurtaCategory(StrEnum):
 # --------------------------------------------------------------------------- #
 
 #: Default inauspicious tithis (Rikta tithis).
-DEFAULT_INAUSPICIOUS_TITHIS: frozenset[Tithi] = frozenset({
-    Tithi.SHUKLA_CHATURTHI,
-    Tithi.SHUKLA_NAVAMI,
-    Tithi.SHUKLA_CHATURDASHI,
-    Tithi.KRISHNA_PRATIPADA,
-    Tithi.KRISHNA_SHASHTHI,
-    Tithi.KRISHNA_EKADASHI,
-})
+DEFAULT_INAUSPICIOUS_TITHIS: frozenset[Tithi] = frozenset(
+    {
+        Tithi.SHUKLA_CHATURTHI,
+        Tithi.SHUKLA_NAVAMI,
+        Tithi.SHUKLA_CHATURDASHI,
+        Tithi.KRISHNA_PRATIPADA,
+        Tithi.KRISHNA_SHASHTHI,
+        Tithi.KRISHNA_EKADASHI,
+    }
+)
 
 #: Default inauspicious karanas.
-DEFAULT_INAUSPICIOUS_KARANAS: frozenset[Karana] = frozenset({
-    Karana.VISHTI,
-    Karana.SHAKUNI,
-})
+DEFAULT_INAUSPICIOUS_KARANAS: frozenset[Karana] = frozenset(
+    {
+        Karana.VISHTI,
+        Karana.SHAKUNI,
+    }
+)
 
 #: Default inauspicious yogas.
-DEFAULT_INAUSPICIOUS_YOGAS: frozenset[Yoga] = frozenset({
-    Yoga.VISHKAMBHA,
-    Yoga.ATIGANDA,
-    Yoga.SHULA,
-    Yoga.GANDA,
-    Yoga.VYATIPATA,
-    Yoga.VAIDHRITI,
-})
+DEFAULT_INAUSPICIOUS_YOGAS: frozenset[Yoga] = frozenset(
+    {
+        Yoga.VISHKAMBHA,
+        Yoga.ATIGANDA,
+        Yoga.SHULA,
+        Yoga.GANDA,
+        Yoga.VYATIPATA,
+        Yoga.VAIDHRITI,
+    }
+)
 
 #: Var (weekday) to its natural lord (BodyId).
 VARA_LORD: dict[Var, BodyId] = {
@@ -311,44 +317,32 @@ def evaluate_panchanga(
         if cat_rule.required_nakshatras:
             if panchanga.nakshatra in cat_rule.required_nakshatras:
                 flags.append(
-                    f"Favorable nakshatra for {category.value}: "
-                    f"{panchanga.nakshatra.value}"
+                    f"Favorable nakshatra for {category.value}: {panchanga.nakshatra.value}"
                 )
             else:
                 flags.append(
-                    f"Unfavorable nakshatra for {category.value}: "
-                    f"{panchanga.nakshatra.value}"
+                    f"Unfavorable nakshatra for {category.value}: {panchanga.nakshatra.value}"
                 )
 
         # Avoided tithis
         if panchanga.tithi in cat_rule.avoided_tithis:
-            flags.append(
-                f"Avoided tithi for {category.value}: {panchanga.tithi.value}"
-            )
+            flags.append(f"Avoided tithi for {category.value}: {panchanga.tithi.value}")
 
         # Avoided karanas
         if panchanga.karana in cat_rule.avoided_karanas:
-            flags.append(
-                f"Avoided karana for {category.value}: {panchanga.karana.value}"
-            )
+            flags.append(f"Avoided karana for {category.value}: {panchanga.karana.value}")
 
         # Avoided yogas
         if panchanga.yoga in cat_rule.avoided_yogas:
-            flags.append(
-                f"Avoided yoga for {category.value}: {panchanga.yoga.value}"
-            )
+            flags.append(f"Avoided yoga for {category.value}: {panchanga.yoga.value}")
 
         # Avoided vars
         if panchanga.vara in cat_rule.avoided_vars:
-            flags.append(
-                f"Avoided vara for {category.value}: {panchanga.vara.value}"
-            )
+            flags.append(f"Avoided vara for {category.value}: {panchanga.vara.value}")
 
         # Preferred vars
         if panchanga.vara in cat_rule.preferred_vars:
-            flags.append(
-                f"Preferred vara for {category.value}: {panchanga.vara.value}"
-            )
+            flags.append(f"Preferred vara for {category.value}: {panchanga.vara.value}")
 
     return tuple(flags)
 

@@ -67,9 +67,7 @@ T = TypeVar("T")
 def _jyotish_config(house_system: str) -> JyotishConfig:
     """JRE-003 config for the pinned house system; all other JRE-003
     settings keep their TOML defaults (SPEC §5 house_system passthrough)."""
-    return dataclasses.replace(
-        JyotishConfig(), house_system=HouseSystem(house_system)
-    )
+    return dataclasses.replace(JyotishConfig(), house_system=HouseSystem(house_system))
 
 
 def _bhava_config(cfg: GocharConfig) -> BhavaConfig:
@@ -119,9 +117,7 @@ def _validate_interval(start: str, end: str) -> None:
     start_jd = jyotish.iso_utc_to_jd(start)
     end_jd = jyotish.iso_utc_to_jd(end)
     if start_jd > end_jd:
-        raise InvalidGocharRequestError(
-            f"interval start {start!r} must be <= end {end!r}"
-        )
+        raise InvalidGocharRequestError(f"interval start {start!r} must be <= end {end!r}")
 
 
 def _effective_config(
@@ -163,9 +159,7 @@ class GocharService:
         jyotish_cfg = _jyotish_config(cfg.house_system)
 
         states = self._delegate(
-            lambda: self._jyotish.planetary_state(
-                date, time, "UTC", 0.0, 0.0, bodies, jyotish_cfg
-            ),
+            lambda: self._jyotish.planetary_state(date, time, "UTC", 0.0, 0.0, bodies, jyotish_cfg),
             "planetary_state",
         )
         pair_geometry: tuple[Any, ...] | None = None
@@ -231,9 +225,7 @@ class GocharService:
             "transit_through_houses",
         )
         analysis = self._delegate(
-            lambda: bhava.derive_transit_analysis(
-                transit, natal_chart, config=bhava_cfg
-            ),
+            lambda: bhava.derive_transit_analysis(transit, natal_chart, config=bhava_cfg),
             "derive_transit_analysis",
         )
 
@@ -334,9 +326,7 @@ class GocharService:
         anchor = request.natal_anchor
         if cfg.natal_house_series and anchor is not None:
             reference = _parse_reference(cfg.reference_point)
-            natal_chart = self._delegate(
-                lambda: self._jyotish.chart(anchor, jyotish_cfg), "chart"
-            )
+            natal_chart = self._delegate(lambda: self._jyotish.chart(anchor, jyotish_cfg), "chart")
             sample_jds: list[float] = []
             seen: list[float] = []
             for state in state_samples:
@@ -368,9 +358,7 @@ class GocharService:
             "aspect_echo": cfg.aspect_echo,
             "natal_house_series": cfg.natal_house_series,
         }
-        ephemeris_version = (
-            state_samples[0].ephemeris_version if state_samples else "unknown"
-        )
+        ephemeris_version = state_samples[0].ephemeris_version if state_samples else "unknown"
         provenance = build_provenance(
             derivation_id="gochar.interval.v1",
             source_layers=source_layers,

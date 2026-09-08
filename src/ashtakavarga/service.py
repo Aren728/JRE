@@ -55,10 +55,12 @@ class AshtakavargaService:
         for state in planet_states:
             rashi_idx = list(RashiId).index(state.rashi)
             bindus = compute_planet_bindus(state.body, rashi_idx)
-            planet_scores.append(PlanetAshtakavarga(
-                planet=state.body,
-                bindus=bindus,
-            ))
+            planet_scores.append(
+                PlanetAshtakavarga(
+                    planet=state.body,
+                    bindus=bindus,
+                )
+            )
 
         sarva = compute_sarvashtakavarga(tuple(planet_scores))
 
@@ -67,9 +69,7 @@ class AshtakavargaService:
             sarvashtakavarga=sarva,
         )
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Ashtakavarga computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidAshtakavargaRequestError(
@@ -78,6 +78,5 @@ class AshtakavargaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidAshtakavargaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

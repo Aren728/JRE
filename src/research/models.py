@@ -171,9 +171,7 @@ class Evidence:
                 f"line_number must be a positive integer, got {self.line_number!r}"
             )
         if not isinstance(self.context, str):
-            raise InvalidResearchRequestError(
-                f"context must be a string, got {self.context!r}"
-            )
+            raise InvalidResearchRequestError(f"context must be a string, got {self.context!r}")
         if not isinstance(self.confidence, (int, float)):
             raise InvalidResearchRequestError(
                 f"confidence must be a number, got {self.confidence!r}"
@@ -228,22 +226,16 @@ class ResearchReport:
                 f"query must be a non-empty string, got {self.query!r}"
             )
         if not isinstance(self.status, TaskStatus):
-            raise InvalidResearchRequestError(
-                f"status must be a TaskStatus, got {self.status!r}"
-            )
+            raise InvalidResearchRequestError(f"status must be a TaskStatus, got {self.status!r}")
         if not isinstance(self.evidence, tuple):
-            raise InvalidResearchRequestError(
-                f"evidence must be a tuple, got {self.evidence!r}"
-            )
+            raise InvalidResearchRequestError(f"evidence must be a tuple, got {self.evidence!r}")
         for item in self.evidence:
             if not isinstance(item, Evidence):
                 raise InvalidResearchRequestError(
                     f"evidence must contain Evidence objects, got {type(item).__name__}"
                 )
         if not isinstance(self.summary, str):
-            raise InvalidResearchRequestError(
-                f"summary must be a string, got {self.summary!r}"
-            )
+            raise InvalidResearchRequestError(f"summary must be a string, got {self.summary!r}")
         if not isinstance(self.generated_at, str) or self.generated_at == "":
             raise InvalidResearchRequestError(
                 f"generated_at must be a non-empty string, got {self.generated_at!r}"
@@ -351,9 +343,7 @@ def _as_float(raw: Any, field: str) -> float:
 
 def _as_tuple_of_strings(raw: Any, field: str) -> tuple[str, ...]:
     if raw is None:
-        raise InvalidResearchRequestError(
-            f"{field} must be a non-empty tuple, got None"
-        )
+        raise InvalidResearchRequestError(f"{field} must be a non-empty tuple, got None")
     if not isinstance(raw, (list, tuple)):
         raise InvalidResearchRequestError(
             f"{field} must be a list or tuple, got {type(raw).__name__}"
@@ -366,7 +356,5 @@ def _as_tuple_of_strings(raw: Any, field: str) -> tuple[str, ...]:
             )
         result.append(item)
     if not result:
-        raise InvalidResearchRequestError(
-            f"{field} must be a non-empty tuple"
-        )
+        raise InvalidResearchRequestError(f"{field} must be a non-empty tuple")
     return tuple(result)

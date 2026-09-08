@@ -68,17 +68,16 @@ def shortest_arc_deg(a: float, b: float) -> float:
 def near_cusp(longitude_used_deg: float, start_deg: float, end_deg: float, orb_deg: float) -> bool:
     """Inclusive cusp-proximity test (SPEC §19): within ``orb_deg`` of either
     boundary of the house span."""
-    return shortest_arc_deg(longitude_used_deg, start_deg) <= orb_deg or shortest_arc_deg(
-        longitude_used_deg, end_deg
-    ) <= orb_deg
+    return (
+        shortest_arc_deg(longitude_used_deg, start_deg) <= orb_deg
+        or shortest_arc_deg(longitude_used_deg, end_deg) <= orb_deg
+    )
 
 
 def house_categories(house_number: int) -> tuple[HouseCategory, ...]:
     """Membership set in canonical enum order (SPEC §17); overlaps preserved."""
     return tuple(
-        category
-        for category in HouseCategory
-        if house_number in CATEGORY_MEMBERS[category]
+        category for category in HouseCategory if house_number in CATEGORY_MEMBERS[category]
     )
 
 
@@ -89,9 +88,7 @@ def relative_house(house_of_b: int, house_of_r: int) -> int:
 
 def whole_sign_house(rashi: RashiId, lagna_rashi: RashiId) -> int:
     """Whole-sign house of a rashi from the lagna rashi (SPEC §10)."""
-    return (
-        (jyotish.RASHI_ORDER.index(rashi) - jyotish.RASHI_ORDER.index(lagna_rashi)) % 12
-    ) + 1
+    return ((jyotish.RASHI_ORDER.index(rashi) - jyotish.RASHI_ORDER.index(lagna_rashi)) % 12) + 1
 
 
 # --------------------------------------------------------------------------- #
@@ -101,9 +98,7 @@ def whole_sign_house(rashi: RashiId, lagna_rashi: RashiId) -> int:
 
 def _validate_chart(chart: NatalChart, config: BhavaConfig) -> None:
     if len(chart.bhavas) != 12:
-        raise InconsistentChartError(
-            f"chart must have exactly 12 bhavas, got {len(chart.bhavas)}"
-        )
+        raise InconsistentChartError(f"chart must have exactly 12 bhavas, got {len(chart.bhavas)}")
     numbers = [bhava.house_number for bhava in chart.bhavas]
     if sorted(numbers) != list(range(1, 13)):
         raise InconsistentChartError(f"house numbers must be exactly 1..12, got {numbers}")
@@ -398,12 +393,9 @@ def derive_house_analysis(
     # JRE-003 ``pair_geometry``") — the delegated JRE-003 computation is
     # excluded from the JRE-005 performance budget (SPEC §30).
     if pair_geometries is None:
-        pair_geometries = jyotish.all_pairs(
-            chart.planet_states, chart.config, bhavas=chart.bhavas
-        )
+        pair_geometries = jyotish.all_pairs(chart.planet_states, chart.config, bhavas=chart.bhavas)
     pair_map: dict[tuple[BodyId, BodyId], PairGeometry] = {
-        _pair_key(geometry.first, geometry.second): geometry
-        for geometry in pair_geometries
+        _pair_key(geometry.first, geometry.second): geometry for geometry in pair_geometries
     }
 
     # Shared derivation blocks (fields identical across rows — SPEC §23).
@@ -476,9 +468,7 @@ def derive_house_analysis(
     for reference, anchor in anchors.items():
         table: dict[str, int] = {}
         for body in body_order:
-            house_number, _ = _resolve_house_number(
-                body, house_of, chart, config, house_system
-            )
+            house_number, _ = _resolve_house_number(body, house_of, chart, config, house_system)
             value = relative_house(house_number, anchor)
             table[body.value] = value
             relative_house_facts.append(

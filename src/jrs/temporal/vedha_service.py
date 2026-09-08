@@ -19,25 +19,28 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-
 # Classical Vedha house pairs (Phaladeepika Ch 26)
 # Each pair is mutually obstructive: house A obstructs B and vice versa.
-VEDHA_HOUSE_PAIRS: frozenset[tuple[int, int]] = frozenset({
-    (3, 12),
-    (6, 9),
-    (5, 11),
-    (2, 7),   # 7 ↔ 14 treated as 7 ↔ 2 (from Lagna, 14 = 2 mod 12)
-})
+VEDHA_HOUSE_PAIRS: frozenset[tuple[int, int]] = frozenset(
+    {
+        (3, 12),
+        (6, 9),
+        (5, 11),
+        (2, 7),  # 7 ↔ 14 treated as 7 ↔ 2 (from Lagna, 14 = 2 mod 12)
+    }
+)
 
 # Planetary Vedha exclusions: certain planet pairs cannot obstruct each other
 # Per Phaladeepika: Sun and Saturn are mutual exceptions in some contexts
 # Mars and Venus have specific exclusion rules
-PLANETARY_VEDHA_EXCLUSIONS: frozenset[tuple[str, str]] = frozenset({
-    ("SUN", "SATURN"),
-    ("SATURN", "SUN"),
-    ("MARS", "VENUS"),
-    ("VENUS", "MARS"),
-})
+PLANETARY_VEDHA_EXCLUSIONS: frozenset[tuple[str, str]] = frozenset(
+    {
+        ("SUN", "SATURN"),
+        ("SATURN", "SUN"),
+        ("MARS", "VENUS"),
+        ("VENUS", "MARS"),
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -174,9 +177,7 @@ class VedhaService:
         """Normalize a house pair to match VEDHA_HOUSE_PAIRS format."""
         return (min(house_a, house_b), max(house_a, house_b))
 
-    def _normalize_planet_pair(
-        self, planet_a: str, planet_b: str
-    ) -> tuple[str, str]:
+    def _normalize_planet_pair(self, planet_a: str, planet_b: str) -> tuple[str, str]:
         """Normalize a planet pair for exclusion checking."""
         return (min(planet_a, planet_b), max(planet_a, planet_b))
 

@@ -141,9 +141,7 @@ class WesternCalculationService:
         # Evaluate essential dignities
         dignities: dict[WesternPlanet, WesternDignity] = {}
         for pp in planet_positions:
-            dignities[pp.planet] = evaluate_essential_dignity(
-                pp.planet, pp.longitude
-            )
+            dignities[pp.planet] = evaluate_essential_dignity(pp.planet, pp.longitude)
 
         # Determine sect (diurnal or nocturnal)
         sect = self._calculate_sect(
@@ -187,21 +185,13 @@ class WesternCalculationService:
                 f"birth_time must be a datetime.time, got {type(birth_time).__name__}"
             )
         if not (-90.0 <= latitude <= 90.0):
-            raise WesternInputError(
-                f"latitude must be in [-90, 90], got {latitude}"
-            )
+            raise WesternInputError(f"latitude must be in [-90, 90], got {latitude}")
         if not (-180.0 <= longitude <= 180.0):
-            raise WesternInputError(
-                f"longitude must be in [-180, 180], got {longitude}"
-            )
+            raise WesternInputError(f"longitude must be in [-180, 180], got {longitude}")
         if birth_date.year < 1582:
-            raise WesternInputError(
-                "dates before 1582 (Julian calendar era) are not supported"
-            )
+            raise WesternInputError("dates before 1582 (Julian calendar era) are not supported")
 
-    def _compute_julian_day(
-        self, birth_date: dt.date, birth_time: dt.time
-    ) -> float:
+    def _compute_julian_day(self, birth_date: dt.date, birth_time: dt.time) -> float:
         """Compute Julian Day in UT from birth data.
 
         Assumes UTC input.  For production use, timezone conversion
@@ -221,9 +211,7 @@ class WesternCalculationService:
         )
         return jd
 
-    def _calc_single_body(
-        self, jd_ut: float, swe_id: int
-    ) -> tuple[float, float, float] | None:
+    def _calc_single_body(self, jd_ut: float, swe_id: int) -> tuple[float, float, float] | None:
         """Calculate a single body, falling back to MOSEPH if needed.
 
         Returns:
@@ -241,9 +229,7 @@ class WesternCalculationService:
         except (swe.Error, ValueError):
             return None
 
-    def _calculate_tropical_positions(
-        self, jd_ut: float
-    ) -> list[PlanetPosition]:
+    def _calculate_tropical_positions(self, jd_ut: float) -> list[PlanetPosition]:
         """Calculate tropical ecliptic positions for all planets.
 
         Uses SWIEPH by default.  Falls back to MOSEPH for individual
@@ -308,23 +294,16 @@ class WesternCalculationService:
         hsys_byte = _HOUSE_SYSTEM_BYTES[house_system]
 
         try:
-            cusps_tuple, ascmc_tuple = swe.houses(
-                jd_ut, latitude, longitude, hsys_byte
-            )
+            cusps_tuple, ascmc_tuple = swe.houses(jd_ut, latitude, longitude, hsys_byte)
         except (swe.Error, ValueError) as exc:
-            raise WesternCalculationError(
-                f"Failed to calculate houses: {exc}"
-            ) from exc
+            raise WesternCalculationError(f"Failed to calculate houses: {exc}") from exc
 
         ascendant = ascmc_tuple[0]  # Ascendant
         midheaven = ascmc_tuple[1]  # MC
 
         # pysweph returns 13 elements: cusps[0] is unused (0.0),
         # cusps[1]..cusps[12] are houses 1..12.
-        house_cusps = [
-            HouseCusp(house_number=i, longitude=cusps_tuple[i])
-            for i in range(1, 13)
-        ]
+        house_cusps = [HouseCusp(house_number=i, longitude=cusps_tuple[i]) for i in range(1, 13)]
 
         return house_cusps, ascendant, midheaven
 

@@ -20,6 +20,7 @@ from typing import Any, Optional
 
 class ModifierStatus(StrEnum):
     """Status after modifier evaluation."""
+
     FORMED = "FORMED"
     CANCELLED = "CANCELLED"
     WEAKENED = "WEAKENED"
@@ -27,6 +28,7 @@ class ModifierStatus(StrEnum):
 
 class ModifierType(StrEnum):
     """Types of modifiers applied."""
+
     COMBUSTION = "COMBUSTION"
     COMBUSTION_OFFSET = "COMBUSTION_OFFSET"
     DEBILITATION = "DEBILITATION"
@@ -44,13 +46,13 @@ class ModifierType(StrEnum):
 
 # Exaltation signs (1-indexed rashi number)
 _EXALTATION: dict[str, int] = {
-    "SUN": 1,       # Aries
-    "MOON": 2,      # Taurus
-    "MARS": 10,     # Capricorn
-    "MERCURY": 6,   # Virgo
-    "JUPITER": 4,   # Cancer
-    "VENUS": 12,    # Pisces
-    "SATURN": 7,    # Libra
+    "SUN": 1,  # Aries
+    "MOON": 2,  # Taurus
+    "MARS": 10,  # Capricorn
+    "MERCURY": 6,  # Virgo
+    "JUPITER": 4,  # Cancer
+    "VENUS": 12,  # Pisces
+    "SATURN": 7,  # Libra
 }
 
 # Own signs (1-indexed rashi numbers)
@@ -66,13 +68,13 @@ _OWN_SIGNS: dict[str, tuple[int, ...]] = {
 
 # Debilitation signs (1-indexed rashi number)
 _DEBILITATION: dict[str, int] = {
-    "SUN": 7,       # Libra
-    "MOON": 8,      # Scorpio
-    "MARS": 4,      # Cancer
+    "SUN": 7,  # Libra
+    "MOON": 8,  # Scorpio
+    "MARS": 4,  # Cancer
     "MERCURY": 12,  # Pisces
     "JUPITER": 10,  # Capricorn
-    "VENUS": 6,     # Virgo
-    "SATURN": 1,    # Aries
+    "VENUS": 6,  # Virgo
+    "SATURN": 1,  # Aries
 }
 
 # Debilitation-sign lord mapping (for Neecha Bhanga)
@@ -114,6 +116,7 @@ _NODE_PSEUDO_ASPECTS: frozenset[int] = frozenset({5, 9})
 @dataclass(frozen=True)
 class ModifierResult:
     """Result of 5-tier modifier evaluation for a single planet."""
+
     planet: str
     status: ModifierStatus
     modifier_chain: tuple[ModifierType, ...] = ()
@@ -133,6 +136,7 @@ class ModifierResult:
 @dataclass(frozen=True)
 class ModifierReport:
     """Aggregated modifier report for all planets in a yoga."""
+
     planet_results: tuple[ModifierResult, ...] = ()
     overall_status: ModifierStatus = ModifierStatus.FORMED
     overall_strength: float = 1.0
@@ -347,7 +351,11 @@ class ModifierEvaluationService:
                     cancellation_reason = f"{planet} aspected by node (15% strength reduction)"
 
         # ── Dusthana Placement Check ──
-        if status != ModifierStatus.CANCELLED and isinstance(house, int) and house in _DUSTHANA_HOUSES:
+        if (
+            status != ModifierStatus.CANCELLED
+            and isinstance(house, int)
+            and house in _DUSTHANA_HOUSES
+        ):
             modifiers.append(ModifierType.DUSTHANA_PLACEMENT)
             status = ModifierStatus.WEAKENED if status == ModifierStatus.FORMED else status
             strength *= 0.5

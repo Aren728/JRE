@@ -64,9 +64,7 @@ def verify_ephemeris_dir(path: Path, verify_checksums: bool = True) -> tuple[str
     """
     missing = [name for name in REQUIRED_EPHEMERIS_FILES if not (path / name).is_file()]
     if missing:
-        raise EphemerisDataError(
-            f"ephemeris data files missing in {path}: {', '.join(missing)}"
-        )
+        raise EphemerisDataError(f"ephemeris data files missing in {path}: {', '.join(missing)}")
     if verify_checksums:
         mismatched = [
             name

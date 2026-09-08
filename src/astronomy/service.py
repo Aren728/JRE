@@ -52,9 +52,7 @@ class AstronomicalService:
         bodies = _resolve_bodies(request.bodies)
         selected_id = request.provider_id if request.provider_id is not None else self._provider_id
         provider = (
-            self._registry.get(selected_id)
-            if selected_id is not None
-            else self._registry.default()
+            self._registry.get(selected_id) if selected_id is not None else self._registry.default()
         )
 
         run = provider.compute(jd_ut, bodies, request.config)

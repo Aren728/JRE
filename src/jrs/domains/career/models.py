@@ -14,6 +14,7 @@ from jrs.evidence.models import (
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class CareerOutcomeTaxonomy(Enum):
     """Highly specific career/profession outcome taxonomies."""
 
@@ -34,6 +35,7 @@ class CareerOutcomeTaxonomy(Enum):
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class CareerRule:
@@ -102,6 +104,7 @@ class CareerConfig:
 
 
 # ── Fact Evaluation Logic ────────────────────────────────────────────────────
+
 
 def evaluate_condition(
     condition: str,

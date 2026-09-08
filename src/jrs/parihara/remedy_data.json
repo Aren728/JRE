@@ -1,0 +1,522 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Classical Vedic remedy lookup table for planetary afflictions",
+    "sources": ["BPHS Ch 40-45", "Phaladeepika Ch 25-27", "Saravali Ch 35"],
+    "note": "All remedies are based on classical Parashari and Jaimini texts. Consult a qualified astrologer before wearing gemstones."
+  },
+
+  "planets": {
+    "SUN": {
+      "mantra": {
+        "moola_mantra": "Om Hraam Hreem Hraum Sah Suryaya Namaha",
+        "gayatri": "Om Bhaskaraya Vidmahe Divakaraya Dheemahe Tanno Surya Prachodayat",
+        "count": 7000,
+        "best_day": "Sunday",
+        "best_time": "Sunrise",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Ruby",
+        "alternate_stone": "Spinel",
+        "weight_carat": 3.0,
+        "metal": "Gold",
+        "finger": "Ring finger (right hand)",
+        "day_to_wear": "Sunday",
+        "min_weight_carat": 1.5,
+        "certification": "Ensure natural, untreated ruby"
+      },
+      "temple": {
+        "deity": "Surya (Sun God)",
+        "temple_name": "Konark Sun Temple / Any Surya temple",
+        "facing_direction": "East",
+        "offering": "Red flowers, wheat, jaggery, copper coin",
+        "prasad": "Wheat flour halwa"
+      },
+      "charity": {
+        "item_to_donate": "Wheat, red cloth, copper vessel, jaggery",
+        "recipient": "Father figures, government officials, or temples",
+        "day": "Sunday",
+        "quantity": "Equal to body weight in wheat",
+        "specific_donation": "Donate at sunrise facing East"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Red", "Orange", "Gold"],
+        "colors_to_avoid": ["Black", "Blue", "Dark Brown"],
+        "lucky_color": "Red"
+      },
+      "fasting": {
+        "day": "Sunday",
+        "food_to_avoid": ["Salt", "Spicy food", "Non-vegetarian"],
+        "allowed_foods": ["Fruits", "Milk", "Wheat bread"],
+        "duration": "7 consecutive Sundays"
+      },
+      "lifestyle": {
+        "exercise": "Surya Namaskar (Sun Salutation) at sunrise",
+        "meditation": "Meditate facing East for 15 minutes",
+        "behavior": "Respect father and elders, maintain integrity"
+      }
+    },
+
+    "MOON": {
+      "mantra": {
+        "moola_mantra": "Om Shram Shreem Shraum Sah Chandraya Namaha",
+        "gayatri": "Om Indragnaye Vidmahe Krittikeshaya Dheemahe Tanno Chandra Prachodayat",
+        "count": 11000,
+        "best_day": "Monday",
+        "best_time": "Moonrise (evening)",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Pearl",
+        "alternate_stone": "Moonstone",
+        "weight_carat": 4.0,
+        "metal": "Silver",
+        "finger": "Little finger (right hand)",
+        "day_to_wear": "Monday",
+        "min_weight_carat": 2.0,
+        "certification": "Natural, undyed pearl"
+      },
+      "temple": {
+        "deity": "Chandra (Moon God)",
+        "temple_name": "Trimbakeshwar / Any Shiva temple",
+        "facing_direction": "North",
+        "offering": "White flowers, rice, milk, white cloth",
+        "prasad": "Kheer (rice pudding)"
+      },
+      "charity": {
+        "item_to_donate": "Rice, milk, white cloth, silver",
+        "recipient": "Mother figures, women in need, or temples",
+        "day": "Monday",
+        "quantity": "White rice and milk equal to body weight",
+        "specific_donation": "Donate during full moon"
+      },
+      "color_therapy": {
+        "favorable_colors": ["White", "Silver", "Light Blue"],
+        "colors_to_avoid": ["Red", "Black", "Dark Gray"],
+        "lucky_color": "White"
+      },
+      "fasting": {
+        "day": "Monday",
+        "food_to_avoid": ["Salty food", "Spicy food", "Alcohol"],
+        "allowed_foods": ["Milk", "Rice", "Fruits", "Sugar"],
+        "duration": "7 consecutive Mondays"
+      },
+      "lifestyle": {
+        "exercise": "Walking near water bodies",
+        "meditation": "Meditate under moonlight on Mondays",
+        "behavior": "Nurture maternal relationships, care for women"
+      }
+    },
+
+    "MARS": {
+      "mantra": {
+        "moola_mantra": "Om Ang Angarakaya Namaha",
+        "gayatri": "Om Angarakaya Vidmahe Shakti Hastaya Dheemahe Tanno Bhaumah Prachodayat",
+        "count": 10000,
+        "best_day": "Tuesday",
+        "best_time": "Sunrise",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Red Coral",
+        "alternate_stone": "Carnelian",
+        "weight_carat": 5.0,
+        "metal": "Gold or Copper",
+        "finger": "Ring finger (right hand)",
+        "day_to_wear": "Tuesday",
+        "min_weight_carat": 3.0,
+        "certification": "Natural, Italian or Japanese coral"
+      },
+      "temple": {
+        "deity": "Hanuman / Subramanya",
+        "temple_name": "Hanuman temple / Any Murugan temple",
+        "facing_direction": "South",
+        "offering": "Red lentils (masoor dal), red flowers, sindoor",
+        "prasad": "Jaggery and roasted gram"
+      },
+      "charity": {
+        "item_to_donate": "Red lentils, red cloth, copper, sweets",
+        "recipient": "Brothers, soldiers, or Hanuman temples",
+        "day": "Tuesday",
+        "quantity": "Red lentils equal to body weight",
+        "specific_donation": "Donate at Hanuman temple"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Red", "Orange", "Crimson"],
+        "colors_to_avoid": ["Blue", "Green", "Black"],
+        "lucky_color": "Red"
+      },
+      "fasting": {
+        "day": "Tuesday",
+        "food_to_avoid": ["Spicy food", "Non-vegetarian", "Alcohol"],
+        "allowed_foods": ["Sweet food", "Fruits", "Milk"],
+        "duration": "7 consecutive Tuesdays"
+      },
+      "lifestyle": {
+        "exercise": "Martial arts, running, or competitive sports",
+        "meditation": "Chant Hanuman Chalisa daily",
+        "behavior": "Control anger, practice patience, help siblings"
+      }
+    },
+
+    "MERCURY": {
+      "mantra": {
+        "moola_mantra": "Om Bram Breem Braum Sah Budhaya Namaha",
+        "gayatri": "Om Gajananaya Vidmahe Vakratundaya Dheemahe Tanno Budhi Prachodayat",
+        "count": 9000,
+        "best_day": "Wednesday",
+        "best_time": "Morning (8-10 AM)",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Emerald",
+        "alternate_stone": "Peridot",
+        "weight_carat": 2.0,
+        "metal": "Gold",
+        "finger": "Little finger (right hand)",
+        "day_to_wear": "Wednesday",
+        "min_weight_carat": 1.0,
+        "certification": "Natural, untreated emerald"
+      },
+      "temple": {
+        "deity": "Vishnu / Krishna",
+        "temple_name": "Any Vishnu temple",
+        "facing_direction": "North-East",
+        "offering": "Green gram, green cloth, incense",
+        "prasad": "Green moong dal halwa"
+      },
+      "charity": {
+        "item_to_donate": "Green gram, books, green cloth",
+        "recipient": "Students, scholars, or educational institutions",
+        "day": "Wednesday",
+        "quantity": "Green gram equal to body weight",
+        "specific_donation": "Donate to schools or libraries"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Green", "Light Green", "Emerald"],
+        "colors_to_avoid": ["Red", "Orange", "Brown"],
+        "lucky_color": "Green"
+      },
+      "fasting": {
+        "day": "Wednesday",
+        "food_to_avoid": ["Spicy food", "Non-vegetarian"],
+        "allowed_foods": ["Green vegetables", "Fruits", "Milk"],
+        "duration": "7 consecutive Wednesdays"
+      },
+      "lifestyle": {
+        "exercise": "Reading, writing, learning new skills",
+        "meditation": "Practice mindfulness and intellectual pursuits",
+        "behavior": "Be honest in communication, help students"
+      }
+    },
+
+    "JUPITER": {
+      "mantra": {
+        "moola_mantra": "Om Jrim Jreem Jraum Sah Gurave Namaha",
+        "gayatri": "Om Vrishabhadhipaya Vidmahe Kriśiņayá Dhimahi Tanno Guru Prachodayat",
+        "count": 16000,
+        "best_day": "Thursday",
+        "best_time": "Morning (6-8 AM)",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Yellow Sapphire",
+        "alternate_stone": "Topaz",
+        "weight_carat": 4.0,
+        "metal": "Gold",
+        "finger": "Index finger (right hand)",
+        "day_to_wear": "Thursday",
+        "min_weight_carat": 2.0,
+        "certification": "Natural, untreated yellow sapphire"
+      },
+      "temple": {
+        "deity": "Brihaspati (Jupiter) / Vishnu",
+        "temple_name": "Any Vishnu or Dhruva temple",
+        "facing_direction": "North",
+        "offering": "Yellow flowers, turmeric, chana dal, yellow cloth",
+        "prasad": "Besan ladoo (gram flour sweets)"
+      },
+      "charity": {
+        "item_to_donate": "Yellow cloth, turmeric, chana dal, books",
+        "recipient": "Teachers, priests, temples, or educational institutions",
+        "day": "Thursday",
+        "quantity": "Chana dal equal to body weight",
+        "specific_donation": "Donate to teachers or spiritual institutions"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Yellow", "Gold", "Cream"],
+        "colors_to_avoid": ["Black", "Blue", "Red"],
+        "lucky_color": "Yellow"
+      },
+      "fasting": {
+        "day": "Thursday",
+        "food_to_avoid": ["Salty food", "Spicy food", "Non-vegetarian"],
+        "allowed_foods": ["Yellow lentils", "Bananas", "Milk"],
+        "duration": "7 consecutive Thursdays"
+      },
+      "lifestyle": {
+        "exercise": "Yoga and spiritual practices",
+        "meditation": "Study sacred texts, practice gratitude",
+        "behavior": "Respect teachers, mentor others, be generous"
+      }
+    },
+
+    "VENUS": {
+      "mantra": {
+        "moola_mantra": "Om Dram Dreem Draum Sah Shukraya Namaha",
+        "gayatri": "Om Bhargavaya Vidmahe Kritikajaya Dheemahe Tanno Shukra Prachodayat",
+        "count": 15000,
+        "best_day": "Friday",
+        "best_time": "Evening (6-8 PM)",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Diamond",
+        "alternate_stone": "White Sapphire",
+        "weight_carat": 1.0,
+        "metal": "Silver or Platinum",
+        "finger": "Middle finger (right hand)",
+        "day_to_wear": "Friday",
+        "min_weight_carat": 0.5,
+        "certification": "Natural, certified diamond"
+      },
+      "temple": {
+        "deity": "Lakshmi / Parvati",
+        "temple_name": "Any Lakshmi or Durga temple",
+        "facing_direction": "North-West",
+        "offering": "White flowers, camphor, white sweets",
+        "prasad": "Kheer or milk-based sweets"
+      },
+      "charity": {
+        "item_to_donate": "White cloth, silver, perfume, ghee",
+        "recipient": "Women in need, artists, or temples",
+        "day": "Friday",
+        "quantity": "Silver equal to body weight",
+        "specific_donation": "Donate to women's shelters or art institutions"
+      },
+      "color_therapy": {
+        "favorable_colors": ["White", "Silver", "Pink"],
+        "colors_to_avoid": ["Red", "Black", "Dark Brown"],
+        "lucky_color": "White"
+      },
+      "fasting": {
+        "day": "Friday",
+        "food_to_avoid": ["Alcohol", "Non-vegetarian", "Spicy food"],
+        "allowed_foods": ["Sugar", "Rice", "Milk", "Fruits"],
+        "duration": "7 consecutive Fridays"
+      },
+      "lifestyle": {
+        "exercise": "Dance, music, or artistic activities",
+        "meditation": "Practice beauty and aesthetics",
+        "behavior": "Value relationships, practice devotion"
+      }
+    },
+
+    "SATURN": {
+      "mantra": {
+        "moola_mantra": "Om Pram Preem Praum Sah Shanaye Namaha",
+        "gayatri": "Om Kaakadhwajaya Vidmahe Khadga Hastaya Dhimahi Tanno Mandi Prachodayat",
+        "count": 23000,
+        "best_day": "Saturday",
+        "best_time": "Evening (sunset)",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Blue Sapphire",
+        "alternate_stone": "Amethyst",
+        "weight_carat": 4.0,
+        "metal": "Silver or Iron",
+        "finger": "Middle finger (right hand)",
+        "day_to_wear": "Saturday",
+        "min_weight_carat": 2.0,
+        "certification": "Natural, untreated blue sapphire - TEST FIRST"
+      },
+      "temple": {
+        "deity": "Shani (Saturn) / Shiva",
+        "temple_name": "Shani temple / Any Shiva temple",
+        "facing_direction": "West",
+        "offering": "Black sesame, mustard oil, black cloth, iron",
+        "prasad": "Black sesame sweets"
+      },
+      "charity": {
+        "item_to_donate": "Black cloth, iron, sesame oil, blankets",
+        "recipient": "Old people, servants, laborers, or disabled",
+        "day": "Saturday",
+        "quantity": "Blankets or iron equal to body weight",
+        "specific_donation": "Donate to aged care homes or orphanages"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Blue", "Black", "Dark Gray"],
+        "colors_to_avoid": ["Red", "Orange", "White"],
+        "lucky_color": "Blue"
+      },
+      "fasting": {
+        "day": "Saturday",
+        "food_to_avoid": ["Non-vegetarian", "Alcohol", "Salty food"],
+        "allowed_foods": ["Black sesame", "Black gram", "Fruits"],
+        "duration": "7 consecutive Saturdays"
+      },
+      "lifestyle": {
+        "exercise": "Walking, especially in nature",
+        "meditation": "Practice patience and discipline",
+        "behavior": "Serve the elderly and disabled, be humble"
+      }
+    },
+
+    "RAHU": {
+      "mantra": {
+        "moola_mantra": "Om Bhram Bhreem Bhraum Sah Rahave Namaha",
+        "gayatri": "Om Nagadhwajaya Vidmahe Sarpadhwajaya Dhimahi Tanno Rahu Prachodayat",
+        "count": 18000,
+        "best_day": "Saturday (or during Rahu Kaal)",
+        "best_time": "Rahu Kaal period",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Hessonite Garnet (Gomed)",
+        "alternate_stone": "Cat's Eye (occasionally)",
+        "weight_carat": 4.0,
+        "metal": "Silver or Ashta Dhatu",
+        "finger": "Middle finger (right hand)",
+        "day_to_wear": "Saturday",
+        "min_weight_carat": 2.0,
+        "certification": "Natural hessonite - consult astrologer first"
+      },
+      "temple": {
+        "deity": "Durga / Naga (Serpent deity)",
+        "temple_name": "Naga temple / Durga temple",
+        "facing_direction": "South-West",
+        "offering": "Blue flowers, coconut, mustard oil",
+        "prasad": "Coconut-based sweets"
+      },
+      "charity": {
+        "item_to_donate": "Blue cloth, mustard oil, coconut, glasses",
+        "recipient": "Epilepsy patients, beggars, or temples",
+        "day": "Saturday",
+        "quantity": "Mustard oil equal to body weight",
+        "specific_donation": "Donate during Rahu Kaal"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Blue", "Smoky Gray", "Purple"],
+        "colors_to_avoid": ["White", "Cream", "Yellow"],
+        "lucky_color": "Blue"
+      },
+      "fasting": {
+        "day": "Saturday",
+        "food_to_avoid": ["Non-vegetarian", "Alcohol", "Salty food"],
+        "allowed_foods": ["Coconut", "Fruits", "Milk"],
+        "duration": "7 consecutive Saturdays"
+      },
+      "lifestyle": {
+        "exercise": "Avoid risky activities, practice mindfulness",
+        "meditation": "Practice detachment from material desires",
+        "behavior": "Avoid addiction, be honest, serve the needy"
+      }
+    },
+
+    "KETU": {
+      "mantra": {
+        "moola_mantra": "Om Stram Streem Straum Sah Ketave Namaha",
+        "gayatri": "Om Chitrakshaya Vidmahe Sarpadhwajaya Dhimahi Tanno Ketu Prachodayat",
+        "count": 17000,
+        "best_day": "Tuesday (or during Ketu Kaal)",
+        "best_time": "Ketu Kaal period",
+        "duration_weeks": 7
+      },
+      "gemstone": {
+        "primary_stone": "Cat's Eye (Lehsunia/Vaidurya)",
+        "alternate_stone": "Smoky Quartz (occasionally)",
+        "weight_carat": 4.0,
+        "metal": "Silver or Panchdhatu",
+        "finger": "Middle finger (right hand)",
+        "day_to_wear": "Tuesday",
+        "min_weight_carat": 2.0,
+        "certification": "Natural cat's eye - consult astrologer first"
+      },
+      "temple": {
+        "deity": "Ganesha / Naga (Serpent deity)",
+        "temple_name": "Ganesha temple / Naga temple",
+        "facing_direction": "South-West",
+        "offering": "Sesame seeds, brown cloth, incense",
+        "prasad": "Modak (Ganesha's favorite sweet)"
+      },
+      "charity": {
+        "item_to_donate": "Brown cloth, sesame seeds, blankets, dogs' food",
+        "recipient": "Spiritual seekers, dogs, or temples",
+        "day": "Tuesday",
+        "quantity": "Blankets or brown cloth",
+        "specific_donation": "Feed stray dogs, donate to ashrams"
+      },
+      "color_therapy": {
+        "favorable_colors": ["Brown", "Gray", "Purple"],
+        "colors_to_avoid": ["Red", "Orange", "Yellow"],
+        "lucky_color": "Brown"
+      },
+      "fasting": {
+        "day": "Tuesday",
+        "food_to_avoid": ["Non-vegetarian", "Alcohol", "Spicy food"],
+        "allowed_foods": ["Sesame seeds", "Coconut", "Fruits"],
+        "duration": "7 consecutive Tuesdays"
+      },
+      "lifestyle": {
+        "exercise": "Yoga and meditation (focus on spiritual growth)",
+        "meditation": "Practice detachment and spiritual seeking",
+        "behavior": "Embrace simplicity, practice non-attachment"
+      }
+    }
+  },
+
+  "doshas": {
+    "pitru_dosha": {
+      "description": "Ancestral curse affecting family harmony",
+      "mantra": "Pitru Gayatri or Maha Mrityunjaya Mantra",
+      "charity": "Feed Brahmins, donate food on Amavasya (new moon)",
+      "temple": "Trimbakeshwar / Gaya",
+      "remedy": "Perform Shraddha ceremonies, Pind Daan"
+    },
+    "kaal_sarp_dosha": {
+      "description": "All planets hemmed between Rahu and Ketu",
+      "mantra": "Rahu-Ketu mantras, Maha Mrityunjaya",
+      "charity": "Donate silver serpent idol to temple",
+      "temple": "Trimbakeshwar / Ujjain Mahakaleshwar",
+      "remedy": "Perform Kaal Sarp Dosh Nivaran Puja"
+    },
+    "manglik_dosha": {
+      "description": "Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house",
+      "mantra": "Hanuman Chalisa / Mangal Mantra",
+      "charity": "Donate red lentils, copper, sweets on Tuesday",
+      "temple": "Hanuman temple",
+      "remedy": "Kumbh Vivah or marry after 28, donate to temples"
+    },
+    "pitru_dosh_dosha": {
+      "description": "Rahu in 5th house or Saturn-Rahu conjunction",
+      "mantra": "Pitru Gayatri, Garuda Purana recitation",
+      "charity": "Feed crows on Amavasya, donate to orphans",
+      "temple": "Any Shiva temple",
+      "remedy": "Perform Tarpana, Pind Daan at Gaya"
+    }
+  },
+
+  "general_remedies": {
+    "for_balance": {
+      "description": "General remedies for overall chart balance",
+      "daily_practice": [
+        "Chant Om Namah Shivaya 108 times",
+        "Practice 10 minutes of meditation",
+        "Offer water to rising Sun",
+        "Recite Vishnu Sahasranama weekly"
+      ],
+      "weekly_practice": [
+        "Visit temple on Mondays and Thursdays",
+        "Donate food to needy on Saturdays",
+        "Light incense and ghee lamp daily"
+      ],
+      "monthly_practice": [
+        "Observe fasting on Ekadashi (11th day)",
+        "Donate to charity on Purnima (full moon)",
+        "Perform Rudra Abhishek on Shivratri"
+      ]
+    }
+  }
+}

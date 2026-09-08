@@ -49,39 +49,39 @@ BALA_PLANETS: tuple[BodyId, ...] = (
 # --------------------------------------------------------------------------- #
 
 EXALTATION_DEGREES: dict[BodyId, float] = {
-    BodyId.SUN: 10.0,       # Aries 10°
-    BodyId.MOON: 33.0,      # Taurus 3°
-    BodyId.MARS: 298.0,     # Capricorn 28°
+    BodyId.SUN: 10.0,  # Aries 10°
+    BodyId.MOON: 33.0,  # Taurus 3°
+    BodyId.MARS: 298.0,  # Capricorn 28°
     BodyId.MERCURY: 165.0,  # Virgo 15°
-    BodyId.JUPITER: 95.0,   # Cancer 5°
-    BodyId.VENUS: 357.0,    # Pisces 27°
-    BodyId.SATURN: 200.0,   # Libra 20°
-    BodyId.RAHU: 33.0,      # Taurus 3° (some traditions)
-    BodyId.KETU: 213.0,     # Scorpio 3° (some traditions)
+    BodyId.JUPITER: 95.0,  # Cancer 5°
+    BodyId.VENUS: 357.0,  # Pisces 27°
+    BodyId.SATURN: 200.0,  # Libra 20°
+    BodyId.RAHU: 33.0,  # Taurus 3° (some traditions)
+    BodyId.KETU: 213.0,  # Scorpio 3° (some traditions)
 }
 
 DEBILITATION_DEGREES: dict[BodyId, float] = {
-    BodyId.SUN: 190.0,      # Libra 10°
-    BodyId.MOON: 213.0,     # Scorpio 3°
-    BodyId.MARS: 118.0,     # Cancer 28°
+    BodyId.SUN: 190.0,  # Libra 10°
+    BodyId.MOON: 213.0,  # Scorpio 3°
+    BodyId.MARS: 118.0,  # Cancer 28°
     BodyId.MERCURY: 345.0,  # Pisces 15°
     BodyId.JUPITER: 275.0,  # Capricorn 5°
-    BodyId.VENUS: 177.0,    # Virgo 27°
-    BodyId.SATURN: 20.0,    # Aries 20°
-    BodyId.RAHU: 213.0,     # Scorpio 3° (some traditions)
-    BodyId.KETU: 33.0,      # Taurus 3° (some traditions)
+    BodyId.VENUS: 177.0,  # Virgo 27°
+    BodyId.SATURN: 20.0,  # Aries 20°
+    BodyId.RAHU: 213.0,  # Scorpio 3° (some traditions)
+    BodyId.KETU: 33.0,  # Taurus 3° (some traditions)
 }
 
 # Moolatrikona longitudes — used for Saptavargaja dignity scoring.
 # Planet is in moolatrikona when within these degree ranges.
 MOOLATRIKONA_RANGES: dict[BodyId, tuple[float, float]] = {
-    BodyId.SUN: (13.33, 20.0),      # Leo 13°20' – 20°
-    BodyId.MOON: (3.33, 20.0),      # Taurus 3°20' – 20°
-    BodyId.MARS: (0.0, 13.33),      # Aries 0° – 13°20'
-    BodyId.MERCURY: (15.0, 20.0),   # Virgo 15° – 20°
-    BodyId.JUPITER: (0.0, 10.0),    # Sagittarius 0° – 10°
-    BodyId.VENUS: (0.0, 15.0),      # Libra 0° – 15°
-    BodyId.SATURN: (20.0, 26.67),   # Aquarius 20° – 26°40'
+    BodyId.SUN: (13.33, 20.0),  # Leo 13°20' – 20°
+    BodyId.MOON: (3.33, 20.0),  # Taurus 3°20' – 20°
+    BodyId.MARS: (0.0, 13.33),  # Aries 0° – 13°20'
+    BodyId.MERCURY: (15.0, 20.0),  # Virgo 15° – 20°
+    BodyId.JUPITER: (0.0, 10.0),  # Sagittarius 0° – 10°
+    BodyId.VENUS: (0.0, 15.0),  # Libra 0° – 15°
+    BodyId.SATURN: (20.0, 26.67),  # Aquarius 20° – 26°40'
 }
 
 # Planet friendships: FRIEND, NEUTRAL, ENEMY
@@ -223,15 +223,15 @@ DEFAULT_NAISARGIKA_VIRUPAS: dict[BodyId, float] = {
 
 # Peak house number (1-indexed) where planet gets maximum Dig Bala.
 DIG_BALA_PEAK_HOUSE: dict[BodyId, int] = {
-    BodyId.SUN: 10,       # East
-    BodyId.MOON: 4,       # West
-    BodyId.MARS: 7,       # South
-    BodyId.MERCURY: 1,    # North (Ascendant)
-    BodyId.JUPITER: 10,   # East
-    BodyId.VENUS: 4,      # West
-    BodyId.SATURN: 1,     # North
-    BodyId.RAHU: 1,       # North
-    BodyId.KETU: 7,       # South
+    BodyId.SUN: 10,  # East
+    BodyId.MOON: 4,  # West
+    BodyId.MARS: 7,  # South
+    BodyId.MERCURY: 1,  # North (Ascendant)
+    BodyId.JUPITER: 10,  # East
+    BodyId.VENUS: 4,  # West
+    BodyId.SATURN: 1,  # North
+    BodyId.RAHU: 1,  # North
+    BodyId.KETU: 7,  # South
 }
 
 
@@ -241,18 +241,18 @@ DIG_BALA_PEAK_HOUSE: dict[BodyId, int] = {
 
 # Standard Vimshottari sign ownership (1-indexed rashi):1=Aries..12=Pisces
 SIGN_LORDS_VIMSHOTTARI: dict[int, BodyId] = {
-    1: BodyId.MARS,      # Aries
-    2: BodyId.VENUS,     # Taurus
-    3: BodyId.MERCURY,   # Gemini
-    4: BodyId.MOON,      # Cancer
-    5: BodyId.SUN,       # Leo
-    6: BodyId.MERCURY,   # Virgo
-    7: BodyId.VENUS,     # Libra
-    8: BodyId.MARS,      # Scorpio (traditional; some say Ketu)
-    9: BodyId.JUPITER,   # Sagittarius
-    10: BodyId.SATURN,    # Capricorn
-    11: BodyId.SATURN,    # Aquarius
-    12: BodyId.JUPITER,   # Pisces
+    1: BodyId.MARS,  # Aries
+    2: BodyId.VENUS,  # Taurus
+    3: BodyId.MERCURY,  # Gemini
+    4: BodyId.MOON,  # Cancer
+    5: BodyId.SUN,  # Leo
+    6: BodyId.MERCURY,  # Virgo
+    7: BodyId.VENUS,  # Libra
+    8: BodyId.MARS,  # Scorpio (traditional; some say Ketu)
+    9: BodyId.JUPITER,  # Sagittarius
+    10: BodyId.SATURN,  # Capricorn
+    11: BodyId.SATURN,  # Aquarius
+    12: BodyId.JUPITER,  # Pisces
 }
 
 
@@ -314,13 +314,23 @@ PLANET_NUMBER: dict[BodyId, int] = {
 # Benefic / Malefic classification
 # --------------------------------------------------------------------------- #
 
-NATURAL_BENEFICS: frozenset[BodyId] = frozenset({
-    BodyId.JUPITER, BodyId.VENUS, BodyId.MOON,
-})
+NATURAL_BENEFICS: frozenset[BodyId] = frozenset(
+    {
+        BodyId.JUPITER,
+        BodyId.VENUS,
+        BodyId.MOON,
+    }
+)
 
-NATURAL_MALEFICS: frozenset[BodyId] = frozenset({
-    BodyId.SUN, BodyId.MARS, BodyId.SATURN, BodyId.RAHU, BodyId.KETU,
-})
+NATURAL_MALEFICS: frozenset[BodyId] = frozenset(
+    {
+        BodyId.SUN,
+        BodyId.MARS,
+        BodyId.SATURN,
+        BodyId.RAHU,
+        BodyId.KETU,
+    }
+)
 
 NATURAL_NEUTRAL: frozenset[BodyId] = frozenset({BodyId.MERCURY})
 
@@ -328,6 +338,7 @@ NATURAL_NEUTRAL: frozenset[BodyId] = frozenset({BodyId.MERCURY})
 # --------------------------------------------------------------------------- #
 # Enums
 # --------------------------------------------------------------------------- #
+
 
 class BalaSystem(StrEnum):
     """Supported Bala systems (V1: SHADBALA only)."""
@@ -338,6 +349,7 @@ class BalaSystem(StrEnum):
 # --------------------------------------------------------------------------- #
 # Sub-component data classes
 # --------------------------------------------------------------------------- #
+
 
 @dataclass(frozen=True)
 class SthanaBalaComponents:
@@ -556,9 +568,7 @@ class BalaConfig:
 def validate(config: BalaConfig) -> BalaConfig:
     """Validate a ``BalaConfig``; raises ``InvalidBalaConfigError``."""
     if not isinstance(config.version, str) or config.version == "":
-        raise InvalidBalaConfigError(
-            f"version must be a non-empty string, got {config.version!r}"
-        )
+        raise InvalidBalaConfigError(f"version must be a non-empty string, got {config.version!r}")
     if not isinstance(config.max_depth, int) or config.max_depth < 1:
         raise InvalidBalaConfigError(
             f"max_depth must be a positive integer, got {config.max_depth}"
@@ -569,8 +579,7 @@ def validate(config: BalaConfig) -> BalaConfig:
         )
     if not isinstance(config.naisargika_virupas, dict) or not config.naisargika_virupas:
         raise InvalidBalaConfigError(
-            f"naisargika_virupas must be a non-empty dict, "
-            f"got {config.naisargika_virupas!r}"
+            f"naisargika_virupas must be a non-empty dict, got {config.naisargika_virupas!r}"
         )
     return config
 

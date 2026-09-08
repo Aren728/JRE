@@ -76,18 +76,9 @@ def evidence_chain_from_dict(data: dict[str, Any]) -> EvidenceChain:
     """Deserialize an EvidenceChain from a dict."""
     return EvidenceChain(
         record=evidence_record_from_dict(data["record"]),
-        contradictions=tuple(
-            evidence_record_from_dict(r)
-            for r in data.get("contradictions", [])
-        ),
-        mitigations=tuple(
-            evidence_record_from_dict(r)
-            for r in data.get("mitigations", [])
-        ),
-        supporting=tuple(
-            evidence_record_from_dict(r)
-            for r in data.get("supporting", [])
-        ),
+        contradictions=tuple(evidence_record_from_dict(r) for r in data.get("contradictions", [])),
+        mitigations=tuple(evidence_record_from_dict(r) for r in data.get("mitigations", [])),
+        supporting=tuple(evidence_record_from_dict(r) for r in data.get("supporting", [])),
     )
 
 

@@ -395,8 +395,7 @@ class VargaDefinition:
             not isinstance(self.ayanamsa, str) or self.ayanamsa == ""
         ):
             raise InvalidVargaConfigError(
-                "ayanamsa must be None or a non-empty string echo, "
-                f"got {self.ayanamsa!r}"
+                f"ayanamsa must be None or a non-empty string echo, got {self.ayanamsa!r}"
             )
         if not isinstance(self.boundary_convention, BoundaryConvention):
             raise InvalidVargaConfigError(
@@ -556,8 +555,7 @@ class VargaChart:
                     f"VargaChart.{field_name} must be a non-empty string, got {value!r}"
                 )
         if self.context_chart_identity is not None and (
-            not isinstance(self.context_chart_identity, str)
-            or self.context_chart_identity == ""
+            not isinstance(self.context_chart_identity, str) or self.context_chart_identity == ""
         ):
             raise InvalidVargaRequestError(
                 "context_chart_identity must be None or a non-empty string, "
@@ -607,9 +605,7 @@ class VargaConfig:
             default_zodiac_mode=_as_string(
                 data.get("default_zodiac_mode"), "default_zodiac_mode", "SIDEREAL"
             ),
-            default_ayanamsa=_as_optional_string(
-                data.get("default_ayanamsa"), "default_ayanamsa"
-            ),
+            default_ayanamsa=_as_optional_string(data.get("default_ayanamsa"), "default_ayanamsa"),
         )
         return validate(config)
 
@@ -624,9 +620,7 @@ def validate(config: VargaConfig) -> VargaConfig:
     ):
         value = getattr(config, field_name)
         if not isinstance(value, str) or value == "":
-            raise InvalidVargaConfigError(
-                f"{field_name} must be a non-empty string, got {value!r}"
-            )
+            raise InvalidVargaConfigError(f"{field_name} must be a non-empty string, got {value!r}")
     if config.default_boundary_convention != BoundaryConvention.HALF_OPEN_LOW.value:
         raise InvalidVargaConfigError(
             f"default_boundary_convention must be {BoundaryConvention.HALF_OPEN_LOW.value}, "

@@ -15,17 +15,16 @@ from .models import (
     NumerologyRule,
 )
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_id",
-    "default_strength",
-    "rules",
-})
-
-_CONFIG_DIR = (
-    Path(__file__).resolve().parent.parent.parent.parent
-    / "config" / "numerology"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_id",
+        "default_strength",
+        "rules",
+    }
 )
+
+_CONFIG_DIR = Path(__file__).resolve().parent.parent.parent.parent / "config" / "numerology"
 
 _DEFAULT_CONFIG_PATH: Path = _CONFIG_DIR / "rules.toml"
 

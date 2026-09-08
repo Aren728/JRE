@@ -175,6 +175,7 @@ def _dataclass_schema(cls: type) -> dict[str, Any]:
         "properties": properties,
     }
 
+
 #: Registry of schemas by result/request type name (public, §20).
 SCHEMAS: dict[str, dict[str, Any]] = {
     "VargaConfig": _dataclass_schema(VargaConfig),
@@ -222,12 +223,12 @@ def validate_schema(payload: Any, schema: dict[str, Any], path: str = "$") -> No
             )
         return
 
-    if "pattern" in schema and isinstance(payload, str) and not re.match(
-        schema["pattern"], payload
+    if (
+        "pattern" in schema
+        and isinstance(payload, str)
+        and not re.match(schema["pattern"], payload)
     ):
-        raise InvalidVargaRequestError(
-            f"{path}: {payload!r} does not match {schema['pattern']}"
-        )
+        raise InvalidVargaRequestError(f"{path}: {payload!r} does not match {schema['pattern']}")
 
     if "null" in allowed and payload is None:
         return
@@ -324,9 +325,7 @@ def varga_request_from_dict(data: dict[str, Any]) -> dict[str, Any]:
         raise InvalidVargaRequestError(f"varga_id must be a non-empty string, got {varga_id!r}")
     method_id = data.get("method_id")
     if method_id is not None and (not isinstance(method_id, str) or method_id == ""):
-        raise InvalidVargaRequestError(
-            f"method_id must be a string or null, got {method_id!r}"
-        )
+        raise InvalidVargaRequestError(f"method_id must be a string or null, got {method_id!r}")
     context_id = data.get("context_chart_identity")
     if context_id is not None and (not isinstance(context_id, str) or context_id == ""):
         raise InvalidVargaRequestError(

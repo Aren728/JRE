@@ -149,9 +149,7 @@ class EventCluster:
     def __post_init__(self) -> None:
         """Compute deterministic_id if not provided."""
         if not self.deterministic_id:
-            object.__setattr__(
-                self, "deterministic_id", _compute_cluster_hash(self)
-            )
+            object.__setattr__(self, "deterministic_id", _compute_cluster_hash(self))
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""

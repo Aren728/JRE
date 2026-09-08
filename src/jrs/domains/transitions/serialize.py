@@ -47,9 +47,7 @@ def transition_rule_catalog_from_dict(
     data: dict[str, Any],
 ) -> TransitionRuleCatalog:
     """Deserialize a TransitionRuleCatalog from a dict."""
-    rules = tuple(
-        transition_rule_from_dict(r) for r in data.get("rules", [])
-    )
+    rules = tuple(transition_rule_from_dict(r) for r in data.get("rules", []))
     return TransitionRuleCatalog(rules=rules)
 
 
@@ -59,7 +57,9 @@ def result_to_dict(catalog: TransitionRuleCatalog) -> dict[str, Any]:
 
 
 def result_to_json(
-    catalog: TransitionRuleCatalog, *, indent: int | None = None,
+    catalog: TransitionRuleCatalog,
+    *,
+    indent: int | None = None,
 ) -> str:
     """Deterministic JSON serialization of a TransitionRuleCatalog."""
     d = result_to_dict(catalog)

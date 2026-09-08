@@ -16,7 +16,6 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
-
 # ── Enums ────────────────────────────────────────────────────────────────────
 
 
@@ -480,7 +479,8 @@ class ChartSubject:
     timezone: str = "Asia/Kolkata"
     provenance: BirthProvenance = field(
         default_factory=lambda: BirthProvenance(
-            source="unknown", rodden_rating=RoddenRating.C,
+            source="unknown",
+            rodden_rating=RoddenRating.C,
         ),
     )
 

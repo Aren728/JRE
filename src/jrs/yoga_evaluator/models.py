@@ -12,6 +12,7 @@ type _ModifierReport = Any  # Resolved at runtime from modifier_service
 
 class YogaStatus(StrEnum):
     """Status of a yoga after affliction checks."""
+
     FORMED = "FORMED"
     CANCELLED = "CANCELLED"
     WEAKENED = "WEAKENED"
@@ -23,6 +24,7 @@ class YogaOutcome(StrEnum):
     Expanded in Phase E6g to support multi-domain mapping.
     Each yoga can map to multiple relevant outcome domains.
     """
+
     CAREER_PROMINENCE = "CAREER_PROMINENCE"
     WEALTH_ACCUMULATION = "WEALTH_ACCUMULATION"
     RELATIONSHIP_HARMONY = "RELATIONSHIP_HARMONY"
@@ -43,6 +45,7 @@ class YogaOutcome(StrEnum):
     CRISIS_MANAGEMENT = "CRISIS_MANAGEMENT"
     EMOTIONAL_STABILITY = "EMOTIONAL_STABILITY"
     LEADERSHIP = "LEADERSHIP"
+    HEALTH_AFFLICTION = "HEALTH_AFFLICTION"
 
 
 @dataclass(frozen=True)
@@ -52,6 +55,7 @@ class YogaEvaluation:
     Phase 1 addition:
     - modifier_report: Attached ModifierReport from 5-tier pipeline (RI-010G).
     """
+
     yoga_name: str
     status: YogaStatus
     cancellation_reason: Optional[str] = None

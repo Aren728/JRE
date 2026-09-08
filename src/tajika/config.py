@@ -34,9 +34,7 @@ def load_config(path: str | Path | None = None) -> TajikaConfig:
         data = tomllib.load(handle)
     section = data.get("tajika", {})
     if not isinstance(section, dict):
-        raise InvalidTajikaConfigError(
-            f"[tajika] section must be a table, got {section!r}"
-        )
+        raise InvalidTajikaConfigError(f"[tajika] section must be a table, got {section!r}")
 
     missing = [field for field in _DECLARED_FIELDS if field not in section]
     if missing:

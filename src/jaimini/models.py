@@ -33,25 +33,40 @@ class LagnaNature(StrEnum):
     """Classification of Lagna (ascendant) sign nature."""
 
     MOVABLE = "MOVABLE"  # Chara: Aries, Cancer, Libra, Capricorn
-    FIXED = "FIXED"      # Sthira: Taurus, Leo, Scorpio, Aquarius
-    DUAL = "DUAL"        # Dvisvabhava: Gemini, Virgo, Sagittarius, Pisces
+    FIXED = "FIXED"  # Sthira: Taurus, Leo, Scorpio, Aquarius
+    DUAL = "DUAL"  # Dvisvabhava: Gemini, Virgo, Sagittarius, Pisces
 
 
 # --------------------------------------------------------------------------- #
 # Lagna nature classification
 # --------------------------------------------------------------------------- #
 
-_MOVABLE_RASHIS: frozenset[RashiId] = frozenset({
-    RashiId.MESHA, RashiId.KARKA, RashiId.TULA, RashiId.MAKARA,
-})
+_MOVABLE_RASHIS: frozenset[RashiId] = frozenset(
+    {
+        RashiId.MESHA,
+        RashiId.KARKA,
+        RashiId.TULA,
+        RashiId.MAKARA,
+    }
+)
 
-_FIXED_RASHIS: frozenset[RashiId] = frozenset({
-    RashiId.VRISHABHA, RashiId.SIMHA, RashiId.VRISHCHIKA, RashiId.KUMBHA,
-})
+_FIXED_RASHIS: frozenset[RashiId] = frozenset(
+    {
+        RashiId.VRISHABHA,
+        RashiId.SIMHA,
+        RashiId.VRISHCHIKA,
+        RashiId.KUMBHA,
+    }
+)
 
-_DUAL_RASHIS: frozenset[RashiId] = frozenset({
-    RashiId.MITHUNA, RashiId.KANYA, RashiId.DHANUSHA, RashiId.MEENA,
-})
+_DUAL_RASHIS: frozenset[RashiId] = frozenset(
+    {
+        RashiId.MITHUNA,
+        RashiId.KANYA,
+        RashiId.DHANUSHA,
+        RashiId.MEENA,
+    }
+)
 
 
 def classify_lagna_nature(rashi: RashiId) -> LagnaNature:
@@ -87,9 +102,7 @@ def get_planets_in_rashi(
     target_rashi: RashiId,
 ) -> tuple[BodyId, ...]:
     """Return the BodyIds of planets whose natal rashi is *target_rashi*."""
-    return tuple(
-        state.body for state in planet_states if state.rashi == target_rashi
-    )
+    return tuple(state.body for state in planet_states if state.rashi == target_rashi)
 
 
 # --------------------------------------------------------------------------- #
@@ -249,12 +262,14 @@ def compute_chara_dasha_sequence(
         end_month = month_offset + total_months
         start_utc = _month_to_iso(start_month)
         end_utc = _month_to_iso(end_month)
-        periods.append(CharaDashaPeriod(
-            rashi=rashi,
-            start_utc=start_utc,
-            end_utc=end_utc,
-            lord=lord,
-        ))
+        periods.append(
+            CharaDashaPeriod(
+                rashi=rashi,
+                start_utc=start_utc,
+                end_utc=end_utc,
+                lord=lord,
+            )
+        )
         month_offset = end_month
 
     return tuple(periods)

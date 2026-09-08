@@ -49,9 +49,7 @@ class NumerologyDomainService:
             self._rules = load_numerology_rules(self._config_path)
         return NumerologyRuleCatalog(rules=self._rules)
 
-    def evaluate_chart_facts(
-        self, chart: NumerologyChart
-    ) -> tuple[EvidenceRecord, ...]:
+    def evaluate_chart_facts(self, chart: NumerologyChart) -> tuple[EvidenceRecord, ...]:
         """Evaluate a NumerologyChart against the rule catalog.
 
         Args:
@@ -79,9 +77,7 @@ class NumerologyDomainService:
             A SystemAssessment with SystemType.NUMEROLOGY provenance.
         """
         records = self.evaluate_chart_facts(chart)
-        return build_system_assessment(
-            records, source_tradition=self._config.source_id
-        )
+        return build_system_assessment(records, source_tradition=self._config.source_id)
 
     @property
     def config(self) -> NumerologyConfig:

@@ -99,12 +99,14 @@ def synthesis_config_from_dict(data: dict[str, Any]) -> SynthesisConfig:
                 except ValueError:
                     continue
 
-                parsed_rules.append(SynthesisRule(
-                    category=category,
-                    condition_type=cond_type,
-                    condition_params=params,
-                    weight=weight,
-                ))
+                parsed_rules.append(
+                    SynthesisRule(
+                        category=category,
+                        condition_type=cond_type,
+                        condition_params=params,
+                        weight=weight,
+                    )
+                )
             rules[str(cat_name)] = tuple(parsed_rules)
 
     return SynthesisConfig(

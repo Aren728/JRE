@@ -47,11 +47,7 @@ def evidence_request_from_dict(data: dict[str, Any]) -> EvidenceRequest:
 def engine_output_from_dict(data: dict[str, Any]) -> EngineOutput:
     """Deserialize an EngineOutput from a dict."""
     computed_at_str = data.get("computed_at", "")
-    computed_at = (
-        datetime.fromisoformat(computed_at_str)
-        if computed_at_str
-        else datetime.now(UTC)
-    )
+    computed_at = datetime.fromisoformat(computed_at_str) if computed_at_str else datetime.now(UTC)
 
     return EngineOutput(
         engine_name=data["engine_name"],
@@ -64,16 +60,12 @@ def evidence_packet_from_dict(data: dict[str, Any]) -> EvidencePacket:
     """Deserialize an EvidencePacket from a dict."""
     aggregated_at_str = data.get("aggregated_at", "")
     aggregated_at = (
-        datetime.fromisoformat(aggregated_at_str)
-        if aggregated_at_str
-        else datetime.now(UTC)
+        datetime.fromisoformat(aggregated_at_str) if aggregated_at_str else datetime.now(UTC)
     )
 
     return EvidencePacket(
         query_id=data["query_id"],
-        engine_outputs=tuple(
-            engine_output_from_dict(eo) for eo in data.get("engine_outputs", [])
-        ),
+        engine_outputs=tuple(engine_output_from_dict(eo) for eo in data.get("engine_outputs", [])),
         research_evidence=tuple(data.get("research_evidence", [])),
         aggregated_at=aggregated_at,
     )
@@ -91,9 +83,7 @@ def routing_rule_from_dict(data: dict[str, Any]) -> RoutingRule:
 def jrs_config_from_dict(data: dict[str, Any]) -> JRSConfig:
     """Deserialize a JRSConfig from a dict."""
     routing_raw = data.get("routing", {})
-    routing = {
-        k: routing_rule_from_dict(v) for k, v in routing_raw.items()
-    }
+    routing = {k: routing_rule_from_dict(v) for k, v in routing_raw.items()}
     return JRSConfig(
         version=data.get("version", "1.0"),
         default_research_depth=data.get("default_research_depth", "standard"),

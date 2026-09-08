@@ -81,10 +81,7 @@ class TemporalRefinementService:
                 period_end=end_str,
                 buffer_days=half_buffer,
                 boundary_weight=0.5,
-                description=(
-                    f"Dasha sandhi at start of "
-                    f"{period.triggering_planet} period"
-                ),
+                description=(f"Dasha sandhi at start of {period.triggering_planet} period"),
             )
             if start_modifier is not None:
                 modifiers.append(start_modifier)
@@ -96,10 +93,7 @@ class TemporalRefinementService:
                 period_end=end_str,
                 buffer_days=half_buffer,
                 boundary_weight=0.5,
-                description=(
-                    f"Dasha sandhi at end of "
-                    f"{period.triggering_planet} period"
-                ),
+                description=(f"Dasha sandhi at end of {period.triggering_planet} period"),
             )
             if end_modifier is not None:
                 modifiers.append(end_modifier)
@@ -206,16 +200,20 @@ class TemporalRefinementService:
 
             for modifier in modifiers:
                 if self._record_overlaps_modifier(
-                    record_start, record_end, modifier,
+                    record_start,
+                    record_end,
+                    modifier,
                 ):
                     effective_weight *= modifier.weight_scalar
                     applied_modifiers.append(modifier.deterministic_id)
 
-            results.append({
-                "record": record,
-                "effective_weight": effective_weight,
-                "applied_modifiers": applied_modifiers,
-            })
+            results.append(
+                {
+                    "record": record,
+                    "effective_weight": effective_weight,
+                    "applied_modifiers": applied_modifiers,
+                }
+            )
 
         return tuple(results)
 

@@ -31,7 +31,10 @@ from .models import (
 
 
 def _compute_classification_metrics(
-    tp: int, fp: int, tn: int, fn: int,
+    tp: int,
+    fp: int,
+    tn: int,
+    fn: int,
 ) -> ClassificationMetrics:
     """Compute precision, recall, F1, and accuracy from confusion matrix.
 
@@ -47,11 +50,7 @@ def _compute_classification_metrics(
     total = tp + fp + tn + fn
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-    f1 = (
-        2.0 * precision * recall / (precision + recall)
-        if (precision + recall) > 0
-        else 0.0
-    )
+    f1 = 2.0 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
     accuracy = (tp + tn) / total if total > 0 else 0.0
 
     return ClassificationMetrics(
@@ -117,12 +116,8 @@ def compute_timing_analysis(
                 no_overlap += 1
             total_windows += 1
 
-    mean_ratio = (
-        sum(overlap_ratios) / len(overlap_ratios) if overlap_ratios else 0.0
-    )
-    timing_accuracy = (
-        overlap / total_windows if total_windows > 0 else 0.0
-    )
+    mean_ratio = sum(overlap_ratios) / len(overlap_ratios) if overlap_ratios else 0.0
+    timing_accuracy = overlap / total_windows if total_windows > 0 else 0.0
 
     return TimingAnalysis(
         total_predicted_windows=total_windows,
@@ -170,21 +165,18 @@ def compute_domain_calibrations(
                 confidences.append(match.confidence)
 
         metrics = _compute_classification_metrics(tp, fp, tn, fn)
-        mean_overlap = (
-            sum(overlap_ratios) / len(overlap_ratios)
-            if overlap_ratios else 0.0
-        )
-        mean_conf = (
-            sum(confidences) / len(confidences) if confidences else 0.0
-        )
+        mean_overlap = sum(overlap_ratios) / len(overlap_ratios) if overlap_ratios else 0.0
+        mean_conf = sum(confidences) / len(confidences) if confidences else 0.0
 
-        calibrations.append(DomainCalibration(
-            domain=domain_key,
-            chart_count=len(domain_res_list),
-            metrics=metrics,
-            timing_overlap_ratio=mean_overlap,
-            mean_confidence=mean_conf,
-        ))
+        calibrations.append(
+            DomainCalibration(
+                domain=domain_key,
+                chart_count=len(domain_res_list),
+                metrics=metrics,
+                timing_overlap_ratio=mean_overlap,
+                mean_confidence=mean_conf,
+            )
+        )
 
     return tuple(calibrations)
 
@@ -238,10 +230,7 @@ class StatisticalEvaluator:
         timing_analysis = compute_timing_analysis(results)
 
         # ── Mean confidence ──
-        mean_conf = (
-            sum(all_confidences) / len(all_confidences)
-            if all_confidences else 0.0
-        )
+        mean_conf = sum(all_confidences) / len(all_confidences) if all_confidences else 0.0
 
         return StatisticalReport(
             total_charts=len(results),

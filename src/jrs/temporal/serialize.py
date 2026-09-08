@@ -43,10 +43,7 @@ def event_window_from_dict(data: dict[str, Any]) -> EventWindow:
         candidate_event_taxonomy=data["candidate_event_taxonomy"],
         window_start_utc=data.get("window_start_utc", ""),
         window_end_utc=data.get("window_end_utc", ""),
-        triggers=tuple(
-            temporal_trigger_from_dict(t)
-            for t in data.get("triggers", [])
-        ),
+        triggers=tuple(temporal_trigger_from_dict(t) for t in data.get("triggers", [])),
         convergence_level=ConvergenceLevel(
             data.get("convergence_level", "NONE"),
         ),

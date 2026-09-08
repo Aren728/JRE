@@ -113,9 +113,7 @@ class NakshatraActivation:
     def __post_init__(self) -> None:
         """Compute deterministic_id if not provided."""
         if not self.deterministic_id:
-            object.__setattr__(
-                self, "deterministic_id", self._compute_deterministic_id()
-            )
+            object.__setattr__(self, "deterministic_id", self._compute_deterministic_id())
 
     def _compute_deterministic_id(self) -> str:
         """Compute a deterministic SHA-256 hash for this activation."""
@@ -160,9 +158,7 @@ class NakshatraActivationReport:
         """Return activations involving a specific planet."""
         return tuple(a for a in self.activations if a.source_planet is planet)
 
-    def result_for_nakshatra(
-        self, nakshatra: NakshatraId
-    ) -> tuple[NakshatraActivation, ...]:
+    def result_for_nakshatra(self, nakshatra: NakshatraId) -> tuple[NakshatraActivation, ...]:
         """Return activations involving a specific nakshatra."""
         return tuple(a for a in self.activations if a.nakshatra is nakshatra)
 

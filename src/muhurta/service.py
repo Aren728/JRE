@@ -82,13 +82,9 @@ class MuhurtaService:
                 f"window must be a MuhurtaWindow, got {type(window).__name__}"
             )
         if not isinstance(window.start_utc, str) or window.start_utc == "":
-            raise InvalidMuhurtaRequestError(
-                "window.start_utc must be a non-empty string"
-            )
+            raise InvalidMuhurtaRequestError("window.start_utc must be a non-empty string")
         if not isinstance(window.end_utc, str) or window.end_utc == "":
-            raise InvalidMuhurtaRequestError(
-                "window.end_utc must be a non-empty string"
-            )
+            raise InvalidMuhurtaRequestError("window.end_utc must be a non-empty string")
         if not isinstance(category, MuhurtaCategory):
             raise InvalidMuhurtaRequestError(
                 f"category must be a MuhurtaCategory, got {type(category).__name__}"

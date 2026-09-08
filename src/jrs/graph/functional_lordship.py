@@ -14,7 +14,6 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Optional
 
-
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 # Standard Vimshottari sign ownership: 1-indexed rashi number → owning planet.
@@ -54,6 +53,7 @@ _ALL_PLANETS: tuple[str, ...] = ("SUN", "MOON", "MARS", "MERCURY", "JUPITER", "V
 
 # ── Enums ─────────────────────────────────────────────────────────────────────
 
+
 class FunctionalRole(StrEnum):
     """Functional role of a planet relative to the Lagna."""
 
@@ -74,6 +74,7 @@ _ROLE_WEIGHTS: dict[FunctionalRole, float] = {
 
 
 # ── Data Structures ───────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class LordshipProfile:
@@ -98,6 +99,7 @@ class LordshipProfile:
 
 
 # ── Classifier ────────────────────────────────────────────────────────────────
+
 
 class FunctionalLordshipClassifier:
     """Classify the functional role of a planet relative to a given Lagna.
@@ -166,12 +168,8 @@ class FunctionalLordshipClassifier:
         Returns:
             Sorted tuple of owned house numbers.
         """
-        owned_signs = [
-            sign_num for sign_num, lord in _SIGN_LORDS.items() if lord == planet
-        ]
-        owned_houses = sorted(
-            ((sign_num - lagna_sign) % 12) + 1 for sign_num in owned_signs
-        )
+        owned_signs = [sign_num for sign_num, lord in _SIGN_LORDS.items() if lord == planet]
+        owned_houses = sorted(((sign_num - lagna_sign) % 12) + 1 for sign_num in owned_signs)
         return tuple(owned_houses)
 
     # ── Role Determination ────────────────────────────────────────────────
@@ -256,8 +254,7 @@ class FunctionalLordshipClassifier:
                 owns_lagna = lagna_house in owned_set
                 if not (len(trikona_owned) == 1 and owns_lagna):
                     return FunctionalRole.YOGAKARAKA, (
-                        f"{planet} is Yogakaraka: owns both Kendra and Trikona "
-                        f"houses {owned_set}"
+                        f"{planet} is Yogakaraka: owns both Kendra and Trikona houses {owned_set}"
                     )
 
         return None, None
@@ -286,20 +283,17 @@ class FunctionalLordshipClassifier:
         # 8th lord (exception: if also 1st lord, treated as functional benefic)
         if owns_8th and not owns_1st:
             return FunctionalRole.MALEFIC, (
-                f"{planet} is functional malefic as 8th house lord "
-                f"(owns houses {owned_set})"
+                f"{planet} is functional malefic as 8th house lord (owns houses {owned_set})"
             )
 
         # 6th or 12th lord
         if owns_6th:
             return FunctionalRole.MALEFIC, (
-                f"{planet} is functional malefic as 6th house lord "
-                f"(owns houses {owned_set})"
+                f"{planet} is functional malefic as 6th house lord (owns houses {owned_set})"
             )
         if owns_12th:
             return FunctionalRole.MALEFIC, (
-                f"{planet} is functional malefic as 12th house lord "
-                f"(owns houses {owned_set})"
+                f"{planet} is functional malefic as 12th house lord (owns houses {owned_set})"
             )
 
         # Kendradhipati Dosha: natural benefic owning Kendra without Trikona
@@ -334,8 +328,7 @@ class FunctionalLordshipClassifier:
         if owns_trikona and not owns_8th:
             trikona_houses = owned_set & TRIKONA_HOUSES
             return FunctionalRole.BENEFIC, (
-                f"{planet} is functional benefic as Trikona lord "
-                f"(houses {trikona_houses})"
+                f"{planet} is functional benefic as Trikona lord (houses {trikona_houses})"
             )
 
         return None, None
@@ -346,9 +339,18 @@ class FunctionalLordshipClassifier:
     def _sign_name(sign_num: int) -> str:
         """Return Western name for a 1-indexed sign number."""
         names = {
-            1: "Aries", 2: "Taurus", 3: "Gemini", 4: "Cancer",
-            5: "Leo", 6: "Virgo", 7: "Libra", 8: "Scorpio",
-            9: "Sagittarius", 10: "Capricorn", 11: "Aquarius", 12: "Pisces",
+            1: "Aries",
+            2: "Taurus",
+            3: "Gemini",
+            4: "Cancer",
+            5: "Leo",
+            6: "Virgo",
+            7: "Libra",
+            8: "Scorpio",
+            9: "Sagittarius",
+            10: "Capricorn",
+            11: "Aquarius",
+            12: "Pisces",
         }
         return names.get(sign_num, f"Sign-{sign_num}")
 

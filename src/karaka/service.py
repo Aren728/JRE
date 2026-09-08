@@ -75,9 +75,7 @@ class KarakaService:
     # Naisargika Karakas
     # ------------------------------------------------------------------ #
 
-    def _compute_naisargika(
-        self, bala_report: ShadbalaReport | None
-    ) -> list[KarakaAssignment]:
+    def _compute_naisargika(self, bala_report: ShadbalaReport | None) -> list[KarakaAssignment]:
         """Map Naisargika karakas from config."""
         assignments: list[KarakaAssignment] = []
 
@@ -97,13 +95,15 @@ class KarakaService:
 
         for planet, category in sorted(nais_map.items(), key=lambda x: x[0].value):
             strength = self._get_strength_modifier(planet, bala_report)
-            assignments.append(KarakaAssignment(
-                category=category,
-                planet=planet,
-                karaka_type=KarakaType.NAISARGIKA,
-                rank=1,
-                strength_modifier=strength,
-            ))
+            assignments.append(
+                KarakaAssignment(
+                    category=category,
+                    planet=planet,
+                    karaka_type=KarakaType.NAISARGIKA,
+                    rank=1,
+                    strength_modifier=strength,
+                )
+            )
 
         return assignments
 
@@ -111,9 +111,7 @@ class KarakaService:
     # Sthira Karakas
     # ------------------------------------------------------------------ #
 
-    def _compute_sthira(
-        self, bala_report: ShadbalaReport | None
-    ) -> list[KarakaAssignment]:
+    def _compute_sthira(self, bala_report: ShadbalaReport | None) -> list[KarakaAssignment]:
         """Map Sthira karakas from config."""
         assignments: list[KarakaAssignment] = []
 
@@ -133,13 +131,15 @@ class KarakaService:
 
         for category, planet in sorted(sthi_map.items(), key=lambda x: x[0].value):
             strength = self._get_strength_modifier(planet, bala_report)
-            assignments.append(KarakaAssignment(
-                category=category,
-                planet=planet,
-                karaka_type=KarakaType.STHIRA,
-                rank=1,
-                strength_modifier=strength,
-            ))
+            assignments.append(
+                KarakaAssignment(
+                    category=category,
+                    planet=planet,
+                    karaka_type=KarakaType.STHIRA,
+                    rank=1,
+                    strength_modifier=strength,
+                )
+            )
 
         return assignments
 
@@ -153,20 +153,20 @@ class KarakaService:
         bala_report: ShadbalaReport | None,
     ) -> list[KarakaAssignment]:
         """Compute Chara karakas from planetary longitudes."""
-        chara_pairs = compute_chara_karakas(
-            planet_states, count=self._config.chara_planet_count
-        )
+        chara_pairs = compute_chara_karakas(planet_states, count=self._config.chara_planet_count)
 
         assignments: list[KarakaAssignment] = []
         for rank_idx, (category, planet) in enumerate(chara_pairs):
             strength = self._get_strength_modifier(planet, bala_report)
-            assignments.append(KarakaAssignment(
-                category=category,
-                planet=planet,
-                karaka_type=KarakaType.CHARA,
-                rank=rank_idx + 1,
-                strength_modifier=strength,
-            ))
+            assignments.append(
+                KarakaAssignment(
+                    category=category,
+                    planet=planet,
+                    karaka_type=KarakaType.CHARA,
+                    rank=rank_idx + 1,
+                    strength_modifier=strength,
+                )
+            )
 
         return assignments
 
@@ -188,9 +188,7 @@ class KarakaService:
         # Clamp ratio to [0, 1] range for modifier
         return min(max(result.ratio, 0.0), 1.0)
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Karaka computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidKarakaRequestError(
@@ -199,6 +197,5 @@ class KarakaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidKarakaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

@@ -83,11 +83,13 @@ class DrikService:
             planet = BodyId(planet_str)
             for house in houses:
                 aspect_type = self._house_to_aspect_type(planet, house)
-                rules.append(AspectRule(
-                    source_planet=planet,
-                    target_house_offset=house,
-                    aspect_type=aspect_type,
-                ))
+                rules.append(
+                    AspectRule(
+                        source_planet=planet,
+                        target_house_offset=house,
+                        aspect_type=aspect_type,
+                    )
+                )
         return tuple(rules)
 
     # ------------------------------------------------------------------ #
@@ -106,13 +108,9 @@ class DrikService:
         within the orb of the ideal angle for that house.  The closest
         matching aspect wins.
         """
-        source_houses = self._config.aspect_houses.get(
-            source.body.value, (7,)
-        )
+        source_houses = self._config.aspect_houses.get(source.body.value, (7,))
 
-        actual_distance = self._forward_distance(
-            source.longitude_used, target.longitude_used
-        )
+        actual_distance = self._forward_distance(source.longitude_used, target.longitude_used)
 
         best: AspectApplication | None = None
         best_orb = float("inf")
@@ -197,9 +195,7 @@ class DrikService:
     # Validation
     # ------------------------------------------------------------------ #
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Drik computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidDrikRequestError(
@@ -208,6 +204,5 @@ class DrikService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidDrikRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

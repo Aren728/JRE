@@ -41,9 +41,7 @@ def reference_chart_from_dict(data: dict[str, Any]) -> ReferenceChart:
     return ReferenceChart(
         chart_id=data["chart_id"],
         birth_data=dict(data.get("birth_data", {})),
-        known_events=tuple(
-            known_event_from_dict(e) for e in data.get("known_events", [])
-        ),
+        known_events=tuple(known_event_from_dict(e) for e in data.get("known_events", [])),
         ground_truth=dict(data.get("ground_truth", {})),
         description=data.get("description", ""),
     )
@@ -71,8 +69,7 @@ def validation_result_from_dict(data: dict[str, Any]) -> ValidationResult:
         chart_id=data["chart_id"],
         expected_triggers=tuple(data.get("expected_triggers", [])),
         actual_triggers=tuple(
-            extracted_trigger_from_dict(t)
-            for t in data.get("actual_triggers", [])
+            extracted_trigger_from_dict(t) for t in data.get("actual_triggers", [])
         ),
         match_score=float(data.get("match_score", 0.0)),
         missing_triggers=tuple(data.get("missing_triggers", [])),
@@ -84,10 +81,7 @@ def validation_result_from_dict(data: dict[str, Any]) -> ValidationResult:
 def validation_report_from_dict(data: dict[str, Any]) -> ValidationReport:
     """Deserialize a ValidationReport from a dict."""
     return ValidationReport(
-        results=tuple(
-            validation_result_from_dict(r)
-            for r in data.get("results", [])
-        ),
+        results=tuple(validation_result_from_dict(r) for r in data.get("results", [])),
         overall_score=float(data.get("overall_score", 0.0)),
         total_charts=int(data.get("total_charts", 0)),
         timestamp=data.get("timestamp", ""),

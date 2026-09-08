@@ -112,9 +112,7 @@ def instant_request_from_dict(data: dict[str, Any]) -> GocharInstantRequest:
     """Validate/normalize a GENERIC instant request dict (DC §5)."""
     instant = data.get("instant_utc_iso")
     if not isinstance(instant, str):
-        raise InvalidGocharRequestError(
-            f"instant_utc_iso must be a string, got {instant!r}"
-        )
+        raise InvalidGocharRequestError(f"instant_utc_iso must be a string, got {instant!r}")
     civil_split(instant)  # validates ISO-UTC + time component (SPEC §8)
     bodies = _parse_bodies(data.get("bodies"))
     return GocharInstantRequest(
@@ -135,9 +133,7 @@ def natal_request_from_dict(data: dict[str, Any]) -> GocharNatalRequest:
     bodies = _parse_bodies(data.get("bodies"))
     reference = data.get("reference_point")
     if reference is not None and not isinstance(reference, str):
-        raise InvalidGocharRequestError(
-            f"reference_point must be a string, got {reference!r}"
-        )
+        raise InvalidGocharRequestError(f"reference_point must be a string, got {reference!r}")
     return GocharNatalRequest(
         birth=birth,
         instant_utc_iso=instant,
@@ -162,9 +158,7 @@ def interval_request_from_dict(data: dict[str, Any]) -> GocharIntervalRequest:
     natal_anchor: BirthData | None = None
     if natal_raw is not None:
         if not isinstance(natal_raw, dict):
-            raise InvalidGocharRequestError(
-                f"natal_anchor must be an object, got {natal_raw!r}"
-            )
+            raise InvalidGocharRequestError(f"natal_anchor must be an object, got {natal_raw!r}")
         natal_anchor = jyotish.birth_from_dict(natal_raw)
     return GocharIntervalRequest(
         start_utc_iso=start,
@@ -326,12 +320,12 @@ def validate_schema(payload: Any, schema: dict[str, Any], path: str = "$") -> No
             )
         return
 
-    if "pattern" in schema and isinstance(payload, str) and not re.match(
-        schema["pattern"], payload
+    if (
+        "pattern" in schema
+        and isinstance(payload, str)
+        and not re.match(schema["pattern"], payload)
     ):
-        raise InvalidGocharRequestError(
-            f"{path}: {payload!r} does not match {schema['pattern']}"
-        )
+        raise InvalidGocharRequestError(f"{path}: {payload!r} does not match {schema['pattern']}")
 
     if "null" in allowed and payload is None:
         return

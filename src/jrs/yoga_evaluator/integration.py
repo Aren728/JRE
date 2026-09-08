@@ -51,7 +51,8 @@ class YogaEvidenceService:
             return None
 
         channel = OUTCOME_CHANNEL_MAP.get(
-            evaluation.outcome_category or "", Channel.GENERAL,
+            evaluation.outcome_category or "",
+            Channel.GENERAL,
         )
 
         strength = STATUS_STRENGTH_MAP.get(evaluation.status, EvidenceStrength.MODERATE)

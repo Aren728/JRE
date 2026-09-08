@@ -35,9 +35,7 @@ def load_config(path: str | Path | None = None) -> PrashnaConfig:
         data = tomllib.load(handle)
     section = data.get("prashna", {})
     if not isinstance(section, dict):
-        raise InvalidPrashnaConfigError(
-            f"[prashna] section must be a table, got {section!r}"
-        )
+        raise InvalidPrashnaConfigError(f"[prashna] section must be a table, got {section!r}")
 
     missing = [field for field in _DECLARED_FIELDS if field not in section]
     if missing:
@@ -48,9 +46,7 @@ def load_config(path: str | Path | None = None) -> PrashnaConfig:
 
     version = section.get("version", "0.1.0")
     if not isinstance(version, str) or version == "":
-        raise InvalidPrashnaConfigError(
-            f"version must be a non-empty string, got {version!r}"
-        )
+        raise InvalidPrashnaConfigError(f"version must be a non-empty string, got {version!r}")
 
     default_category = section.get("default_category", "GENERAL")
     if not isinstance(default_category, str) or default_category == "":
@@ -65,8 +61,12 @@ def load_config(path: str | Path | None = None) -> PrashnaConfig:
             if isinstance(cat_val, dict):
                 primary = cat_val.get("primary")
                 secondary = cat_val.get("secondary")
-                if (isinstance(primary, int) and isinstance(secondary, int)
-                        and 1 <= primary <= 12 and 1 <= secondary <= 12):
+                if (
+                    isinstance(primary, int)
+                    and isinstance(secondary, int)
+                    and 1 <= primary <= 12
+                    and 1 <= secondary <= 12
+                ):
                     house_mappings[str(cat_name)] = (primary, secondary)
                     continue
             raise InvalidPrashnaConfigError(

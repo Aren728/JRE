@@ -128,6 +128,7 @@ def _type_schema(typ: Any) -> dict[str, Any]:
 
 def types_union() -> Any:
     import types
+
     return types.UnionType
 
 
@@ -197,12 +198,12 @@ def validate_schema(payload: Any, schema: dict[str, Any], path: str = "$") -> No
             )
         return
 
-    if "pattern" in schema and isinstance(payload, str) and not re.match(
-        schema["pattern"], payload
+    if (
+        "pattern" in schema
+        and isinstance(payload, str)
+        and not re.match(schema["pattern"], payload)
     ):
-        raise InvalidResearchRequestError(
-            f"{path}: {payload!r} does not match {schema['pattern']}"
-        )
+        raise InvalidResearchRequestError(f"{path}: {payload!r} does not match {schema['pattern']}")
 
     if "null" in allowed and payload is None:
         return

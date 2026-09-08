@@ -67,9 +67,9 @@ DEFAULT_METHOD_WEIGHTS: dict[str, float] = {
 }
 
 DEFAULT_METHOD_TOLERANCES: dict[str, float] = {
-    "TRANSIT_TO_ASCENDANT": 3600.0,       # 1 hour
-    "DASHA_TO_EVENT": 86400.0,            # 24 hours
-    "PROGRESSION_TO_ASCENDANT": 7200.0,   # 2 hours
+    "TRANSIT_TO_ASCENDANT": 3600.0,  # 1 hour
+    "DASHA_TO_EVENT": 86400.0,  # 24 hours
+    "PROGRESSION_TO_ASCENDANT": 7200.0,  # 2 hours
 }
 
 DEFAULT_EVIDENCE_WEIGHTS: dict[str, float] = {
@@ -128,9 +128,7 @@ class RectificationConfig:
 
     version: str = RECTIFICATION_VERSION
     max_offset_seconds: float = 86400.0
-    method_weights: dict[str, float] = field(
-        default_factory=lambda: dict(DEFAULT_METHOD_WEIGHTS)
-    )
+    method_weights: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_METHOD_WEIGHTS))
     method_tolerances: dict[str, float] = field(
         default_factory=lambda: dict(DEFAULT_METHOD_TOLERANCES)
     )
@@ -315,41 +313,47 @@ def event_type_relevant_to_method(
         True if the event type is relevant to the method.
     """
     # Transit to Ascendant: major life events with clear timing
-    transit_relevant = frozenset({
-        EventType.MARRIAGE,
-        EventType.BIRTH_OF_CHILD,
-        EventType.DIVORCE,
-        EventType.DEATH,
-        EventType.ACCIDENT,
-        EventType.ILLNESS,
-        EventType.RECOVERY,
-        EventType.IMMIGRATION,
-    })
+    transit_relevant = frozenset(
+        {
+            EventType.MARRIAGE,
+            EventType.BIRTH_OF_CHILD,
+            EventType.DIVORCE,
+            EventType.DEATH,
+            EventType.ACCIDENT,
+            EventType.ILLNESS,
+            EventType.RECOVERY,
+            EventType.IMMIGRATION,
+        }
+    )
 
     # Dasha to Event: career, relationship, and health events
-    dasha_relevant = frozenset({
-        EventType.MARRIAGE,
-        EventType.BIRTH_OF_CHILD,
-        EventType.DIVORCE,
-        EventType.PROMOTION,
-        EventType.JOB_CHANGE,
-        EventType.BUSINESS_START,
-        EventType.BUSINESS_END,
-        EventType.ILLNESS,
-        EventType.ACCIDENT,
-        EventType.FINANCIAL_GAIN,
-        EventType.FINANCIAL_LOSS,
-    })
+    dasha_relevant = frozenset(
+        {
+            EventType.MARRIAGE,
+            EventType.BIRTH_OF_CHILD,
+            EventType.DIVORCE,
+            EventType.PROMOTION,
+            EventType.JOB_CHANGE,
+            EventType.BUSINESS_START,
+            EventType.BUSINESS_END,
+            EventType.ILLNESS,
+            EventType.ACCIDENT,
+            EventType.FINANCIAL_GAIN,
+            EventType.FINANCIAL_LOSS,
+        }
+    )
 
     # Progression to Ascendant: slower-developing events
-    progression_relevant = frozenset({
-        EventType.MARRIAGE,
-        EventType.BIRTH_OF_CHILD,
-        EventType.EDUCATION_COMPLETE,
-        EventType.PROMOTION,
-        EventType.IMMIGRATION,
-        EventType.SPIRITUAL_EVENT,
-    })
+    progression_relevant = frozenset(
+        {
+            EventType.MARRIAGE,
+            EventType.BIRTH_OF_CHILD,
+            EventType.EDUCATION_COMPLETE,
+            EventType.PROMOTION,
+            EventType.IMMIGRATION,
+            EventType.SPIRITUAL_EVENT,
+        }
+    )
 
     if method == RectificationMethod.TRANSIT_TO_ASCENDANT:
         return event_type in transit_relevant

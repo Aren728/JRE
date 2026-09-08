@@ -56,9 +56,7 @@ def _parse_enum[EnumT: enum.Enum](
     try:
         return enum_cls(raw)
     except ValueError as exc:
-        raise InvalidConfigError(
-            f"unknown {field} value {raw!r}"
-        ) from exc
+        raise InvalidConfigError(f"unknown {field} value {raw!r}") from exc
 
 
 def load_config(path: str | Path | None = None) -> JyotishConfig:
@@ -80,18 +78,14 @@ def load_config(path: str | Path | None = None) -> JyotishConfig:
         zodiac_mode=_parse_enum(
             ZodiacMode, section.get("zodiac_mode"), "zodiac_mode", ZodiacMode.SIDEREAL
         ),
-        ayanamsa=_parse_enum(
-            Ayanamsa, section.get("ayanamsa"), "ayanamsa", Ayanamsa.LAHIRI
-        ),
+        ayanamsa=_parse_enum(Ayanamsa, section.get("ayanamsa"), "ayanamsa", Ayanamsa.LAHIRI),
         house_system=_parse_enum(
             HouseSystem,
             section.get("house_system"),
             "house_system",
             HouseSystem.WHOLE_SIGN,
         ),
-        node_model=_parse_enum(
-            NodeType, section.get("node_model"), "node_model", NodeType.MEAN
-        ),
+        node_model=_parse_enum(NodeType, section.get("node_model"), "node_model", NodeType.MEAN),
         position_type=_parse_enum(
             PositionType, section.get("position_type"), "position_type", PositionType.APPARENT
         ),

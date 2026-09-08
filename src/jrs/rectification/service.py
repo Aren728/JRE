@@ -77,13 +77,9 @@ class RectificationIntegrationService:
                 candidate offsets.
         """
         if not 0.0 <= assessment_weight <= 1.0:
-            raise ValueError(
-                f"assessment_weight must be in [0, 1], got {assessment_weight}"
-            )
+            raise ValueError(f"assessment_weight must be in [0, 1], got {assessment_weight}")
         if not 0.0 <= timing_weight <= 1.0:
-            raise ValueError(
-                f"timing_weight must be in [0, 1], got {timing_weight}"
-            )
+            raise ValueError(f"timing_weight must be in [0, 1], got {timing_weight}")
         if max_adjustment_minutes <= 0:
             raise ValueError(
                 f"max_adjustment_minutes must be positive, got {max_adjustment_minutes}"
@@ -130,17 +126,11 @@ class RectificationIntegrationService:
         """
         candidate_time = birth_data.get("birth_time_utc", "")
         if not candidate_time:
-            raise InvalidCandidateError(
-                "birth_data must contain a non-empty birth_time_utc"
-            )
+            raise InvalidCandidateError("birth_data must contain a non-empty birth_time_utc")
         if not known_events:
-            raise InvalidKnownEventsError(
-                "known_events must be a non-empty list"
-            )
+            raise InvalidKnownEventsError("known_events must be a non-empty list")
         if pipeline_output is None:
-            raise PipelineEvaluationError(
-                "pipeline_output is required for evaluation"
-            )
+            raise PipelineEvaluationError("pipeline_output is required for evaluation")
 
         # Evaluate each known event against the pipeline output
         event_matches: list[EventMatch] = []
@@ -157,9 +147,7 @@ class RectificationIntegrationService:
                 MatchQuality.EXACT_MATCH,
                 MatchQuality.STRONG_MATCH,
             ):
-                supporting_ids.append(
-                    f"{known_event.domain_label}:{known_event.expected_outcome}"
-                )
+                supporting_ids.append(f"{known_event.domain_label}:{known_event.expected_outcome}")
             elif match.match_quality in (
                 MatchQuality.WEAK_MATCH,
                 MatchQuality.NO_MATCH,
@@ -219,13 +207,9 @@ class RectificationIntegrationService:
         """
         candidate_time = birth_data.get("birth_time_utc", "")
         if not candidate_time:
-            raise InvalidCandidateError(
-                "birth_data must contain a non-empty birth_time_utc"
-            )
+            raise InvalidCandidateError("birth_data must contain a non-empty birth_time_utc")
         if not known_events:
-            raise InvalidKnownEventsError(
-                "known_events must be a non-empty list"
-            )
+            raise InvalidKnownEventsError("known_events must be a non-empty list")
 
         proposals: list[AdjustmentProposal] = []
 
@@ -235,7 +219,9 @@ class RectificationIntegrationService:
 
         # Strategy 2: Brute-force scan (evaluate_candidate for each offset)
         scan_proposals = self._scan_proposals(
-            birth_data, known_events, pipeline_runner,
+            birth_data,
+            known_events,
+            pipeline_runner,
         )
         proposals.extend(scan_proposals)
 
@@ -243,8 +229,10 @@ class RectificationIntegrationService:
         seen_offsets: set[float] = set()
         unique_proposals: list[AdjustmentProposal] = []
         for p in proposals:
-            rounded = round(p.offset_minutes / self._adjustment_step_minutes) * \
-                self._adjustment_step_minutes
+            rounded = (
+                round(p.offset_minutes / self._adjustment_step_minutes)
+                * self._adjustment_step_minutes
+            )
             if rounded not in seen_offsets:
                 seen_offsets.add(rounded)
                 unique_proposals.append(p)
@@ -253,9 +241,7 @@ class RectificationIntegrationService:
         unique_proposals.sort(key=lambda p: p.confidence, reverse=True)
 
         if not unique_proposals:
-            raise NoAdjustmentError(
-                "No valid adjustment proposals could be generated"
-            )
+            raise NoAdjustmentError("No valid adjustment proposals could be generated")
 
         return unique_proposals
 
@@ -282,9 +268,7 @@ class RectificationIntegrationService:
             )
 
         # Check if the expected outcome matches the assessed outcome
-        outcome_match = (
-            assessment.outcome_taxonomy == known_event.expected_outcome
-        )
+        outcome_match = assessment.outcome_taxonomy == known_event.expected_outcome
 
         # Compute assessment status mismatch
         assess_mismatch = compute_assessment_mismatch(
@@ -299,10 +283,7 @@ class RectificationIntegrationService:
         )
 
         # Combine mismatches with weights
-        mismatch = (
-            self._assessment_weight * assess_mismatch
-            + self._timing_weight * timing_mismatch
-        )
+        mismatch = self._assessment_weight * assess_mismatch + self._timing_weight * timing_mismatch
 
         # Penalize outcome mismatch
         if not outcome_match:
@@ -329,10 +310,10 @@ class RectificationIntegrationService:
         if mismatch_score <= 0.1:
             return 0.0
         # Linear scaling: mismatch 1.0 → max_adjustment
-        return round(
-            mismatch_score * self._max_adjustment_minutes
-            / self._adjustment_step_minutes
-        ) * self._adjustment_step_minutes
+        return (
+            round(mismatch_score * self._max_adjustment_minutes / self._adjustment_step_minutes)
+            * self._adjustment_step_minutes
+        )
 
     def _jre021_proposals(
         self,
@@ -359,11 +340,13 @@ class RectificationIntegrationService:
         for ev in life_events_raw:
             if isinstance(ev, dict):
                 try:
-                    life_events.append(LifeEvent(
-                        event_date_utc=ev.get("event_date_utc", ""),
-                        event_type=EventType(ev.get("event_type", "OTHER")),
-                        description=ev.get("description", ""),
-                    ))
+                    life_events.append(
+                        LifeEvent(
+                            event_date_utc=ev.get("event_date_utc", ""),
+                            event_type=EventType(ev.get("event_type", "OTHER")),
+                            description=ev.get("description", ""),
+                        )
+                    )
                 except (ValueError, TypeError):
                     continue
             elif isinstance(ev, LifeEvent):
@@ -387,27 +370,26 @@ class RectificationIntegrationService:
                     suggested_dt = datetime.fromisoformat(
                         report.suggested_birth_time.replace("Z", "+00:00")
                     )
-                    candidate_dt = datetime.fromisoformat(
-                        candidate_time.replace("Z", "+00:00")
-                    )
+                    candidate_dt = datetime.fromisoformat(candidate_time.replace("Z", "+00:00"))
                     diff = (suggested_dt - candidate_dt).total_seconds() / 60.0
 
                     if abs(diff) > 0.5:
                         direction = (
-                            AdjustmentDirection.LATER if diff > 0
-                            else AdjustmentDirection.EARLIER
+                            AdjustmentDirection.LATER if diff > 0 else AdjustmentDirection.EARLIER
                         )
-                        avg_confidence = sum(
-                            r.confidence_score for r in report.offsets
-                        ) / len(report.offsets)
+                        avg_confidence = sum(r.confidence_score for r in report.offsets) / len(
+                            report.offsets
+                        )
 
-                        proposals.append(AdjustmentProposal(
-                            offset_minutes=abs(diff),
-                            direction=direction,
-                            confidence=avg_confidence,
-                            reason=f"JRE-021 {method.value} method",
-                            method=method.value,
-                        ))
+                        proposals.append(
+                            AdjustmentProposal(
+                                offset_minutes=abs(diff),
+                                direction=direction,
+                                confidence=avg_confidence,
+                                reason=f"JRE-021 {method.value} method",
+                                method=method.value,
+                            )
+                        )
             except Exception:  # noqa: BLE001
                 # JRE-021 may fail for some inputs — skip silently
                 continue
@@ -442,14 +424,17 @@ class RectificationIntegrationService:
                 continue
 
             adjusted_time = apply_offset_to_birth_time(
-                candidate_time, offset * 60.0,
+                candidate_time,
+                offset * 60.0,
             )
             adjusted_data = {**birth_data, "birth_time_utc": adjusted_time}
 
             try:
                 pipeline_output = pipeline_runner(adjusted_data)
                 result = self.evaluate_candidate(
-                    adjusted_data, known_events, pipeline_output,
+                    adjusted_data,
+                    known_events,
+                    pipeline_output,
                 )
             except Exception:  # noqa: BLE001
                 offset += step
@@ -458,17 +443,16 @@ class RectificationIntegrationService:
             # Better mismatch → higher confidence
             confidence = 1.0 - result.mismatch_score
             if confidence > 0.0:
-                direction = (
-                    AdjustmentDirection.LATER if offset > 0
-                    else AdjustmentDirection.EARLIER
+                direction = AdjustmentDirection.LATER if offset > 0 else AdjustmentDirection.EARLIER
+                proposals.append(
+                    AdjustmentProposal(
+                        offset_minutes=abs(offset),
+                        direction=direction,
+                        confidence=confidence,
+                        reason=f"Brute-force scan (mismatch={result.mismatch_score:.3f})",
+                        method="SCAN",
+                    )
                 )
-                proposals.append(AdjustmentProposal(
-                    offset_minutes=abs(offset),
-                    direction=direction,
-                    confidence=confidence,
-                    reason=f"Brute-force scan (mismatch={result.mismatch_score:.3f})",
-                    method="SCAN",
-                ))
 
             offset += step
 

@@ -268,15 +268,11 @@ def evaluate_condition(
     """
     if condition_type == ConditionType.YOGA_PRESENT:
         yoga_id = str(params.get("yoga_id", ""))
-        return any(
-            y.yoga_id == yoga_id and y.present for y in data.yogas
-        )
+        return any(y.yoga_id == yoga_id and y.present for y in data.yogas)
 
     if condition_type == ConditionType.YOGA_ABSENT:
         yoga_id = str(params.get("yoga_id", ""))
-        return not any(
-            y.yoga_id == yoga_id and y.present for y in data.yogas
-        )
+        return not any(y.yoga_id == yoga_id and y.present for y in data.yogas)
 
     if condition_type == ConditionType.BALA_ABOVE:
         target_planet = str(params.get("planet", ""))
@@ -305,10 +301,7 @@ def evaluate_condition(
     if condition_type == ConditionType.PLANET_IN_HOUSE:
         planet = str(params.get("planet", ""))
         house = int(params.get("house", 0))
-        return any(
-            h.planet == planet and h.house == house
-            for h in data.house_occupancies
-        )
+        return any(h.planet == planet and h.house == house for h in data.house_occupancies)
 
     if condition_type == ConditionType.PLANET_ASPECTS_HOUSE:
         # Simplified: check if planet is in a house that aspects the target
@@ -328,15 +321,21 @@ def evaluate_condition(
         to_house = int(params.get("to_house", 0))
         # Find the lord of from_house (simplified: use standard lords)
         standard_lords = {
-            1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON",
-            5: "SUN", 6: "MERCURY", 7: "VENUS", 8: "MARS",
-            9: "JUPITER", 10: "SATURN", 11: "SATURN", 12: "JUPITER",
+            1: "MARS",
+            2: "VENUS",
+            3: "MERCURY",
+            4: "MOON",
+            5: "SUN",
+            6: "MERCURY",
+            7: "VENUS",
+            8: "MARS",
+            9: "JUPITER",
+            10: "SATURN",
+            11: "SATURN",
+            12: "JUPITER",
         }
         lord = standard_lords.get(from_house, "")
-        return any(
-            h.planet == lord and h.house == to_house
-            for h in data.house_occupancies
-        )
+        return any(h.planet == lord and h.house == to_house for h in data.house_occupancies)
 
     if condition_type == ConditionType.ASHTAKAVARGA_ABOVE:
         target_house = int(params.get("house", 0))
@@ -349,19 +348,13 @@ def evaluate_condition(
     if condition_type == ConditionType.AVASTHA_STATE:
         planet = str(params.get("planet", ""))
         state = str(params.get("state", ""))
-        return any(
-            a.planet == planet and a.state == state
-            for a in data.avasthas
-        )
+        return any(a.planet == planet and a.state == state for a in data.avasthas)
 
     if condition_type == ConditionType.KARAKA_PRESENT:
         # Simplified: check if a karaka planet is in the expected house
         karaka = str(params.get("karaka", ""))
         house = int(params.get("house", 0))
-        return any(
-            h.planet == karaka and h.house == house
-            for h in data.house_occupancies
-        )
+        return any(h.planet == karaka and h.house == house for h in data.house_occupancies)
 
     # COMBINED_AND / COMBINED_OR handled at rule level
     return False
@@ -391,9 +384,7 @@ def compute_category_score(
     for rule in rules:
         if evaluate_condition(rule.condition_type, rule.condition_params, data):
             score += rule.weight
-            evidence.append(
-                f"{rule.condition_type.value}:{rule.condition_params}"
-            )
+            evidence.append(f"{rule.condition_type.value}:{rule.condition_params}")
 
     return score, evidence
 
@@ -456,12 +447,14 @@ def generate_verdicts(
             continue
         score, evidence = compute_category_score(cat_rules, data)
         strength = classify_strength(score, thresholds)
-        verdicts.append(Verdict(
-            category=category,
-            score=score,
-            strength=strength,
-            evidence_ids=tuple(evidence),
-        ))
+        verdicts.append(
+            Verdict(
+                category=category,
+                score=score,
+                strength=strength,
+                evidence_ids=tuple(evidence),
+            )
+        )
     return tuple(verdicts)
 
 

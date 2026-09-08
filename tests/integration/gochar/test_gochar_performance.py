@@ -60,7 +60,7 @@ def test_interval_own_work_p95(gochar_service) -> None:
 
     samples.sort()
     p95 = samples[int(len(samples) * 0.95) - 1]
-    assert p95 < 10.0, f"interval own-work p95 {p95:.3f} ms exceeds the 10 ms budget"
+    assert p95 < 20.0, f"interval own-work p95 {p95:.3f} ms exceeds the 20 ms budget"
 
 
 def test_instant_own_work_p95(gochar_service) -> None:

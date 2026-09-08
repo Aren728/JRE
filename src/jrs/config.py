@@ -9,12 +9,14 @@ from typing import Any
 from .errors import InvalidJRSConfigError
 from .models import JRSConfig, RoutingRule
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "default_research_depth",
-    "routing",
-    "engine_hints",
-})
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "default_research_depth",
+        "routing",
+        "engine_hints",
+    }
+)
 
 _CONFIG_PATH = Path(__file__).resolve().parent.parent.parent / "config" / "jrs.toml"
 

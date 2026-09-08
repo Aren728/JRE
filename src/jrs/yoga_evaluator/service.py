@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
+from ..graph.chain_aggregation import YogaSpecificChainAggregator, get_yoga_category
 from ..graph.chain_evaluator import (
     ChainEdge,
     ChainPath,
@@ -12,19 +13,18 @@ from ..graph.chain_evaluator import (
     EdgeType,
     RelationshipGraph,
 )
-from ..graph.chain_aggregation import YogaSpecificChainAggregator, get_yoga_category
 from ..graph.chain_strength import ChainStrengthEngine, PathImpact
 from ..graph.nakshatra_service import NakshatraRelationshipService
 from ..structural.models import PlanetRelationship, RelationshipType
 from ..structural.service import RelationshipGraphService
-from ..temporal.timeline_service import DynamicTemporalService, DynamicStrengthResult
+from ..temporal.timeline_service import DynamicStrengthResult, DynamicTemporalService
 from ..varga.confirmation_service import (
     ConfirmationStatus,
     VargaConfirmationResult,
     VargaConfirmationService,
 )
-from .modifier_service import ModifierEvaluationService, ModifierReport, ModifierStatus
 from .models import YogaEvaluation, YogaOutcome, YogaStatus
+from .modifier_service import ModifierEvaluationService, ModifierReport, ModifierStatus
 
 # Dusthana houses — placements that weaken a yoga
 DUSTHANA_HOUSES: frozenset[int] = frozenset({6, 8, 12})
@@ -93,9 +93,7 @@ class YogaEvaluatorService:
         Returns:
             VargaConfirmationResult with confirmation status and strength.
         """
-        return self._varga_confirmation_svc.evaluate_d9_confirmation(
-            involved_planets, jre_facts
-        )
+        return self._varga_confirmation_svc.evaluate_d9_confirmation(involved_planets, jre_facts)
 
     def evaluate_d10_career(
         self,
@@ -111,9 +109,7 @@ class YogaEvaluatorService:
         Returns:
             VargaConfirmationResult for D10 career confirmation.
         """
-        return self._varga_confirmation_svc.evaluate_d10_career(
-            involved_planets, jre_facts
-        )
+        return self._varga_confirmation_svc.evaluate_d10_career(involved_planets, jre_facts)
 
     def evaluate_d7_progeny(
         self,
@@ -129,9 +125,7 @@ class YogaEvaluatorService:
         Returns:
             VargaConfirmationResult for D7 progeny confirmation.
         """
-        return self._varga_confirmation_svc.evaluate_d7_progeny(
-            involved_planets, jre_facts
-        )
+        return self._varga_confirmation_svc.evaluate_d7_progeny(involved_planets, jre_facts)
 
     # ── Chain Strength Methods (Phase B — RI-011) ──
 
@@ -157,13 +151,15 @@ class YogaEvaluatorService:
         # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
         nak_edges = self._discover_nakshatra_edges(jre_facts)
         for ne in nak_edges:
-            relationships.append(PlanetRelationship(
-                planet_a=ne.source,
-                planet_b=ne.target,
-                relationship_type=RelationshipType.CONJUNCTION,
-                is_directed=ne.edge_type == "NAKSHATRA_LORD",
-                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
-            ))
+            relationships.append(
+                PlanetRelationship(
+                    planet_a=ne.source,
+                    planet_b=ne.target,
+                    relationship_type=RelationshipType.CONJUNCTION,
+                    is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                    strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+                )
+            )
 
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.compute_aggregate_impact(graph, jre_facts)
@@ -195,13 +191,15 @@ class YogaEvaluatorService:
         # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
         nak_edges = self._discover_nakshatra_edges(jre_facts)
         for ne in nak_edges:
-            relationships.append(PlanetRelationship(
-                planet_a=ne.source,
-                planet_b=ne.target,
-                relationship_type=RelationshipType.CONJUNCTION,
-                is_directed=ne.edge_type == "NAKSHATRA_LORD",
-                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
-            ))
+            relationships.append(
+                PlanetRelationship(
+                    planet_a=ne.source,
+                    planet_b=ne.target,
+                    relationship_type=RelationshipType.CONJUNCTION,
+                    is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                    strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+                )
+            )
 
         graph = RelationshipGraph(relationships=tuple(relationships))
         path_impacts = self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
@@ -233,13 +231,15 @@ class YogaEvaluatorService:
         # ── Layer 1: Enrich graph with Nakshatra edges (Phase D — RI-012) ──
         nak_edges = self._discover_nakshatra_edges(jre_facts)
         for ne in nak_edges:
-            relationships.append(PlanetRelationship(
-                planet_a=ne.source,
-                planet_b=ne.target,
-                relationship_type=RelationshipType.CONJUNCTION,
-                is_directed=ne.edge_type == "NAKSHATRA_LORD",
-                strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
-            ))
+            relationships.append(
+                PlanetRelationship(
+                    planet_a=ne.source,
+                    planet_b=ne.target,
+                    relationship_type=RelationshipType.CONJUNCTION,
+                    is_directed=ne.edge_type == "NAKSHATRA_LORD",
+                    strength_modifier=f"nakshatra:{ne.edge_type}:{ne.weight:.2f}",
+                )
+            )
 
         graph = RelationshipGraph(relationships=tuple(relationships))
         return self._chain_strength_engine.evaluate_all_paths(graph, jre_facts)
@@ -269,7 +269,7 @@ class YogaEvaluatorService:
 
         target_ts = jre_facts.get("target_timestamp")
         if target_ts is None:
-            target_ts = datetime(2024, 1, 1)
+            target_ts = datetime.now()
 
         moon_nakshatra = jre_facts.get("moon_nakshatra", "ASHWINI")
         moon_nakshatra_degree = jre_facts.get("moon_nakshatra_degree", 0.0)
@@ -281,6 +281,7 @@ class YogaEvaluatorService:
         if transit_houses is None or ashtakavarga_scores is None:
             try:
                 from jrs.temporal.ashtakavarga_service import AshtakavargaService
+
                 av_svc = AshtakavargaService()
                 av_profile = av_svc.compute_profile(jre_facts, target_ts)
                 if transit_houses is None:
@@ -329,9 +330,7 @@ class YogaEvaluatorService:
         # ── Phase 1: Run 5-tier modifier pipeline ──
         # All formation checks (combustion, debilitation, dusthana, etc.)
         # are now handled by ModifierEvaluationService per RI-010G.
-        modifier_report = self._modifier_svc.evaluate_modifiers(
-            involved_planets, jre_facts
-        )
+        modifier_report = self._modifier_svc.evaluate_modifiers(involved_planets, jre_facts)
 
         # ── Layer 1.5: Yoga-Specific Chain Strength (RI-013 Phase E6c) ──
         # Compute multi-hop chain impact using yoga-specific aggregation models.
@@ -362,8 +361,7 @@ class YogaEvaluatorService:
                 house_lords = jre_facts.get("house_lords", {})
                 for pname in involved_planets:
                     owned_houses = [
-                        h for h, lord in house_lords.items()
-                        if lord == pname and isinstance(h, int)
+                        h for h, lord in house_lords.items() if lord == pname and isinstance(h, int)
                     ]
                     owns_kendra = any(h in kendra_set for h in owned_houses)
                     owns_trikona = any(h in trikona_set for h in owned_houses)
@@ -372,7 +370,10 @@ class YogaEvaluatorService:
                         chain_kwargs["is_primary_kendra_lord"] = True
                         break
             chain_impact = self.compute_yoga_specific_chain_impact(
-                yoga_name, involved_planets, jre_facts, **chain_kwargs,
+                yoga_name,
+                involved_planets,
+                jre_facts,
+                **chain_kwargs,
             )
 
         # ── Layer 3: Dynamic Temporal Evaluation (Phase C — RI-012) ──
@@ -391,7 +392,9 @@ class YogaEvaluatorService:
             dynamic_str = dyn_result.dynamic_strength
 
         # If modifier pipeline cancels or weakens, override formation status
+        # and adjust dynamic_strength accordingly.
         if modifier_report.overall_status == ModifierStatus.CANCELLED:
+            # CANCELLED: dynamic strength is zero regardless of Dasha/Transit
             return YogaEvaluation(
                 yoga_name=yoga_name,
                 status=YogaStatus.CANCELLED,
@@ -400,9 +403,21 @@ class YogaEvaluatorService:
                 chain_impact=chain_impact,
                 dasha_multiplier=dasha_mult,
                 transit_multiplier=transit_mult,
-                dynamic_strength=dynamic_str,
+                dynamic_strength=0.0,
             )
         if modifier_report.overall_status == ModifierStatus.WEAKENED:
+            # WEAKENED: recompute dynamic strength with 50% penalty on base
+            weakened_dynamic: float | None = None
+            if "moon_nakshatra" in jre_facts:
+                weakened_score = (abs(chain_impact) if chain_impact is not None else 0.5) * 0.5
+                weakened_dyn = self.compute_dynamic_strength(
+                    static_strength=weakened_score,
+                    involved_planets=involved_planets,
+                    jre_facts=jre_facts,
+                )
+                weakened_dynamic = weakened_dyn.dynamic_strength
+                dasha_mult = weakened_dyn.dasha_multiplier
+                transit_mult = weakened_dyn.transit_multiplier
             return YogaEvaluation(
                 yoga_name=yoga_name,
                 status=YogaStatus.WEAKENED,
@@ -411,7 +426,7 @@ class YogaEvaluatorService:
                 chain_impact=chain_impact,
                 dasha_multiplier=dasha_mult,
                 transit_multiplier=transit_mult,
-                dynamic_strength=dynamic_str,
+                dynamic_strength=weakened_dynamic,
             )
 
         return YogaEvaluation(
@@ -457,11 +472,17 @@ class YogaEvaluatorService:
 
         # ── Legacy signature ──
         eval_obj = evaluation if evaluation is not None else yoga_name_or_evaluation
-        planets = yoga_planets if yoga_planets is not None else (involved_planets_or_yoga_planets or [])
-        active = active_dasha_lord if active_dasha_lord is not None else (dasha_lord_or_active or "")
+        planets = (
+            yoga_planets if yoga_planets is not None else (involved_planets_or_yoga_planets or [])
+        )
+        active = (
+            active_dasha_lord if active_dasha_lord is not None else (dasha_lord_or_active or "")
+        )
 
         if not isinstance(eval_obj, YogaEvaluation):
-            raise TypeError("evaluate_manifestation requires a YogaEvaluation for the legacy signature")
+            raise TypeError(
+                "evaluate_manifestation requires a YogaEvaluation for the legacy signature"
+            )
 
         if active in planets:
             return replace(
@@ -519,6 +540,12 @@ class YogaEvaluatorService:
                 "ANAPHA": YogaOutcome.WEALTH_ACCUMULATION,
                 "SUNAPHA": YogaOutcome.WEALTH_ACCUMULATION,
                 "DHUDHARA": YogaOutcome.WEALTH_ACCUMULATION,
+                # Health / Arishta Yogas (PROP-2026-001)
+                "ARISHTA DOSHA": YogaOutcome.HEALTH_AFFLICTION,
+                "MARAKA DOSHA": YogaOutcome.HEALTH_AFFLICTION,
+                "LAGNA ASHUBHA": YogaOutcome.HEALTH_AFFLICTION,
+                "GRAHA KUTUMBA": YogaOutcome.HEALTH_AFFLICTION,
+                "DASHA LAGNA ARISHTA": YogaOutcome.HEALTH_AFFLICTION,
             }
             key = yoga_name.upper().replace("_", " ")
             return _YOGA_OUTCOME_MAP.get(key, YogaOutcome.GENERAL_IMPROVEMENT)
@@ -675,6 +702,27 @@ class YogaEvaluatorService:
                 YogaOutcome.SOCIAL_STATUS,
                 YogaOutcome.WISDOM_ACCUMULATION,
             },
+            # ── Health / Arishta Yogas (PROP-2026-001) ──
+            "ARISHTA DOSHA": {
+                YogaOutcome.HEALTH_AFFLICTION,
+                YogaOutcome.CRISIS_MANAGEMENT,
+            },
+            "MARAKA DOSHA": {
+                YogaOutcome.HEALTH_AFFLICTION,
+                YogaOutcome.CRISIS_MANAGEMENT,
+            },
+            "LAGNA ASHUBHA": {
+                YogaOutcome.HEALTH_AFFLICTION,
+                YogaOutcome.CRISIS_MANAGEMENT,
+            },
+            "GRAHA KUTUMBA": {
+                YogaOutcome.HEALTH_AFFLICTION,
+                YogaOutcome.CRISIS_MANAGEMENT,
+            },
+            "DASHA LAGNA ARISHTA": {
+                YogaOutcome.HEALTH_AFFLICTION,
+                YogaOutcome.CRISIS_MANAGEMENT,
+            },
         }
         key = yoga_name.upper().replace("_", " ")
         return _YOGA_MULTI_DOMAIN_MAP.get(
@@ -783,8 +831,8 @@ class YogaEvaluatorService:
                 if k_name == t_name:
                     continue
                 diff = abs(k_house - t_house)
-                is_conjunction = (k_house == t_house)
-                is_mutual_aspect = (diff == 7)
+                is_conjunction = k_house == t_house
+                is_mutual_aspect = diff == 7
                 if is_conjunction or is_mutual_aspect:
                     involved = [k_name, t_name]
                     eval_ = self.evaluate_formation(
@@ -818,8 +866,7 @@ class YogaEvaluatorService:
             # Classical exclusion 1: Primary Kendra/Trikona lord cannot
             # form Vipareeta Raja (they form Raja Yoga instead).
             owned_houses = [
-                h for h, lord in house_lords.items()
-                if lord == lord_planet and isinstance(h, int)
+                h for h, lord in house_lords.items() if lord == lord_planet and isinstance(h, int)
             ]
             owns_kendra = any(h in kendra_set for h in owned_houses)
             owns_trikona = any(h in trikona_set for h in owned_houses)
@@ -876,9 +923,7 @@ class YogaEvaluatorService:
                             status=YogaStatus.FORMED,
                         )
                     )
-                    yoga_involved_planets.append(
-                        [second_lord_planet, eleventh_lord_planet]
-                    )
+                    yoga_involved_planets.append([second_lord_planet, eleventh_lord_planet])
 
         # ── Pancha Mahapurusha Yogas ──
         # Planet in Kendra (1,4,7,10) in own or exaltation sign, non-combust/non-debilitated
@@ -890,22 +935,22 @@ class YogaEvaluatorService:
             "SATURN": "Sasa",
         }
         _EXALTATION_SIGNS: dict[str, str] = {
-            "SUN": "MESHA",       # Aries
-            "MOON": "VRISHABHA",   # Taurus
-            "MARS": "MAKARA",      # Capricorn
-            "MERCURY": "KANYA",    # Virgo
-            "JUPITER": "KARKA",    # Cancer
-            "VENUS": "MEENA",      # Pisces
-            "SATURN": "TULA",      # Libra
+            "SUN": "MESHA",  # Aries
+            "MOON": "VRISHABHA",  # Taurus
+            "MARS": "MAKARA",  # Capricorn
+            "MERCURY": "KANYA",  # Virgo
+            "JUPITER": "KARKA",  # Cancer
+            "VENUS": "MEENA",  # Pisces
+            "SATURN": "TULA",  # Libra
         }
         _OWN_SIGNS: dict[str, str] = {
-            "SUN": "SIMHA",        # Leo
-            "MOON": "KARKA",       # Cancer
+            "SUN": "SIMHA",  # Leo
+            "MOON": "KARKA",  # Cancer
             "MARS": "VRISHCHIKA",  # Scorpio
-            "MERCURY": "KANYA",    # Virgo (also Mithuna)
-            "JUPITER": "DHANUSHA", # Sagittarius (also Meena)
-            "VENUS": "TULA",       # Libra (also Vrishabha)
-            "SATURN": "KUMBHA",    # Aquarius (also Makara)
+            "MERCURY": "KANYA",  # Virgo (also Mithuna)
+            "JUPITER": "DHANUSHA",  # Sagittarius (also Meena)
+            "VENUS": "TULA",  # Libra (also Vrishabha)
+            "SATURN": "KUMBHA",  # Aquarius (also Makara)
         }
 
         for pname, yoga_name in _MAHAPURUSHA_MAP.items():
@@ -983,13 +1028,13 @@ class YogaEvaluatorService:
         # ── Neecha Bhanga Yoga ──
         # Debilitation sign → sign lord mapping
         debilitation_sign_lord: dict[str, str] = {
-            "SUN": "VENUS",       # Sun debilitated in Libra (lord Venus)
-            "MOON": "MARS",        # Moon debilitated in Scorpio (lord Mars)
-            "MARS": "MOON",        # Mars debilitated in Cancer (lord Moon)
+            "SUN": "VENUS",  # Sun debilitated in Libra (lord Venus)
+            "MOON": "MARS",  # Moon debilitated in Scorpio (lord Mars)
+            "MARS": "MOON",  # Mars debilitated in Cancer (lord Moon)
             "MERCURY": "JUPITER",  # Mercury debilitated in Pisces (lord Jupiter)
-            "JUPITER": "SATURN",   # Jupiter debilitated in Capricorn (lord Saturn)
-            "VENUS": "MERCURY",    # Venus debilitated in Virgo (lord Mercury)
-            "SATURN": "MARS",      # Saturn debilitated in Aries (lord Mars)
+            "JUPITER": "SATURN",  # Jupiter debilitated in Capricorn (lord Saturn)
+            "VENUS": "MERCURY",  # Venus debilitated in Virgo (lord Mercury)
+            "SATURN": "MARS",  # Saturn debilitated in Aries (lord Mars)
         }
 
         lagna_house = jre_facts.get("lagna_house")
@@ -1048,9 +1093,14 @@ class YogaEvaluatorService:
         ven_pdata = planets.get("VENUS", {})
         ven_house_val = ven_pdata.get("house")
         _SARASWATI_HOUSES = {1, 2, 4, 5, 7, 9, 10, 11}
-        if (isinstance(jup_house_val, int) and isinstance(merc_house_val, int)
-                and isinstance(ven_house_val, int)):
-            all_in_range = all(h in _SARASWATI_HOUSES for h in [jup_house_val, merc_house_val, ven_house_val])
+        if (
+            isinstance(jup_house_val, int)
+            and isinstance(merc_house_val, int)
+            and isinstance(ven_house_val, int)
+        ):
+            all_in_range = all(
+                h in _SARASWATI_HOUSES for h in [jup_house_val, merc_house_val, ven_house_val]
+            )
             jup_rashi = jup_pdata.get("rashi", "")
             jup_strong = (
                 jup_house_val in kendra_houses
@@ -1180,19 +1230,140 @@ class YogaEvaluatorService:
                 results.append(eval_)
                 yoga_involved_planets.append(_KAMALA_PLANETS)
 
+        # ── HEALTH YOGAS (PROP-2026-001) ──────────────────────────────────
+        # Classical Arishta/Health detection per BPHS Ch 32, Phaladeepika Ch 8.
+        # These yogas map to HEALTH_AFFLICTION outcome domain.
+
+        # --- 1. Arishta Dosha (BPHS Ch 32 V.8-10) ---
+        # 6th lord + 8th lord both in dusthana (6/8/12) → chronic disease.
+        _DUSTHANA_SET = {6, 8, 12}
+        sixth_lord_planet = house_lords.get(6)
+        eighth_lord_planet = house_lords.get(8)
+        if isinstance(sixth_lord_planet, str) and isinstance(eighth_lord_planet, str):
+            sixth_lord_house = planets.get(sixth_lord_planet, {}).get("house")
+            eighth_lord_house = planets.get(eighth_lord_planet, {}).get("house")
+            if isinstance(sixth_lord_house, int) and isinstance(eighth_lord_house, int):
+                sixth_in_dusthana = sixth_lord_house in _DUSTHANA_SET
+                eighth_in_dusthana = eighth_lord_house in _DUSTHANA_SET
+                if sixth_in_dusthana and eighth_in_dusthana:
+                    arishta_involved = [sixth_lord_planet, eighth_lord_planet]
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Arishta Dosha",
+                        involved_planets=arishta_involved,
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                        results.append(eval_)
+                        yoga_involved_planets.append(arishta_involved)
+
+        # --- 2. Maraka Dosha (BPHS Ch 32 V.12-15) ---
+        # 2nd lord + 7th lord in dusthana, or conjunct in dusthana.
+        second_lord_planet = house_lords.get(2)
+        seventh_lord_planet = house_lords.get(7)
+        if isinstance(second_lord_planet, str) and isinstance(seventh_lord_planet, str):
+            second_lord_house = planets.get(second_lord_planet, {}).get("house")
+            seventh_lord_house = planets.get(seventh_lord_planet, {}).get("house")
+            if isinstance(second_lord_house, int) and isinstance(seventh_lord_house, int):
+                second_in_dusthana = second_lord_house in _DUSTHANA_SET
+                seventh_in_dusthana = seventh_lord_house in _DUSTHANA_SET
+                is_conjunction = second_lord_house == seventh_lord_house
+                if second_in_dusthana or seventh_in_dusthana or is_conjunction:
+                    maraka_involved = [second_lord_planet, seventh_lord_planet]
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Maraka Dosha",
+                        involved_planets=maraka_involved,
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                        results.append(eval_)
+                        yoga_involved_planets.append(maraka_involved)
+
+        # --- 3. Lagna Ashubha (Phaladeepika Ch 8 V.1) ---
+        # 2+ natural malefics (Saturn, Mars, Rahu) in dusthana → health vulnerability.
+        _MALEFICS = {"SATURN", "MARS", "RAHU"}
+        malefic_in_dusthana: list[str] = []
+        for mname in _MALEFICS:
+            mdata = planets.get(mname, {})
+            mh = mdata.get("house")
+            if isinstance(mh, int) and mh in _DUSTHANA_SET:
+                malefic_in_dusthana.append(mname)
+        if len(malefic_in_dusthana) >= 2:
+            eval_ = self.evaluate_formation(
+                yoga_name="Lagna Ashubha",
+                involved_planets=malefic_in_dusthana[:3],
+                jre_facts=jre_facts,
+            )
+            if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                results.append(eval_)
+                yoga_involved_planets.append(malefic_in_dusthana[:3])
+
+        # --- 4. Graha Kutumba (Phaladeepika Ch 8 V.5) ---
+        # 3+ planets in dusthana → severe health burden.
+        planets_in_dusthana: list[str] = []
+        for pname, pdata in planets.items():
+            ph = pdata.get("house")
+            if isinstance(ph, int) and ph in _DUSTHANA_SET:
+                planets_in_dusthana.append(pname)
+        if len(planets_in_dusthana) >= 3:
+            eval_ = self.evaluate_formation(
+                yoga_name="Graha Kutumba",
+                involved_planets=planets_in_dusthana[:5],
+                jre_facts=jre_facts,
+            )
+            if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                results.append(eval_)
+                yoga_involved_planets.append(planets_in_dusthana[:5])
+
+        # --- 5. Dasha Lagna Arishta (BPHS Ch 50 V.18-20) ---
+        # Lagna lord (or any planet owning a Kendra) in dusthana AND aspected/
+        # conjunct by a malefic → health event timing potential.
+        lagna_lord_planet = house_lords.get(1)
+        if isinstance(lagna_lord_planet, str):
+            ll_house = planets.get(lagna_lord_planet, {}).get("house")
+            if isinstance(ll_house, int) and ll_house in _DUSTHANA_SET:
+                # Check for malefic conjunction or aspect in same house
+                has_malefic_affliction = False
+                for mname in _MALEFICS:
+                    mdata = planets.get(mname, {})
+                    mh = mdata.get("house")
+                    if isinstance(mh, int) and mh == ll_house:
+                        has_malefic_affliction = True
+                        break
+                # Also check mutual aspect (7 houses apart)
+                if not has_malefic_affliction:
+                    for mname in _MALEFICS:
+                        mdata = planets.get(mname, {})
+                        mh = mdata.get("house")
+                        if isinstance(mh, int) and abs(mh - ll_house) == 7:
+                            has_malefic_affliction = True
+                            break
+                if has_malefic_affliction:
+                    dla_involved = [lagna_lord_planet]
+                    # Add the afflicting malefic
+                    for mname in _MALEFICS:
+                        mdata = planets.get(mname, {})
+                        mh = mdata.get("house")
+                        if isinstance(mh, int) and mh == ll_house:
+                            dla_involved.append(mname)
+                            break
+                    eval_ = self.evaluate_formation(
+                        yoga_name="Dasha Lagna Arishta",
+                        involved_planets=dla_involved,
+                        jre_facts=jre_facts,
+                    )
+                    if eval_.status in (YogaStatus.FORMED, YogaStatus.WEAKENED):
+                        results.append(eval_)
+                        yoga_involved_planets.append(dla_involved)
+
         # ── Phase 1: Apply 5-tier modifier pipeline to all FORMED yogas ──
         # Skip Vipareeta Raja: dusthana placement is required, not a weakness
-        for idx, (eval_, involved) in enumerate(
-            zip(results, yoga_involved_planets)
-        ):
+        for idx, (eval_, involved) in enumerate(zip(results, yoga_involved_planets)):
             if eval_.status != YogaStatus.FORMED:
                 continue
             if eval_.yoga_name == "Vipareeta Raja":
                 # Vipareeta Raja yoga requires dusthana lordship — skip modifier
                 continue
-            modifier_report = self._modifier_svc.evaluate_modifiers(
-                involved, jre_facts
-            )
+            modifier_report = self._modifier_svc.evaluate_modifiers(involved, jre_facts)
             if modifier_report.overall_status == ModifierStatus.CANCELLED:
                 results[idx] = replace(
                     eval_,
@@ -1235,9 +1406,7 @@ class YogaEvaluatorService:
         # BPHS Ch 35: D9 confirmation validates or cancels yoga strength.
         # Applied after modifier pipeline (Phase 1) to post-formation yogas.
         if "planet_d9_house" in jre_facts:
-            for idx, (eval_, involved) in enumerate(
-                zip(results, yoga_involved_planets)
-            ):
+            for idx, (eval_, involved) in enumerate(zip(results, yoga_involved_planets)):
                 # Only apply to FORMED or WEAKENED yogas (not already CANCELLED)
                 if eval_.status == YogaStatus.CANCELLED:
                     continue
@@ -1263,11 +1432,18 @@ class YogaEvaluatorService:
 
     # Material domains that should NOT activate for HEALTH/CRISIS events
     # unless the Dasha lord has strong 8th/12th house connections.
-    _MATERIAL_DOMAINS: frozenset[str] = frozenset({
-        "CAREER_PROMINENCE", "WEALTH_ACCUMULATION", "ARTISTIC_EXCELLENCE",
-        "BUSINESS_ACUMEN", "POLITICAL_POWER", "SOCIAL_STATUS",
-        "PUBLIC_RECOGNITION", "INTELLECTUAL_EXCELLENCE",
-    })
+    _MATERIAL_DOMAINS: frozenset[str] = frozenset(
+        {
+            "CAREER_PROMINENCE",
+            "WEALTH_ACCUMULATION",
+            "ARTISTIC_EXCELLENCE",
+            "BUSINESS_ACUMEN",
+            "POLITICAL_POWER",
+            "SOCIAL_STATUS",
+            "PUBLIC_RECOGNITION",
+            "INTELLECTUAL_EXCELLENCE",
+        }
+    )
 
     def should_activate_for_event(
         self,
@@ -1316,8 +1492,7 @@ class YogaEvaluatorService:
         # Check if Dasha lord owns 8th or 12th house
         house_lords = jre_facts.get("house_lords", {})
         owned_houses = [
-            h for h, lord in house_lords.items()
-            if lord == dasha_md_lord and isinstance(h, int)
+            h for h, lord in house_lords.items() if lord == dasha_md_lord and isinstance(h, int)
         ]
         if 8 in owned_houses or 12 in owned_houses:
             return True  # Dasha lord owns dusthana — allow

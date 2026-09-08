@@ -22,6 +22,7 @@ from typing import Any, Optional
 
 class ConfirmationStatus(StrEnum):
     """Status after D9 confirmation check."""
+
     FORMED = "FORMED"
     CANCELLED = "CANCELLED"
     WEAKENED = "WEAKENED"
@@ -29,6 +30,7 @@ class ConfirmationStatus(StrEnum):
 
 class ConfirmationStrength(StrEnum):
     """Strength classification after D9 confirmation."""
+
     STRONG = "STRONG"
     MODERATE = "MODERATE"
     WEAK = "WEAK"
@@ -37,6 +39,7 @@ class ConfirmationStrength(StrEnum):
 @dataclass(frozen=True)
 class VargaConfirmationResult:
     """Result of D9 confirmation evaluation for a yoga."""
+
     confirmation_status: ConfirmationStatus
     strength: ConfirmationStrength
     kendra_trikona_count: int
@@ -148,9 +151,7 @@ class VargaConfirmationService:
                     strength=ConfirmationStrength.WEAK,
                     kendra_trikona_count=0,
                     total_planets=total,
-                    cancellation_reason=(
-                        f"{planet} debilitated in D9 (Navamsha)"
-                    ),
+                    cancellation_reason=(f"{planet} debilitated in D9 (Navamsha)"),
                 )
 
         # ── Count Kendra/Trikona placements in D9 ──

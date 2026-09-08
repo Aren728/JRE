@@ -30,24 +30,21 @@ from .chain_evaluator import (
     EdgeType,
 )
 from .chain_strength import (
-    ChainStrengthEngine,
     HOP_DAMPING,
     NAKSHATRA_EDGE_ATTENUATION,
+    ChainStrengthEngine,
     NodeMultiplier,
     PathImpact,
 )
 
 # ── Natural Benefic/Malefic Classification (BPHS Ch 2) ──────────────────────
 
-NATURAL_BENEFICS: frozenset[str] = frozenset(
-    {"JUPITER", "VENUS", "MOON", "MERCURY"}
-)
-NATURAL_MALEFICS: frozenset[str] = frozenset(
-    {"SUN", "MARS", "SATURN", "RAHU", "KETU"}
-)
+NATURAL_BENEFICS: frozenset[str] = frozenset({"JUPITER", "VENUS", "MOON", "MERCURY"})
+NATURAL_MALEFICS: frozenset[str] = frozenset({"SUN", "MARS", "SATURN", "RAHU", "KETU"})
 
 
 # ── Yoga Category Enum ───────────────────────────────────────────────────────
+
 
 class YogaCategory(StrEnum):
     """Yoga categories with distinct chain aggregation models."""
@@ -64,6 +61,7 @@ class YogaCategory(StrEnum):
 
 
 # ── Category Weights ─────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class CategoryWeights:
@@ -86,32 +84,46 @@ class CategoryWeights:
 
 CATEGORY_WEIGHTS: dict[YogaCategory, CategoryWeights] = {
     YogaCategory.GAJAKESARI: CategoryWeights(
-        w_benefic=0.8, w_malefic=0.5, never_cancelled=True,
+        w_benefic=0.8,
+        w_malefic=0.5,
+        never_cancelled=True,
     ),
     YogaCategory.BUDHADITYA: CategoryWeights(
-        w_benefic=1.0, w_malefic=999.0, malefic_cancels=True,
+        w_benefic=1.0,
+        w_malefic=999.0,
+        malefic_cancels=True,
         immunity_own_sign=True,
     ),
     YogaCategory.PANCHA_MAHAPURUSHA: CategoryWeights(
-        w_benefic=0.0, w_malefic=0.3, immunity_own_sign=True,
+        w_benefic=0.0,
+        w_malefic=0.3,
+        immunity_own_sign=True,
     ),
     YogaCategory.RAJA: CategoryWeights(
-        w_benefic=1.0, w_malefic=0.7,
+        w_benefic=1.0,
+        w_malefic=0.7,
     ),
     YogaCategory.VIPAREETA_RAJA: CategoryWeights(
-        w_benefic=0.0, w_malefic=0.3, never_cancelled=True,
+        w_benefic=0.0,
+        w_malefic=0.3,
+        never_cancelled=True,
     ),
     YogaCategory.KEMADRUMA: CategoryWeights(
-        w_benefic=1.0, w_malefic=0.0, never_cancelled=True,
+        w_benefic=1.0,
+        w_malefic=0.0,
+        never_cancelled=True,
     ),
     YogaCategory.CHANDRA: CategoryWeights(
-        w_benefic=0.6, w_malefic=0.8,
+        w_benefic=0.6,
+        w_malefic=0.8,
     ),
     YogaCategory.DHANA: CategoryWeights(
-        w_benefic=1.0, w_malefic=0.8,
+        w_benefic=1.0,
+        w_malefic=0.8,
     ),
     YogaCategory.DEFAULT: CategoryWeights(
-        w_benefic=1.0, w_malefic=0.7,
+        w_benefic=1.0,
+        w_malefic=0.7,
     ),
 }
 
@@ -166,13 +178,14 @@ def get_yoga_category(yoga_name: str) -> YogaCategory:
 
 # ── Path Magnitude Recomputation ─────────────────────────────────────────────
 
+
 def _compute_node_multiplier(node: ChainNode) -> NodeMultiplier:
     """Compute the node multiplier (dignity × retro × combust).
 
     This recomputes the multiplier without the functional role sign,
     so we can apply category-specific weights separately.
     """
-    from .chain_evaluator import DIGNITY_SCORES, COMBUST_MULTIPLIER, RETROGRADE_MULTIPLIER
+    from .chain_evaluator import COMBUST_MULTIPLIER, DIGNITY_SCORES, RETROGRADE_MULTIPLIER
 
     dignity_score = DIGNITY_SCORES.get(node.dignity, 1.00)
     retro_mult = RETROGRADE_MULTIPLIER if node.is_retrograde else 1.00
@@ -212,6 +225,7 @@ def _compute_path_magnitude(path: ChainPath) -> float:
 
 
 # ── Path Classification ──────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class ClassifiedPath:
@@ -270,21 +284,22 @@ def classify_paths(
         magnitude = _compute_path_magnitude(pi.path)
 
         # Check if ANY node in the path involves a malefic planet
-        involves_malefic = any(
-            node.planet.upper() in NATURAL_MALEFICS for node in pi.path.nodes
-        )
+        involves_malefic = any(node.planet.upper() in NATURAL_MALEFICS for node in pi.path.nodes)
 
-        classified.append(ClassifiedPath(
-            path_impact=pi,
-            magnitude=magnitude,
-            classification=cls,
-            involves_malefic=involves_malefic,
-        ))
+        classified.append(
+            ClassifiedPath(
+                path_impact=pi,
+                magnitude=magnitude,
+                classification=cls,
+                involves_malefic=involves_malefic,
+            )
+        )
 
     return classified
 
 
 # ── Main Aggregator ──────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class AggregationResult:
@@ -354,27 +369,37 @@ class YogaSpecificChainAggregator:
         # Dispatch to category-specific method
         if category == YogaCategory.VIPAREETA_RAJA:
             return self._aggregate_vipareeta_raja(
-                path_impacts, yoga_planets, **kwargs,
+                path_impacts,
+                yoga_planets,
+                **kwargs,
             )
         if category == YogaCategory.KEMADRUMA:
             return self._aggregate_kemadruma(
-                path_impacts, yoga_planets, **kwargs,
+                path_impacts,
+                yoga_planets,
+                **kwargs,
             )
         if category == YogaCategory.PANCHA_MAHAPURUSHA:
             # Pancha Mahapurusha: filter to yoga-rooted paths, then check
             # for external malefics in the chain.
             classified = classify_paths(path_impacts, yoga_planets)
             return self._aggregate_pancha_mahapurusha_from_classified(
-                classified, yoga_planets, **kwargs,
+                classified,
+                yoga_planets,
+                **kwargs,
             )
         if category == YogaCategory.BUDHADITYA:
             return self._aggregate_budhaditya(
-                path_impacts, yoga_planets, **kwargs,
+                path_impacts,
+                yoga_planets,
+                **kwargs,
             )
 
         if category == YogaCategory.GAJAKESARI:
             return self._aggregate_gajakesari(
-                path_impacts, yoga_planets, **kwargs,
+                path_impacts,
+                yoga_planets,
+                **kwargs,
             )
 
         # Default: weighted sum model (Raja, Chandra, Dhana, etc.)
@@ -410,8 +435,7 @@ class YogaSpecificChainAggregator:
 
         for cp in classified:
             root_planet = (
-                cp.path_impact.path.nodes[0].planet.upper()
-                if cp.path_impact.path.nodes else ""
+                cp.path_impact.path.nodes[0].planet.upper() if cp.path_impact.path.nodes else ""
             )
 
             # Natural benefic override: yoga-participating planets
@@ -469,8 +493,7 @@ class YogaSpecificChainAggregator:
 
         for cp in classified:
             root_planet = (
-                cp.path_impact.path.nodes[0].planet.upper()
-                if cp.path_impact.path.nodes else ""
+                cp.path_impact.path.nodes[0].planet.upper() if cp.path_impact.path.nodes else ""
             )
 
             if cp.classification == "benefic":
@@ -572,8 +595,12 @@ class YogaSpecificChainAggregator:
         return AggregationResult(
             chain_impact=round(chain_impact, 6),
             category=YogaCategory.PANCHA_MAHAPURUSHA,
-            benefic_sum=round(sum(cp.magnitude for cp in classified if cp.classification == "benefic"), 6),
-            malefic_sum=round(sum(cp.magnitude for cp in classified if cp.classification == "malefic"), 6),
+            benefic_sum=round(
+                sum(cp.magnitude for cp in classified if cp.classification == "benefic"), 6
+            ),
+            malefic_sum=round(
+                sum(cp.magnitude for cp in classified if cp.classification == "malefic"), 6
+            ),
             total_paths=len(classified),
             benefic_paths=sum(1 for cp in classified if cp.classification == "benefic"),
             malefic_paths=malefic_count,
@@ -606,7 +633,9 @@ class YogaSpecificChainAggregator:
         external_malefic_count = 0
 
         for cp in classified:
-            root_planet = cp.path_impact.path.nodes[0].planet.upper() if cp.path_impact.path.nodes else ""
+            root_planet = (
+                cp.path_impact.path.nodes[0].planet.upper() if cp.path_impact.path.nodes else ""
+            )
             is_yoga_root = root_planet in yoga_set
 
             # Check for external malefic (non-root node is malefic)

@@ -85,9 +85,7 @@ class IndependenceAnalyzer:
         pairwise_scores: list[float] = []
         for i in range(len(provenances)):
             for j in range(i + 1, len(provenances)):
-                score = self.calculate_pairwise_independence(
-                    provenances[i], provenances[j]
-                )
+                score = self.calculate_pairwise_independence(provenances[i], provenances[j])
                 pairwise_scores.append(score)
 
         if not pairwise_scores:

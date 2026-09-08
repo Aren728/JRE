@@ -45,9 +45,7 @@ class VargaService:
         reference.
         """
         if not isinstance(states, tuple) or not states:
-            raise InvalidVargaRequestError(
-                "states must be a non-empty tuple of PlanetState values"
-            )
+            raise InvalidVargaRequestError("states must be a non-empty tuple of PlanetState values")
         for state in states:
             if not isinstance(state, PlanetState):
                 raise InvalidVargaRequestError(

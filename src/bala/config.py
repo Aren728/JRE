@@ -54,9 +54,7 @@ def load_config(path: str | Path | None = None) -> BalaConfig:
 
     min_raw = section.get("minimum_rupas", {})
     if not isinstance(min_raw, dict) or not min_raw:
-        raise InvalidBalaConfigError(
-            f"minimum_rupas must be a non-empty table, got {min_raw!r}"
-        )
+        raise InvalidBalaConfigError(f"minimum_rupas must be a non-empty table, got {min_raw!r}")
     min_rupas = {str(k): float(v) for k, v in min_raw.items()}
 
     nais_raw = section.get("naisargika_virupas", {})

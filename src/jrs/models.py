@@ -9,6 +9,7 @@ from typing import Any
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class QueryCategory(Enum):
     """Supported query categories for routing."""
 
@@ -26,14 +27,32 @@ class QueryCategory(Enum):
 
 # All valid engine module names
 ALL_ENGINES: tuple[str, ...] = (
-    "astronomy", "jyotish", "knowledge", "bhava", "gochar",
-    "context", "varga", "research", "dasha", "bala", "drik",
-    "yoga", "karaka", "avastha", "ashtakavarga", "tajika",
-    "jaimini", "prashna", "muhurta", "rectification", "synthesis",
+    "astronomy",
+    "jyotish",
+    "knowledge",
+    "bhava",
+    "gochar",
+    "context",
+    "varga",
+    "research",
+    "dasha",
+    "bala",
+    "drik",
+    "yoga",
+    "karaka",
+    "avastha",
+    "ashtakavarga",
+    "tajika",
+    "jaimini",
+    "prashna",
+    "muhurta",
+    "rectification",
+    "synthesis",
 )
 
 
 # ── Routing Rule (defined early for forward refs) ────────────────────────────
+
 
 @dataclass(frozen=True)
 class RoutingRule:
@@ -45,6 +64,7 @@ class RoutingRule:
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class QueryIntent:
@@ -119,6 +139,7 @@ class EvidencePacket:
 
 # ── Orchestrator Config ──────────────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class JRSConfig:
     """Configuration for the Orchestrator including routing matrix."""
@@ -130,6 +151,7 @@ class JRSConfig:
 
 
 # ── Routing Logic ────────────────────────────────────────────────────────────
+
 
 def route_query_intent(
     intent: QueryIntent,

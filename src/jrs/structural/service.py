@@ -22,14 +22,33 @@ _STANDARD_ASPECTS = {
 
 # Sign ownership (Vimshottari) - 1-indexed rashi number to owning planet
 _SIGN_LORDS = {
-    1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON", 5: "SUN",
-    6: "MERCURY", 7: "VENUS", 8: "MARS", 9: "JUPITER", 10: "SATURN",
-    11: "SATURN", 12: "JUPITER",
+    1: "MARS",
+    2: "VENUS",
+    3: "MERCURY",
+    4: "MOON",
+    5: "SUN",
+    6: "MERCURY",
+    7: "VENUS",
+    8: "MARS",
+    9: "JUPITER",
+    10: "SATURN",
+    11: "SATURN",
+    12: "JUPITER",
 }
 
 _RASHI_ORDER = [
-    "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-    "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+    "MESHA",
+    "VRISHABHA",
+    "MITHUNA",
+    "KARKA",
+    "SIMHA",
+    "KANYA",
+    "TULA",
+    "VRISHCHIKA",
+    "DHANUSHA",
+    "MAKARA",
+    "KUMBHA",
+    "MEENA",
 ]
 
 
@@ -89,7 +108,11 @@ class RelationshipGraphService:
                         continue
                     if p2_data.get("rashi") == target_rashi:
                         # Avoid duplicate if conjunction already found
-                        conj_key = (min(p1_name, p2_name), max(p1_name, p2_name), RelationshipType.CONJUNCTION)
+                        conj_key = (
+                            min(p1_name, p2_name),
+                            max(p1_name, p2_name),
+                            RelationshipType.CONJUNCTION,
+                        )
                         if conj_key in seen:
                             continue
                         aspect_key = (p1_name, p2_name, RelationshipType.ASPECT)
@@ -208,18 +231,19 @@ class RelationshipGraphService:
             activated_natal_planets: set[str] = set()
             for rel in relationships:
                 if rel.relationship_type in (
-                    RelationshipType.TRANSIT_ASPECT, RelationshipType.TRANSIT_CONJUNCTION
+                    RelationshipType.TRANSIT_ASPECT,
+                    RelationshipType.TRANSIT_CONJUNCTION,
                 ):
                     activated_natal_planets.add(rel.planet_b)
 
             for rel in relationships:
-                if (
-                    rel.relationship_type
-                    in (RelationshipType.ASPECT, RelationshipType.CONJUNCTION, RelationshipType.DISPOSITOR)
-                    and (
-                        rel.planet_a in activated_natal_planets
-                        or rel.planet_b in activated_natal_planets
-                    )
+                if rel.relationship_type in (
+                    RelationshipType.ASPECT,
+                    RelationshipType.CONJUNCTION,
+                    RelationshipType.DISPOSITOR,
+                ) and (
+                    rel.planet_a in activated_natal_planets
+                    or rel.planet_b in activated_natal_planets
                 ):
                     # Create a new instance with is_active=True (frozen dataclass)
                     updated_rel = PlanetRelationship(

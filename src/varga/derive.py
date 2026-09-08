@@ -84,9 +84,7 @@ def _rashi_from_str(raw: str | None, what: str) -> RashiId:
 # --------------------------------------------------------------------------- #
 
 
-def _uniform_segment(
-    degree: Fraction, division_count: int
-) -> tuple[int, float, float]:
+def _uniform_segment(degree: Fraction, division_count: int) -> tuple[int, float, float]:
     """Division index (1-based) and segment bounds for a uniform division.
 
     Exact rational boundary mechanism: segment size = Fraction(30, n) and
@@ -95,9 +93,7 @@ def _uniform_segment(
     under HALF_OPEN_LOW. No epsilon, no tolerance, no snapping.
     """
     if division_count <= 0:
-        raise InvalidVargaRequestError(
-            f"division_count must be positive, got {division_count!r}"
-        )
+        raise InvalidVargaRequestError(f"division_count must be positive, got {division_count!r}")
     segment = Fraction(30, division_count)
     index = int(degree // segment) + 1
     index = min(index, division_count)  # degree < 30 guaranteed; defensive
@@ -116,9 +112,7 @@ def _table_segment(
         upper = Fraction(band.upper_deg)
         if lower <= degree < upper:
             return position + 1, float(lower), float(upper)
-    raise InvalidVargaRequestError(
-        f"degree {float(degree)!r} does not fall in any table band"
-    )
+    raise InvalidVargaRequestError(f"degree {float(degree)!r} does not fall in any table band")
 
 
 def _d60_segment(degree: Fraction) -> tuple[int, float, float]:
@@ -155,9 +149,7 @@ def _relative_modality_offset(rashi: RashiId, params: RelativeModalityParams) ->
     return params.dual_offset
 
 
-def _odd_even_offset(
-    rashi: RashiId, params: OddEvenStartParams, source_index: int
-) -> int:
+def _odd_even_offset(rashi: RashiId, params: OddEvenStartParams, source_index: int) -> int:
     """Per-parity start: relative offsets from the source sign (D7/D10) or
     absolute start signs (D24: Leo/Cancer; D40: Aries/Libra)."""
     if params.odd_start is not None or params.even_start is not None:
@@ -175,9 +167,7 @@ def _fixed_offset(rashi: RashiId, params: FixedStartParams, source_index: int) -
         return 0
     start = params.odd_start if _is_odd(rashi) else params.even_start
     if start is None:
-        raise InvalidVargaRequestError(
-            f"fixed start sign is undefined for {rashi.value!r}"
-        )
+        raise InvalidVargaRequestError(f"fixed start sign is undefined for {rashi.value!r}")
     start_index = rashi_index(_rashi_from_str(start.value, "fixed"))
     return (start_index - source_index) % 12
 
@@ -261,9 +251,7 @@ def _map_sign(
             if _is_odd(rashi) == (division_index == 1):
                 return params.odd_start
             return params.even_start
-        raise InvalidVargaRequestError(
-            "SPECIALIZED mapping requires remainder=True or hora=True"
-        )
+        raise InvalidVargaRequestError("SPECIALIZED mapping requires remainder=True or hora=True")
     else:  # ELEMENT_START — no V1 varga uses it (D27 deferred).
         raise InvalidVargaRequestError(
             f"mapping strategy {strategy.value!r} has no V1 implementation"
@@ -296,8 +284,7 @@ def compute_varga_position(
     degree_f = state.degree_in_rashi
     if not (0.0 <= degree_f < 30.0):
         raise InvalidVargaRequestError(
-            "degree_in_rashi must be in [0, 30) (JRE-003 normalization), "
-            f"got {degree_f!r}"
+            f"degree_in_rashi must be in [0, 30) (JRE-003 normalization), got {degree_f!r}"
         )
     # Exact decimal rational of the JRE-003 value (the shortest decimal
     # that round-trips to the float). NO approximation: a nearest-rational

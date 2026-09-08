@@ -10,8 +10,7 @@ from .errors import CitationNotFoundError, InvalidResearchConfigError
 from .models import ResearchConfig, RuleCitation
 
 _CONFIG_PATH = (
-    Path(__file__).resolve().parent.parent.parent.parent
-    / "config" / "research_sources.toml"
+    Path(__file__).resolve().parent.parent.parent.parent / "config" / "research_sources.toml"
 )
 
 
@@ -123,9 +122,7 @@ class ResearchService:
             A tuple of matching RuleCitation objects.
         """
         citations = self._load_citations()
-        return tuple(
-            c for c in citations.values() if c.domain == domain
-        )
+        return tuple(c for c in citations.values() if c.domain == domain)
 
     def get_all_citations(self) -> tuple[RuleCitation, ...]:
         """Get all loaded citations.

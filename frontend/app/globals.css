@@ -1,0 +1,491 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Space+Mono:wght@400;700&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  /* ── Mystic Archeology Theme ───────────────────────── */
+  --cosmic-bg: #0c0f1d;
+  --cosmic-card: #1a1423;
+  --cosmic-gold: #c5a880;
+  --cosmic-text: #e6dfd3;
+  --cosmic-muted: #8a94a6;
+  --benefic-green: #10b981;
+  --malefic-red: #ef4444;
+  /* ── Legacy palette (kept for compatibility) ─────── */
+  --cosmic-1: #120b30;
+  --cosmic-2: #1a1045;
+  --cosmic-accent: #c5a880;
+  --cosmic-gold-light: #f0d68a;
+  --star-color: rgba(255, 255, 255, 0.85);
+  --glass-bg: rgba(26, 20, 35, 0.65);
+  --glass-border: rgba(197, 168, 128, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --text-primary: #e6dfd3;
+  --text-secondary: rgba(230, 223, 211, 0.6);
+  --text-accent: #c5a880;
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(197, 168, 128, 0.2);
+  --input-focus: rgba(197, 168, 128, 0.45);
+}
+
+@theme inline {
+  --color-cosmic-bg: var(--cosmic-bg);
+  --color-cosmic-card: var(--cosmic-card);
+  --color-cosmic-1: var(--cosmic-1);
+  --color-cosmic-2: var(--cosmic-2);
+  --color-cosmic-accent: var(--cosmic-accent);
+  --color-cosmic-gold: var(--cosmic-gold);
+  --color-cosmic-gold-light: var(--cosmic-gold-light);
+  --color-cosmic-text: var(--cosmic-text);
+  --color-cosmic-muted: var(--cosmic-muted);
+  --color-benefic-green: var(--benefic-green);
+  --color-malefic-red: var(--malefic-red);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-accent: var(--text-accent);
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-input-focus: var(--input-focus);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html { font-size: 17px; }
+}
+
+body {
+  font-size: 16px;
+  background: var(--cosmic-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(88, 28, 135, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(30, 64, 175, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(120, 40, 200, 0.15) 0%, transparent 50%),
+    linear-gradient(180deg, var(--cosmic-bg) 0%, var(--cosmic-1) 40%, var(--cosmic-2) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-family: var(--font-inter, 'Inter', system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glassmorphism Card ─────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 12px 40px var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-static {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+/* ── Cosmic Inputs ──────────────────────────────────── */
+.cosmic-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  width: 100%;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.cosmic-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.cosmic-input:focus {
+  border-color: var(--cosmic-gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cosmic-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cosmic-select {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  width: 100%;
+  transition: all 0.25s ease;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23c9a0ff' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.cosmic-select:focus {
+  border-color: var(--cosmic-gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+}
+
+.cosmic-select option {
+  background: #1a1045;
+  color: var(--text-primary);
+}
+
+/* ── Cosmic Button ──────────────────────────────────── */
+.cosmic-btn {
+  background: linear-gradient(135deg, var(--cosmic-gold), #b8942f);
+  color: #1a1045;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cosmic-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.cosmic-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.cosmic-btn:hover {
+  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.4);
+  transform: translateY(-1px);
+}
+
+.cosmic-btn:active {
+  transform: translateY(0);
+}
+
+.cosmic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cosmic-btn:disabled::before {
+  display: none;
+}
+
+.cosmic-btn-outline {
+  background: transparent;
+  color: var(--cosmic-accent);
+  border: 1px solid var(--cosmic-accent);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cosmic-btn-outline:hover {
+  background: rgba(197, 168, 128, 0.15);
+  border-color: var(--cosmic-gold);
+}
+
+/* ── Star Twinkle Animation ─────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 160, 255, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(201, 160, 255, 0.25); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes checkmark-draw {
+  from { stroke-dashoffset: 36; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Scrollbar Styling ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 160, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 160, 255, 0.5);
+}
+
+/* ── Table Styling ──────────────────────────────────── */
+.cosmic-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.cosmic-table thead th {
+  background: rgba(201, 160, 255, 0.1);
+  color: var(--cosmic-accent);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cosmic-table thead th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+.cosmic-table thead th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.cosmic-table tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.875rem;
+}
+
+.cosmic-table tbody tr:hover {
+  background: rgba(201, 160, 255, 0.05);
+}
+
+/* ── Status Badges ──────────────────────────────────── */
+.badge-formed {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-weakened {
+  background: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.badge-not-formed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* ── Toggle Switch ──────────────────────────────────── */
+.am-toggle {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--input-border);
+}
+
+.am-toggle button {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.am-toggle button.active {
+  background: linear-gradient(135deg, var(--cosmic-gold), #b8942f);
+  color: #1a1423;
+}
+
+/* ── Navbar Glassmorphism ──────────────────────────── */
+.navbar-glass {
+  background: rgba(26, 20, 35, 0.7);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+}
+
+.navbar-link {
+  position: relative;
+  padding: 0.5rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: var(--cosmic-muted);
+}
+
+.navbar-link:hover {
+  color: var(--cosmic-text);
+  background: rgba(197, 168, 128, 0.08);
+}
+
+.navbar-link.active {
+  color: var(--cosmic-gold);
+  background: rgba(197, 168, 128, 0.1);
+}
+
+/* ── Dashboard Cards ─────────────────────────────────── */
+.dashboard-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cosmic-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dashboard-card:hover {
+  border-color: rgba(197, 168, 128, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-card:hover::before {
+  opacity: 1;
+}
+
+/* ── Quick Action Buttons ─────────────────────────────── */
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.quick-action-btn:hover {
+  background: rgba(197, 168, 128, 0.1);
+  border-color: rgba(197, 168, 128, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Label Styling ──────────────────────────────────── */
+.cosmic-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.375rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Geocoding Feedback ─────────────────────────────── */
+.geo-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--cosmic-accent);
+  padding: 0.375rem 0;
+}
+
+.geo-success {
+  font-size: 0.75rem;
+  color: #4ade80;
+  padding: 0.25rem 0;
+}
+
+.geo-error {
+  font-size: 0.75rem;
+  color: #f87171;
+  padding: 0.25rem 0;
+}
+

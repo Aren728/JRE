@@ -72,9 +72,7 @@ NAKSHATRA_LORD_CYCLE: tuple[BodyId, ...] = (
     BodyId.MERCURY,
 )
 
-_NAKSHATRA_INDEX: dict[NakshatraId, int] = {
-    nak: i for i, nak in enumerate(NAKSHATRA_ORDER)
-}
+_NAKSHATRA_INDEX: dict[NakshatraId, int] = {nak: i for i, nak in enumerate(NAKSHATRA_ORDER)}
 
 
 def _fold(longitude_deg: float) -> float:

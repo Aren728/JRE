@@ -69,19 +69,19 @@ class AvasthaService:
             # Composite multiplier: geometric mean of jagradadi and deeptadi
             multiplier = jag_mult * deep_mult
 
-            results.append(AvasthaResult(
-                planet=state.body,
-                jagradadi=jagradadi,
-                deeptadi=deeptadi,
-                baladi=baladi,
-                multiplier=multiplier,
-            ))
+            results.append(
+                AvasthaResult(
+                    planet=state.body,
+                    jagradadi=jagradadi,
+                    deeptadi=deeptadi,
+                    baladi=baladi,
+                    multiplier=multiplier,
+                )
+            )
 
         return AvasthaReport(results=tuple(results))
 
-    def _validate_request(
-        self, planet_states: tuple[PlanetState, ...]
-    ) -> None:
+    def _validate_request(self, planet_states: tuple[PlanetState, ...]) -> None:
         """Validate the Avastha computation request."""
         if not isinstance(planet_states, tuple) or not planet_states:
             raise InvalidAvasthaRequestError(
@@ -90,6 +90,5 @@ class AvasthaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidAvasthaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )

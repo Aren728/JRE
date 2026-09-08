@@ -71,8 +71,11 @@ class TajikaService:
             Muntha, Varsheshwar, and Sahams.
         """
         self._validate_request(
-            natal_moon_rashi, planet_states, elapsed_years,
-            year_lord, lagna_lord,
+            natal_moon_rashi,
+            planet_states,
+            elapsed_years,
+            year_lord,
+            lagna_lord,
         )
 
         # Compute Muntha
@@ -89,7 +92,9 @@ class TajikaService:
 
         # Compute Sahams
         sahams = self._compute_sahams(
-            lagna_longitude, planet_lookup, self._config.enabled_sahams,
+            lagna_longitude,
+            planet_lookup,
+            self._config.enabled_sahams,
         )
 
         return TajikaReport(
@@ -103,7 +108,8 @@ class TajikaService:
         )
 
     def _build_planet_lookup(
-        self, planet_states: tuple[PlanetState, ...],
+        self,
+        planet_states: tuple[PlanetState, ...],
     ) -> dict[BodyId, float]:
         """Build a lookup from BodyId to longitude."""
         lookup: dict[BodyId, float] = {}
@@ -128,16 +134,20 @@ class TajikaService:
             planet_b_lon = planet_lookup.get(planet_b_id, 0.0)
 
             saham_lon = compute_saham_longitude(
-                lagna_longitude, planet_a_lon, planet_b_lon,
+                lagna_longitude,
+                planet_a_lon,
+                planet_b_lon,
             )
             saham_rashi = longitude_to_rashi(saham_lon)
             saham_deg = longitude_to_degree_in_rashi(saham_lon)
 
-            sahams.append(SahamResult(
-                saham_name=saham_type,
-                rashi=saham_rashi,
-                degree=saham_deg,
-            ))
+            sahams.append(
+                SahamResult(
+                    saham_name=saham_type,
+                    rashi=saham_rashi,
+                    degree=saham_deg,
+                )
+            )
         return sahams
 
     def _validate_request(
@@ -160,8 +170,7 @@ class TajikaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidTajikaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )
         if not isinstance(elapsed_years, int) or elapsed_years < 0:
             raise InvalidTajikaRequestError(

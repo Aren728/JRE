@@ -8,7 +8,6 @@ from jrs.evidence.models import EvidenceDirection, EvidenceRecord, EvidenceStren
 from jrs.yoga_evaluator.models import YogaOutcome, YogaStatus
 from jrs.yoga_evaluator.service import YogaEvaluatorService
 
-
 # Weight 0.8 maps to EvidenceStrength.HIGH
 _YOGA_EVIDENCE_STRENGTH = EvidenceStrength.HIGH
 

@@ -46,9 +46,7 @@ def load_config(path: str | Path | None = None) -> DrikConfig:
 
     houses_raw = section.get("aspect_houses", {})
     if not isinstance(houses_raw, dict) or not houses_raw:
-        raise InvalidDrikConfigError(
-            f"aspect_houses must be a non-empty table, got {houses_raw!r}"
-        )
+        raise InvalidDrikConfigError(f"aspect_houses must be a non-empty table, got {houses_raw!r}")
     aspect_houses = {
         str(k): tuple(int(vi) for vi in v) if isinstance(v, list) else (int(v),)
         for k, v in houses_raw.items()

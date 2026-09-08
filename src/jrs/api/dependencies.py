@@ -19,9 +19,8 @@ if str(_PROJECT_ROOT / "src") not in sys.path:
 
 # ── Path Constants ──────────────────────────────────────────────────────────
 
-FIXTURES_DIR = (
-    _PROJECT_ROOT / "tests" / "fixtures" / "validation_charts"
-)
+FIXTURES_DIR = _PROJECT_ROOT / "tests" / "fixtures" / "validation_charts"
+_MODERN_FIXTURES_DIR = _PROJECT_ROOT / "tests" / "fixtures" / "modern_personalities"
 
 # ── Lazy Service Singletons ─────────────────────────────────────────────────
 
@@ -34,6 +33,7 @@ def get_yoga_evaluator():
     global _yoga_evaluator
     if _yoga_evaluator is None:
         from jrs.yoga_evaluator.service import YogaEvaluatorService
+
         _yoga_evaluator = YogaEvaluatorService()
     return _yoga_evaluator
 
@@ -43,11 +43,13 @@ def get_jyotish_service():
     global _jyotish_service
     if _jyotish_service is None:
         from jyotish.service import JyotishService
+
         _jyotish_service = JyotishService()
     return _jyotish_service
 
 
 # ── Fixture Loading ─────────────────────────────────────────────────────────
+
 
 @lru_cache(maxsize=64)
 def load_fixture(fixture_id: str) -> dict[str, Any]:
@@ -68,12 +70,15 @@ def load_fixture(fixture_id: str) -> dict[str, Any]:
     if fixture_id.endswith(".json"):
         fixture_id = fixture_id[:-5]
 
+    # Search validation_charts first, then modern_personalities
     fixture_path = FIXTURES_DIR / f"{fixture_id}.json"
+    if not fixture_path.exists() and _MODERN_FIXTURES_DIR.exists():
+        fixture_path = _MODERN_FIXTURES_DIR / f"{fixture_id}.json"
     if not fixture_path.exists():
-        raise FileNotFoundError(
-            f"Fixture not found: {fixture_path}. "
-            f"Available fixtures: {[f.stem for f in sorted(FIXTURES_DIR.glob('chart_*.json'))]}"
-        )
+        available = sorted(f.stem for f in FIXTURES_DIR.glob("chart_*.json"))
+        if _MODERN_FIXTURES_DIR.exists():
+            available += sorted(f.stem for f in _MODERN_FIXTURES_DIR.glob("chart_*.json"))
+        raise FileNotFoundError(f"Fixture not found: {fixture_id}. Available fixtures: {available}")
 
     with fixture_path.open(encoding="utf-8") as f:
         return json.load(f)
@@ -81,10 +86,14 @@ def load_fixture(fixture_id: str) -> dict[str, Any]:
 
 def list_fixtures() -> list[str]:
     """List all available fixture IDs."""
-    return sorted(f.stem for f in FIXTURES_DIR.glob("chart_*.json"))
+    fixtures = sorted(f.stem for f in FIXTURES_DIR.glob("chart_*.json"))
+    if _MODERN_FIXTURES_DIR.exists():
+        fixtures += sorted(f.stem for f in _MODERN_FIXTURES_DIR.glob("chart_*.json"))
+    return fixtures
 
 
 # ── Chart Computation ───────────────────────────────────────────────────────
+
 
 def compute_chart_from_fixture(fixture: dict[str, Any]) -> Any:
     """Compute a natal chart from fixture birth data.
@@ -109,6 +118,37 @@ def compute_chart_from_fixture(fixture: dict[str, Any]) -> Any:
     return svc.chart(birth)
 
 
+# Time values that indicate unknown or missing birth time
+_UNKNOWN_TIME_VALUES = ("", "00:00", "00:00:00", "unknown", "UNKNOWN", "12:00:00")
+
+
+def is_unknown_time(time_str: str) -> bool:
+    """Check if a time string represents an unknown or missing birth time.
+
+    Args:
+        time_str: The time string to check.
+
+    Returns:
+        True if the time is missing, zero, or explicitly marked unknown.
+    """
+    normalized = time_str.strip().lower()
+    return normalized in _UNKNOWN_TIME_VALUES or normalized == ""
+
+
+def normalize_time(time_str: str) -> str:
+    """Normalize a birth time string, returning noon for unknown times.
+
+    Args:
+        time_str: The input time string.
+
+    Returns:
+        '12:00:00' if the time is unknown, otherwise the original value.
+    """
+    if is_unknown_time(time_str):
+        return "12:00:00"
+    return time_str
+
+
 def compute_chart_from_birth_data(
     date: str,
     time: str,
@@ -118,9 +158,12 @@ def compute_chart_from_birth_data(
 ) -> Any:
     """Compute a natal chart from raw birth data.
 
+    If the time is unknown, noon (12:00:00) is used as a computational
+    default for planetary positions. The Lagna will be approximate.
+
     Args:
         date: ISO date string (YYYY-MM-DD).
-        time: ISO time string (HH:MM:SS).
+        time: ISO time string (HH:MM:SS). Empty or 'unknown' → noon default.
         latitude: Decimal degrees.
         longitude: Decimal degrees.
         timezone: IANA timezone string.
@@ -130,10 +173,11 @@ def compute_chart_from_birth_data(
     """
     from jyotish.models import BirthData
 
+    effective_time = normalize_time(time)
     svc = get_jyotish_service()
     birth = BirthData(
         date=date,
-        time=time,
+        time=effective_time,
         timezone=timezone,
         latitude=latitude,
         longitude=longitude,
@@ -142,6 +186,7 @@ def compute_chart_from_birth_data(
 
 
 # ── JRE Facts Builder ───────────────────────────────────────────────────────
+
 
 def build_jre_facts(chart: Any) -> dict[str, Any]:
     """Build JRE facts dictionary from a natal chart.
@@ -152,26 +197,63 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
     from jyotish.rashi import RASHI_ORDER as JYOTISH_RASHI_ORDER
 
     _RASHI_NUM: dict[str, int] = {
-        "MESHA": 1, "VRISHABHA": 2, "MITHUNA": 3, "KARKA": 4,
-        "SIMHA": 5, "KANYA": 6, "TULA": 7, "VRISHCHIKA": 8,
-        "DHANUSHA": 9, "MAKARA": 10, "KUMBHA": 11, "MEENA": 12,
+        "MESHA": 1,
+        "VRISHABHA": 2,
+        "MITHUNA": 3,
+        "KARKA": 4,
+        "SIMHA": 5,
+        "KANYA": 6,
+        "TULA": 7,
+        "VRISHCHIKA": 8,
+        "DHANUSHA": 9,
+        "MAKARA": 10,
+        "KUMBHA": 11,
+        "MEENA": 12,
     }
 
     _SIGN_LORDS: dict[int, str] = {
-        1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON", 5: "SUN",
-        6: "MERCURY", 7: "VENUS", 8: "MARS", 9: "JUPITER", 10: "SATURN",
-        11: "SATURN", 12: "JUPITER",
+        1: "MARS",
+        2: "VENUS",
+        3: "MERCURY",
+        4: "MOON",
+        5: "SUN",
+        6: "MERCURY",
+        7: "VENUS",
+        8: "MARS",
+        9: "JUPITER",
+        10: "SATURN",
+        11: "SATURN",
+        12: "JUPITER",
     }
 
     _SIGN_TYPES: dict[int, str] = {
-        0: "fire", 1: "earth", 2: "air", 3: "water",
-        4: "fire", 5: "earth", 6: "air", 7: "water",
-        8: "fire", 9: "earth", 10: "air", 11: "water",
+        0: "fire",
+        1: "earth",
+        2: "air",
+        3: "water",
+        4: "fire",
+        5: "earth",
+        6: "air",
+        7: "water",
+        8: "fire",
+        9: "earth",
+        10: "air",
+        11: "water",
     }
 
     _RASHI_ORDER_LIST: list[str] = [
-        "MESHA", "VRISHABHA", "MITHUNA", "KARKA", "SIMHA", "KANYA",
-        "TULA", "VRISHCHIKA", "DHANUSHA", "MAKARA", "KUMBHA", "MEENA",
+        "MESHA",
+        "VRISHABHA",
+        "MITHUNA",
+        "KARKA",
+        "SIMHA",
+        "KANYA",
+        "TULA",
+        "VRISHCHIKA",
+        "DHANUSHA",
+        "MAKARA",
+        "KUMBHA",
+        "MEENA",
     ]
 
     def _compute_d9_sign(longitude_used: float) -> str:
@@ -190,8 +272,13 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
         return _RASHI_ORDER_LIST[(start + navamsha_within_sign) % 12]
 
     _DEBILITATION = {
-        "SUN": 7, "MOON": 8, "MARS": 4, "MERCURY": 12,
-        "JUPITER": 10, "VENUS": 6, "SATURN": 1,
+        "SUN": 7,
+        "MOON": 8,
+        "MARS": 4,
+        "MERCURY": 12,
+        "JUPITER": 10,
+        "VENUS": 6,
+        "SATURN": 1,
     }
 
     lagna_rashi = chart.lagna.rashi.value
@@ -245,21 +332,34 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
         pname = ps.body.value
         planet_d9_sign[pname] = _compute_d9_sign(ps.longitude_used)
         planet_d9_house[pname] = (
-            (_RASHI_ORDER_LIST.index(planet_d9_sign[pname])
-             - _RASHI_ORDER_LIST.index(_compute_d9_sign(lagna_longitude))) % 12 + 1
-        )
+            _RASHI_ORDER_LIST.index(planet_d9_sign[pname])
+            - _RASHI_ORDER_LIST.index(_compute_d9_sign(lagna_longitude))
+        ) % 12 + 1
 
     moon_data = planets.get("MOON", {})
     natal_moon_house = moon_data.get("house", 1)
 
-    return {
+    # ── Build raw facts dict ──
+    facts: dict[str, Any] = {
         "planets": planets,
         "house_lords": house_lords,
         "lagna_sign": lagna_sign_num,
         "lagna_house": 1,
+        "lagna": _RASHI_ORDER_LIST[lagna_sign_num - 1],
         "planet_d9_house": planet_d9_house,
         "planet_d9_sign": planet_d9_sign,
         "moon_nakshatra": moon_nakshatra,
         "moon_nakshatra_degree": moon_nakshatra_degree,
         "natal_moon_house": natal_moon_house,
     }
+
+    # ── Enrich with elemental/dignity/aspect data (Phase I6) ──
+    try:
+        from jrs.fact_enrichment import enrich_jre_facts
+
+        facts = enrich_jre_facts(facts)
+    except Exception:
+        # Graceful fallback — enrichment is non-critical
+        pass
+
+    return facts

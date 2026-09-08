@@ -9,18 +9,17 @@ from typing import Any
 from .errors import InvalidTemporalConfigError
 from .models import TemporalConfig
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "convergence_rules",
-    "min_triggers_for_high",
-    "min_triggers_for_moderate",
-    "activation_type_weights",
-})
-
-_CONFIG_PATH = (
-    Path(__file__).resolve().parent.parent.parent.parent
-    / "config" / "temporal.toml"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "convergence_rules",
+        "min_triggers_for_high",
+        "min_triggers_for_moderate",
+        "activation_type_weights",
+    }
 )
+
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent.parent / "config" / "temporal.toml"
 
 
 def load_temporal_config(path: Path | None = None) -> TemporalConfig:

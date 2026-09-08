@@ -32,27 +32,51 @@ MAX_CHAIN_DEPTH: int = 3
 
 # Standard Vimshottari sign ownership: 1-indexed rashi number → owning planet
 _SIGN_LORDS: dict[int, str] = {
-    1: "MARS", 2: "VENUS", 3: "MERCURY", 4: "MOON", 5: "SUN",
-    6: "MERCURY", 7: "VENUS", 8: "MARS", 9: "JUPITER", 10: "SATURN",
-    11: "SATURN", 12: "JUPITER",
+    1: "MARS",
+    2: "VENUS",
+    3: "MERCURY",
+    4: "MOON",
+    5: "SUN",
+    6: "MERCURY",
+    7: "VENUS",
+    8: "MARS",
+    9: "JUPITER",
+    10: "SATURN",
+    11: "SATURN",
+    12: "JUPITER",
 }
 
 # Exaltation signs (1-indexed rashi number)
 _EXALTATION: dict[str, int] = {
-    "SUN": 1, "MOON": 2, "MARS": 10, "MERCURY": 6,
-    "JUPITER": 4, "VENUS": 12, "SATURN": 7,
+    "SUN": 1,
+    "MOON": 2,
+    "MARS": 10,
+    "MERCURY": 6,
+    "JUPITER": 4,
+    "VENUS": 12,
+    "SATURN": 7,
 }
 
 # Own signs (1-indexed rashi numbers)
 _OWN_SIGNS: dict[str, tuple[int, ...]] = {
-    "SUN": (5,), "MOON": (4,), "MARS": (1, 8), "MERCURY": (3, 6),
-    "JUPITER": (9, 12), "VENUS": (2, 7), "SATURN": (10, 11),
+    "SUN": (5,),
+    "MOON": (4,),
+    "MARS": (1, 8),
+    "MERCURY": (3, 6),
+    "JUPITER": (9, 12),
+    "VENUS": (2, 7),
+    "SATURN": (10, 11),
 }
 
 # Debilitation signs (1-indexed rashi number)
 _DEBILITATION: dict[str, int] = {
-    "SUN": 7, "MOON": 8, "MARS": 4, "MERCURY": 12,
-    "JUPITER": 10, "VENUS": 6, "SATURN": 1,
+    "SUN": 7,
+    "MOON": 8,
+    "MARS": 4,
+    "MERCURY": 12,
+    "JUPITER": 10,
+    "VENUS": 6,
+    "SATURN": 1,
 }
 
 # Friend/enemy mapping (simplified: classical relationship pairs)
@@ -78,6 +102,7 @@ _ENEMIES: dict[str, frozenset[str]] = {
 
 
 # ── Enums ─────────────────────────────────────────────────────────────────────
+
 
 class EdgeType(StrEnum):
     """Types of directed relational edges between planets."""
@@ -144,6 +169,7 @@ _ROLE_WEIGHTS: dict[FunctionalRole, float] = {
 
 # ── Data Structures ───────────────────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class ChainNode:
     """Immutable node in a relational chain.
@@ -206,6 +232,7 @@ class ChainPath:
 
 # ── Graph Wrapper ─────────────────────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class RelationshipGraph:
     """Lightweight wrapper over a list of PlanetRelationship edges.
@@ -218,10 +245,7 @@ class RelationshipGraph:
 
     def edges_for(self, planet: str) -> list[PlanetRelationship]:
         """Return all relationships where *planet* is source or target."""
-        return [
-            r for r in self.relationships
-            if r.planet_a == planet or r.planet_b == planet
-        ]
+        return [r for r in self.relationships if r.planet_a == planet or r.planet_b == planet]
 
     def neighbors(self, planet: str) -> list[str]:
         """Return unique neighbor planet names for *planet*."""
@@ -235,6 +259,7 @@ class RelationshipGraph:
 
 
 # ── Chain Evaluator ───────────────────────────────────────────────────────────
+
 
 class DirectedChainEvaluator:
     """Depth-bounded DFS evaluator for multi-hop planetary chains.
@@ -463,11 +488,13 @@ class DirectedChainEvaluator:
     ) -> None:
         """DFS over manually added nodes/edges."""
         if current == target and edges:
-            paths.append(ChainPath(
-                nodes=tuple(nodes),
-                edges=tuple(edges),
-                length=len(edges),
-            ))
+            paths.append(
+                ChainPath(
+                    nodes=tuple(nodes),
+                    edges=tuple(edges),
+                    length=len(edges),
+                )
+            )
 
         if depth >= max_depth:
             return
@@ -754,6 +781,7 @@ class DirectedChainEvaluator:
         except ValueError:
             # KETU/RAHU are not classical planets — default to NEUTRAL
             from .functional_lordship import FunctionalRole
+
             return ChainNode(
                 planet=planet,
                 house=house,

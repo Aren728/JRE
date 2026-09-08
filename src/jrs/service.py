@@ -58,12 +58,11 @@ class OrchestratorService:
 
         try:
             evidence_request = route_query_intent(
-                intent, self._config.routing,
+                intent,
+                self._config.routing,
             )
         except KeyError as exc:
-            raise InvalidQueryError(
-                f"Unknown query category: {intent.category.value}"
-            ) from exc
+            raise InvalidQueryError(f"Unknown query category: {intent.category.value}") from exc
 
         # Execute engines and collect outputs
         outputs = self._execute_engines(evidence_request)
@@ -92,9 +91,7 @@ class OrchestratorService:
         try:
             return route_query_intent(intent, self._config.routing)
         except KeyError as exc:
-            raise InvalidQueryError(
-                f"Unknown query category: {intent.category.value}"
-            ) from exc
+            raise InvalidQueryError(f"Unknown query category: {intent.category.value}") from exc
 
     def _execute_engines(
         self,
@@ -119,11 +116,13 @@ class OrchestratorService:
             if engine_name not in ALL_ENGINES:
                 raise EngineExecutionError(f"Unknown engine: {engine_name}")
 
-            outputs.append(EngineOutput(
-                engine_name=engine_name,
-                result=None,  # Populated by the integration layer
-                computed_at=now,
-            ))
+            outputs.append(
+                EngineOutput(
+                    engine_name=engine_name,
+                    result=None,  # Populated by the integration layer
+                    computed_at=now,
+                )
+            )
 
         return tuple(outputs)
 

@@ -1,0 +1,434 @@
+{
+  "Gajakesari": {
+    "name": "Gajakesari Yoga",
+    "sanskrit_name": "गजकेसरी योग",
+    "description": "One of the most auspicious yogas in Vedic astrology. Formed when Jupiter (Guru) is in a Kendra (1st, 4th, 7th, or 10th house) from the Moon. The name literally means 'elephant-lion' — signifying immense wisdom, wealth, and lasting reputation. The native possesses extraordinary memory, knowledge, and leadership qualities.",
+    "classical_reference": "Brihat Parashara Hora Shastra (BPHS), Chapter 35",
+    "positive_effects": [
+      "Exceptional wisdom and knowledge retention",
+      "Wealth accumulation through ethical means",
+      "Strong reputation and social standing",
+      "Leadership abilities and moral authority",
+      "Long-lasting legacy and respect in society"
+    ],
+    "challenges": [
+      "May develop overconfidence or dogmatism",
+      "Can be overly philosophical at the expense of practical action",
+      "High expectations from self and others"
+    ],
+    "remedies": [
+      "Worship Lord Vishnu on Thursdays",
+      "Donate yellow gram (chana dal) on Thursdays",
+      "Wear yellow sapphire after consulting an astrologer",
+      "Chant 'Om Gram Greem Groum Sah Gurave Namah' 108 times daily"
+    ]
+  },
+  "Raja": {
+    "name": "Raja Yoga",
+    "sanskrit_name": "राज योग",
+    "description": "A powerful yoga indicating rise to power, authority, and prominence. Formed when Kendra and Trikona lords combine or aspect each other. The native enjoys political power, high position, and commanding respect. This is the yoga of kings and leaders.",
+    "classical_reference": "BPHS, Chapter 34-35; Phaladeepika, Chapter 5",
+    "positive_effects": [
+      "Rise to positions of authority and power",
+      "Political success and commanding respect",
+      "Wealth and luxury throughout life",
+      "Strong career advancement",
+      "Natural leadership charisma"
+    ],
+    "challenges": [
+      "Power may attract enmity and jealousy",
+      "Can lead to authoritative or domineering tendencies",
+      "Responsibilities may feel burdensome"
+    ],
+    "remedies": [
+      "Serve those in authority with humility",
+      "Donate to orphanages and educational institutions",
+      "Practice meditation for inner peace",
+      "Chant 'Om Namah Shivaya' daily"
+    ]
+  },
+  "Dhana": {
+    "name": "Dhana Yoga",
+    "sanskrit_name": "धन योग",
+    "description": "The wealth yoga — formed when lords of the 2nd, 5th, 9th, and 11th houses are strong and well-placed. Indicates significant financial prosperity, accumulation of assets, and comfortable material life. The native earns well and enjoys financial security.",
+    "classical_reference": "BPHS, Chapter 35; Jataka Parijata",
+    "positive_effects": [
+      "Financial abundance and wealth accumulation",
+      "Success in business and investments",
+      "Comfortable material life",
+      "Good income from multiple sources",
+      "Generosity and charitable disposition"
+    ],
+    "challenges": [
+      "May become overly attached to material possessions",
+      "Can lead to complacency if wealth comes easily",
+      "Financial losses possible through careless spending"
+    ],
+    "remedies": [
+      "Donate to temples and spiritual institutions",
+      "Worship Goddess Lakshmi on Fridays",
+      "Maintain financial discipline and generosity",
+      "Chant 'Om Shreem Mahalakshmiyei Namah'"
+    ]
+  },
+  "Budhaditya": {
+    "name": "Budhaditya Yoga",
+    "sanskrit_name": "बुधादित्य योग",
+    "description": "Formed when Sun and Mercury are conjunct in the same sign. Combines solar vitality with mercurial intelligence. The native possesses sharp analytical mind, excellent communication skills, and intellectual brilliance. Particularly beneficial for careers in education, writing, and business.",
+    "classical_reference": "BPHS, Chapter 35; Uttara Kalamrita",
+    "positive_effects": [
+      "Sharp intellect and analytical abilities",
+      "Excellent communication and writing skills",
+      "Success in education and academic pursuits",
+      "Business acumen and financial intelligence",
+      "Quick learning and adaptability"
+    ],
+    "challenges": [
+      "May be overly critical or argumentative",
+      "Can be restless or impatient",
+      "Mercury combust with Sun may weaken effects"
+    ],
+    "remedies": [
+      "Worship Lord Vishnu on Wednesdays",
+      "Donate green items on Wednesdays",
+      "Wear emerald after consulting an astrologer",
+      "Practice mindful communication"
+    ]
+  },
+  "Malavya": {
+    "name": "Malavya Panchamahapurusha Yoga",
+    "sanskrit_name": "मालव्य पंचमहापुरुष योग",
+    "description": "One of the Panchamahapurusha yogas — formed when Venus is exalted or in its own sign in a Kendra from the Ascendant. Named after the ancient Malavya kingdom. The native is artistic, beautiful, and enjoys luxury, love, and harmonious relationships. Strong Venus bestows charm and creativity.",
+    "classical_reference": "BPHS, Chapter 36; Phaladeepika, Chapter 6",
+    "positive_effects": [
+      "Artistic talent and creative expression",
+      "Beautiful appearance and charming personality",
+      "Harmonious relationships and marriage",
+      "Luxury, comfort, and material pleasures",
+      "Success in arts, music, and entertainment"
+    ],
+    "challenges": [
+      "May become overly indulgent or pleasure-seeking",
+      "Can be vain or materialistic",
+      "Relationship difficulties if Venus is afflicted"
+    ],
+    "remedies": [
+      "Worship Goddess Lakshmi on Fridays",
+      "Donate white items (sugar, rice) on Fridays",
+      "Wear diamond or white sapphire after consultation",
+      "Practice gratitude for material blessings"
+    ]
+  },
+  "Ruchaka": {
+    "name": "Ruchaka Panchamahapurusha Yoga",
+    "sanskrit_name": "रूचक पंचमहापुरुष योग",
+    "description": "Formed when Mars is exalted or in its own sign in a Kendra. Named after the mythological Ruchaka. The native is courageous, strong, and natural leader. Mars in strength gives military prowess, athletic ability, and pioneering spirit.",
+    "classical_reference": "BPHS, Chapter 36; Phaladeepika, Chapter 6",
+    "positive_effects": [
+      "Exceptional courage and physical strength",
+      "Military or entrepreneurial success",
+      "Pioneering spirit and initiative",
+      "Athletic and competitive abilities",
+      "Strong willpower and determination"
+    ],
+    "challenges": [
+      "May be aggressive or confrontational",
+      "Can be impatient and impulsive",
+      "Temper issues if Mars is afflicted"
+    ],
+    "remedies": [
+      "Worship Lord Hanuman on Tuesdays",
+      "Donate red items (lentils, red cloth) on Tuesdays",
+      "Practice anger management and patience",
+      "Chant 'Om Ang Angarakaya Namah'"
+    ]
+  },
+  "Bhadra": {
+    "name": "Bhadra Panchamahapurusha Yoga",
+    "sanskrit_name": "भद्र पंचमहापुरुष योग",
+    "description": "Formed when Mercury is exalted or in its own sign in a Kendra. The native is intellectual, eloquent, and successful in business. Mercury's strength bestows excellent communication, mathematical ability, and commercial success.",
+    "classical_reference": "BPHS, Chapter 36; Phaladeepika, Chapter 6",
+    "positive_effects": [
+      "Excellent business and commercial skills",
+      "Eloquent speech and communication",
+      "Mathematical and analytical brilliance",
+      "Success in trade and commerce",
+      "Adaptability and versatile talents"
+    ],
+    "challenges": [
+      "May be overly analytical or indecisive",
+      "Can be restless or scattered in focus",
+      "May struggle with emotional depth"
+    ],
+    "remedies": [
+      "Worship Lord Vishnu on Wednesdays",
+      "Donate green items on Wednesdays",
+      "Wear emerald after consultation",
+      "Practice focused and mindful communication"
+    ]
+  },
+  "Hamsa": {
+    "name": "Hamsa Panchamahapurusha Yoga",
+    "sanskrit_name": "हंस पंचमहापुरुष योग",
+    "description": "Formed when Jupiter is exalted or in its own sign in a Kendra. Named after the cosmic swan (Hamsa). The native possesses deep wisdom, spiritual inclination, and moral authority. Jupiter's strength brings teaching ability, philosophical depth, and divine grace.",
+    "classical_reference": "BPHS, Chapter 36; Phaladeepika, Chapter 6",
+    "positive_effects": [
+      "Deep spiritual wisdom and moral authority",
+      "Teaching and mentoring abilities",
+      "Philosophical depth and divine grace",
+      "Prosperity through righteous means",
+      "Strong ethical and spiritual compass"
+    ],
+    "challenges": [
+      "May be overly idealistic or preachy",
+      "Can be dogmatic in religious views",
+      "May expect too much moral perfection from others"
+    ],
+    "remedies": [
+      "Worship Lord Vishnu on Thursdays",
+      "Donate yellow items on Thursdays",
+      "Study sacred texts regularly",
+      "Practice humility and service"
+    ]
+  },
+  "Sasa": {
+    "name": "Sasa Panchamahapurusha Yoga",
+    "sanskrit_name": "शास पंचमहापुरुष योग",
+    "description": "Formed when Saturn is exalted or in its own sign in a Kendra. Named after the Sasa (rabbit/mouse of Saturn). The native possesses exceptional organizational ability, discipline, and longevity. Saturn's strength brings political power and enduring legacy.",
+    "classical_reference": "BPHS, Chapter 36; Phaladeepika, Chapter 6",
+    "positive_effects": [
+      "Exceptional discipline and organizational skills",
+      "Political power and organizational leadership",
+      "Longevity and enduring legacy",
+      "Patience and perseverance",
+      "Success through hard work and dedication"
+    ],
+    "challenges": [
+      "May be overly serious or stern",
+      "Can be slow to act or overly cautious",
+      "May struggle with emotional expression"
+    ],
+    "remedies": [
+      "Worship Lord Shiva on Saturdays",
+      "Donate black items on Saturdays",
+      "Practice patience and discipline",
+      "Chant 'Om Sham Shanaishcharaya Namah'"
+    ]
+  },
+  "Neecha Bhanga": {
+    "name": "Neecha Bhanga Raja Yoga",
+    "sanskrit_name": "नीच भंग राज योग",
+    "description": "A cancellation of debilitation yoga — when a debilitated planet gets cancellation through specific conditions. The native experiences a transformation from adversity to success. Challenges become stepping stones to unexpected victories.",
+    "classical_reference": "BPHS, Chapter 35; Phaladeepika, Chapter 5",
+    "positive_effects": [
+      "Success through overcoming adversity",
+      "Unexpected gains from challenging situations",
+      "Transformation and personal growth",
+      "Resilience and inner strength",
+      "Late-blooming success and recognition"
+    ],
+    "challenges": [
+      "Early struggles and setbacks before success",
+      "May face initial rejection or disappointment",
+      "Requires patience and perseverance"
+    ],
+    "remedies": [
+      "Practice patience during difficult times",
+      "Chant mantras of the debilitated planet",
+      "Donate to those in similar situations",
+      "Maintain faith during challenges"
+    ]
+  },
+  "Vipareeta Raja": {
+    "name": "Vipareeta Raja Yoga",
+    "sanskrit_name": "विपरीत राज योग",
+    "description": "Formed when lords of the 6th, 8th, or 12th houses are placed in other dusthana (6th, 8th, 12th) houses. Despite involving malefic houses, this yoga brings success through adversity — the native turns challenges into victories.",
+    "classical_reference": "BPHS, Chapter 35; Jataka Parijata",
+    "positive_effects": [
+      "Success through overcoming obstacles",
+      "Victory over enemies and competition",
+      "Unexpected gains and windfalls",
+      "Strong recovery from setbacks",
+      "Hidden talents emerge during difficulties"
+    ],
+    "challenges": [
+      "May face repeated challenges before success",
+      "Can be involved in competitive or adversarial situations",
+      "Health issues may arise but resolve positively"
+    ],
+    "remedies": [
+      "Practice resilience and positive thinking",
+      "Chant 'Om Namah Shivaya' during challenges",
+      "Serve those in need",
+      "Maintain ethical conduct during adversity"
+    ]
+  },
+  "Sunapha": {
+    "name": "Sunapha Yoga",
+    "sanskrit_name": "सुनाफा योग",
+    "description": "Formed when a planet (except Sun and Rahu) occupies the 2nd house from the Moon. The native is mentally strong, socially respected, and enjoys good fortune. This yoga brings mental fortitude and social status.",
+    "classical_reference": "BPHS, Chapter 35; Uttara Kalamrita",
+    "positive_effects": [
+      "Mental strength and resilience",
+      "Social status and respect",
+      "Good fortune and favorable circumstances",
+      "Strong willpower and determination",
+      "Success in competitive fields"
+    ],
+    "challenges": [
+      "May become骄傲 or self-important",
+      "Can be stubborn in viewpoints",
+      "Over-reliance on mental strength"
+    ],
+    "remedies": [
+      "Practice humility and gratitude",
+      "Serve others without expectation",
+      "Chant mantras of the yoga-causing planet",
+      "Maintain balanced perspective"
+    ]
+  },
+  "Anapha": {
+    "name": "Anapha Yoga",
+    "sanskrit_name": "अनाफा योग",
+    "description": "Formed when a planet (except Sun and Ketu) occupies the 12th house from the Moon. The native is wealthy, attractive, and enjoys comforts. This yoga brings material prosperity and aesthetic appreciation.",
+    "classical_reference": "BPHS, Chapter 35; Uttara Kalamrita",
+    "positive_effects": [
+      "Wealth through personal effort",
+      "Attractive appearance and charm",
+      "Comfort and luxury in life",
+      "Good taste in arts and aesthetics",
+      "Success through independent action"
+    ],
+    "challenges": [
+      "May become overly focused on material comfort",
+      "Can be self-indulgent",
+      "May neglect spiritual growth"
+    ],
+    "remedies": [
+      "Balance material and spiritual pursuits",
+      "Practice generosity and sharing",
+      "Chant mantras of the yoga-causing planet",
+      "Engage in creative and artistic activities"
+    ]
+  },
+  "Dhudhara": {
+    "name": "Dhudhara Yoga",
+    "sanskrit_name": "धुधरा योग",
+    "description": "Formed when planets occupy both the 2nd and 12th houses from the Moon. This double prosperity yoga amplifies wealth and fortune. The native enjoys abundance from multiple sources.",
+    "classical_reference": "BPHS, Chapter 35; Uttara Kalamrita",
+    "positive_effects": [
+      "Double prosperity from multiple sources",
+      "Financial abundance and security",
+      "Good fortune in material matters",
+      "Success in business and investments",
+      "Comfortable and luxurious lifestyle"
+    ],
+    "challenges": [
+      "May become overly materialistic",
+      "Can be wasteful or extravagant",
+      "May lack spiritual depth"
+    ],
+    "remedies": [
+      "Practice financial discipline",
+      "Donate to charitable causes",
+      "Balance material and spiritual life",
+      "Chant mantras of prosperity"
+    ]
+  },
+  "Amala": {
+    "name": "Amala Yoga",
+    "sanskrit_name": "अमल योग",
+    "description": "Formed when a natural benefic planet occupies the 10th house from the Ascendant or Moon. The native leads a virtuous, clean life with a good reputation. Known as the 'virtue yoga' — it ensures ethical success.",
+    "classical_reference": "BPHS, Chapter 35; Phaladeepika, Chapter 5",
+    "positive_effects": [
+      "Virtuous and righteous career",
+      "Good reputation and social standing",
+      "Success through ethical means",
+      "Clean and honorable professional life",
+      "Respect from colleagues and society"
+    ],
+    "challenges": [
+      "May be too rigid in ethical standards",
+      "Can judge others harshly",
+      "May miss opportunities due to moral constraints"
+    ],
+    "remedies": [
+      "Maintain ethical conduct in all dealings",
+      "Practice compassion and understanding",
+      "Serve the community",
+      "Chant mantras of the benefic planet"
+    ]
+  },
+  "Saraswati": {
+    "name": "Saraswati Yoga",
+    "sanskrit_name": "सरस्वती योग",
+    "description": "Formed when Jupiter, Mercury, and Venus are strong and well-placed. Named after Goddess Saraswati — the goddess of knowledge. The native is scholarly, artistic, and gifted in learning and creative expression.",
+    "classical_reference": "BPHS, Chapter 35; Phaladeepika",
+    "positive_effects": [
+      "Exceptional scholarly and artistic abilities",
+      "Success in education and academic pursuits",
+      "Musical and literary talents",
+      "Teaching and mentoring gifts",
+      "Deep knowledge and wisdom"
+    ],
+    "challenges": [
+      "May be too focused on intellectual pursuits",
+      "Can be detached from practical matters",
+      "May struggle with mundane responsibilities"
+    ],
+    "remedies": [
+      "Worship Goddess Saraswmi daily",
+      "Study and learn continuously",
+      "Teach and share knowledge",
+      "Chant 'Om Aim Saraswtyai Namah'"
+    ]
+  },
+  "Adhi": {
+    "name": "Adhi Yoga",
+    "sanskrit_name": "आधि योग",
+    "description": "Formed when natural benefic planets (Jupiter, Venus, Mercury, Moon) occupy the 6th, 7th, or 8th houses. Despite being in dusthana houses, benefics here create a powerful yoga for unexpected success and rise to power.",
+    "classical_reference": "BPHS, Chapter 35",
+    "positive_effects": [
+      "Unexpected rise to power and position",
+      "Success through unconventional means",
+      "Victory over obstacles and enemies",
+      "Good fortune from challenging situations",
+      "Strong protective influences"
+    ],
+    "challenges": [
+      "Success may come through unusual circumstances",
+      "May face initial confusion or setbacks",
+      "Requires adaptability and open-mindedness"
+    ],
+    "remedies": [
+      "Remain open to unexpected opportunities",
+      "Practice patience during transitions",
+      "Trust the process during challenges",
+      "Chant mantras of the yoga-causing planets"
+    ]
+  },
+  "Vasumati": {
+    "name": "Vasumati Yoga",
+    "sanskrit_name": "वसुमति योग",
+    "description": "Formed when all natural benefic planets (Jupiter, Venus, Mercury, Moon) occupy Upachaya houses (3rd, 6th, 10th, 11th). The native is wealthy and prosperous through persistent effort and favorable circumstances.",
+    "classical_reference": "BPHS, Chapter 35",
+    "positive_effects": [
+      "Wealth through persistent effort",
+      "Financial prosperity and security",
+      "Success in business and career",
+      "Good fortune in material matters",
+      "Comfortable and prosperous life"
+    ],
+    "challenges": [
+      "May become overly focused on wealth accumulation",
+      "Can be competitive or aggressive in business",
+      "May neglect spiritual growth"
+    ],
+    "remedies": [
+      "Practice generosity and sharing wealth",
+      "Balance material and spiritual pursuits",
+      "Support charitable causes",
+      "Maintain ethical business practices"
+    ]
+  }
+}

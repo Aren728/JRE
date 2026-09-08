@@ -16,13 +16,19 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 # Vimshottari Nakshatra lord cycle (9 rulers, repeated 3× over 27 Nakshatras)
 _NAKSHATRA_LORD_CYCLE: tuple[str, ...] = (
-    "KETU", "VENUS", "SUN", "MOON", "MARS",
-    "RAHU", "JUPITER", "SATURN", "MERCURY",
+    "KETU",
+    "VENUS",
+    "SUN",
+    "MOON",
+    "MARS",
+    "RAHU",
+    "JUPITER",
+    "SATURN",
+    "MERCURY",
 )
 
 # One Nakshatra arc in degrees (360 / 27 = 13°20′)
@@ -141,14 +147,16 @@ class NakshatraRelationshipService:
                 pair = tuple(sorted([planet_a, lord_a]))
                 if pair not in checked_pairs:
                     checked_pairs.add(pair)
-                    edges.append(NakshatraEdge(
-                        source=planet_a,
-                        target=lord_a,
-                        edge_type="NAKSHATRA_PARIVARTANA",
-                        weight=NAKSHATRA_PARIVARTANA_WEIGHT,
-                        source_nakshatra=planet_to_nakshatra[planet_a],
-                        target_nakshatra=planet_to_nakshatra[lord_a],
-                    ))
+                    edges.append(
+                        NakshatraEdge(
+                            source=planet_a,
+                            target=lord_a,
+                            edge_type="NAKSHATRA_PARIVARTANA",
+                            weight=NAKSHATRA_PARIVARTANA_WEIGHT,
+                            source_nakshatra=planet_to_nakshatra[planet_a],
+                            target_nakshatra=planet_to_nakshatra[lord_a],
+                        )
+                    )
 
         # Check for one-directional Nakshatra lord dependencies
         parivartana_pairs = {frozenset(pair) for pair in checked_pairs}
@@ -162,14 +170,16 @@ class NakshatraRelationshipService:
                 continue  # Already recorded as Parivartana
 
             # One-directional: A's Nakshatra lord is B
-            edges.append(NakshatraEdge(
-                source=planet_a,
-                target=lord_a,
-                edge_type="NAKSHATRA_LORD",
-                weight=NAKSHATRA_LORD_WEIGHT,
-                source_nakshatra=planet_to_nakshatra[planet_a],
-                target_nakshatra=planet_to_nakshatra[lord_a],
-            ))
+            edges.append(
+                NakshatraEdge(
+                    source=planet_a,
+                    target=lord_a,
+                    edge_type="NAKSHATRA_LORD",
+                    weight=NAKSHATRA_LORD_WEIGHT,
+                    source_nakshatra=planet_to_nakshatra[planet_a],
+                    target_nakshatra=planet_to_nakshatra[lord_a],
+                )
+            )
 
         return edges
 
@@ -177,10 +187,31 @@ class NakshatraRelationshipService:
 # ── Nakshatra Names ──────────────────────────────────────────────────────────
 
 NAKSHATRA_NAMES: tuple[str, ...] = (
-    "ASHWINI", "BHARANI", "KRITTIKA", "ROHINI", "MRIGASHIRA",
-    "ARDRA", "PUNARVASU", "PUSHYA", "ASHLESHA", "MAGHA",
-    "PURVA_PHALGUNI", "UTTARA_PHALGUNI", "HASTA", "CHITRA", "SWATI",
-    "VISHAKHA", "ANURADHA", "JYESHTHA", "MULA", "PURVA_ASHADHA",
-    "UTTARA_ASHADHA", "SHRAVANA", "DHANISHTHA", "SHATABHISHA",
-    "PURVA_BHADRAPADA", "UTTARA_BHADRAPADA", "REVATI",
+    "ASHWINI",
+    "BHARANI",
+    "KRITTIKA",
+    "ROHINI",
+    "MRIGASHIRA",
+    "ARDRA",
+    "PUNARVASU",
+    "PUSHYA",
+    "ASHLESHA",
+    "MAGHA",
+    "PURVA_PHALGUNI",
+    "UTTARA_PHALGUNI",
+    "HASTA",
+    "CHITRA",
+    "SWATI",
+    "VISHAKHA",
+    "ANURADHA",
+    "JYESHTHA",
+    "MULA",
+    "PURVA_ASHADHA",
+    "UTTARA_ASHADHA",
+    "SHRAVANA",
+    "DHANISHTHA",
+    "SHATABHISHA",
+    "PURVA_BHADRAPADA",
+    "UTTARA_BHADRAPADA",
+    "REVATI",
 )

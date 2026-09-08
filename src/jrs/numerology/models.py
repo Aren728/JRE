@@ -191,9 +191,7 @@ def evaluate_condition(condition: str, facts: dict[str, Any]) -> bool:
     return bool(fact_val) if fact_val is not None else False
 
 
-def evaluate_rule(
-    rule: NumerologyRule, facts: dict[str, Any]
-) -> EvidenceRecord | None:
+def evaluate_rule(rule: NumerologyRule, facts: dict[str, Any]) -> EvidenceRecord | None:
     """Evaluate a single rule against facts and produce an EvidenceRecord.
 
     All condition_facts must be satisfied (AND logic).
@@ -283,20 +281,14 @@ def build_system_assessment(
         if record.direction is EvidenceDirection.SUPPORT:
             outcome_support[outcome] = outcome_support.get(outcome, 0) + 1
         elif record.direction is EvidenceDirection.CONTRADICT:
-            outcome_contradict[outcome] = (
-                outcome_contradict.get(outcome, 0) + 1
-            )
+            outcome_contradict[outcome] = outcome_contradict.get(outcome, 0) + 1
 
     # Find the outcome with the strongest net support
-    all_outcomes = set(outcome_support.keys()) | set(
-        outcome_contradict.keys()
-    )
+    all_outcomes = set(outcome_support.keys()) | set(outcome_contradict.keys())
     best_outcome = ""
     best_score = -1
     for outcome in all_outcomes:
-        score = outcome_support.get(outcome, 0) - outcome_contradict.get(
-            outcome, 0
-        )
+        score = outcome_support.get(outcome, 0) - outcome_contradict.get(outcome, 0)
         if score > best_score:
             best_score = score
             best_outcome = outcome

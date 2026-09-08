@@ -11,17 +11,16 @@ from jrs.evidence.models import EvidenceDirection, EvidenceStrength
 from .errors import InvalidWesternConfigError
 from .models import WesternConfig, WesternOutcomeTaxonomy, WesternRule
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_id",
-    "default_strength",
-    "rules",
-})
-
-_CONFIG_DIR = (
-    Path(__file__).resolve().parent.parent.parent.parent
-    / "config" / "western"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_id",
+        "default_strength",
+        "rules",
+    }
 )
+
+_CONFIG_DIR = Path(__file__).resolve().parent.parent.parent.parent / "config" / "western"
 
 _DEFAULT_CONFIG_PATHS: tuple[Path, ...] = (
     _CONFIG_DIR / "basic_rules.toml",
@@ -101,9 +100,7 @@ def load_western_rules(
     """
     primary = path or _DEFAULT_CONFIG_PATHS[0]
     if extra_paths is None:
-        extra_paths = tuple(
-            p for p in _DEFAULT_CONFIG_PATHS if p != primary
-        )
+        extra_paths = tuple(p for p in _DEFAULT_CONFIG_PATHS if p != primary)
 
     all_rules: list[WesternRule] = []
     all_rules.extend(_load_rules_from_path(primary))

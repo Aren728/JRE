@@ -33,33 +33,34 @@ AVASTHA_VERSION = "0.1.0"
 # Enums
 # --------------------------------------------------------------------------- #
 
+
 class JagradadiState(StrEnum):
     """Awake/Dream/Deep-Sleep states based on degree within rashi."""
 
-    JAGRAT = "JAGRAT"       # Awake (0-6 degrees)
-    SWAPNA = "SWAPNA"       # Dream (6-18 degrees)
-    SUSHUPTI = "SUSHUPTI"   # Deep Sleep (18-30 degrees)
+    JAGRAT = "JAGRAT"  # Awake (0-6 degrees)
+    SWAPNA = "SWAPNA"  # Dream (6-18 degrees)
+    SUSHUPTI = "SUSHUPTI"  # Deep Sleep (18-30 degrees)
 
 
 class DeeptadiState(StrEnum):
     """Exaltation-based dignity states."""
 
-    DEEPTA = "DEEPTA"           # Exalted
-    SWASTHA = "SWASTHA"         # Own sign
-    PRASANTA = "PRASANTA"       # Friendly sign
-    DEENA = "DEENA"             # Neutral sign
-    KSHUDHITA = "KSHUDHITA"     # Enemy sign
-    KSHOBHITA = "KSHOBHITA"     # Debilitated sign
+    DEEPTA = "DEEPTA"  # Exalted
+    SWASTHA = "SWASTHA"  # Own sign
+    PRASANTA = "PRASANTA"  # Friendly sign
+    DEENA = "DEENA"  # Neutral sign
+    KSHUDHITA = "KSHUDHITA"  # Enemy sign
+    KSHOBHITA = "KSHOBHITA"  # Debilitated sign
 
 
 class BaladiState(StrEnum):
     """Age-based states from varga placements."""
 
-    BALA = "BALA"           # Infant (D-1)
-    KUMARA = "KUMARA"       # Youth (D-7)
-    YUVA = "YUVA"           # Adult (D-9)
-    VRIDDHA = "VRIDDHA"     # Old (D-12)
-    MRITA = "MRITA"         # Dead (D-16 or D-30)
+    BALA = "BALA"  # Infant (D-1)
+    KUMARA = "KUMARA"  # Youth (D-7)
+    YUVA = "YUVA"  # Adult (D-9)
+    VRIDDHA = "VRIDDHA"  # Old (D-12)
+    MRITA = "MRITA"  # Dead (D-16 or D-30)
 
 
 # --------------------------------------------------------------------------- #
@@ -147,6 +148,7 @@ DEFAULT_ENEMY_SIGNS: dict[BodyId, tuple[RashiId, ...]] = {
 # Data models
 # --------------------------------------------------------------------------- #
 
+
 @dataclass(frozen=True)
 class AvasthaResult:
     """One planet's Avastha computation result."""
@@ -226,13 +228,11 @@ def validate(config: AvasthaConfig) -> AvasthaConfig:
         )
     if not isinstance(config.jagradadi_multipliers, dict) or not config.jagradadi_multipliers:
         raise InvalidAvasthaConfigError(
-            f"jagradadi_multipliers must be a non-empty dict, "
-            f"got {config.jagradadi_multipliers!r}"
+            f"jagradadi_multipliers must be a non-empty dict, got {config.jagradadi_multipliers!r}"
         )
     if not isinstance(config.deeptadi_multipliers, dict) or not config.deeptadi_multipliers:
         raise InvalidAvasthaConfigError(
-            f"deeptadi_multipliers must be a non-empty dict, "
-            f"got {config.deeptadi_multipliers!r}"
+            f"deeptadi_multipliers must be a non-empty dict, got {config.deeptadi_multipliers!r}"
         )
     return config
 
@@ -240,6 +240,7 @@ def validate(config: AvasthaConfig) -> AvasthaConfig:
 # --------------------------------------------------------------------------- #
 # Pure derivation helpers
 # --------------------------------------------------------------------------- #
+
 
 def compute_jagradadi(degree_in_rashi: float) -> JagradadiState:
     """Determine Jagradadi state from degree within rashi (0-30)."""
@@ -272,6 +273,7 @@ def compute_deeptadi(
 # --------------------------------------------------------------------------- #
 # Generic serialization helpers
 # --------------------------------------------------------------------------- #
+
 
 def _model_to_dict(model: Any) -> Any:
     """Generic dataclass serializer (deterministic key order = declaration

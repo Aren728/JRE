@@ -8,6 +8,7 @@ from typing import Any
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 
+
 class AssessmentStatus(Enum):
     """Categorical assessment of evidence for an outcome."""
 
@@ -52,6 +53,7 @@ SOURCE_CONFIDENCE_VALUES: dict[SourceConfidence, float] = {
 
 
 # ── Core Models ──────────────────────────────────────────────────────────────
+
 
 @dataclass(frozen=True)
 class EvidenceDimensions:
@@ -99,6 +101,7 @@ class DomainAssessment:
 
 # ── Convergence Config (embedded) ────────────────────────────────────────────
 
+
 @dataclass(frozen=True)
 class ConvergenceConfig:
     """Configuration for the convergence engine."""
@@ -123,6 +126,7 @@ class ConvergenceConfig:
 
 
 # ── Dimension Calculation Helpers ────────────────────────────────────────────
+
 
 def count_independent_channels(
     support_records: tuple[Any, ...],
@@ -213,23 +217,31 @@ def classify_assessment_status(
     cfg = config or ConvergenceConfig()
 
     # Strongly contradicted: many contradictions, few supports
-    if (dimensions.contradicting_count >= cfg.strongly_contradicted_min_contradicting
-            and dimensions.supporting_count <= dimensions.contradicting_count):
+    if (
+        dimensions.contradicting_count >= cfg.strongly_contradicted_min_contradicting
+        and dimensions.supporting_count <= dimensions.contradicting_count
+    ):
         return AssessmentStatus.STRONGLY_CONTRADICTED
 
     # Contradicted: moderate contradictions
-    if (dimensions.contradicting_count >= cfg.contradicted_min_contradicting
-            and dimensions.supporting_count <= dimensions.contradicting_count):
+    if (
+        dimensions.contradicting_count >= cfg.contradicted_min_contradicting
+        and dimensions.supporting_count <= dimensions.contradicting_count
+    ):
         return AssessmentStatus.CONTRADICTED
 
     # Strongly supported: many independent channels and supporting records
-    if (dimensions.independent_channels >= cfg.strongly_supported_min_independent
-            and dimensions.supporting_count >= cfg.strongly_supported_min_supporting):
+    if (
+        dimensions.independent_channels >= cfg.strongly_supported_min_independent
+        and dimensions.supporting_count >= cfg.strongly_supported_min_supporting
+    ):
         return AssessmentStatus.STRONGLY_SUPPORTED
 
     # Supported: moderate independent channels
-    if (dimensions.independent_channels >= cfg.supported_min_independent
-            and dimensions.supporting_count >= cfg.supported_min_supporting):
+    if (
+        dimensions.independent_channels >= cfg.supported_min_independent
+        and dimensions.supporting_count >= cfg.supported_min_supporting
+    ):
         return AssessmentStatus.SUPPORTED
 
     # Weakly supported: at least one supporting record
@@ -281,7 +293,8 @@ def classify_overall_strength(
     support_score = dimensions.supporting_count * 1.0
     channel_score = dimensions.independent_channels * 1.5
     confidence_multiplier = SOURCE_CONFIDENCE_VALUES.get(
-        dimensions.source_confidence, 0.6,
+        dimensions.source_confidence,
+        0.6,
     )
 
     composite = (support_score + channel_score) * confidence_multiplier

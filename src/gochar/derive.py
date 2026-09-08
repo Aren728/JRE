@@ -133,9 +133,7 @@ def derive_natal_house_series(
         iso = jyotish.jd_to_iso_utc(jd)
         date, time = civil_split(iso)
         transit = transit_fn(date, time)
-        analysis = bhava.derive_transit_analysis(
-            transit, natal_chart, config=bhava_config
-        )
+        analysis = bhava.derive_transit_analysis(transit, natal_chart, config=bhava_config)
         analyses.append(analysis)
     return tuple(analyses)
 

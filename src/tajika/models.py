@@ -42,16 +42,16 @@ class SahamType(StrEnum):
     Each Saham is computed as: Lagna + PlanetA - PlanetB (mod 360).
     """
 
-    PUNYA = "PUNYA"          # Lagna + Jupiter - Sun
-    VIDYA = "VIDYA"          # Lagna + Jupiter - Moon
-    ARTHA = "ARTHA"          # Lagna + Jupiter - Mars
-    KARMA = "KARMA"          # Lagna + Jupiter - Mercury
-    PUTRA = "PUTRA"          # Lagna + Jupiter - Jupiter
-    GNA = "GNA"              # Lagna + Jupiter - Venus
-    SAMPAT = "SAMPAT"        # Lagna + Jupiter - Saturn
-    RAJA = "RAJA"            # Lagna + Sun - Moon
-    DEHA = "DEHA"            # Lagna + Sun - Mars
-    JEEVA = "JEEVA"          # Lagna + Moon - Sun
+    PUNYA = "PUNYA"  # Lagna + Jupiter - Sun
+    VIDYA = "VIDYA"  # Lagna + Jupiter - Moon
+    ARTHA = "ARTHA"  # Lagna + Jupiter - Mars
+    KARMA = "KARMA"  # Lagna + Jupiter - Mercury
+    PUTRA = "PUTRA"  # Lagna + Jupiter - Jupiter
+    GNA = "GNA"  # Lagna + Jupiter - Venus
+    SAMPAT = "SAMPAT"  # Lagna + Jupiter - Saturn
+    RAJA = "RAJA"  # Lagna + Sun - Moon
+    DEHA = "DEHA"  # Lagna + Sun - Mars
+    JEEVA = "JEEVA"  # Lagna + Moon - Sun
 
 
 # --------------------------------------------------------------------------- #
@@ -60,16 +60,16 @@ class SahamType(StrEnum):
 # --------------------------------------------------------------------------- #
 
 SAHAM_FORMULAS: dict[SahamType, tuple[BodyId, BodyId]] = {
-    SahamType.PUNYA:  (BodyId.JUPITER, BodyId.SUN),
-    SahamType.VIDYA:  (BodyId.JUPITER, BodyId.MOON),
-    SahamType.ARTHA:  (BodyId.JUPITER, BodyId.MARS),
-    SahamType.KARMA:  (BodyId.JUPITER, BodyId.MERCURY),
-    SahamType.PUTRA:  (BodyId.JUPITER, BodyId.JUPITER),
-    SahamType.GNA:    (BodyId.JUPITER, BodyId.VENUS),
+    SahamType.PUNYA: (BodyId.JUPITER, BodyId.SUN),
+    SahamType.VIDYA: (BodyId.JUPITER, BodyId.MOON),
+    SahamType.ARTHA: (BodyId.JUPITER, BodyId.MARS),
+    SahamType.KARMA: (BodyId.JUPITER, BodyId.MERCURY),
+    SahamType.PUTRA: (BodyId.JUPITER, BodyId.JUPITER),
+    SahamType.GNA: (BodyId.JUPITER, BodyId.VENUS),
     SahamType.SAMPAT: (BodyId.JUPITER, BodyId.SATURN),
-    SahamType.RAJA:   (BodyId.SUN, BodyId.MOON),
-    SahamType.DEHA:   (BodyId.SUN, BodyId.MARS),
-    SahamType.JEEVA:  (BodyId.MOON, BodyId.SUN),
+    SahamType.RAJA: (BodyId.SUN, BodyId.MOON),
+    SahamType.DEHA: (BodyId.SUN, BodyId.MARS),
+    SahamType.JEEVA: (BodyId.MOON, BodyId.SUN),
 }
 
 # --------------------------------------------------------------------------- #
@@ -77,9 +77,14 @@ SAHAM_FORMULAS: dict[SahamType, tuple[BodyId, BodyId]] = {
 # --------------------------------------------------------------------------- #
 
 # Benefic planets that qualify as Varsheshwar when Muntha lord
-CLASSICAL_BENEFICS: frozenset[BodyId] = frozenset({
-    BodyId.JUPITER, BodyId.VENUS, BodyId.MOON, BodyId.MERCURY,
-})
+CLASSICAL_BENEFICS: frozenset[BodyId] = frozenset(
+    {
+        BodyId.JUPITER,
+        BodyId.VENUS,
+        BodyId.MOON,
+        BodyId.MERCURY,
+    }
+)
 
 
 # --------------------------------------------------------------------------- #
@@ -87,18 +92,18 @@ CLASSICAL_BENEFICS: frozenset[BodyId] = frozenset({
 # --------------------------------------------------------------------------- #
 
 RASHI_LORDS: dict[RashiId, BodyId] = {
-    RashiId.MESHA:      BodyId.MARS,
-    RashiId.VRISHABHA:  BodyId.VENUS,
-    RashiId.MITHUNA:    BodyId.MERCURY,
-    RashiId.KARKA:      BodyId.MOON,
-    RashiId.SIMHA:      BodyId.SUN,
-    RashiId.KANYA:      BodyId.MERCURY,
-    RashiId.TULA:       BodyId.VENUS,
+    RashiId.MESHA: BodyId.MARS,
+    RashiId.VRISHABHA: BodyId.VENUS,
+    RashiId.MITHUNA: BodyId.MERCURY,
+    RashiId.KARKA: BodyId.MOON,
+    RashiId.SIMHA: BodyId.SUN,
+    RashiId.KANYA: BodyId.MERCURY,
+    RashiId.TULA: BodyId.VENUS,
     RashiId.VRISHCHIKA: BodyId.MARS,
-    RashiId.DHANUSHA:   BodyId.JUPITER,
-    RashiId.MAKARA:     BodyId.SATURN,
-    RashiId.KUMBHA:     BodyId.SATURN,
-    RashiId.MEENA:      BodyId.JUPITER,
+    RashiId.DHANUSHA: BodyId.JUPITER,
+    RashiId.MAKARA: BodyId.SATURN,
+    RashiId.KUMBHA: BodyId.SATURN,
+    RashiId.MEENA: BodyId.JUPITER,
 }
 
 

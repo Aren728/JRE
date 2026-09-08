@@ -28,10 +28,19 @@ class PIISafeFilter(logging.Filter):
     """
 
     # Keywords that indicate PII in log messages
-    _PII_KEYWORDS = frozenset({
-        "latitude", "longitude", "birth_date", "birth_time",
-        "date", "time", "timezone", "name", "subject",
-    })
+    _PII_KEYWORDS = frozenset(
+        {
+            "latitude",
+            "longitude",
+            "birth_date",
+            "birth_time",
+            "date",
+            "time",
+            "timezone",
+            "name",
+            "subject",
+        }
+    )
 
     def filter(self, record: logging.LogRecord) -> bool:
         """Allow the record but ensure no PII in the message."""
@@ -65,8 +74,12 @@ class StructuredJSONFormatter(logging.Formatter):
 
         # Add structured fields if present (set via extra=)
         for field in (
-            "evaluation_id", "endpoint", "method",
-            "status_code", "latency_ms", "key_hash",
+            "evaluation_id",
+            "endpoint",
+            "method",
+            "status_code",
+            "latency_ms",
+            "key_hash",
             "component",
         ):
             val = getattr(record, field, None)

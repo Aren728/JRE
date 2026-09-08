@@ -124,8 +124,7 @@ class BirthSignatureService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidSignatureRequestError(
-                    "planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )
         if not isinstance(lagna, LagnaState):
             raise InvalidSignatureRequestError(
@@ -134,24 +133,16 @@ class BirthSignatureService:
         # Ensure required planets are present
         bodies_present = {s.body for s in planet_states}
         if BodyId.SUN not in bodies_present:
-            raise InvalidSignatureRequestError(
-                "planet_states must contain SUN"
-            )
+            raise InvalidSignatureRequestError("planet_states must contain SUN")
         if BodyId.MOON not in bodies_present:
-            raise InvalidSignatureRequestError(
-                "planet_states must contain MOON"
-            )
+            raise InvalidSignatureRequestError("planet_states must contain MOON")
 
-    def _find_planet(
-        self, planet_states: tuple[PlanetState, ...], body: BodyId
-    ) -> PlanetState:
+    def _find_planet(self, planet_states: tuple[PlanetState, ...], body: BodyId) -> PlanetState:
         """Find a specific planet in the states tuple."""
         for state in planet_states:
             if state.body == body:
                 return state
-        raise SignatureComputationError(
-            f"planet {body.value} not found in planet_states"
-        )
+        raise SignatureComputationError(f"planet {body.value} not found in planet_states")
 
     def _compute_hour_of_day(
         self,

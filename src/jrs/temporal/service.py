@@ -70,8 +70,10 @@ class TemporalEvidenceService:
 
         # Collect all triggers
         all_triggers = (
-            list(dasha_periods) + list(transits)
-            + list(varga_triggers) + list(ashtakavarga_triggers)
+            list(dasha_periods)
+            + list(transits)
+            + list(varga_triggers)
+            + list(ashtakavarga_triggers)
         )
 
         if not all_triggers:

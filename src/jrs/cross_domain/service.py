@@ -56,9 +56,7 @@ class CrossDomainService:
                 f"min_overlap_score must be in [0, 1], got {min_overlap_score}"
             )
         if min_domains < 1:
-            raise InvalidClusterInputError(
-                f"min_domains must be >= 1, got {min_domains}"
-            )
+            raise InvalidClusterInputError(f"min_domains must be >= 1, got {min_domains}")
         self._min_overlap_score = min_overlap_score
         self._min_domains = min_domains
 
@@ -192,9 +190,7 @@ def _build_cluster(
     )
 
     # Collect domain labels (only those with non-empty labels)
-    domain_labels = tuple(
-        a.domain_label for a in group if a.domain_label
-    )
+    domain_labels = tuple(a.domain_label for a in group if a.domain_label)
 
     # Need at least 2 distinct domain labels to form a cross-domain cluster
     unique_labels = frozenset(domain_labels)
@@ -202,28 +198,18 @@ def _build_cluster(
         return None
 
     # Aggregate evidence dimensions
-    total_supporting = sum(
-        a.assessment.dimensions.supporting_count for a in group
-    )
-    total_channels = sum(
-        a.assessment.dimensions.independent_channels for a in group
-    )
-    total_contradictions = sum(
-        a.assessment.dimensions.contradicting_count for a in group
-    )
+    total_supporting = sum(a.assessment.dimensions.supporting_count for a in group)
+    total_channels = sum(a.assessment.dimensions.independent_channels for a in group)
+    total_contradictions = sum(a.assessment.dimensions.contradicting_count for a in group)
 
     # Compute temporal overlap score as the average pairwise overlap
     overlap_scores: list[float] = []
     for i in range(len(group)):
         for j in range(i + 1, len(group)):
-            score = group[i].temporal_window.overlap_score(
-                group[j].temporal_window
-            )
+            score = group[i].temporal_window.overlap_score(group[j].temporal_window)
             overlap_scores.append(score)
 
-    avg_overlap = (
-        sum(overlap_scores) / len(overlap_scores) if overlap_scores else 1.0
-    )
+    avg_overlap = sum(overlap_scores) / len(overlap_scores) if overlap_scores else 1.0
 
     # Classify event type
     event_type = classify_event_type(domain_labels)

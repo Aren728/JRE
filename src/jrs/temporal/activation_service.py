@@ -125,14 +125,18 @@ class TransitActivationService:
 
         # Step 2: Dasha-First permission check
         dasha_permission = self._check_dasha_permission(
-            transit_planet, natal_yoga_planets,
-            mahadasha_lord, antardasha_lord,
+            transit_planet,
+            natal_yoga_planets,
+            mahadasha_lord,
+            antardasha_lord,
         )
 
         # Step 3: Transit-to-natal relationship check
         transit_relates = self._check_transit_natal_relationship(
-            transit_planet, transit_house,
-            natal_yoga_planets, natal_moon_house,
+            transit_planet,
+            transit_house,
+            natal_yoga_planets,
+            natal_moon_house,
         )
 
         # Step 4: Determine activation level
@@ -169,10 +173,7 @@ class TransitActivationService:
             transit_planet=transit_planet,
             transit_house=transit_house,
             natal_yoga_planets=tuple(natal_yoga_planets),
-            reason=(
-                f"Transit of {transit_house}th house does not aspect "
-                f"or conjunct yoga planets"
-            ),
+            reason=(f"Transit of {transit_house}th house does not aspect or conjunct yoga planets"),
         )
 
     def _check_dasha_permission(
@@ -199,10 +200,7 @@ class TransitActivationService:
 
         # Jupiter conditional exception: Jupiter transiting can activate
         # if Jupiter is a yoga planet (BPHS Ch 50 V.4)
-        if (
-            transit_planet == "JUPITER"
-            and "JUPITER" in natal_yoga_planets
-        ):
+        if transit_planet == "JUPITER" and "JUPITER" in natal_yoga_planets:
             return True
 
         return False

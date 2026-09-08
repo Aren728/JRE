@@ -110,10 +110,7 @@ class EvidenceProvenance:
     def __post_init__(self) -> None:
         """Validate fields after construction."""
         if not 0.0 <= self.confidence_weight <= 1.0:
-            raise ValueError(
-                f"confidence_weight must be in [0, 1], "
-                f"got {self.confidence_weight}"
-            )
+            raise ValueError(f"confidence_weight must be in [0, 1], got {self.confidence_weight}")
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""
@@ -149,16 +146,16 @@ class CrossSystemEvidence:
         """Compute deterministic_id if not provided."""
         if not self.deterministic_id:
             object.__setattr__(
-                self, "deterministic_id", _compute_evidence_hash(self),
+                self,
+                "deterministic_id",
+                _compute_evidence_hash(self),
             )
 
     def to_dict(self) -> dict[str, Any]:
         """Deterministic serialization."""
         return {
             "event_cluster_id": self.event_cluster_id,
-            "system_assessments": {
-                k: v.to_dict() for k, v in self.system_assessments.items()
-            },
+            "system_assessments": {k: v.to_dict() for k, v in self.system_assessments.items()},
             "independence_score": self.independence_score,
             "convergence_score": self.convergence_score,
             "deterministic_id": self.deterministic_id,
@@ -187,9 +184,7 @@ class SystemAssessment:
             "outcome_taxonomy": self.outcome_taxonomy,
             "assessment_status": self.assessment_status,
             "timing_status": self.timing_status,
-            "provenance": self.provenance.to_dict()
-            if self.provenance is not None
-            else None,
+            "provenance": self.provenance.to_dict() if self.provenance is not None else None,
         }
 
 

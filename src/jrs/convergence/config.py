@@ -9,27 +9,26 @@ from typing import Any
 from .errors import InvalidConvergenceConfigError
 from .models import ConvergenceConfig
 
-_DECLARED_FIELDS: frozenset[str] = frozenset({
-    "version",
-    "source_weights",
-    "strength_weights",
-    "independence_penalty",
-    "strongly_supported_min_independent",
-    "strongly_supported_min_supporting",
-    "supported_min_independent",
-    "supported_min_supporting",
-    "weakly_supported_min_supporting",
-    "strongly_contradicted_min_contradicting",
-    "contradicted_min_contradicting",
-    "convergent_min_windows",
-    "high_confidence_min_weight",
-    "low_confidence_max_weight",
-})
-
-_CONFIG_PATH = (
-    Path(__file__).resolve().parent.parent.parent.parent
-    / "config" / "convergence.toml"
+_DECLARED_FIELDS: frozenset[str] = frozenset(
+    {
+        "version",
+        "source_weights",
+        "strength_weights",
+        "independence_penalty",
+        "strongly_supported_min_independent",
+        "strongly_supported_min_supporting",
+        "supported_min_independent",
+        "supported_min_supporting",
+        "weakly_supported_min_supporting",
+        "strongly_contradicted_min_contradicting",
+        "contradicted_min_contradicting",
+        "convergent_min_windows",
+        "high_confidence_min_weight",
+        "low_confidence_max_weight",
+    }
 )
+
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent.parent / "config" / "convergence.toml"
 
 
 def load_convergence_config(path: Path | None = None) -> ConvergenceConfig:

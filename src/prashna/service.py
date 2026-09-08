@@ -62,7 +62,10 @@ class PrashnaService:
             The Prashna chart and house mapping.
         """
         self._validate_request(
-            query_time_utc, query_location, query_category, planet_states,
+            query_time_utc,
+            query_location,
+            query_category,
+            planet_states,
         )
 
         # Determine Prashna Lagna from Moon's Nakshatra lord
@@ -87,7 +90,8 @@ class PrashnaService:
         # Resolve house mapping
         category = PrashnaCategory(query_category)
         house_mapping = resolve_house_mapping(
-            category, self._config.house_mappings,
+            category,
+            self._config.house_mappings,
         )
 
         return PrashnaReport(
@@ -129,13 +133,11 @@ class PrashnaService:
         for state in planet_states:
             if not isinstance(state, PlanetState):
                 raise InvalidPrashnaRequestError(
-                    f"planet_states must contain PlanetState values, "
-                    f"got {type(state).__name__}"
+                    f"planet_states must contain PlanetState values, got {type(state).__name__}"
                 )
         # Check Moon is present
         from jyotish import BodyId
+
         has_moon = any(s.body == BodyId.MOON for s in planet_states)
         if not has_moon:
-            raise InvalidPrashnaRequestError(
-                "planet_states must contain the Moon (BodyId.MOON)"
-            )
+            raise InvalidPrashnaRequestError("planet_states must contain the Moon (BodyId.MOON)")
