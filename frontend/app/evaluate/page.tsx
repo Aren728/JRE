@@ -1,793 +1,407 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
-import ReportTabs from '@/components/ReportTabs';
-import { api, EvaluationResponse } from '@/lib/api';
-import { getCoordinatesFromPlaceName, GeocodingResult } from '@/lib/geocoding';
-import ApiKeyInput, { useApiKey } from '@/components/ApiKeyInput';
-import {
-  User, MapPin, Calendar, Clock, Key, Loader2, Globe,
-  Sparkles, ExternalLink, CheckCircle2, AlertTriangle,
-  Copy, RotateCcw, Navigation, Download, AlertCircle,
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import DynamicKarmicReport from '@/components/DynamicKarmicReport';
+import React, { useState, useEffect } from 'react';
+import EvaluationReportTabs from '@/components/EvaluationReportTabs';
 
-const TIMEZONES = [
-  'Asia/Kolkata', 'America/New_York', 'America/Los_Angeles',
-  'Europe/London', 'Europe/Berlin', 'Asia/Tokyo',
-  'Australia/Sydney', 'America/Chicago', 'Asia/Dubai',
-  'Asia/Shanghai', 'Asia/Singapore', 'Pacific/Auckland',
-  'Asia/Karachi', 'Asia/Dhaka', 'Asia/Colombo',
-  'Asia/Kathmandu', 'Africa/Johannesburg', 'America/Sao_Paulo',
-  'Europe/Paris', 'Europe/Moscow', 'Asia/Tokyo',
-];
-
-const GENDER_OPTIONS = ['Male', 'Female', 'Other', 'Prefer not to say'];
-
-// ── Date helpers ──────────────────────────────────────
-function formatDisplayDate(dateStr: string): string {
-  if (!dateStr) return '';
-  const [y, m, d] = dateStr.split('-');
-  return `${d}/${m}/${y}`;
+interface BirthDataInput {
+  date: string;
+  time: string;
+  ampm: 'AM' | 'PM';
+  locationName: string;
+  latitude: number;
+  longitude: number;
+  timezone: string;
 }
 
-function formatTimeDisplay(time24: string): string {
-  if (!time24) return '';
-  const [h, m] = time24.split(':').map(Number);
-  const ampm = h >= 12 ? 'PM' : 'AM';
-  const h12 = h % 12 || 12;
-  return `${h12}:${m.toString().padStart(2, '0')} ${ampm}`;
+interface GeocodingResult {
+  display_name: string;
+  lat: string;
+  lon: string;
 }
 
-// ── Section Header ────────────────────────────────────
-function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
-  return (
-    <div className="flex items-center gap-2.5 mb-4">
-      <div
-        className="w-8 h-8 rounded-lg flex items-center justify-center"
-        style={{
-          background: 'rgba(201, 160, 255, 0.12)',
-          border: '1px solid rgba(201, 160, 255, 0.2)',
-        }}
-      >
-        {icon}
-      </div>
-      <h3 className="text-sm font-semibold tracking-wide" style={{ color: 'var(--cosmic-accent)' }}>
-        {title}
-      </h3>
-    </div>
-  );
-}
-
-// ── Copy Button ───────────────────────────────────────
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className="p-1 rounded transition-colors"
-      style={{ color: 'var(--text-secondary)' }}
-      title="Copy"
-    >
-      {copied ? <CheckCircle2 size={14} className="text-green-400" /> : <Copy size={14} />}
-    </button>
-  );
-}
-
-// ── Main Page ─────────────────────────────────────────
-export default function EvaluateCustomPage() {
-  const { apiKey, setApiKey } = useApiKey();
-  const [loading, setLoading] = useState(false);
-  const [pdfLoading, setPdfLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [result, setResult] = useState<EvaluationResponse | null>(null);
-  const [geoLoading, setGeoLoading] = useState(false);
-  const [geoResult, setGeoResult] = useState<GeocodingResult | null>(null);
-  const [geoError, setGeoError] = useState('');
-  const placeInputRef = useRef<HTMLInputElement>(null);
-  const geoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const [form, setForm] = useState({
-    name: '',
-    gender: '',
-    date: '',
-    time: '12:00',
-    placeOfBirth: '',
-    latitude: '',
-    longitude: '',
+export default function EvaluatePage() {
+  const [formData, setFormData] = useState<BirthDataInput>({
+    date: '1995-09-28',
+    time: '02:30',
+    ampm: 'PM',
+    locationName: 'New Delhi, India',
+    latitude: 28.6139,
+    longitude: 77.2090,
     timezone: 'Asia/Kolkata',
-    language: 'en',
   });
 
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [locationQuery, setLocationQuery] = useState('New Delhi, India');
+  const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
+  const [isSearchingLocation, setIsSearchingLocation] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  // ── Geocoding with debounce ─────────────────────────
-  const handlePlaceChange = useCallback((value: string) => {
-    setForm((f) => ({ ...f, placeOfBirth: value }));
-    setGeoResult(null);
-    setGeoError('');
+  const [evaluationData, setEvaluationData] = useState<any>(null);
+  const [synthesisMarkdown, setSynthesisMarkdown] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [isEvaluating, setIsEvaluating] = useState(false);
+  const [isSynthesizing, setIsSynthesizing] = useState(false);
 
-    if (geoTimeoutRef.current) clearTimeout(geoTimeoutRef.current);
-
-    if (value.length < 3) return;
-
-    geoTimeoutRef.current = setTimeout(async () => {
-      setGeoLoading(true);
-      try {
-        const result = await getCoordinatesFromPlaceName(value);
-        setGeoResult(result);
-        setForm((f) => ({
-          ...f,
-          latitude: result.latitude.toFixed(4),
-          longitude: result.longitude.toFixed(4),
-          timezone: result.timezone || f.timezone,
-        }));
-        setGeoError('');
-      } catch (err: any) {
-        setGeoError(err.message || 'Location lookup failed');
-      } finally {
-        setGeoLoading(false);
-      }
-    }, 600);
-  }, []);
-
-  // ── Current Location ────────────────────────────────
-  const useCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      setGeoError('Geolocation is not supported by your browser');
+  useEffect(() => {
+    if (!locationQuery || locationQuery.length < 3) {
+      setSearchResults([]);
       return;
     }
-    setGeoLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        setForm((f) => ({ ...f, latitude: lat.toFixed(4), longitude: lon.toFixed(4) }));
-        setGeoResult({ latitude: lat, longitude: lon, displayName: 'Current Location' });
-        setGeoLoading(false);
-        setGeoError('');
-      },
-      () => {
-        setGeoError('Unable to retrieve your location');
-        setGeoLoading(false);
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-  };
 
-  // ── Validation ──────────────────────────────────────
-  const validate = (): boolean => {
-    const errs: Record<string, string> = {};
-
-    if (!apiKey) errs.apiKey = 'API key is required';
-    if (!form.date) errs.date = 'Date of birth is required';
-    if (!form.time) errs.time = 'Time of birth is required';
-    if (!form.latitude || isNaN(parseFloat(form.latitude)))
-      errs.latitude = 'Valid latitude is required (-90 to 90)';
-    else {
-      const lat = parseFloat(form.latitude);
-      if (lat < -90 || lat > 90) errs.latitude = 'Latitude must be between -90 and 90';
-    }
-    if (!form.longitude || isNaN(parseFloat(form.longitude)))
-      errs.longitude = 'Valid longitude is required (-180 to 180)';
-    else {
-      const lon = parseFloat(form.longitude);
-      if (lon < -180 || lon > 180) errs.longitude = 'Longitude must be between -180 and 180';
+    // Skip the geocode lookup when the text already matches the resolved
+    // location (initial mount, or after picking a result). Otherwise the
+    // dropdown re-opens on mount and can intercept clicks on the form below.
+    if (locationQuery === formData.locationName) {
+      return;
     }
 
-    setFormErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
-
-  // ── Submit ──────────────────────────────────────────
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setLoading(true);
-    setError('');
-    try {
-      const response = await api.evaluateCustom(
-        {
-          date: form.date,
-          time: form.time,
-          latitude: parseFloat(form.latitude),
-          longitude: parseFloat(form.longitude),
-          timezone: form.timezone,
-          language: form.language,
-        },
-        apiKey
-      );
-      setResult(response.data);
-      // Persist evaluation for other pages (Chart, Report, Transits)
+    const timer = setTimeout(async () => {
+      setIsSearchingLocation(true);
       try {
-        const storeData = { ...response.data, _language: form.language };
-        localStorage.setItem('jre_last_evaluation', JSON.stringify(storeData));
-        // Also store birth data for advanced API calls (Shadbala, Ashtakavarga, Remedies)
-        localStorage.setItem('jre_birth_data', JSON.stringify({
-          date: form.date,
-          time: form.time,
-          latitude: parseFloat(form.latitude),
-          longitude: parseFloat(form.longitude),
-          timezone: form.timezone,
-        }));
-      } catch { /* storage full or unavailable */ }
-    } catch (err: any) {
-      const detail = err.response?.data?.detail;
-      setError(typeof detail === 'string' ? detail : 'Evaluation failed. Is the backend running?');
-    } finally {
-      setLoading(false);
-    }
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+            locationQuery
+          )}&limit=5`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setSearchResults(data);
+          setShowDropdown(true);
+        }
+      } catch (err) {
+        console.error('Location search failed:', err);
+      } finally {
+        setIsSearchingLocation(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [locationQuery, formData.locationName]);
+
+  const handleSelectLocation = (place: GeocodingResult) => {
+    setFormData((prev) => ({
+      ...prev,
+      locationName: place.display_name,
+      latitude: parseFloat(place.lat),
+      longitude: parseFloat(place.lon),
+    }));
+    setLocationQuery(place.display_name);
+    setShowDropdown(false);
   };
 
-  // ── PDF Download ─────────────────────────────────────
-  const handleDownloadPdf = async () => {
-    if (!apiKey) return;
-    setPdfLoading(true);
+  // Strictly ensures YYYY-MM-DD with 3 parts regardless of regional input
+  const normalizeDate = (rawDate: string): { formatted: string; year: number; month: number; day: number } => {
+    let year = 1995, month = 9, day = 28;
+
+    if (rawDate.includes('/')) {
+      const parts = rawDate.split('/');
+      if (parts.length === 3) {
+        // Handle DD/MM/YYYY vs YYYY/MM/DD
+        if (parts[0].length === 4) {
+          year = parseInt(parts[0], 10);
+          month = parseInt(parts[1], 10);
+          day = parseInt(parts[2], 10);
+        } else {
+          day = parseInt(parts[0], 10);
+          month = parseInt(parts[1], 10);
+          year = parseInt(parts[2], 10);
+        }
+      }
+    } else if (rawDate.includes('-')) {
+      const parts = rawDate.split('-');
+      if (parts.length === 3) {
+        if (parts[0].length === 4) {
+          year = parseInt(parts[0], 10);
+          month = parseInt(parts[1], 10);
+          day = parseInt(parts[2], 10);
+        } else {
+          day = parseInt(parts[0], 10);
+          month = parseInt(parts[1], 10);
+          year = parseInt(parts[2], 10);
+        }
+      }
+    }
+
+    const yStr = year.toString().padStart(4, '0');
+    const mStr = month.toString().padStart(2, '0');
+    const dStr = day.toString().padStart(2, '0');
+
+    return {
+      formatted: `${yStr}-${mStr}-${dStr}`,
+      year,
+      month,
+      day,
+    };
+  };
+
+  // Strictly guarantees HH:mm:ss (3 parts)
+  const normalizeTime = (timeStr: string, ampm: 'AM' | 'PM'): string => {
+    const clean = timeStr.trim();
+    const parts = clean.split(':');
+    let hours = parseInt(parts[0], 10) || 12;
+    let minutes = parseInt(parts[1], 10) || 0;
+    let seconds = parts[2] ? parseInt(parts[2], 10) || 0 : 0;
+
+    if (ampm === 'PM' && hours < 12) hours += 12;
+    if (ampm === 'AM' && hours === 12) hours = 0;
+
+    const hStr = hours.toString().padStart(2, '0');
+    const mStr = minutes.toString().padStart(2, '0');
+    const sStr = seconds.toString().padStart(2, '0');
+
+    return `${hStr}:${mStr}:${sStr}`;
+  };
+
+  const handleRunEvaluation = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setErrorMsg(null);
+
+    if (!formData.date || new Date(formData.date) < new Date('1582-10-15')) {
+      setErrorMsg('Date must be on or after October 15, 1582 (Gregorian boundary limit).');
+      return;
+    }
+
+    setIsEvaluating(true);
+
+    const dateObj = normalizeDate(formData.date);
+    const timeWithSeconds = normalizeTime(formData.time, formData.ampm);
+
+    const payload = {
+      date: dateObj.formatted,                         // "1995-09-28"
+      time: timeWithSeconds,                           // "14:30:00"
+      year: dateObj.year,
+      month: dateObj.month,
+      day: dateObj.day,
+      latitude: Number(formData.latitude),
+      longitude: Number(formData.longitude),
+      lat: Number(formData.latitude),
+      lon: Number(formData.longitude),
+      timezone: formData.timezone,
+    };
+
     try {
-      const response = await api.downloadPdfCustom(
-        {
-          date: form.date,
-          time: form.time,
-          latitude: parseFloat(form.latitude),
-          longitude: parseFloat(form.longitude),
-          timezone: form.timezone,
+      const res = await fetch('http://localhost:8000/api/v1/evaluate/custom', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': 'jre-beta-key-alpha',
         },
-        apiKey
-      );
-      const blob = new Blob([response.data as BlobPart], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `jre-report-${result?.evaluation_id || 'unknown'}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          typeof errorData.detail === 'string'
+            ? errorData.detail
+            : errorData.detail?.[0]?.msg
+              ? `Validation Error: ${(errorData.detail[0].loc ?? []).join('.')} - ${errorData.detail[0].msg}`
+              : `Evaluation error (${res.status})`
+        );
+      }
+
+      const data = await res.json();
+      setEvaluationData(data);
     } catch (err: any) {
-      setError('PDF generation failed. Is the backend running with weasyprint?');
+      console.error('Evaluation Error:', err);
+      setErrorMsg(err.message || 'Failed to complete chart calculation.');
     } finally {
-      setPdfLoading(false);
+      setIsEvaluating(false);
     }
   };
 
-  // ── Reset ───────────────────────────────────────────
-  const handleReset = () => {
-    setResult(null);
-    setError('');
-    setFormErrors({});
+  const handleGenerateReport = async () => {
+    setIsSynthesizing(true);
+    setErrorMsg(null);
+
+    const dateObj = normalizeDate(formData.date);
+    const timeWithSeconds = normalizeTime(formData.time, formData.ampm);
+
+    const payload = {
+      date: dateObj.formatted,
+      time: timeWithSeconds,
+      latitude: Number(formData.latitude),
+      longitude: Number(formData.longitude),
+      timezone: formData.timezone,
+    };
+
+    try {
+      const res = await fetch('http://localhost:8000/api/v1/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.detail || `Report synthesis failed (${res.status})`);
+      }
+
+      const data = await res.json();
+      setSynthesisMarkdown(data.synthesis_markdown);
+    } catch (err: any) {
+      console.error('Synthesis Error:', err);
+      setErrorMsg(err.message || 'Error executing AI report synthesis.');
+    } finally {
+      setIsSynthesizing(false);
+    }
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
-      {/* Page Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-10"
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
-          style={{
-            background: 'rgba(201, 160, 255, 0.1)',
-            border: '1px solid rgba(201, 160, 255, 0.2)',
-            color: 'var(--cosmic-accent)',
-          }}
-        >
-          <Sparkles size={12} />
-          Chart Evaluation
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
-          Cast a Natal Chart
-        </h1>
-        <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-          Enter birth details to detect classical yogas and evaluate Dasha activations through the 5-layer pipeline.
+    <div className="min-h-screen bg-slate-950 text-slate-100 p-6">
+      <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 mb-8 shadow-2xl">
+        <h1 className="text-2xl font-bold text-amber-400 mb-2">Chart Evaluation Input</h1>
+        <p className="text-xs text-slate-400 mb-6">
+          Provide birth parameters to compute cosmic positions, house strengths, and planetary dignities.
         </p>
-      </motion.div>
 
-      {/* ── Form ──────────────────────────────────────── */}
-      <AnimatePresence mode="wait">
-        {!result ? (
-          <motion.form
-            key="form"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4 }}
-            onSubmit={handleSubmit}
-            className="glass-card p-6 sm:p-8 space-y-8"
-          >
-            {/* Identity Section */}
+        <form onSubmit={handleRunEvaluation} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <div>
-              <SectionHeader icon={<User size={16} style={{ color: 'var(--cosmic-accent)' }} />} title="IDENTITY" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="cosmic-label">Name (optional)</label>
-                  <input
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Subject name"
-                    className="cosmic-input"
-                  />
-                </div>
-                <div>
-                  <label className="cosmic-label">Gender</label>
-                  <div className="relative">
-                    <select
-                      value={form.gender}
-                      onChange={(e) => setForm({ ...form, gender: e.target.value })}
-                      className="cosmic-select"
-                    >
-                      <option value="">Select…</option>
-                      {GENDER_OPTIONS.map((g) => (
-                        <option key={g} value={g}>{g}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+              <label className="block text-slate-400 font-medium mb-1">Date</label>
+              <input
+                type="date"
+                min="1582-10-15"
+                value={formData.date}
+                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-slate-400 font-medium mb-1">Time (12-hour)</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="02:30"
+                  value={formData.time}
+                  onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
+                  required
+                />
+                <select
+                  value={formData.ampm}
+                  onChange={(e) =>
+                    setFormData({ ...formData, ampm: e.target.value as 'AM' | 'PM' })
+                  }
+                  className="bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-amber-400 font-bold focus:outline-none focus:border-amber-500"
+                >
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
               </div>
             </div>
 
-            {/* Date & Time Section */}
-            <div>
-              <SectionHeader icon={<Calendar size={16} style={{ color: 'var(--cosmic-accent)' }} />} title="DATE & TIME OF BIRTH" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="cosmic-label">Date of Birth</label>
-                  <input
-                    type="date"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    className="cosmic-input"
-                    required
-                  />
-                  {form.date && (
-                    <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-                      {formatDisplayDate(form.date)}
-                    </p>
-                  )}
-                  {formErrors.date && (
-                    <p className="text-xs mt-1 flex items-center gap-1" style={{ color: '#f87171' }}>
-                      <AlertTriangle size={11} /> {formErrors.date}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="cosmic-label">
-                    <Clock size={12} className="inline mr-1" />
-                    Time of Birth
-                  </label>
-                  <input
-                    type="time"
-                    value={form.time}
-                    onChange={(e) => setForm({ ...form, time: e.target.value })}
-                    className="cosmic-input"
-                    required
-                  />
-                  <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-                    {formatTimeDisplay(form.time) || 'Select time (24-hour format)'}
-                  </p>
-                  {formErrors.time && (
-                    <p className="text-xs mt-1 flex items-center gap-1" style={{ color: '#f87171' }}>
-                      <AlertTriangle size={11} /> {formErrors.time}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Location Section */}
-            <div>
-              <SectionHeader icon={<MapPin size={16} style={{ color: 'var(--cosmic-accent)' }} />} title="PLACE OF BIRTH" />
-              <div className="space-y-4">
-                <div className="flex gap-2">
-                  <div className="flex-1 relative">
-                    <input
-                      ref={placeInputRef}
-                      type="text"
-                      value={form.placeOfBirth}
-                      onChange={(e) => handlePlaceChange(e.target.value)}
-                      placeholder="Start typing a city name…"
-                      className="cosmic-input pr-8"
-                    />
-                    {geoLoading && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <Loader2 size={14} className="animate-spin" style={{ color: 'var(--cosmic-accent)' }} />
-                      </div>
-                    )}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={useCurrentLocation}
-                    disabled={geoLoading}
-                    className="cosmic-btn-outline flex items-center gap-1.5 whitespace-nowrap"
-                    title="Use current location"
-                  >
-                    <Navigation size={14} />
-                    <span className="hidden sm:inline">Use My Location</span>
-                  </button>
-                </div>
-
-                {geoResult && (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="geo-success"
-                  >
-                    ✓ {geoResult.displayName}
-                  </motion.p>
-                )}
-                {geoError && (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="geo-error"
-                  >
-                    {geoError}
-                  </motion.p>
-                )}
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <div>
-                    <label className="cosmic-label">Latitude</label>
-                    <input
-                      type="text"
-                      value={form.latitude}
-                      onChange={(e) => setForm({ ...form, latitude: e.target.value })}
-                      placeholder="28.6139"
-                      className="cosmic-input"
-                      readOnly={!!geoResult}
-                      style={geoResult ? { opacity: 0.7 } : {}}
-                    />
-                    {formErrors.latitude && (
-                      <p className="text-xs mt-1" style={{ color: '#f87171' }}>{formErrors.latitude}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="cosmic-label">Longitude</label>
-                    <input
-                      type="text"
-                      value={form.longitude}
-                      onChange={(e) => setForm({ ...form, longitude: e.target.value })}
-                      placeholder="77.2090"
-                      className="cosmic-input"
-                      readOnly={!!geoResult}
-                      style={geoResult ? { opacity: 0.7 } : {}}
-                    />
-                    {formErrors.longitude && (
-                      <p className="text-xs mt-1" style={{ color: '#f87171' }}>{formErrors.longitude}</p>
-                    )}
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className="cosmic-label">Timezone</label>
-                    <div className="relative">
-                      <select
-                        value={form.timezone}
-                        onChange={(e) => setForm({ ...form, timezone: e.target.value })}
-                        className="cosmic-select"
-                      >
-                        {TIMEZONES.map((tz) => (
-                          <option key={tz} value={tz}>{tz.replace('_', ' ')}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Language */}
-            <div>
-              <SectionHeader icon={<Globe size={16} style={{ color: 'var(--cosmic-accent)' }} />} title="LANGUAGE" />
-              <select
-                value={form.language}
-                onChange={(e) => setForm({ ...form, language: e.target.value })}
-                className="cosmic-select"
-              >
-                <option value="en">English</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-                <option value="ta">தமிழ் (Tamil)</option>
-                <option value="ml">മലയാളം (Malayalam)</option>
-                <option value="te">తెలుగు (Telugu)</option>
-                <option value="kn">ಕನ್ನಡ (Kannada)</option>
-                <option value="mr">मराठी (Marathi)</option>
-                <option value="bn">বাংলা (Bengali)</option>
-                <option value="as">অসমীয়া (Assamese)</option>
-                <option value="or">ଓଡ଼ିଆ (Odia)</option>
-                <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                <option value="gu">ગુજરાતી (Gujarati)</option>
-              </select>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-                Report language. Astrological terms remain in English/Sanskrit.
-              </p>
-            </div>
-
-            {/* API Key */}
-            <div>
-              <SectionHeader icon={<Key size={16} style={{ color: 'var(--cosmic-accent)' }} />} title="AUTHENTICATION" />
-              <ApiKeyInput value={apiKey} onChange={setApiKey} />
-              {formErrors.apiKey && (
-                <p className="text-xs mt-1" style={{ color: '#f87171' }}>{formErrors.apiKey}</p>
-              )}
-            </div>
-
-            {/* Error */}
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="p-4 rounded-xl flex items-start gap-3"
-                style={{
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  border: '1px solid rgba(239, 68, 68, 0.25)',
+            <div className="relative md:col-span-2">
+              <label className="block text-slate-400 font-medium mb-1">
+                Birth Location (City Search)
+              </label>
+              <input
+                type="text"
+                placeholder="Search city (e.g. New Delhi, London, Tokyo)..."
+                value={locationQuery}
+                onChange={(e) => {
+                  setLocationQuery(e.target.value);
+                  setShowDropdown(true);
                 }}
-              >
-                <AlertTriangle size={18} className="text-red-400 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-red-300">Evaluation Failed</p>
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{error}</p>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="cosmic-btn w-full text-base py-3.5 flex items-center justify-center gap-2"
-            >
-              {loading ? (
-                <>
-                  <Loader2 size={18} className="animate-spin" />
-                  Computing Yogas & Dasha…
-                </>
-              ) : (
-                <>
-                  <Sparkles size={18} />
-                  Run Evaluation
-                </>
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
+              />
+              {isSearchingLocation && (
+                <span className="absolute right-3 top-8 text-[10px] text-amber-400">
+                  Searching...
+                </span>
               )}
-            </button>
-          </motion.form>
-        ) : (
-          /* ── Results ──────────────────────────────────── */
-          <motion.div
-            key="results"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            {/* Success Banner */}
-            <div
-              className="glass-card p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-                style={{ background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.3)' }}
-              >
-                <CheckCircle2 size={24} className="text-green-400" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-                  Evaluation Complete
-                </h2>
-                <div className="flex flex-wrap items-center gap-3 mt-1 text-xs" style={{ color: 'var(--text-secondary)' }}>
-                  <span className="flex items-center gap-1">
-                    Lagna: <strong style={{ color: 'var(--cosmic-accent)' }}>{result.lagna}</strong>
-                  </span>
-                  <span>·</span>
-                  <span>
-                    {result.yoga_count} yogas ({result.formed_count} active)
-                  </span>
-                  <span>·</span>
-                  <span>{result.processing_time_ms.toFixed(1)}ms</span>
-                  <span>·</span>
-                  <span className="flex items-center gap-1">
-                    ID: <code className="text-[11px]" style={{ color: 'var(--cosmic-gold)' }}>{result.evaluation_id}</code>
-                    <CopyButton text={result.evaluation_id} />
-                  </span>
-                </div>
-              </div>
-              <div className="flex gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleDownloadPdf}
-                  disabled={pdfLoading}
-                  className="cosmic-btn-outline text-xs flex items-center gap-1"
-                  title="Download 9-step comprehensive PDF report"
-                >
-                  {pdfLoading ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />} Comprehensive PDF
-                </button>
-                <Link
-                  href={`/report/${result.evaluation_id}`}
-                  className="cosmic-btn-outline text-xs flex items-center gap-1"
-                >
-                  <ExternalLink size={12} /> Full Report
-                </Link>
-                <Link
-                  href={`/feedback?eval_id=${result.evaluation_id}`}
-                  className="cosmic-btn-outline text-xs flex items-center gap-1"
-                >
-                  Submit Feedback
-                </Link>
-              </div>
-            </div>
 
-            {/* Unknown TOB Warning */}
-            {result.unknown_tob && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="glass-card-static p-5 flex items-start gap-3"
-                style={{
-                  background: 'rgba(234, 179, 8, 0.08)',
-                  border: '1px solid rgba(234, 179, 8, 0.25)',
-                }}
-              >
-                <AlertCircle size={18} className="text-yellow-400 mt-0.5 shrink-0" />
-                <div className="text-sm">
-                  <p className="font-medium text-yellow-300 mb-1">⚠ Unknown Time of Birth</p>
-                  <p style={{ color: 'var(--text-secondary)' }}>
-                    Birth time was not provided. Noon (12:00) was used as a computational default.
-                    The computed Lagna is unreliable — <strong>Lagna-dependent yogas have been suspended</strong>.
-                  </p>
-                  {result.skipped_yogas.length > 0 && (
-                    <p className="mt-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
-                      Skipped: {result.skipped_yogas.join(', ')}
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Elemental & Dignity Summary */}
-            {(Object.keys(result.elemental_balance || {}).length > 0 || Object.keys(result.dignity_map || {}).length > 0) && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="glass-card p-6"
-              >
-                <h3 className="text-sm font-semibold mb-4" style={{ color: 'var(--cosmic-accent)' }}>
-                  CHART SIGNATURES
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Elemental Balance */}
-                  {Object.keys(result.elemental_balance || {}).length > 0 && (
-                    <div>
-                      <p className="text-xs font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>ELEMENTAL BALANCE</p>
-                      <div className="flex gap-3 flex-wrap">
-                        {Object.entries(result.elemental_balance).map(([elem, count]) => (
-                          <div key={elem} className="flex items-center gap-1.5">
-                            <span className="text-sm">{elem === 'fire' ? '🔥' : elem === 'earth' ? '🌍' : elem === 'air' ? '💨' : '💧'}</span>
-                            <span className="text-xs capitalize" style={{ color: 'var(--text-primary)' }}>{elem}</span>
-                            <span className="text-xs font-bold" style={{ color: 'var(--cosmic-gold)' }}>{count}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {/* Dignity Summary */}
-                  {Object.keys(result.dignity_map || {}).length > 0 && (
-                    <div>
-                      <p className="text-xs font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>PLANETARY DIGNITIES</p>
-                      <div className="flex gap-2 flex-wrap">
-                        {Object.entries(result.dignity_map).map(([planet, dignity]) => (
-                          <span
-                            key={planet}
-                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium"
-                            style={{
-                              background: dignity === 'Exalted' ? 'rgba(34,197,94,0.15)' :
-                                         dignity === 'Debilitated' ? 'rgba(239,68,68,0.15)' :
-                                         dignity === 'Own Sign' ? 'rgba(59,130,246,0.15)' :
-                                         'rgba(255,255,255,0.05)',
-                              color: dignity === 'Exalted' ? '#4ade80' :
-                                     dignity === 'Deilitated' ? '#f87171' :
-                                     dignity === 'Own Sign' ? '#60a5fa' :
-                                     'var(--text-secondary)',
-                              border: '1px solid rgba(255,255,255,0.08)',
-                            }}
-                          >
-                            {planet}: {dignity}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Yogas Table */}
-            <div className="glass-card p-6 overflow-x-auto">
-              <h3 className="text-sm font-semibold mb-4" style={{ color: 'var(--cosmic-accent)' }}>
-                DETECTED YOGAS
-              </h3>
-              <table className="cosmic-table">
-                <thead>
-                  <tr>
-                    <th>Yoga</th>
-                    <th>Status</th>
-                    <th>Planets</th>
-                    <th>Strength</th>
-                    <th className="hidden sm:table-cell">Domains</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {result.yogas.map((yoga, i) => (
-                    <motion.tr
-                      key={i}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.03 }}
+              {showDropdown && searchResults.length > 0 && (
+                <ul className="absolute z-50 w-full bg-slate-900 border border-slate-700 rounded-lg mt-1 max-h-48 overflow-y-auto shadow-2xl">
+                  {searchResults.map((place, index) => (
+                    <li
+                      key={index}
+                      onClick={() => handleSelectLocation(place)}
+                      className="px-3 py-2 text-xs hover:bg-slate-800 text-slate-300 cursor-pointer border-b border-slate-800 last:border-b-0"
                     >
-                      <td className="font-medium">{yoga.yoga_name}</td>
-                      <td>
-                        <span className={`inline-block px-2 py-0.5 rounded-md text-[11px] font-medium ${
-                          yoga.status === 'FORMED' ? 'badge-formed' :
-                          yoga.status === 'WEAKENED' ? 'badge-weakened' :
-                          'badge-not-formed'
-                        }`}>
-                          {yoga.status}
-                        </span>
-                      </td>
-                      <td className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                        {yoga.involved_planets.join(', ') || '—'}
-                      </td>
-                      <td className="font-medium" style={{ color: 'var(--cosmic-gold-light)' }}>
-                        {yoga.static_strength > 0 ? `${(yoga.static_strength * 100).toFixed(0)}%` : '—'}
-                      </td>
-                      <td className="hidden sm:table-cell text-xs" style={{ color: 'var(--text-secondary)' }}>
-                        {yoga.domains.join(', ')}
-                      </td>
-                    </motion.tr>
+                      {place.display_name}
+                    </li>
                   ))}
-                </tbody>
-              </table>
+                </ul>
+              )}
             </div>
 
-            {/* Disclaimer */}
-            <div
-              className="glass-card-static p-4 text-xs leading-relaxed"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <strong style={{ color: 'var(--cosmic-accent)' }}>Disclaimer:</strong>{' '}
-              {result.disclaimer}
-            </div>
-
-            {/* Actions */}
-            <div className="flex justify-center">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="cosmic-btn-outline flex items-center gap-2"
+            <div>
+              <label className="block text-slate-400 font-medium mb-1">Timezone</label>
+              <select
+                value={formData.timezone}
+                onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
               >
-                <RotateCcw size={14} />
-                New Evaluation
-              </button>
+                <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                <option value="America/New_York">America/New_York (EST)</option>
+                <option value="America/Los_Angeles">America/Los_Angeles (PST)</option>
+                <option value="Europe/London">Europe/London (GMT/BST)</option>
+                <option value="Europe/Paris">Europe/Paris (CET)</option>
+                <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+                <option value="Australia/Sydney">Australia/Sydney (AEST)</option>
+                <option value="UTC">UTC</option>
+              </select>
             </div>
 
-            {/* Dynamic Overview Report - Generated beneath evaluation results */}
-            <div className="mt-8">
-              <h2 className="font-['Cinzel'] text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
-                <Sparkles size={18} className="text-purple-400" />
-                Dynamic Report Generation
-              </h2>
-              <DynamicKarmicReport chartData={result} />
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-slate-400 font-medium mb-1">Latitude (°N)</label>
+                <input
+                  type="number"
+                  step="any"
+                  value={formData.latitude}
+                  onChange={(e) =>
+                    setFormData({ ...formData, latitude: parseFloat(e.target.value) || 0 })
+                  }
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-400 font-medium mb-1">Longitude (°E)</label>
+                <input
+                  type="number"
+                  step="any"
+                  value={formData.longitude}
+                  onChange={(e) =>
+                    setFormData({ ...formData, longitude: parseFloat(e.target.value) || 0 })
+                  }
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-500"
+                />
+              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <ReportTabs />
+          </div>
+
+          {errorMsg && (
+            <div className="p-3 bg-red-950/80 border border-red-500/50 rounded-lg text-red-300 text-xs font-medium">
+              {errorMsg}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isEvaluating}
+            className="w-full bg-amber-500 hover:bg-amber-600 font-bold text-slate-950 py-3 rounded-lg transition-colors text-sm shadow-md mt-4"
+          >
+            {isEvaluating ? 'Evaluating Chart Data...' : 'Run Evaluation'}
+          </button>
+        </form>
+      </div>
+
+      {evaluationData && (
+        <EvaluationReportTabs
+          evaluationData={evaluationData}
+          birthDisplay={{
+            ...formData,
+            time: `${formData.time} ${formData.ampm}`,
+          }}
+          synthesisMarkdown={synthesisMarkdown}
+          synthesisError={errorMsg}
+          isSynthesizing={isSynthesizing}
+          onGenerateReport={handleGenerateReport}
+        />
+      )}
     </div>
   );
 }
