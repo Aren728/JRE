@@ -388,6 +388,15 @@ async def evaluate_custom(
         )
         jre_facts = build_jre_facts(chart)
     except Exception as e:
+        # Log the full traceback server-side; the stringified detail alone
+        # (e.g. "not enough values to unpack (expected 3, got 2)") hides
+        # which parser raised it.
+        _logger.exception(
+            "Chart computation failed for date=%r time=%r: %s",
+            input_data.date,
+            input_data.time,
+            e,
+        )
         raise HTTPException(
             status_code=422,
             detail=f"Chart computation failed: {e}",
