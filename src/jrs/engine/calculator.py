@@ -71,6 +71,8 @@ NAKSHATRAS = [
 
 def get_utc_offset_hours(date_str: str, time_str: str, timezone_iana: str) -> float:
     """Parses IANA timezone string and calculates UTC offset in hours, adjusting for DST."""
+    if time_str.count(":") == 1:
+        time_str = f"{time_str}:00"
     try:
         dt_naive = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
         local_dt = dt_naive.replace(tzinfo=ZoneInfo(timezone_iana))
@@ -82,6 +84,8 @@ def get_utc_offset_hours(date_str: str, time_str: str, timezone_iana: str) -> fl
 
 def get_julian_day(date_str: str, time_str: str, timezone_iana: str) -> float:
     """Converts local birth datetime and IANA timezone into Universal Time Julian Day."""
+    if time_str.count(":") == 1:
+        time_str = f"{time_str}:00"
     tz_offset_hours = get_utc_offset_hours(date_str, time_str, timezone_iana)
     dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
     utc_hours = dt.hour + (dt.minute / 60.0) + (dt.second / 3600.0) - tz_offset_hours
@@ -198,7 +202,8 @@ def calculate_chart_positions(
 
     planets_data: dict[str, Any] = {}
     for p_name, p_code in PLANET_MAP.items():
-        res, _ = swe.calc_ut(jd, p_code, swe.FLG_SIDEREAL | swe.FLG_SPEED)
+        calc_out = swe.calc_ut(jd, p_code, swe.FLG_SIDEREAL | swe.FLG_SPEED)
+        res = calc_out[0] if isinstance(calc_out, (tuple, list)) else calc_out
         abs_deg = res[0] % 360
 
         p_sign, p_deg_in_sign = calculate_varga_position(abs_deg)

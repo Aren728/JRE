@@ -36,6 +36,39 @@ def test_get_julian_day_calculation():
     assert jd > 2400000.0  # Reasonable Julian Day threshold for 20th century
 
 
+@pytest.mark.parametrize(
+    ("time_short", "time_full"),
+    [
+        ("14:30", "14:30:00"),
+        ("00:00", "00:00:00"),  # midnight edge case
+        ("23:59", "23:59:00"),  # HH:MM pads seconds to :00, not :59
+    ],
+)
+def test_short_time_strings_accepted(time_short: str, time_full: str):
+    """Regression guard: HH:MM time strings must not raise
+    'ValueError: not enough values to unpack (expected 3, got 2)'
+    and must yield results identical to their HH:MM:SS equivalents."""
+    assert get_utc_offset_hours("1995-10-24", time_short, "Asia/Kolkata") == (
+        get_utc_offset_hours("1995-10-24", time_full, "Asia/Kolkata")
+    )
+    assert get_julian_day("1995-10-24", time_short, "Asia/Kolkata") == (
+        get_julian_day("1995-10-24", time_full, "Asia/Kolkata")
+    )
+
+
+def test_calculate_chart_positions_short_time():
+    """End-to-end: full chart computation accepts HH:MM without unpack errors."""
+    res = calculate_chart_positions(
+        date="1995-10-24",
+        time="14:30",
+        latitude=13.0827,
+        longitude=80.2707,
+        timezone="Asia/Kolkata",
+    )
+    assert "lagna" in res
+    assert "planets" in res
+
+
 def test_calculate_nakshatra():
     """Verify Nakshatra and Pada mapping from absolute degree."""
     # 0 degrees -> Ashwini, Pada 1
