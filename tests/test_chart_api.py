@@ -16,6 +16,9 @@ from sqlalchemy.orm import Session
 
 from src.jrs.api.main import app
 from src.jrs.db.models import ChartCalculation
+# Import get_db exactly as the app does (jrs.* namespace) so the dependency
+# override keys on the same function object FastAPI resolves at request time.
+from jrs.db.session import get_db
 
 
 def _create_mock_db_session(record_to_return: MagicMock = None) -> MagicMock:
@@ -88,7 +91,7 @@ def setup_dependency_overrides():
     """Set up dependency overrides before each test."""
     app.dependency_overrides.clear()
     # Use the empty override for tests that don't need a record
-    app.dependency_overrides[__import__('src.jrs.db.session', fromlist=['get_db']).get_db] = override_get_db_empty
+    app.dependency_overrides[get_db] = override_get_db_empty
     yield
     app.dependency_overrides.clear()
 
@@ -216,7 +219,7 @@ class TestGetChartById:
         """Test GET /api/v1/chart/{id} returns chart data when found."""
         # Override the db dependency to return a mock record
         app.dependency_overrides.clear()
-        app.dependency_overrides[__import__('src.jrs.db.session', fromlist=['get_db']).get_db] = override_get_db_with_record
+        app.dependency_overrides[get_db] = override_get_db_with_record
 
         try:
             response = client.get("/api/v1/chart/42")
