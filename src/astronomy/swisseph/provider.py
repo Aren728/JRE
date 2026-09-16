@@ -61,6 +61,20 @@ def _library_version() -> str:
         return str(getattr(swe, "version", "unknown"))
 
 
+def _calc_ut(jd_ut: float, ipl: int, flags: int) -> tuple:
+    """Normalize ``swe.calc_ut`` across pysweph API generations.
+
+    Old bindings return ``(xx, retflag, errmsg)``; newer 2.10.x returns
+    ``(xx, retflag)`` and raises on hard errors instead. Returns the
+    3-element form either way so callers can unpack safely.
+    """
+    out = swe.calc_ut(jd_ut, ipl, flags)
+    if isinstance(out, (tuple, list)) and len(out) == 2:
+        xx, retflag = out
+        return xx, retflag, ""
+    return out
+
+
 class SwissEphemerisProvider(EphemerisProvider):
     """Deterministic Swiss Ephemeris adapter (SWIEPH standard, MOSEPH fallback)."""
 
@@ -124,7 +138,7 @@ class SwissEphemerisProvider(EphemerisProvider):
 
     def _probe_swieph(self, jd_ut: float, config: CalculationConfig) -> None:
         flags = calculation_flags(EphemerisMode.SWIEPH, config.position_type)
-        _xx, retflag, errmsg = swe.calc_ut(jd_ut, swe.SUN, flags)
+        _xx, retflag, errmsg = _calc_ut(jd_ut, swe.SUN, flags)
         if not (retflag & swe.FLG_SWIEPH):
             raise EphemerisDataError(f"SWIEPH mode did not engage: retflag={retflag} {errmsg!r}")
 
@@ -160,13 +174,13 @@ class SwissEphemerisProvider(EphemerisProvider):
             ipl = BODY_TO_SWE[body]
             offset = 0.0
 
-        xx, retflag, errmsg = swe.calc_ut(jd_ut, ipl, flags)
+        xx, retflag, errmsg = _calc_ut(jd_ut, ipl, flags)
         self._check_mode_flag(mode, retflag, errmsg, body)
         tropical = normalize_longitude(xx[0] + offset)
 
         sidereal: float | None = None
         if ayanamsa_value is not None:
-            sid_xx, sid_ret, sid_err = swe.calc_ut(jd_ut, ipl, flags | swe.FLG_SIDEREAL)
+            sid_xx, sid_ret, sid_err = _calc_ut(jd_ut, ipl, flags | swe.FLG_SIDEREAL)
             self._check_mode_flag(mode, sid_ret, sid_err, body)
             sidereal = normalize_longitude(sid_xx[0] + offset)
 
