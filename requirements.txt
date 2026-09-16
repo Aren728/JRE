@@ -1,0 +1,9 @@
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+pysweph>=2.10.3.5,<3.0.0
+tzdata>=2024.1
+python-multipart>=0.0.6
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+httpx>=0.24.0

@@ -4,14 +4,24 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jre"
-version = "0.3.0"
+version = "1.0.0"
 description = "JRE — Jyotish Reasoning Engine: deterministic astronomical core (JRE-002) and Jyotish coordinate/state layer (JRE-003)"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "Proprietary (see docs; Swiss Ephemeris data licensing applies)" }
 dependencies = [
-    "pysweph==2.10.3.6",
-    "tzdata==2026.3",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+    "pydantic>=2.0.0",
+    "pysweph>=2.10.3.5,<3.0.0",
+    "tzdata>=2024.1",
+    "python-multipart>=0.0.6",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "httpx>=0.24.0",
+    "sqlalchemy>=2.0.0",
+    "psycopg[binary]>=3.1.0",
+    "alembic>=1.13.0",
 ]
 
 [project.optional-dependencies]
@@ -48,6 +58,7 @@ packages = [
     "rectification",
     "synthesis",
     "jrs",
+    "jrs.services",
     "validation",
     "nakshatra_activation",
     "birth_signature",
@@ -136,9 +147,11 @@ addopts = "-q"
 pythonpath = ["."]
 markers = [
     "slow: marks tests as slow (full calibration runs across all domains)",
+    "no_cover: marks tests excluded from coverage reporting (performance/infrastructure)",
 ]
 filterwarnings = [
-    "ignore:Using `httpx` with `starlette.testclient` is deprecated:DeprecationWarning",
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated:starlette.exceptions.StarletteDeprecationWarning",
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
 ]
 
 # integration tests require pysweph + the bundled .se1 files (datasets/ephemeris)
