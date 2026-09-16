@@ -39,6 +39,12 @@ JRE separates concerns into 8 layers:
 7. **Inference** — Temporal windows → Convergence assessment
 8. **Explanation** — Traceable reports with classical source citations
 
+### Varga Division Coverage
+
+- **Saptavargaja Bala:** Scores planetary dignity across 7 primary divisional charts (D1, D2, D3, D7, D9, D12, D30) per BPHS Ch 3 & Ch 45
+- **Varga Registry:** 14 varga computation methods defined (D2–D60) for on-demand chart calculation via `VargaService.compute_varga_chart()`
+- **Note:** The "D1–D60" terminology refers to the registry's computational scope, not 60 separately calculated chart modules. Saptavargaja uses 7 core vargas for dignity classification.
+
 ## Domains (JRS v1.0 — 8 Tier 1 Domains)
 
 | Domain | Outcomes | Status |

@@ -21,6 +21,8 @@ import type {
   RemedyResponse,
   NumerologyResponse,
 } from '@/lib/api';
+import YogaInspector from '@/components/yogas/YogaInspector';
+import type { YogaEvaluation } from '@/components/yogas/YogaInspector';
 
 // ── Navigation Sections ──────────────────────────────────
 interface NavSection {
@@ -344,96 +346,58 @@ function DashaSection({ data }: { data: EvaluationResponse }) {
   );
 }
 
-// ── Yogas Section ────────────────────────────────────────
+// ── Yogas Section (using YogaInspector) ────────────────────────────────
 function YogasSection({ data }: { data: EvaluationResponse }) {
-  const yogas = data.yogas || [];
-  const parivartanas = data.parivartana_yogas || [];
+  // Convert EvaluationResponse.yogas to YogaEvaluation format
+  const yogaEvaluations: YogaEvaluation[] = (data.yogas || []).map((yoga: any, idx: number) => ({
+    id: yoga.yoga_name?.toLowerCase().replace(/\s+/g, '_') || `yoga-${idx}`,
+    name: yoga.yoga_name || yoga.name || 'Unknown Yoga',
+    category: (yoga.category as YogaEvaluation['category']) || 'NABHASA',
+    description: yoga.description || yoga.provenance?.formation_evidence || 'Classical yoga formation.',
+    participatingPlanets: yoga.involved_planets || [],
+    status: (() => {
+      if (yoga.status === 'CANCELLED') return 'AFFLICTED';
+      if (yoga.status === 'WEAKENED') return 'DORMANT';
+      if (yoga.dasha_activation?.present?.length) return 'ACTIVE_DASHA';
+      if (yoga.dasha_activation?.future?.length) return 'ACTIVE_TRANSIT';
+      return 'DORMANT';
+    })(),
+    strengthScore: yoga.static_strength ? yoga.static_strength / 1.0 : 1.0,
+    activatingLord: yoga.dasha_activation?.present?.[0]?.lord ? `${yoga.dasha_activation.present[0].lord} (MD)` : undefined,
+    houseCombination: yoga.involved_planets?.length ?
+      yoga.involved_planets.slice(0, 2).join(' & ') + ' combination' :
+      'Single planet configuration',
+    ruleConditions: [
+      { conditionText: 'Yoga formed by classical rules', isMet: yoga.status === 'FORMED' },
+      { conditionText: 'Static strength ≥ 1.0', isMet: yoga.static_strength ? yoga.static_strength >= 1.0 : true },
+      { conditionText: 'Dynamic strength > 0', isMet: yoga.dynamic_strength !== null && yoga.dynamic_strength !== undefined && yoga.dynamic_strength > 0 },
+      { conditionText: 'No cancellation reason', isMet: !yoga.cancellation_reason },
+    ],
+  }));
+
+  // Get active dasha lords from deep_dasha
+  const activeDashaLords: string[] = [];
+  if (data.deep_dasha?.md) activeDashaLords.push(data.deep_dasha.md.lord);
+  if (data.deep_dasha?.ad) activeDashaLords.push(data.deep_dasha.ad.lord);
+  if (data.deep_dasha?.pd) activeDashaLords.push(data.deep_dasha.pd.lord);
 
   return (
-    <SectionCard id="yogas" title="Yogas, Doshas & Parivartana" icon="🕉️">
-      <div className="space-y-4">
-        {/* Classical Yogas */}
-        {yogas.length > 0 && (
-          <div
-            className="rounded-2xl p-5"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
-          >
-            <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--cosmic-gold)' }}>
-              Classical Yogas ({yogas.length})
-            </h3>
-            <div className="space-y-2">
-              {yogas.slice(0, 10).map((yoga: any, idx: number) => {
-                const status = yoga.status || 'FORMED';
-                const statusColor =
-                  status === 'FORMED' ? 'var(--benefic-green)' :
-                  status === 'CANCELLED' ? 'var(--malefic-red)' : '#eab308';
-
-                return (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between p-2 rounded-lg"
-                    style={{ background: 'rgba(26, 20, 35, 0.3)' }}
-                  >
-                    <span className="text-xs font-medium" style={{ color: 'var(--cosmic-text)' }}>
-                      {yoga.yoga_name}
-                    </span>
-                    <span
-                      className="text-[10px] px-2 py-0.5 rounded-full"
-                      style={{ background: `${statusColor}20`, color: statusColor }}
-                    >
-                      {status}
-                    </span>
-                  </div>
-                );
-              })}
-              {yogas.length > 10 && (
-                <p className="text-[10px] text-center" style={{ color: 'var(--cosmic-muted)' }}>
-                  + {yogas.length - 10} more yogas detected
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Parivartana Yogas */}
-        {parivartanas.length > 0 && (
-          <div
-            className="rounded-2xl p-5"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
-          >
-            <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--cosmic-gold)' }}>
-              Parivartana Yogas ({parivartanas.length})
-            </h3>
-            <div className="space-y-2">
-              {parivartanas.map((pv: any, idx: number) => (
-                <div
-                  key={idx}
-                  className="p-2 rounded-lg"
-                  style={{ background: 'rgba(26, 20, 35, 0.3)' }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium" style={{ color: 'var(--cosmic-text)' }}>
-                      {pv.planet_a} ↔ {pv.planet_b}
-                    </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(197,168,128,0.1)', color: 'var(--cosmic-gold)' }}>
-                      {pv.exchange_type}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {yogas.length === 0 && parivartanas.length === 0 && (
-          <div
-            className="rounded-2xl p-6 text-center"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
-          >
-            <p style={{ color: 'var(--cosmic-muted)' }}>No yogas evaluated yet.</p>
-          </div>
-        )}
-      </div>
+    <SectionCard id="yogas" title="Yoga Inspector" icon="🕉️">
+      {yogaEvaluations.length > 0 ? (
+        <YogaInspector
+          yogas={yogaEvaluations}
+          activeDashaLords={activeDashaLords}
+          minStrengthCutoff={0.5}
+          onSelectYoga={() => {}}
+        />
+      ) : (
+        <div
+          className="rounded-2xl p-6 text-center"
+          style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
+        >
+          <p style={{ color: 'var(--cosmic-muted)' }}>No yogas evaluated yet.</p>
+        </div>
+      )}
     </SectionCard>
   );
 }

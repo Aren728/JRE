@@ -7,6 +7,9 @@ outcome path per Nakshatra placement. Zero ambiguity enforced.
 
 Float64 boundary checks for Gandanta points are performed with high-precision
 comparisons (0°00'00" to 0°20'00" tolerance).
+
+Entity-Level Deduplication & Aggregation Module:
+Collapses redundant rule triggers into composite, audit-ready tokens.
 """
 
 from __future__ import annotations
@@ -14,7 +17,10 @@ from __future__ import annotations
 import json
 import math
 from pathlib import Path
-from typing import Any
+from enum import Enum, auto
+from typing import Any, Dict, List, Optional, Callable
+
+from dataclasses import dataclass, field
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Constants
@@ -72,26 +78,324 @@ _COSMIC_NAKSHATRAS = {"SHRAVANA", "UTTARA_BHADRAPADA", "REVATI"}
 # Planets to evaluate for esoteric profiles
 _EVALUATION_PLANETS = ["MOON", "LAGNA", "SUN"]
 
+
 # ══════════════════════════════════════════════════════════════════════════════
-# Database Loading
+# Scope Metadata Module for JRE/JRS Evaluator Engine
+# Categorizes rule evaluations by temporal validity (Natal, Dasha, Transit).
 # ══════════════════════════════════════════════════════════════════════════════
+
+
+class RuleScope(Enum):
+    """Temporal validity scope for astrological combination rules."""
+    NATAL_PERMANENT = "NATAL_PERMANENT"
+    DASHA_BOUND = "DASHA_BOUND"
+    TRANSIT_BOUND = "TRANSIT_BOUND"
+
+
+# ============================================================================
+# RULE REGISTRY & DECORATORS WITH SCOPE METADATA
+# ============================================================================
+
+class EvaluatorRuleRegistry:
+    """Registry maintaining rules and their assigned temporal scopes."""
+    _registry: Dict[str, Dict[str, Any]] = {}
+
+    @classmethod
+    def register_rule(
+        cls,
+        rule_id: str,
+        scope: RuleScope,
+        description: str = "",
+    ):
+        """Decorator to attach scope metadata to evaluation rule functions."""
+        def decorator(func: Callable):
+            cls._registry[rule_id] = {
+                "func": func,
+                "scope": scope,
+                "description": description,
+            }
+            return func
+        return decorator
+
+    @classmethod
+    def get_rule_scope(cls, rule_id: str) -> RuleScope:
+        """Lookup rule scope, defaulting to NATAL_PERMANENT if unregistered."""
+        rule_meta = cls._registry.get(rule_id.strip().upper())
+        if rule_meta:
+            return rule_meta["scope"]
+        return RuleScope.NATAL_PERMANENT
+
+
+# Pre-populated rule scope mappings for standard yoga types
+RULE_SCOPE_MAPPINGS: Dict[str, RuleScope] = {
+    # ------------------------------------------------------------------------
+    # NATAL_PERMANENT: Base chart features & lifelong traits
+    # ------------------------------------------------------------------------
+    "GAJAKESARI": RuleScope.NATAL_PERMANENT,
+    "MALAVYA": RuleScope.NATAL_PERMANENT,
+    "RUCHAKA": RuleScope.NATAL_PERMANENT,
+    "BHADRA": RuleScope.NATAL_PERMANENT,
+    "SASA": RuleScope.NATAL_PERMANENT,
+    "HAMS": RuleScope.NATAL_PERMANENT,
+    "SUNAPHA": RuleScope.NATAL_PERMANENT,
+    "ANAPHA": RuleScope.NATAL_PERMANENT,
+    "DHUDHARA": RuleScope.NATAL_PERMANENT,
+    "BUDHADITYA": RuleScope.NATAL_PERMANENT,
+    "KEMADRUMA": RuleScope.NATAL_PERMANENT,
+    "DHANA": RuleScope.NATAL_PERMANENT,
+    "BHAGYA": RuleScope.NATAL_PERMANENT,
+
+    # ------------------------------------------------------------------------
+    # DASHA_BOUND: Time-sensitive period triggers
+    # ------------------------------------------------------------------------
+    "DASHA_ARISHTA": RuleScope.DASHA_BOUND,
+    "DASHA_LAGNA_ARISHTA": RuleScope.DASHA_BOUND,
+    "DASHA_RAJA_YOGA_ACTIVATION": RuleScope.DASHA_BOUND,
+    "MARAKA_DASHA_TRIGGER": RuleScope.DASHA_BOUND,
+    "BHUKTI_KARAKA_CONFLICT": RuleScope.DASHA_BOUND,
+
+    # ------------------------------------------------------------------------
+    # TRANSIT_BOUND: Real-time overlay events
+    # ------------------------------------------------------------------------
+    "GOCHAR_SANI_KENDRA": RuleScope.TRANSIT_BOUND,
+    "SADE_SATI_PHASE": RuleScope.TRANSIT_BOUND,
+    "GURU_TRANSIT_BENEFIC": RuleScope.TRANSIT_BOUND,
+    "RAHU_KETU_AXIS_TRANSIT": RuleScope.TRANSIT_BOUND,
+}
+
+
+# ============================================================================
+# ENHANCED DETECTION CLASSES WITH SCOPE METADATA
+# ============================================================================
+
+@dataclass
+class RawYogaDetection:
+    """Enhanced raw rule detection with Scope metadata."""
+    yoga_type: str
+    impact_score: float
+    scope: RuleScope = RuleScope.NATAL_PERMANENT
+    participating_planets: List[str] = field(default_factory=list)
+    participating_houses: List[int] = field(default_factory=list)
+    dasha_context: Optional[str] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class CompositeYogaDetection:
+    """Enhanced composite detection retaining RuleScope info."""
+    yoga_type: str
+    canonical_token: str
+    scope: RuleScope
+    occurrence_count: int
+    composite_impact_score: float
+    participating_planets: List[str]
+    participating_houses: List[int]
+    dasha_contexts: List[str]
+    instance_metadata: List[Dict[str, Any]]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "yoga_type": self.yoga_type,
+            "canonical_token": self.canonical_token,
+            "scope": self.scope.value,
+            "occurrence_count": self.occurrence_count,
+            "impact_score": self.composite_impact_score,
+            "participating_planets": self.participating_planets,
+            "participating_houses": self.participating_houses,
+            "dasha_contexts": self.dasha_contexts,
+            "instance_metadata": self.instance_metadata,
+        }
+
+
+class YogaDeduplicationEngine:
+    """
+    Transforms raw detections into unique composite detections while preserving
+    Scope metadata for Tier 2 event filtering.
+    """
+
+    @staticmethod
+    def collapse_detections(
+        raw_detections: List[RawYogaDetection],
+    ) -> List[CompositeYogaDetection]:
+        """
+        Group raw detections by canonical yoga_type, merging planetary
+        and contextual metadata into a single composite record while preserving
+        RuleScope info.
+        """
+        grouped: Dict[str, List[RawYogaDetection]] = {}
+
+        for detection in raw_detections:
+            token = detection.yoga_type.strip().upper()
+            if token not in grouped:
+                grouped[token] = []
+            grouped[token].append(detection)
+
+        composite_results: List[CompositeYogaDetection] = []
+
+        for token, instances in grouped.items():
+            # Resolve scope: if any instance is bound, prioritize explicit scope
+            primary_scope = instances[0].scope
+
+            unique_planets = sorted(
+                list(
+                    {
+                        p
+                        for inst in instances
+                        for p in inst.participating_planets
+                        if p
+                    }
+                )
+            )
+            unique_houses = sorted(
+                list(
+                    {
+                        h
+                        for inst in instances
+                        for h in inst.participating_houses
+                        if h is not None
+                    }
+                )
+            )
+            unique_dashas = sorted(
+                list(
+                    {
+                        inst.dasha_context
+                        for inst in instances
+                        if inst.dasha_context
+                    }
+                )
+            )
+
+            # Impact Score Aggregation Strategy:
+            # Take the max individual score, then apply a diminishing return boost for extra factors
+            base_score = max(inst.impact_score for inst in instances)
+            count_boost = min(0.05 * (len(instances) - 1), 0.15)
+            composite_score = min(round(base_score + count_boost, 3), 1.0)
+
+            composite = CompositeYogaDetection(
+                yoga_type=token,
+                canonical_token=token,
+                scope=primary_scope,
+                occurrence_count=len(instances),
+                composite_impact_score=composite_score,
+                participating_planets=unique_planets,
+                participating_houses=unique_houses,
+                dasha_contexts=unique_dashas,
+                instance_metadata=[inst.metadata for inst in instances if inst.metadata],
+            )
+
+            composite_results.append(composite)
+
+        return composite_results
+
+
+def get_scope_for_yoga_type(yoga_type: str) -> RuleScope:
+    """Lookup the RuleScope for a given yoga type string.
+
+    Args:
+        yoga_type: The yoga type name (e.g., 'ANAPHA', 'DASHA_LAGNA_ARISHTA').
+
+    Returns:
+        The RuleScope for this yoga type, defaulting to NATAL_PERMANENT.
+    """
+    return RULE_SCOPE_MAPPINGS.get(yoga_type.strip().upper(), RuleScope.NATAL_PERMANENT)
+
+
+def evaluate_and_deduplicate_chart(chart_data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Main pipeline entry point for Esoteric Evaluator with deduplication enabled.
+    """
+    # 1. Primary rule extraction (legacy engine logic returning RawYogaDetection objects)
+    raw_detections: List[RawYogaDetection] = run_primary_rule_evaluator(chart_data)
+
+    # 2. Execute entity deduplication
+    composite_detections = YogaDeduplicationEngine.collapse_detections(raw_detections)
+
+    # 3. Extract deduplicated flat token list for evaluation runner matching
+    deduplicated_tokens = [cd.canonical_token for cd in composite_detections]
+
+    return {
+        "raw_count": len(raw_detections),
+        "deduplicated_count": len(composite_detections),
+        "tokens": deduplicated_tokens,
+        "composite_detections": [cd.to_dict() for cd in composite_detections],
+    }
+
+
+def run_primary_rule_evaluator(chart_data: Dict[str, Any]) -> List[RawYogaDetection]:
+    """
+    Stub representing existing evaluator rule executions.
+    Replace with actual rule execution loops in esoteric_evaluator.py.
+
+    For benchmark/testing purposes, accepts pre-computed raw_rule_outputs
+    in the chart_data dict. In production, this would call the actual
+    yoga detection rules.
+    """
+    raw_outputs = chart_data.get("raw_rule_outputs", [])
+    if raw_outputs:
+        # Convert dicts to RawYogaDetection objects
+        detections = []
+        for item in raw_outputs:
+            if isinstance(item, dict):
+                scope_str = item.get("scope", "NATAL_PERMANENT")
+                scope = RuleScope(scope_str) if isinstance(scope_str, str) else scope_str
+                detections.append(RawYogaDetection(
+                    yoga_type=item.get("yoga_type", ""),
+                    impact_score=float(item.get("impact_score", 0.5)),
+                    scope=scope,
+                    participating_planets=item.get("participating_planets", []),
+                    participating_houses=item.get("participating_houses", []),
+                    dasha_context=item.get("dasha_context"),
+                    metadata=item.get("metadata", {}),
+                ))
+        return detections
+    return []
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Database Loading (with module-level caching)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Module-level cache holders — initialized once, reused across calls.
+# This eliminates repetitive disk I/O on every evaluate_esoteric_profile() call.
+_DB_CACHE: dict[str, Any] | None = None
+_REGISTRY_CACHE: dict[str, Any] | None = None
+_REGISTRY_LANG_CACHE: dict[str, dict[str, Any]] = {}
 
 
 def _load_db() -> dict[str, Any]:
-    """Load the esoteric nakshatra database."""
-    with _DB_PATH.open(encoding="utf-8") as f:
-        return json.load(f)
+    """Load the esoteric nakshatra database (cached after first load).
+
+    Returns:
+        Dictionary of nakshatra entries from esoteric_nakshatra_db.json.
+    """
+    global _DB_CACHE
+    if _DB_CACHE is None:
+        with _DB_PATH.open(encoding="utf-8") as f:
+            _DB_CACHE = json.load(f)
+    return _DB_CACHE
 
 
 def _load_registry(lang: str = "en") -> dict[str, Any]:
-    """Load the token registry with language support.
+    """Load the token registry with language support (cached per language).
 
     Falls back to English if the requested language file is missing
     or doesn't contain the token.
+
+    Args:
+        lang: Language code (default: 'en').
+
+    Returns:
+        Dictionary of token → narrative mappings for the requested language.
     """
+    # Check language-specific cache first
+    if lang in _REGISTRY_LANG_CACHE:
+        return _REGISTRY_LANG_CACHE[lang]
+
     from .i18n_loader import get_all_tokens
 
-    return get_all_tokens(lang)
+    registry = get_all_tokens(lang)
+    _REGISTRY_LANG_CACHE[lang] = registry
+    return registry
 
 
 # ══════════════════════════════════════════════════════════════════════════════

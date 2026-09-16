@@ -64,15 +64,23 @@ const ChartAnalysisComponent: React.FC<ChartAnalysisProps> = ({ chartData }) => 
         time: chartData.time,
         latitude: chartData.lat,
         longitude: chartData.lon,
+        altitude: 0,
         timezone: 'Asia/Kolkata', // Default for test data
-        ayanamsha: chartData.ayanamsha as 'lahiri' | 'raman' | 'kp',
+        utc_offset: 0,
+        ayanamsha: chartData.ayanamsha as 'lahiri' | 'raman' | 'kp' | 'pushya' | 'tropical',
+        node_type: 'mean',
+        house_system: 'equal',
+        transit_orb_tolerance: 1.0,
+        shadbala_threshold: 1.0,
+        divisional_focus: 'D1',
+        dasha_depth: 'MD',
       };
       
       // Use a stable key to prevent infinite loops
       const currentKey = JSON.stringify(chartData);
       if (currentKey !== chartDataKey.current) {
         chartDataKey.current = currentKey;
-        api.analyzeChart(payload).then(setAnalysisData).catch(() => {});
+        api.analyzeChart(payload).then((res) => setAnalysisData(res.data)).catch(() => {});
       }
     }
   }, [chartData]);
@@ -99,9 +107,9 @@ const ChartAnalysisComponent: React.FC<ChartAnalysisProps> = ({ chartData }) => 
 
     try {
       const result = await api.analyzeChart(payload);
-      setAnalysisData(result);
+      setAnalysisData(result.data);
       setActivePayload(payload);
-      saveToHistory(payload, result);
+      saveToHistory(payload, result.data);
     } catch (err: any) {
       const msg =
         err.response?.data?.detail || err.message || 'Engine computation failed';

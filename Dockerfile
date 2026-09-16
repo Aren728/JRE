@@ -23,6 +23,9 @@ WORKDIR /app
 COPY src/ src/
 COPY tests/fixtures/validation_charts/ tests/fixtures/validation_charts/
 
+# Ephemeris data for SWIEPH lookups
+COPY datasets/ephemeris datasets/ephemeris
+
 # Expose port
 EXPOSE 8000
 
@@ -31,4 +34,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import httpx; r = httpx.get('http://localhost:8000/api/v1/health'); assert r.status_code == 200"
 
 # Run the API server
-CMD ["uvicorn", "src.jrs.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "src.jrs.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -140,11 +140,16 @@ class VargaConfirmationService:
         d9_houses = jre_facts.get("planet_d9_house", {})
         d1_signs = jre_facts.get("planets", {})
 
-        # ── Check for D9 debilitation → binary cancellation ──
+        # ── Check for D9 debilitation & Dusthana placement → binary cancellation ──
         # BPHS Ch 35: Debilitation in Navamsha destroys yoga results
-        # Uses sign-based check (not house-position proxy)
+        # Also: Planets in Dusthana (6/8/12) in D9 weaken/afflict yoga
+        _DUSH타나_HOUSES: frozenset[int] = frozenset({6, 8, 12})
+        
         for planet in involved_planets:
             d9_sign = d9_signs.get(planet, "")
+            d9_house = d9_houses.get(planet)
+            
+            # Check D9 debilitation sign
             if d9_sign and self._is_debilitated_in_d9(planet, d9_sign):
                 return VargaConfirmationResult(
                     confirmation_status=ConfirmationStatus.CANCELLED,
@@ -152,6 +157,18 @@ class VargaConfirmationService:
                     kendra_trikona_count=0,
                     total_planets=total,
                     cancellation_reason=(f"{planet} debilitated in D9 (Navamsha)"),
+                    vargottama_multiplier=1.0,
+                )
+            
+            # Check D9 Dusthana house placement
+            if isinstance(d9_house, int) and d9_house in _DUSH타나_HOUSES:
+                return VargaConfirmationResult(
+                    confirmation_status=ConfirmationStatus.CANCELLED,
+                    strength=ConfirmationStrength.WEAK,
+                    kendra_trikona_count=0,
+                    total_planets=total,
+                    cancellation_reason=(f"{planet} debilitated in D9 Dusthana house ({d9_house})"),
+                    vargottama_multiplier=1.0,
                 )
 
         # ── Count Kendra/Trikona placements in D9 ──

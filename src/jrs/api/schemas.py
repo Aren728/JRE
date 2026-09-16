@@ -60,10 +60,11 @@ class BirthDataInput(BaseModel):
         description="IANA timezone string",
         examples=["America/New_York"],
     )
-    ayanamsa: str = Field(
-        default="LAHIRI",
-        description="Ayanamsa method",
-        examples=["LAHIRI"],
+    ayanamsha: str | None = Field(
+        default=None,
+        description="Ayanamsha method for sidereal calculations. "
+        "Supported: lahiri, raman, kp. If omitted, the backend uses its default (Lahiri).",
+        examples=["lahiri"],
     )
     language: str = Field(
         default="en",
@@ -73,12 +74,6 @@ class BirthDataInput(BaseModel):
             "Astrological terms remain in English/Sanskrit transliteration."
         ),
         examples=["en"],
-    )
-    ayanamsha: str | None = Field(
-        default=None,
-        description="Optional extended ayanamsha preference for frontend display (" "lahiri, raman, kp). "
-        "If omitted, the backend uses its default sidereal mode.",
-        examples=["lahiri"],
     )
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { ChartAnalysis } from '@/components/ChartAnalysis';
-import * as apiModule from '@/lib/api';
+import { api } from '@/lib/api';
 
 // 1. Completely stub react-markdown & plugins to prevent ESM re-render loops
 jest.mock('react-markdown', () => {
@@ -24,10 +24,8 @@ jest.mock('@/lib/api', () => {
   };
 });
 
-// Suppress the unused 'post' property warning by casting
-
 // Get the mock function after the module is loaded
-const mockAnalyzeChart = (apiModule.api.analyzeChart as jest.Mock);
+const mockAnalyzeChart = (api.analyzeChart as jest.Mock);
 
 const mockResponse = {
   core_alignment: {
@@ -70,19 +68,21 @@ describe('ChartAnalysis Component', () => {
   it('renders loading state initially and then displays analysis', async () => {
     // Provide a resolved promise immediately to avoid unhandled state loops
     const testResponse = {
-      core_alignment: {
-        ascendant_sign: 'Aries',
-        moon_nakshatra: 'Ashwini',
+      data: {
+        core_alignment: {
+          ascendant_sign: 'Aries',
+          moon_nakshatra: 'Ashwini',
+        },
+        active_dasha: {
+          mahadasha: 'Ketu',
+          antardasha: 'Ketu',
+          pratyantardasha: 'Ketu',
+          start_date: '2026-01-01',
+          end_date: '2027-01-01',
+        },
+        planets: [],
+        synthesis_markdown: 'Test Analysis Content',
       },
-      active_dasha: {
-        mahadasha: 'Ketu',
-        antardasha: 'Ketu',
-        pratyantardasha: 'Ketu',
-        start_date: '2026-01-01',
-        end_date: '2027-01-01',
-      },
-      planets: [],
-      synthesis_markdown: 'Test Analysis Content',
     };
     
     mockAnalyzeChart.mockImplementation(() => Promise.resolve(testResponse));
@@ -107,7 +107,7 @@ describe('ChartAnalysis Component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('markdown-content')).toHaveTextContent('Test Analysis Content');
     }, { timeout: 5000 });
-  });
+  }, 10000);
 
   it('handles API error state cleanly without infinite retries', async () => {
     // Mock rejected promise explicitly

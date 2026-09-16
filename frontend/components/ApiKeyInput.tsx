@@ -43,11 +43,12 @@ export default function ApiKeyInput({ value, onChange }: ApiKeyInputProps) {
 }
 
 export function useApiKey() {
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState('jre-beta-key-alpha');
 
   useEffect(() => {
     const stored = localStorage.getItem('jre_api_key');
     if (stored) setApiKey(stored);
+    else localStorage.setItem('jre_api_key', 'jre-beta-key-alpha');
   }, []);
 
   const updateApiKey = (key: string) => {

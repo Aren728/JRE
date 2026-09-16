@@ -1,23 +1,69 @@
 # JRE API — Staging Deployment Configuration
 #
-# Production-ready Docker Compose for beta testing.
+# Production-ready Docker Compose for local staging and beta testing.
 #
 # Usage:
-#   docker-compose -f docker-compose.staging.yml up --build
-#   docker-compose -f docker-compose.staging.yml up --build -d
-#   docker-compose -f docker-compose.staging.yml down
+#   docker compose -f docker-compose.staging.yml up --build
+#   docker compose -f docker-compose.staging.yml up --build -d
+#   docker compose -f docker-compose.staging.yml down
+#
+# If your Docker CLI only supports the plugin form `docker compose`, those
+# commands already use that form. If you are on an older setup with the
+# standalone `docker-compose` binary, replace `docker compose` with
+# `docker-compose` in the commands above.
+#
+# Local staging URLs:
+#   Frontend: http://localhost:3000
+#   Backend:  http://localhost:8000
+#   Health:   http://localhost:8000/api/v1/health
+#   Chart:    POST http://localhost:8000/api/v1/analyze
+#   Feedback: POST http://localhost:8000/api/v1/feedback
 #
 # The API will be available at http://localhost:8000
 # API docs at http://localhost:8000/docs
 # Feedback log at ./data/feedback_log.jsonl
+#
+# NOTE: This file uses the Docker Compose v2 CLI syntax (`docker compose`).
+# If your local Docker installation still uses the standalone `docker-compose`
+# binary, prefix the commands with `docker-compose` instead of `docker compose`.
 
-version: "3.8"
+# Canonical staging target:
+#   docker compose -f docker-compose.staging.yml up --build
+#
+# This file is the authoritative local staging deployment config.
+# The backend image must be built from Dockerfile.backend.
 
 services:
-  jre-api:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: jre_user
+      POSTGRES_PASSWORD: jre_staging_password
+      POSTGRES_DB: jre_staging_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jre_user -d jre_staging_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/staging.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+
+  backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.backend
     container_name: jre-api-staging
     ports:
       - "8000:8000"
@@ -28,10 +74,16 @@ services:
       - jre-feedback-data:/app/data
       # Local data directory for development
       - ./data:/app/data
+      # Bundled ephemeris files used by SWIEPH mode (must be mounted for staging)
+      - ./datasets/ephemeris:/app/datasets/ephemeris:ro
+    env_file:
+      - .env.staging
     environment:
       - PYTHONUNBUFFERED=1
-      - LOG_LEVEL=INFO
-      - JRE_ENV=staging
+      - DATABASE_URL=postgresql+psycopg://jre_user:jre_staging_password@db:5432/jre_staging_db
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
     deploy:
       resources:
@@ -43,10 +95,35 @@ services:
           cpus: "0.5"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
-      interval: 30s
+      interval: 10s
       timeout: 5s
       retries: 3
-      start_period: 15s
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: jre-frontend-staging
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.staging
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - NEXT_PUBLIC_API_URL=http://localhost/api
+      - NEXT_PUBLIC_ENABLE_EXPERIMENTAL_VARGAS=true
+      - NEXT_PUBLIC_ENABLE_ADVANCED_YOGA=true
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
     logging:
       driver: json-file
       options:
@@ -54,5 +131,6 @@ services:
         max-file: "3"
 
 volumes:
+  postgres_data:
   jre-feedback-data:
     driver: local

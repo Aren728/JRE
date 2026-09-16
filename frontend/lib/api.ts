@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 // ── JRE Analysis Endpoint Types ─────────────────────────────────────────────
 export interface ChartRequestPayload {
@@ -8,8 +8,16 @@ export interface ChartRequestPayload {
   time: string;
   latitude: number;
   longitude: number;
+  altitude: number;
   timezone: string;
-  ayanamsha?: 'lahiri' | 'raman' | 'kp';
+  utc_offset: number;
+  ayanamsha: 'lahiri' | 'raman' | 'kp' | 'pushya' | 'tropical';
+  node_type: 'mean' | 'true';
+  house_system: 'equal' | 'placidus' | 'koch' | 'whole_sign' | 'alcabitius';
+  transit_orb_tolerance: number;
+  shadbala_threshold: number;
+  divisional_focus: 'D1' | 'D9' | 'D10' | 'D60';
+  dasha_depth: 'MD' | 'MD_AD' | 'MD_AD_PD' | 'MD_AD_PD_SD';
 }
 
 export interface VargaPosition {
@@ -457,7 +465,7 @@ export const api = {
 
   // ── JRE Analysis Endpoint ─────────────────────────────────────────────
   analyzeChart: (payload: ChartRequestPayload) =>
-    api.post<JREAnalysisResponse>('/api/v1/analyze', payload),
+    axios.post<JREAnalysisResponse>(`${API_BASE_URL}/api/v1/analyze`, payload),
 
   // ── Numerology API ─────────────────────────────────────────────────────
   calculateNumerology: (data: { birth_date: string; full_name: string }, apiKey: string) =>

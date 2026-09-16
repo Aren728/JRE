@@ -663,7 +663,7 @@ def compute_transit_nakshatra_exchanges(
 
         # Compute FUTURE transit positions using Swiss Ephemeris
         try:
-            from src.jrs.prediction_engine.gochar_transit import compute_planetary_states_for_date
+            from jrs.prediction_engine.gochar_transit import compute_planetary_states_for_date
 
             daily_states = compute_planetary_states_for_date(
                 target_date.year,

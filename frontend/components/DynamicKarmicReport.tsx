@@ -14,14 +14,21 @@ export default function DynamicKarmicReport({ chartData }: DynamicKarmicReportPr
   const handleGenerate = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/api/v1/report/generate-karmic-blueprint", {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${baseUrl}/api/v1/report/generate-karmic-blueprint`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(chartData),
       });
       const result = await res.json();
-      if (result.success) {
+      if (result.success && result.data?.narrative) {
         setNarrative(result.data.narrative);
+        try {
+          if (chartData?.evaluation_id) {
+            localStorage.setItem(`jre_synthesis_${chartData.evaluation_id}`, result.data.narrative);
+          }
+          window.dispatchEvent(new CustomEvent('jre-synthesis-updated', { detail: result.data.narrative }));
+        } catch { /* ignore */ }
       }
     } catch (error) {
       console.error("Report generation failed:", error);

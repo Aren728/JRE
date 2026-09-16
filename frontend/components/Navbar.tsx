@@ -24,6 +24,7 @@ const navLinks = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/evaluate', label: 'Evaluate' },
   { href: '/chart', label: 'Charts' },
+  { href: '/panchang', label: 'Panchang' },
   { href: '/compatibility', label: 'Compatibility' },
 ];
 

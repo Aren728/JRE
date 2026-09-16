@@ -119,7 +119,7 @@ The RI-010 engine implements a multi-layered yoga evaluation pipeline that separ
 │  │  • Conjunction (same rashi)                               │     │
 │  │  • Aspect (Parashari + special: Mars 4/7/8, Jupiter 5/7/9│     │
 │  │    Saturn 3/7/10)                                         │     │
-│  │  • Exchange (Parivartana: reciprocal sign ownership)      │     │
+│  │  • Exchange (Parivartana: reciprocal sign ownership) — internal helper via prediction_engine/parivartana.py │     │
 │  │  • Dispositorship (A in B's sign → directed edge)         │     │
 │  │  • Chain truncation when terminal lord is combust         │     │
 │  │                                                           │     │

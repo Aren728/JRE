@@ -134,7 +134,9 @@ The JRE platform has established a **strong foundational stack** across eight mo
 | Public API | Type | Output | Consumers |
 |---|---|---|---|
 | `VargaService.compute_varga_chart(request)` | Service | `VargaChart` | Future engines |
-| `VARGA_REGISTRY` | Registry | 14 frozen varga definitions (D2–D60) | `compute_varga_chart` |
+| `VARGA_REGISTRY` | Registry | 14 frozen varga definitions (D2–D60, computed on demand) | `compute_varga_chart` |
+| `SaptavargajaBalaService` | Service | 7-varga dignity scoring (D1, D2, D3, D7, D9, D12, D30) | Varga confirmation |
+
 | `VargaChart` | Result | `tuple[VargaPosition, ...]` + identities | Future engines |
 | `VargaPosition` | Fact | Body, source state, division index, varga sign | Future engines |
 | `VargaDefinition` | Model | Division number, calculation method, source citations | Registry |
@@ -372,7 +374,8 @@ Rectification adjusts birth time by matching predicted events against known life
 | **Knowledge→Engine bridge** | Future engines need `enrich_snapshot` before rule evaluation | All interpretive | Low |
 | **Context snapshot enrichment** | `CanonicalFactSnapshot` needs enriched facts for interpretation | All interpretive | Medium |
 | **Research→Knowledge bridge** | `ResearchWorker` output needs ingestion into fact snapshots | Research-informed | Medium |
-| **Varga→Bala bridge** | Bala needs Saptavargaja Bala across 7 varga charts | Bala | Low |
+| **Varga→Bala bridge** | Bala needs Saptavargaja Bala across 7 primary vargas (D1, D2, D3, D7, D9, D12, D30) | Bala | Low |
+| **Varga Registry Clarification** | VARGA_REGISTRY defines 14 varga computation methods (D2–D60), but Saptavargaja only uses 7 core vargas for dignity scoring | Documentation | Low |
 
 ---
 

@@ -15,12 +15,17 @@ from __future__ import annotations
 import hashlib
 import json
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime as datetime_cls, timezone
 from pathlib import Path
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from sqlalchemy.orm import Session
+
+from jrs.db.models import ChartCalculation
+from jrs.db.session import get_db
 
 from .auth import check_rate_limit, get_key_hash, require_api_key
 from .dependencies import (
@@ -29,10 +34,13 @@ from .dependencies import (
     compute_chart_from_birth_data,
     compute_chart_from_fixture,
     get_yoga_evaluator,
+    is_unknown_time,
     list_fixtures,
     load_fixture,
 )
 from .logging_config import get_logger, log_request
+
+from .routes.event_evaluator import router as event_evaluator_router
 from .schemas import (
     ENGINE_VERSION,
     LEGAL_DISCLAIMER,
@@ -51,9 +59,55 @@ from .schemas import (
 )
 
 # Core engine imports
-from src.jrs.engine.calculator import calculate_chart_positions
-from src.jrs.engine.dasha import calculate_vimshottari_dasha
-from src.jrs.engine.synthesis import generate_synthesis_report
+from jrs.engine.calculator import calculate_chart_positions
+from jrs.engine.dasha import calculate_vimshottari_dasha
+from jrs.engine.synthesis import generate_synthesis_report
+
+# Swiss Ephemeris integration
+from jrs.services.ephemeris import calculate_planetary_positions
+
+import datetime
+from typing import List, Optional
+from fastapi import Query
+
+# ── Application version source of truth ─────────────────────────────────────
+
+def _load_project_version() -> str:
+    """Read the package version once from the project source of truth.
+
+    The API version exposed at GET /api/v1/health must match pyproject.toml
+    ([project] version), so this helper reads that value directly instead of
+    using a separate hardcoded constant.
+
+    Tries multiple candidate paths in order:
+      1. /app/pyproject.toml (Docker container root)
+      2. Repository root relative to this file (parents[3])
+      3. Current working directory
+    """
+    import tomllib
+
+    candidates = [
+        Path("/app/pyproject.toml"),
+        Path(__file__).resolve().parents[3] / "pyproject.toml",
+        Path("pyproject.toml").resolve(),
+    ]
+
+    for pyproject_path in candidates:
+        if pyproject_path.exists():
+            try:
+                with open(pyproject_path, "rb") as f:
+                    data = tomllib.load(f)
+                version = data["project"]["version"]
+                if isinstance(version, str) and version:
+                    return version
+            except Exception:
+                continue
+
+    # Safe fallback — should not normally be reached in production
+    return "0.3.0"
+
+
+PROJECT_VERSION = _load_project_version()
 
 # ── Application ─────────────────────────────────────────────────────────────
 
@@ -64,7 +118,7 @@ app = FastAPI(
         "Wraps the existing JRS evaluation pipeline (Layers 1-4) "
         "without modifying any engine logic."
     ),
-    version="1.0.0",
+    version=PROJECT_VERSION,
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -111,6 +165,7 @@ def _generate_evaluation_id(
         Hex string (first 16 chars of SHA-256).
     """
     components = [fixture_id, target_timestamp, ENGINE_VERSION]
+
     digest = hashlib.sha256("|".join(components).encode()).hexdigest()
     return digest[:16]
 
@@ -165,6 +220,7 @@ def _run_evaluation(
     subject: str = "Custom",
     fixture_id: str = "custom",
     target_timestamp: str = "",
+    unknown_tob: bool = False,
 ) -> EvaluationResponse:
     """Run the yoga evaluation pipeline and format the response.
 
@@ -244,6 +300,88 @@ def _run_evaluation(
             moon_nak = ps.nakshatra.value
             break
 
+    # ── Enrichment: planet details with D9 navamsha + state flags ──────────
+    planet_details: dict[str, dict[str, Any]] = {}
+    natal_planets = jre_facts.get("planets", {})
+    d9_signs = jre_facts.get("planet_d9_sign", {})
+    d9_houses = jre_facts.get("planet_d9_house", {})
+    for pname, detail in jre_facts.get("planet_details", {}).items():
+        enriched = dict(detail)
+        natal = natal_planets.get(pname, {})
+        enriched["house"] = natal.get("house", enriched.get("house", 0))
+        enriched["sign_num"] = natal.get("rashi_num", 0)
+        enriched["combust"] = natal.get("combust", False)
+        enriched["retrograde"] = natal.get("retrograde", False)
+        nav_sign = d9_signs.get(pname)
+        if nav_sign:
+            enriched["navamsha_sign"] = nav_sign
+            enriched["navamsha_house"] = d9_houses.get(pname, 0)
+        planet_details[pname] = enriched
+
+    # ── Enrichment: birth data display ─────────────────────────────────────
+    bd = chart.birth_snapshot
+    birth_data_display = {
+        "date": bd.date,
+        "time": bd.time,
+        "timezone": bd.timezone,
+        "latitude": str(bd.latitude),
+        "longitude": str(bd.longitude),
+        "lagna": lagna_rashi,
+        "moon_nakshatra": moon_nak,
+    }
+
+    # ── Enrichment: deep Vimshottari Dasha hierarchy (MD/AD/PD/SD) ─────────
+    deep_dasha_payload: dict[str, Any] = {}
+    try:
+        from datetime import datetime as _dt
+        from zoneinfo import ZoneInfo
+
+        from jrs.prediction_engine.deep_dasha import DeepVimshottariEngine
+
+        birth_utc = _dt.fromisoformat(f"{bd.date}T{bd.time}").replace(
+            tzinfo=ZoneInfo(bd.timezone)
+        ).astimezone(timezone.utc)
+        yoga_planets = [
+            planet
+            for y in yoga_results
+            if y.status == "FORMED"
+            for planet in y.involved_planets
+        ]
+        dasha_result = DeepVimshottariEngine().compute(
+            target_timestamp=datetime_cls.now(timezone.utc),
+            birth_timestamp=birth_utc,
+            moon_nakshatra=moon_nak,
+            yoga_planets=yoga_planets or None,
+        )
+        deep_dasha_payload = dasha_result.to_dict()
+    except Exception:
+        # Dasha enrichment is non-critical — evaluation must not fail
+        deep_dasha_payload = {}
+
+    # ── Enrichment: Parivartana (mutual exchange) yogas ────────────────────
+    parivartana_pairs: list[dict[str, Any]] = []
+    parivartana_synthesis: dict[str, str] = {}
+    try:
+        from jrs.prediction_engine.parivartana import ParivartanaEngine
+
+        planet_signs = {
+            pname: pdata.get("rashi", "")
+            for pname, pdata in natal_planets.items()
+        }
+        pv_result = ParivartanaEngine().detect(
+            planet_signs=planet_signs,
+            lagna=jre_facts.get("lagna", lagna_rashi),
+            dignity_map=jre_facts.get("dignity_map", {}),
+            planet_details=jre_facts.get("planet_details", {}),
+            aspect_entries=jre_facts.get("aspect_matrix", []),
+        )
+        pv_dict = pv_result.to_dict()
+        parivartana_pairs = pv_dict.get("pairs", [])
+        parivartana_synthesis = pv_dict.get("parivartana_synthesis", {})
+    except Exception:
+        # Parivartana enrichment is non-critical — evaluation must not fail
+        parivartana_pairs = []
+
     # Generate deterministic evaluation ID
     evaluation_id = _generate_evaluation_id(fixture_id, target_timestamp)
 
@@ -258,6 +396,17 @@ def _run_evaluation(
         processing_time_ms=round(elapsed_ms, 2),
         engine_version=ENGINE_VERSION,
         disclaimer=LEGAL_DISCLAIMER,
+        elemental_balance=jre_facts.get("elemental_balance", {}),
+        modality_balance=jre_facts.get("modality_balance", {}),
+        dignity_map=jre_facts.get("dignity_map", {}),
+        aspect_matrix=jre_facts.get("aspect_matrix", []),
+        planet_details=planet_details,
+        birth_data_display=birth_data_display,
+        lagna_confidence="UNKNOWN" if unknown_tob else "HIGH",
+        unknown_tob=unknown_tob,
+        deep_dasha=deep_dasha_payload,
+        parivartana_yogas=parivartana_pairs,
+        parivartana_synthesis=parivartana_synthesis,
     )
 
 
@@ -284,13 +433,18 @@ async def log_requests_middleware(request: Request, call_next: Any) -> Response:
     return response
 
 
+# ── Event Evaluator Router ──────────────────────────────────────────────────
+
+app.include_router(event_evaluator_router)
+
+
 # ── Endpoints ───────────────────────────────────────────────────────────────
 
 
 @app.get("/api/v1/health", response_model=HealthResponse, tags=["Health"])
 async def health_check() -> HealthResponse:
     """Health check endpoint. No authentication required."""
-    return HealthResponse(status="healthy", version="1.0.0")
+    return HealthResponse(status="healthy", version=PROJECT_VERSION)
 
 
 @app.get("/api/v1/fixtures", tags=["Fixtures"])
@@ -362,6 +516,11 @@ async def evaluate_fixture(
 
 
 @app.post(
+    "/api/v1/evaluate",
+    response_model=EvaluationResponse,
+    tags=["Evaluation"],
+)
+@app.post(
     "/api/v1/evaluate/custom",
     response_model=EvaluationResponse,
     tags=["Evaluation"],
@@ -402,7 +561,12 @@ async def evaluate_custom(
             detail=f"Chart computation failed: {e}",
         )
 
-    response = _run_evaluation(chart, jre_facts, subject="Custom")
+    response = _run_evaluation(
+        chart,
+        jre_facts,
+        subject="Custom",
+        unknown_tob=is_unknown_time(input_data.time),
+    )
 
     # Log with evaluation_id and key hash (PII-safe)
     latency_ms = (time.perf_counter() - request_start) * 1000
@@ -603,7 +767,7 @@ async def submit_feedback(
     """
     # Build log entry with timestamp
     log_entry = entry.model_dump()
-    log_entry["timestamp"] = datetime.now(timezone.utc).isoformat()
+    log_entry["timestamp"] = datetime_cls.now(timezone.utc).isoformat()
     log_entry["engine_version"] = ENGINE_VERSION
 
     # Ensure data directory exists
@@ -636,17 +800,127 @@ async def submit_feedback(
         key_hash=get_key_hash(raw_key),
         message=f"Feedback recorded for evaluation {entry.evaluation_id}",
     )
-
     return {
         "status": "recorded",
         "message": "Feedback saved successfully",
         "evaluation_id": entry.evaluation_id,
         "entry_count": entry_count,
-    }    # ── Analysis Endpoint ─────────────────────────────────────────────────────
+    }
 
 
-@app.post(
-    "/api/v1/analyze",
+# ── Chart Calculation + Persistence Endpoint ──────────────────────────────
+
+
+class ChartRequest(BaseModel):
+    """Input model for chart calculation and persistence."""
+
+    query_date: date
+    query_time: str
+    latitude: float
+    longitude: float
+    timezone: str
+
+
+@app.post("/api/v1/chart", tags=["Chart"])
+async def calculate_and_store_chart(
+    payload: ChartRequest,
+    db: Session = Depends(get_db),
+) -> dict[str, Any]:
+    """Calculate and persist a chart calculation record.
+
+    Computes astronomical positions using Swiss Ephemeris, creates
+    a ChartCalculation row, and returns the persisted record metadata
+    with astronomical data.
+    """
+    # 1. Compute astronomical positions using Swiss Ephemeris
+    astro_data = calculate_planetary_positions(
+        payload.query_date,
+        payload.query_time,
+        payload.latitude,
+        payload.longitude,
+        payload.timezone,
+    )
+
+    # 2. Persist record
+    record = ChartCalculation(
+        query_date=payload.query_date,
+        query_time=payload.query_time,
+        latitude=payload.latitude,
+        longitude=payload.longitude,
+        timezone=payload.timezone,
+    )
+
+    db.add(record)
+    db.commit()
+    db.refresh(record)
+
+    return {
+        "status": "success",
+        "id": record.id,
+        "created_at": record.created_at.isoformat(),
+        "input": payload.model_dump(),
+        "astronomical_data": astro_data,
+    }
+
+
+# --- GET: Fetch Chart by ID ---
+@app.get("/api/v1/chart/{chart_id}", tags=["Chart"], response_model=None)
+async def get_chart_by_id(
+    chart_id: int,
+    db: Session = Depends(get_db),
+) -> dict:
+    """Fetch a chart calculation record by ID."""
+    record = db.query(ChartCalculation).filter(ChartCalculation.id == chart_id).first()
+    if not record:
+        raise HTTPException(status_code=404, detail="Chart record not found")
+    return {
+        "id": record.id,
+        "query_date": str(record.query_date),
+        "query_time": record.query_time,
+        "latitude": record.latitude,
+        "longitude": record.longitude,
+        "timezone": record.timezone,
+        "created_at": record.created_at.isoformat() if record.created_at else None,
+    }
+
+
+# --- GET: Paginated Historical Search ---
+@app.get("/api/v1/charts", tags=["Chart"])
+async def get_charts(
+    limit: int = Query(10, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+    db: Session = Depends(get_db),
+) -> dict[str, Any]:
+    """Get paginated list of chart calculation records."""
+    total = db.query(ChartCalculation).count()
+    records = db.query(ChartCalculation).offset(offset).limit(limit).all()
+
+    results = [
+        {
+            "id": r.id,
+            "query_date": str(r.query_date),
+            "query_time": r.query_time,
+            "latitude": r.latitude,
+            "longitude": r.longitude,
+            "timezone": r.timezone,
+            "created_at": r.created_at.isoformat() if r.created_at else None,
+        }
+        for r in records
+    ]
+
+    return {
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "results": results,
+    }
+
+
+# ── Analysis Endpoint ─────────────────────────────────────────────────────
+
+
+
+@app.post("/api/v1/analyze",
     response_model=JREAnalysisResponse,
     summary="Generate JRE Synthesis Report",
     description=(
@@ -662,7 +936,7 @@ async def analyze_chart(payload: BirthDataInput) -> JREAnalysisResponse:
         latitude=payload.latitude,
         longitude=payload.longitude,
         timezone=payload.timezone,
-        ayanamsha=getattr(payload, "ayanamsha", None),
+        ayanamsha=payload.ayanamsha,
     )
 
     moon_info = chart_data["planets"]["Moon"]
@@ -752,7 +1026,7 @@ async def generate_dynamic_overview(
         Dictionary with success status and narrative, or error message.
     """
     try:
-        from src.jrs.prediction_engine.overview_report_engine import generate_humanized_overview
+        from jrs.prediction_engine.overview_report_engine import generate_humanized_overview
 
         narrative = generate_humanized_overview(chart_data)
         return {"success": True, "data": {"narrative": narrative}}
@@ -765,7 +1039,7 @@ async def get_gochar_predictions_endpoint(date: str = None, period: str = "daily
     from datetime import datetime
 
     try:
-        from src.jrs.prediction_engine.gochar_predictions_engine import (
+        from jrs.prediction_engine.gochar_predictions_engine import (
             get_gochar_predictions as _get_gochar_predictions,
         )
 
@@ -858,7 +1132,7 @@ async def get_daily_panchang(
     from datetime import datetime
 
     try:
-        from src.jrs.prediction_engine.panchang_engine import compute_daily_panchang
+        from jrs.prediction_engine.panchang_engine import compute_daily_panchang
 
         if date is None:
             date = datetime.now().strftime("%Y-%m-%d")
@@ -1002,7 +1276,7 @@ async def get_birth_chart():
 async def generate_karmic_blueprint_endpoint(chart_data: dict):
     """Generate the full humanized report from evaluated chart data."""
     try:
-        from src.jrs.prediction_engine.report_engine import generate_karmic_blueprint
+        from jrs.prediction_engine.report_engine import generate_karmic_blueprint
 
         narrative = generate_karmic_blueprint(chart_data)
         return {"success": True, "data": {"narrative": narrative}}
