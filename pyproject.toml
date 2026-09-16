@@ -148,7 +148,10 @@ pythonpath = ["."]
 markers = [
     "slow: marks tests as slow (full calibration runs across all domains)",
     "no_cover: marks tests excluded from coverage reporting (performance/infrastructure)",
+    "locust: load tests requiring the locust package (run explicitly with -m locust)",
 ]
+# The load-test folder needs the optional locust package; excluded from default collection.
+collect_ignore_glob = ["tests/load/*"]
 filterwarnings = [
     "ignore:Using `httpx` with `starlette.testclient` is deprecated:starlette.exceptions.StarletteDeprecationWarning",
     "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
