@@ -1,0 +1,49 @@
+# Canonical staging build path: docker-compose.staging.yml -> backend.dockerfile = Dockerfile.backend
+
+# --- Stage 1: Build & Dependencies ---
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+# Install build-essential for pysweph C-extensions compile step
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies into a isolated wheels / prefix directory
+# Copy package metadata and src first so pip install . matches the src layout
+COPY pyproject.toml README.md ./
+COPY src /app/src
+RUN pip install --no-cache-dir --prefix=/install . uvicorn[standard]
+
+# --- Stage 2: Minimal Runtime Image ---
+FROM python:3.12-slim AS runtime
+
+WORKDIR /app
+
+# Install curl for docker healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed Python packages from builder
+COPY --from=builder /install /usr/local
+
+# Copy application code, ephemeris datasets, and alembic config + migrations
+COPY pyproject.toml ./
+COPY src /app/src
+COPY datasets /app/datasets
+COPY entrypoint.sh /app/entrypoint.sh
+COPY alembic.ini /app/alembic.ini
+COPY alembic /app/alembic
+
+RUN chmod +x /app/entrypoint.sh
+
+# Ensure db package is present for Alembic metadata imports
+RUN mkdir -p /app/src/jrs/db && touch /app/src/jrs/db/__init__.py
+
+EXPOSE 8000
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["python", "-m", "uvicorn", "src.jrs.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
