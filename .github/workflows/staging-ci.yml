@@ -54,6 +54,14 @@ jobs:
         run: |
           alembic upgrade head
 
+      # Drift gate: fails when src/jrs/db/models.py changed without a
+      # matching migration script. Needs the db AT head, hence the step order.
+      - name: Detect model/migration drift (alembic check)
+        env:
+          DATABASE_URL: postgresql+psycopg://jre_user:jre_staging_password@localhost:5432/jre_staging_db
+        run: |
+          alembic check
+
       - name: Run Test Suite
         env:
           DATABASE_URL: postgresql+psycopg://jre_user:jre_staging_password@localhost:5432/jre_staging_db
