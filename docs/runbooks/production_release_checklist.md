@@ -21,8 +21,12 @@ Fill in per release: **release commit** `____________`, **executor**
 - [ ] Host disk ≥ 8G free (`df -h /`); if not, run
       `scripts/docker_maintenance.sh` and re-check.
 - [ ] Database backup taken **and restore-tested**:
-      `pg_dump "$DATABASE_URL" > pre_release_$(date -Is).sql`
-      then restore it into a scratch database and run a smoke query.
+      `pg_dump "$DATABASE_URL" > dumps/pre_release_$(date -Is).sql`
+      then `scripts/restore_drill.sh <dump> --expect-rows <table>=<n>`
+      (automates the scratch restore + verification; ~5s on this dataset).
+      Note: dumps taken with owner roles from another cluster need the
+      drill's role pre-creation — `pg_dump --no-owner` avoids it entirely
+      and is preferred for future backups.
 
 ## 1. Pre-flight on the release window
 
@@ -32,6 +36,11 @@ Fill in per release: **release commit** `____________`, **executor**
 - [ ] Confirm `.env.prod` values: `DATABASE_URL` starts with
       `postgresql+psycopg://`, required vars all set
       (`config` must render with zero warnings).
+- [ ] Env audit passes:
+      `scripts/audit_prod_env.sh .env.prod` — fails on missing required
+      vars, wrong driver scheme, fallback/local tokens (localhost,
+      postgres:postgres, changeme, staging leftovers), or a password
+      under 12 chars. Exit 1 blocks the release.
 
 ## 2. Dry-run verifications (never skip on prod)
 
@@ -65,6 +74,21 @@ Fill in per release: **release commit** `____________`, **executor**
 
 Rollback rule of thumb: **roll back code freely; roll back schema only
 with a verified `downgrade` or a verified restore.**
+
+## Measured timings (game day 2026-09-18, isolated jre-gameday env)
+
+| Phase | Measured | Notes |
+|---|---|---|
+| Phase 1 pre-flight | < 1s | incl. env audit blocking a naive env (exit 1) |
+| Phase 2 build (warm cache) | ~1s | cold cache adds ~2–5 min per image |
+| Phase 2 full dry-run | ~5.5 min | build-dominated; sql preview + upgrade + check seconds |
+| Phase 3 deploy → healthy | ~2s | after images exist |
+| **Rollback (image swap, same db)** | **~6s** | detection → swap → health green |
+| Restore drill (fresh ephemeral db) | ~5s | first real run FAILED on missing owner role — fixed in drill script |
+
+Realistic planning estimate for a production release on this host:
+**~15 min with warm caches, ~25–30 min cold**, plus the maintenance
+window for traffic coordination.
 
 ## 5. Post-deployment
 

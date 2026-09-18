@@ -22,3 +22,8 @@ data/feedback_log.jsonl
 test-results/
 playwright-report/
 tsconfig.tsbuildinfo
+
+# database backups (pg_dump outputs) — never commit
+dumps/
+backups/
+*.sql.gz
