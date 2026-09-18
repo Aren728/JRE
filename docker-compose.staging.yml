@@ -77,7 +77,11 @@ services:
       # Bundled ephemeris files used by SWIEPH mode (must be mounted for staging)
       - ./datasets/ephemeris:/app/datasets/ephemeris:ro
     env_file:
-      - .env.staging
+      # Optional: absent on fresh checkouts (e.g. CI). Copy .env.example to
+      # .env.staging locally to add tuning vars. Anything critical is set in
+      # `environment:` below.
+      - path: .env.staging
+        required: false
     environment:
       - PYTHONUNBUFFERED=1
       - DATABASE_URL=postgresql+psycopg://jre_user:jre_staging_password@db:5432/jre_staging_db
@@ -113,7 +117,9 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - .env.staging
+      # Optional: absent on fresh checkouts (e.g. CI). See .env.example.
+      - path: .env.staging
+        required: false
     environment:
       - NODE_ENV=production
       - PORT=3000
