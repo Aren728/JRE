@@ -1,3 +1,8 @@
+# GENERATED FILE — do not edit by hand.
+# Exact mirror of pyproject.toml [project] dependencies.
+# Regenerate:  python scripts/sync_requirements.py
+# CI enforces sync via:  python scripts/sync_requirements.py --check
+
 fastapi>=0.100.0
 uvicorn[standard]>=0.23.0
 pydantic>=2.0.0
@@ -7,3 +12,6 @@ python-multipart>=0.0.6
 python-jose[cryptography]>=3.3.0
 passlib[bcrypt]>=1.7.4
 httpx>=0.24.0
+sqlalchemy>=2.0.0
+psycopg[binary]>=3.1.0
+alembic>=1.13.0

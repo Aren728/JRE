@@ -33,39 +33,12 @@ dev = [
 
 [tool.setuptools]
 package-dir = { "" = "src" }
-packages = [
-    "astronomy",
-    "astronomy.swisseph",
-    "jyotish",
-    "jyotish.swisseph",
-    "knowledge",
-    "bhava",
-    "gochar",
-    "context",
-    "varga",
-    "research",
-    "dasha",
-    "bala",
-    "drik",
-    "yoga",
-    "karaka",
-    "avastha",
-    "ashtakavarga",
-    "tajika",
-    "jaimini",
-    "prashna",
-    "muhurta",
-    "rectification",
-    "synthesis",
-    "jrs",
-    "jrs.services",
-    "validation",
-    "nakshatra_activation",
-    "birth_signature",
-    "western",
-    "numerology",
-    "jrs.numerology",
-]
+# Automatic discovery instead of a manual allowlist: every src/<dir> with an
+# __init__.py is packaged, and namespace subpackages (no __init__.py, e.g.
+# jrs.services, jrs.domains) are found as well. This keeps `pip install .`
+# (used by Dockerfile.backend) in sync with the source tree so new jrs.*
+# subpackages can never silently go missing from the built image again.
+packages.find = { where = ["src"] }
 
 [tool.pytest.ini_options]
 testpaths = [
@@ -142,6 +115,7 @@ testpaths = [
     "tests/unit/jrs/reporting",
     "tests/unit/jrs/advanced_charts",
     "tests/calibration",
+    "tests/test_requirements_sync.py",
 ]
 addopts = "-q --ignore-glob=tests/load/*"
 pythonpath = ["."]
