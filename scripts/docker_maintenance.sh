@@ -13,9 +13,10 @@
 #   - named volumes (jre_postgres_data holds the staging database)
 #   - tagged images, running or stopped containers
 #
-# Install (weekly, Sunday 04:17, low-traffic window):
+# Install (weekly, Sunday 04:17, low-traffic window; log lives under
+# ~/.local/state so it survives /tmp cleanup):
 #   crontab -e
-#   17 4 * * 0  /home/abhyram/JRE/scripts/docker_maintenance.sh >> /tmp/jre_docker_maintenance.log 2>&1
+#   17 4 * * 0  /home/abhyram/JRE/scripts/docker_maintenance.sh >> /home/abhyram/.local/state/jre/docker_maintenance.log 2>&1
 #
 # Dry run:  docker_maintenance.sh --dry-run
 

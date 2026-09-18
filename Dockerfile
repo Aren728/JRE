@@ -20,11 +20,21 @@ COPY --from=builder /install /usr/local
 
 # Copy application source
 WORKDIR /app
+# pyproject.toml is the version source of truth read by
+# jrs.api.main._load_project_version() — without it /api/v1/health falls
+# back to the wrong version label.
+COPY pyproject.toml ./
 COPY src/ src/
 COPY tests/fixtures/validation_charts/ tests/fixtures/validation_charts/
 
 # Ephemeris data for SWIEPH lookups
 COPY datasets/ephemeris datasets/ephemeris
+
+# Alembic config + migrations — aligned with Dockerfile.backend so
+# `docker compose -f docker-compose.prod.yml exec backend alembic upgrade head`
+# works in this container (see docs/runbooks/database_migrations.md).
+COPY alembic.ini /app/alembic.ini
+COPY alembic /app/alembic
 
 # Expose port
 EXPOSE 8000

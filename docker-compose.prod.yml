@@ -1,0 +1,119 @@
+# JRE API — Production Compose Template
+#
+# Status: TEMPLATE, not yet wired to any host (see the production rollout
+# checklist in docs/runbooks/database_migrations.md). No secrets belong in
+# this file — required values come from the environment or an env file
+# (gitignored; e.g. `.env.prod`, which already matches the `.env.*` ignore
+# rule) passed explicitly:
+#
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+#
+# Required environment variables (compose fails fast without them):
+#   POSTGRES_USER       db superuser name            (managed-db mode)
+#   POSTGRES_PASSWORD   db password                  (managed-db mode)
+#   POSTGRES_DB         db name                      (managed-db mode)
+#   DATABASE_URL        full SQLAlchemy URL; MUST use the
+#                       postgresql+psycopg:// scheme (psycopg 3) to match
+#                       src/jrs/db/session.py — a bare postgresql:// URL
+#                       selects psycopg2, which is NOT installed.
+#
+# Optional:
+#   PROD_BACKEND_PORT   host port for the API   (default 8000)
+#   PROD_FRONTEND_PORT  host port for the UI    (default 3000)
+#   PROD_DB_PORT        host port for postgres  (default 5432, loopback only)
+#
+# Two database modes:
+#   Managed (bundled):  `--env-file .env.prod up -d`  → starts db + backend + frontend
+#   External (managed provider):  set DATABASE_URL to the provider URL and start
+#   the app services without dependencies — `--no-deps` is REQUIRED, plain
+#   `up backend` starts the bundled db anyway (verified 2026-09-18):
+#     docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps backend frontend
+#
+# Migrations are NEVER automatic (see docs/runbooks/database_migrations.md):
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod \
+#     exec backend alembic upgrade head
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env.prod}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env.prod}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env.prod}
+    ports:
+      # Loopback only — never expose postgres publicly. Host port kept
+      # configurable because hosts often run their own postgres on 5432.
+      - "127.0.0.1:${PROD_DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PROD_BACKEND_PORT:-8000}:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=${DATABASE_URL:?set DATABASE_URL in .env.prod (must start with postgresql+psycopg://)}
+    volumes:
+      # Ephemeris files stay on the host and mount read-only, mirroring staging.
+      - ./datasets/ephemeris:/app/datasets/ephemeris:ro
+    depends_on:
+      # Optional dependency: external-database deployments start the app
+      # services alone (`up -d backend frontend`) without the bundled db.
+      db:
+        condition: service_healthy
+        required: false
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+    healthcheck:
+      # Root Dockerfile has no curl — use the image's own httpx.
+      test: ["CMD", "python", "-c", "import httpx; r = httpx.get('http://localhost:8000/api/v1/health'); assert r.status_code == 200"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "${PROD_FRONTEND_PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  postgres_data_prod:
