@@ -23,7 +23,7 @@
 set -euo pipefail
 
 BUILD_CACHE_KEEP_DAYS="${BUILD_CACHE_KEEP_DAYS:-168}"   # 1 week in hours
-MIN_FREE_GB="${MIN_FREE_GB:-5}"                        # prune cache until this much is free
+MIN_FREE_GB="${MIN_FREE_GB:-8}"                        # prune cache until this much is free
 DRY_RUN=0
 [ "${1:-}" = "--dry-run" ] && DRY_RUN=1
 

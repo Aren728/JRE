@@ -110,7 +110,8 @@ docker compose --env-file $ENV -f docker-compose.prod.yml build --no-cache backe
 
 # 3. Isolated db + env check + migration dry-runs (-p isolates network/volumes)
 docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml up -d db
-docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend python -c "<env/app check>"
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend python -c \
+  "import os,sqlalchemy as sa;u=os.environ['DATABASE_URL'];assert u.startswith('postgresql+psycopg://'),u;e=sa.create_engine(u);e.connect().exec_driver_sql('select 1');import jrs.api.main;print('env check OK')"
 docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic upgrade head --sql   # offline SQL preview
 docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic upgrade head         # apply
 docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic check                # expect: No new upgrade operations detected.
@@ -120,6 +121,15 @@ docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml up -d
 curl http://localhost:18000/api/v1/health && curl -X POST http://localhost:18000/api/v1/analyze ...
 docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml down -v
 ```
+
+### Alembic command mapping (framework-agnostic CI tasks → Alembic)
+
+| Generic CI/CD task | Alembic command | Notes |
+|---|---|---|
+| Django `migrate --plan` / Rails `db:migrate:status` | `alembic upgrade head --sql` | Offline SQL preview; **no DB connection needed** (env.py offline mode) |
+| Drift detection (models vs applied schema) | `alembic check` | Run **after** `upgrade head` — against an empty db it reports the missing tables as drift |
+| Migration status | `alembic current` + `alembic history` | `current` shows the applied revision (expect `(head)` on healthy envs) |
+| Apply pending migrations | `alembic upgrade head` | The only command that executes DDL; never `stamp` except the adoption flow above |
 
 ## Health check
 

@@ -36,6 +36,17 @@ deploy() (
     set -e
     cd "$1"
 
+    # Disk guard: builds are the main disk consumer on this host, and the
+    # weekly cron only runs Sundays — a mid-week build at low disk is how the
+    # 2026-09-18 "No space left on device" incident happened. Trigger the
+    # standard cleanup whenever free space drops below the threshold.
+    # (docker_maintenance.sh deliberately avoids container/volume pruning.)
+    FREE_GB=$(df -BG --output=avail / | tail -1 | tr -dc '0-9')
+    if [ "${FREE_GB:-0}" -lt "${DEPLOY_MIN_FREE_GB:-4}" ]; then
+        echo "[deploy] free disk ${FREE_GB}G < ${DEPLOY_MIN_FREE_GB:-4}G — running docker maintenance first"
+        bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/docker_maintenance.sh"
+    fi
+
     echo "[deploy] $(date -Is) deploying $(git rev-parse --short HEAD)"
 
     # Deterministic code state: refusing non-ff pulls avoids deploying
@@ -73,6 +84,15 @@ deploy() (
     # migrations on the staging db are a reviewed, explicit step; see
     # docs/runbooks/database_migrations.md).
     docker exec jre-api-staging alembic upgrade head
+
+    # Post-deploy guard: a cold rebuild can add several GB of build cache.
+    # If the deploy ends below the threshold, reclaim immediately instead of
+    # leaving the next build to run at dangerously low disk.
+    FREE_GB=$(df -BG --output=avail / | tail -1 | tr -dc '0-9')
+    if [ "${FREE_GB:-0}" -lt "${DEPLOY_MIN_FREE_GB:-4}" ]; then
+        echo "[deploy] post-deploy disk ${FREE_GB}G < ${DEPLOY_MIN_FREE_GB:-4}G — reclaiming build cache"
+        bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/docker_maintenance.sh"
+    fi
 
     echo "[deploy] $(date -Is) done: staging runs $(git rev-parse --short HEAD)"
 )
