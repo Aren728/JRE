@@ -74,6 +74,13 @@ mypy src/jrs/ --strict
 ruff check src/jrs/
 ```
 
+## Database Migrations
+
+Schema changes are managed with Alembic. See
+[docs/runbooks/database_migrations.md](docs/runbooks/database_migrations.md)
+for when to run `alembic upgrade head` (fresh/Alembic-managed databases)
+vs `alembic stamp head` (one-time adoption of pre-Alembic databases).
+
 ## Hardware Target
 
 Designed for low-resource systems:
