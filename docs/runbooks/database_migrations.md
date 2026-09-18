@@ -92,3 +92,33 @@ instance with empty metadata and autogenerate emits nothing.
 ```bash
 docker exec jre-api-staging alembic current   # staging: expect aef04248244b (head) or later
 ```
+
+## Production rollout checklist (before first production release)
+
+Reviewed 2026-09-18 against the legacy `docker-compose.yml` + `Dockerfile`
+path. **This path is NOT production-ready** — fix the following first:
+
+1. **Postgres service missing.** `docker-compose.yml` defines no database
+   and sets no `DATABASE_URL` — alembic migrations and `/api/v1/chart`
+   persistence would have nothing to talk to. Add a postgres service and
+   a real `DATABASE_URL`, or (better) deprecate this file in favor of
+   `docker-compose.staging.yml` + a prod overlay.
+2. **Package allowlist out of date.** `Dockerfile` (root) predates the
+   `packages.find` fix in `pyproject.toml`; its builder stage also misses
+   `alembic.ini` + `alembic/`, so `alembic upgrade head` cannot run in
+   that container. Align it with `Dockerfile.backend` or delete it.
+3. **Manage schema with migrations.** If production's tables were created
+   outside Alembic, adopt them with the exception flow (confirm schema →
+   `pg_dump` → `alembic stamp head` → verify `upgrade head` no-ops)
+   during a maintenance window. Fresh production databases: just run
+   `alembic upgrade head`.
+4. **`DATABASE_URL` driver.** Production must use the
+   `postgresql+psycopg://` scheme (psycopg 3) to match
+   `src/jrs/db/session.py` and this runbook. A bare `postgresql://` URL
+   selects psycopg2, which is not installed.
+5. **Deploy ordering.** Deploy schema-compatible code first, then run
+   `alembic upgrade head` in a maintenance window, then restart the app
+   (see `scripts/deploy_staging.sh` for the staging pattern; production
+   should follow the same gate: health check → smoke tests → migrate).
+6. **Backups.** `pg_dump` immediately before any migration; verify the
+   dump restores cleanly somewhere before touching production.
