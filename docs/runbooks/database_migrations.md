@@ -87,6 +87,40 @@ instance with empty metadata and autogenerate emits nothing.
   staging. Never `stamp` production unless adopting a pre-Alembic schema
   (exception flow above).
 
+## Pre-release dry-run (verified 2026-09-18)
+
+Run before wiring docker-compose.prod.yml to any real host. Uses a
+throwaway env file with test credentials (never commit real ones).
+Project-adapted from the generic dry-run checklist: service is
+`backend` (not `web-app`), env file convention is `.env.prod`.
+
+```bash
+ENV=/tmp/jre_prodtest.env
+# Throwaway test values:
+#   POSTGRES_USER / POSTGRES_PASSWORD / POSTGRES_DB
+#   DATABASE_URL=postgresql+psycopg://<user>:<pw>@db:5432/<db>
+#   PROD_BACKEND_PORT=18000 PROD_FRONTEND_PORT=13000 PROD_DB_PORT=15432
+
+# 1. Config validation — fail-fast without vars, clean render with them
+docker compose -f docker-compose.prod.yml config >/dev/null 2>&1; echo "expect exit 1"
+docker compose --env-file $ENV -f docker-compose.prod.yml config | grep DATABASE_URL
+
+# 2. Build from scratch
+docker compose --env-file $ENV -f docker-compose.prod.yml build --no-cache backend frontend
+
+# 3. Isolated db + env check + migration dry-runs (-p isolates network/volumes)
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml up -d db
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend python -c "<env/app check>"
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic upgrade head --sql   # offline SQL preview
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic upgrade head         # apply
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml run --rm backend alembic check                # expect: No new upgrade operations detected.
+
+# 4. Full stack + smoke + teardown
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml up -d
+curl http://localhost:18000/api/v1/health && curl -X POST http://localhost:18000/api/v1/analyze ...
+docker compose -p jre-prodtest --env-file $ENV -f docker-compose.prod.yml down -v
+```
+
 ## Health check
 
 ```bash
