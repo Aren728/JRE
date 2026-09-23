@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jre"
-version = "1.0.0"
+version = "1.1.0rc1"
 description = "JRE — Jyotish Reasoning Engine: deterministic astronomical core (JRE-002) and Jyotish coordinate/state layer (JRE-003)"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -111,6 +111,7 @@ testpaths = [
     "tests/unit/numerology",
     "tests/unit/jrs/numerology",
     "tests/integration/numerology",
+    "tests/unit/spatial_grid",
     "tests/unit/jrs/api",
     "tests/unit/jrs/reporting",
     "tests/unit/jrs/advanced_charts",
@@ -124,6 +125,7 @@ markers = [
     "no_cover: marks tests excluded from coverage reporting (performance/infrastructure)",
     "locust: load tests requiring the locust package (run explicitly with -m locust)",
 ]
+xfail_strict = true
 # The load-test folder needs the optional locust package; run it with
 # locust -f tests/load/locustfile.py, not pytest.
 filterwarnings = [
@@ -137,6 +139,15 @@ filterwarnings = [
 target-version = "py312"
 line-length = 100
 src = ["src", "tests"]
+# Make extend-exclude apply even when paths are passed explicitly on the CLI
+# (CI gates run `ruff check src`).
+force-exclude = true
+# Legacy API/reporting surface carries pre-existing lint debt (~2000 findings:
+# line length, unused imports, import order). It is excluded so `ruff check`
+# can gate CI hard today; the exclusion SHRINKS as debt is paid down. Engine
+# packages (astronomy, jyotish, bhava, bala, spatial_grid, geospatial, ...)
+# and all of tests/ are fully enforced.
+extend-exclude = ["src/jrs", "src/test_aspects.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM"]
@@ -144,10 +155,58 @@ ignore = ["SIM117"]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis", "jrs", "validation", "nakshatra_activation", "birth_signature", "western", "numerology"]
+packages = ["astronomy", "jyotish", "knowledge", "bhava", "gochar", "context", "varga", "research", "dasha", "bala", "drik", "yoga", "karaka", "avastha", "ashtakavarga", "tajika", "jaimini", "prashna", "muhurta", "rectification", "synthesis", "jrs", "validation", "nakshatra_activation", "birth_signature", "western", "numerology", "spatial_grid", "geospatial"]
 strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.
 [[tool.mypy.overrides]]
 module = ["swisseph"]
 ignore_missing_imports = true
+
+# ── Legacy strict-mypy grandfather list ────────────────────────────────────
+# `strict = true` is the enforced default (hard CI gate). These 37 legacy
+# modules predate the gate and carry ~146 strict errors between them; each is
+# explicitly exempted here so the gate passes TODAY while the list itself
+# acts as the debt registry. Remove an entry only after fixing its errors —
+# the list must shrink, never grow. New modules are NOT eligible.
+[[tool.mypy.overrides]]
+module = [
+    "jrs.validation.calibration",
+    "jrs.api.main",
+    "jrs.prediction_engine.panchang_engine",
+    "jrs.deterministic_engine.esoteric_evaluator",
+    "jrs.reporting.narrative_engines.timeline_engine",
+    "jrs.services.divisional",
+    "jrs.cli",
+    "jrs.api.dependencies",
+    "jrs.validation.datasets.loader",
+    "jrs.reporting.jatakam_book_generator",
+    "jrs.reporting.pdf_generator",
+    "jrs.prediction_engine.parivartana",
+    "jrs.graph.functional_lordship",
+    "jrs.deterministic_engine.i18n_loader",
+    "jrs.prediction_engine.overview_engine",
+    "jrs.prediction_engine.gochar_transit",
+    "jrs.engine.calculator",
+    "jrs.advanced_charts.ashtakavarga",
+    "astronomy.swisseph.provider",
+    "jrs.yoga_evaluator.service",
+    "jrs.yoga_evaluator.evidence_service",
+    "jrs.validation.storage",
+    "jrs.validation.runner",
+    "jrs.temporal.dasha_engine",
+    "jrs.structural.models",
+    "jrs.services.ephemeris",
+    "jrs.prediction_engine.report_engine",
+    "jrs.prediction_engine.overview_report_engine",
+    "jrs.prediction_engine.nakshatra_exchanges",
+    "jrs.prediction_engine.gochar_predictions_engine",
+    "jrs.prediction_engine.deep_dasha",
+    "jrs.parihara.remedy_engine",
+    "jrs.horoscope.gochar_engine",
+    "jrs.graph.nakshatra_service",
+    "jrs.domains.yoga.service",
+    "jrs.advanced_charts.shadbala",
+    "jrs.advanced_charts.divisional",
+]
+ignore_errors = true

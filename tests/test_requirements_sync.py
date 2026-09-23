@@ -28,7 +28,9 @@ def test_requirements_txt_matches_pyproject_dependencies():
     expected = sync.render(sync.read_dependencies())
 
     requirements_path = _PROJECT_ROOT / "requirements.txt"
-    assert requirements_path.exists(), "requirements.txt is missing — run: python scripts/sync_requirements.py"
+    assert requirements_path.exists(), (
+        "requirements.txt is missing — run: python scripts/sync_requirements.py"
+    )
 
     actual = requirements_path.read_text()
     assert actual == expected, (

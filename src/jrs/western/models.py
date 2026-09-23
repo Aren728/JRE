@@ -20,6 +20,7 @@ from jrs.evidence.models import (
 from western.models import (
     WesternAspectType,
     WesternChart,
+    WesternHouseSystem,  # noqa: F401 — re-exported for jrs.western consumers
     WesternPlanet,
 )
 

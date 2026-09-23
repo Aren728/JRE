@@ -12,7 +12,12 @@ from pathlib import Path
 
 from jrs.evidence.models import EvidenceRecord
 from jrs.multisystem.models import SystemAssessment
+
+# Re-export the JRE calculation layer through the unified wrapper so
+# callers (API, CLI) can import everything numerology-related strictly
+# from ``jrs.numerology`` instead of reaching for the legacy package.
 from numerology.models import NumerologyChart
+from numerology.service import NumerologyCalculationService
 
 from .config import load_numerology_config, load_numerology_rules
 from .models import (
@@ -23,6 +28,11 @@ from .models import (
     evaluate_facts,
     extract_facts_from_chart,
 )
+
+__all__ = [
+    "NumerologyCalculationService",
+    "NumerologyDomainService",
+]
 
 
 class NumerologyDomainService:

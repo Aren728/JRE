@@ -288,6 +288,31 @@ class EvaluationResponse(BaseModel):
         default_factory=dict,
         description="Formatted birth data for report display",
     )
+    lagna_longitude: float = Field(
+        default=-1.0,
+        description=(
+            "Exact sidereal ascendant longitude in degrees (0-360). Enables "
+            "exact D10/D9 lagna computations client-side. -1.0 means unavailable."
+        ),
+    )
+    navamsha_lagna: str = Field(
+        default="",
+        description=(
+            "Exact Navamsha (D9) lagna sign key (e.g. 'MESHA'), derived from the "
+            "ascendant longitude. Empty string means unavailable."
+        ),
+    )
+    arudha_padas: dict[str, str] = Field(
+        default_factory=dict,
+        description=(
+            "Full Arudha Pada ladder A1–A12, keyed 'A1'..'A12' with sign keys "
+            "(e.g. 'KARKA'). Computed classically from each house's sign lord: "
+            "count from house to lord, then the same count onward; if the pada "
+            "lands in the house itself or the 7th from it, take the 10th from "
+            "the lord. A12 is the Upapada Lagna. Empty string for a pada means "
+            "the lord's body was unavailable in the ephemeris."
+        ),
+    )
 
     # ── Unknown TOB fields ──────────────────────────────────────────────────
     lagna_confidence: str = Field(
@@ -314,6 +339,14 @@ class EvaluationResponse(BaseModel):
     )
 
     # ── Phase 2: Prediction Engine Data ────────────────────────────────────
+    remedies: dict[str, Any] = Field(
+        default_factory=dict,
+        description=(
+            "Classical remedial measures from the Parihara engine "
+            "(afflicted planets, detected doshas, general remedies). "
+            "Empty dict when the engine is unavailable."
+        ),
+    )
     parivartana_yogas: list[dict[str, Any]] = Field(
         default_factory=list,
         description="Detected Parivartana (mutual exchange) Yogas",

@@ -9,6 +9,9 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    // next/jest always ignores node_modules transforms, so the ESM-only
+    // OrbitControls can never be transformed — map it to a Jest stub.
+    'three/examples/jsm/controls/OrbitControls.js': '<rootDir>/__mocks__/OrbitControlsStub.ts',
   },
   testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   transformIgnorePatterns: [

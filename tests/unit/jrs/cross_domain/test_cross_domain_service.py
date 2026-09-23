@@ -161,9 +161,32 @@ class TestIsolatedAssessments:
         clusters = svc.identify_clusters(assessments)
         assert clusters == []
 
-    def test_two_assessments_weak_evidence_no_cluster(self) -> None:
-        """Two assessments with weak evidence don't cluster."""
+    def test_two_assessments_weak_evidence_cluster_at_default_threshold(self) -> None:
+        """Weak-but-convergent evidence clusters at the default threshold.
+
+        Contract change (1.1.0rc1): ``min_evidence_strength`` defaults to
+        WEAK so weak evidence is not silently dropped.
+        """
         svc = CrossDomainService()
+        assessments = [
+            _make_cross_assessment(
+                domain_label="CAREER",
+                strength=OverallEvidenceStrength.WEAK,
+            ),
+            _make_cross_assessment(
+                domain_label="WEALTH",
+                outcome="WEALTH_ACCUMULATION",
+                strength=OverallEvidenceStrength.WEAK,
+            ),
+        ]
+        clusters = svc.identify_clusters(assessments)
+        assert len(clusters) == 1
+
+    def test_two_assessments_weak_evidence_filtered_when_threshold_raised(self) -> None:
+        """Raising ``min_evidence_strength`` restores the historical filter."""
+        svc = CrossDomainService(
+            min_evidence_strength=OverallEvidenceStrength.MODERATE,
+        )
         assessments = [
             _make_cross_assessment(
                 domain_label="CAREER",

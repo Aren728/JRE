@@ -19,6 +19,8 @@ interface DashaTreeViewerProps {
   targetDate: string; // Active inspection date
   depthLimit: 'MD' | 'AD' | 'PD' | 'SD';
   onSelectDateRange?: (startDate: string, endDate: string, path: string[]) => void;
+  /** Phase 4 scene sync: glow every node of this planet (case-insensitive). */
+  highlightedPlanet?: string | null;
 }
 
 // ── Constants ────────────────────────────────────────────────────────────────
@@ -33,18 +35,6 @@ const PLANET_SYMBOLS: Record<string, string> = {
   'SATURN': '♄',
   'RAHU': '☊',
   'KETU': '☋',
-};
-
-const DASHA_DURATIONS_YEARS: Record<string, number> = {
-  'KETU': 7,
-  'VENUS': 20,
-  'SUN': 6,
-  'MOON': 10,
-  'MARS': 7,
-  'RAHU': 18,
-  'JUPITER': 16,
-  'SATURN': 19,
-  'MERCURY': 17,
 };
 
 const LEVEL_COLORS: Record<string, string> = {
@@ -78,6 +68,7 @@ function parseDate(dateStr: string): Date {
 function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
+export { formatDate };
 
 function daysBetween(start: string, end: string): number {
   const s = parseDate(start).getTime();
@@ -103,6 +94,7 @@ function isDateInRange(targetDate: Date, startDate: string, endDate: string): bo
 function generateId(level: string, planet: string, index: number): string {
   return `${level}-${planet}-${index}`;
 }
+export { generateId };
 
 // ── Depth Limit Check ────────────────────────────────────────────────────────
 
@@ -124,6 +116,7 @@ interface TreeNodeProps {
   onToggle: (id: string) => void;
   onSelect: (period: DashaPeriod) => void;
   level: number;
+  highlightedPlanet?: string | null;
 }
 
 function TreeNode({
@@ -135,8 +128,11 @@ function TreeNode({
   onToggle,
   onSelect,
   level: indentLevel,
+  highlightedPlanet = null,
 }: TreeNodeProps) {
   const isActive = isDateInRange(targetDate, period.startDate, period.endDate);
+  const isHighlighted =
+    !!highlightedPlanet && period.planet.toUpperCase() === highlightedPlanet.toUpperCase();
   const isExpanded = expandedNodes.has(period.id);
   const hasChildren = shouldShowChildren(period.level, depthLimit) && period.subPeriods && period.subPeriods.length > 0;
   const progress = progressPercentage(targetDate, period.startDate, period.endDate);
@@ -160,8 +156,11 @@ function TreeNode({
             : '1px solid transparent',
           boxShadow: isActive
             ? '0 0 12px rgba(197, 168, 128, 0.25)'
+            : isHighlighted
+            ? '0 0 12px rgba(34, 211, 238, 0.35)'
             : 'none',
         }}
+        data-highlighted={isHighlighted && !isActive ? '' : undefined}
         onClick={() => onSelect(period)}
       >
         {/* Expand/collapse button */}
@@ -285,7 +284,7 @@ function TreeNode({
       {/* Children */}
       {hasChildren && isExpanded && period.subPeriods && (
         <div className="mt-1">
-          {period.subPeriods.map((child, idx) => (
+          {period.subPeriods.map((child) => (
             <TreeNode
               key={child.id}
               period={child}
@@ -296,6 +295,7 @@ function TreeNode({
               onToggle={onToggle}
               onSelect={onSelect}
               level={indentLevel + 1}
+              highlightedPlanet={highlightedPlanet}
             />
           ))}
         </div>
@@ -483,6 +483,7 @@ export default function DashaTreeViewer({
   targetDate: targetDateStr,
   depthLimit,
   onSelectDateRange,
+  highlightedPlanet = null,
 }: DashaTreeViewerProps) {
   const targetDate = useMemo(() => new Date(targetDateStr + 'T00:00:00Z'), [targetDateStr]);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
@@ -591,7 +592,7 @@ export default function DashaTreeViewer({
 
         <DateScrubber
           targetDate={targetDateStr}
-          onDateChange={(date) => {}}
+          onDateChange={() => {}}
           quickDates={QUICK_DATES}
         />
       </div>
@@ -617,6 +618,7 @@ export default function DashaTreeViewer({
             onToggle={handleToggle}
             onSelect={handleSelect}
             level={0}
+            highlightedPlanet={highlightedPlanet}
           />
         ))}
 
@@ -668,13 +670,6 @@ export function convertDeepDashaToTree(
     const e = new Date(p.end_utc).getTime();
     return targetDate.getTime() >= s && targetDate.getTime() < e;
   }) || backend.ad;
-
-  // Find active PD in timeline
-  const activePd = backend.pd_timeline.find((p) => {
-    const s = new Date(p.start_utc).getTime();
-    const e = new Date(p.end_utc).getTime();
-    return targetDate.getTime() >= s && targetDate.getTime() < e;
-  }) || backend.pd;
 
   // Build SD periods from timeline
   const sdPeriods: DashaPeriod[] = backend.sd_timeline.map((p, idx) => ({

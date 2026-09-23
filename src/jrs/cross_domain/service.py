@@ -22,6 +22,13 @@ from .models import (
     classify_event_type,
 )
 
+# Deterministic ordering for the configurable evidence threshold.
+_STRENGTH_ORDER: dict[OverallEvidenceStrength, int] = {
+    OverallEvidenceStrength.WEAK: 1,
+    OverallEvidenceStrength.MODERATE: 2,
+    OverallEvidenceStrength.STRONG: 3,
+}
+
 
 class CrossDomainService:
     """Cross-domain event reasoning engine.
@@ -42,6 +49,7 @@ class CrossDomainService:
         self,
         min_overlap_score: float = 0.1,
         min_domains: int = 2,
+        min_evidence_strength: OverallEvidenceStrength = OverallEvidenceStrength.WEAK,
     ) -> None:
         """Initialize the cross-domain service.
 
@@ -50,6 +58,11 @@ class CrossDomainService:
                 windows to be considered overlapping.  Must be in [0, 1].
             min_domains: Minimum number of distinct domains required to
                 form a cluster.
+            min_evidence_strength: Minimum overall_evidence_strength for
+                an assessment to participate in a cluster. Defaults to
+                WEAK so valid domain predictions with weak-but-convergent
+                evidence are NOT silently dropped; raise the threshold
+                (MODERATE/STRONG) to restore the historical filter.
         """
         if not 0.0 <= min_overlap_score <= 1.0:
             raise InvalidClusterInputError(
@@ -59,6 +72,7 @@ class CrossDomainService:
             raise InvalidClusterInputError(f"min_domains must be >= 1, got {min_domains}")
         self._min_overlap_score = min_overlap_score
         self._min_domains = min_domains
+        self._min_evidence_strength = min_evidence_strength
 
     def identify_clusters(
         self,
@@ -67,8 +81,10 @@ class CrossDomainService:
         """Identify cross-domain event clusters from assessments.
 
         Groups assessments by temporal overlap.  Within each overlapping
-        group, checks that the assessments are from different domains and
-        have ACTIVE timing (CONVERGENT) with non-WEAK evidence.
+        group, checks that the assessments are from different domains,
+        have ACTIVE timing (CONVERGENT), and meet the configured
+        evidence-strength threshold (default: WEAK and above — i.e. all
+        evidence levels participate).
 
         Args:
             assessments: List of CrossDomainAssessment objects.
@@ -87,7 +103,9 @@ class CrossDomainService:
             return []
 
         # Filter to assessments with active timing and sufficient evidence
-        active = [a for a in assessments if _is_active(a)]
+        active = [
+            a for a in assessments if _meets_threshold(a, self._min_evidence_strength)
+        ]
 
         if len(active) < self._min_domains:
             return []
@@ -116,16 +134,30 @@ class CrossDomainService:
         """Return the minimum domains threshold."""
         return self._min_domains
 
+    @property
+    def min_evidence_strength(self) -> OverallEvidenceStrength:
+        """Return the minimum evidence-strength threshold."""
+        return self._min_evidence_strength
+
 
 # ── Internal Helpers ─────────────────────────────────────────────────────────
 
 
-def _is_active(assessment: CrossDomainAssessment) -> bool:
-    """Check if an assessment is active (convergent timing, non-weak evidence)."""
+def _meets_threshold(
+    assessment: CrossDomainAssessment,
+    min_evidence_strength: OverallEvidenceStrength,
+) -> bool:
+    """Check if an assessment is active (convergent timing) and meets the
+    configured evidence-strength threshold.
+
+    By default the threshold is WEAK, so weak-but-convergent assessments
+    participate in clusters instead of being silently dropped.
+    """
     a = assessment.assessment
     return (
         a.timing_status is TimingStatus.CONVERGENT
-        and a.overall_evidence_strength is not OverallEvidenceStrength.WEAK
+        and _STRENGTH_ORDER[a.overall_evidence_strength]
+        >= _STRENGTH_ORDER[min_evidence_strength]
     )
 
 

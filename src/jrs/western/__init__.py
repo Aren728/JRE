@@ -2,6 +2,10 @@
 
 Consumes JRE-066 WesternChart facts and outputs SystemAssessment
 objects with SystemType.WESTERN provenance.
+
+Also re-exports the JRE-066 calculation service (``WesternCalculationService``)
+so the API/CLI can import everything western-related strictly from the
+``jrs.western`` unified wrapper.
 """
 
 from __future__ import annotations
@@ -13,10 +17,11 @@ from .models import (
     WesternRule,
     WesternRuleCatalog,
 )
-from .service import WesternDomainService
+from .service import WesternCalculationService, WesternDomainService
 
 __all__ = [
     "InvalidWesternConfigError",
+    "WesternCalculationService",
     "WesternConfig",
     "WesternDomainService",
     "WesternOutcomeTaxonomy",

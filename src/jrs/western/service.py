@@ -16,7 +16,12 @@ from jrs.multisystem.models import (
     SystemAssessment,
     SystemType,
 )
+
+# Re-export the JRE-066 calculation layer through the unified wrapper so
+# callers (API, CLI) can import everything western-related strictly from
+# ``jrs.western`` instead of reaching for the legacy top-level package.
 from western.models import WesternChart
+from western.service import WesternCalculationService
 
 from .config import load_western_config, load_western_rules
 from .models import (
@@ -26,6 +31,11 @@ from .models import (
     evaluate_facts,
     extract_facts_from_chart,
 )
+
+__all__ = [
+    "WesternCalculationService",
+    "WesternDomainService",
+]
 
 
 class WesternDomainService:

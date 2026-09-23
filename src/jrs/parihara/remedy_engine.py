@@ -412,8 +412,22 @@ def _get_planet_remedy(
     )
 
 
+# Engine dosha names ("Manglik Dosha") normalized to lookup-table keys
+# ("manglik_dosha"); spelling variants map onto the canonical entries.
+_DOSHA_KEY_ALIASES: dict[str, str] = {
+    "pitra_dosha": "pitru_dosha",
+    "pitra_dosh": "pitru_dosha",
+    "pitru_dosh": "pitru_dosha",
+}
+
+
 def _generate_dosha_remedies(doshas: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Generate remedies for detected Doshas.
+
+    Every dosha is emitted with its DETECTED/NOT DETECTED status; the
+    lookup-table mantra/charity/temple enrichments are merged in when a
+    canonical entry exists (name matched case-insensitively with
+    underscores).
 
     Args:
         doshas: List of detected Doshas.
@@ -426,19 +440,21 @@ def _generate_dosha_remedies(doshas: list[dict[str, Any]]) -> list[dict[str, Any
 
     for dosha in doshas:
         dosha_name = dosha.get("name", "")
-        remedy_info = remedy_doshas.get(dosha_name, {})
-        if remedy_info:
-            remedies.append(
-                {
-                    "dosha": dosha_name,
-                    "severity": dosha.get("severity", "medium"),
-                    "description": dosha.get("description", ""),
-                    "mantra": remedy_info.get("mantra", ""),
-                    "charity": remedy_info.get("charity", ""),
-                    "temple": remedy_info.get("temple", ""),
-                    "remedy": remedy_info.get("remedy", ""),
-                }
-            )
+        key = dosha_name.lower().replace(" ", "_")
+        key = _DOSHA_KEY_ALIASES.get(key, key)
+        remedy_info = remedy_doshas.get(key, {})
+        remedies.append(
+            {
+                "dosha": dosha_name,
+                "status": dosha.get("status", ""),
+                "severity": dosha.get("severity", "medium"),
+                "description": dosha.get("description", ""),
+                "mantra": remedy_info.get("mantra", ""),
+                "charity": remedy_info.get("charity", ""),
+                "temple": remedy_info.get("temple", ""),
+                "remedy": remedy_info.get("remedy", "") or dosha.get("remedy", ""),
+            }
+        )
 
     return remedies
 

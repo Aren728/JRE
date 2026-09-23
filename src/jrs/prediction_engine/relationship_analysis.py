@@ -606,6 +606,13 @@ def compute_relationship_analysis(
             )
         )
 
+    # ── Rahu/Ketu extraction (used by the taboo analysis below and the
+    # axis analysis further down) ──
+    rahu_data = planet_details.get("RAHU", {})
+    ketu_data = planet_details.get("KETU", {})
+    rahu_sign = rahu_data.get("sign", "")
+    ketu_sign = ketu_data.get("sign", "")
+
     # ── Deep Taboo/Obsession Analysis ──
     taboo_analysis = []
     rahu_house_val = _get_house(rahu_sign, lagna) if rahu_sign else 0
@@ -699,10 +706,6 @@ def compute_relationship_analysis(
             )
 
     # ── Rahu-Ketu Axis Analysis ──
-    rahu_data = planet_details.get("RAHU", {})
-    ketu_data = planet_details.get("KETU", {})
-    rahu_sign = rahu_data.get("sign", "")
-    ketu_sign = ketu_data.get("sign", "")
     rahu_house = _get_house(rahu_sign, lagna) if rahu_sign else 0
     ketu_house = _get_house(ketu_sign, lagna) if ketu_sign else 0
 

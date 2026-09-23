@@ -2,6 +2,47 @@
 
 All notable changes to JRE are recorded here, per orchestration stage.
 
+## [1.1.0rc1] — 2026-09-23
+
+### Added
+
+- **Spatial grid engine** (`src/spatial_grid`): versioned (`GRID_VERSION`
+  1.0.0) 1° equirectangular cell schema — `CellId`/`GridCell` frozen models
+  with `to_dict`/`from_dict` codecs, antimeridian-wrapping neighbor
+  enumeration, occupancy bookkeeping, JSON snapshots
+  (`SpatialGridEngine`).
+- **Geospatial module** (`src/geospatial`): exact ecliptic→equatorial
+  declination identity, solar declination, tropical-limit inverse,
+  circumpolar/horizon thresholds (kranti limits, refraction-aware);
+  WGS-84 geodetic↔ECEF transforms (Bowring inverse), ENU basis,
+  topocentric look angles. 61 pytest tests.
+- **API routes** (`src/jrs/api/routes/advanced_charts.py`,
+  `predictions.py`) and Sep-18→rc backend drift restored from the
+  release image.
+- **Three.js scene exporter** (Phase 4, `frontend/lib/threeExporter.ts`):
+  dependency-free ObjectLoader-compatible scene-graph JSON — sign ring
+  (12), nakshatra ring (27), house labels, planet meshes with metadata,
+  deterministic ordinal UUIDs, ascendant pinned to +Z. 16 Jest tests.
+- **3D scene viewer** (Phase 4, `frontend/components/scene/SceneViewer.tsx`):
+  ObjectLoader ingestion, OrbitControls (damped, resize-aware), raycast
+  hover/select with metadata HUD, WebGL fallback; selection syncs both
+  ways with YogaInspector and DashaTreeViewer via the new `sharedBody`
+  store state; mounted in the Analysis Studio workspace.
+
+### Changed
+
+- **CI hardening**: `mypy --strict` hard backend gate (37-module
+  grandfather list — must shrink, never grow), `ruff check src` gated via
+  `force-exclude`, explicit `xfail_strict` probe, docker smoke retry
+  loops + frontend check; staging-CI service image aligned to
+  `postgres:16-alpine`.
+- Version → `1.1.0rc1` (health-endpoint test pins updated).
+
+### Validated
+
+- Full suite: 5500 pytest · 319 Jest · tsc clean · lint:studio clean ·
+  backend image ships and runs the new packages.
+
 ## Unreleased
 
 ### JRE-006 — Gochar / Continuous Transit Engine (Specialist stage)

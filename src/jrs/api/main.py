@@ -40,7 +40,9 @@ from .dependencies import (
 )
 from .logging_config import get_logger, log_request
 
+from .routes.advanced_charts import router as advanced_charts_router
 from .routes.event_evaluator import router as event_evaluator_router
+from .routes.predictions import router as predictions_router
 from .schemas import (
     ENGINE_VERSION,
     LEGAL_DISCLAIMER,
@@ -58,12 +60,12 @@ from .schemas import (
     YogaResult,
 )
 
-# Core engine imports
+# Core engine imports (single canonical import block — the Swiss
+# Ephemeris integration lives in jrs.engine.calculator; the standalone
+# jrs.services.ephemeris variant was a duplicate entry point).
 from jrs.engine.calculator import calculate_chart_positions
 from jrs.engine.dasha import calculate_vimshottari_dasha
 from jrs.engine.synthesis import generate_synthesis_report
-
-# Swiss Ephemeris integration
 from jrs.services.ephemeris import calculate_planetary_positions
 
 import datetime
@@ -294,6 +296,7 @@ def _run_evaluation(
     elapsed_ms = (time.perf_counter() - start) * 1000
 
     lagna_rashi = chart.lagna.rashi.value
+    lagna_longitude = chart.lagna.ascendant_longitude_deg
     moon_nak = ""
     for ps in chart.planet_states:
         if ps.body.value == "MOON":
@@ -318,6 +321,14 @@ def _run_evaluation(
             enriched["navamsha_house"] = d9_houses.get(pname, 0)
         planet_details[pname] = enriched
 
+    # Exact navamsha (D9) lagna — derived from the ascendant longitude by the
+    # same rule used for planets (see jrs.api.dependencies._compute_d9_sign).
+    navamsha_lagna = jre_facts.get("navamsha_lagna", "")
+
+    # Full Arudha ladder A1–A12 (sign keys). A12 is the Upapada Lagna used by
+    # the marriage-mechanics reading. Empty string = lord body unavailable.
+    arudha_padas = jre_facts.get("arudha_padas", {})
+
     # ── Enrichment: birth data display ─────────────────────────────────────
     bd = chart.birth_snapshot
     birth_data_display = {
@@ -329,6 +340,68 @@ def _run_evaluation(
         "lagna": lagna_rashi,
         "moon_nakshatra": moon_nak,
     }
+
+    # ── Enrichment: birth panchang (tithi/yoga/karana at birth) ────────────
+    try:
+        from datetime import datetime as _pd_dt
+        from zoneinfo import ZoneInfo as _ZoneInfo
+
+        from jrs.prediction_engine.panchang_engine import compute_daily_panchang
+
+        _tz_offset = 5.5
+        try:
+            _local = _pd_dt.fromisoformat(f"{bd.date}T{bd.time or '12:00'}").replace(
+                tzinfo=_ZoneInfo(bd.timezone)
+            )
+            _tz_offset = _local.utcoffset().total_seconds() / 3600.0
+        except Exception:
+            _tz_offset = 5.5
+        _panchang = compute_daily_panchang(
+            bd.date, float(bd.latitude), float(bd.longitude), tz=_tz_offset
+        )
+        birth_data_display.update(
+            {
+                "birth_tithi": str(
+                    _panchang.tithi.get("full_name") or _panchang.tithi.get("name", "")
+                ),
+                "birth_nakshatra_lord": str(_panchang.nakshatra.get("lord", "")),
+                "birth_yoga": str(_panchang.yoga.get("name", "")),
+                "birth_karana": str(_panchang.karana),
+                "birth_weekday": str(_panchang.weekday),
+                "birth_sunrise": str(_panchang.sunrise),
+                "birth_sunset": str(_panchang.sunset),
+                "birth_rahu_kaalam": str(_panchang.rahu_kaalam),
+                "birth_abhijit_muhurta": str(_panchang.abhijit_muhurta),
+            }
+        )
+    except Exception:
+        # Panchang enrichment is non-critical — evaluation must not fail
+        pass
+
+    # ── Enrichment: Parihara remedies (afflictions + doshas) ──────────────
+    remedies_payload: dict[str, Any] = {}
+    try:
+        from jrs.parihara.remedy_engine import generate_remedies, remedy_to_dict
+
+        _remedy_facts = dict(jre_facts)
+        # The remedy engine reads sign/dignity/house/combust per planet;
+        # merge the display details with the natal house/combust flags.
+        _merged_planets: dict[str, dict[str, Any]] = {}
+        for _pname, _detail in jre_facts.get("planet_details", {}).items():
+            _natal = jre_facts.get("planets", {}).get(_pname, {})
+            _merged_planets[_pname] = {
+                **_detail,
+                "house": _natal.get("house", _detail.get("house", 0)),
+                "combust": _natal.get("combust", _detail.get("combust", False)),
+                "dignity": jre_facts.get("dignity_map", {}).get(
+                    _pname, _detail.get("dignity", "")
+                ),
+            }
+        _remedy_facts["planet_details"] = _merged_planets
+        remedies_payload = remedy_to_dict(generate_remedies(_remedy_facts))
+    except Exception:
+        # Remedies enrichment is non-critical — evaluation must not fail
+        remedies_payload = {}
 
     # ── Enrichment: deep Vimshottari Dasha hierarchy (MD/AD/PD/SD) ─────────
     deep_dasha_payload: dict[str, Any] = {}
@@ -402,9 +475,13 @@ def _run_evaluation(
         aspect_matrix=jre_facts.get("aspect_matrix", []),
         planet_details=planet_details,
         birth_data_display=birth_data_display,
+        lagna_longitude=lagna_longitude,
+        navamsha_lagna=navamsha_lagna,
+        arudha_padas=arudha_padas,
         lagna_confidence="UNKNOWN" if unknown_tob else "HIGH",
         unknown_tob=unknown_tob,
         deep_dasha=deep_dasha_payload,
+        remedies=remedies_payload,
         parivartana_yogas=parivartana_pairs,
         parivartana_synthesis=parivartana_synthesis,
     )
@@ -436,6 +513,8 @@ async def log_requests_middleware(request: Request, call_next: Any) -> Response:
 # ── Event Evaluator Router ──────────────────────────────────────────────────
 
 app.include_router(event_evaluator_router)
+app.include_router(advanced_charts_router)
+app.include_router(predictions_router)
 
 
 # ── Endpoints ───────────────────────────────────────────────────────────────
@@ -1274,11 +1353,29 @@ async def get_birth_chart():
 
 @app.post("/api/v1/report/generate-karmic-blueprint")
 async def generate_karmic_blueprint_endpoint(chart_data: dict):
-    """Generate the full humanized report from evaluated chart data."""
+    """Generate the full humanized report from evaluated chart data.
+
+    Wires the Parihara remedy engine directly into the blueprint: when the
+    payload carries planet details, classical remedies are computed and
+    rendered as a dedicated report part.
+    """
     try:
         from jrs.prediction_engine.report_engine import generate_karmic_blueprint
 
-        narrative = generate_karmic_blueprint(chart_data)
+        # Compute remedies from the incoming chart payload so the report
+        # includes a remedial roadmap without a separate round-trip.
+        if isinstance(chart_data.get("remedies"), dict):
+            payload = chart_data
+        else:
+            payload = dict(chart_data)
+            try:
+                from jrs.parihara.remedy_engine import generate_remedies, remedy_to_dict
+
+                payload["remedies"] = remedy_to_dict(generate_remedies(payload))
+            except Exception:
+                payload["remedies"] = {}
+
+        narrative = generate_karmic_blueprint(payload)
         return {"success": True, "data": {"narrative": narrative}}
     except Exception as e:
         return {"success": False, "error": str(e)}

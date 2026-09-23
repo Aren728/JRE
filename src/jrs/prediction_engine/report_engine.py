@@ -4,6 +4,45 @@ def generate_karmic_blueprint(chart_data: dict) -> str:
     moon_nakshatra = chart_data.get("moon_nakshatra", "Unknown")
     nakshatra_ruler = chart_data.get("nakshatra_ruler", "Unknown")
 
+    # ── Parihara remedies section (wired from jrs.parihara.remedy_engine) ──
+    remedies_part = ""
+    remedies = chart_data.get("remedies")
+    if isinstance(remedies, dict) and remedies:
+        lines: list[str] = ["", "# Part 5: Your Remedial Roadmap (Parihara)", ""]
+        assessment = remedies.get("overall_assessment", "")
+        if assessment:
+            lines.append(
+                f"Overall chart balance reads as **{assessment}** — these measures support "
+                "the afflicted placements identified above."
+            )
+            lines.append("")
+        afflicted = remedies.get("afflicted_planets", [])
+        if afflicted:
+            lines.append("## Strengthening the Afflicted Planets")
+            for item in afflicted:
+                planet = item.get("planet", "")
+                bits = [f"- **{planet}** ({item.get('affliction', '')})"]
+                if item.get("mantra"):
+                    bits.append(f"Mantra: {item['mantra']}")
+                if item.get("gemstone"):
+                    bits.append(f"Gemstone: {item['gemstone']}")
+                if item.get("temple"):
+                    bits.append(f"Temple: {item['temple']}")
+                lines.append(" — ".join(bits))
+            lines.append("")
+        doshas = remedies.get("doshas", [])
+        detected = [d for d in doshas if d.get("status") == "DETECTED"]
+        if detected:
+            lines.append("## Doshas Detected")
+            for d in detected:
+                lines.append(f"- **{d.get('name', '')}** ({d.get('severity', '')}): {d.get('description', '')}")
+                if d.get("remedy"):
+                    lines.append(f"  - Remedy: {d['remedy']}")
+            lines.append("")
+        if remedies.get("disclaimer"):
+            lines.append(f"> {remedies['disclaimer']}")
+        remedies_part = "\n".join(lines)
+
     # PART 1: DYNAMIC OVERVIEW (From Knowledge Base)
     part1 = f"""# Part 1: Your Psychological & Karmic Blueprint
 
@@ -55,4 +94,4 @@ You do not need to constantly consult an astrologer. Your life itself tells you 
 Your charts are not a sentence; they are a cosmic diagnostic map. You possess the absolute clarity needed to navigate your life with awareness, confidence, and total self-reliance.
 """
 
-    return part1 + part2 + part3 + part4
+    return part1 + part2 + part3 + part4 + remedies_part

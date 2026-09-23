@@ -329,6 +329,10 @@ def enrich_jre_facts(jre_facts: dict[str, Any]) -> dict[str, Any]:
             "dignity": dignity,
             "degree_in_sign": round(deg_in_sign, 2),
             "house": pdata.get("house", 0),
+            # Per-planet nakshatra facts propagated from the position layer.
+            "nakshatra": pdata.get("nakshatra", ""),
+            "nakshatra_lord": pdata.get("nakshatra_lord", ""),
+            "nakshatra_pada": pdata.get("nakshatra_pada", 0),
         }
 
     # ── Aspect Matrix ──

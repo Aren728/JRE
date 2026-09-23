@@ -20,7 +20,6 @@ from bhava import BhavaConfig, derive_house_analysis
 
 
 @pytest.mark.no_cover
-@pytest.mark.xfail(reason="p95 9.15ms vs 5ms budget — JRE-005 perf regression; informational only, not a CI gate (TEST-PLAN §13, SPEC §30)")
 def test_single_chart_analysis_p95(jyotish_service, birth) -> None:
     # Delegated JRE-003 computations, computed once and excluded from the
     # JRE-005 budget (SPEC §30). The chart computation is excluded per the

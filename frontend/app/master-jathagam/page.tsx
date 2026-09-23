@@ -23,6 +23,8 @@ import type {
 } from '@/lib/api';
 import YogaInspector from '@/components/yogas/YogaInspector';
 import type { YogaEvaluation } from '@/components/yogas/YogaInspector';
+import SceneViewer from '@/components/scene/SceneViewer';
+import { useSharedBody } from '@/lib/useSharedBody';
 
 // ── Navigation Sections ──────────────────────────────────
 interface NavSection {
@@ -346,8 +348,23 @@ function DashaSection({ data }: { data: EvaluationResponse }) {
   );
 }
 
+// ── 3D Scene Section (Phase 4) ─────────────────────────────────────────
+function SceneSection({
+  data,
+  channel,
+}: {
+  data: EvaluationResponse;
+  channel: ReturnType<typeof useSharedBody>;
+}) {
+  return (
+    <SectionCard id="scene" title="3D Celestial Scene" icon="🪐">
+      <SceneViewer data={data} sharedBodyChannel={channel} />
+    </SectionCard>
+  );
+}
+
 // ── Yogas Section (using YogaInspector) ────────────────────────────────
-function YogasSection({ data }: { data: EvaluationResponse }) {
+function YogasSection({ data, highlightedBodies }: { data: EvaluationResponse; highlightedBodies: string[] }) {
   // Convert EvaluationResponse.yogas to YogaEvaluation format
   const yogaEvaluations: YogaEvaluation[] = (data.yogas || []).map((yoga: any, idx: number) => ({
     id: yoga.yoga_name?.toLowerCase().replace(/\s+/g, '_') || `yoga-${idx}`,
@@ -389,6 +406,7 @@ function YogasSection({ data }: { data: EvaluationResponse }) {
           activeDashaLords={activeDashaLords}
           minStrengthCutoff={0.5}
           onSelectYoga={() => {}}
+          highlightedBodies={highlightedBodies}
         />
       ) : (
         <div
@@ -554,6 +572,7 @@ export default function MasterJathagamPage() {
   });
   const [activeSection, setActiveSection] = useState('overview');
   const [fixtureId, setFixtureId] = useState<string | null>(null);
+  const sharedBodyChannel = useSharedBody();
 
   // Load evaluation data from localStorage
   useEffect(() => {
@@ -728,8 +747,15 @@ export default function MasterJathagamPage() {
             <DashaSection data={data} />
           </motion.div>
 
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}>
+            <SceneSection data={data} channel={sharedBodyChannel} />
+          </motion.div>
+
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
-            <YogasSection data={data} />
+            <YogasSection
+              data={data}
+              highlightedBodies={sharedBodyChannel.sharedBody.body ? [sharedBodyChannel.sharedBody.body] : []}
+            />
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>

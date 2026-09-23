@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+# Superseded runs on the same ref are cancelled so the queue stays short.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   backend-test:
     name: Backend Test Suite
@@ -37,6 +42,45 @@ jobs:
           pip install -e .
           pip install pytest pytest-cov
 
+      # Lint/type pins match the versions the gates were validated against;
+      # bump deliberately, never transitively.
+      - name: Install lint & type gates
+        run: pip install mypy==2.3.1 ruff==0.16.8
+
+      # Engine packages (everything under src/ except the excluded legacy
+      # surface) must stay lint-clean — enforced via force-exclude +
+      # extend-exclude in pyproject.toml.
+      - name: Ruff (production code)
+        run: ruff check src tests/unit/spatial_grid tests/test_requirements_sync.py
+
+      # strict = true is the enforced default; the [[tool.mypy.overrides]]
+      # grandfather list in pyproject.toml is the shrinking debt registry.
+      - name: Mypy (strict)
+        run: mypy
+        env:
+          MYPYPATH: src
+
+      # Explicit enforcement of the pytest config knob (belt and braces: the
+      # config value is authoritative, this probe fails loudly if someone
+      # flips it off and a future xpass slips through silently).
+      - name: Verify xfail_strict is enforced
+        run: |
+          python - <<'PY'
+          in_pytest_section = False
+          found = False
+          for line in open("pyproject.toml", encoding="utf-8"):
+              stripped = line.strip()
+              if stripped.startswith("["):
+                  in_pytest_section = stripped.startswith("[tool.pytest.ini_options]")
+              if in_pytest_section and stripped.startswith("xfail_strict"):
+                  assert stripped.split("=", 1)[1].strip().lower() == "true", (
+                      "xfail_strict must be true in [tool.pytest.ini_options]"
+                  )
+                  found = True
+          assert found, "xfail_strict missing from [tool.pytest.ini_options]"
+          print("xfail_strict = true: enforced")
+          PY
+
       - name: Run Backend Pytest Suite
         run: |
           pytest tests/ --doctest-modules -v
@@ -66,8 +110,22 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit
 
+      # The studio surface (store, lib, studio components, chart page, its tests)
+      # is lint-clean, so it is gated. The rest of the app still carries legacy
+      # lint debt; widen this script as that debt is paid down.
+      - name: Lint the studio surface
+        run: npm run lint:studio
+
       - name: Run Frontend Tests
-        run: npm test
+        run: npm test -- --ci --coverage
+
+      - name: Upload frontend coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: frontend/coverage/
+          retention-days: 7
 
       - name: Build Next.js Production App
         env:
@@ -89,18 +147,23 @@ jobs:
         run: |
           docker compose -f docker-compose.staging.yml up --build -d
 
-      - name: Wait for services to be ready
-        run: sleep 10
-
+      # Retry loop instead of a fixed sleep: sleep-based readiness is flaky
+      # under runner load; the E2E job already uses this pattern.
       - name: Check Backend Health Endpoint
         run: |
-          curl --fail --retry 5 --retry-delay 3 http://localhost:8000/api/v1/health
+          curl --fail --retry 30 --retry-delay 2 --retry-connrefused \
+            http://localhost:8000/api/v1/health
 
       - name: Smoke Test Chart Analysis Endpoint
         run: |
           curl --fail -X POST http://localhost:8000/api/v1/analyze \
             -H "Content-Type: application/json" \
             -d '{"date": "1995-10-24", "time": "14:30:00", "latitude": 13.0827, "longitude": 80.2707, "timezone": "Asia/Kolkata"}'
+
+      # Proves the staging image of the frontend actually serves, not just builds.
+      - name: Smoke Test Frontend
+        run: |
+          curl --fail --retry 10 --retry-delay 2 --retry-connrefused http://localhost:3000/
 
       - name: Tear down Docker Compose
         if: always()
@@ -135,11 +198,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential
 
-      - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
-
       - name: Install frontend dependencies
         run: npm ci
+
+      # Installed after npm ci so the browser revision matches the pinned
+      # @playwright/test version instead of whatever npx happens to fetch.
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
 
       - name: Start backend API
         working-directory: .
@@ -150,6 +215,9 @@ jobs:
           nohup python -m uvicorn src.jrs.api.main:app --port 8000 > /tmp/backend.log 2>&1 &
           curl --fail --retry 30 --retry-delay 2 --retry-connrefused http://localhost:8000/api/v1/health
 
+      # PORT must be one of the backend's allowed CORS origins
+      # (ALLOWED_ORIGINS in src/jrs/api/main.py: 3000, 3001, 5173) or every
+      # browser request to the engine is blocked by the preflight check.
       - name: Run Playwright tests
         env:
           PORT: '3001'

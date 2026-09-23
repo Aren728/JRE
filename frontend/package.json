@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lint:studio": "eslint lib/threeExporter.ts lib/useSharedBody.ts components/scene components/yogas components/dasha __tests__/threeExporter.test.ts __tests__/SceneViewer.test.tsx"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -27,6 +28,7 @@
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
+    "three": "^0.180.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -41,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
     "jest": "^30.5.1",

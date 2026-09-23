@@ -23,6 +23,8 @@ interface YogaInspectorProps {
   activeDashaLords: string[];
   minStrengthCutoff: number;
   onSelectYoga?: (yoga: YogaEvaluation) => void;
+  /** Bodies to glow (Phase 4 scene sync); case-insensitive. */
+  highlightedBodies?: string[];
 }
 
 // ── Constants ────────────────────────────────────────────────────────────────
@@ -122,16 +124,18 @@ interface YogaCardProps {
   yoga: YogaEvaluation;
   isSelected: boolean;
   onSelect: () => void;
+  isHighlighted?: boolean;
 }
 
-function YogaCard({ yoga, isSelected, onSelect }: YogaCardProps) {
+function YogaCard({ yoga, isSelected, onSelect, isHighlighted = false }: YogaCardProps) {
   const catColor = CATEGORY_COLORS[yoga.category] || 'var(--cosmic-muted)';
   const statColor = STATUS_COLORS[yoga.status] || 'var(--cosmic-muted)';
   const sr = yoga.strengthScore;
 
   return (
     <div className="rounded-xl p-4 cursor-pointer transition-all duration-200"
-      style={{ background: isSelected ? 'rgba(197,168,128,0.12)' : 'rgba(26,20,35,0.7)', border: isSelected ? '2px solid var(--cosmic-gold)' : '1px solid var(--glass-border)', boxShadow: isSelected ? '0 0 20px rgba(197,168,128,0.2)' : 'none' }}
+      style={{ background: isSelected ? 'rgba(197,168,128,0.12)' : 'rgba(26,20,35,0.7)', border: isSelected ? '2px solid var(--cosmic-gold)' : '1px solid var(--glass-border)', boxShadow: isSelected ? '0 0 20px rgba(197,168,128,0.2)' : isHighlighted ? '0 0 14px rgba(34,211,238,0.3)' : 'none' }}
+      data-highlighted={isHighlighted && !isSelected ? '' : undefined}
       onClick={onSelect} role="button" tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelect(); }}>
       <div className="flex items-start justify-between gap-3 mb-3">
@@ -197,9 +201,10 @@ function EmptyState({ onReset }: { onReset: () => void }) {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
-export default function YogaInspector({ yogas, activeDashaLords, minStrengthCutoff, onSelectYoga }: YogaInspectorProps) {
+export default function YogaInspector({ yogas, activeDashaLords, minStrengthCutoff, onSelectYoga, highlightedBodies = [] }: YogaInspectorProps) {
   const [filters, setFilters] = useState<FilterState>({ ...DEFAULT_FILTERS, minStrength: minStrengthCutoff });
   const [selectedYogaId, setSelectedYogaId] = useState<string | null>(null);
+  const highlightedSet = useMemo(() => new Set(highlightedBodies.map((b) => b.toUpperCase())), [highlightedBodies]);
 
   const categories = useMemo(() => Array.from(new Set(yogas.map((y) => y.category))).sort(), [yogas]);
 
@@ -235,7 +240,7 @@ export default function YogaInspector({ yogas, activeDashaLords, minStrengthCuto
       {sortedYogas.length > 0 ? (
         <div className="grid grid-cols-1 gap-3">
           {sortedYogas.map((y) => (
-            <YogaCard key={y.id} yoga={y} isSelected={selectedYogaId === y.id} onSelect={() => handleSelect(y)} />
+            <YogaCard key={y.id} yoga={y} isSelected={selectedYogaId === y.id} onSelect={() => handleSelect(y)} isHighlighted={y.participatingPlanets.some((p) => highlightedSet.has(p.toUpperCase()))} />
           ))}
         </div>
       ) : (
@@ -300,7 +305,9 @@ export function mapYogaResultToEvaluation(
     id: result.yoga_name.toLowerCase().replace(/\s+/g, '_'),
     name: result.yoga_name,
     category: categoryMap[result.category] || 'NABHASA',
-    description: (result as any).provenance?.formation_evidence || `${result.yoga_name} yoga detected`,
+    description:
+      (result as { provenance?: { formation_evidence?: string } }).provenance?.formation_evidence ||
+      `${result.yoga_name} yoga detected`,
     participatingPlanets: result.involved_planets,
     status,
     strengthScore: result.static_strength / minStrengthThreshold,

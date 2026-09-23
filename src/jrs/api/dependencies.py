@@ -320,6 +320,11 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
             "retrograde": ps.retrograde.value == "RETROGRADE",
             "longitude": ps.longitude_used,
             "sign_lord": _SIGN_LORDS.get(rashi_num, ""),
+            # Per-planet nakshatra facts (computed by the jyotish position
+            # layer for every body — exact, not degree-approximated).
+            "nakshatra": ps.nakshatra.value,
+            "nakshatra_lord": ps.nakshatra_lord.value,
+            "nakshatra_pada": int(ps.pada),
         }
 
         if pname == "MOON":
@@ -339,6 +344,32 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
     moon_data = planets.get("MOON", {})
     natal_moon_house = moon_data.get("house", 1)
 
+    # ── Arudha Pada Ladder (A1–A12) ─────────────────────────────────────
+    # Classical Parashari rule (BPHS: Arudha computation / Jaimini sutras):
+    # count from the house to its sign lord, then the same count onward from
+    # the lord. Exception: if the pada lands in the house itself or the 7th
+    # from it, take the 10th sign from the lord instead. A12 = Upapada Lagna.
+    arudha_padas: dict[str, str] = {}
+    planet_rashi_by_name: dict[str, str] = {
+        p: d["rashi"] for p, d in planets.items() if d.get("rashi")
+    }
+    for house_num in range(1, 13):
+        house_sign_idx = (lagna_idx + house_num - 1) % 12
+        house_sign = _RASHI_ORDER_LIST[house_sign_idx]
+        house_lord = _SIGN_LORDS.get(_RASHI_NUM.get(house_sign, house_sign_idx + 1), "")
+        lord_sign = planet_rashi_by_name.get(house_lord, "")
+        if not lord_sign:
+            # Lord body missing from ephemeris (e.g. outer bodies excluded):
+            # no classical pada can be derived — leave empty, never guess.
+            arudha_padas[f"A{house_num}"] = ""
+            continue
+        lord_idx = _RASHI_ORDER_LIST.index(lord_sign)
+        dist = (lord_idx - house_sign_idx) % 12 + 1
+        pada_idx = (lord_idx + dist - 1) % 12
+        if dist in (1, 7):
+            pada_idx = (lord_idx + 9) % 12
+        arudha_padas[f"A{house_num}"] = _RASHI_ORDER_LIST[pada_idx]
+
     # ── Build raw facts dict ──
     facts: dict[str, Any] = {
         "planets": planets,
@@ -348,6 +379,12 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
         "lagna": _RASHI_ORDER_LIST[lagna_sign_num - 1],
         "planet_d9_house": planet_d9_house,
         "planet_d9_sign": planet_d9_sign,
+        # Exact navamsha (D9) lagna sign, derived from the ascendant longitude
+        # via the same _compute_d9_sign rule used for the planets.
+        "navamsha_lagna": _compute_d9_sign(lagna_longitude),
+        # Full Arudha ladder A1–A12 (sign names). A12 = Upapada Lagna.
+        # Empty string = lord body unavailable, pada not derived.
+        "arudha_padas": arudha_padas,
         "moon_nakshatra": moon_nakshatra,
         "moon_nakshatra_degree": moon_nakshatra_degree,
         "natal_moon_house": natal_moon_house,

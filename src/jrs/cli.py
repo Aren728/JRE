@@ -42,13 +42,12 @@ from jrs.multisystem.models import (
     compute_convergence_score,
 )
 from jrs.multisystem.service import IndependenceAnalyzer
-from jrs.numerology.service import NumerologyDomainService
+from jrs.numerology.service import NumerologyCalculationService, NumerologyDomainService
 from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
-from jrs.western.service import WesternDomainService
+from jrs.western.service import WesternCalculationService, WesternDomainService
 from jrs.yoga_evaluator.integration import YogaEvidenceService
 from jrs.yoga_evaluator.service import YogaEvaluatorService
-from western.service import WesternCalculationService
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
 
@@ -371,7 +370,7 @@ def _run_western_system_assessment(
     """
     import datetime as dt
 
-    from western.models import WesternHouseSystem
+    from jrs.western.models import WesternHouseSystem
 
     # Parse birth date (DD-MM-YYYY) and time (HH:MM or HH:MM:SS)
     date_parts = birth_date.split("-")
@@ -459,8 +458,6 @@ def _run_numerology_system_assessment(
     Computes a NumerologyChart from the birth data, then evaluates
     it through the NumerologyDomainService.
     """
-
-    from numerology.service import NumerologyCalculationService
 
     # Parse birth date (DD-MM-YYYY) to ISO format (YYYY-MM-DD)
     date_parts = birth_date.split("-")
