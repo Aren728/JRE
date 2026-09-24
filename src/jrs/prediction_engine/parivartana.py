@@ -401,9 +401,10 @@ class ParivartanaEngine:
                 # Mutual exchange: A in B's sign AND B in A's sign
                 if lord_a == p_b and lord_b == p_a:
                     pair_key = tuple(sorted([p_a, p_b]))
-                    if pair_key in seen:
+                    pair_typed: tuple[str, str] = (pair_key[0], pair_key[1])
+                    if pair_typed in seen:
                         continue
-                    seen.add(pair_key)
+                    seen.add(pair_typed)
 
                     house_a = self._house_from_lagna(sign_a, lagna_idx)
                     house_b = self._house_from_lagna(sign_b, lagna_idx)
@@ -635,9 +636,10 @@ class ParivartanaEngine:
                 # Mutual Nakshatra exchange
                 if lord_a == p_b and lord_b == p_a:
                     pair_key = tuple(sorted([p_a, p_b]))
-                    if pair_key in seen:
+                    pair_typed: tuple[str, str] = (pair_key[0], pair_key[1])
+                    if pair_typed in seen:
                         continue
-                    seen.add(pair_key)
+                    seen.add(pair_typed)
                     exchanges.append(
                         {
                             "planet_a": p_a,
@@ -697,9 +699,10 @@ class ParivartanaEngine:
 
                 if vedha_ab or vedha_ba:
                     pair_key = tuple(sorted([p_a, p_b]))
-                    if pair_key in seen:
+                    pair_typed: tuple[str, str] = (pair_key[0], pair_key[1])
+                    if pair_typed in seen:
                         continue
-                    seen.add(pair_key)
+                    seen.add(pair_typed)
 
                     if vedha_ab and vedha_ba:
                         direction = "bidirectional"

@@ -196,17 +196,17 @@ class FunctionalLordshipClassifier:
 
         # ── Check Yogakaraka ──────────────────────────────────────────────
         role, desc = self._check_yogakaraka(planet, lagna_sign, owned_set, lagna_house)
-        if role is not None:
+        if role is not None and desc is not None:
             return role, desc
 
         # ── Check Functional Malefic ──────────────────────────────────────
         role, desc = self._check_malefic(planet, owned_set, lagna_house)
-        if role is not None:
+        if role is not None and desc is not None:
             return role, desc
 
         # ── Check Functional Benefic ──────────────────────────────────────
         role, desc = self._check_benefic(planet, owned_set)
-        if role is not None:
+        if role is not None and desc is not None:
             return role, desc
 
         # ── Default: Neutral ──────────────────────────────────────────────

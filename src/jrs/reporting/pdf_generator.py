@@ -676,7 +676,7 @@ class PDFReportGenerator:
 
         sections = ""
         for domain, houses in _HOUSE_DOMAINS.items():
-            occupants = []
+            occupants: list[tuple[str, dict[str, Any]]] = []
             for pname, pdata in r.planet_details.items():
                 # Use dignity map to find planets in relevant houses
                 pass
@@ -1581,11 +1581,12 @@ class PDFReportGenerator:
 
     def generate_pdf(self) -> bytes:
         """Generate the PDF as bytes using weasyprint."""
-        from weasyprint import HTML
+        from weasyprint import HTML  # type: ignore[import-not-found]
 
         html_content = self._build_full_html()
         doc = HTML(string=html_content)
-        return doc.write_pdf()
+        pdf_bytes: bytes = doc.write_pdf()
+        return pdf_bytes
 
     def generate_html(self) -> str:
         """Generate the HTML report as a string."""

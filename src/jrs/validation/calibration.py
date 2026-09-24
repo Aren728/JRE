@@ -114,7 +114,8 @@ def _compute_timing_iou(
     a_s = _parse_timestamp_days(actual_start)
     a_e = _parse_timestamp_days(actual_end)
 
-    if None in (p_s, p_e, a_s, a_e):
+    # Explicit is-None chain: `None in (...)` does not narrow the optionals.
+    if p_s is None or p_e is None or a_s is None or a_e is None:
         return 0.0
 
     # Ensure start <= end
@@ -209,29 +210,23 @@ class CohortCalibrationEngine:
         Returns:
             CohortCalibrationReport with full metric breakdown.
         """
-        # Filter to successful evaluations
-        successful = [
-            r
+        # Extract metric evaluations from successful reports. The is-not-None
+        # filter lives in the SAME comprehension as the extraction so mypy
+        # narrows ``r.metric_evaluation`` (narrowing cannot cross separate
+        # comprehension boundaries).
+        evaluations = [
+            r.metric_evaluation
             for r in batch_report.reports
             if r.status == ValidationStatus.SUCCESS and r.metric_evaluation is not None
         ]
 
-        if not successful:
+        if not evaluations:
             return CohortCalibrationReport(
                 total_evaluated=0,
                 layer_telemetry=LayerPerformance(),
             )
 
-        # Extract metric evaluations
-        evaluations = [r.metric_evaluation for r in successful]
-
-        # Compute confusion matrix components
-        tp = sum(1 for e in evaluations if e.hit and e.prediction_strength >= _LAYER_THRESHOLD)
-        fp = sum(1 for e in evaluations if not e.hit and e.prediction_strength >= _LAYER_THRESHOLD)
-        fn = sum(1 for e in evaluations if e.hit and e.prediction_strength < _LAYER_THRESHOLD)
-        tn = sum(1 for e in evaluations if not e.hit and e.prediction_strength < _LAYER_THRESHOLD)
-
-        # Actually, for blind validation: hit=True means event was detected
+        # For blind validation: hit=True means event was detected
         # and prediction_strength is the score. We use the MetricEvaluation
         # hit field directly.
         tp = sum(1 for e in evaluations if e.hit)

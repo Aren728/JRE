@@ -61,7 +61,8 @@ def _load_json(path: Path) -> dict[str, Any]:
     """Load a JSON file, returning empty dict on error."""
     try:
         with path.open(encoding="utf-8") as f:
-            return json.load(f)
+            loaded: dict[str, Any] = json.load(f)
+            return loaded
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
@@ -90,13 +91,15 @@ def get_narrative(token: str, lang: str = "en") -> dict[str, Any]:
     # Try requested language first
     data = _load_language(lang)
     if token in data:
-        return data[token]
+        narrative: dict[str, Any] = data[token]
+        return narrative
 
     # Fallback to English if not 'en'
     if lang != "en":
         en_data = _load_language("en")
         if token in en_data:
-            return en_data[token]
+            en_narrative: dict[str, Any] = en_data[token]
+            return en_narrative
 
     return {}
 

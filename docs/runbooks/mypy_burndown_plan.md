@@ -36,7 +36,9 @@ scripts/mypy_debt_histogram.sh          # per-module + per-error-code counts
 | After Wave 1 (api.main, cli, api.dependencies, services.divisional un-grandfathered; jyotish PEP 695 backport) | 33 | — |
 | After Wave 2 (bhava PEP 695 backport; gochar/context/tajika/prashna/varga StrEnum-inference fixes; core 100% clean) | 33 | 115 |
 | After Batch 3.0 (tail sweep: 22 fixed + `validation.storage` free removal) | 10 | 88 |
-| **After Batch 3.1 (this update)** | **6** | **58** |
+| After Batch 3.1 (timeline_engine, panchang_engine, esoteric_evaluator, datasets.loader) | 6 | 58 |
+| After Batch 3.2 (functional_lordship, parivartana, jatakam_book_generator, pdf_generator, i18n_loader) | 1 | 42 |
+| **After Batch 3.3 (this update: calibration.py) — LIST RETIRED** | **0** | **0** |
 
 **Baseline correction:** earlier drafts recorded "136 errors across 33
 modules". The authoritative histogram re-sum is **115 errors across 32
@@ -127,34 +129,72 @@ Actual fixes applied (30 measured errors, all cleared):
 - **Acceptance:** 4 entries removed; gated mypy green; unit tests for the
   loader parse path still pass.
 
-### Batch 3.2 — Mid tier (5 modules, 17 errors)
+### Batch 3.2 — Mid tier (5 modules, 16 errors) · ✅ DONE (2026-09-24)
 
-- `jrs.reporting.jatakam_book_generator` (4), `jrs.reporting.pdf_generator`
-  (3, incl. 1 import-not-found), `jrs.prediction_engine.parivartana` (3),
-  `jrs.graph.functional_lordship` (3 × return-value: `tuple[FunctionalRole,
-  str]` vs `str | None` at lines ~200–210), `jrs.deterministic_engine.
-  i18n_loader` (3).
+Actual fixes applied (16 measured errors, all cleared):
 
-Pattern: loader/CLI code handling untyped JSON — introduce small typed
-models (frozen dataclasses) at parse boundaries where annotations alone
-don't suffice; hardens runtime behavior (bad payloads fail loudly).
+- `jrs.graph.functional_lordship` (3 × return-value): the three
+  `_check_*` helpers return `(None, None)` on miss, so the dispatcher now
+  guards `if role is not None and desc is not None:` — encodes the
+  both-or-neither invariant and narrows both union elements. No casts.
+- `jrs.prediction_engine.parivartana` (3 × arg-type): same
+  StrEnum/`tuple(sorted(...))` → `tuple[str, ...]` inference quirk as
+  previous batches; pinned `pair_typed: tuple[str, str]` at the three
+  `seen.add` sites.
+- `jrs.deterministic_engine.i18n_loader` (3 × no-any-return): typed local
+  on the `_load_json` return plus two `data[token]` index returns.
+- `jrs.reporting.pdf_generator` (3): `occupants` var-annotated;
+  `weasyprint` import guarded with `# type: ignore[import-not-found]`
+  (untyped third-party, same policy as pysweph); `write_pdf()` bytes
+  pinned via typed local.
+- `jrs.reporting.jatakam_book_generator` (4): `_yoga_card` parameter
+  annotated as `YogaResult` (from `jrs.api.schemas`, already imported
+  type family); `weasyprint` + `write_pdf` handled as above; line-599
+  fix became a **rename**: the inner remedy loop shadowed the outer
+  loop's `pname: str` / `reasons: list[str]` with a joined `str` —
+  renamed to `aff_planet` / `aff_reasons` (behavior-identical f-string
+  output).
 
-- **Acceptance:** 5 entries removed; any new DTOs get unit tests for their
-  parse/validation paths.
+- **Acceptance met:** 5 entries removed (list: 6 → 1); gated mypy green;
+  targeted `mypy --strict` pass on the 5 files: 0 errors; pytest
+  `tests/unit/jrs/` 2,530 passed; all 5 modules smoke-imported.
 
-### Batch 3.3 — The boss: `jrs.validation.calibration` (42 errors) · solo
+### Batch 3.3 — The boss: `jrs.validation.calibration` (42 errors) · ✅ DONE (2026-09-24)
 
-29% of remaining debt in one file: 17 union-attr, 8 type-var, 8 misc,
-6 operator, 3 arg-type — one `MetricEvaluation | None` cluster at lines
-~121–239 plus `min`/`max` over `float | None`. Strategy: type the data
-model first (frozen dataclasses per calibration record), narrow the
-`None` branches where the invariant holds, then let mypy narrow the
-callers. Do it last, alone, with the module's tests open.
+The predicted "type the data model first" strategy was unnecessary — the
+42 errors collapsed into **3 root causes**, all fixed with narrowing and
+dead-code removal (no new DTOs, no casts):
 
-- **Acceptance:** final entry removed → the entire
-  `[[tool.mypy.overrides]]` grandfather block (this section and the list)
-  is deleted from `pyproject.toml`. `mypy` gate then covers 100% of the
-  codebase with zero exemptions besides `swisseph` stubs.
+1. `_compute_timing_iou` (15 errors): `if None in (p_s, p_e, a_s, a_e)`
+   does not narrow optionals — replaced with an explicit four-way
+   `is None` chain (identical semantics).
+2. Dead first confusion-matrix block (12 errors): a `tp/fp/fn/tn`
+   computation guarded by `_LAYER_THRESHOLD` was immediately overwritten
+   by the real one (the "Actually..." comment proved it dead) — deleted.
+3. Narrowing across comprehension boundary (~15 errors): `successful`
+   was filtered on `r.metric_evaluation is not None` but `evaluations`
+   extracted the field in a *separate* comprehension, so mypy could not
+   carry the narrowing — merged into one comprehension
+   (`evaluations = [r.metric_evaluation for r in ... if ... is not None]`),
+   the `not evaluations` early-return swapped in, and the downstream
+   `list[MetricEvaluation | None]` arg-type errors vanished.
+
+- **Acceptance MET:** final entry removed → the entire
+  `[[tool.mypy.overrides]]` grandfather block is deleted from
+  `pyproject.toml` (replaced by a retirement note). `mypy` gate covers
+  100% of the codebase with zero exemptions besides `swisseph` stubs.
+  Verified: gated mypy green (434 files), targeted strict pass on
+  calibration.py clean, IoU smoke values unchanged (1.0 / 0.0 / 0.0),
+  full suite 5,497 passed.
+
+## Post-retirement state (2026-09-24)
+
+- `pyproject.toml` carries no `ignore_errors` override anywhere; the only
+  remaining `[[tool.mypy.overrides]]` is the intentional `swisseph`
+  missing-stubs carve-out.
+- Regression risk: the burndown was executed and verified on **mypy
+  1.9.0** (local). CI pins **mypy 2.3.1** — one CI run should confirm the
+  stricter 2.3.1 reports no new findings on the touched modules.
 
 ## Tracking
 

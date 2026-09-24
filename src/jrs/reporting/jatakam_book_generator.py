@@ -12,7 +12,12 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from jrs.api.schemas import ENGINE_VERSION, LEGAL_DISCLAIMER, EvaluationResponse
+from jrs.api.schemas import (
+    ENGINE_VERSION,
+    LEGAL_DISCLAIMER,
+    EvaluationResponse,
+    YogaResult,
+)
 from jrs.deterministic_engine.esoteric_evaluator import (
     evaluate_esoteric_profile,
     render_esoteric_profile_html,
@@ -409,7 +414,7 @@ class JatakamBookGenerator:
             and any(d in ("WISDOM_ACCUMULATION", "GENERAL_IMPROVEMENT") for d in y.domains)
         ]
 
-        def _yoga_card(yoga, show_math: bool = False) -> str:
+        def _yoga_card(yoga: YogaResult, show_math: bool = False) -> str:
             citation = _CLASSICAL_CITATIONS.get(yoga.yoga_name, "")
             planets_str = ", ".join(yoga.involved_planets) if yoga.involved_planets else "—"
             strength = f"{yoga.static_strength:.0%}" if yoga.static_strength > 0 else "—"
@@ -595,17 +600,19 @@ class JatakamBookGenerator:
 
         remedy_text = ""
         for aff in afflictions[:3]:
-            pname = aff["planet"]
-            reasons = " / ".join(aff["reasons"])
+            # Renamed locals: `pname`/`reasons` above belong to the outer
+            # planet loop; shadowing them here confused both readers and mypy.
+            aff_planet = str(aff["planet"])
+            aff_reasons = " / ".join(str(r) for r in aff["reasons"])
             remedy_text += f"""
             <div class="remedy-card">
-                <h4>{pname} — {", ".join(aff["reasons"][:2])}</h4>
-                <p><strong>Issue:</strong> {reasons}</p>
+                <h4>{aff_planet} — {", ".join(aff["reasons"][:2])}</h4>
+                <p><strong>Issue:</strong> {aff_reasons}</p>
                 <div class="remedy-protocols">
-                    <p><strong>Mantra:</strong> Chant the {pname} mantra 108 times daily.</p>
-                    <p><strong>Charity:</strong> Donate {pname.lower()}-related items on {pname.lower()}'s day.</p>
-                    <p><strong>Vastu:</strong> Strengthen the {pname.lower()}-ruled direction in your living space.</p>
-                    <p><strong>Meditation:</strong> Practice {pname.lower()}-balancing meditation techniques.</p>
+                    <p><strong>Mantra:</strong> Chant the {aff_planet} mantra 108 times daily.</p>
+                    <p><strong>Charity:</strong> Donate {aff_planet.lower()}-related items on {aff_planet.lower()}'s day.</p>
+                    <p><strong>Vastu:</strong> Strengthen the {aff_planet.lower()}-ruled direction in your living space.</p>
+                    <p><strong>Meditation:</strong> Practice {aff_planet.lower()}-balancing meditation techniques.</p>
                 </div>
             </div>
             """
@@ -736,11 +743,12 @@ class JatakamBookGenerator:
 
     def generate_pdf(self) -> bytes:
         """Generate the Jatakam Book as PDF bytes."""
-        from weasyprint import HTML
+        from weasyprint import HTML  # type: ignore[import-not-found]
 
         html_content = self._build_full_html()
         doc = HTML(string=html_content)
-        return doc.write_pdf()
+        pdf_bytes: bytes = doc.write_pdf()
+        return pdf_bytes
 
     def generate_html(self) -> str:
         """Generate the Jatakam Book as HTML string."""
