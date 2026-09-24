@@ -106,9 +106,9 @@ class EvaluatorRuleRegistry:
         rule_id: str,
         scope: RuleScope,
         description: str = "",
-    ):
+    ) -> Callable[[Any], Any]:
         """Decorator to attach scope metadata to evaluation rule functions."""
-        def decorator(func: Callable):
+        def decorator(func: Callable[[Any], Any]) -> Callable[[Any], Any]:
             cls._registry[rule_id] = {
                 "func": func,
                 "scope": scope,
@@ -122,7 +122,8 @@ class EvaluatorRuleRegistry:
         """Lookup rule scope, defaulting to NATAL_PERMANENT if unregistered."""
         rule_meta = cls._registry.get(rule_id.strip().upper())
         if rule_meta:
-            return rule_meta["scope"]
+            scope: RuleScope = rule_meta["scope"]
+            return scope
         return RuleScope.NATAL_PERMANENT
 
 
@@ -528,21 +529,25 @@ def _get_planet_nakshatra(
     # Check explicit nakshatra mappings
     planet_nakshatras = jre_facts.get("planet_nakshatras", {})
     if planet in planet_nakshatras:
-        return planet_nakshatras[planet]
+        nakshatra: str = planet_nakshatras[planet]
+        return nakshatra
 
     # For MOON, use the top-level field
     if planet == "MOON":
-        return jre_facts.get("moon_nakshatra", "")
+        moon_nakshatra: str = jre_facts.get("moon_nakshatra", "")
+        return moon_nakshatra
 
     # For other planets, check planet_details
     pd = jre_facts.get("planet_details", {})
     if planet in pd:
-        return pd[planet].get("nakshatra", "")
+        detail_nakshatra: str = pd[planet].get("nakshatra", "")
+        return detail_nakshatra
 
     # Check planets dict
     planets = jre_facts.get("planets", {})
     if planet in planets:
-        return planets[planet].get("nakshatra", "")
+        planet_nakshatra: str = planets[planet].get("nakshatra", "")
+        return planet_nakshatra
 
     return ""
 
@@ -562,7 +567,8 @@ def _get_planet_longitude(
     """
     planets = jre_facts.get("planets", {})
     if planet in planets:
-        return float(planets[planet].get("longitude", 0.0))
+        longitude: float = float(planets[planet].get("longitude", 0.0))
+        return longitude
 
     pd = jre_facts.get("planet_details", {})
     if planet in pd:
@@ -583,7 +589,8 @@ def _get_planet_longitude(
             "MEENA": 330,
         }
         sign_start = _RASHI_MAP.get(sign, 0)
-        return sign_start + deg_in_sign
+        total_longitude: float = sign_start + deg_in_sign
+        return total_longitude
 
     return 0.0
 

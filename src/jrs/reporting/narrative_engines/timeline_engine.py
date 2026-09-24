@@ -41,7 +41,7 @@ _VIMSHOTTARI_ORDER = [
 ]
 
 # Decade themes based on house position of Dasha lord
-_DECADE_THEMES: dict[str, dict[str, str]] = {
+_DECADE_THEMES: dict[str, str] = {
     "CAREER": (
         "Professional advancement, authority, and public recognition are "
         "central themes. The native may experience significant career "

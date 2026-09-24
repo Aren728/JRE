@@ -5,7 +5,7 @@ Uses accurate weekday-based calculations for inauspicious/auspicious times.
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import swisseph as swe
 
@@ -13,9 +13,9 @@ import swisseph as swe
 @dataclass
 class PanchangData:
     date: str
-    tithi: Dict
-    nakshatra: Dict
-    yoga: Dict
+    tithi: Dict[str, Any]
+    nakshatra: Dict[str, Any]
+    yoga: Dict[str, Any]
     karana: str
     sunrise: str
     sunset: str
@@ -173,7 +173,7 @@ def _jd_to_datetime(jd: float) -> datetime:
     return datetime(year, month, day, hours, minutes, seconds)
 
 
-def compute_tithi(jd: float) -> Dict:
+def compute_tithi(jd: float) -> Dict[str, Any]:
     """Compute current Tithi."""
     moon_pos = swe.calc_ut(jd, swe.MOON, swe.FLG_SIDEREAL)[0][0]
     sun_pos = swe.calc_ut(jd, swe.SUN, swe.FLG_SIDEREAL)[0][0]
@@ -191,7 +191,7 @@ def compute_tithi(jd: float) -> Dict:
     }
 
 
-def compute_nakshatra(jd: float) -> Dict:
+def compute_nakshatra(jd: float) -> Dict[str, Any]:
     """Compute current Nakshatra."""
     moon_pos = swe.calc_ut(jd, swe.MOON, swe.FLG_SIDEREAL)[0][0]
     nak_index = int(moon_pos / (360 / 27))
@@ -208,7 +208,7 @@ def compute_nakshatra(jd: float) -> Dict:
     return {"name": nak_name, "lord": lord, "index": nak_index + 1, "pada": pada}
 
 
-def compute_yoga(jd: float) -> Dict:
+def compute_yoga(jd: float) -> Dict[str, Any]:
     """Compute current Yoga."""
     moon_pos = swe.calc_ut(jd, swe.MOON, swe.FLG_SIDEREAL)[0][0]
     sun_pos = swe.calc_ut(jd, swe.SUN, swe.FLG_SIDEREAL)[0][0]
@@ -231,7 +231,7 @@ def compute_karana(jd: float) -> str:
     return KARANA_NAMES[karana_index]
 
 
-def compute_sun_times(jd_noon: float, lat: float, lon: float) -> Dict:
+def compute_sun_times(jd_noon: float, lat: float, lon: float) -> Dict[str, Any]:
     """Compute sunrise and sunset using Swiss Ephemeris."""
     try:
         # Use Swiss Ephemeris for accurate sunrise/sunset
@@ -262,7 +262,7 @@ def compute_sun_times(jd_noon: float, lat: float, lon: float) -> Dict:
         }
 
 
-def compute_moon_times(jd_noon: float, lat: float, lon: float) -> Dict:
+def compute_moon_times(jd_noon: float, lat: float, lon: float) -> Dict[str, Any]:
     """Compute moonrise and moonset."""
     try:
         result = swe.rise_trans(jd_noon - 1, swe.MOON, lon, lat, 0, 0, rsmi=swe.CALC_RISE)
@@ -281,7 +281,9 @@ def compute_moon_times(jd_noon: float, lat: float, lon: float) -> Dict:
         return {"moonrise": _format_time(moonrise), "moonset": _format_time(moonset)}
 
 
-def compute_muhurtas(sunrise_jd: float, sunset_jd: float, weekday: int) -> Dict:
+def compute_muhurtas(
+    sunrise_jd: float, sunset_jd: float, weekday: int
+) -> Dict[str, Any]:
     """
     Compute Rahu Kaalam, Yamagandam, Gulika, and Abhijit Muhurta.
     Day is divided into 8 equal parts (each ~1.5 hours).

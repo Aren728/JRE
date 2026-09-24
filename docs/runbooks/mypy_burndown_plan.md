@@ -35,7 +35,8 @@ scripts/mypy_debt_histogram.sh          # per-module + per-error-code counts
 | Plan creation (CI mypy 2.3.1) | 37 | 146 (est.) |
 | After Wave 1 (api.main, cli, api.dependencies, services.divisional un-grandfathered; jyotish PEP 695 backport) | 33 | — |
 | After Wave 2 (bhava PEP 695 backport; gochar/context/tajika/prashna/varga StrEnum-inference fixes; core 100% clean) | 33 | 115 |
-| **After Batch 3.0 (this update)** | **10** | **88** |
+| After Batch 3.0 (tail sweep: 22 fixed + `validation.storage` free removal) | 10 | 88 |
+| **After Batch 3.1 (this update)** | **6** | **58** |
 
 **Baseline correction:** earlier drafts recorded "136 errors across 33
 modules". The authoritative histogram re-sum is **115 errors across 32
@@ -86,7 +87,32 @@ annotations at boundaries, `swe.*` untyped-return pins (`julday`,
 - **Acceptance met:** gated `mypy` green (434 files), full test suite green
   (5,497 passed), all touched modules runtime-imported and spot-checked.
 
-### Batch 3.1 — Small typed fixes (4 modules, 30 errors) · next up
+### Batch 3.1 — Small typed fixes (4 modules, 30 errors) · ✅ DONE (2026-09-24)
+
+Actual fixes applied (30 measured errors, all cleared):
+
+- `jrs.reporting.narrative_engines.timeline_engine` (8 × dict-item): as
+  planned — `_DECADE_THEMES` re-annotated `dict[str, dict[str, str]]` →
+  `dict[str, str]`. The nested value type was simply wrong (each entry is a
+  prose string); the symbol has no other indexing sites, so zero risk.
+- `jrs.prediction_engine.panchang_engine` (9 × type-arg): `PanchangData`
+  fields `tithi/nakshatra/yoga: Dict` → `Dict[str, Any]`; the six compute
+  helpers (`compute_tithi`, `compute_nakshatra`, `compute_yoga`,
+  `compute_sun_times`, `compute_moon_times`, `compute_muhurtas`) →
+  `Dict[str, Any]` returns.
+- `jrs.deterministic_engine.esoteric_evaluator` (10 incl. 1 straggler):
+  `register_rule` → `Callable[[Any], Any]` decorator signature (fixes the
+  untyped-def + bare-Callable pair); `_get_planet_nakshatra`/
+  `_get_planet_longitude` no-any-return sites pinned via typed locals
+  instead of casting; straggler: `get_rule_scope` returned `Any` from the
+  `Dict[str, Dict[str, Any]]` registry — pinned with `scope: RuleScope =`.
+- `jrs.validation.datasets.loader` (4 × type-arg): the four serializer /
+  deserializer helpers parameterized `dict` → `dict[str, Any]`.
+
+- **Acceptance met:** 4 entries removed; gated mypy green (434 files);
+  loader round-trip + panchang + registry smoke-tested at runtime; full
+  suite 5,497 passed (one unrelated flake on the first run did not
+  reproduce).
 
 - `jrs.reporting.narrative_engines.timeline_engine` (8 × dict-item): one
   dict literal annotated `dict[str, dict[str, str]]` holding 8 plain `str`

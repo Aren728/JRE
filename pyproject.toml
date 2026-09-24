@@ -164,18 +164,14 @@ module = ["swisseph"]
 ignore_missing_imports = true
 
 # ── Legacy strict-mypy grandfather list ────────────────────────────────────
-# `strict = true` is the enforced default (hard CI gate). These 10 legacy
-# modules predate the gate and carry ~88 strict errors between them; each is
+# `strict = true` is the enforced default (hard CI gate). These 6 legacy
+# modules predate the gate and carry ~58 strict errors between them; each is
 # explicitly exempted here so the gate passes TODAY while the list itself
 # acts as the debt registry. Remove an entry only after fixing its errors —
 # the list must shrink, never grow. New modules are NOT eligible.
 [[tool.mypy.overrides]]
 module = [
     "jrs.validation.calibration",
-    "jrs.prediction_engine.panchang_engine",
-    "jrs.deterministic_engine.esoteric_evaluator",
-    "jrs.reporting.narrative_engines.timeline_engine",
-    "jrs.validation.datasets.loader",
     "jrs.reporting.jatakam_book_generator",
     "jrs.reporting.pdf_generator",
     "jrs.prediction_engine.parivartana",

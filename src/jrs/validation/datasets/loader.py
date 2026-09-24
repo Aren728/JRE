@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, List, Tuple
 
 from jrs.validation.models import (
     BirthProvenance,
@@ -26,17 +26,17 @@ from jrs.validation.models import (
 )
 
 
-def _chart_subject_to_dict(subject: ChartSubject) -> dict:
+def _chart_subject_to_dict(subject: ChartSubject) -> dict[str, Any]:
     """Serialize ChartSubject to a JSON-compatible dict."""
     return subject.to_dict()
 
 
-def _historical_event_to_dict(event: HistoricalEvent) -> dict:
+def _historical_event_to_dict(event: HistoricalEvent) -> dict[str, Any]:
     """Serialize HistoricalEvent to a JSON-compatible dict."""
     return event.to_dict()
 
 
-def _dict_to_chart_subject(d: dict) -> ChartSubject:
+def _dict_to_chart_subject(d: dict[str, Any]) -> ChartSubject:
     """Deserialize a dict to ChartSubject."""
     prov = d.get("provenance", {})
     return ChartSubject(
@@ -53,7 +53,7 @@ def _dict_to_chart_subject(d: dict) -> ChartSubject:
     )
 
 
-def _dict_to_historical_event(d: dict) -> HistoricalEvent:
+def _dict_to_historical_event(d: dict[str, Any]) -> HistoricalEvent:
     """Deserialize a dict to HistoricalEvent."""
     return HistoricalEvent(
         event_id=d["event_id"],
