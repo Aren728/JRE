@@ -236,7 +236,7 @@ def rashi_at_distance(from_rashi: RashiId, distance: int) -> RashiId:
 
     Distance is counted in zodiacal (forward) order.
     """
-    rashi_list = list(RashiId)
+    rashi_list = cast("list[RashiId]", list(RashiId))
     idx = rashi_list.index(from_rashi)
     return rashi_list[(idx + distance) % 12]
 

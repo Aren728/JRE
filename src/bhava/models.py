@@ -14,7 +14,8 @@ from __future__ import annotations
 
 import enum
 from dataclasses import dataclass
-from typing import Any, cast
+from enum import Enum
+from typing import Any, TypeVar, cast
 
 from jyotish import (
     ApplyingSeparating,
@@ -29,6 +30,8 @@ from jyotish import (
 )
 
 from .errors import InvalidBhavaConfigError
+
+EnumT = TypeVar("EnumT", bound=Enum)
 
 # --------------------------------------------------------------------------- #
 # Enums (string values are the JSON values)
@@ -434,7 +437,7 @@ def to_dict_value(model: Any) -> Any:
     return _model_to_dict(model)
 
 
-def _parse_enum[EnumT: enum.Enum](
+def _parse_enum(
     enum_cls: type[EnumT], raw: Any, field: str, default: EnumT
 ) -> EnumT:
     if raw is None:

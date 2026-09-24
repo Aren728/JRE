@@ -206,7 +206,8 @@ def compute_muntha_rashi(
     """
     if elapsed_years < 0:
         raise ValueError("elapsed_years must be non-negative")
-    rashi_list = list(RashiId)
+    # Explicit cast: mypy 1.9 infers list[str] for list() over a StrEnum.
+    rashi_list = cast("list[RashiId]", list(RashiId))
     natal_idx = rashi_list.index(natal_moon_rashi)
     muntha_idx = (natal_idx + elapsed_years) % 12
     return rashi_list[muntha_idx]
@@ -289,7 +290,8 @@ def compute_saham_longitude(
 
 def longitude_to_rashi(longitude: float) -> RashiId:
     """Convert a longitude in degrees to its RashiId."""
-    rashi_list = list(RashiId)
+    # Explicit cast: mypy 1.9 infers list[str] for list() over a StrEnum.
+    rashi_list = cast("list[RashiId]", list(RashiId))
     idx = int(longitude / 30.0) % 12
     return rashi_list[idx]
 

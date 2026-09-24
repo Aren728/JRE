@@ -15,6 +15,7 @@ preserved for auditability.
 from __future__ import annotations
 
 from fractions import Fraction
+from typing import cast
 
 from jyotish import BodyId, PlanetState, RashiId
 
@@ -366,7 +367,8 @@ def canonical_body_order(states: tuple[PlanetState, ...]) -> tuple[PlanetState, 
     by_body: dict[BodyId, PlanetState] = {}
     for state in states:
         by_body[state.body] = state
-    return tuple(by_body[body] for body in tuple(BodyId) if body in by_body)
+    # Explicit cast: mypy 1.9 infers tuple[str] for tuple() over a StrEnum.
+    return tuple(by_body[body] for body in cast("tuple[BodyId, ...]", tuple(BodyId)) if body in by_body)
 
 
 def assemble_varga_chart(

@@ -10,11 +10,15 @@ from __future__ import annotations
 
 import enum
 import tomllib
+from enum import Enum
 from pathlib import Path
+from typing import TypeVar
 
 from jyotish import HouseSystem
 
 from .errors import InvalidBhavaConfigError
+
+EnumT = TypeVar("EnumT", bound=Enum)
 from .models import (
     BhavaConfig,
     RelativeHouseFrame,
@@ -65,7 +69,7 @@ def load_config(path: str | Path | None = None) -> BhavaConfig:
     return validate(config)
 
 
-def _parse_enum[EnumT: enum.Enum](
+def _parse_enum(
     enum_cls: type[EnumT], raw: object, field: str, default: EnumT
 ) -> EnumT:
     if raw is None:

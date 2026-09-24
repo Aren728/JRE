@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import datetime as _dt
 from collections.abc import Callable
-from typing import Any
+from typing import Any, cast
 
 import bhava
 import jyotish
@@ -144,7 +144,8 @@ def canonical_bodies(bodies: tuple[BodyId, ...]) -> tuple[BodyId, ...]:
     SPEC §9/DC §4.4)."""
     ordered: list[BodyId] = []
     seen: list[BodyId] = []
-    for body in tuple(BodyId):
+    # Explicit cast: mypy 1.9 infers tuple[str] for tuple() over a StrEnum.
+    for body in cast("tuple[BodyId, ...]", tuple(BodyId)):
         if body in bodies and body not in seen:
             ordered.append(body)
             seen.append(body)
