@@ -1,0 +1,114 @@
+# Phase 3 Evidence Graph & Provenance Layer — JSON Schema.
+#
+# Consumed by theEvidence Graph Exporter (JSON DTO) and the frontend graph
+# visualization surface. Each graph is one DirectedAcyclicGraph built from a
+# single yoga evaluation (or a full chart evaluation), with deterministic
+# node/edge payloads and SHA-256 graph_id.
+#
+# Tools: jsonschema, pytest
+# To validate:
+#   python - <<'PY'
+#     import json, jsonschema
+#     schema = json.load(open("src/jrs/prediction_engine/provenance.yaml"))
+#     data = json.load(open("src/jrs/prediction_engine/provenance.example.json"))
+#     jsonschema.validate(data, schema)
+#   PY
+
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "JRE Evidence Graph & Provenance"
+description: |
+  Deterministic evidence graph tracing every predicted outcome back to
+  planetary state facts (FACT-*) and source-text rule references
+  (YOGA-*, DASHA-*). Built by jrs.prediction_engine.provenance.
+type: object
+required:
+  - graph_id
+  - nodes
+  - edges
+properties:
+  graph_id:
+    type: string
+    description: >
+      Deterministic SHA-256 of the canonical graph payload. Identical
+      jre_facts + yoga_evals always produce the same graph_id.
+    pattern: "^[0-9a-f]{64}$"
+  nodes:
+    type: array
+    items:
+      $ref: "#/definitions/DAGNode"
+    minItems: 0
+  edges:
+    type: array
+    items:
+      $ref: "#/definitions/DAGEdge"
+    minItems: 0
+definitions:
+  DAGNode:
+    type: object
+    required:
+      - node_id
+      - node_type
+      - payload
+    properties:
+      node_id:
+        type: string
+        description: Stable slug, e.g. P-001, R-0-YOGA-001, F-0-F-010.
+      node_type:
+        type: string
+        enum:
+          - EVALUATION
+          - RULE
+          - FACT
+          - CITATION
+          - TEMPORAL
+          - ANALYSIS
+      labels:
+        type: array
+        items:
+          type: string
+        description: Human-readable tags (e.g. YOGA, PLANETARY_STATE).
+      payload:
+        type: object
+        additionalProperties: true
+        description: Node-specific payload (yoga_name, status, fact_id, rule_id, ...).
+      children:
+        type: array
+        items:
+          type: string
+        description: Child node ids (DAG edges are stored separately in edges[]).
+      parent:
+        type: string
+        nullable: true
+        description: Parent node id, or null.
+  DAGEdge:
+    type: object
+    required:
+      - edge_id
+      - source
+      - target
+      - relationship
+    properties:
+      edge_id:
+        type: string
+        description: Stable slug, e.g. E-EV-0, E-RF-0-F-010.
+      source:
+        type: string
+        description: Source node id.
+      target:
+        type: string
+        description: Target node id.
+      relationship:
+        type: string
+        enum:
+          - SUPPORTS
+          - AFFECTS
+          - ESTABLISHED_BY
+          - DERIVES_FROM
+      weight:
+        type: number
+        minimum: 0
+        description: Edge strength (default 1.0).
+      metadata:
+        type: object
+        additionalProperties: true
+        description: Edge-specific metadata (yoga_name, fact_type, aspect, ...).

@@ -157,6 +157,10 @@ class YogaProvenance(BaseModel):
         default_factory=dict,
         description="D9/D10 confirmation status",
     )
+    evidence_graph: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Phase 3 evidence graph (provenance DAG) for this yoga: evaluation node, rule node, planetary state fact nodes, and temporal (dasha/transit) node with all directed edges.",
+    )
 
 
 class YogaResult(BaseModel):

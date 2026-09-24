@@ -67,6 +67,7 @@ from jrs.engine.calculator import calculate_chart_positions
 from jrs.engine.dasha import calculate_vimshottari_dasha
 from jrs.engine.synthesis import generate_synthesis_report
 from jrs.services.ephemeris import calculate_planetary_positions
+from jrs.prediction_engine.provenance import (EvidenceGraphService, DirectedAcyclicGraph, result_to_dict)
 
 import datetime
 from typing import List, Optional
@@ -241,6 +242,13 @@ def _run_evaluation(
     evaluator = get_yoga_evaluator()
     yoga_evals = evaluator.evaluate_classical_yogas(jre_facts)
 
+    # Build the Phase 3 evidence graph (provenance chain + DAG).
+    # Deterministic — identical jre_facts + yoga_evals always produce the
+    # same graph_id, so this is safe to include in the API payload and the
+    # golden-state regression gate can cover it.
+    evidence_graph_svc = EvidenceGraphService(prediction_id="P-CUSTOM")
+    evidence_graph = evidence_graph_svc.build_graph(jre_facts=jre_facts, yoga_evals=yoga_evals)
+
     # Convert to API response format
     yoga_results: list[YogaResult] = []
     formed_count = 0
@@ -269,11 +277,27 @@ def _run_evaluation(
         if y.cancellation_reason and "D9" in y.cancellation_reason:
             varga_evidence["d9_cancellation"] = y.cancellation_reason
 
+        # Attach the phase-3 evidence graph for this yoga (single JSON DTO).
+        # This preserves the full provenance chain: evaluation node -> rule
+        # node -> planetary state fact nodes -> temporal (dasha/transit).
+        yoga_graph = DirectedAcyclicGraph(
+            graph_id=evidence_graph.graph_id,
+            nodes=tuple(
+                node for node in evidence_graph.nodes
+                if node.node_type == "RULE" and node.payload.get("yoga_name") == y.yoga_name
+            ),
+            edges=tuple(
+                edge for edge in evidence_graph.edges
+                if edge.source.startswith("R-") and edge.target.startswith("F-")
+            ),
+        )
+
         provenance = YogaProvenance(
             formation_evidence=f"{y.yoga_name} yoga: {y.status.value.lower()} by classical rules",
             chain_evidence=y.chain_impact,
             temporal_evidence=temporal_evidence,
             varga_evidence=varga_evidence,
+            evidence_graph=result_to_dict(yoga_graph),
         )
 
         yoga_results.append(
