@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_048_thorpe",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "82f9d5114782d9093ae0c9bb276ddd33a1b25dc3ff7cb69efe94bc2516337b72",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "a9d3702f2d8cea58f06c0b20340d35e5f0504e096743e65a042329f3b74c3a92",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "cc320959991f95afa0c43bd55e19e22830874f4470a199d9a4ef739138b925b6",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "aca5ce53780657f7e5be68c76cea23171dd3c036a786b5c4495cdca7bf27a34f",
+      "stage_id": "yogas"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_003_mozart",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "4cf511c08a3cfc5314e885bc35f979428176fa751e1b4584784bc7eb5ec075dd",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "d4cbf28b2f6b0fce2d5b81e897f0134e7b28fb5a95a4af26d16818c8a03255ae",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "7baf6e6250d7bb333f5c7d7cfc29942e452e58708e4c2daec19c3707dc4506f8",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "583efd3df6c6aa206b1e4c0a3da48f3497bd4dd5f53b40fa04e42aed0a491f57",
+      "stage_id": "yogas"
+    }
+  ]
+}

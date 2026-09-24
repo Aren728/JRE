@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_045_vanderbilt",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "83c6fc2a65d4e47dbb5e93803e0409e96b7fac8ea7b73e567d06b53e1d1ee8f7",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "a4a1d49b4c5f57bf5ed7a149be73dcf6e2999e695b22e85e83b8c625fb9ce238",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "f0e948c257bf6ef1e0c37f235cdebe47217f0864d7edc128c3cd4739296db866",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "90132e4788e9c0421070aa8b81d6b2c5dab9df94cafde88e976b7d59c62168f9",
+      "stage_id": "yogas"
+    }
+  ]
+}

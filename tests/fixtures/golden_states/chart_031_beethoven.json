@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_031_beethoven",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "27cb689ff8c23e5cf1452ec7502869f1e94e86ab9e8ee7a6dc4665c266e60df8",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "d1e6a85e22d81e5b14bf9e530cb8ba71e0a8ffe764373c4770c91b9f474ec692",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "163bbc370f777e6cab90359f0f3f33851bd6be4464fae972811f0924d0355776",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "1005552e4930e45f023ee3b7303a85d2b103f76c9c96273b8a73d3d792aa8896",
+      "stage_id": "yogas"
+    }
+  ]
+}

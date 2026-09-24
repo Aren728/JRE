@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_019_eisenhower",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "d440240259d7b81009d2a1aa5aff1a237d2ed4689fce672400d6b45fcee479da",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "f1d74b4a25f285bb7175f5a0383a88bb73f7cd70db7159bebbcd168ab220cd43",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "f3d16f1166e698b233fce82f015dee318b50683106d1729aa2a8bfd571330fff",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "06db2246d334c7b5915bbe2828cfab4302da77961d0ff8ee74d0e56813515253",
+      "stage_id": "yogas"
+    }
+  ]
+}

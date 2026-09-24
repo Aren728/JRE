@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_023_mendel",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "4baea8c44e4d753ed9188a4d0efdd34f934d5d1ac882fa74abdb8b62c108def0",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "71fa92b8b21b834e2824820ecccdb4dc76410b01db7cb065cfcdb0683b7e81c5",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "1b88e5bca379e420ee0226ba506030da785924bed668761ea4eee3f56e4407a3",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "e17aae7891045453f3f7a3568969e557fb6c7dd05e2f55280dcd79e5aefc4b28",
+      "stage_id": "yogas"
+    }
+  ]
+}

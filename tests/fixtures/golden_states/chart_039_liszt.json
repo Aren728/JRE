@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_039_liszt",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "5832fefea312bfcfb9d2df0737944719adda43f8c06ac1ac4491a3fbfc906af3",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "a0aabd48acbe6640212a35d9e3f8ce300ad9f9f6e3fc0afc1f9f3e91c7482f73",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "e0404ada263534c7ca4edc9c4df7b05f926e8ce85a2caf3cf77a01722735851d",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "ee3185c9210b62cd51e1cae4a6a627635afc6c7a467eff30622a9996ffbc2c37",
+      "stage_id": "yogas"
+    }
+  ]
+}

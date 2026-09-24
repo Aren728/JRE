@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_032_vangogh",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "fd2654fd0266e6b52f39099c8407e2fb6d35c2ca6ba6194b9b9900be008853c9",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "f61dc047c8c58607980e8653f47b46441ce42f2fb0a2530bc9c362dc9e4975de",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "b20f43c2af31d0af4ba344675fea36cd0e0de870193af16be8dd6d41f865fea4",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "bfa60c3d8e498864a271180052436874548683346edcf33d0e3377506afcbb7b",
+      "stage_id": "yogas"
+    }
+  ]
+}

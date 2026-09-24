@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_041_ford",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "874dc4b9679ee76675d1f43bbd134c5465e350339334e36b47a5d2d111007d14",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "c99e79e1081fcd9790f3fb18982b580c67c03a3e7834d7d01ad711c8954b0050",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "8561f8115f61b7d51f3c756a2fd1800b6daef6c4c2348e09c7ae8f719653733a",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "751785575690715c632f28201807ae9e40f037caad74b21bed30672845902ff5",
+      "stage_id": "yogas"
+    }
+  ]
+}

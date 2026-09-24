@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_020_victoria",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "50cea9f558508b9a00d195d0660911fd149840d9e6808d8b84446c3ec8e44921",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "6975b63442bacb53a586b3133d8fc4be6d94dee8e25a29a0f16cc45685f8a47c",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "ef5e4921f3488356cb7eb9dc9e18a10c26fbf6947f0eb04d87d66198a2c9e3ad",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "b8b851d165efc3d92d9506b86fc68a2c7ba298cd7529b421471ab01eced37864",
+      "stage_id": "yogas"
+    }
+  ]
+}

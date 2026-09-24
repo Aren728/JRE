@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_012_mandela",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "50d5862892750e557a88869100f34626828a0a448643f20f782f1fd6db777bd4",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "62b133e3ebaf7a9495fddaa43a5c1806c63279a27436da8571ebdca2ece20d93",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "af62b2a096139d1a6895660c3dfdc5bd9c58aa514f889d15efad6d589e5d17e1",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "83d2c6f5568bf95cdc37ed6e8f57a4cc1f32c96d00b598e5fa5ae8b20b030181",
+      "stage_id": "yogas"
+    }
+  ]
+}

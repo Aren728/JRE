@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_040_chekhov",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "f6067e1acb6def71821cd31f3be00c6b330e8ed67f5b10e81d5cbb625516583c",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "c9f8344200eec3508c354f0c768b8e5980031ba1fdfac165cf15a4d1627882a8",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "47a095ef5bb52f8332b0e056470db531a7dc3c84595bd6c95ad7fe7c2cd57e5c",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "4b5f155f70505562d1d7a6a2de79c7f174b2882942953b0a15270e7705760da4",
+      "stage_id": "yogas"
+    }
+  ]
+}

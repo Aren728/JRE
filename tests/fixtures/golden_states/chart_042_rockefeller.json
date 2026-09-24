@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_042_rockefeller",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "f42086d1c0c30b5bda1092268183e5e19bc31e2743b5e8f6ddcddd7d2eb5407e",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "3250f3e40a14dae45daf85877b2344eee09c9148178585be8ea87005c5161a89",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "b3fbdda46ccf5fb0e0db37c6a31cf9a531c8b8851a8ddeeb8432eb4d29368e52",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "f302a92a88d3c8f90ba780d2226dea85cdceb3fab07bc1d188972ccf6b97a102",
+      "stage_id": "yogas"
+    }
+  ]
+}

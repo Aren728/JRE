@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_028_freud",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "8ec30010f60bd56b85dc15f68917d9955a8b32e203e7f5ba9a0b50d43dfbeab1",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "5f41c6fddc4ba30442989b8b26edce4ff9ddb78dca7d971fff73d84f6dfaecd9",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "6b13818d7820fe86b52332e57ddcf78f78145a212cbbbed116203400901d81f6",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "c61a64fa05d070ec4711cc7ecd14162e48cb6413deaf48b759262710d702cb42",
+      "stage_id": "yogas"
+    }
+  ]
+}

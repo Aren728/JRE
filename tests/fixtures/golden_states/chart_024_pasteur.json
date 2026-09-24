@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_024_pasteur",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "2e46e32c9ac05b90f0d4a5e1a8f75bfa7cb04ee593243b5517552debffb1b749",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "40e8170143a123ab650760b32e853127b6555461ad0394823634a6876f6640bc",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "3be37df2551aeb3c1be7dd3ad4cda99dfdd1f537f1ceb24ee339a1882de18425",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "8299b904633e2c8b26c490cbf56f139cfa42888e8c30575e95468ced9828eab8",
+      "stage_id": "yogas"
+    }
+  ]
+}

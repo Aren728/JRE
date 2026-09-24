@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_036_chaplin",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "2c53d86a2f0c72a32487c9325986434baf7edde30e4b005592e495bf1d7d26d3",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "2d57de29d4433408e6a6d519a46f6a9d3aab417a7b7ccbcc266a41b0e9d4402b",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "d53e2f96cf445fa1b1ffb5febb984c1e0e90ac4129403f464e69f62d7fd876a6",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "f3b51d83ea4f8d8d7d6af23b2af27bec58b709c1b6268a1364acde3f90d09f21",
+      "stage_id": "yogas"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_008_teresa",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "8ec79a3b039b45b610be49f317e0793ecfe873eb04921258fabb8b05871a6056",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "a287765dc539b471af0e979f377edc89e8c2d117bf6731b54962f6930fceaea1",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "70052d3367f3ed569a26eabec015faed912d3e2f041d6015cdf4cebadcad2990",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "2567fdbea431d896277a0a90eb9351f7f88dab3de31880c055a148e089500ae2",
+      "stage_id": "yogas"
+    }
+  ]
+}

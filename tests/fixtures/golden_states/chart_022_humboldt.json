@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_022_humboldt",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "910605fc03729c748ffe6e6bdd172eefb4541f7779cde1889cbcf2c1319b5155",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "d1f4d96e24558738a0534335383e7ea5f544e927227bebe1314f2d4ee6a468dd",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "c67b0f5447a28279475d79780749717800f1f8831d3bdce98878efbeb4656f99",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "b85d7421559cc884c2efa0046faedf422dfe5f36162a9ae91a10a6d9fba7977c",
+      "stage_id": "yogas"
+    }
+  ]
+}

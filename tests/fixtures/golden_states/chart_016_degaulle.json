@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_016_degaulle",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "0039e1c83ffd3eec8fae7939e3307dcacb1d414438641292ae8bfa7bac2cab8c",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "1025c7846e9798e574ffc79aa04df96bd5c32ce632d2a95480b3c1c40158cbca",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "1b3a30126c963e9c2d2766211b0ae1c16ce2fa0165c0af528c1e00f859aedc3c",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "39695d67084ccc646b6d7094d6f9f1f1c7c0106e51a91ff420a9fc1b46837ef8",
+      "stage_id": "yogas"
+    }
+  ]
+}

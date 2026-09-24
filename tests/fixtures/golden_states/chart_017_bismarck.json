@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_017_bismarck",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "df94d006894311e078c931ba3fbbe595ed54b55895a516ff6643ac52b6735784",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "3dd2c180e8ce391e69c39fe74f56653a2156f12aee3cc5f4097970531f4aee76",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "9ac8c5f65313c0f2b3b9eb17811a6d44e1f73a91029c93f6f5b2c10b1b1f24c2",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "ee38c5cb06bdce34a243e132ac71c8535908c38f5cc72db0700832a69edf8f1f",
+      "stage_id": "yogas"
+    }
+  ]
+}

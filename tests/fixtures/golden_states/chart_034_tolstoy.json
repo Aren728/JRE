@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_034_tolstoy",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "bcba0ec4d99c19134002904765226a52c85df8a77590fed42f1472dfcc0c86f5",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "367809521b60adc9258c37070aac26d8a516b18d5f0c9c5bba48fdf8ed23e030",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "4b8d9fcd0000f96cbab73e22a00c9955fd58ada2fca17d6dbffbca4d69db05a1",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "751785575690715c632f28201807ae9e40f037caad74b21bed30672845902ff5",
+      "stage_id": "yogas"
+    }
+  ]
+}

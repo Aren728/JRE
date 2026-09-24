@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_037_tchaikovsky",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "418c8520e5894214ec5ea5b882ef6797cf5b50f5c1072be9749719029d871f9c",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "f852cacd4d4e5f12e1b03658d8e856c8d3ebbe81939c5bb76fdd83ef39fec900",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "6e336e1b2f53976ab79224702729ac39e4cbf2a76a9520c1b20556031920c418",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "e94d8799c20cd49fdf75a11b2b720226b9e98de0b92e7b3b009f500935b206da",
+      "stage_id": "yogas"
+    }
+  ]
+}

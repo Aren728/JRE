@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_005_gandhi",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "3ad2fffc45f897a19841f633235a43f5367b2371563428b1cfee6390456dd2e6",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "969da5bb3c3083e222d0d5689ca7323e1d18005624cd2748369e29286319b455",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "27c588361f8a051a07993b52d23530f86833d09af3292fd4ac29b326930b0d77",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "c60181227961cfd76bbdb1e86d215a42935467f532f803a5207a489917d18f95",
+      "stage_id": "yogas"
+    }
+  ]
+}

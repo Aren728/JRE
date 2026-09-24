@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_027_heisenberg",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "8fa307735c356121c1edad6bddcffd9a33f66140a9ee1767184fbd2dc88f7aab",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "aaa1c8b589f53736bfc32e58b1924620ed8d81314aadf64860a2865d26a17437",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "2950079f203683cf797116a4ad86f025740304876c36ea10e94b336ec63eb695",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "0f6bc99cc18dbcd94721f5ab40bb17a40e49620f2a04d2dbec8fdc1134f625a7",
+      "stage_id": "yogas"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_009_jobs",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "98817c3e290b7e4e13db06f8bcbff09283bfccad27931bb2edf2e510b421be0b",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "37f9b2f800d8ead5152f06dd4359da07b7f5ba9376f364d0199680d08a569320",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "65429ed97a2cce6ec0498f2f9c83303b9a97f0f50e162e6c55d71de1b4b4eecf",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "f4d26ca0f3463698d6dbf82ff1aa63d9cf3a8494c0150b3ffb4f301d611dbba5",
+      "stage_id": "yogas"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_018_franklin",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "8ca18a29d734baa078ee1bc29eefa48a3f71a6d78db5303eb522d5ded15631c2",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "180a0d9886d0d15f43454dfbc7d6dd950a28734c5ec42e96a8a37aa58c8fbca4",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "6941065c37180e06a0b213494b0894556d16523576c3d9718e637ecde1127827",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "33dc00ccab24093fb7fd9f55c7d11fa6e6b31b6539dab3dde9cdd4c231d44f0b",
+      "stage_id": "yogas"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_026_planck",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "5bcfeb057c3eb58572a4a9ade36688931a2d713b71cbda9b27ea3fe131101d3e",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "cd6373c041c371bf457b64edf8d06d9daa6f8163c4a61b20f1e8c9dd4d563d6c",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "8690906ec4da32746135f9e47db2b668f3bee22fb0ee844858d5dd1047fd215e",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "8011b7390bd3896f7b6d8d1199fdb350fa3794bed90e3a9e2447516616dc91d9",
+      "stage_id": "yogas"
+    }
+  ]
+}

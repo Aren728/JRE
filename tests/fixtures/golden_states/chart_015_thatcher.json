@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1.0.0-beta",
+  "fixture_id": "chart_015_thatcher",
+  "schema_version": "1.0.0",
+  "stages": [
+    {
+      "payload_hash": "9d88a4970e6e9c9c50fdb155876eb0980d18396fbb4c423d1392c85ac05d6716",
+      "stage_id": "chart"
+    },
+    {
+      "payload_hash": "2de7d66f9608aaef38fcd261683e89fd79658d78eba299cc1810a6908521c505",
+      "stage_id": "jre_facts"
+    },
+    {
+      "payload_hash": "afe9853816edb6f9bc0b9777b7a9cb57d0bc955dae9faf5ee3f1c6278210aa31",
+      "stage_id": "dasha"
+    },
+    {
+      "payload_hash": "2f5a24b754ee68eb98c3a67293075c8f0bf1d69cfdcb9d43f8f0dbf6ff3e1ef1",
+      "stage_id": "yogas"
+    }
+  ]
+}
