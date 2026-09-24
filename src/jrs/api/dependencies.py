@@ -10,7 +10,11 @@ import json
 import sys
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from jyotish.service import JyotishService
+    from jrs.yoga_evaluator.service import YogaEvaluatorService
 
 # Ensure src/ is on the path for imports
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -28,7 +32,7 @@ _yoga_evaluator = None
 _jyotish_service = None
 
 
-def get_yoga_evaluator():
+def get_yoga_evaluator() -> YogaEvaluatorService:
     """Get or initialize the YogaEvaluatorService singleton."""
     global _yoga_evaluator
     if _yoga_evaluator is None:
@@ -38,7 +42,7 @@ def get_yoga_evaluator():
     return _yoga_evaluator
 
 
-def get_jyotish_service():
+def get_jyotish_service() -> JyotishService:
     """Get or initialize the JyotishService singleton."""
     global _jyotish_service
     if _jyotish_service is None:
@@ -81,7 +85,8 @@ def load_fixture(fixture_id: str) -> dict[str, Any]:
         raise FileNotFoundError(f"Fixture not found: {fixture_id}. Available fixtures: {available}")
 
     with fixture_path.open(encoding="utf-8") as f:
-        return json.load(f)
+        loaded: dict[str, Any] = json.load(f)
+        return loaded
 
 
 def list_fixtures() -> list[str]:

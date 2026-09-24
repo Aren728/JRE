@@ -47,6 +47,7 @@ from jrs.research.service import ResearchService
 from jrs.temporal.models import ActivationType, EventWindow, TemporalTrigger
 from jrs.western.service import WesternCalculationService, WesternDomainService
 from jrs.yoga_evaluator.integration import YogaEvidenceService
+from jrs.yoga_evaluator.models import YogaEvaluation
 from jrs.yoga_evaluator.service import YogaEvaluatorService
 
 # ── Domain Registry ──────────────────────────────────────────────────────────
@@ -171,7 +172,7 @@ def _evaluate_domain(
     svc = svc_class()
     method_name = EVALUATE_METHODS[domain_key]
     method = getattr(svc, method_name)
-    result = method(facts)
+    result: tuple[EvidenceRecord, ...] = method(facts)
     # YogaDomainService.assess returns DomainAssessment, not EvidenceRecords
     # Extract evidence records from dimensions if needed
     if hasattr(result, "dimensions"):
@@ -179,6 +180,28 @@ def _evaluate_domain(
         # (yoga evidence is handled separately in _run_assessment)
         return ()
     return result
+
+
+def _manifest(
+    evaluator: YogaEvaluatorService,
+    ev: YogaEvaluation,
+    involved: list[str],
+    dasha: str,
+    transit: str,
+) -> YogaEvaluation:
+    """Legacy-signature manifestation check that always yields a YogaEvaluation.
+
+    ``YogaEvaluatorService.evaluate_manifestation`` returns ``bool | YogaEvaluation``
+    (it supports a legacy and a JRS-076 signature). The legacy signature used here
+    always returns the evaluation, so narrow the union for strict typing.
+    """
+    result = evaluator.evaluate_manifestation(
+        evaluation=ev,
+        yoga_planets=involved,
+        active_dasha_lord=dasha,
+        transit_planet=transit,
+    )
+    return result if isinstance(result, YogaEvaluation) else ev
 
 
 def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
@@ -208,12 +231,7 @@ def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
             involved = ["KENDRA_LORD", "TRIKONA_LORD"]
 
         if active_dasha and involved:
-            ev = evaluator.evaluate_manifestation(
-                evaluation=ev,
-                yoga_planets=involved,
-                active_dasha_lord=active_dasha,
-                transit_planet=transit,
-            )
+            ev = _manifest(evaluator, ev, involved, active_dasha, transit)
 
         if ev.status.value == "FORMED" and ev.is_manifesting:
             outcome = evaluator.map_outcome(
@@ -244,18 +262,12 @@ def _detect_active_yogas(facts: dict[str, Any]) -> list[dict[str, Any]]:
         )
         if bud_eval.status.value == "FORMED":
             if active_dasha in ("SUN", "MERCURY"):
-                bud_eval = evaluator.evaluate_manifestation(
-                    evaluation=bud_eval,
-                    yoga_planets=["SUN", "MERCURY"],
-                    active_dasha_lord=active_dasha,
-                    transit_planet=transit,
+                bud_eval = _manifest(
+                    evaluator, bud_eval, ["SUN", "MERCURY"], active_dasha, transit
                 )
             elif transit in ("SUN", "MERCURY"):
-                bud_eval = evaluator.evaluate_manifestation(
-                    evaluation=bud_eval,
-                    yoga_planets=["SUN", "MERCURY"],
-                    active_dasha_lord=active_dasha,
-                    transit_planet=transit,
+                bud_eval = _manifest(
+                    evaluator, bud_eval, ["SUN", "MERCURY"], active_dasha, transit
                 )
             yogas.append(
                 {

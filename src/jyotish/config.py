@@ -17,7 +17,9 @@ from __future__ import annotations
 
 import enum
 import tomllib
+from enum import Enum
 from pathlib import Path
+from typing import TypeVar
 
 from astronomy.models import Ayanamsa, NodeType, PositionType
 
@@ -34,6 +36,8 @@ DEFAULT_CONFIG_PATH: Path = Path("config/jyotish.toml")
 
 _VALID_PRECISION_RANGE = range(0, 4)
 
+EnumT = TypeVar("EnumT", bound=Enum)
+
 
 #: Enum-typed JyotishConfig fields (SPEC §19: unknown enum values →
 #: ``InvalidConfigError``). ``ayanamsa`` may be None (Ayanamsa | None).
@@ -46,7 +50,7 @@ _ENUM_FIELDS: tuple[tuple[str, type[enum.Enum] | None], ...] = (
 )
 
 
-def _parse_enum[EnumT: enum.Enum](
+def _parse_enum(
     enum_cls: type[EnumT], raw: str | None, field: str, default: EnumT
 ) -> EnumT:
     """Parse a TOML/JSON string into an enum; unknown values raise
@@ -116,7 +120,8 @@ def validate(config: JyotishConfig) -> JyotishConfig:
         raise InvalidOrbError(
             f"conjunction_orb_deg must be positive, got {config.conjunction_orb_deg}"
         )
-    known = set(AspectKind)
+    # Explicit annotation: mypy 1.9 infers set[str] for set() over a StrEnum.
+    known: set[AspectKind] = set(AspectKind)
     supplied = set(config.aspect_orbs_deg)
     if supplied != known:
         missing = known - supplied

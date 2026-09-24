@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any, Optional
+from typing import Any, Optional, TypeAlias
 
 # Forward reference for ModifierReport to avoid circular imports
-type _ModifierReport = Any  # Resolved at runtime from modifier_service
+# (resolved at runtime from modifier_service)
+_ModifierReport: TypeAlias = Any
 
 
 class YogaStatus(StrEnum):

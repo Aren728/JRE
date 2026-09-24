@@ -9,6 +9,8 @@ for planetary longitudes.
 
 from __future__ import annotations
 
+from typing import Any
+
 ZODIAC_SIGNS = [
     "Aries", "Taurus", "Gemini", "Cancer",
     "Leo", "Virgo", "Libra", "Scorpio",
@@ -16,7 +18,7 @@ ZODIAC_SIGNS = [
 ]
 
 
-def calculate_d9_navamsha(longitude: float) -> dict:
+def calculate_d9_navamsha(longitude: float) -> dict[str, Any]:
     """Calculates D9 (Navamsha) sign placement (3°20' per division).
 
     Args:
@@ -46,7 +48,7 @@ def calculate_d9_navamsha(longitude: float) -> dict:
     }
 
 
-def calculate_d10_dashamsha(longitude: float) -> dict:
+def calculate_d10_dashamsha(longitude: float) -> dict[str, Any]:
     """Calculates D10 (Dashamsha) sign placement (3°00' per division).
 
     Args:
@@ -74,7 +76,7 @@ def calculate_d10_dashamsha(longitude: float) -> dict:
     }
 
 
-def calculate_d3_drekkana(longitude: float) -> dict:
+def calculate_d3_drekkana(longitude: float) -> dict[str, Any]:
     """Calculates D3 (Drekkana) sign placement (10° per division).
 
     Rule:
@@ -103,7 +105,7 @@ def calculate_d3_drekkana(longitude: float) -> dict:
     }
 
 
-def calculate_d7_saptamsha(longitude: float) -> dict:
+def calculate_d7_saptamsha(longitude: float) -> dict[str, Any]:
     """Calculates D7 (Saptamsha) sign placement (4°17'08.57" per division / ~4.2857°).
 
     Rule:
@@ -133,7 +135,7 @@ def calculate_d7_saptamsha(longitude: float) -> dict:
     }
 
 
-def calculate_d12_dwadasamsha(longitude: float) -> dict:
+def calculate_d12_dwadasamsha(longitude: float) -> dict[str, Any]:
     """Calculates D12 (Dwadasamsha) sign placement (2°30' per division).
 
     Rule:
@@ -159,7 +161,7 @@ def calculate_d12_dwadasamsha(longitude: float) -> dict:
     }
 
 
-def enrich_with_divisional_charts(planetary_data: dict) -> dict:
+def enrich_with_divisional_charts(planetary_data: dict[str, Any]) -> dict[str, Any]:
     """Appends D3, D7, D9, D10, and D12 calculations to planetary positions.
 
     Args:

@@ -17,7 +17,7 @@ import json
 import time
 from datetime import date, datetime as datetime_cls, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Awaitable, Callable
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -353,7 +353,9 @@ def _run_evaluation(
             _local = _pd_dt.fromisoformat(f"{bd.date}T{bd.time or '12:00'}").replace(
                 tzinfo=_ZoneInfo(bd.timezone)
             )
-            _tz_offset = _local.utcoffset().total_seconds() / 3600.0
+            # utcoffset() is Optional[timedelta]; fall back to IST (+5:30).
+            _offset = _local.utcoffset()
+            _tz_offset = _offset.total_seconds() / 3600.0 if _offset else 5.5
         except Exception:
             _tz_offset = 5.5
         _panchang = compute_daily_panchang(
@@ -491,7 +493,9 @@ def _run_evaluation(
 
 
 @app.middleware("http")
-async def log_requests_middleware(request: Request, call_next: Any) -> Response:
+async def log_requests_middleware(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
     """Log every API request with structured data (PII-safe)."""
     start = time.time()
     response = await call_next(request)
@@ -668,7 +672,7 @@ async def evaluate_custom(
 
 @app.get("/api/v1/report/overview", tags=["Report"])
 async def generate_overview_report(
-    fixture_id: str = None,
+    fixture_id: str | None = None,
     request: Request = None,  # type: ignore[assignment]
     _auth: dict[str, Any] = Depends(check_rate_limit),
 ) -> dict[str, Any]:
@@ -947,7 +951,7 @@ async def calculate_and_store_chart(
 async def get_chart_by_id(
     chart_id: int,
     db: Session = Depends(get_db),
-) -> dict:
+) -> dict[str, Any]:
     """Fetch a chart calculation record by ID."""
     record = db.query(ChartCalculation).filter(ChartCalculation.id == chart_id).first()
     if not record:
@@ -1088,7 +1092,7 @@ if __name__ == "__main__":
 
 @app.post("/api/v1/report/generate-overview")
 async def generate_dynamic_overview(
-    chart_data: dict,
+    chart_data: dict[str, Any],
     request: Request,
     _auth: dict[str, Any] = Depends(check_rate_limit),
 ) -> dict[str, Any]:
@@ -1114,7 +1118,9 @@ async def generate_dynamic_overview(
 
 
 @app.get("/api/v1/gochar/predictions")
-async def get_gochar_predictions_endpoint(date: str = None, period: str = "daily"):
+async def get_gochar_predictions_endpoint(
+    date: str | None = None, period: str = "daily"
+) -> dict[str, Any]:
     from datetime import datetime
 
     try:
@@ -1131,7 +1137,7 @@ async def get_gochar_predictions_endpoint(date: str = None, period: str = "daily
 
 
 @app.get("/api/v1/dashboard/collective")
-async def get_dashboard_collective():
+async def get_dashboard_collective() -> dict[str, Any]:
     return {
         "success": True,
         "data": {
@@ -1206,8 +1212,10 @@ async def get_dashboard_collective():
 
 @app.get("/api/v1/panchang/daily")
 async def get_daily_panchang(
-    date: str = None, latitude: float = 26.3248, longitude: float = 94.5183
-):
+    date: str | None = None,
+    latitude: float = 26.3248,
+    longitude: float = 94.5183,
+) -> dict[str, Any]:
     from datetime import datetime
 
     try:
@@ -1256,7 +1264,7 @@ async def get_daily_panchang(
 
 
 @app.get("/api/v1/charts/birth-chart")
-async def get_birth_chart():
+async def get_birth_chart() -> dict[str, Any]:
     """Get complete birth chart data for visualization in all three formats."""
     try:
         # This would integrate with your actual chart calculation engine
@@ -1352,7 +1360,9 @@ async def get_birth_chart():
 
 
 @app.post("/api/v1/report/generate-karmic-blueprint")
-async def generate_karmic_blueprint_endpoint(chart_data: dict):
+async def generate_karmic_blueprint_endpoint(
+    chart_data: dict[str, Any],
+) -> dict[str, Any]:
     """Generate the full humanized report from evaluated chart data.
 
     Wires the Parihara remedy engine directly into the blueprint: when the
