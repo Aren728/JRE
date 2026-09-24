@@ -8,6 +8,8 @@ using pyswisseph.
 
 from __future__ import annotations
 
+from typing import Any
+
 import datetime
 import zoneinfo
 
@@ -33,7 +35,7 @@ def calculate_planetary_positions(
     latitude: float,
     longitude: float,
     tz_str: str,
-) -> dict:
+) -> dict[str, Any]:
     """Calculate planetary positions for a given date, time, and location.
 
     Args:

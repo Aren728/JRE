@@ -147,8 +147,8 @@ def compute_ashtakavarga(
 
     # Find strongest and weakest houses
     if sav:
-        strongest = max(sav, key=sav.get)
-        weakest = min(sav, key=sav.get)
+        strongest = max(sav, key=lambda h: sav[h])
+        weakest = min(sav, key=lambda h: sav[h])
         avg = sum(sav.values()) / len(sav)
     else:
         strongest = weakest = 1

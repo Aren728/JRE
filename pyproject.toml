@@ -164,8 +164,8 @@ module = ["swisseph"]
 ignore_missing_imports = true
 
 # ── Legacy strict-mypy grandfather list ────────────────────────────────────
-# `strict = true` is the enforced default (hard CI gate). These 33 legacy
-# modules predate the gate and carry ~146 strict errors between them; each is
+# `strict = true` is the enforced default (hard CI gate). These 10 legacy
+# modules predate the gate and carry ~88 strict errors between them; each is
 # explicitly exempted here so the gate passes TODAY while the list itself
 # acts as the debt registry. Remove an entry only after fixing its errors —
 # the list must shrink, never grow. New modules are NOT eligible.
@@ -181,28 +181,5 @@ module = [
     "jrs.prediction_engine.parivartana",
     "jrs.graph.functional_lordship",
     "jrs.deterministic_engine.i18n_loader",
-    "jrs.prediction_engine.overview_engine",
-    "jrs.prediction_engine.gochar_transit",
-    "jrs.engine.calculator",
-    "jrs.advanced_charts.ashtakavarga",
-    "astronomy.swisseph.provider",
-    "jrs.yoga_evaluator.service",
-    "jrs.yoga_evaluator.evidence_service",
-    "jrs.validation.storage",
-    "jrs.validation.runner",
-    "jrs.temporal.dasha_engine",
-    "jrs.structural.models",
-    "jrs.services.ephemeris",
-    "jrs.prediction_engine.report_engine",
-    "jrs.prediction_engine.overview_report_engine",
-    "jrs.prediction_engine.nakshatra_exchanges",
-    "jrs.prediction_engine.gochar_predictions_engine",
-    "jrs.prediction_engine.deep_dasha",
-    "jrs.parihara.remedy_engine",
-    "jrs.horoscope.gochar_engine",
-    "jrs.graph.nakshatra_service",
-    "jrs.domains.yoga.service",
-    "jrs.advanced_charts.shadbala",
-    "jrs.advanced_charts.divisional",
 ]
 ignore_errors = true

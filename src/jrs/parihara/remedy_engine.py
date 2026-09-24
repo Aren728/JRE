@@ -22,7 +22,8 @@ _REMEDY_DATA_PATH = Path(__file__).parent / "remedy_data.json"
 def _load_remedy_data() -> dict[str, Any]:
     """Load the deterministic remedy lookup table."""
     with _REMEDY_DATA_PATH.open(encoding="utf-8") as f:
-        return json.load(f)
+        loaded: dict[str, Any] = json.load(f)
+        return loaded
 
 
 _REMEDY_DATA: dict[str, Any] = _load_remedy_data()

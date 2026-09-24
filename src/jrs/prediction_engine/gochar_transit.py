@@ -983,9 +983,10 @@ def detect_nakshatra_parivartana(
             # Mutual exchange: A's nakshatra lord is B, and B's nakshatra lord is A
             if lord_a.upper() == pb.upper() and lord_b.upper() == pa.upper():
                 pair = tuple(sorted([pa, pb]))
-                if pair in seen_pairs:
+                pair_typed: tuple[str, str] = (pair[0], pair[1])
+                if pair_typed in seen_pairs:
                     continue
-                seen_pairs.add(pair)
+                seen_pairs.add(pair_typed)
                 exchanges.append(
                     {
                         "planet_a": pa,
@@ -1786,7 +1787,7 @@ def _load_transit_predictions() -> dict[str, dict[str, str]]:
     try:
         json_path = _os.path.join(_os.path.dirname(__file__), "transit_predictions.json")
         with open(json_path, "r") as f:
-            data = _json.load(f)
+            data: dict[str, dict[str, str]] = _json.load(f)
         # Remove metadata key
         data.pop("_meta", None)
         return data

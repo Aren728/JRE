@@ -195,7 +195,7 @@ class DeepVimshottariEngine:
         Returns:
             DeepDashaResult with active periods and timelines.
         """
-        yoga_set = {p.upper() for p in (yoga_planets or [])}
+        yoga_set = frozenset(p.upper() for p in (yoga_planets or []))
 
         # ── MD sequence ──
         md_lord = self._get_md_lord(moon_nakshatra)

@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import threading
 from importlib.metadata import PackageNotFoundError
+from typing import Any
 from importlib.metadata import version as _pkg_version
 
 import swisseph as swe
@@ -61,7 +62,7 @@ def _library_version() -> str:
         return str(getattr(swe, "version", "unknown"))
 
 
-def _calc_ut(jd_ut: float, ipl: int, flags: int) -> tuple:
+def _calc_ut(jd_ut: float, ipl: int, flags: int) -> tuple[Any, ...]:
     """Normalize ``swe.calc_ut`` across pysweph API generations.
 
     Old bindings return ``(xx, retflag, errmsg)``; newer 2.10.x returns
@@ -72,7 +73,7 @@ def _calc_ut(jd_ut: float, ipl: int, flags: int) -> tuple:
     if isinstance(out, (tuple, list)) and len(out) == 2:
         xx, retflag = out
         return xx, retflag, ""
-    return out
+    return tuple(out)
 
 
 class SwissEphemerisProvider(EphemerisProvider):

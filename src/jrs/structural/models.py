@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import Any, Optional, cast
+from typing import Any, Optional
 
 
 class RelationshipType(StrEnum):
@@ -53,4 +53,4 @@ class PlanetRelationship:
             result["war_victor"] = self.war_victor
         if self.node_involvement:
             result["node_involvement"] = True
-        return cast(dict[str, Any], result)
+        return result

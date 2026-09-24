@@ -1,4 +1,11 @@
-def generate_humanized_overview(chart_data: dict) -> str:
+"""Humanized overview report generation (JRS reporting surface)."""
+
+from __future__ import annotations
+
+from typing import Any
+
+
+def generate_humanized_overview(chart_data: dict[str, Any]) -> str:
     lagna = chart_data.get("lagna", "Unknown")
     moon_nakshatra = chart_data.get("moon_nakshatra", "Unknown")
     nakshatra_ruler = chart_data.get("nakshatra_ruler", "Unknown")

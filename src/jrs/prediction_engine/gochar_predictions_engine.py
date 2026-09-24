@@ -3,7 +3,7 @@ Complete Gochar Predictions Engine - All 12 Rashis + All 27 Nakshatras
 """
 
 from dataclasses import dataclass
-from typing import Dict, List
+from typing import Any, Dict, List
 
 
 @dataclass
@@ -154,7 +154,7 @@ def generate_nakshatra_predictions() -> List[NakshatraPrediction]:
     ]
 
 
-def get_gochar_predictions(date_str: str) -> Dict:
+def get_gochar_predictions(date_str: str) -> dict[str, Any]:
     return {
         "date": date_str,
         "rashis": [r.__dict__ for r in generate_rashi_predictions()],

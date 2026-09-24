@@ -76,7 +76,9 @@ def get_utc_offset_hours(date_str: str, time_str: str, timezone_iana: str) -> fl
     try:
         dt_naive = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
         local_dt = dt_naive.replace(tzinfo=ZoneInfo(timezone_iana))
-        return local_dt.utcoffset().total_seconds() / 3600.0
+        # utcoffset() is Optional[timedelta]; fall back to IST (+5.5).
+        offset = local_dt.utcoffset()
+        return offset.total_seconds() / 3600.0 if offset else 5.5
     except Exception:
         # Fallback to IST (+5.5) if parsing fails
         return 5.5
@@ -89,7 +91,9 @@ def get_julian_day(date_str: str, time_str: str, timezone_iana: str) -> float:
     tz_offset_hours = get_utc_offset_hours(date_str, time_str, timezone_iana)
     dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
     utc_hours = dt.hour + (dt.minute / 60.0) + (dt.second / 3600.0) - tz_offset_hours
-    return swe.julday(dt.year, dt.month, dt.day, utc_hours)
+    # swe.julday is untyped (returns Any); pin the float boundary.
+    julian_day: float = swe.julday(dt.year, dt.month, dt.day, utc_hours)
+    return julian_day
 
 
 def calculate_varga_position(abs_deg: float) -> tuple[str, float]:

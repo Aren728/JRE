@@ -145,8 +145,9 @@ class NakshatraRelationshipService:
             lord_a_lord = planet_to_lord.get(lord_a)
             if lord_a_lord == planet_a:
                 pair = tuple(sorted([planet_a, lord_a]))
-                if pair not in checked_pairs:
-                    checked_pairs.add(pair)
+                pair_typed: tuple[str, str] = (pair[0], pair[1])
+                if pair_typed not in checked_pairs:
+                    checked_pairs.add(pair_typed)
                     edges.append(
                         NakshatraEdge(
                             source=planet_a,

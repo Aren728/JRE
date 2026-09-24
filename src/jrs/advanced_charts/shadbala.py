@@ -286,13 +286,13 @@ def compute_shadbala(
         planet_strengths[planet] = ps
 
     # Find strongest and weakest
+    strongest: PlanetStrength | None = None
+    weakest: PlanetStrength | None = None
+    avg = 0.0
     if planet_strengths:
         strongest = max(planet_strengths.values(), key=lambda x: x.total_virupas)
         weakest = min(planet_strengths.values(), key=lambda x: x.total_virupas)
         avg = sum(p.total_virupas for p in planet_strengths.values()) / len(planet_strengths)
-    else:
-        strongest = weakest = None
-        avg = 0.0
 
     return ShadbalaResult(
         planets=planet_strengths,

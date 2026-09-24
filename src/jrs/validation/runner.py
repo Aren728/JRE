@@ -555,7 +555,7 @@ class BlindValidationRunner:
         # -- Stage 2: Verification & Scoring --
         verified_packet = self._packet_store.load_and_verify(packet_path)
 
-        metric = self._protocol.evaluate_prediction_against_event(
+        metric: MetricEvaluation = self._protocol.evaluate_prediction_against_event(
             verified_packet,
             ground_truth_event,
         )

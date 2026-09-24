@@ -148,7 +148,8 @@ def _load_horoscope_registry(lang: str = "en") -> dict[str, Any]:
         path = _LOCALES_DIR / "gochar_en.json"
     try:
         with path.open(encoding="utf-8") as f:
-            return json.load(f)
+            loaded: dict[str, Any] = json.load(f)
+            return loaded
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 

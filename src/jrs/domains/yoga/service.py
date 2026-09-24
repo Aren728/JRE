@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from jrs.convergence.models import DomainAssessment, EvidenceDimensions
@@ -63,12 +64,20 @@ class YogaDomainService:
                 continue
 
             # Step 2b: Evaluate manifestation
-            evaluation = self._evaluator.evaluate_manifestation(
+            manifestation = self._evaluator.evaluate_manifestation(
                 evaluation=evaluation,
                 yoga_planets=involved_planets,
                 active_dasha_lord=active_dasha_lord,
                 transit_planet=transit_planet,
             )
+            # Legacy signature returns YogaEvaluation; narrow the bool
+            # branch of the union (mirrors the legacy-bool contract).
+            if isinstance(manifestation, bool):
+                evaluation = replace(
+                    evaluation, is_manifesting=manifestation
+                )
+            else:
+                evaluation = manifestation
 
             # Step 2c: Map outcome category
             outcome = self._evaluator.map_outcome(

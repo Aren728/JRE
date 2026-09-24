@@ -21,7 +21,7 @@ Source: BPHS Ch 6-7; Jataka Parijata Ch 2; Phaladeepika Ch 6.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Callable
 
 # ── Sign Constants ────────────────────────────────────────
 
@@ -384,7 +384,7 @@ def _d60_shashtiamsha(longitude: float) -> float:
 
 # ── Divisional Calculator Map ─────────────────────────────
 
-_DIVISION_CALCULATORS: dict[int, callable] = {
+_DIVISION_CALCULATORS: dict[int, Callable[[float], float]] = {
     2: _d2_hora,
     3: _d3_drekkana,
     4: _d4_chaturthamsha,

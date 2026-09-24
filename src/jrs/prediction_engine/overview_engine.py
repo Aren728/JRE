@@ -2,7 +2,7 @@
 Master Report Overview Engine - Generates deep, conversational psychological & karmic narratives.
 """
 
-from typing import Dict
+from typing import Any, Dict
 
 # Astrological personality databases
 LAGNA_PROFILES = {
@@ -259,7 +259,7 @@ ELEMENT_COMBINATIONS = {
 }
 
 
-def generate_overview_narrative(chart_data: Dict) -> str:
+def generate_overview_narrative(chart_data: dict[str, Any]) -> str:
     """Generates the deep, conversational overview narrative."""
 
     lagna = chart_data.get("lagna", "Virgo")
@@ -335,7 +335,7 @@ Your light is your ability to make the mystical practical, to bring heaven down 
     return narrative
 
 
-def get_mock_chart_data() -> Dict:
+def get_mock_chart_data() -> dict[str, Any]:
     """Mock data for testing."""
     return {
         "lagna": "Virgo",

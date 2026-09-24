@@ -855,10 +855,10 @@ class YogaEvaluatorService:
         kendra_set = {1, 4, 7, 10}
         trikona_set = {1, 5, 9}
         for dusthana_house in dusthana_set:
-            lord_planet = house_lords.get(dusthana_house)
-            if not isinstance(lord_planet, str):
+            dusthana_lord = house_lords.get(dusthana_house)
+            if dusthana_lord is None or not isinstance(dusthana_lord, str):
                 continue
-            lord_pdata = planets.get(lord_planet, {})
+            lord_pdata = planets.get(dusthana_lord, {})
             lord_house = lord_pdata.get("house")
             if not (isinstance(lord_house, int) and lord_house in dusthana_set):
                 continue
@@ -866,7 +866,7 @@ class YogaEvaluatorService:
             # Classical exclusion 1: Primary Kendra/Trikona lord cannot
             # form Vipareeta Raja (they form Raja Yoga instead).
             owned_houses = [
-                h for h, lord in house_lords.items() if lord == lord_planet and isinstance(h, int)
+                h for h, lord in house_lords.items() if lord == dusthana_lord and isinstance(h, int)
             ]
             owns_kendra = any(h in kendra_set for h in owned_houses)
             owns_trikona = any(h in trikona_set for h in owned_houses)
@@ -895,7 +895,7 @@ class YogaEvaluatorService:
                 "SUN": {"SIMHA"},
                 "MOON": {"KARKA"},
             }
-            if rashi in _V_OWN_SIGNS_VR.get(lord_planet, set()):
+            if rashi in _V_OWN_SIGNS_VR.get(dusthana_lord, set()):
                 continue
 
             results.append(
@@ -904,7 +904,7 @@ class YogaEvaluatorService:
                     status=YogaStatus.FORMED,
                 )
             )
-            yoga_involved_planets.append([lord_planet])
+            yoga_involved_planets.append([dusthana_lord])
             break
 
         # ── Dhana Yoga ──

@@ -1,4 +1,11 @@
-def generate_karmic_blueprint(chart_data: dict) -> str:
+"""Karmic blueprint report generation (JRS reporting surface)."""
+
+from __future__ import annotations
+
+from typing import Any
+
+
+def generate_karmic_blueprint(chart_data: dict[str, Any]) -> str:
     lagna = chart_data.get("lagna", "Unknown")
     moon_sign = chart_data.get("moon_sign", "Unknown")
     moon_nakshatra = chart_data.get("moon_nakshatra", "Unknown")

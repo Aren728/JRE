@@ -279,7 +279,7 @@ class VimshottariDashaEngine:
         Returns:
             DashaMultiplierResult with multiplier and match details.
         """
-        upper_planets = {p.upper() for p in yoga_planets}
+        upper_planets = frozenset(p.upper() for p in yoga_planets)
 
         # ── Tier 1: Direct yoga planet match (strongest) ──
         if hierarchy.md_lord in upper_planets:

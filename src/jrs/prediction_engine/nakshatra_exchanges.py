@@ -519,9 +519,10 @@ def detect_nakshatra_exchanges(
 
             if a_lord == planet_b.upper() and b_lord == planet_a.upper():
                 pair = tuple(sorted([planet_a, planet_b]))
-                if pair in seen_pairs:
+                pair_typed: tuple[str, str] = (pair[0], pair[1])
+                if pair_typed in seen_pairs:
                     continue
-                seen_pairs.add(pair)
+                seen_pairs.add(pair_typed)
 
                 # Look up reading
                 reading_key = (planet_a, planet_b)

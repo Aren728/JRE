@@ -47,7 +47,7 @@ class YogaEvidenceService:
                 active_dasha_lord=dasha_lord,
             )
 
-            if not getattr(activated, "is_manifesting", False):
+            if isinstance(activated, bool) or not getattr(activated, "is_manifesting", False):
                 continue
 
             # Map outcome using the legacy signature which checks planets
