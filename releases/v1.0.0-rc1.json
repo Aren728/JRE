@@ -1,0 +1,44 @@
+{
+  "api": {
+    "openapi_3_1_sha256": "19e07bec1e87f2a835d4bb9209d6106fb56b629db3770f3a7dde2a2b90e2a6f4"
+  },
+  "artifacts": {
+    "benchmark_seal_sha256": "8e8b831475f4c4f607b681b00dd9f560c357e2cf4a9f1b9cd752dfeb53ed0590",
+    "golden_states": {
+      "aggregate_sha256": "a4b3dbc080c4b9b27e1b56e54ffd61635e75b8b999a824c6ee67e7a568a742c8",
+      "manifest_count": 50
+    },
+    "requirements_sha256": "b2dcd51906a4d9f41ef77d8d0fa0719b47ac24a345d85425e700b63e9da11c27"
+  },
+  "database": {
+    "migrations": "alembic",
+    "schema_version": "aef04248244b"
+  },
+  "engine_version": "v1.0.0-beta",
+  "environment": {
+    "os": "Linux 7.0.0-34-generic x86_64",
+    "python": "3.12.3",
+    "swisseph": {
+      "build_sha256": "2b3234b6678dfa5666c98e898c16ee7e8c6c8457100e293c24ce679cd4387764",
+      "module": "swisseph",
+      "version": "2.10.03"
+    }
+  },
+  "frontend": {
+    "files_hashed": 91,
+    "note": "deterministic source-tree seal; the Next.js build output embeds non-deterministic ids by design",
+    "source_content_sha256": "2abd0b81229cbad72bfc93c64a3b9bccb922ca085f0e5e38900c16caf3532c7b"
+  },
+  "git": {
+    "commit": "b6a37db78e9ebbe1193bc1a1b4b01d3104efabb4",
+    "worktree_clean": false
+  },
+  "release_id": "v1.0.0-rc1",
+  "reproducibility_audit": {
+    "target": "Stage 1-9 golden hashes + bit-for-bit benchmark 71/31/18 @ 0.7435",
+    "tool": "scripts/audit_clean_reproduce.py"
+  },
+  "schema_version": "1.0.0",
+  "sealed_by": "scripts/seal_release.py",
+  "status": "SEALED"
+}
