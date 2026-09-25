@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Any
 
 from jrs.calculations.ashtakavarga import ashta_scoring_enabled
 from jrs.calculations.gochara import gochara_scoring_enabled
+from jrs.calculations.varga import varga_scoring_enabled
 
 if TYPE_CHECKING:
     from jyotish.service import JyotishService
@@ -442,6 +443,22 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
         )
         facts["gochara"] = gochara_to_dict(
             compute_gochara(facts, transit_positions, epoch=GOCHARA_TRANSIT_EPOCH)
+        )
+
+    # ── Phase 5D: Multi-varga facts (feature-flagged) ──
+    # Injected only when varga_scoring_enabled() is on; evaluated from
+    # the same natal longitudes so the report is deterministic.
+    if varga_scoring_enabled():
+        from jrs.calculations.varga import (
+            compute_multi_varga,
+            multi_varga_to_dict,
+        )
+
+        facts["multi_varga"] = multi_varga_to_dict(
+            compute_multi_varga(
+                facts,
+                lagna_longitude=float(chart.lagna.ascendant_longitude_deg),
+            )
         )
 
     return facts

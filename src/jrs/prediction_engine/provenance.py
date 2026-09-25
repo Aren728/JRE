@@ -563,6 +563,113 @@ def build_provenance_chain(
                     ),
                 )
 
+    # Phase 5D multi-varga fact + relation nodes (feature-flag gated):
+    # emitted only when jre_facts carries the varga report (i.e. the
+    # varga_scoring_enabled flag was on at fact-extraction time), so
+    # flag-off evidence graphs stay byte-identical to their manifests.
+    varga_report = jre_facts.get("multi_varga")
+    if isinstance(varga_report, dict):
+        varga_divs = ("D1", "D9", "D10", "D60")
+        varga_node_ids: dict[str, dict[str, str]] = {}
+        varga_idx = 0
+        for vbody, vplacements in varga_report.get("placements", {}).items():
+            varga_node_ids[vbody] = {}
+            for vdiv in varga_divs:
+                vplace = vplacements.get(vdiv, {})
+                vfact_id = f"FACT-VARGA-{vdiv}-{vbody}"
+                vnode_id = f"FV-{varga_idx}-{_deterministic_id(vfact_id)}"
+                varga_idx += 1
+                varga_node_ids[vbody][vdiv] = vnode_id
+                evidence_nodes.append(
+                    DAGNode(
+                        node_id=vnode_id,
+                        node_type="FACT",
+                        labels=("FACT", "VARGA"),
+                        payload={
+                            "fact_id": vfact_id,
+                            "kind": "VARGA",
+                            "body": vbody,
+                            "division": vdiv,
+                            "sign": vplace.get("sign"),
+                            "division_part": vplace.get("division_part"),
+                            "version": str(varga_report.get("version", "")),
+                        },
+                        children=(),
+                        parent=None,
+                    )
+                )
+
+        # Vargottama fact nodes + REL-VARGA-SUPPORTS edges D9 -> D1.
+        for vbody, is_vargottama in varga_report.get("vargottama", {}).items():
+            d1_node = varga_node_ids.get(vbody, {}).get("D1")
+            d9_node = varga_node_ids.get(vbody, {}).get("D9")
+            if d1_node is None or d9_node is None:
+                continue
+            if is_vargottama:
+                vfact_id = f"FACT-VARGA-VARGOTTAMA-{vbody}"
+                evidence_nodes.append(
+                    DAGNode(
+                        node_id=f"FV-{varga_idx}-{_deterministic_id(vfact_id)}",
+                        node_type="FACT",
+                        labels=("FACT", "VARGA", "VARGOTTAMA"),
+                        payload={
+                            "fact_id": vfact_id,
+                            "kind": "VARGA",
+                            "body": vbody,
+                            "vargottama": True,
+                        },
+                        children=(),
+                        parent=None,
+                    )
+                )
+                varga_idx += 1
+            # Cross-varga relationship: D9 placement vs D1 dignity.
+            vnav = varga_report.get("navamsha_dignity", {}).get(vbody)
+            d10_dig = varga_report.get("d10_dignity", {}).get(vbody)
+            supporting = is_vargottama or vnav in ("EXALTED", "OWN") or d10_dig in (
+                "EXALTED",
+                "OWN",
+            )
+            evidence_edges.append(
+                DAGEdge(
+                    edge_id=(
+                        f"REL-VARGA-{vbody}-"
+                        f"{_deterministic_id(d9_node)}"
+                    ),
+                    source=d9_node,
+                    target=d1_node,
+                    relationship=(
+                        "REL-VARGA-SUPPORTS" if supporting else "REL-VARGA-DAMPENS"
+                    ),
+                    metadata={
+                        "vargottama": bool(is_vargottama),
+                        "navamsha_dignity": vnav,
+                        "d10_dignity": d10_dig,
+                    },
+                )
+            )
+
+        # D10 career-anchor fact node.
+        career = varga_report.get("career_anchor")
+        if isinstance(career, dict) and career.get("planet"):
+            cfact_id = "FACT-VARGA-D10-CAREER-ANCHOR"
+            evidence_nodes.append(
+                DAGNode(
+                    node_id=f"FV-{varga_idx}-{_deterministic_id(cfact_id)}",
+                    node_type="FACT",
+                    labels=("FACT", "VARGA", "CAREER_ANCHOR"),
+                    payload={
+                        "fact_id": cfact_id,
+                        "kind": "VARGA",
+                        "planet": career.get("planet"),
+                        "dignity": career.get("dignity"),
+                        "strength": career.get("strength"),
+                    },
+                    children=(),
+                    parent=None,
+                )
+            )
+
     # ── Temporal node (dasha/transit) ───────────────────────────────
     if any(k in jre_facts for k in ("dasha_periods", "transit_houses", "moon_nakshatra")):
         temporal_node = DAGNode(

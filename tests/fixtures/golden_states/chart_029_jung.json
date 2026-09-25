@@ -28,6 +28,10 @@
       "stage_id": "gochara"
     },
     {
+      "payload_hash": "ba9732a4a78598035e4b0623e32e9e200ced3624d2f8be92c4bd8b57559d06c2",
+      "stage_id": "multi_varga"
+    },
+    {
       "payload_hash": "ec8452d54cd876d6851a9eb60a53d90dfc24aec5071477d6b94f936e8059e85d",
       "stage_id": "evidence_graph"
     }

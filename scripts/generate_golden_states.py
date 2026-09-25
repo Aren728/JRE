@@ -69,6 +69,10 @@ from jrs.calculations.gochara import (
     compute_transit_positions,
     gochara_to_dict,
 )
+from jrs.calculations.varga import (
+    compute_multi_varga,
+    multi_varga_to_dict,
+)
 from jrs.engine.dasha import calculate_vimshottari_dasha
 from jrs.prediction_engine.provenance import EvidenceGraphService
 from jrs.validation.golden_state import (
@@ -190,6 +194,13 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         compute_gochara(facts, transit_positions, epoch=GOCHARA_TRANSIT_EPOCH)
     )
 
+    # Phase 5D: multi-varga checkpoint (D1/D9/D10/D60 placements,
+    # vargottama, navamsha dignity, D10 career anchor). Flag-independent,
+    # same discipline as the ashtakavarga and gochara stages.
+    varga_report = multi_varga_to_dict(
+        compute_multi_varga(facts, lagna_longitude=chart.lagna.ascendant_longitude_deg)
+    )
+
     # Phase 4 (JRS-092): evidence-graph provenance stage with DAG
     # node/edge count assertions folded into the golden manifest.
     graph = EvidenceGraphService().build_graph(jre_facts=facts, yoga_evals=yoga_evals)
@@ -203,6 +214,7 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         "yogas": yoga_payload,
         "ashtakavarga": ashta_report,
         "gochara": gochara_report,
+        "multi_varga": varga_report,
         "evidence_graph": graph_dict,
     }
 

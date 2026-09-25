@@ -219,6 +219,7 @@ def test_canonical_stage_ids_are_ordered() -> None:
         "yogas",
         "ashtakavarga",
         "gochara",
+        "multi_varga",
         "report",
     )
 

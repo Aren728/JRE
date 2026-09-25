@@ -1,0 +1,622 @@
+{
+  "expected": {
+    "d10_bphs_example_sign": "MAKARA",
+    "dignity_samples": {
+      "JUPITER_MAKARA": "DEBILITATED",
+      "MOON_VRISHABHA": "EXALTED",
+      "SATURN_TULA": "EXALTED",
+      "SUN_MESHA": "EXALTED",
+      "VENUS_MEENA": "EXALTED"
+    },
+    "report": {
+      "career_anchor": {
+        "dignity": "NEUTRAL",
+        "planet": "SUN",
+        "scores": {
+          "SATURN": 0.5,
+          "SUN": 0.5
+        },
+        "strength": 0.5
+      },
+      "d10_dignity": {
+        "JUPITER": "OWN",
+        "MARS": "NEUTRAL",
+        "MERCURY": "NEUTRAL",
+        "MOON": "NEUTRAL",
+        "SATURN": "NEUTRAL",
+        "SUN": "NEUTRAL",
+        "VENUS": "NEUTRAL"
+      },
+      "fact_ids": [
+        "FACT-VARGA-D1-SUN",
+        "FACT-VARGA-D9-SUN",
+        "FACT-VARGA-D10-SUN",
+        "FACT-VARGA-D60-SUN",
+        "FACT-VARGA-D1-MOON",
+        "FACT-VARGA-D9-MOON",
+        "FACT-VARGA-D10-MOON",
+        "FACT-VARGA-D60-MOON",
+        "FACT-VARGA-D1-MARS",
+        "FACT-VARGA-D9-MARS",
+        "FACT-VARGA-D10-MARS",
+        "FACT-VARGA-D60-MARS",
+        "FACT-VARGA-D1-MERCURY",
+        "FACT-VARGA-D9-MERCURY",
+        "FACT-VARGA-D10-MERCURY",
+        "FACT-VARGA-D60-MERCURY",
+        "FACT-VARGA-D1-JUPITER",
+        "FACT-VARGA-D9-JUPITER",
+        "FACT-VARGA-D10-JUPITER",
+        "FACT-VARGA-D60-JUPITER",
+        "FACT-VARGA-D1-VENUS",
+        "FACT-VARGA-D9-VENUS",
+        "FACT-VARGA-D10-VENUS",
+        "FACT-VARGA-D60-VENUS",
+        "FACT-VARGA-D1-SATURN",
+        "FACT-VARGA-D9-SATURN",
+        "FACT-VARGA-D10-SATURN",
+        "FACT-VARGA-D60-SATURN",
+        "FACT-VARGA-D1-LAGNA",
+        "FACT-VARGA-D9-LAGNA",
+        "FACT-VARGA-D10-LAGNA",
+        "FACT-VARGA-D60-LAGNA",
+        "FACT-VARGA-D10-CAREER-ANCHOR"
+      ],
+      "lagna_evaluated": true,
+      "navamsha_dignity": {
+        "JUPITER": "EXALTED",
+        "MARS": "DEBILITATED",
+        "MERCURY": "NEUTRAL",
+        "MOON": "NEUTRAL",
+        "SATURN": "OWN",
+        "SUN": "NEUTRAL",
+        "VENUS": "NEUTRAL"
+      },
+      "placements": {
+        "JUPITER": {
+          "D1": {
+            "degree_in_division": 5.307734,
+            "division_part": 1,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          },
+          "D10": {
+            "degree_in_division": 23.077339,
+            "division_part": 2,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D60": {
+            "degree_in_division": 18.464035,
+            "division_part": 11,
+            "sign": "DHANUSHA",
+            "sign_index": 8
+          },
+          "D9": {
+            "degree_in_division": 17.769605,
+            "division_part": 2,
+            "sign": "KARKA",
+            "sign_index": 3
+          }
+        },
+        "LAGNA": {
+          "D1": {
+            "degree_in_division": 16.649874,
+            "division_part": 1,
+            "sign": "MITHUNA",
+            "sign_index": 2
+          },
+          "D10": {
+            "degree_in_division": 16.498736,
+            "division_part": 6,
+            "sign": "VRISHCHIKA",
+            "sign_index": 7
+          },
+          "D60": {
+            "degree_in_division": 8.992414,
+            "division_part": 34,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D9": {
+            "degree_in_division": 29.848862,
+            "division_part": 5,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          }
+        },
+        "MARS": {
+          "D1": {
+            "degree_in_division": 4.733168,
+            "division_part": 1,
+            "sign": "MAKARA",
+            "sign_index": 9
+          },
+          "D10": {
+            "degree_in_division": 17.331682,
+            "division_part": 2,
+            "sign": "TULA",
+            "sign_index": 6
+          },
+          "D60": {
+            "degree_in_division": 13.990092,
+            "division_part": 10,
+            "sign": "TULA",
+            "sign_index": 6
+          },
+          "D9": {
+            "degree_in_division": 12.598514,
+            "division_part": 2,
+            "sign": "KARKA",
+            "sign_index": 3
+          }
+        },
+        "MERCURY": {
+          "D1": {
+            "degree_in_division": 10.951391,
+            "division_part": 1,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D10": {
+            "degree_in_division": 19.513907,
+            "division_part": 4,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          },
+          "D60": {
+            "degree_in_division": 27.083439,
+            "division_part": 22,
+            "sign": "DHANUSHA",
+            "sign_index": 8
+          },
+          "D9": {
+            "degree_in_division": 8.562516,
+            "division_part": 4,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          }
+        },
+        "MOON": {
+          "D1": {
+            "degree_in_division": 22.221487,
+            "division_part": 1,
+            "sign": "VRISHCHIKA",
+            "sign_index": 7
+          },
+          "D10": {
+            "degree_in_division": 12.214871,
+            "division_part": 8,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          },
+          "D60": {
+            "degree_in_division": 13.289227,
+            "division_part": 45,
+            "sign": "KARKA",
+            "sign_index": 3
+          },
+          "D9": {
+            "degree_in_division": 19.993384,
+            "division_part": 7,
+            "sign": "MAKARA",
+            "sign_index": 9
+          }
+        },
+        "SATURN": {
+          "D1": {
+            "degree_in_division": 12.014433,
+            "division_part": 1,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D10": {
+            "degree_in_division": 0.14433,
+            "division_part": 5,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D60": {
+            "degree_in_division": 0.865978,
+            "division_part": 25,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D9": {
+            "degree_in_division": 18.129897,
+            "division_part": 4,
+            "sign": "KUMBHA",
+            "sign_index": 10
+          }
+        },
+        "SUN": {
+          "D1": {
+            "degree_in_division": 1.324193,
+            "division_part": 1,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D10": {
+            "degree_in_division": 13.241935,
+            "division_part": 1,
+            "sign": "VRISHCHIKA",
+            "sign_index": 7
+          },
+          "D60": {
+            "degree_in_division": 19.451607,
+            "division_part": 3,
+            "sign": "VRISHABHA",
+            "sign_index": 1
+          },
+          "D9": {
+            "degree_in_division": 11.917741,
+            "division_part": 1,
+            "sign": "VRISHCHIKA",
+            "sign_index": 7
+          }
+        },
+        "VENUS": {
+          "D1": {
+            "degree_in_division": 24.79925,
+            "division_part": 1,
+            "sign": "MEENA",
+            "sign_index": 11
+          },
+          "D10": {
+            "degree_in_division": 7.992501,
+            "division_part": 9,
+            "sign": "KARKA",
+            "sign_index": 3
+          },
+          "D60": {
+            "degree_in_division": 17.955004,
+            "division_part": 50,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 13.193251,
+            "division_part": 8,
+            "sign": "MITHUNA",
+            "sign_index": 2
+          }
+        }
+      },
+      "vargottama": {
+        "JUPITER": false,
+        "LAGNA": false,
+        "MARS": false,
+        "MERCURY": false,
+        "MOON": false,
+        "SATURN": false,
+        "SUN": false,
+        "VENUS": false
+      },
+      "version": "1.0.0"
+    },
+    "vargottama_report": {
+      "career_anchor": {
+        "dignity": "EXALTED",
+        "planet": "SUN",
+        "scores": {
+          "SATURN": 0.25,
+          "SUN": 1.0
+        },
+        "strength": 1.0
+      },
+      "d10_dignity": {
+        "JUPITER": "NEUTRAL",
+        "MARS": "OWN",
+        "MERCURY": "NEUTRAL",
+        "MOON": "NEUTRAL",
+        "SATURN": "DEBILITATED",
+        "SUN": "EXALTED",
+        "VENUS": "NEUTRAL"
+      },
+      "fact_ids": [
+        "FACT-VARGA-D1-SUN",
+        "FACT-VARGA-D9-SUN",
+        "FACT-VARGA-D10-SUN",
+        "FACT-VARGA-D60-SUN",
+        "FACT-VARGA-D1-MOON",
+        "FACT-VARGA-D9-MOON",
+        "FACT-VARGA-D10-MOON",
+        "FACT-VARGA-D60-MOON",
+        "FACT-VARGA-D1-MARS",
+        "FACT-VARGA-D9-MARS",
+        "FACT-VARGA-D10-MARS",
+        "FACT-VARGA-D60-MARS",
+        "FACT-VARGA-D1-MERCURY",
+        "FACT-VARGA-D9-MERCURY",
+        "FACT-VARGA-D10-MERCURY",
+        "FACT-VARGA-D60-MERCURY",
+        "FACT-VARGA-D1-JUPITER",
+        "FACT-VARGA-D9-JUPITER",
+        "FACT-VARGA-D10-JUPITER",
+        "FACT-VARGA-D60-JUPITER",
+        "FACT-VARGA-D1-VENUS",
+        "FACT-VARGA-D9-VENUS",
+        "FACT-VARGA-D10-VENUS",
+        "FACT-VARGA-D60-VENUS",
+        "FACT-VARGA-D1-SATURN",
+        "FACT-VARGA-D9-SATURN",
+        "FACT-VARGA-D10-SATURN",
+        "FACT-VARGA-D60-SATURN",
+        "FACT-VARGA-D1-LAGNA",
+        "FACT-VARGA-D9-LAGNA",
+        "FACT-VARGA-D10-LAGNA",
+        "FACT-VARGA-D60-LAGNA",
+        "FACT-VARGA-VARGOTTAMA-SUN",
+        "FACT-VARGA-VARGOTTAMA-MOON",
+        "FACT-VARGA-VARGOTTAMA-MARS",
+        "FACT-VARGA-VARGOTTAMA-MERCURY",
+        "FACT-VARGA-VARGOTTAMA-JUPITER",
+        "FACT-VARGA-VARGOTTAMA-VENUS",
+        "FACT-VARGA-VARGOTTAMA-SATURN",
+        "FACT-VARGA-VARGOTTAMA-LAGNA",
+        "FACT-VARGA-D10-CAREER-ANCHOR"
+      ],
+      "lagna_evaluated": true,
+      "navamsha_dignity": {
+        "JUPITER": "NEUTRAL",
+        "MARS": "OWN",
+        "MERCURY": "NEUTRAL",
+        "MOON": "NEUTRAL",
+        "SATURN": "DEBILITATED",
+        "SUN": "EXALTED",
+        "VENUS": "NEUTRAL"
+      },
+      "placements": {
+        "JUPITER": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "LAGNA": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "MARS": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "MERCURY": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "MOON": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "SATURN": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "SUN": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        },
+        "VENUS": {
+          "D1": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D10": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D60": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          },
+          "D9": {
+            "degree_in_division": 0.0,
+            "division_part": 1,
+            "sign": "MESHA",
+            "sign_index": 0
+          }
+        }
+      },
+      "vargottama": {
+        "JUPITER": true,
+        "LAGNA": true,
+        "MARS": true,
+        "MERCURY": true,
+        "MOON": true,
+        "SATURN": true,
+        "SUN": true,
+        "VENUS": true
+      },
+      "version": "1.0.0"
+    }
+  },
+  "input": {
+    "facts": {
+      "planets": {
+        "JUPITER": {
+          "longitude": 305.3077339155739
+        },
+        "MARS": {
+          "longitude": 274.7331682026066
+        },
+        "MERCURY": {
+          "longitude": 340.95139065805967
+        },
+        "MOON": {
+          "longitude": 232.22148712046456
+        },
+        "SATURN": {
+          "longitude": 342.01443295977805
+        },
+        "SUN": {
+          "longitude": 331.32419345824417
+        },
+        "VENUS": {
+          "longitude": 354.79925006625405
+        }
+      }
+    },
+    "lagna_longitude": 76.64987356635059,
+    "vargottama_longitude": 0.0
+  },
+  "schema": "jrs.calculations.varga/1.0.0"
+}
