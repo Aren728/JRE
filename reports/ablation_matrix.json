@@ -1,0 +1,271 @@
+{
+  "analysis_config": {
+    "alpha": 0.05,
+    "n_charts": 40,
+    "paired_event_pool": "120 scored known events (F3 protocol)",
+    "test": "exact binomial McNemar (two-sided, paired events)"
+  },
+  "analysis_id": "JRE-ABLATION-001",
+  "baseline_match": true,
+  "companion_match": true,
+  "experiments": [
+    {
+      "counts_delta": {
+        "fn": 0,
+        "fp": 0,
+        "tp": 0
+      },
+      "experiment": "A1",
+      "experiment_id": "A1",
+      "f1_ablated": 0.7564766839378239,
+      "f1_delta": 0.0,
+      "f1_full": 0.7564766839378239,
+      "gate_breach": false,
+      "hypothesis": "Removing the Shodhita SAV factor isolates its contribution to prediction confidence ordering and TQS-basis selection.",
+      "mcnemar": {
+        "b_regressed": 0,
+        "c_improved": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "significant_at_alpha": false,
+        "statistic": 0.0
+      },
+      "mechanism_removed": "Shodhita SAV TQS factor (ashtakavarga_scoring)",
+      "observed_ablated": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "observed_full": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "paired_events": 120,
+      "title": "Ashtakavarga Isolation",
+      "verdict": "NEUTRAL",
+      "within_tolerance_of_baseline": false
+    },
+    {
+      "counts_delta": {
+        "fn": 0,
+        "fp": 0,
+        "tp": 0
+      },
+      "experiment": "A2",
+      "experiment_id": "A2",
+      "f1_ablated": 0.7564766839378239,
+      "f1_delta": 0.0,
+      "f1_full": 0.7564766839378239,
+      "gate_breach": false,
+      "hypothesis": "Removing the transit factor measures classical gochara dampening/support multipliers and vedha obstruction.",
+      "mcnemar": {
+        "b_regressed": 0,
+        "c_improved": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "significant_at_alpha": false,
+        "statistic": 0.0
+      },
+      "mechanism_removed": "Gochara TQS bands + vedha dampening (gochara_scoring)",
+      "observed_ablated": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "observed_full": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "paired_events": 120,
+      "title": "Gochara & Vedha Isolation",
+      "verdict": "NEUTRAL",
+      "within_tolerance_of_baseline": false
+    },
+    {
+      "counts_delta": {
+        "fn": 3,
+        "fp": -1,
+        "tp": -2
+      },
+      "experiment": "A3",
+      "experiment_id": "A3",
+      "f1_ablated": 0.743455497382199,
+      "f1_delta": 0.013021,
+      "f1_full": 0.7564766839378239,
+      "gate_breach": false,
+      "hypothesis": "Removing the D9/D10 cross-varga rescue collapses to the sealed baseline behaviour (0.7435), quantifying the +0.0130 F1 lift attributable to cross-evidence.",
+      "mcnemar": {
+        "b_regressed": 2,
+        "c_improved": 0,
+        "n_discordant": 2,
+        "p_value": 0.5,
+        "significant_at_alpha": false,
+        "statistic": 0
+      },
+      "mechanism_removed": "Multi-varga D9/D10 cross-evidence rescue (varga_scoring)",
+      "observed_ablated": {
+        "fn": 18,
+        "fp": 31,
+        "tp": 71
+      },
+      "observed_full": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "paired_events": 120,
+      "title": "Multi-Varga Rescue Isolation",
+      "verdict": "INSIGNIFICANT_POSITIVE",
+      "within_tolerance_of_baseline": true
+    },
+    {
+      "counts_delta": {
+        "fn": 0,
+        "fp": 0,
+        "tp": 0
+      },
+      "experiment": "A4",
+      "experiment_id": "A4",
+      "f1_ablated": 0.7564766839378239,
+      "f1_delta": 0.0,
+      "f1_full": 0.7564766839378239,
+      "gate_breach": false,
+      "hypothesis": "Removing the dasha gate measures FP shifts when transit activations are un-gated (confidence demotion disappears).",
+      "mcnemar": {
+        "b_regressed": 0,
+        "c_improved": 0,
+        "n_discordant": 0,
+        "p_value": 1.0,
+        "significant_at_alpha": false,
+        "statistic": 0.0
+      },
+      "mechanism_removed": "Dasha permissive gate (dasha_transit_scoring)",
+      "observed_ablated": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "observed_full": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "paired_events": 120,
+      "title": "Dasha Permissive Gate Isolation",
+      "verdict": "NEUTRAL",
+      "within_tolerance_of_baseline": false
+    }
+  ],
+  "runs": {
+    "ablations": [
+      {
+        "flags": {
+          "JRS_ASHTA_SCORING": false,
+          "JRS_DASHA_TRANSIT_SCORING": true,
+          "JRS_GOCHARA_SCORING": true,
+          "JRS_VARGA_SCORING": true
+        },
+        "micro_f1": 0.7564766839378239,
+        "observed": {
+          "fn": 15,
+          "fp": 32,
+          "tp": 73
+        },
+        "scenario": "A1"
+      },
+      {
+        "flags": {
+          "JRS_ASHTA_SCORING": true,
+          "JRS_DASHA_TRANSIT_SCORING": true,
+          "JRS_GOCHARA_SCORING": false,
+          "JRS_VARGA_SCORING": true
+        },
+        "micro_f1": 0.7564766839378239,
+        "observed": {
+          "fn": 15,
+          "fp": 32,
+          "tp": 73
+        },
+        "scenario": "A2"
+      },
+      {
+        "flags": {
+          "JRS_ASHTA_SCORING": true,
+          "JRS_DASHA_TRANSIT_SCORING": true,
+          "JRS_GOCHARA_SCORING": true,
+          "JRS_VARGA_SCORING": false
+        },
+        "micro_f1": 0.743455497382199,
+        "observed": {
+          "fn": 18,
+          "fp": 31,
+          "tp": 71
+        },
+        "scenario": "A3"
+      },
+      {
+        "flags": {
+          "JRS_ASHTA_SCORING": true,
+          "JRS_DASHA_TRANSIT_SCORING": false,
+          "JRS_GOCHARA_SCORING": true,
+          "JRS_VARGA_SCORING": true
+        },
+        "micro_f1": 0.7564766839378239,
+        "observed": {
+          "fn": 15,
+          "fp": 32,
+          "tp": 73
+        },
+        "scenario": "A4"
+      }
+    ],
+    "baseline": {
+      "flags": {
+        "JRS_ASHTA_SCORING": false,
+        "JRS_DASHA_TRANSIT_SCORING": false,
+        "JRS_GOCHARA_SCORING": false,
+        "JRS_VARGA_SCORING": false
+      },
+      "micro_f1": 0.743455497382199,
+      "observed": {
+        "fn": 18,
+        "fp": 31,
+        "tp": 71
+      },
+      "scenario": "BASELINE"
+    },
+    "full": {
+      "flags": {
+        "JRS_ASHTA_SCORING": true,
+        "JRS_DASHA_TRANSIT_SCORING": true,
+        "JRS_GOCHARA_SCORING": true,
+        "JRS_VARGA_SCORING": true
+      },
+      "micro_f1": 0.7564766839378239,
+      "observed": {
+        "fn": 15,
+        "fp": 32,
+        "tp": 73
+      },
+      "scenario": "FULL"
+    }
+  },
+  "schema_version": "1.0.0",
+  "sealed_reference": {
+    "benchmark_id": "JRE-BENCH-001",
+    "companion": {
+      "fn": 15,
+      "fp": 32,
+      "micro_f1": 0.7565,
+      "tp": 73
+    },
+    "gating_baseline": {
+      "fn": 18,
+      "fp": 31,
+      "micro_f1": 0.7435,
+      "tp": 71
+    }
+  }
+}
