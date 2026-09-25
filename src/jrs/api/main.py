@@ -157,6 +157,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ── Security & operational hardening (Phase 9E) ───────────────────────────
+#: Maximum accepted request body (bytes). Memory-exhaustion defense:
+#: oversized payloads are rejected with 413 before reaching any handler.
+MAX_REQUEST_BODY_BYTES = 1_048_576  # 1 MiB — evaluation payloads stay far below
+
+
+@app.middleware("http")
+async def request_body_guard_middleware(
+    request: Request, call_next: Callable[[Request], Any]
+) -> Any:
+    """Reject oversized request bodies with 413 (memory-exhaustion bound)."""
+    content_length = request.headers.get("content-length")
+    if content_length and content_length.isdigit():
+        if int(content_length) > MAX_REQUEST_BODY_BYTES:
+            return Response(
+                status_code=413,
+                content='{"detail": "Request body exceeds 1 MiB limit"}',
+                media_type="application/json",
+            )
+    return await call_next(request)
+
 # Module-level logger
 _logger = get_logger("jre.api.main")
 
@@ -613,6 +634,9 @@ async def evaluate_fixture(
         fixture = load_fixture(input_data.fixture_id)
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    except ValueError as e:
+        # Phase 9E: fixture-id validation (path-traversal defense).
+        raise HTTPException(status_code=400, detail=str(e))
 
     subject = fixture.get("_meta", {}).get("subject", input_data.fixture_id)
 
@@ -620,6 +644,12 @@ async def evaluate_fixture(
         # Offloaded: ephemeris + fact extraction are blocking (Phase 6).
         chart = await _offload(compute_chart_from_fixture, fixture)
         jre_facts = await _offload(build_jre_facts, chart)
+    except TimeoutError as e:
+        # Phase 9E: bounded offload expired — map to gateway timeout.
+        raise HTTPException(status_code=504, detail="Computation timed out")
+    except ValueError as e:
+        # Phase 9E: fixture-id validation (path-traversal defense).
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(
             status_code=500,
@@ -848,6 +878,9 @@ async def generate_report(
         fixture = load_fixture(input_data.fixture_id)
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    except ValueError as e:
+        # Phase 9E: fixture-id validation (path-traversal defense).
+        raise HTTPException(status_code=400, detail=str(e))
 
     subject = fixture.get("_meta", {}).get("subject", input_data.fixture_id)
 
@@ -855,6 +888,12 @@ async def generate_report(
         # Offloaded: ephemeris + fact extraction are blocking (Phase 6).
         chart = await _offload(compute_chart_from_fixture, fixture)
         jre_facts = await _offload(build_jre_facts, chart)
+    except TimeoutError as e:
+        # Phase 9E: bounded offload expired — map to gateway timeout.
+        raise HTTPException(status_code=504, detail="Computation timed out")
+    except ValueError as e:
+        # Phase 9E: fixture-id validation (path-traversal defense).
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(
             status_code=500,

@@ -7,6 +7,7 @@ to avoid re-initializing the heavy pipeline on every request.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from functools import lru_cache
 from pathlib import Path
@@ -60,6 +61,9 @@ def get_jyotish_service() -> JyotishService:
 # ── Fixture Loading ─────────────────────────────────────────────────────────
 
 
+_FIXTURE_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*(?:\.json)?$")
+
+
 @lru_cache(maxsize=64)
 def load_fixture(fixture_id: str) -> dict[str, Any]:
     """Load a chart fixture by ID (cached).
@@ -73,8 +77,22 @@ def load_fixture(fixture_id: str) -> dict[str, Any]:
 
     Raises:
         FileNotFoundError: If fixture file doesn't exist.
-        ValueError: If fixture JSON is malformed.
+        ValueError: If fixture JSON is malformed, or if the fixture id
+            is not a bare identifier (path-traversal defense: ids
+            containing ``/``, ``\\``, ``..``, or any non
+            ``[A-Za-z0-9_-]`` character are rejected before the
+            filesystem is ever touched).
     """
+    # Path-traversal defense (Phase 9E): ids must be bare identifiers,
+    # optionally carrying a literal ".json" suffix (legacy contract).
+    # Rejects "/", "\\", "..", and any other character outside
+    # [A-Za-z0-9_-] before the filesystem is ever touched.
+    if not _FIXTURE_ID_RE.match(fixture_id):
+        raise ValueError(
+            f"Invalid fixture id: {fixture_id!r} (must match "
+            f"{_FIXTURE_ID_RE.pattern})"
+        )
+
     # Normalize: strip .json if provided
     if fixture_id.endswith(".json"):
         fixture_id = fixture_id[:-5]
