@@ -22,7 +22,8 @@ from jrs.api.dependencies import (
     load_fixture,
 )
 from jrs.api.offload import offload
-from jrs.api.schemas import ENGINE_VERSION, EvidenceGraphResponse
+from jrs.api.schemas import ENGINE_VERSION, EvidenceGraphResponse, LineageResponse
+from jrs.prediction_engine.lineage import trace_prediction
 from jrs.prediction_engine.provenance import (
     EvidenceGraphService,
     result_to_dict,
@@ -48,6 +49,24 @@ def _build_graph_payload(fixture_id: str, include_payloads: bool) -> dict[str, A
         for node in payload["nodes"]:
             node["payload"] = {}
     return payload
+
+
+def _build_lineage_payload(fixture_id: str) -> dict[str, Any]:
+    """Build the full prediction lineage for one fixture (blocking)."""
+    fixture = load_fixture(fixture_id)
+    chart = compute_chart_from_fixture(fixture)
+    facts = build_jre_facts(chart)
+    yoga_evals = YogaEvaluatorService().evaluate_classical_yogas(facts)
+    graph = EvidenceGraphService(prediction_id=f"P-{fixture_id}").build_graph(
+        jre_facts=facts,
+        yoga_evals=yoga_evals,
+    )
+    return trace_prediction(
+        prediction_id=f"P-{fixture_id}",
+        jre_facts=facts,
+        yoga_evals=yoga_evals,
+        graph_dict=graph.to_dict(),
+    )
 
 
 @router.get("/graph/{fixture_id}", response_model=EvidenceGraphResponse)
@@ -82,5 +101,34 @@ async def get_evidence_graph(
         edge_count=len(payload["edges"]),
         nodes=payload["nodes"],
         edges=payload["edges"],
+        engine_version=ENGINE_VERSION,
+    )
+
+
+@router.get("/lineage/{fixture_id}", response_model=LineageResponse)
+async def get_prediction_lineage(fixture_id: str) -> LineageResponse:
+    """Serve the full backward lineage for a fixture's prediction id.
+
+    Phase 9D: maps ``P-<fixture_id>`` to its supporting chain —
+    Rule ──► Dasha Gate ──► Transit ──► Varga ──► Yoga ──► SAV ──►
+    Natal Longitudes (the exact ephemeris raw floats). Flag-gated
+    layers report ``available: false`` with the enabling flag named
+    when their report was not injected.
+    """
+    try:
+        payload = await offload(_build_lineage_payload, fixture_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Lineage construction failed: {e}",
+        )
+
+    return LineageResponse(
+        prediction_id=str(payload["prediction_id"]),
+        graph_id=payload.get("graph_id"),
+        chain_order=list(payload["chain_order"]),
+        chain=payload["chain"],
         engine_version=ENGINE_VERSION,
     )

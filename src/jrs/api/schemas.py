@@ -247,6 +247,50 @@ class EvidenceGraphResponse(BaseModel):
     )
 
 
+class LineageLayer(BaseModel):
+    """One backward-chain layer of a prediction lineage (Phase 9D)."""
+
+    available: bool = Field(
+        ...,
+        description="Whether the layer's supporting report/state was present",
+    )
+    reason: str | None = Field(
+        default=None,
+        description="Why the layer is unavailable (with enabling flag hint)",
+    )
+    summary: str = Field(..., description="One-line human summary of the layer")
+    details: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Canonical detail payload (facts, decisions, raw floats)",
+    )
+
+
+class LineageResponse(BaseModel):
+    """Full prediction lineage (Phase 9D Observatory contract).
+
+    Ordered chain: PREDICTION → RULE → DASHA_GATE → TRANSIT → VARGA →
+    YOGA → SAV → NATAL_LONGITUDES.
+    """
+
+    prediction_id: str = Field(..., description="The P-... prediction id traced")
+    graph_id: str | None = Field(
+        default=None,
+        description="Evidence-graph id the lineage was built from",
+    )
+    chain_order: list[str] = Field(
+        ...,
+        description="Ordered layer names, shallowest to deepest",
+    )
+    chain: dict[str, LineageLayer] = Field(
+        ...,
+        description="Per-layer availability, summary, and details",
+    )
+    engine_version: str = Field(
+        default=ENGINE_VERSION,
+        description="Engine version used to build the lineage",
+    )
+
+
 class YogaProvenance(BaseModel):
     """Provenance and explainability data for a yoga evaluation."""
 
