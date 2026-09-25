@@ -30,6 +30,11 @@ dev = [
     "ruff>=0.6",
     "mypy>=1.11",
 ]
+# Phase 8: PDF export engine (executive forensic report). Optional so
+# core installs stay lean; CI/tests install it explicitly.
+export = [
+    "reportlab>=4.0",
+]
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -160,7 +165,10 @@ strict = true
 
 # pysweph ships no type stubs; the adapters confine the untyped surface.
 [[tool.mypy.overrides]]
-module = ["swisseph"]
+module = [
+    "swisseph",
+    "reportlab.*",  # Phase 8 optional export extra: no py.typed marker
+]
 ignore_missing_imports = true
 
 # ── Legacy strict-mypy grandfather list ────────────────────────────────────

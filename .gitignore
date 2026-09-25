@@ -27,3 +27,6 @@ tsconfig.tsbuildinfo
 dumps/
 backups/
 *.sql.gz
+
+# Phase 8 export pipeline output (regenerable artifacts)
+exports/
