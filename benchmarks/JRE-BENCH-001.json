@@ -1,0 +1,164 @@
+{
+  "baseline": {
+    "confusion": {
+      "fn": 18,
+      "fp": 31,
+      "tp": 71
+    },
+    "gating": true,
+    "macro_f1": 0.744,
+    "micro_f1": 0.7435,
+    "name": "Phase F3 (flag-off)",
+    "non_degradation_tolerance": 0.005,
+    "precision": 0.6961,
+    "recall": 0.7978
+  },
+  "benchmark_id": "JRE-BENCH-001",
+  "companion_baselines": [
+    {
+      "delta_vs_baseline": 0.013,
+      "flags": {
+        "JRS_VARGA_SCORING": true
+      },
+      "fn": 15,
+      "fp": 32,
+      "micro_f1": 0.7565,
+      "scenario": "MULTI_VARGA",
+      "tp": 73
+    },
+    {
+      "delta_vs_baseline": 0.013,
+      "flags": {
+        "JRS_ASHTA_SCORING": true,
+        "JRS_DASHA_TRANSIT_SCORING": true,
+        "JRS_GOCHARA_SCORING": true,
+        "JRS_VARGA_SCORING": true
+      },
+      "fn": 15,
+      "fp": 32,
+      "micro_f1": 0.7565,
+      "scenario": "ALL_ON",
+      "tp": 73
+    }
+  ],
+  "corpus": {
+    "corpus_manifest_path": "tests/fixtures/benchmark/corpus_manifest.json",
+    "corpus_manifest_sha256": "4e8eb130bab10c2ac65f4591356bc68a6b4f12fbd0a6b9fb9d1582d5be110300",
+    "dev_charts": 30,
+    "fixture_ids": [
+      "chart_001_pilot",
+      "chart_002_curie",
+      "chart_003_mozart",
+      "chart_004_tesla",
+      "chart_005_gandhi",
+      "chart_006_newton",
+      "chart_007_lincoln",
+      "chart_008_teresa",
+      "chart_009_jobs",
+      "chart_010_earhart",
+      "chart_011_churchill",
+      "chart_012_mandela",
+      "chart_013_gandhi_mk",
+      "chart_014_jfk",
+      "chart_015_thatcher",
+      "chart_016_degaulle",
+      "chart_017_bismarck",
+      "chart_018_franklin",
+      "chart_019_eisenhower",
+      "chart_020_victoria",
+      "chart_021_darwin",
+      "chart_022_humboldt",
+      "chart_023_mendel",
+      "chart_024_pasteur",
+      "chart_025_lovelace",
+      "chart_026_planck",
+      "chart_027_heisenberg",
+      "chart_028_freud",
+      "chart_029_jung",
+      "chart_030_franklin_r",
+      "chart_031_beethoven",
+      "chart_032_vangogh",
+      "chart_033_picasso",
+      "chart_034_tolstoy",
+      "chart_035_twain",
+      "chart_036_chaplin",
+      "chart_037_tchaikovsky",
+      "chart_038_andersen",
+      "chart_039_liszt",
+      "chart_040_chekhov"
+    ],
+    "total_charts": 40,
+    "total_inputs_sha256": "858d20a52794f28f274d2e69e58a2c864ee202cb101612ce5fd5725195584a6d",
+    "validation_charts": 10
+  },
+  "evaluation_protocol": {
+    "excluded": "synthetic unmatched_<yoga> FALSE_POSITIVE entries",
+    "fn": "no relevant prediction and no non-CANCELLED prediction anywhere",
+    "fp": "the event had no formed relevant prediction but the chart produced at least one non-CANCELLED prediction (includes the runner's CANCELLED best-prediction FALSE_NEGATIVE verdicts)",
+    "implementation": "jrs.validation.benchmark._score_event_level / evaluate_corpus",
+    "macro_f1": "unweighted mean of per-domain F1",
+    "micro_f1": "2*TP / (2*TP + FP + FN) over the pooled 120 decisions",
+    "tp": "a relevant prediction matched the event and was not CANCELLED",
+    "unit": "event-level scoring of every real KnownEvent exactly once"
+  },
+  "label_schema": {
+    "event_domains": [
+      "CAREER",
+      "WEALTH",
+      "MARRIAGE",
+      "HEALTH",
+      "SPIRITUALITY",
+      "GENERAL"
+    ],
+    "fields": [
+      {
+        "description": "Stable event identifier",
+        "field": "event_id",
+        "type": "string"
+      },
+      {
+        "description": "Event occurrence date",
+        "field": "event_date_utc",
+        "type": "string (ISO 8601)"
+      },
+      {
+        "description": "Start of the temporal influence window",
+        "field": "event_window_start_utc",
+        "type": "string (ISO 8601)"
+      },
+      {
+        "description": "End of the temporal influence window",
+        "field": "event_window_end_utc",
+        "type": "string (ISO 8601)"
+      },
+      {
+        "description": "Life domain",
+        "field": "domain",
+        "type": "EventDomain enum"
+      },
+      {
+        "description": "Yoga names relevant to the event",
+        "field": "yoga_types",
+        "type": "string[]"
+      },
+      {
+        "description": "Planets whose activation supports the event",
+        "field": "expected_planets",
+        "type": "string[]"
+      }
+    ]
+  },
+  "policy": {
+    "ablation_protocol": "Phase 10 ablations run scripts/calibration_benchmark.py scenario permutations against this seal; deltas are reported relative to the baseline and companion rows.",
+    "companion_baselines_policy": "Flag-on companion baselines are recorded for ablation reference (Phase 10) but do NOT gate: the gating contract remains the flag-off Phase F3 baseline below.",
+    "gate_enforcement": [
+      "scripts/run_benchmark_eval.py (CI benchmark-eval job)",
+      "scripts/audit_clean_reproduce.py (Phase 9A bit-for-bit audit)",
+      "tests/unit/jrs/benchmarks/test_bench_integrity.py"
+    ],
+    "immutability": "This manifest is the immutable Phase F3 baseline. The corpus, labels, protocol, and thresholds must never be mutated in place; amendments create a new benchmark id (JRE-BENCH-002, JRE-BENCH-003, ...) with a fresh seal."
+  },
+  "schema_version": "1.0.0",
+  "sealed_by": "scripts/seal_benchmark.py",
+  "status": "FROZEN"
+}
