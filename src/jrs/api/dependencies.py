@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from jrs.calculations.ashtakavarga import ashta_scoring_enabled
+from jrs.calculations.gochara import gochara_scoring_enabled
 
 if TYPE_CHECKING:
     from jyotish.service import JyotishService
@@ -419,6 +420,28 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
 
         facts["ashtakavarga"] = ashtakavarga_to_dict(
             compute_full_ashtakavarga(facts)
+        )
+
+    # ── Phase 5C: Gochara transit facts (feature-flagged) ──
+    # Same gating discipline as 5B: injected only when enabled, evaluated
+    # at the pinned epoch so the report is deterministic.
+    if gochara_scoring_enabled():
+        from jrs.calculations.gochara import (
+            GOCHARA_TRANSIT_EPOCH,
+            compute_gochara,
+            compute_transit_positions,
+            gochara_to_dict,
+        )
+
+        transit_positions = compute_transit_positions(
+            date=GOCHARA_TRANSIT_EPOCH.strftime("%Y-%m-%d"),
+            time=GOCHARA_TRANSIT_EPOCH.strftime("%H:%M:%S"),
+            timezone="UTC",
+            latitude=0.0,
+            longitude=0.0,
+        )
+        facts["gochara"] = gochara_to_dict(
+            compute_gochara(facts, transit_positions, epoch=GOCHARA_TRANSIT_EPOCH)
         )
 
     return facts

@@ -1,0 +1,322 @@
+{
+  "expected": {
+    "band_10": {
+      "label": "AFFLICTED",
+      "multiplier": 0.8,
+      "threshold": 0
+    },
+    "band_20": {
+      "label": "MIXED",
+      "multiplier": 0.92,
+      "threshold": 18
+    },
+    "band_29": {
+      "label": "NEUTRAL",
+      "multiplier": 1.0,
+      "threshold": 25
+    },
+    "band_42": {
+      "label": "SUPPORTIVE",
+      "multiplier": 1.08,
+      "threshold": 30
+    },
+    "houses": [
+      1,
+      2,
+      12
+    ],
+    "kakshya_end_29_9": {
+      "end_deg": 30.0,
+      "index": 8,
+      "lord": "LAGNA",
+      "start_deg": 26.25
+    },
+    "kakshya_start_3_0": {
+      "end_deg": 3.75,
+      "index": 1,
+      "lord": "SATURN",
+      "start_deg": 0.0
+    },
+    "kakshya_sun_4deg": {
+      "end_deg": 7.5,
+      "index": 2,
+      "lord": "JUPITER",
+      "start_deg": 3.75
+    },
+    "report": {
+      "aggregate_band": {
+        "label": "AFFLICTED",
+        "multiplier": 0.8,
+        "threshold": 0
+      },
+      "epoch_utc": "2020-01-01T00:00:00+0000",
+      "fact_ids": [
+        "FACT-GOCHARA-SUN-DHANUSHA-K5",
+        "FACT-GOCHARA-MOON-KUMBHA-K2",
+        "FACT-GOCHARA-MARS-VRISHCHIKA-K7",
+        "FACT-GOCHARA-MERCURY-DHANUSHA-K7",
+        "FACT-GOCHARA-JUPITER-DHANUSHA-K4",
+        "FACT-GOCHARA-VENUS-MAKARA-K3",
+        "FACT-GOCHARA-SATURN-MAKARA-K7",
+        "FACT-GOCHARA-MOON-NATAL",
+        "FACT-GOCHARA-LAGNA-NATAL"
+      ],
+      "mean_tqs": 11.857143,
+      "natal_anchors": {
+        "LAGNA": "MITHUNA",
+        "MOON": "VRISHCHIKA"
+      },
+      "planets": {
+        "JUPITER": {
+          "band": {
+            "label": "MIXED",
+            "multiplier": 0.92,
+            "threshold": 18
+          },
+          "effective_multiplier": 0.92,
+          "fact_id": "FACT-GOCHARA-JUPITER-DHANUSHA-K4",
+          "house_from_lagna": 7,
+          "house_from_moon": 2,
+          "kakshya": {
+            "end_deg": 15.0,
+            "index": 4,
+            "lord": "SUN",
+            "start_deg": 11.25
+          },
+          "tqs": 18,
+          "transit_longitude": 253.0,
+          "transit_rashi": "DHANUSHA",
+          "vedha_house": 12,
+          "vedha_obstructed": false
+        },
+        "MARS": {
+          "band": {
+            "label": "AFFLICTED",
+            "multiplier": 0.8,
+            "threshold": 0
+          },
+          "effective_multiplier": 0.8,
+          "fact_id": "FACT-GOCHARA-MARS-VRISHCHIKA-K7",
+          "house_from_lagna": 6,
+          "house_from_moon": 1,
+          "kakshya": {
+            "end_deg": 26.25,
+            "index": 7,
+            "lord": "MOON",
+            "start_deg": 22.5
+          },
+          "tqs": 17,
+          "transit_longitude": 235.0,
+          "transit_rashi": "VRISHCHIKA",
+          "vedha_house": null,
+          "vedha_obstructed": false
+        },
+        "MERCURY": {
+          "band": {
+            "label": "MIXED",
+            "multiplier": 0.92,
+            "threshold": 18
+          },
+          "effective_multiplier": 0.92,
+          "fact_id": "FACT-GOCHARA-MERCURY-DHANUSHA-K7",
+          "house_from_lagna": 7,
+          "house_from_moon": 2,
+          "kakshya": {
+            "end_deg": 26.25,
+            "index": 7,
+            "lord": "MOON",
+            "start_deg": 22.5
+          },
+          "tqs": 18,
+          "transit_longitude": 262.5,
+          "transit_rashi": "DHANUSHA",
+          "vedha_house": 5,
+          "vedha_obstructed": false
+        },
+        "MOON": {
+          "band": {
+            "label": "AFFLICTED",
+            "multiplier": 0.8,
+            "threshold": 0
+          },
+          "effective_multiplier": 0.8,
+          "fact_id": "FACT-GOCHARA-MOON-KUMBHA-K2",
+          "house_from_lagna": 9,
+          "house_from_moon": 4,
+          "kakshya": {
+            "end_deg": 7.5,
+            "index": 2,
+            "lord": "JUPITER",
+            "start_deg": 3.75
+          },
+          "tqs": 4,
+          "transit_longitude": 305.0,
+          "transit_rashi": "KUMBHA",
+          "vedha_house": null,
+          "vedha_obstructed": false
+        },
+        "SATURN": {
+          "band": {
+            "label": "AFFLICTED",
+            "multiplier": 0.8,
+            "threshold": 0
+          },
+          "effective_multiplier": 0.8,
+          "fact_id": "FACT-GOCHARA-SATURN-MAKARA-K7",
+          "house_from_lagna": 8,
+          "house_from_moon": 3,
+          "kakshya": {
+            "end_deg": 26.25,
+            "index": 7,
+            "lord": "MOON",
+            "start_deg": 22.5
+          },
+          "tqs": 4,
+          "transit_longitude": 296.0,
+          "transit_rashi": "MAKARA",
+          "vedha_house": 12,
+          "vedha_obstructed": false
+        },
+        "SUN": {
+          "band": {
+            "label": "MIXED",
+            "multiplier": 0.92,
+            "threshold": 18
+          },
+          "effective_multiplier": 0.92,
+          "fact_id": "FACT-GOCHARA-SUN-DHANUSHA-K5",
+          "house_from_lagna": 7,
+          "house_from_moon": 2,
+          "kakshya": {
+            "end_deg": 18.75,
+            "index": 5,
+            "lord": "VENUS",
+            "start_deg": 15.0
+          },
+          "tqs": 18,
+          "transit_longitude": 255.0,
+          "transit_rashi": "DHANUSHA",
+          "vedha_house": null,
+          "vedha_obstructed": false
+        },
+        "VENUS": {
+          "band": {
+            "label": "AFFLICTED",
+            "multiplier": 0.8,
+            "threshold": 0
+          },
+          "effective_multiplier": 0.64,
+          "fact_id": "FACT-GOCHARA-VENUS-MAKARA-K3",
+          "house_from_lagna": 8,
+          "house_from_moon": 3,
+          "kakshya": {
+            "end_deg": 11.25,
+            "index": 3,
+            "lord": "MARS",
+            "start_deg": 7.5
+          },
+          "tqs": 4,
+          "transit_longitude": 280.0,
+          "transit_rashi": "MAKARA",
+          "vedha_house": 1,
+          "vedha_obstructed": true
+        }
+      },
+      "tqs_basis": "shodhita_sav",
+      "version": "1.0.0"
+    },
+    "tqs_sample": 42,
+    "vedha_mars_venus_active": [
+      true,
+      12
+    ],
+    "vedha_sun_saturn_exempt": [
+      false,
+      9
+    ]
+  },
+  "input": {
+    "epoch": "2020-01-01T00:00:00+0000",
+    "facts": {
+      "ashtakavarga": {
+        "sav": [
+          22,
+          27,
+          30,
+          22,
+          34,
+          19,
+          27,
+          35,
+          29,
+          42,
+          22,
+          28
+        ],
+        "shodhita_sav": [
+          18,
+          13,
+          17,
+          17,
+          18,
+          13,
+          17,
+          17,
+          18,
+          4,
+          4,
+          17
+        ]
+      },
+      "lagna": "MITHUNA",
+      "planets": {
+        "JUPITER": {
+          "longitude": 305.3077339155739,
+          "rashi": "KUMBHA"
+        },
+        "MARS": {
+          "longitude": 274.7331682026066,
+          "rashi": "MAKARA"
+        },
+        "MERCURY": {
+          "longitude": 340.95139065805967,
+          "rashi": "MEENA"
+        },
+        "MOON": {
+          "longitude": 232.22148712046456,
+          "rashi": "VRISHCHIKA"
+        },
+        "SATURN": {
+          "longitude": 342.01443295977805,
+          "rashi": "MEENA"
+        },
+        "SUN": {
+          "longitude": 331.32419345824417,
+          "rashi": "MEENA"
+        },
+        "VENUS": {
+          "longitude": 354.79925006625405,
+          "rashi": "MEENA"
+        }
+      }
+    },
+    "transit_positions": {
+      "JUPITER": 253.0,
+      "MARS": 235.0,
+      "MERCURY": 262.5,
+      "MOON": 305.0,
+      "SATURN": 296.0,
+      "SUN": 255.0,
+      "VENUS": 280.0
+    },
+    "unit_row": [
+      0.0,
+      35.0,
+      350.0,
+      4.0,
+      29.9,
+      3.0
+    ]
+  },
+  "schema": "jrs.calculations.gochara/1.0.0"
+}

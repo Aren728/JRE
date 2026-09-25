@@ -483,6 +483,86 @@ def build_provenance_chain(
             )
             evidence_nodes.append(ashta_node)
 
+    # Phase 5C Gochara fact + relation nodes (feature-flag gated):
+    # emitted only when jre_facts carries the transit report (i.e. the
+    # gochara_scoring_enabled flag was on at fact-extraction time), so
+    # flag-off evidence graphs stay byte-identical to their golden
+    # manifests.
+    gochara_report = jre_facts.get("gochara")
+    if isinstance(gochara_report, dict):
+        # FACT-GOCHARA-* nodes: one per transiting planet + natal anchors.
+        gochara_planets = (
+            "SUN", "MOON", "MARS", "MERCURY", "JUPITER", "VENUS", "SATURN",
+        )
+        gochara_node_ids: dict[str, str] = {}
+        gochara_idx = 0
+        for gplanet in gochara_planets:
+            greport = gochara_report.get("planets", {}).get(gplanet, {})
+            if not greport:
+                continue
+            gfact_id = str(greport.get("fact_id", f"FACT-GOCHARA-{gplanet}"))
+            gnode_id = f"FG-{gochara_idx}-{_deterministic_id(gfact_id)}"
+            gochara_idx += 1
+            gochara_node_ids[gplanet] = gnode_id
+            evidence_nodes.append(
+                DAGNode(
+                    node_id=gnode_id,
+                    node_type="FACT",
+                    labels=("FACT", "GOCHARA"),
+                    payload={
+                        "fact_id": gfact_id,
+                        "kind": "GOCHARA",
+                        "planet": gplanet,
+                        "transit_rashi": greport.get("transit_rashi"),
+                        "house_from_moon": greport.get("house_from_moon"),
+                        "house_from_lagna": greport.get("house_from_lagna"),
+                        "kakshya": greport.get("kakshya"),
+                        "tqs": greport.get("tqs"),
+                        "band": (greport.get("band") or {}).get("label"),
+                        "vedha_obstructed": greport.get("vedha_obstructed"),
+                        "epoch_utc": gochara_report.get("epoch_utc"),
+                    },
+                    children=(),
+                    parent=None,
+                )
+            )
+
+        # REL-GOCHARA-* edges: transit state -> natal Moon/Lagna anchors.
+        for gplanet, gnode_id in gochara_node_ids.items():
+            greport = gochara_report.get("planets", {}).get(gplanet, {})
+            band_label = str((greport.get("band") or {}).get("label", "NEUTRAL"))
+            relationship = (
+                "TRANSIT_SUPPORTS"
+                if band_label in ("SUPPORTIVE", "NEUTRAL")
+                else "TRANSIT_DAMPENS"
+            )
+            for anchor_name, anchor_fact in (
+                ("MOON", "FACT-GOCHARA-MOON-NATAL"),
+                ("LAGNA", "FACT-GOCHARA-LAGNA-NATAL"),
+            ):
+                edge_id = (
+                    f"REL-GOCHARA-{gplanet}-{anchor_name}-"
+                    f"{_deterministic_id(gnode_id)}"
+                )
+                evidence_edges.append(
+                    DAGEdge(
+                        edge_id=edge_id,
+                        source=gnode_id,
+                        target=anchor_fact,
+                        relationship=relationship,
+                        metadata={
+                            "house_from_"
+                            + anchor_name.lower(): greport.get(
+                                "house_from_" + anchor_name.lower()
+                            ),
+                            "band": band_label,
+                            "vedha_obstructed": greport.get(
+                                "vedha_obstructed"
+                            ),
+                        },
+                    ),
+                )
+
     # ── Temporal node (dasha/transit) ───────────────────────────────
     if any(k in jre_facts for k in ("dasha_periods", "transit_houses", "moon_nakshatra")):
         temporal_node = DAGNode(

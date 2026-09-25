@@ -63,6 +63,12 @@ from jrs.calculations.ashtakavarga import (
     ashtakavarga_to_dict,
     compute_full_ashtakavarga,
 )
+from jrs.calculations.gochara import (
+    GOCHARA_TRANSIT_EPOCH,
+    compute_gochara,
+    compute_transit_positions,
+    gochara_to_dict,
+)
 from jrs.engine.dasha import calculate_vimshottari_dasha
 from jrs.prediction_engine.provenance import EvidenceGraphService
 from jrs.validation.golden_state import (
@@ -171,6 +177,19 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
     # regression gate covers it before any downstream scoring hookup.
     ashta_report = ashtakavarga_to_dict(compute_full_ashtakavarga(facts))
 
+    # Phase 5C: Gochara checkpoint — transit facts at the pinned epoch.
+    # Flag-independent, same discipline as the ashtakavarga stage.
+    transit_positions = compute_transit_positions(
+        date=GOCHARA_TRANSIT_EPOCH.strftime("%Y-%m-%d"),
+        time=GOCHARA_TRANSIT_EPOCH.strftime("%H:%M:%S"),
+        timezone="UTC",
+        latitude=0.0,
+        longitude=0.0,
+    )
+    gochara_report = gochara_to_dict(
+        compute_gochara(facts, transit_positions, epoch=GOCHARA_TRANSIT_EPOCH)
+    )
+
     # Phase 4 (JRS-092): evidence-graph provenance stage with DAG
     # node/edge count assertions folded into the golden manifest.
     graph = EvidenceGraphService().build_graph(jre_facts=facts, yoga_evals=yoga_evals)
@@ -183,6 +202,7 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         "dasha": dasha,
         "yogas": yoga_payload,
         "ashtakavarga": ashta_report,
+        "gochara": gochara_report,
         "evidence_graph": graph_dict,
     }
 

@@ -49,6 +49,7 @@ CANONICAL_STAGE_IDS: tuple[str, ...] = (
     "dasha",  # Vimshottari periods and balances (JRE engine)
     "yogas",  # yoga evaluation results (JRS-075/076/077)
     "ashtakavarga",  # Phase 5B: BAV/SAV/Shodhana/Pinda (BPHS Ch 66)
+    "gochara",  # Phase 5C: transit facts at pinned epoch (BPHS gochara)
     "report",  # final synthesis / evaluation payload
 )
 

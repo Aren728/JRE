@@ -24,6 +24,10 @@
       "stage_id": "ashtakavarga"
     },
     {
+      "payload_hash": "d788fdbe550e2511d6d7c6e08b597fd4f6ef1eaa64c1c1ee0c3e151255a4a6e7",
+      "stage_id": "gochara"
+    },
+    {
       "payload_hash": "7a273a866074cd9c4420d874b283479049a1806c6d8e7147314b825358ae125a",
       "stage_id": "evidence_graph"
     }
