@@ -5,9 +5,10 @@ Strict typing for all API inputs and outputs. No engine logic here.
 
 from __future__ import annotations
 
+from datetime import date as _date
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 # ── Constants ───────────────────────────────────────────────────────────────
 
@@ -25,7 +26,13 @@ LEGAL_DISCLAIMER = (
 
 
 class BirthDataInput(BaseModel):
-    """Birth data for custom chart evaluation."""
+    """Birth data for custom chart evaluation.
+
+    Phase 6 strict DTO contract: unknown fields are rejected (422) and
+    extra values never silently enter the engine pipeline.
+    """
+
+    model_config = ConfigDict(extra="forbid")
 
     date: str = Field(
         ...,
@@ -132,6 +139,38 @@ class NumerologyInput(BaseModel):
         ...,
         description="Full name including first, middle, and last names",
         examples=["John Michael Smith"],
+    )
+
+
+class ChartRequest(BaseModel):
+    """Input model for chart calculation and persistence (Phase 6 strict DTO)."""
+
+    query_date: _date = Field(
+        ...,
+        description="Date to calculate the chart for (YYYY-MM-DD)",
+        examples=["1990-01-15"],
+    )
+    query_time: str = Field(
+        ...,
+        description="Time to calculate the chart for (HH:MM:SS)",
+        examples=["14:30:00"],
+    )
+    latitude: float = Field(
+        ...,
+        ge=-90.0,
+        le=90.0,
+        description="Latitude in decimal degrees",
+    )
+    longitude: float = Field(
+        ...,
+        ge=-180.0,
+        le=180.0,
+        description="Longitude in decimal degrees",
+    )
+    timezone: str = Field(
+        ...,
+        description="IANA timezone string",
+        examples=["Asia/Kolkata"],
     )
 
 

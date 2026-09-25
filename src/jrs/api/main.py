@@ -15,9 +15,14 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+
+import anyio
 from datetime import date, datetime as datetime_cls, timezone
 from pathlib import Path
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, TypeVar
+
+# Return-type inference for the async offload helper (Phase 6).
+_R = TypeVar("_R")
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -47,6 +52,7 @@ from .schemas import (
     ENGINE_VERSION,
     LEGAL_DISCLAIMER,
     BirthDataInput,
+    ChartRequest,
     CoreAlignment,
     DashaPeriod,
     EvaluationResponse,
@@ -114,16 +120,27 @@ PROJECT_VERSION = _load_project_version()
 
 # ── Application ─────────────────────────────────────────────────────────────
 
+# ── OpenAPI contract constants (Phase 6, Track B) ──────────────────────────
+# Single source of truth for the served contract; consumed by
+# scripts/verify_openapi_contract.py.
+API_TITLE = "JRE — Jyotish Reasoning Engine API"
+API_DESCRIPTION = (
+    "REST API for evaluating classical Jyotish yogas from birth data. "
+    "Wraps the existing JRS evaluation pipeline (Layers 1-4) "
+    "without modifying any engine logic."
+)
+API_VERSION = PROJECT_VERSION
+
 app = FastAPI(
-    title="JRE — Jyotish Reasoning Engine API",
-    description=(
-        "REST API for evaluating classical Jyotish yogas from birth data. "
-        "Wraps the existing JRS evaluation pipeline (Layers 1-4) "
-        "without modifying any engine logic."
-    ),
-    version=PROJECT_VERSION,
+    title=API_TITLE,
+    description=API_DESCRIPTION,
+    version=API_VERSION,
     docs_url="/docs",
     redoc_url="/redoc",
+    # Native OpenAPI 3.1 emission (FastAPI >= 0.99): strict JSON Schema
+    # 2020-12 contract for client codegen and DTO validation.
+    separate_input_output_schemas=True,
+    openapi_version="3.1.0",
 )
 
 # CORS middleware
@@ -171,6 +188,25 @@ def _generate_evaluation_id(
 
     digest = hashlib.sha256("|".join(components).encode()).hexdigest()
     return digest[:16]
+
+
+# ── Async offload (Phase 6, Track B) ───────────────────────────────────────
+# The evaluation pipeline (Swiss Ephemeris C extension, yoga evaluation,
+# evidence-graph construction) is synchronous CPU-bound work. Running it
+# inline inside ``async def`` endpoints blocks the event loop and
+# serializes all concurrent requests. These wrappers offload blocking
+# sections to the worker-thread pool so the loop stays responsive under
+# high-throughput load, while endpoint signatures and response shapes
+# stay byte-identical.
+
+
+async def _offload(func: Callable[..., _R], /, *args: Any, **kwargs: Any) -> _R:
+    """Run a blocking callable in the worker thread pool."""
+    import functools
+
+    return await anyio.to_thread.run_sync(
+        functools.partial(func, *args, **kwargs)
+    )
 
 
 # ── Yoga Category Mapping ──────────────────────────────────────────────────
@@ -591,15 +627,17 @@ async def evaluate_fixture(
     subject = fixture.get("_meta", {}).get("subject", input_data.fixture_id)
 
     try:
-        chart = compute_chart_from_fixture(fixture)
-        jre_facts = build_jre_facts(chart)
+        # Offloaded: ephemeris + fact extraction are blocking (Phase 6).
+        chart = await _offload(compute_chart_from_fixture, fixture)
+        jre_facts = await _offload(build_jre_facts, chart)
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Chart computation failed: {e}",
         )
 
-    response = _run_evaluation(
+    response = await _offload(
+        _run_evaluation,
         chart,
         jre_facts,
         subject=subject,
@@ -645,14 +683,16 @@ async def evaluate_custom(
     request_start = time.perf_counter()
 
     try:
-        chart = compute_chart_from_birth_data(
+        # Offloaded: ephemeris + fact extraction are blocking (Phase 6).
+        chart = await _offload(
+            compute_chart_from_birth_data,
             date=input_data.date,
             time=input_data.time,
             latitude=input_data.latitude,
             longitude=input_data.longitude,
             timezone=input_data.timezone,
         )
-        jre_facts = build_jre_facts(chart)
+        jre_facts = await _offload(build_jre_facts, chart)
     except Exception as e:
         # Log the full traceback server-side; the stringified detail alone
         # (e.g. "not enough values to unpack (expected 3, got 2)") hides
@@ -668,7 +708,8 @@ async def evaluate_custom(
             detail=f"Chart computation failed: {e}",
         )
 
-    response = _run_evaluation(
+    response = await _offload(
+        _run_evaluation,
         chart,
         jre_facts,
         subject="Custom",
@@ -821,15 +862,17 @@ async def generate_report(
     subject = fixture.get("_meta", {}).get("subject", input_data.fixture_id)
 
     try:
-        chart = compute_chart_from_fixture(fixture)
-        jre_facts = build_jre_facts(chart)
+        # Offloaded: ephemeris + fact extraction are blocking (Phase 6).
+        chart = await _offload(compute_chart_from_fixture, fixture)
+        jre_facts = await _offload(build_jre_facts, chart)
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Chart computation failed: {e}",
         )
 
-    response = _run_evaluation(
+    response = await _offload(
+        _run_evaluation,
         chart,
         jre_facts,
         subject=subject,
@@ -916,16 +959,8 @@ async def submit_feedback(
 
 
 # ── Chart Calculation + Persistence Endpoint ──────────────────────────────
-
-
-class ChartRequest(BaseModel):
-    """Input model for chart calculation and persistence."""
-
-    query_date: date
-    query_time: str
-    latitude: float
-    longitude: float
-    timezone: str
+# NOTE: ChartRequest moved to jrs.api.schemas (Phase 6 strict DTO
+# alignment) so the OpenAPI contract resolves it from one module.
 
 
 @app.post("/api/v1/chart", tags=["Chart"])
@@ -940,7 +975,9 @@ async def calculate_and_store_chart(
     with astronomical data.
     """
     # 1. Compute astronomical positions using Swiss Ephemeris
-    astro_data = calculate_planetary_positions(
+    # (offloaded — Swiss Ephemeris is a blocking C extension, Phase 6)
+    astro_data = await _offload(
+        calculate_planetary_positions,
         payload.query_date,
         payload.query_time,
         payload.latitude,
@@ -1036,8 +1073,9 @@ async def get_charts(
     ),
 )
 async def analyze_chart(payload: BirthDataInput) -> JREAnalysisResponse:
-    # 1. Calculate positions
-    chart_data = calculate_chart_positions(
+    # 1. Calculate positions (offloaded — blocking ephemeris, Phase 6)
+    chart_data = await _offload(
+        calculate_chart_positions,
         date=payload.date,
         time=payload.time,
         latitude=payload.latitude,
