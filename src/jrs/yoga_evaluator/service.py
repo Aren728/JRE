@@ -1119,8 +1119,14 @@ class YogaEvaluatorService:
         # ── Amala Yoga ──
         # Pure benefic (Jupiter/Venus/Mercury/Moon) in H10 from Lagna,
         # no malefic conjunction or aspect.
-        _AMALA_BENEFICS = {"JUPITER", "VENUS", "MERCURY", "MOON"}
-        _AMALA_MALEFICS = {"SATURN", "MARS", "RAHU", "KETU"}
+        # Deterministic ordering: these planet groups are iterated when
+        # building yoga results, so they MUST be sequences (not sets) —
+        # set iteration order varies with PYTHONHASHSEED and would break
+        # the golden-state hash contract. Order preserved from the
+        # historical set iteration (PYTHONHASHSEED=0) to keep recorded
+        # stage hashes stable.
+        _AMALA_BENEFICS = ("VENUS", "JUPITER", "MERCURY", "MOON")
+        _AMALA_MALEFICS = ("KETU", "MARS", "SATURN", "RAHU")
         for pname in _AMALA_BENEFICS:
             pdata = planets.get(pname, {})
             ph = pdata.get("house")
@@ -1147,7 +1153,7 @@ class YogaEvaluatorService:
 
         # ── Adhi Yoga (BPHS Ch 40 — sudden rise/power) ──
         # Benefics (Mercury, Jupiter, Venus) in 6th, 7th, or 8th houses from Lagna or Moon.
-        _ADHI_BENEFICS = {"MERCURY", "JUPITER", "VENUS"}
+        _ADHI_BENEFICS = ("VENUS", "JUPITER", "MERCURY")
         _ADHI_HOUSES = {6, 7, 8}
         adhi_from_lagna = 0
         adhi_from_moon = 0
@@ -1181,7 +1187,7 @@ class YogaEvaluatorService:
         # ── Vasumati Yoga (BPHS Ch 41 — wealth through effort) ──
         # Benefics (Mercury, Jupiter, Venus, Moon) in Upachaya houses (3, 6, 10, 11)
         # from Lagna or Moon.
-        _VASUMATI_BENEFICS = {"MERCURY", "JUPITER", "VENUS", "MOON"}
+        _VASUMATI_BENEFICS = ("VENUS", "JUPITER", "MERCURY", "MOON")
         _UPACHAYA_HOUSES = {3, 6, 10, 11}
         vasu_from_lagna = 0
         vasu_from_moon = 0
@@ -1280,7 +1286,7 @@ class YogaEvaluatorService:
 
         # --- 3. Lagna Ashubha (Phaladeepika Ch 8 V.1) ---
         # 2+ natural malefics (Saturn, Mars, Rahu) in dusthana → health vulnerability.
-        _MALEFICS = {"SATURN", "MARS", "RAHU"}
+        _MALEFICS = ("MARS", "SATURN", "RAHU")
         malefic_in_dusthana: list[str] = []
         for mname in _MALEFICS:
             mdata = planets.get(mname, {})

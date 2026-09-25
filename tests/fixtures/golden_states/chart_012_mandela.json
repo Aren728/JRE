@@ -18,6 +18,10 @@
     {
       "payload_hash": "83d2c6f5568bf95cdc37ed6e8f57a4cc1f32c96d00b598e5fa5ae8b20b030181",
       "stage_id": "yogas"
+    },
+    {
+      "payload_hash": "273fe295fb6506b95e960abd418f99c032af5166a32d55a930c51f54e9262d5e",
+      "stage_id": "evidence_graph"
     }
   ]
 }

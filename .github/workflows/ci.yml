@@ -165,6 +165,41 @@ jobs:
       - name: Verify golden-state intermediate hashes
         run: python scripts/generate_golden_states.py verify
 
+
+  benchmark-eval:
+    name: Frozen Benchmark Corpus Gate (Phase F4)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install C dependencies for PySwisseph
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Regenerate benchmark corpus manifest
+        run: python scripts/run_benchmark_eval.py --write-manifest
+
+      - name: Verify benchmark corpus invariants
+        run: python scripts/run_benchmark_eval.py --verify-only
+
+      - name: Execute frozen benchmark evaluation (Phase F4 gate)
+        run: python scripts/run_benchmark_eval.py
+
   docker-compose-check:
     name: Docker Staging Build & Smoke Test
     runs-on: ubuntu-latest

@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "description": "Immutable reference chart for Alexander von Humboldt. AA-rated.",
+    "fixture_id": "chart_022_humboldt",
+    "generated_at": "2026-08-30",
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ],
+    "pipeline_config": {
+      "ayanamsa": "LAHIRI",
+      "ephemeris_provider": "swisseph",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "zodiac_mode": "SIDEREAL"
+    },
+    "provenance": {
+      "birth_time_confidence_minutes": 0,
+      "rodden_rating": "AA",
+      "source": "Astro-Databank (astro.com)"
+    },
+    "scope": "closed-world",
+    "subject": "Alexander von Humboldt",
+    "version": "1.0.0"
+  },
+  "expected_canonical_facts": {
+    "house_lords": {
+      "1": "VENUS",
+      "10": "MOON",
+      "11": "SUN",
+      "12": "MERCURY",
+      "2": "MARS",
+      "3": "JUPITER",
+      "4": "SATURN",
+      "5": "SATURN",
+      "6": "JUPITER",
+      "7": "MARS",
+      "8": "VENUS",
+      "9": "MERCURY"
+    },
+    "houses": {
+      "1": {
+        "lord": "VENUS",
+        "occupants": [
+          "JUPITER"
+        ],
+        "rashi": "TULA"
+      },
+      "10": {
+        "lord": "MOON",
+        "occupants": [
+          "SATURN",
+          "VENUS"
+        ],
+        "rashi": "KARKA"
+      },
+      "11": {
+        "lord": "SUN",
+        "occupants": [],
+        "rashi": "SIMHA"
+      },
+      "12": {
+        "lord": "MERCURY",
+        "occupants": [
+          "MARS",
+          "MERCURY",
+          "SUN"
+        ],
+        "rashi": "KANYA"
+      },
+      "2": {
+        "lord": "MARS",
+        "occupants": [
+          "RAHU"
+        ],
+        "rashi": "VRISHCHIKA"
+      },
+      "3": {
+        "lord": "JUPITER",
+        "occupants": [],
+        "rashi": "DHANUSHA"
+      },
+      "4": {
+        "lord": "SATURN",
+        "occupants": [],
+        "rashi": "MAKARA"
+      },
+      "5": {
+        "lord": "SATURN",
+        "occupants": [
+          "MOON"
+        ],
+        "rashi": "KUMBHA"
+      },
+      "6": {
+        "lord": "JUPITER",
+        "occupants": [],
+        "rashi": "MEENA"
+      },
+      "7": {
+        "lord": "MARS",
+        "occupants": [],
+        "rashi": "MESHA"
+      },
+      "8": {
+        "lord": "VENUS",
+        "occupants": [
+          "KETU"
+        ],
+        "rashi": "VRISHABHA"
+      },
+      "9": {
+        "lord": "MERCURY",
+        "occupants": [],
+        "rashi": "MITHUNA"
+      }
+    },
+    "lagna": {
+      "ascendant_longitude_deg": 191.3184158016336,
+      "d9_sign": "VRISHABHA",
+      "degree_in_nakshatra": 4.651749134966916,
+      "degree_in_rashi": 11.318415801633591,
+      "nakshatra": "SWATI",
+      "nakshatra_lord": "RAHU",
+      "pada": 2,
+      "rashi": "TULA"
+    },
+    "planets": {
+      "JUPITER": {
+        "d9_sign": "TULA",
+        "degree_in_nakshatra": 8.38879199614402,
+        "degree_in_rashi": 28.388791996144022,
+        "house": 1,
+        "house_lord_of": [
+          3,
+          6
+        ],
+        "longitude_sidereal": 208.38879199614402,
+        "longitude_tropical": 229.0353874697285,
+        "longitude_used": 208.38879199614402,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "rashi": "TULA",
+        "retrograde": "DIRECT"
+      },
+      "KETU": {
+        "d9_sign": "MITHUNA",
+        "degree_in_nakshatra": 5.240955371291403,
+        "degree_in_rashi": 28.574288704624735,
+        "house": 8,
+        "house_lord_of": [],
+        "longitude_sidereal": 58.574288704624735,
+        "longitude_tropical": 79.22088417820925,
+        "longitude_used": 58.574288704624735,
+        "nakshatra": "MRIGASHIRA",
+        "nakshatra_lord": "MARS",
+        "pada": 2,
+        "rashi": "VRISHABHA",
+        "retrograde": "RETROGRADE"
+      },
+      "MARS": {
+        "d9_sign": "VRISHABHA",
+        "degree_in_nakshatra": 0.6311317179063701,
+        "degree_in_rashi": 10.631131717906385,
+        "house": 12,
+        "house_lord_of": [
+          2,
+          7
+        ],
+        "longitude_sidereal": 160.63113171790638,
+        "longitude_tropical": 181.2777271914909,
+        "longitude_used": 160.63113171790638,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "rashi": "KANYA",
+        "retrograde": "DIRECT"
+      },
+      "MERCURY": {
+        "d9_sign": "VRISHABHA",
+        "degree_in_nakshatra": 0.931345618244955,
+        "degree_in_rashi": 10.931345618244961,
+        "house": 12,
+        "house_lord_of": [
+          9,
+          12
+        ],
+        "longitude_sidereal": 160.93134561824496,
+        "longitude_tropical": 181.5779410918295,
+        "longitude_used": 160.93134561824496,
+        "nakshatra": "HASTA",
+        "nakshatra_lord": "MOON",
+        "pada": 1,
+        "rashi": "KANYA",
+        "retrograde": "DIRECT"
+      },
+      "MOON": {
+        "d9_sign": "KANYA",
+        "degree_in_nakshatra": 4.462010593752995,
+        "degree_in_rashi": 11.128677260419693,
+        "house": 5,
+        "house_lord_of": [
+          10
+        ],
+        "longitude_sidereal": 311.1286772604197,
+        "longitude_tropical": 331.77527273400426,
+        "longitude_used": 311.1286772604197,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "rashi": "KUMBHA",
+        "retrograde": "DIRECT"
+      },
+      "RAHU": {
+        "d9_sign": "MEENA",
+        "degree_in_nakshatra": 11.907622037958053,
+        "degree_in_rashi": 28.574288704624735,
+        "house": 2,
+        "house_lord_of": [],
+        "longitude_sidereal": 238.57428870462473,
+        "longitude_tropical": 259.22088417820925,
+        "longitude_used": 238.57428870462473,
+        "nakshatra": "JYESHTHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 4,
+        "rashi": "VRISHCHIKA",
+        "retrograde": "RETROGRADE"
+      },
+      "SATURN": {
+        "d9_sign": "VRISHABHA",
+        "degree_in_nakshatra": 5.198178722069854,
+        "degree_in_rashi": 8.531512055403184,
+        "house": 10,
+        "house_lord_of": [
+          4,
+          5
+        ],
+        "longitude_sidereal": 98.53151205540318,
+        "longitude_tropical": 119.17810752898771,
+        "longitude_used": 98.53151205540318,
+        "nakshatra": "PUSHYA",
+        "nakshatra_lord": "SATURN",
+        "pada": 2,
+        "rashi": "KARKA",
+        "retrograde": "DIRECT"
+      },
+      "SUN": {
+        "d9_sign": "KUMBHA",
+        "degree_in_nakshatra": 4.424511639437882,
+        "degree_in_rashi": 1.0911783061045526,
+        "house": 12,
+        "house_lord_of": [
+          11
+        ],
+        "longitude_sidereal": 151.09117830610455,
+        "longitude_tropical": 171.73777377968904,
+        "longitude_used": 151.09117830610455,
+        "nakshatra": "UTTARA_PHALGUNI",
+        "nakshatra_lord": "SUN",
+        "pada": 2,
+        "rashi": "KANYA",
+        "retrograde": "DIRECT"
+      },
+      "VENUS": {
+        "d9_sign": "SIMHA",
+        "degree_in_nakshatra": 1.2338073122734419,
+        "degree_in_rashi": 17.900473978940113,
+        "house": 10,
+        "house_lord_of": [
+          1,
+          8
+        ],
+        "longitude_sidereal": 107.90047397894011,
+        "longitude_tropical": 128.54706945252462,
+        "longitude_used": 107.90047397894011,
+        "nakshatra": "ASHLESHA",
+        "nakshatra_lord": "MERCURY",
+        "pada": 1,
+        "rashi": "KARKA",
+        "retrograde": "DIRECT"
+      }
+    }
+  },
+  "known_events": [
+    {
+      "description": "Began his great expedition to the Americas",
+      "domain": "MIGRATION",
+      "event_date_utc": "1800-07-16T00:00:00Z",
+      "event_id": "HUMBOLDT_AMERICA_1800",
+      "expected_planets": [
+        "RAHU",
+        "JUPITER"
+      ],
+      "yoga_types": []
+    },
+    {
+      "description": "Published first volume of Cosmos",
+      "domain": "CAREER",
+      "event_date_utc": "1845-01-01T00:00:00Z",
+      "event_id": "HUMBOLDT_COSMOS_1845",
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ],
+      "yoga_types": []
+    },
+    {
+      "description": "Died in Berlin at age 89",
+      "domain": "HEALTH",
+      "event_date_utc": "1859-05-06T00:00:00Z",
+      "event_id": "HUMBOLDT_DEATH_1859",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "yoga_types": []
+    }
+  ],
+  "raw_birth_data": {
+    "date": "1769-09-14",
+    "latitude": 52.52,
+    "location": "Berlin, Kingdom of Prussia",
+    "longitude": 13.405,
+    "time": "09:30:00",
+    "timezone": "Europe/Berlin"
+  },
+  "target_scope": "closed-world"
+}

@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "description": "Immutable reference chart for Abraham Lincoln. AA-rated birth data. Born 12 February 1809 at sunrise (~06:40) in Hodgenville, Kentucky.",
+    "fixture_id": "chart_007_lincoln",
+    "generated_at": "2026-08-29",
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ],
+    "pipeline_config": {
+      "ayanamsa": "LAHIRI",
+      "ephemeris_provider": "swisseph",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "zodiac_mode": "SIDEREAL"
+    },
+    "provenance": {
+      "birth_time_confidence_minutes": 0,
+      "rodden_rating": "AA",
+      "source": "Astro-Databank (astro.com)"
+    },
+    "scope": "closed-world",
+    "subject": "Abraham Lincoln",
+    "version": "1.0.0"
+  },
+  "expected_canonical_facts": {
+    "house_lords": {
+      "1": "SATURN",
+      "10": "VENUS",
+      "11": "MARS",
+      "12": "JUPITER",
+      "2": "SATURN",
+      "3": "JUPITER",
+      "4": "MARS",
+      "5": "VENUS",
+      "6": "MERCURY",
+      "7": "MOON",
+      "8": "SUN",
+      "9": "MERCURY"
+    },
+    "houses": {
+      "1": {
+        "lord": "SATURN",
+        "occupants": [
+          "MOON"
+        ],
+        "rashi": "MAKARA"
+      },
+      "10": {
+        "lord": "VENUS",
+        "occupants": [
+          "MARS",
+          "RAHU"
+        ],
+        "rashi": "TULA"
+      },
+      "11": {
+        "lord": "MARS",
+        "occupants": [
+          "SATURN"
+        ],
+        "rashi": "VRISHCHIKA"
+      },
+      "12": {
+        "lord": "JUPITER",
+        "occupants": [],
+        "rashi": "DHANUSHA"
+      },
+      "2": {
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY",
+          "SUN"
+        ],
+        "rashi": "KUMBHA"
+      },
+      "3": {
+        "lord": "JUPITER",
+        "occupants": [
+          "JUPITER",
+          "VENUS"
+        ],
+        "rashi": "MEENA"
+      },
+      "4": {
+        "lord": "MARS",
+        "occupants": [
+          "KETU"
+        ],
+        "rashi": "MESHA"
+      },
+      "5": {
+        "lord": "VENUS",
+        "occupants": [],
+        "rashi": "VRISHABHA"
+      },
+      "6": {
+        "lord": "MERCURY",
+        "occupants": [],
+        "rashi": "MITHUNA"
+      },
+      "7": {
+        "lord": "MOON",
+        "occupants": [],
+        "rashi": "KARKA"
+      },
+      "8": {
+        "lord": "SUN",
+        "occupants": [],
+        "rashi": "SIMHA"
+      },
+      "9": {
+        "lord": "MERCURY",
+        "occupants": [],
+        "rashi": "KANYA"
+      }
+    },
+    "lagna": {
+      "ascendant_longitude_deg": 298.65387978477963,
+      "d9_sign": "KUMBHA",
+      "degree_in_nakshatra": 5.3205464514463126,
+      "degree_in_rashi": 28.653879784779633,
+      "nakshatra": "DHANISHTHA",
+      "nakshatra_lord": "MARS",
+      "pada": 2,
+      "rashi": "MAKARA"
+    },
+    "planets": {
+      "JUPITER": {
+        "d9_sign": "VRISHCHIKA",
+        "degree_in_nakshatra": 10.889372898596843,
+        "degree_in_rashi": 0.8893728985968323,
+        "house": 3,
+        "house_lord_of": [
+          3,
+          12
+        ],
+        "longitude_sidereal": 330.88937289859683,
+        "longitude_tropical": 352.0845706432159,
+        "longitude_used": 330.88937289859683,
+        "nakshatra": "PURVA_BHADRAPADA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 4,
+        "rashi": "MEENA",
+        "retrograde": "DIRECT"
+      },
+      "KETU": {
+        "d9_sign": "SIMHA",
+        "degree_in_nakshatra": 2.4094272150545444,
+        "degree_in_rashi": 15.742760548387878,
+        "house": 4,
+        "house_lord_of": [],
+        "longitude_sidereal": 15.742760548387878,
+        "longitude_tropical": 36.93795829300694,
+        "longitude_used": 15.742760548387878,
+        "nakshatra": "BHARANI",
+        "nakshatra_lord": "VENUS",
+        "pada": 1,
+        "rashi": "MESHA",
+        "retrograde": "RETROGRADE"
+      },
+      "MARS": {
+        "d9_sign": "MEENA",
+        "degree_in_nakshatra": 10.967704668273688,
+        "degree_in_rashi": 4.301038001607026,
+        "house": 10,
+        "house_lord_of": [
+          4,
+          11
+        ],
+        "longitude_sidereal": 184.30103800160703,
+        "longitude_tropical": 205.4962357462261,
+        "longitude_used": 184.30103800160703,
+        "nakshatra": "CHITRA",
+        "nakshatra_lord": "MARS",
+        "pada": 4,
+        "rashi": "TULA",
+        "retrograde": "DIRECT"
+      },
+      "MERCURY": {
+        "d9_sign": "VRISHCHIKA",
+        "degree_in_nakshatra": 12.436259997897988,
+        "degree_in_rashi": 19.102926664564677,
+        "house": 2,
+        "house_lord_of": [
+          6,
+          9
+        ],
+        "longitude_sidereal": 319.1029266645647,
+        "longitude_tropical": 340.29812440918374,
+        "longitude_used": 319.1029266645647,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 4,
+        "rashi": "KUMBHA",
+        "retrograde": "DIRECT"
+      },
+      "MOON": {
+        "d9_sign": "KARKA",
+        "degree_in_nakshatra": 9.069185452610057,
+        "degree_in_rashi": 5.7358521192767284,
+        "house": 1,
+        "house_lord_of": [
+          7
+        ],
+        "longitude_sidereal": 275.73585211927673,
+        "longitude_tropical": 296.9310498638958,
+        "longitude_used": 275.73585211927673,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 3,
+        "rashi": "MAKARA",
+        "retrograde": "DIRECT"
+      },
+      "RAHU": {
+        "d9_sign": "MITHUNA",
+        "degree_in_nakshatra": 9.076093881721203,
+        "degree_in_rashi": 15.742760548387878,
+        "house": 10,
+        "house_lord_of": [],
+        "longitude_sidereal": 195.74276054838788,
+        "longitude_tropical": 216.93795829300694,
+        "longitude_used": 195.74276054838788,
+        "nakshatra": "SWATI",
+        "nakshatra_lord": "RAHU",
+        "pada": 3,
+        "rashi": "TULA",
+        "retrograde": "RETROGRADE"
+      },
+      "SATURN": {
+        "d9_sign": "TULA",
+        "degree_in_nakshatra": 8.614296050744391,
+        "degree_in_rashi": 11.947629384077715,
+        "house": 11,
+        "house_lord_of": [
+          1,
+          2
+        ],
+        "longitude_sidereal": 221.94762938407771,
+        "longitude_tropical": 243.14282712869684,
+        "longitude_used": 221.94762938407771,
+        "nakshatra": "ANURADHA",
+        "nakshatra_lord": "SATURN",
+        "pada": 3,
+        "rashi": "VRISHCHIKA",
+        "retrograde": "DIRECT"
+      },
+      "SUN": {
+        "d9_sign": "MITHUNA",
+        "degree_in_nakshatra": 8.924659181286692,
+        "degree_in_rashi": 2.257992514620014,
+        "house": 2,
+        "house_lord_of": [
+          8
+        ],
+        "longitude_sidereal": 302.25799251462,
+        "longitude_tropical": 323.4531902592391,
+        "longitude_used": 302.25799251462,
+        "nakshatra": "DHANISHTHA",
+        "nakshatra_lord": "MARS",
+        "pada": 3,
+        "rashi": "KUMBHA",
+        "retrograde": "DIRECT"
+      },
+      "VENUS": {
+        "d9_sign": "MEENA",
+        "degree_in_nakshatra": 12.927629842696156,
+        "degree_in_rashi": 16.26096317602952,
+        "house": 3,
+        "house_lord_of": [
+          5,
+          10
+        ],
+        "longitude_sidereal": 346.2609631760295,
+        "longitude_tropical": 7.456160920648613,
+        "longitude_used": 346.2609631760295,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "rashi": "MEENA",
+        "retrograde": "DIRECT"
+      }
+    }
+  },
+  "known_events": [
+    {
+      "description": "Elected 16th President of the United States",
+      "domain": "CAREER",
+      "event_date_utc": "1860-11-06T00:00:00Z",
+      "event_id": "LINCOLN_PRESIDENT_1860",
+      "expected_planets": [
+        "JUPITER",
+        "SATURN"
+      ],
+      "yoga_types": [
+        "RAJA"
+      ]
+    },
+    {
+      "description": "Issued the Emancipation Proclamation",
+      "domain": "CAREER",
+      "event_date_utc": "1863-01-01T00:00:00Z",
+      "event_id": "LINCOLN_EMANCIPATION_1863",
+      "expected_planets": [
+        "JUPITER",
+        "MERCURY"
+      ],
+      "yoga_types": [
+        "RAJA"
+      ]
+    },
+    {
+      "description": "Assassinated at Ford's Theatre, Washington D.C.",
+      "domain": "HEALTH",
+      "event_date_utc": "1865-04-15T00:00:00Z",
+      "event_id": "LINCOLN_ASSASSINATION_1865",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "yoga_types": []
+    }
+  ],
+  "raw_birth_data": {
+    "date": "1809-02-12",
+    "latitude": 37.5568,
+    "location": "Hodgenville, Kentucky, USA",
+    "longitude": -85.7371,
+    "time": "06:40:00",
+    "timezone": "America/Chicago"
+  },
+  "target_scope": "closed-world"
+}

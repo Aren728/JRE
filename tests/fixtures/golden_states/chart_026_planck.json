@@ -16,8 +16,12 @@
       "stage_id": "dasha"
     },
     {
-      "payload_hash": "8011b7390bd3896f7b6d8d1199fdb350fa3794bed90e3a9e2447516616dc91d9",
+      "payload_hash": "b8d5f7f28c2010c6fed9f27e22f09f074eddd03075f4fd13d08b9528235a8f06",
       "stage_id": "yogas"
+    },
+    {
+      "payload_hash": "bd5bd12737feef4ef732d226a26d2a65c57b6bf4bc82e5a89f22fc537c5e0547",
+      "stage_id": "evidence_graph"
     }
   ]
 }

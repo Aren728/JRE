@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_meta": {
+    "description": "Immutable reference chart for Steve Jobs. AA-rated birth data. Born 24 February 1955 at 19:15 local time in San Francisco, California.",
+    "fixture_id": "chart_009_jobs",
+    "generated_at": "2026-08-29",
+    "generated_by": "JyotishService.chart() via Swiss Ephemeris",
+    "notes": [
+      "All longitudes are sidereal (Lahiri ayanamsa applied to tropical longitudes).",
+      "degree_in_rashi is within [0, 30) \u2014 the fractional part of the sidereal longitude within the rashi.",
+      "D9 (Navamsha) signs are computed using the classical navamsha division method.",
+      "House assignments use Whole-Sign house system with the sidereal ascendant."
+    ],
+    "pipeline_config": {
+      "ayanamsa": "LAHIRI",
+      "ephemeris_provider": "swisseph",
+      "house_system": "WHOLE_SIGN",
+      "node_model": "MEAN",
+      "position_type": "APPARENT",
+      "zodiac_mode": "SIDEREAL"
+    },
+    "provenance": {
+      "birth_time_confidence_minutes": 0,
+      "rodden_rating": "AA",
+      "source": "Astro-Databank (astro.com)"
+    },
+    "scope": "closed-world",
+    "subject": "Steve Jobs",
+    "version": "1.0.0"
+  },
+  "expected_canonical_facts": {
+    "house_lords": {
+      "1": "SUN",
+      "10": "VENUS",
+      "11": "MERCURY",
+      "12": "MOON",
+      "2": "MERCURY",
+      "3": "VENUS",
+      "4": "MARS",
+      "5": "JUPITER",
+      "6": "SATURN",
+      "7": "SATURN",
+      "8": "JUPITER",
+      "9": "MARS"
+    },
+    "houses": {
+      "1": {
+        "lord": "SUN",
+        "occupants": [],
+        "rashi": "SIMHA"
+      },
+      "10": {
+        "lord": "VENUS",
+        "occupants": [],
+        "rashi": "VRISHABHA"
+      },
+      "11": {
+        "lord": "MERCURY",
+        "occupants": [
+          "JUPITER",
+          "KETU"
+        ],
+        "rashi": "MITHUNA"
+      },
+      "12": {
+        "lord": "MOON",
+        "occupants": [],
+        "rashi": "KARKA"
+      },
+      "2": {
+        "lord": "MERCURY",
+        "occupants": [],
+        "rashi": "KANYA"
+      },
+      "3": {
+        "lord": "VENUS",
+        "occupants": [
+          "SATURN"
+        ],
+        "rashi": "TULA"
+      },
+      "4": {
+        "lord": "MARS",
+        "occupants": [],
+        "rashi": "VRISHCHIKA"
+      },
+      "5": {
+        "lord": "JUPITER",
+        "occupants": [
+          "RAHU",
+          "VENUS"
+        ],
+        "rashi": "DHANUSHA"
+      },
+      "6": {
+        "lord": "SATURN",
+        "occupants": [
+          "MERCURY"
+        ],
+        "rashi": "MAKARA"
+      },
+      "7": {
+        "lord": "SATURN",
+        "occupants": [
+          "SUN"
+        ],
+        "rashi": "KUMBHA"
+      },
+      "8": {
+        "lord": "JUPITER",
+        "occupants": [
+          "MOON"
+        ],
+        "rashi": "MEENA"
+      },
+      "9": {
+        "lord": "MARS",
+        "occupants": [
+          "MARS"
+        ],
+        "rashi": "MESHA"
+      }
+    },
+    "lagna": {
+      "ascendant_longitude_deg": 149.0555566389604,
+      "d9_sign": "MESHA",
+      "degree_in_nakshatra": 2.3888899722937484,
+      "degree_in_rashi": 29.05555663896041,
+      "nakshatra": "UTTARA_PHALGUNI",
+      "nakshatra_lord": "SUN",
+      "pada": 1,
+      "rashi": "SIMHA"
+    },
+    "planets": {
+      "JUPITER": {
+        "d9_sign": "MITHUNA",
+        "degree_in_nakshatra": 7.2722631494412715,
+        "degree_in_rashi": 27.272263149441272,
+        "house": 11,
+        "house_lord_of": [
+          5,
+          8
+        ],
+        "longitude_sidereal": 87.27226314944127,
+        "longitude_tropical": 110.50795931866219,
+        "longitude_used": 87.27226314944127,
+        "nakshatra": "PUNARVASU",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "rashi": "MITHUNA",
+        "retrograde": "RETROGRADE"
+      },
+      "KETU": {
+        "d9_sign": "DHANUSHA",
+        "degree_in_nakshatra": 2.602584690406864,
+        "degree_in_rashi": 9.269251357073529,
+        "house": 11,
+        "house_lord_of": [],
+        "longitude_sidereal": 69.26925135707353,
+        "longitude_tropical": 92.50494752629442,
+        "longitude_used": 69.26925135707353,
+        "nakshatra": "ARDRA",
+        "nakshatra_lord": "RAHU",
+        "pada": 1,
+        "rashi": "MITHUNA",
+        "retrograde": "RETROGRADE"
+      },
+      "MARS": {
+        "d9_sign": "VRISHABHA",
+        "degree_in_nakshatra": 5.854790903230564,
+        "degree_in_rashi": 5.854790903230564,
+        "house": 9,
+        "house_lord_of": [
+          4,
+          9
+        ],
+        "longitude_sidereal": 5.854790903230564,
+        "longitude_tropical": 29.090487072451467,
+        "longitude_used": 5.854790903230564,
+        "nakshatra": "ASHWINI",
+        "nakshatra_lord": "KETU",
+        "pada": 2,
+        "rashi": "MESHA",
+        "retrograde": "DIRECT"
+      },
+      "MERCURY": {
+        "d9_sign": "DHANUSHA",
+        "degree_in_nakshatra": 11.12603266754242,
+        "degree_in_rashi": 21.126032667542404,
+        "house": 6,
+        "house_lord_of": [
+          2,
+          11
+        ],
+        "longitude_sidereal": 291.1260326675424,
+        "longitude_tropical": 314.36172883676335,
+        "longitude_used": 291.1260326675424,
+        "nakshatra": "SHRAVANA",
+        "nakshatra_lord": "MOON",
+        "pada": 4,
+        "rashi": "MAKARA",
+        "retrograde": "RETROGRADE"
+      },
+      "MOON": {
+        "d9_sign": "MEENA",
+        "degree_in_nakshatra": 11.178300383058538,
+        "degree_in_rashi": 14.511633716391884,
+        "house": 8,
+        "house_lord_of": [
+          12
+        ],
+        "longitude_sidereal": 344.5116337163919,
+        "longitude_tropical": 7.747329885612751,
+        "longitude_used": 344.5116337163919,
+        "nakshatra": "UTTARA_BHADRAPADA",
+        "nakshatra_lord": "SATURN",
+        "pada": 4,
+        "rashi": "MEENA",
+        "retrograde": "DIRECT"
+      },
+      "RAHU": {
+        "d9_sign": "KUMBHA",
+        "degree_in_nakshatra": 9.26925135707353,
+        "degree_in_rashi": 9.269251357073529,
+        "house": 5,
+        "house_lord_of": [],
+        "longitude_sidereal": 249.26925135707353,
+        "longitude_tropical": 272.5049475262944,
+        "longitude_used": 249.26925135707353,
+        "nakshatra": "MULA",
+        "nakshatra_lord": "KETU",
+        "pada": 3,
+        "rashi": "DHANUSHA",
+        "retrograde": "RETROGRADE"
+      },
+      "SATURN": {
+        "d9_sign": "TULA",
+        "degree_in_nakshatra": 7.926985243193216,
+        "degree_in_rashi": 27.92698524319323,
+        "house": 3,
+        "house_lord_of": [
+          6,
+          7
+        ],
+        "longitude_sidereal": 207.92698524319323,
+        "longitude_tropical": 231.16268141241414,
+        "longitude_used": 207.92698524319323,
+        "nakshatra": "VISHAKHA",
+        "nakshatra_lord": "JUPITER",
+        "pada": 3,
+        "rashi": "TULA",
+        "retrograde": "DIRECT"
+      },
+      "SUN": {
+        "d9_sign": "KANYA",
+        "degree_in_nakshatra": 5.845772145737067,
+        "degree_in_rashi": 12.51243881240373,
+        "house": 7,
+        "house_lord_of": [
+          1
+        ],
+        "longitude_sidereal": 312.51243881240373,
+        "longitude_tropical": 335.7481349816246,
+        "longitude_used": 312.51243881240373,
+        "nakshatra": "SHATABHISHA",
+        "nakshatra_lord": "RAHU",
+        "pada": 2,
+        "rashi": "KUMBHA",
+        "retrograde": "DIRECT"
+      },
+      "VENUS": {
+        "d9_sign": "SIMHA",
+        "degree_in_nakshatra": 1.2695077362321305,
+        "degree_in_rashi": 27.936174402898814,
+        "house": 5,
+        "house_lord_of": [
+          3,
+          10
+        ],
+        "longitude_sidereal": 267.9361744028988,
+        "longitude_tropical": 291.1718705721197,
+        "longitude_used": 267.9361744028988,
+        "nakshatra": "UTTARA_ASHADHA",
+        "nakshatra_lord": "SUN",
+        "pada": 1,
+        "rashi": "DHANUSHA",
+        "retrograde": "DIRECT"
+      }
+    }
+  },
+  "known_events": [
+    {
+      "description": "Co-founded Apple Computer with Steve Wozniak",
+      "domain": "CAREER",
+      "event_date_utc": "1976-04-01T00:00:00Z",
+      "event_id": "JOBS_APPLE_1976",
+      "expected_planets": [
+        "MERCURY",
+        "JUPITER"
+      ],
+      "yoga_types": []
+    },
+    {
+      "description": "Forced out of Apple by the board of directors",
+      "domain": "CAREER",
+      "event_date_utc": "1985-09-17T00:00:00Z",
+      "event_id": "JOBS_OUSTED_1985",
+      "expected_planets": [
+        "SATURN",
+        "RAHU"
+      ],
+      "yoga_types": []
+    },
+    {
+      "description": "Returned to Apple as interim CEO \u2014 began the turnaround",
+      "domain": "CAREER",
+      "event_date_utc": "1997-09-16T00:00:00Z",
+      "event_id": "JOBS_RETURN_1997",
+      "expected_planets": [
+        "JUPITER",
+        "VENUS"
+      ],
+      "yoga_types": []
+    }
+  ],
+  "raw_birth_data": {
+    "date": "1955-02-24",
+    "latitude": 37.7749,
+    "location": "San Francisco, California, USA",
+    "longitude": -122.4194,
+    "time": "19:15:00",
+    "timezone": "America/Los_Angeles"
+  },
+  "target_scope": "closed-world"
+}

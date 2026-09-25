@@ -1,0 +1,289 @@
+{
+  "corpus_version": "1.0.0",
+  "entries": [
+    {
+      "computed_sha256": "84a40fc082c23cd6fbdc4d17ce727f85cf06f8846528f56e54619dd4f466de56",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_001_pilot",
+      "input_sha256": "086266a4793933c29d51fbd266c67bdae7c188591f77524c1e8c92382b8ab3ba",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "f9b3a37b990e5c2f2a48ac0e05d0c6ecae2835731784960cb580b73a9fbbd4b7",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_002_curie",
+      "input_sha256": "9d6bb5581980a6990534840819cddcbd7956a24bad356191cc4d53eb31a22406",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "1d9ef2783e50384c394533517a8f62167a1643f964bfbb88bd2c70ee0ab68afa",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_003_mozart",
+      "input_sha256": "bcd83a70e4b457da0222650adaeb2b65db8bf06fe7b062bf2c93b74f656b9a23",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "c37452124e7545251c98da13a6f3e1f8a1eea03b19ba78d2f303da8251d5ba02",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_004_tesla",
+      "input_sha256": "ca7789c415d9b00397f1b96effaecfa631ca14d03ce13098b9f7664855e5a095",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "5b06a7dd52ed5dc8a4ee3381b74e867eeda57763657034192d6f6544e5454ceb",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_005_gandhi",
+      "input_sha256": "95919c50325e15133de5e8bcef8f54c5e3c156f2a2c468dd29879be7aa03d78b",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "3f34db92cdd4dde0ebba248ce933a0e54227af53932f02541e65fd197c1906b3",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_006_newton",
+      "input_sha256": "bea52712e49d18e5fce8236972ddbe9718239ea9a1e0dd52a8dbd9451be8e73d",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "ee6dfaa5ded77add2ac1f8ebce58dd4d9b6c6b5349056d8f84ccefb2b7e1b8e5",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_007_lincoln",
+      "input_sha256": "985746c95bf22fa5ec1d24eff8f7cc1ca93f0b29a122c953c912a6ba1f8b466e",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "c1767b5c3a79bbc77663e0a768837614cbcbad2405aefece472f9769a251cc8a",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_008_teresa",
+      "input_sha256": "8f3b7edad3dae6d8f006537e6bff4163e02e5818214c45d1b3438b9c9af22d63",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "9344867605333f1ffac65c44ff51f831cdf9db711b02ca79894df75154fc5348",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_009_jobs",
+      "input_sha256": "9c24f1ee916894315124b4908a8a2a58328229029ea9ee1c55b74e056741edb8",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "a8fa78e163a2c4ce3ea3abcacfe178adb9aae792b61b8679f47d1fbfd68f56dc",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_010_earhart",
+      "input_sha256": "a74991256e3557e6dbab1640f5d532f5eeebdf0b731fa68f8f0c7bd59808a5d5",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "78cc0805ddc416a3db08a8c39cdd2d0ea2f9b66a6244e23035d1c207dd731fb0",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_011_churchill",
+      "input_sha256": "7c0b6bcf84a1c53407e6aad88080c8bee8480e4c8ec897adf13c5158aaaef06b",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "204634778cb44a67fede59d486822d34a91ae9d2a5151eaae16d73d84f549cd7",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_012_mandela",
+      "input_sha256": "53e3ea15f2802b391be9809dfb0a7c035d903587af12f97784f48d8eed9cb2b2",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "82f7e7120034803e96a8178acaca560d7555f8bb607fd7da8c480201b3676059",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_013_gandhi_mk",
+      "input_sha256": "b7af1c779ab53f687434c0dc9967f2668ebb4e12704dcf4cb931c6e5ac464a5e",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "2608237b52313eeb35081f1a12f60313166b0eb0be3286a1cfed5da61f6bed1c",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_014_jfk",
+      "input_sha256": "c0a23b543526bc859eaa39d5c95b53a19ed43c9a80aaa0ad57487b7fea228d18",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "501b31a24dff32c2995e97038b9e071cffe00e5fe013115d27adceffa2122759",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_015_thatcher",
+      "input_sha256": "2811b38d9ac0fa1505eff3f6954f49a44826489cf13bff48e717e3497c838989",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "76998e0ca8e5d64615d6abeb743a57ddebcd7d2934721ef9b2b5e33cf38ded34",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_016_degaulle",
+      "input_sha256": "145d5b1a476cefbd0384e86577c3481994932272d6d361eb4a02ef62515b5c22",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "2d9f1f1cf8dab62ea1700d917c79dbd34a100a5e19f12aa0dfbef396b30679e5",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_017_bismarck",
+      "input_sha256": "dab1d0394d831dd0f5c263c2fb35beed898aa16d2a433d61cf57a0e05e3c4a72",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "a598e06830bdc45a3264d88de5b7375190ab5ef0eafcfab211867063b304221f",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_018_franklin",
+      "input_sha256": "b6a72b6836df4e2612fe2d75d64e9d1066e28787a6ded1d5c46dce849f7335e2",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "9ffadb863d6ea583ea594328301f135321dad524c38bb7e7c3ece5cb24b653fc",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_019_eisenhower",
+      "input_sha256": "f85ca2fff09b5439a98581773284a3c15faf41a95df2b3a2fcbeefac4a6d8761",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "95f0497ae3e92e1d5dc8363bd035d6cc6ea0313e2c6e456913a4cb52c6656ed7",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_020_victoria",
+      "input_sha256": "edf88a3c1ece4a3c939054519194cb62dc64284ed472dcf7a96d76e27345b5a0",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "db9e43399dc80c30d25c76a303f376cc95ea9676a5d3a8ce82ecd4e8f1b0fbf4",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_021_darwin",
+      "input_sha256": "1316c0426c46815f136f02f8c0f7d77ac7f77e9c94d3ca1c2beedc5f0b0c7d41",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "0cca1028f8366fb18a0986f6599d8389379259aa4f40c170580ae7c587b1f931",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_022_humboldt",
+      "input_sha256": "52bd10da8e95b61d1246870e949f2b77f3cc4610c5ace54b742fc584ef9370a8",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "7ea5b2d4b9e7fb3bbda19c984dc3a77325a99461eeab1ba3eb520fe6a1531853",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_023_mendel",
+      "input_sha256": "f6f6eb96c23b583530f08970439cb3ef42a4f88214a3780bce01c2c07cbf9cb2",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "4a81215874c46680b243e5816ef2b7f8d69be033bc8869cbab8f4c2ee93091af",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_024_pasteur",
+      "input_sha256": "2f287ab4c5cdb37d0257d7749aa8297a11a159fc844da29784385b20722af4f0",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "89f8dedae237137dd84a404c70234cd463257b06d4c1bd98b1617fa98a4343ad",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_025_lovelace",
+      "input_sha256": "a9cf1fa5aa8d87a0e4ce22799a396e380bf8bd26abc45867fc2e31285a18d64b",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "b0f9d40485966fc0f39ea948375f4d5e20b98d8ec97bcb403ac0d43a787bfed4",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_026_planck",
+      "input_sha256": "9753fb2358f4fd09a841174eaf0b4efc1b5e82299c161a972cb3dcdbd0c6d92f",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "d2cf48a34c75bf07e7cd0881c85559cb347f1bb3bdbaa86b8b3254c48d679512",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_027_heisenberg",
+      "input_sha256": "a35bb9da39194f5a851e68a5d257f5da06be1febfa2d5600225662ae9d2c63ac",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "a599336992bd25e2d23bbd4e51b69f0736d31ab0631c5f69d544ecb922406bf6",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_028_freud",
+      "input_sha256": "61c2093357e5776a98505675a1c33f171576ab5339f7b3899f3db261d9c2cc1c",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "e93d1467b27d301131b8cbb4f09d3392ecd21969f6651565f8f9d946b07c7285",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_029_jung",
+      "input_sha256": "a11a654c9df1fc427655f742e766bcb82221f11b7565f31d33245dafe4adb0c8",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "5dddc23de192dcaf1b83e63bd916df2f3f26d0b16095c50db4ca436a2f06be4d",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_030_franklin_r",
+      "input_sha256": "b871da00bd0fb205f652b22d605ac879d02ca1242499f7bb26a8b962b96ca470",
+      "target_scope": "closed-world"
+    },
+    {
+      "computed_sha256": "f914eca0bae8261b2f8e595e004f26cb236ba26e80b775267bcd7a5facf4587c",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_031_beethoven",
+      "input_sha256": "58dbf96a8f6a95beb6b738afac29796ad2cb2b0255b32b613f352f5bc782f1ad",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "258ee808db3c6e7e0c00078cbfd87a650275bc7f554152f9647e3c85970074f5",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_032_vangogh",
+      "input_sha256": "a640cf9b95cb398489b5316a21314bf6fe5ac4d5f5eeb2b61e7756da9fa1c4b4",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "6a75f51f053fa05069b543e2a1e8cb628e3e243531030b6728368aa1d32d5d0e",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_033_picasso",
+      "input_sha256": "464c2c821c0b265ef14a3d994c7529ffce74d1229fb32ffe60bc221ab3795908",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "41d044f380f2da52a40cfc3e48d914a8d7028d129cb5ae72f9c305769ec1ebcb",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_034_tolstoy",
+      "input_sha256": "7826575400fac2b8cc0b824cee1bac3b6aaae2719229af64723891f37e78006a",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "479a6fcde40d4cbe493a594c63aa560e8c7a08e6fb085d6c2ea17db2712b9614",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_035_twain",
+      "input_sha256": "f657198243d0813abd2090ccb53f114722e15eb53c4f49822d120b5c29f8c2cd",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "8c773c7d6825b5afd0a89eb914d9770c64472f89217d0e294628ec975fa3ef52",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_036_chaplin",
+      "input_sha256": "13819a865722049f940f4be9854740d972b5d92d63eedd11efdd69ee46d763ea",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "5e59a6cfeceb8ba105bdffddd81c58a61b9b7f499db47fa16ae1375d8a6171e8",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_037_tchaikovsky",
+      "input_sha256": "6d49abc1d1f91ef74c7966a2ad2c2e0da0792751ebda2728e2a02ee03d7c3585",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "89d6fe9b21d235c2a9fdbd00dbd0d2142827de8326235534e75c377ec4933971",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_038_andersen",
+      "input_sha256": "a0247a909d4b7a3bb18ee54e3be8355ca1845851ac5b3a765605eb8db197d222",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "3543ef07b6ed704fd60af9109fba8e4bc34dfbbf5febc242d35ee42fd95dfa6c",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_039_liszt",
+      "input_sha256": "a7c64d1acc8b640c6f65cdbb4138005392dc5c63bffe42903326e8022bf8bb29",
+      "target_scope": "open-world"
+    },
+    {
+      "computed_sha256": "c4c29938413683924cbd305e1c2368ca8d90ef1765c203f3d38c60bb524bbf78",
+      "evaluated_at": "2026-09-24T00:00:00Z",
+      "fixture_id": "chart_040_chekhov",
+      "input_sha256": "d20b145f91cb24afaadadd995e07221650251d53fcbc7cd3b6ef7b8c242adf9b",
+      "target_scope": "open-world"
+    }
+  ],
+  "schema_uri": "https://jre.jyotish/validation/benchmark/1.0.0",
+  "schema_version": "1.0.0",
+  "total_charts": 40,
+  "total_inputs_sha256": "858d20a52794f28f274d2e69e58a2c864ee202cb101612ce5fd5725195584a6d"
+}
