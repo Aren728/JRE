@@ -27,6 +27,13 @@ Modes:
     verify     Re-run the pipeline and recompute every stage hash against
                the committed manifests. Non-zero exit on any mismatch.
 
+Phase 5B addition — ashtakavarga stage:
+    A sixth canonical stage records the deterministic Ashtakavarga
+    report (BAV 0-8 Rekhas per anchor, SAV summing to the invariant 337,
+    Trikona + Ekadhipatya Shodhana, Shodhita Pinda) computed from the
+    same jre_facts. The ashta_scoring_enabled feature flag gates only
+    downstream *scoring* injection, never this golden stage.
+
 Determinism notes:
 - ``calculate_vimshottari_dasha`` defaults ``target_date`` to wall-clock
   *now*, which would poison the hash. The dasha stage is therefore pinned
@@ -52,6 +59,10 @@ from typing import Any
 
 from jrs.api.dependencies import build_jre_facts, compute_chart_from_fixture
 from jrs.api.schemas import ENGINE_VERSION
+from jrs.calculations.ashtakavarga import (
+    ashtakavarga_to_dict,
+    compute_full_ashtakavarga,
+)
 from jrs.engine.dasha import calculate_vimshottari_dasha
 from jrs.prediction_engine.provenance import EvidenceGraphService
 from jrs.validation.golden_state import (
@@ -154,6 +165,12 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
     yoga_evals = evaluator.evaluate_classical_yogas(facts)
     yoga_payload = [ev.to_dict() for ev in yoga_evals]
 
+    # Phase 5B: Ashtakavarga checkpoint (BAV/SAV/Shodhana/Pinda). The
+    # ashta_scoring_enabled flag does NOT gate the golden-state stage —
+    # the stage records the pure calculation report regardless, so the
+    # regression gate covers it before any downstream scoring hookup.
+    ashta_report = ashtakavarga_to_dict(compute_full_ashtakavarga(facts))
+
     # Phase 4 (JRS-092): evidence-graph provenance stage with DAG
     # node/edge count assertions folded into the golden manifest.
     graph = EvidenceGraphService().build_graph(jre_facts=facts, yoga_evals=yoga_evals)
@@ -165,6 +182,7 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         "jre_facts": facts,
         "dasha": dasha,
         "yogas": yoga_payload,
+        "ashtakavarga": ashta_report,
         "evidence_graph": graph_dict,
     }
 

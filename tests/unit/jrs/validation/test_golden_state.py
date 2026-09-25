@@ -217,6 +217,7 @@ def test_canonical_stage_ids_are_ordered() -> None:
         "jre_facts",
         "dasha",
         "yogas",
+        "ashtakavarga",
         "report",
     )
 

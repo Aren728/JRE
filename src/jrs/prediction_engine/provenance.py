@@ -40,6 +40,8 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
+from jrs.calculations.ashtakavarga import ANCHORS
+
 # ── Deterministic rule / fact identifier namespaces ───────────────────────────
 
 # Yoga rules — classical formation / cancellation / manifestation (BPHS,
@@ -452,6 +454,35 @@ def build_provenance_chain(
         )
         evidence_nodes.append(node)
 
+    # Phase 5B Ashtakavarga fact nodes (feature-flag gated): emitted only
+    # when jre_facts carries the computed report (i.e. the
+    # ashta_scoring_enabled flag was on at fact-extraction time), so
+    # flag-off evidence graphs stay byte-identical to their golden
+    # manifests.
+    ashta_report = jre_facts.get("ashtakavarga")
+    if isinstance(ashta_report, dict):
+        ashta_fact_ids: list[str] = [
+            f"FACT-ASHTA-BAV-{anchor}" for anchor in ANCHORS
+        ]
+        ashta_fact_ids.append("FACT-ASHTA-SAV")
+        ashta_fact_ids.extend(
+            f"FACT-ASHTA-PINDA-{anchor}" for anchor in ANCHORS
+        )
+        for ashta_idx, ashta_fact_id in enumerate(ashta_fact_ids):
+            ashta_node = DAGNode(
+                node_id=f"FA-{ashta_idx}-{_deterministic_id(ashta_fact_id)}",
+                node_type="FACT",
+                labels=("FACT", "ASHTAKAVARGA"),
+                payload={
+                    "fact_id": ashta_fact_id,
+                    "kind": "ASHTAKAVARGA",
+                    "version": str(ashta_report.get("version", "")),
+                },
+                children=(),
+                parent=None,
+            )
+            evidence_nodes.append(ashta_node)
+
     # ── Temporal node (dasha/transit) ───────────────────────────────
     if any(k in jre_facts for k in ("dasha_periods", "transit_houses", "moon_nakshatra")):
         temporal_node = DAGNode(
@@ -560,7 +591,8 @@ def result_to_json(graph: DirectedAcyclicGraph, indent: int = 2) -> str:
 
 def result_to_dict(graph: DirectedAcyclicGraph) -> dict[str, Any]:
     """Serialize a DirectedAcyclicGraph to a dict (round-trip ready)."""
-    return _canonicalize_floats(graph.to_dict())
+    result: dict[str, Any] = _canonicalize_floats(graph.to_dict())
+    return result
 
 
 def graph_to_dot(graph: DirectedAcyclicGraph) -> str:

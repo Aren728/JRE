@@ -12,6 +12,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+from jrs.calculations.ashtakavarga import ashta_scoring_enabled
+
 if TYPE_CHECKING:
     from jyotish.service import JyotishService
     from jrs.yoga_evaluator.service import YogaEvaluatorService
@@ -403,5 +405,20 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
     except Exception:
         # Graceful fallback — enrichment is non-critical
         pass
+
+    # ── Phase 5B: Ashtakavarga scoring facts (feature-flagged) ──
+    # Injected ONLY when ashta_scoring_enabled() is on, so the frozen
+    # benchmark baseline (Micro-F1 = 0.7435) cannot silently regress.
+    # The golden-state 'ashtakavarga' stage records the pure calculation
+    # report independently of this flag.
+    if ashta_scoring_enabled():
+        from jrs.calculations.ashtakavarga import (
+            ashtakavarga_to_dict,
+            compute_full_ashtakavarga,
+        )
+
+        facts["ashtakavarga"] = ashtakavarga_to_dict(
+            compute_full_ashtakavarga(facts)
+        )
 
     return facts

@@ -20,6 +20,10 @@
       "stage_id": "yogas"
     },
     {
+      "payload_hash": "2e62b72ef548d1d3484ae612fdb3423d1bb1045ed2421f37962aef059a8ae608",
+      "stage_id": "ashtakavarga"
+    },
+    {
       "payload_hash": "c96f6e711526a86d67cbf4c8fcbd9d52720ee55c8f9f6e044f770a9581e2013b",
       "stage_id": "evidence_graph"
     }

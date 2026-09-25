@@ -1,0 +1,435 @@
+{
+  "expected": {
+    "bav_row_totals": {
+      "JUPITER": 56,
+      "LAGNA": 50,
+      "MARS": 39,
+      "MERCURY": 54,
+      "MOON": 49,
+      "SATURN": 39,
+      "SUN": 48,
+      "VENUS": 52
+    },
+    "ekadhipatya_equal_zeroes": [
+      0,
+      4,
+      2,
+      3,
+      7,
+      2,
+      4,
+      0,
+      4,
+      3,
+      3,
+      4
+    ],
+    "ekadhipatya_row": [
+      0,
+      0,
+      2,
+      3,
+      7,
+      2,
+      0,
+      0,
+      4,
+      3,
+      3,
+      4
+    ],
+    "pinda_sun": {
+      "graha_pinda": 40,
+      "rashi_pinda": 147,
+      "shodhya_pinda": 187
+    },
+    "report": {
+      "anchor_signs": {
+        "JUPITER": "KUMBHA",
+        "LAGNA": "MITHUNA",
+        "MARS": "MAKARA",
+        "MERCURY": "MEENA",
+        "MOON": "VRISHCHIKA",
+        "SATURN": "MEENA",
+        "SUN": "MEENA",
+        "VENUS": "MEENA"
+      },
+      "bav": {
+        "JUPITER": [
+          3,
+          5,
+          5,
+          4,
+          5,
+          3,
+          5,
+          6,
+          7,
+          1,
+          5,
+          7
+        ],
+        "LAGNA": [
+          8,
+          2,
+          5,
+          3,
+          6,
+          5,
+          2,
+          7,
+          1,
+          2,
+          2,
+          7
+        ],
+        "MARS": [
+          2,
+          2,
+          6,
+          2,
+          3,
+          1,
+          5,
+          8,
+          2,
+          3,
+          1,
+          4
+        ],
+        "MERCURY": [
+          5,
+          2,
+          5,
+          3,
+          5,
+          2,
+          6,
+          5,
+          5,
+          8,
+          3,
+          5
+        ],
+        "MOON": [
+          5,
+          5,
+          3,
+          2,
+          7,
+          8,
+          0,
+          3,
+          2,
+          7,
+          3,
+          4
+        ],
+        "SATURN": [
+          1,
+          4,
+          2,
+          3,
+          7,
+          1,
+          2,
+          1,
+          4,
+          8,
+          4,
+          2
+        ],
+        "SUN": [
+          3,
+          3,
+          4,
+          2,
+          5,
+          4,
+          3,
+          5,
+          6,
+          7,
+          3,
+          3
+        ],
+        "VENUS": [
+          3,
+          6,
+          5,
+          6,
+          2,
+          0,
+          6,
+          7,
+          3,
+          8,
+          3,
+          3
+        ]
+      },
+      "fact_ids": [
+        "FACT-ASHTA-BAV-SUN",
+        "FACT-ASHTA-BAV-MOON",
+        "FACT-ASHTA-BAV-MARS",
+        "FACT-ASHTA-BAV-MERCURY",
+        "FACT-ASHTA-BAV-JUPITER",
+        "FACT-ASHTA-BAV-VENUS",
+        "FACT-ASHTA-BAV-SATURN",
+        "FACT-ASHTA-BAV-LAGNA",
+        "FACT-ASHTA-SAV",
+        "FACT-ASHTA-PINDA-SUN",
+        "FACT-ASHTA-PINDA-MOON",
+        "FACT-ASHTA-PINDA-MARS",
+        "FACT-ASHTA-PINDA-MERCURY",
+        "FACT-ASHTA-PINDA-JUPITER",
+        "FACT-ASHTA-PINDA-VENUS",
+        "FACT-ASHTA-PINDA-SATURN",
+        "FACT-ASHTA-PINDA-LAGNA"
+      ],
+      "pinda": {
+        "JUPITER": {
+          "graha_pinda": 88,
+          "rashi_pinda": 220,
+          "shodhya_pinda": 308
+        },
+        "LAGNA": {
+          "graha_pinda": 60,
+          "rashi_pinda": 123,
+          "shodhya_pinda": 183
+        },
+        "MARS": {
+          "graha_pinda": 40,
+          "rashi_pinda": 96,
+          "shodhya_pinda": 136
+        },
+        "MERCURY": {
+          "graha_pinda": 76,
+          "rashi_pinda": 235,
+          "shodhya_pinda": 311
+        },
+        "MOON": {
+          "graha_pinda": 40,
+          "rashi_pinda": 118,
+          "shodhya_pinda": 158
+        },
+        "SATURN": {
+          "graha_pinda": 28,
+          "rashi_pinda": 88,
+          "shodhya_pinda": 116
+        },
+        "SUN": {
+          "graha_pinda": 40,
+          "rashi_pinda": 147,
+          "shodhya_pinda": 187
+        },
+        "VENUS": {
+          "graha_pinda": 60,
+          "rashi_pinda": 132,
+          "shodhya_pinda": 192
+        }
+      },
+      "sav": [
+        22,
+        27,
+        30,
+        22,
+        34,
+        19,
+        27,
+        35,
+        29,
+        42,
+        22,
+        28
+      ],
+      "shodhita_bav": {
+        "JUPITER": [
+          3,
+          1,
+          5,
+          4,
+          3,
+          1,
+          5,
+          4,
+          3,
+          1,
+          1,
+          4
+        ],
+        "LAGNA": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          2,
+          2,
+          3,
+          1,
+          0,
+          0,
+          3
+        ],
+        "MARS": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          0,
+          0,
+          2
+        ],
+        "MERCURY": [
+          5,
+          2,
+          3,
+          3,
+          5,
+          2,
+          3,
+          3,
+          5,
+          2,
+          2,
+          3
+        ],
+        "MOON": [
+          2,
+          5,
+          0,
+          2,
+          2,
+          5,
+          0,
+          2,
+          2,
+          0,
+          0,
+          2
+        ],
+        "SATURN": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "SUN": [
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          0,
+          0,
+          2
+        ],
+        "VENUS": [
+          2,
+          0,
+          3,
+          3,
+          2,
+          0,
+          3,
+          3,
+          2,
+          0,
+          0,
+          3
+        ]
+      },
+      "shodhita_sav": [
+        18,
+        13,
+        17,
+        17,
+        18,
+        13,
+        17,
+        17,
+        18,
+        4,
+        4,
+        17
+      ],
+      "version": "1.0.0"
+    },
+    "sav_total": 337,
+    "trikona_row": [
+      4,
+      2,
+      5,
+      3,
+      4,
+      2,
+      5,
+      3,
+      4,
+      2,
+      5,
+      3
+    ]
+  },
+  "input": {
+    "facts": {
+      "lagna": "MITHUNA",
+      "planets": {
+        "JUPITER": {
+          "rashi": "KUMBHA"
+        },
+        "MARS": {
+          "rashi": "MAKARA"
+        },
+        "MERCURY": {
+          "rashi": "MEENA"
+        },
+        "MOON": {
+          "rashi": "VRISHCHIKA"
+        },
+        "SATURN": {
+          "rashi": "MEENA"
+        },
+        "SUN": {
+          "rashi": "MEENA"
+        },
+        "VENUS": {
+          "rashi": "MEENA"
+        }
+      }
+    },
+    "reduction_row": [
+      4,
+      5,
+      6,
+      3,
+      7,
+      2,
+      5,
+      4,
+      6,
+      3,
+      5,
+      4
+    ]
+  },
+  "schema": "jrs.calculations.ashtakavarga/1.0.0"
+}
