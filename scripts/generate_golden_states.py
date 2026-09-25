@@ -63,6 +63,11 @@ from jrs.calculations.ashtakavarga import (
     ashtakavarga_to_dict,
     compute_full_ashtakavarga,
 )
+from jrs.calculations.dasha_transit import (
+    DASHA_TRANSIT_EPOCH,
+    compute_dasha_transit,
+    dasha_transit_to_dict,
+)
 from jrs.calculations.gochara import (
     GOCHARA_TRANSIT_EPOCH,
     compute_gochara,
@@ -201,6 +206,18 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         compute_multi_varga(facts, lagna_longitude=chart.lagna.ascendant_longitude_deg)
     )
 
+    # Phase 5E: dasha/transit permissive-gate checkpoint — the active
+    # Vimshottari MD/AD/PD window and per-planet gate decisions at the
+    # pinned epoch, anchored to the chart's birth date. Flag-independent,
+    # same discipline as the ashtakavarga/gochara/multi_varga stages.
+    dasha_transit_report = dasha_transit_to_dict(
+        compute_dasha_transit(
+            facts,
+            birth_date=str(chart.birth_snapshot.date),
+            epoch=DASHA_TRANSIT_EPOCH,
+        )
+    )
+
     # Phase 4 (JRS-092): evidence-graph provenance stage with DAG
     # node/edge count assertions folded into the golden manifest.
     graph = EvidenceGraphService().build_graph(jre_facts=facts, yoga_evals=yoga_evals)
@@ -215,6 +232,7 @@ def collect_stage_payloads(fixture: dict[str, Any]) -> dict[str, Any]:
         "ashtakavarga": ashta_report,
         "gochara": gochara_report,
         "multi_varga": varga_report,
+        "dasha_transit": dasha_transit_report,
         "evidence_graph": graph_dict,
     }
 

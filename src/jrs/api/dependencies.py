@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from jrs.calculations.ashtakavarga import ashta_scoring_enabled
+from jrs.calculations.dasha_transit import dasha_transit_scoring_enabled
 from jrs.calculations.gochara import gochara_scoring_enabled
 from jrs.calculations.varga import varga_scoring_enabled
 
@@ -458,6 +459,25 @@ def build_jre_facts(chart: Any) -> dict[str, Any]:
             compute_multi_varga(
                 facts,
                 lagna_longitude=float(chart.lagna.ascendant_longitude_deg),
+            )
+        )
+
+    # ── Phase 5E: Dasha/transit permissive gate facts (feature-flagged) ──
+    # Injected only when dasha_transit_scoring_enabled() is on; evaluated
+    # at the pinned epoch anchored to the chart's own birth date so the
+    # active Vimshottari window is deterministic.
+    if dasha_transit_scoring_enabled():
+        from jrs.calculations.dasha_transit import (
+            DASHA_TRANSIT_EPOCH,
+            compute_dasha_transit,
+            dasha_transit_to_dict,
+        )
+
+        facts["dasha_transit"] = dasha_transit_to_dict(
+            compute_dasha_transit(
+                facts,
+                birth_date=str(chart.birth_snapshot.date),
+                epoch=DASHA_TRANSIT_EPOCH,
             )
         )
 

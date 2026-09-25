@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "description": "Dasha/transit permissive gate at the pinned epoch (Venus MD / Sun AD / Saturn PD).",
+    "fixture_id": "fixture_000_einstein",
+    "phase": "5E",
+    "subject": "Albert Einstein (1879-03-14)"
+  },
+  "expected": {
+    "authorized_by": {
+      "JUPITER": null,
+      "MARS": null,
+      "MERCURY": null,
+      "MOON": null,
+      "SATURN": "PD",
+      "SUN": "AD",
+      "VENUS": "MD"
+    },
+    "dasha_window": {
+      "antardasha": "SUN",
+      "duration_days": 57.0,
+      "end_date": "2020-01-30",
+      "fact_ids": [
+        "FACT-DASHA-MD-VENUS",
+        "FACT-DASHA-AD-SUN",
+        "FACT-DASHA-PD-SATURN"
+      ],
+      "mahadasha": "VENUS",
+      "pratyantardasha": "SATURN",
+      "start_date": "2019-12-04",
+      "window_degenerate": false
+    },
+    "decisions": {
+      "JUPITER": "BLOCKED",
+      "MARS": "BLOCKED",
+      "MERCURY": "BLOCKED",
+      "MOON": "BLOCKED",
+      "SATURN": "AUTHORIZED",
+      "SUN": "AUTHORIZED",
+      "VENUS": "AUTHORIZED"
+    },
+    "epoch_utc": "2020-01-01T00:00:00+0000",
+    "fact_ids": [
+      "FACT-DASHA-MD-VENUS",
+      "FACT-DASHA-AD-SUN",
+      "FACT-DASHA-PD-SATURN",
+      "FACT-DASHA-TRANSIT-GATE-SUN",
+      "FACT-DASHA-TRANSIT-GATE-MOON",
+      "FACT-DASHA-TRANSIT-GATE-MARS",
+      "FACT-DASHA-TRANSIT-GATE-MERCURY",
+      "FACT-DASHA-TRANSIT-GATE-JUPITER",
+      "FACT-DASHA-TRANSIT-GATE-VENUS",
+      "FACT-DASHA-TRANSIT-GATE-SATURN"
+    ],
+    "relationships": {
+      "JUPITER": "BLOCKS",
+      "MARS": "BLOCKS",
+      "MERCURY": "BLOCKS",
+      "MOON": "BLOCKS",
+      "SATURN": "AUTHORIZES",
+      "SUN": "AUTHORIZES",
+      "VENUS": "AUTHORIZES"
+    },
+    "summary": {
+      "authorized": 3,
+      "blocked": 4
+    }
+  },
+  "input": {
+    "birth_date": "1879-03-14",
+    "planets": {
+      "JUPITER": {
+        "longitude": 305.3077339155739,
+        "rashi": "MAKARA"
+      },
+      "MARS": {
+        "longitude": 274.7331682026066,
+        "rashi": "DHANUSHA"
+      },
+      "MERCURY": {
+        "longitude": 340.95139065805967,
+        "rashi": "MEENA"
+      },
+      "MOON": {
+        "longitude": 232.22148712046456,
+        "rashi": "VRISHCHIKA"
+      },
+      "SATURN": {
+        "longitude": 342.01443295977805,
+        "rashi": "MEENA"
+      },
+      "SUN": {
+        "longitude": 331.32419345824417,
+        "rashi": "MEENA"
+      },
+      "VENUS": {
+        "longitude": 354.79925006625405,
+        "rashi": "MEENA"
+      }
+    }
+  }
+}

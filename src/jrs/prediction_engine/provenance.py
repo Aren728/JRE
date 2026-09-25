@@ -670,6 +670,114 @@ def build_provenance_chain(
                 )
             )
 
+    # Phase 5E dasha/transit permissive-gate fact + relation nodes
+    # (feature-flag gated): emitted only when jre_facts carries the
+    # dasha_transit report (i.e. the dasha_transit_scoring_enabled flag
+    # was on at fact-extraction time), so flag-off evidence graphs stay
+    # byte-identical to their manifests.
+    dasha_transit_report = jre_facts.get("dasha_transit")
+    if isinstance(dasha_transit_report, dict):
+        # Vimshottari window fact nodes (MD / AD / PD authorization
+        # facts, emitted in the report's canonical fact_ids order).
+        dt_window = dasha_transit_report.get("dasha_window", {})
+        dt_window_nodes: list[str] = []
+        dt_idx = 0
+        for wfact_id in dt_window.get("fact_ids", ()):
+            wnode_id = f"FD-{dt_idx}-{_deterministic_id(str(wfact_id))}"
+            dt_idx += 1
+            dt_window_nodes.append(wnode_id)
+            evidence_nodes.append(
+                DAGNode(
+                    node_id=wnode_id,
+                    node_type="FACT",
+                    labels=("FACT", "DASHA_TRANSIT"),
+                    payload={
+                        "fact_id": str(wfact_id),
+                        "kind": "DASHA_TRANSIT",
+                        "role": "WINDOW",
+                        "mahadasha": dt_window.get("mahadasha"),
+                        "antardasha": dt_window.get("antardasha"),
+                        "pratyantardasha": dt_window.get("pratyantardasha"),
+                        "start_date": dt_window.get("start_date"),
+                        "end_date": dt_window.get("end_date"),
+                        "epoch_utc": dasha_transit_report.get("epoch_utc"),
+                    },
+                    children=(),
+                    parent=None,
+                )
+            )
+
+        # Per-planet gate fact nodes.
+        dt_node_ids: dict[str, str] = {}
+        for dt_body, dt_report in dasha_transit_report.get("planets", {}).items():
+            dtfact_id = str(
+                dt_report.get("fact_id", f"FACT-DASHA-TRANSIT-GATE-{dt_body}")
+            )
+            dtnode_id = f"FD-{dt_idx}-{_deterministic_id(dtfact_id)}"
+            dt_idx += 1
+            dt_node_ids[dt_body] = dtnode_id
+            evidence_nodes.append(
+                DAGNode(
+                    node_id=dtnode_id,
+                    node_type="FACT",
+                    labels=("FACT", "DASHA_TRANSIT"),
+                    payload={
+                        "fact_id": dtfact_id,
+                        "kind": "DASHA_TRANSIT",
+                        "role": "GATE",
+                        "planet": dt_body,
+                        "decision": dt_report.get("decision"),
+                        "authorized_by": dt_report.get("authorized_by"),
+                        "transit_band": (dt_report.get("transit_state") or {}).get(
+                            "band"
+                        ),
+                    },
+                    children=(),
+                    parent=None,
+                )
+            )
+
+        # REL-DASHA-TRANSIT-* edges: gate -> authorizing window fact
+        # (AUTHORIZES), or gate -> Mahadasha window root when blocked.
+        if dt_window_nodes:
+            role_index = {"MD": 0, "AD": 1, "PD": 2}
+            for dt_body, dt_report in dasha_transit_report.get("planets", {}).items():
+                gate_node_id = dt_node_ids.get(dt_body)
+                if gate_node_id is None:
+                    continue
+                authorized_by = dt_report.get("authorized_by")
+                target_node = (
+                    dt_window_nodes[
+                        role_index.get(str(authorized_by), 0)
+                    ]
+                    if authorized_by
+                    else dt_window_nodes[0]
+                )
+                relationship = str(
+                    dt_report.get("relationship")
+                    or (
+                        "REL-DASHA-TRANSIT-AUTHORIZES"
+                        if authorized_by
+                        else "REL-DASHA-TRANSIT-BLOCKS"
+                    )
+                )
+                evidence_edges.append(
+                    DAGEdge(
+                        edge_id=(
+                            f"REL-DASHA-TRANSIT-{dt_body}-"
+                            f"{_deterministic_id(gate_node_id)}"
+                        ),
+                        source=gate_node_id,
+                        target=target_node,
+                        relationship=relationship,
+                        metadata={
+                            "planet": dt_body,
+                            "authorized_by": authorized_by,
+                            "decision": dt_report.get("decision"),
+                        },
+                    ),
+                )
+
     # ── Temporal node (dasha/transit) ───────────────────────────────
     if any(k in jre_facts for k in ("dasha_periods", "transit_houses", "moon_nakshatra")):
         temporal_node = DAGNode(

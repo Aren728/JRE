@@ -220,6 +220,7 @@ def test_canonical_stage_ids_are_ordered() -> None:
         "ashtakavarga",
         "gochara",
         "multi_varga",
+        "dasha_transit",  # Phase 5E: permissive dasha/transit gate
         "report",
     )
 

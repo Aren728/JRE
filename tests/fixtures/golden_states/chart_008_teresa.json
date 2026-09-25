@@ -32,6 +32,10 @@
       "stage_id": "multi_varga"
     },
     {
+      "payload_hash": "4929c6ff2bb91f6a359972e84d8abea47adad5cf1cd89cba36f1be0713917c7a",
+      "stage_id": "dasha_transit"
+    },
+    {
       "payload_hash": "0a51d940bf5030e70ffd3b3d2d303769b533eae29a20150494c7b5a0778a003c",
       "stage_id": "evidence_graph"
     }
