@@ -1,0 +1,348 @@
+{
+  "expected": {
+    "attributions": [
+      {
+        "chart_id": "chart_fixture_000",
+        "confidence": 0.0,
+        "detail": "no RULE node fired for this event in the evidence graph",
+        "event_id": "EV-1",
+        "kind": "COVERAGE_GAP",
+        "polarity": "FN",
+        "root_fact_ids": [],
+        "root_rule_ids": [],
+        "temporal_affected": false,
+        "timing_overlap_ratio": 0.0,
+        "timing_status": "ACTUAL_ONLY",
+        "verdict": "FALSE_NEGATIVE",
+        "yoga_name": ""
+      },
+      {
+        "chart_id": "chart_fixture_000",
+        "confidence": 0.1,
+        "detail": "rule(s) YOGA-002 fired but the best prediction was cancelled by the modifier pipeline",
+        "event_id": "EV-2",
+        "kind": "FORMATION_CANCELLED",
+        "polarity": "FN",
+        "root_fact_ids": [
+          "F-001"
+        ],
+        "root_rule_ids": [
+          "YOGA-002"
+        ],
+        "temporal_affected": true,
+        "timing_overlap_ratio": 0.0,
+        "timing_status": "ACTUAL_ONLY",
+        "verdict": "FALSE_NEGATIVE",
+        "yoga_name": "Raja"
+      },
+      {
+        "chart_id": "chart_fixture_000",
+        "confidence": 0.9,
+        "detail": "activation fired outside every event timing window (timing_status=TimingMatchStatus.NO_OVERLAP)",
+        "event_id": "EV-3",
+        "kind": "DASHA_MISMATCH",
+        "polarity": "FP",
+        "root_fact_ids": [
+          "F-001",
+          "F-002"
+        ],
+        "root_rule_ids": [
+          "YOGA-008"
+        ],
+        "temporal_affected": true,
+        "timing_overlap_ratio": 0.0,
+        "timing_status": "NO_OVERLAP",
+        "verdict": "FALSE_POSITIVE",
+        "yoga_name": "Malavya"
+      },
+      {
+        "chart_id": "chart_fixture_000",
+        "confidence": 0.8,
+        "detail": "activation not supported by any ground-truth event (timing_status=TimingMatchStatus.PARTIAL_OVERLAP)",
+        "event_id": "EV-4",
+        "kind": "DOMAIN_OVERLAP",
+        "polarity": "FP",
+        "root_fact_ids": [
+          "F-001",
+          "F-002"
+        ],
+        "root_rule_ids": [
+          "YOGA-008"
+        ],
+        "temporal_affected": true,
+        "timing_overlap_ratio": 0.4,
+        "timing_status": "PARTIAL_OVERLAP",
+        "verdict": "FALSE_POSITIVE",
+        "yoga_name": "Malavya"
+      }
+    ],
+    "summary": {
+      "by_kind": {
+        "COVERAGE_GAP": 1,
+        "DASHA_MISMATCH": 1,
+        "DOMAIN_OVERLAP": 1,
+        "FORMATION_CANCELLED": 1
+      },
+      "by_rule": {
+        "YOGA-002": 1,
+        "YOGA-008": 2
+      },
+      "top_facts": {
+        "F-001": 3,
+        "F-002": 2
+      },
+      "total_fn": 2,
+      "total_fp": 2
+    }
+  },
+  "input": {
+    "chart_id": "chart_fixture_000",
+    "graph": {
+      "edges": [
+        {
+          "edge_id": "E-EV-0",
+          "metadata": {
+            "yoga_name": "Malavya"
+          },
+          "relationship": "ESTABLISHED_BY",
+          "source": "P-P-FIXTURE",
+          "target": "R-0-YOGA-008",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-EV-1",
+          "metadata": {
+            "yoga_name": "Raja"
+          },
+          "relationship": "ESTABLISHED_BY",
+          "source": "P-P-FIXTURE",
+          "target": "R-1-YOGA-002",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-RF-0-a",
+          "metadata": {
+            "fact_type": "PLANETARY_STATE"
+          },
+          "relationship": "SUPPORTS",
+          "source": "R-0-YOGA-008",
+          "target": "F-0-fact1",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-RF-0-b",
+          "metadata": {
+            "fact_type": "PLANETARY_STATE"
+          },
+          "relationship": "SUPPORTS",
+          "source": "R-0-YOGA-008",
+          "target": "F-0-fact2",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-RF-1-a",
+          "metadata": {
+            "fact_type": "PLANETARY_STATE"
+          },
+          "relationship": "SUPPORTS",
+          "source": "R-1-YOGA-002",
+          "target": "F-0-fact1",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-RT-0",
+          "metadata": {
+            "aspect": "Dasha/Transit multiplier"
+          },
+          "relationship": "AFFECTS",
+          "source": "R-0-YOGA-008",
+          "target": "temporal",
+          "weight": 1.0
+        },
+        {
+          "edge_id": "E-RT-1",
+          "metadata": {
+            "aspect": "Dasha/Transit multiplier"
+          },
+          "relationship": "AFFECTS",
+          "source": "R-1-YOGA-002",
+          "target": "temporal",
+          "weight": 1.0
+        }
+      ],
+      "graph_id": "fixture-graph",
+      "nodes": [
+        {
+          "children": [],
+          "labels": [
+            "EVALUATION"
+          ],
+          "node_id": "P-P-FIXTURE",
+          "node_type": "EVALUATION",
+          "parent": null,
+          "payload": {
+            "prediction_id": "P-FIXTURE",
+            "source": "P-FIXTURE",
+            "yoga_count": 2
+          }
+        },
+        {
+          "children": [],
+          "labels": [
+            "YOGA",
+            "YOGA-008"
+          ],
+          "node_id": "R-0-YOGA-008",
+          "node_type": "RULE",
+          "parent": null,
+          "payload": {
+            "evaluation_idx": 0,
+            "rule_id": "YOGA-008",
+            "status": "WEAKENED",
+            "yoga_name": "Malavya"
+          }
+        },
+        {
+          "children": [],
+          "labels": [
+            "YOGA",
+            "YOGA-002"
+          ],
+          "node_id": "R-1-YOGA-002",
+          "node_type": "RULE",
+          "parent": null,
+          "payload": {
+            "evaluation_idx": 1,
+            "rule_id": "YOGA-002",
+            "status": "CANCELLED",
+            "yoga_name": "Raja"
+          }
+        },
+        {
+          "children": [],
+          "labels": [
+            "FACT",
+            "PLANETARY_STATE"
+          ],
+          "node_id": "F-0-fact1",
+          "node_type": "FACT",
+          "parent": null,
+          "payload": {
+            "fact_id": "F-001",
+            "kind": "PLANETARY_STATE"
+          }
+        },
+        {
+          "children": [],
+          "labels": [
+            "FACT",
+            "PLANETARY_STATE"
+          ],
+          "node_id": "F-0-fact2",
+          "node_type": "FACT",
+          "parent": null,
+          "payload": {
+            "fact_id": "F-002",
+            "kind": "PLANETARY_STATE"
+          }
+        },
+        {
+          "children": [],
+          "labels": [
+            "TEMPORAL"
+          ],
+          "node_id": "temporal",
+          "node_type": "TEMPORAL",
+          "parent": null,
+          "payload": {
+            "dasha_active": null,
+            "moon_nakshatra": "ARDRA",
+            "transit_houses": null
+          }
+        }
+      ]
+    },
+    "result": {
+      "chart_id": "chart_fixture_000",
+      "domain": "GENERAL",
+      "matches": [
+        {
+          "confidence": 0.0,
+          "event_id": "EV-1",
+          "root_fact_ids": [],
+          "root_rule_ids": [],
+          "temporal_affected": false,
+          "timing_overlap_ratio": 0.0,
+          "timing_status": "ACTUAL_ONLY",
+          "verdict": "FALSE_NEGATIVE",
+          "yoga_name": ""
+        },
+        {
+          "confidence": 0.1,
+          "event_id": "EV-2",
+          "root_fact_ids": [],
+          "root_rule_ids": [],
+          "temporal_affected": false,
+          "timing_overlap_ratio": 0.0,
+          "timing_status": "ACTUAL_ONLY",
+          "verdict": "FALSE_NEGATIVE",
+          "yoga_name": "Raja"
+        },
+        {
+          "confidence": 0.9,
+          "event_id": "EV-3",
+          "root_fact_ids": [],
+          "root_rule_ids": [],
+          "temporal_affected": false,
+          "timing_overlap_ratio": 0.0,
+          "timing_status": "NO_OVERLAP",
+          "verdict": "FALSE_POSITIVE",
+          "yoga_name": "Malavya"
+        },
+        {
+          "confidence": 0.8,
+          "event_id": "EV-4",
+          "root_fact_ids": [],
+          "root_rule_ids": [],
+          "temporal_affected": false,
+          "timing_overlap_ratio": 0.4,
+          "timing_status": "PARTIAL_OVERLAP",
+          "verdict": "FALSE_POSITIVE",
+          "yoga_name": "Malavya"
+        },
+        {
+          "confidence": 0.95,
+          "event_id": "EV-5",
+          "root_fact_ids": [],
+          "root_rule_ids": [],
+          "temporal_affected": false,
+          "timing_overlap_ratio": 1.0,
+          "timing_status": "OVERLAP",
+          "verdict": "TRUE_POSITIVE",
+          "yoga_name": "Malavya"
+        }
+      ],
+      "predicted_yogas": [
+        {
+          "confidence": 0.9,
+          "domain": "GENERAL",
+          "involved_planets": [],
+          "overall_multiplier": 1.0,
+          "predicted_status": "WEAKENED",
+          "yoga_name": "Malavya"
+        },
+        {
+          "confidence": 0.1,
+          "domain": "GENERAL",
+          "involved_planets": [],
+          "overall_multiplier": 1.0,
+          "predicted_status": "CANCELLED",
+          "yoga_name": "Raja"
+        }
+      ],
+      "total_known_events": 5,
+      "total_predicted_yogas": 2
+    }
+  },
+  "schema": "jrs.validation.error_taxonomy/1.0.0"
+}

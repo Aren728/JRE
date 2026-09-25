@@ -202,6 +202,13 @@ class EventPredictionMatch:
         timing_status: Temporal overlap status.
         timing_overlap_ratio: Fraction of event window covered by prediction.
         confidence: Prediction confidence.
+        root_rule_ids: Canonical ``YOGA-xxx`` rule ids of the RULE nodes
+            implicated by this prediction in the evidence graph (Phase 5A
+            error attribution; empty when not yet attached).
+        root_fact_ids: ``F-xxx`` fact ids of the FACT nodes supporting the
+            implicated rules (reached over ``SUPPORTS`` edges).
+        temporal_affected: True when the implicated rules connect to the
+            TEMPORAL (Dasha/Transit) node over an ``AFFECTS`` edge.
     """
 
     event_id: str
@@ -210,6 +217,9 @@ class EventPredictionMatch:
     timing_status: TimingMatchStatus = TimingMatchStatus.NO_OVERLAP
     timing_overlap_ratio: float = 0.0
     confidence: float = 1.0
+    root_rule_ids: tuple[str, ...] = ()
+    root_fact_ids: tuple[str, ...] = ()
+    temporal_affected: bool = False
 
 
 @dataclass(frozen=True)
@@ -255,6 +265,9 @@ class ChartValidationResult:
                     "timing_status": m.timing_status.value,
                     "timing_overlap_ratio": m.timing_overlap_ratio,
                     "confidence": m.confidence,
+                    "root_rule_ids": list(m.root_rule_ids),
+                    "root_fact_ids": list(m.root_fact_ids),
+                    "temporal_affected": m.temporal_affected,
                 }
                 for m in self.matches
             ],

@@ -63,6 +63,11 @@ from jrs.validation.models import (
     KnownEvent,
     PredictionVerdict,
 )
+from jrs.validation.error_taxonomy import (
+    ErrorKind,
+    attribute_match,
+    summarize_attributions,
+)
 from jrs.validation.runner import HistoricalValidationRunner
 
 # Path resolution: this file lives at src/jrs/validation/benchmark/__init__.py,
@@ -276,11 +281,23 @@ def evaluate_corpus() -> dict[str, Any]:
     per_chart: dict[str, dict[str, Any]] = {}
     pooled: Counter[str] = Counter()
     domain_counts: dict[str, Counter[str]] = {}
+    attributions = []
 
     for data, result in zip(corpus, results):
         fid = str(data["_meta"]["fixture_id"])
         counts = _score_event_level(result)
         pooled.update(counts)
+
+        # Phase 5A: root-cause attribution for every FP/FN match. Matches
+        # already carry their root RULE-*/FACT-*/TEMPORAL provenance ids
+        # (attached inside run_batch).
+        chart_attributions = [
+            attribute_match(fid, m)
+            for m in result.matches
+            if m.verdict
+            in (PredictionVerdict.FALSE_POSITIVE, PredictionVerdict.FALSE_NEGATIVE)
+        ]
+        attributions.extend(chart_attributions)
 
         # Charts are single-domain cohort fixtures; attribute the chart's
         # event-level counts to that life domain for the Macro average.
@@ -299,6 +316,12 @@ def evaluate_corpus() -> dict[str, Any]:
             "true_positives": counts["tp"],
             "false_positives": counts["fp"],
             "false_negatives": counts["fn"],
+            "error_attribution": {
+                "by_kind": dict(
+                    sorted(Counter(a.kind.value for a in chart_attributions).items())
+                ),
+                "failures": [a.to_dict() for a in chart_attributions],
+            },
             "matches": [
                 {
                     "event_id": m.event_id,
@@ -307,6 +330,9 @@ def evaluate_corpus() -> dict[str, Any]:
                     "timing_status": m.timing_status.value,
                     "timing_overlap_ratio": round(m.timing_overlap_ratio, 6),
                     "confidence": round(m.confidence, 6),
+                    "root_rule_ids": list(m.root_rule_ids),
+                    "root_fact_ids": list(m.root_fact_ids),
+                    "temporal_affected": m.temporal_affected,
                 }
                 for m in result.matches
             ],
@@ -344,6 +370,7 @@ def evaluate_corpus() -> dict[str, Any]:
         "micro_f1": micro_f1,
         "per_domain_f1": per_domain_f1,
         "per_chart": per_chart,
+        "error_attribution": summarize_attributions(attributions),
     }
 
 

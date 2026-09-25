@@ -14,6 +14,10 @@ import logging
 from pathlib import Path
 from typing import Any
 
+from jrs.prediction_engine.provenance import (
+    DirectedAcyclicGraph,
+    EvidenceGraphService,
+)
 from jrs.temporal.models import windows_overlap
 from jrs.varga.confirmation_service import (
     ConfirmationStatus,
@@ -23,6 +27,7 @@ from jrs.varga.saptavargaja_service import SaptavargajaBalaService
 from jrs.yoga_evaluator.models import YogaOutcome, YogaStatus
 from jrs.yoga_evaluator.service import YogaEvaluatorService
 
+from .error_taxonomy import attach_provenance as _attach_match_provenance
 from .models import (
     BatchValidationReport,
     BirthChart,
@@ -226,16 +231,83 @@ class HistoricalValidationRunner:
     def run_batch(
         self,
         charts: list[BirthChart],
+        graphs: dict[str, DirectedAcyclicGraph] | None = None,
+        attach_provenance: bool = True,
+        prediction_ids: dict[str, str] | None = None,
     ) -> list[ChartValidationResult]:
         """Run the pipeline on multiple charts.
 
+        Phase 5A: optionally builds the evidence graph per chart (from the
+        same jre_facts + yoga evaluations that produced the predictions)
+        and attaches root provenance node ids (RULE-*/FACT-*/TEMPORAL) to
+        every match, enabling downstream error attribution
+        (:mod:`jrs.validation.error_taxonomy`).
+
         Args:
             charts: List of BirthCharts to validate.
+            graphs: Optional pre-built evidence graphs keyed by chart_id;
+                when omitted (and ``attach_provenance`` is on), graphs are
+                built from each chart's own pipeline output.
+            attach_provenance: Attach root provenance ids to every match.
+            prediction_ids: Optional per-chart prediction ids (``P-...``)
+                used when building graphs; deterministic defaults apply.
 
         Returns:
-            List of ChartValidationResult, one per chart.
+            List of ChartValidationResult, one per chart. When
+            ``attach_provenance`` is on, every match carries its root
+            RULE-*/FACT-*/TEMPORAL provenance ids.
         """
-        return [self.run_single_chart(chart) for chart in charts]
+        results = [self.run_single_chart(chart) for chart in charts]
+        if not attach_provenance:
+            return results
+
+        if graphs is None:
+            graphs = {}
+            for chart in charts:
+                pid = prediction_ids.get(chart.chart_id) if prediction_ids else None
+                graphs[chart.chart_id] = self._build_evidence_graph(
+                    chart,
+                    prediction_id=pid,
+                )
+
+        attached_results: list[ChartValidationResult] = []
+        for result in results:
+            graph = graphs.get(result.chart_id)
+            if graph is None:
+                attached_results.append(result)
+                continue
+            attached_results.append(
+                ChartValidationResult(
+                    chart_id=result.chart_id,
+                    predicted_yogas=result.predicted_yogas,
+                    matches=tuple(
+                        _attach_match_provenance(match, graph)
+                        for match in result.matches
+                    ),
+                    total_known_events=result.total_known_events,
+                    total_predicted_yogas=result.total_predicted_yogas,
+                    domain=result.domain,
+                )
+            )
+        return attached_results
+
+    def _build_evidence_graph(
+        self,
+        chart: BirthChart,
+        prediction_id: str | None = None,
+    ) -> DirectedAcyclicGraph:
+        """Build the evidence graph for one chart from its pipeline output.
+
+        Re-derives the classical yoga evaluations from ``chart.jre_facts``
+        (deterministic — the same call that produced the predictions) so
+        ``run_single_chart`` stays signature-stable and stateless.
+        """
+        yoga_evals = self._evaluator.evaluate_classical_yogas(chart.jre_facts)
+        return EvidenceGraphService().build_graph(
+            jre_facts=chart.jre_facts,
+            yoga_evals=yoga_evals,
+            prediction_id=prediction_id or chart.chart_id,
+        )
 
     # ── Private helpers ──
 
