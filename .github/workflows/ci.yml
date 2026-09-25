@@ -200,6 +200,11 @@ jobs:
       - name: Execute frozen benchmark evaluation (Phase F4 gate)
         run: python scripts/run_benchmark_eval.py
 
+      # Phase 6 (Track B): pin the served OpenAPI 3.1 contract — native
+      # 3.1 emission, stable operationIds, resolvable components/refs.
+      - name: Verify OpenAPI 3.1 contract
+        run: python scripts/verify_openapi_contract.py
+
   docker-compose-check:
     name: Docker Staging Build & Smoke Test
     runs-on: ubuntu-latest

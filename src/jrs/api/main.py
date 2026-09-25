@@ -15,14 +15,9 @@ from __future__ import annotations
 import hashlib
 import json
 import time
-
-import anyio
 from datetime import date, datetime as datetime_cls, timezone
 from pathlib import Path
-from typing import Any, Awaitable, Callable, TypeVar
-
-# Return-type inference for the async offload helper (Phase 6).
-_R = TypeVar("_R")
+from typing import Any, Awaitable, Callable
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -195,19 +190,12 @@ def _generate_evaluation_id(
 # The evaluation pipeline (Swiss Ephemeris C extension, yoga evaluation,
 # evidence-graph construction) is synchronous CPU-bound work. Running it
 # inline inside ``async def`` endpoints blocks the event loop and
-# serializes all concurrent requests. These wrappers offload blocking
-# sections to the worker-thread pool so the loop stays responsive under
-# high-throughput load, while endpoint signatures and response shapes
-# stay byte-identical.
+# serializes all concurrent requests. The shared helper (used also by
+# the evidence-graph route) offloads blocking sections to the
+# worker-thread pool so the loop stays responsive under high-throughput
+# load, while endpoint signatures and response shapes stay identical.
 
-
-async def _offload(func: Callable[..., _R], /, *args: Any, **kwargs: Any) -> _R:
-    """Run a blocking callable in the worker thread pool."""
-    import functools
-
-    return await anyio.to_thread.run_sync(
-        functools.partial(func, *args, **kwargs)
-    )
+from .offload import offload as _offload  # noqa: E402  (shared helper)
 
 
 # ── Yoga Category Mapping ──────────────────────────────────────────────────
