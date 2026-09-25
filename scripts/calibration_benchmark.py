@@ -40,6 +40,7 @@ import argparse
 import json
 import os
 import sys
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -118,6 +119,12 @@ def _run_scenario(name: str, enabled: frozenset[str]) -> dict[str, Any]:
         kind: int(by_kind.get(kind, 0))
         for kind in sorted(set(by_kind) | set(TAXONOMY_KINDS))
     }
+    by_rule = {
+        str(rule): int(count)
+        for rule, count in (
+            metrics["error_attribution"].get("by_rule", {}).items()
+        )
+    }
     return {
         "scenario": name,
         "flags": {FLAG_ENV_VARS[k]: (k in enabled) for k in sorted(FLAG_ENV_VARS)},
@@ -131,6 +138,7 @@ def _run_scenario(name: str, enabled: frozenset[str]) -> dict[str, Any]:
         "macro_f1": metrics["macro_f1"],
         "delta_micro_f1": round(metrics["micro_f1"] - BASELINE_MICRO_F1, 6),
         "error_taxonomy_by_kind": taxonomy,
+        "error_attribution_by_rule": by_rule,
         "gate_breach": metrics["micro_f1"] < BASELINE_MICRO_F1 - F1_TOLERANCE,
     }
 
@@ -155,6 +163,13 @@ def _attach_deltas(results: list[dict[str, Any]]) -> None:
         }
         r["attributed_total"] = sum(r["error_taxonomy_by_kind"].values())
         r["attributed_total_delta"] = r["attributed_total"] - base_total
+        base_rule = base["error_attribution_by_rule"]
+        r["rule_movement"] = {
+            rule: r["error_attribution_by_rule"].get(rule, 0) - base_rule.get(rule, 0)
+            for rule in sorted(
+                set(r["error_attribution_by_rule"]) | set(base_rule)
+            )
+        }
     base["baseline_match"] = (
         base["true_positives"] == FROZEN_BASELINE_COUNTS["tp"]
         and base["false_positives"] == FROZEN_BASELINE_COUNTS["fp"]
@@ -233,6 +248,37 @@ def _print_report(report: dict[str, Any]) -> None:
             + " ".join(cells)
             + f" {r['attributed_total']:>5} ({r['attributed_total_delta']:>+3})"
         )
+
+    # Rule-level attribution movement (top rules by attributed count,
+    # always keeping the watchlist rules YOGA-022/YOGA-024 when present).
+    watchlist = ("YOGA-022", "YOGA-024")
+    rule_totals: Counter[str] = Counter()
+    for r in results:
+        rule_totals.update(r["error_attribution_by_rule"])
+    top_rules = [
+        rule
+        for rule, _ in sorted(rule_totals.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+    for rule in watchlist:
+        if rule in rule_totals and rule not in top_rules[:8]:
+            top_rules.append(rule)
+    top_rules = top_rules[:8]
+    if top_rules:
+        print()
+        print(
+            "rule attribution (FP/FN matches per rule id; delta vs BASELINE; "
+            "watchlist: " + ", ".join(watchlist) + ")"
+        )
+        rule_header = f"{'scenario':<14} " + " ".join(f"{rule:>12}" for rule in top_rules)
+        print(rule_header)
+        print("-" * len(rule_header))
+        for r in results:
+            cells = [
+                f"{r['error_attribution_by_rule'].get(rule, 0):>5} "
+                f"({r['rule_movement'].get(rule, 0):>+3})"
+                for rule in top_rules
+            ]
+            print(f"{r['scenario']:<14} " + " ".join(cells))
 
     print()
     if report["gate_breaches"]:

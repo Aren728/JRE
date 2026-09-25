@@ -25,7 +25,11 @@ from jrs.varga.confirmation_service import (
 )
 from jrs.varga.saptavargaja_service import SaptavargajaBalaService
 from jrs.yoga_evaluator.models import YogaOutcome, YogaStatus
-from jrs.yoga_evaluator.service import YogaEvaluatorService
+from jrs.yoga_evaluator.service import (
+    DASHA_WINDOW_MULTIPLIERS,
+    GOCHARA_BAND_MULTIPLIERS,
+    YogaEvaluatorService,
+)
 
 from .error_taxonomy import attach_provenance as _attach_match_provenance
 from .models import (
@@ -77,6 +81,116 @@ def _map_yoga_to_domain(yoga_name: str) -> EventDomain:
     """Map a yoga name to its primary domain."""
     key = yoga_name.upper().replace("_", " ")
     return _YOGA_DOMAIN_MAP.get(key, EventDomain.GENERAL)
+
+
+# ── Phase 5F: flag-gated scoring factors ────────────────────────────────────
+# Each factor reads one jre_facts report that is present ONLY when the
+# corresponding scoring flag is on (reports are injected in
+# build_jre_facts behind the flags), so with all flags off — the frozen
+# Phase F3 baseline default — every factor is 1.0 and scoring is
+# bit-identical to the pre-hook protocol.
+
+_RASHI_NAMES: tuple[str, ...] = (
+    "MESHA",
+    "VRISHABHA",
+    "MITHUNA",
+    "KARKA",
+    "SIMHA",
+    "KANYA",
+    "TULA",
+    "VRISHCHIKA",
+    "DHANUSHA",
+    "MAKARA",
+    "KUMBHA",
+    "MEENA",
+)
+
+
+def _flag_scoring_factors(
+    jre_facts: dict[str, Any],
+    involved: tuple[str, ...],
+) -> tuple[float, float, float]:
+    """Compute (gochara, dasha, ashta) scoring factors for one prediction.
+
+    All three factors are 1.0 unless the corresponding flag-gated report
+    is present in ``jre_facts`` AND the yoga has involved planets to
+    evaluate against. Deterministic and pure.
+
+    - gochara (5C report): worst transit band among involved planets;
+      falls back to the aggregate band when none of them transit.
+    - dasha (5E report): strongest Vimshottari authority among involved
+      planets (MD 1.50 / AD 1.25 / PD 1.10); 0.40 when none authorize
+      (permissive gate expressed through confidence, never erasure).
+    - ashta (5B report): mean Shodhita SAV over the involved planets'
+      occupied signs, normalized around the classical mean 337/12 ≈ 28
+      and clamped to [0.85, 1.15].
+    """
+    gochara_factor = 1.0
+    dasha_factor = 1.0
+    ashta_factor = 1.0
+    if not involved:
+        return gochara_factor, dasha_factor, ashta_factor
+
+    gochara_report = jre_facts.get("gochara")
+    if isinstance(gochara_report, dict):
+        gplanets = gochara_report.get("planets", {})
+        band_labels = [
+            ((gplanets.get(p) or {}).get("band") or {}).get("label")
+            for p in involved
+            if p in gplanets
+        ]
+        if band_labels:
+            mults = [
+                GOCHARA_BAND_MULTIPLIERS.get(b, 1.0)
+                for b in band_labels
+                if isinstance(b, str)
+            ]
+            if mults:
+                gochara_factor = min(mults)
+        else:
+            aggregate = (gochara_report.get("aggregate_band") or {}).get("label")
+            gochara_factor = (
+                GOCHARA_BAND_MULTIPLIERS.get(aggregate, 1.0)
+                if isinstance(aggregate, str)
+                else 1.0
+            )
+
+    dasha_transit_report = jre_facts.get("dasha_transit")
+    if isinstance(dasha_transit_report, dict):
+        dplanets = dasha_transit_report.get("planets", {})
+        roles = [
+            (dplanets.get(p) or {}).get("authorized_by")
+            for p in involved
+            if p in dplanets
+        ]
+        # authorized_by=None means the gate explicitly BLOCKED the planet
+        # (report present, no authority) — not a missing report.
+        mults = [
+            (
+                DASHA_WINDOW_MULTIPLIERS.get(r, DASHA_WINDOW_MULTIPLIERS["NONE"])
+                if isinstance(r, str)
+                else DASHA_WINDOW_MULTIPLIERS["NONE"]
+            )
+            for r in roles
+        ]
+        if mults:
+            dasha_factor = max(mults)
+
+    ashta_report = jre_facts.get("ashtakavarga")
+    if isinstance(ashta_report, dict):
+        sav = ashta_report.get("shodhita_sav") or ashta_report.get("sav") or []
+        planets = jre_facts.get("planets", {})
+        rashi_index = {name: i for i, name in enumerate(_RASHI_NAMES)}
+        sign_values = [
+            sav[rashi_index[sign]]
+            for p in involved
+            if (sign := planets.get(p, {}).get("rashi")) in rashi_index
+        ]
+        if sign_values:
+            mean_sav = sum(sign_values) / len(sign_values)
+            ashta_factor = max(0.85, min(1.15, mean_sav / 28.0))
+
+    return gochara_factor, dasha_factor, ashta_factor
 
 
 def _determine_yoga_confidence(
@@ -183,11 +297,23 @@ class HistoricalValidationRunner:
                     # Normalize: 35 max score → 1.0 max boost
                     saptavargaja_boost = min(avg_score / 35.0, 1.0) * 0.5
 
-            # Net multiplier combines modifier, varga, and saptavargaja
+            # Net multiplier combines modifier, varga, saptavargaja, and
+            # the Phase 5F flag-gated factors (all 1.0 when flags off).
             modifier_strength = 1.0
             if eval_.modifier_report is not None:
                 modifier_strength = eval_.modifier_report.overall_strength
-            overall_multiplier = modifier_strength * varga_multiplier + saptavargaja_boost
+            gochara_factor, dasha_factor, ashta_factor = _flag_scoring_factors(
+                jre_facts,
+                involved,
+            )
+            overall_multiplier = (
+                modifier_strength
+                * varga_multiplier
+                * gochara_factor
+                * dasha_factor
+                * ashta_factor
+                + saptavargaja_boost
+            )
 
             # ── Timing windows from Dasha/Transit ──
             timing_windows = self._extract_timing_windows(

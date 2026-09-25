@@ -29,6 +29,60 @@ from .modifier_service import ModifierEvaluationService, ModifierReport, Modifie
 # Dusthana houses — placements that weaken a yoga
 DUSTHANA_HOUSES: frozenset[int] = frozenset({6, 8, 12})
 
+# ── Phase 5F: Flag-gated scoring-hook constants ────────────────────────────
+# Each scoring flag keys off one jre_facts report (injected only when the
+# corresponding calculation-module flag is on). With every flag off — the
+# frozen-baseline default — no report is present and every hook below is
+# a strict identity no-op, so flag-off scoring is byte-identical to the
+# Phase F3 protocol.
+SCORING_FLAG_FACT_KEYS: dict[str, str] = {
+    "ashta_scoring_enabled": "ashtakavarga",
+    "gochara_scoring_enabled": "gochara",
+    "varga_scoring_enabled": "multi_varga",
+    "dasha_transit_scoring_enabled": "dasha_transit",
+}
+
+# Phase 5C gochara TQS bands → scoring multipliers (normalized around 1.0;
+# the frozen GOCHARA_BANDS base multipliers stay in the gochara module).
+GOCHARA_BAND_MULTIPLIERS: dict[str, float] = {
+    "SUPPORTIVE": 1.10,
+    "NEUTRAL": 1.00,
+    "MIXED": 0.95,
+    "AFFLICTED": 0.85,
+}
+
+# Phase 5E Vimshottari authority → scoring multipliers (engine convention:
+# MD 1.50 / AD 1.25 / PD 1.10; non-authoritative dasha state → 0.40).
+DASHA_WINDOW_MULTIPLIERS: dict[str, float] = {
+    "MD": 1.50,
+    "AD": 1.25,
+    "PD": 1.10,
+    "NONE": 0.40,
+}
+
+# Dignity levels that authorize the Phase 5F structural rescue: a D9
+# cancellation is lifted only when the planet is vargottama, or its D1
+# sign is its own (OWN), or it is exalted (D9/D10) — classical
+# counterweights that supersede a debilitated/dusthana divisional spot.
+RESCUE_SUPPORTED_DIGNITIES: tuple[str, ...] = ("EXALTED", "OWN")
+
+# D1 sign → owning planet (classical sign lords), used for the own-sign
+# rescue test against the Phase 5D placements report.
+_SIGN_OWNER: dict[str, str] = {
+    "MESHA": "MARS",
+    "VRISHABHA": "VENUS",
+    "MITHUNA": "MERCURY",
+    "KARKA": "MOON",
+    "SIMHA": "SUN",
+    "KANYA": "MERCURY",
+    "TULA": "VENUS",
+    "VRISHCHIKA": "MARS",
+    "DHANUSHA": "JUPITER",
+    "MAKARA": "SATURN",
+    "KUMBHA": "SATURN",
+    "MEENA": "JUPITER",
+}
+
 
 class YogaEvaluatorService:
     """Deterministic service for evaluating yoga formation and cancellation."""
@@ -1410,7 +1464,119 @@ class YogaEvaluatorService:
 
         # ── Phase 4: Apply Varga (D9) Confirmation Mask ──
         # BPHS Ch 35: D9 confirmation validates or cancels yoga strength.
-        # Applied after modifier pipeline (Phase 1) to post-formation yogas.
+        # Applied after modifier pipeline (Phase 1) to post-formation
+        # yogas — unchanged, exactly as before Phase 5F.
+        self._legacy_varga_mask(jre_facts, results, yoga_involved_planets)
+
+        # ── Phase 5F: Flag-gated scoring hooks (default OFF) ──
+        # With all scoring flags off (frozen-baseline default) this is a
+        # strict identity no-op; see _apply_scoring_hooks.
+        results = self._apply_scoring_hooks(jre_facts, results, yoga_involved_planets)
+
+        return results
+
+    def _apply_scoring_hooks(
+        self,
+        jre_facts: dict[str, Any],
+        results: list[YogaEvaluation],
+        yoga_involved_planets: list[list[str]],
+    ) -> list[YogaEvaluation]:
+        """Apply Phase 5F scoring hooks to evaluated yogas.
+
+        Identity no-op unless at least one scoring-flag report is present
+        in ``jre_facts`` (reports are injected only when the corresponding
+        ``*_scoring_enabled`` flag is on, so the frozen baseline is
+        structurally unreachable from this path).
+
+        Hook 1 — varga_scoring_enabled (Phase 5D report): structural
+        rescue of the D9 confirmation mask. A D9 cancellation
+        (debilitation sign or dusthana house) is lifted only when the
+        cancelling planet carries classical counterweight evidence:
+        vargottama, own-sign D1, or exaltation (D1/D9/D10).
+
+        Hook 2 — gochara_scoring_enabled (Phase 5C report): attaches the
+        transit band as ``transit_multiplier`` for reference.
+        """
+        reports_present = [
+            fact_key
+            for fact_key in SCORING_FLAG_FACT_KEYS.values()
+            if isinstance(jre_facts.get(fact_key), dict)
+        ]
+        if not reports_present:
+            return results
+
+        varga_report = jre_facts.get("multi_varga")
+        if isinstance(varga_report, dict):
+            placements = varga_report.get("placements", {})
+            vargottama = varga_report.get("vargottama", {})
+            nav_dignity = varga_report.get("navamsha_dignity", {})
+            d10_dignity = varga_report.get("d10_dignity", {})
+            for idx, (eval_, involved) in enumerate(
+                zip(results, yoga_involved_planets)
+            ):
+                if eval_.status != YogaStatus.CANCELLED:
+                    continue
+                for planet in involved:
+                    d1_sign = (
+                        placements.get(planet, {}).get("D1", {}) or {}
+                    ).get("sign", "")
+                    supported = (
+                        bool(vargottama.get(planet))
+                        or _SIGN_OWNER.get(d1_sign) == planet
+                        or nav_dignity.get(planet) in RESCUE_SUPPORTED_DIGNITIES
+                        or d10_dignity.get(planet) in RESCUE_SUPPORTED_DIGNITIES
+                    )
+                    if supported:
+                        # Structural rescue: lift the D9 cancellation.
+                        results[idx] = replace(
+                            eval_,
+                            status=YogaStatus.FORMED,
+                            cancellation_reason=None,
+                        )
+                        break
+
+        gochara_report = jre_facts.get("gochara")
+        if isinstance(gochara_report, dict):
+            for idx, (eval_, involved) in enumerate(
+                zip(results, yoga_involved_planets)
+            ):
+                bands = [
+                    (
+                        gochara_report.get("planets", {}).get(p, {}).get("band") or {}
+                    ).get("label")
+                    for p in involved
+                    if p in gochara_report.get("planets", {})
+                ]
+                if not bands:
+                    continue
+                band_label = bands[0]
+                transit_mult = (
+                    GOCHARA_BAND_MULTIPLIERS.get(band_label)
+                    if isinstance(band_label, str)
+                    else None
+                )
+                if transit_mult is not None:
+                    results[idx] = replace(
+                        eval_, transit_multiplier=transit_mult
+                    )
+
+        return results
+
+    # ── Phase 4 legacy path below (kept for API parity) ──
+
+    def _legacy_varga_mask(
+        self,
+        jre_facts: dict[str, Any],
+        results: list[YogaEvaluation],
+        yoga_involved_planets: list[list[str]],
+    ) -> None:
+        """Phase 4 D9 confirmation mask (applied unconditionally).
+
+        Binary cancellation: any involved planet debilitated in D9 or in
+        a D9 dusthana house cancels the yoga. Phase 5F's
+        :meth:`_apply_scoring_hooks` may lift individual cancellations
+        afterwards, only when ``varga_scoring_enabled`` is on.
+        """
         if "planet_d9_house" in jre_facts:
             for idx, (eval_, involved) in enumerate(zip(results, yoga_involved_planets)):
                 # Only apply to FORMED or WEAKENED yogas (not already CANCELLED)
@@ -1431,8 +1597,6 @@ class YogaEvaluatorService:
                         status=YogaStatus.CANCELLED,
                         cancellation_reason=confirmation.cancellation_reason,
                     )
-
-        return results
 
     # ── Domain Exclusivity (Phase F4 — Part C) ───────────────────────────
 
