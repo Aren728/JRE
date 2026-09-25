@@ -46,6 +46,7 @@ from .dependencies import (
 from .logging_config import get_logger, log_request
 
 from .routes.advanced_charts import router as advanced_charts_router
+from .routes.evidence_graph import router as evidence_graph_router
 from .routes.event_evaluator import router as event_evaluator_router
 from .routes.predictions import router as predictions_router
 from .schemas import (
@@ -579,6 +580,7 @@ async def log_requests_middleware(
 app.include_router(event_evaluator_router)
 app.include_router(advanced_charts_router)
 app.include_router(predictions_router)
+app.include_router(evidence_graph_router)
 
 
 # ── Endpoints ───────────────────────────────────────────────────────────────

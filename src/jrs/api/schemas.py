@@ -177,6 +177,76 @@ class ChartRequest(BaseModel):
 # ── Response Schemas ────────────────────────────────────────────────────────
 
 
+class EvidenceGraphNode(BaseModel):
+    """One node of the evidence DAG (Phase 7 Observatory contract)."""
+
+    node_id: str = Field(..., description="Stable node id (EV-/R-/F-/FD-…)")
+    node_type: str = Field(
+        ...,
+        description=(
+            "Node layer: EVALUATION, RULE, FACT, CITATION, TEMPORAL, or ANALYSIS"
+        ),
+    )
+    labels: list[str] = Field(
+        default_factory=list,
+        description="Classification labels (e.g. FACT, VARGA, DASHA_TRANSIT)",
+    )
+    payload: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Node payload (rule ids, fact ids, dignities, citations…)",
+    )
+    parent: str | None = Field(
+        default=None,
+        description="Parent node id when the node is a child in the DAG",
+    )
+
+
+class EvidenceGraphEdge(BaseModel):
+    """One directed edge of the evidence DAG (Phase 7 Observatory contract)."""
+
+    edge_id: str = Field(..., description="Stable edge id")
+    source: str = Field(..., description="Source node id")
+    target: str = Field(..., description="Target node id")
+    relationship: str = Field(
+        ...,
+        description=(
+            "Relation type: ESTABLISHED_BY, DERIVES_FROM, SUPPORTS, AFFECTS, "
+            "REL-GOCHARA-*, REL-VARGA-*, REL-DASHA-TRANSIT-*"
+        ),
+    )
+    weight: float = Field(default=1.0, description="Edge weight")
+    metadata: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Edge metadata (bands, dignities, decisions…)",
+    )
+
+
+class EvidenceGraphResponse(BaseModel):
+    """Full evidence DAG for one chart (Phase 7 Observatory contract).
+
+    The same deterministic graph the golden-state ``evidence_graph``
+    stage hashes — what the Observatory renders is exactly what the
+    regression gate verifies.
+    """
+
+    graph_id: str = Field(..., description="Deterministic graph identifier")
+    fixture_id: str = Field(..., description="Fixture the graph was built from")
+    node_count: int = Field(..., description="Total node count")
+    edge_count: int = Field(..., description="Total edge count")
+    nodes: list[EvidenceGraphNode] = Field(
+        default_factory=list,
+        description="All DAG nodes",
+    )
+    edges: list[EvidenceGraphEdge] = Field(
+        default_factory=list,
+        description="All directed DAG edges",
+    )
+    engine_version: str = Field(
+        default=ENGINE_VERSION,
+        description="Engine version used to build the graph",
+    )
+
+
 class YogaProvenance(BaseModel):
     """Provenance and explainability data for a yoga evaluation."""
 
