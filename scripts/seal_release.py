@@ -39,10 +39,9 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-RELEASE_ID = "v1.0.0-rc1"
 RELEASE_SCHEMA_VERSION = "1.0.0"
 RELEASES_DIR = REPO_ROOT / "releases"
-SEAL_PATH = RELEASES_DIR / f"{RELEASE_ID}.json"
+DEFAULT_RELEASE_ID = "v1.0.0"
 
 # Frontend directories hashed for the source-content seal (build output
 # is intentionally excluded: Next.js embeds non-deterministic ids).
@@ -168,14 +167,14 @@ def _golden_states_hash() -> dict[str, Any]:
     }
 
 
-def build_seal() -> dict[str, Any]:
+def build_seal(release_id: str = DEFAULT_RELEASE_ID) -> dict[str, Any]:
     from jrs.api.schemas import ENGINE_VERSION
 
     requirements = REPO_ROOT / "requirements.txt"
     bench_seal = REPO_ROOT / "benchmarks" / "JRE-BENCH-001.json"
 
     return {
-        "release_id": RELEASE_ID,
+        "release_id": release_id,
         "schema_version": RELEASE_SCHEMA_VERSION,
         "status": "SEALED",
         "engine_version": ENGINE_VERSION,
@@ -205,10 +204,14 @@ def build_seal() -> dict[str, Any]:
     }
 
 
-def verify_seal() -> list[str]:
+def _seal_path(release_id: str) -> Path:
+    return RELEASES_DIR / f"{release_id}.json"
+
+
+def verify_seal(release_id: str = DEFAULT_RELEASE_ID) -> list[str]:
     failures: list[str] = []
-    sealed = json.loads(SEAL_PATH.read_text(encoding="utf-8"))
-    live = build_seal()
+    sealed = json.loads(_seal_path(release_id).read_text(encoding="utf-8"))
+    live = build_seal(release_id)
 
     # Content sections: strict equality (these are pure hashes of
     # artifact content and must match exactly).
@@ -237,21 +240,31 @@ def verify_seal() -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Seal / verify the RC1 release manifest.")
+    parser = argparse.ArgumentParser(description="Seal / verify a release manifest.")
     parser.add_argument("--check", action="store_true", help="verify live == sealed")
+    parser.add_argument(
+        "--release-id",
+        default=DEFAULT_RELEASE_ID,
+        help=(
+            "Release id to seal/verify (default: v1.0.0). Existing seals "
+            "(e.g. v1.0.0-rc1) stay verifiable via their own id."
+        ),
+    )
     args = parser.parse_args(argv)
 
+    seal_path = _seal_path(args.release_id)
+
     if args.check:
-        failures = verify_seal()
+        failures = verify_seal(args.release_id)
         if failures:
             print("RELEASE SEAL: FAIL", file=sys.stderr)
             for f in failures:
                 print(f"  - {f}", file=sys.stderr)
             return 1
-        print(f"RELEASE SEAL: PASS ({RELEASE_ID} matches live repository state)")
+        print(f"RELEASE SEAL: PASS ({args.release_id} matches live repository state)")
         return 0
 
-    seal = build_seal()
+    seal = build_seal(args.release_id)
     if not seal["git"]["worktree_clean"]:
         print(
             "WARNING: worktree is dirty — the seal records HEAD but uncommitted "
@@ -259,10 +272,10 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
     RELEASES_DIR.mkdir(parents=True, exist_ok=True)
-    SEAL_PATH.write_text(
+    seal_path.write_text(
         json.dumps(seal, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
-    print(f"Sealed {RELEASE_ID}: {SEAL_PATH}")
+    print(f"Sealed {args.release_id}: {seal_path}")
     print(f"  git: {seal['git']['commit'][:12]} | alembic: {seal['database']['schema_version']}")
     print(f"  api sha256: {seal['api']['openapi_3_1_sha256'][:16]}…")
     return 0

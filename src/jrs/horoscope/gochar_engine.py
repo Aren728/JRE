@@ -4,7 +4,7 @@ Calculates real-time Moon and Sun positions using Swiss Ephemeris,
 determines current Nakshatra and Rashi placements, and generates
 deterministic daily/weekly horoscope narratives.
 
-This is a SEPARATE module from the natal v1.0.0-beta reasoning engine.
+This is a SEPARATE module from the natal v1.0.0 reasoning engine.
 It operates on current (transit) positions only.
 """
 

@@ -17,7 +17,7 @@ only at final output.
 Usage::
 
     manifest = build_manifest(
-        engine_version="v1.0.0-beta",
+        engine_version="v1.0.0",
         fixture_id="chart_001_pilot",
         stage_payloads={"chart": chart.to_dict(), "jre_facts": facts},
     )

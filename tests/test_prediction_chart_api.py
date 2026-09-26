@@ -346,7 +346,7 @@ class TestHealthEndpoint:
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "healthy"
-        assert data["version"] == "1.1.0rc1"
+        assert data["version"] == "1.0.0"
 
     def test_health_response_schema(self):
         """Health response matches expected schema."""

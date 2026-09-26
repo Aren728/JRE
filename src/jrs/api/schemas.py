@@ -12,7 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 # ── Constants ───────────────────────────────────────────────────────────────
 
-ENGINE_VERSION = "v1.0.0-beta"
+ENGINE_VERSION = "v1.0.0"
 
 LEGAL_DISCLAIMER = (
     "DISCLAIMER: This output is a computational interpretation based on "

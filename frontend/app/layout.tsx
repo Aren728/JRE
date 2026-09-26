@@ -30,7 +30,7 @@ export default function RootLayout({
           <footer className="border-t border-white/5 py-5 text-center text-xs" style={{ color: 'var(--cosmic-muted)' }}>
             <div className="max-w-5xl mx-auto px-4">
               <p className="mb-1">
-                JRE v1.0.0-beta — Engine frozen. No reasoning logic changes during beta.
+                JRE v1.0.0 — Production release. Deterministic, hash-audited engine.
               </p>
               <p style={{ opacity: 0.5 }}>
                 Computational interpretation based on classical Vedic astrology rulesets (BPHS, Phaladeepika).

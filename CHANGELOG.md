@@ -2,6 +2,22 @@
 
 All notable changes to JRE are recorded here, per orchestration stage.
 
+## [1.0.0] — 2026-09-26
+
+### Changed
+
+- **JRE 1.0.0 final production release** (Phase 11C): engine version →
+  `v1.0.0` (was `v1.0.0-beta`), package version reconciled to `1.0.0`
+  (was `1.1.0rc1`), all 50 golden-state manifests re-stamped (pinned
+  Stage 1–9 payload hashes unchanged), release seal parameterized via
+  `scripts/seal_release.py --release-id` (the rc1 seal remains
+  verifiable by its own id).
+
+### Added
+
+- **Release notes**: `docs/RELEASE_NOTES_v1.0.0.md` — validation-gate
+  summary, upgrade notes from rc1/beta, artifact map.
+
 ## [1.1.0rc1] — 2026-09-23
 
 ### Added
