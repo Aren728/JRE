@@ -57,8 +57,11 @@ study.*
   manifest metadata only).
 - Project version reconciled to `1.0.0` (was `1.1.0rc1` in
   `pyproject.toml`, `v1.0.0-beta` in the engine).
-- The rc1 seal remains verifiable:
-  `python scripts/seal_release.py --check --release-id v1.0.0-rc1`.
+- The rc1 seal (`releases/v1.0.0-rc1.json`) is immutable and remains
+  auditable at its Phase 9F tree (`git checkout 585f2c9`):
+  `--check --release-id v1.0.0-rc1` passes at that tree. At HEAD it
+  reports expected content drift (api/frontend/golden sections) from
+  this version reconciliation.
 
 ## Known Limitations
 
